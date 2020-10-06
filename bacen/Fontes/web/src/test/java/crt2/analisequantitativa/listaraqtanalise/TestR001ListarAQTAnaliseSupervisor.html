@@ -1,0 +1,229 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Listar análise econômico-financeira para o supervisor</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Listar análise econômico-financeira para o supervisor</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>14/01/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#listarAQTAnaliseSupervisor">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<li><banco />Os dados encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/listaraqtanalise/TestR001ListarAQTAnaliseSupervisor_dadoque_c001.html"
+			class="include">aqui</a>.</li>
+	</blockquote>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarEstadoInicial">validar estado inicial da tela</a>.
+	</blockquote>
+
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001] - </b>Supervisor possui ANEFs para análise</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='tConsultaAQTSupervisor']">
+					<table id="tConsultaAQTSupervisor" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr style="width: 90%; margin: auto;">
+								<td>
+									<div align="center" style="width: 100%; margin: auto;" id="consultaAQTSupervisorfe">
+										<div class="centralizado">
+											<span id="tabelaff">
+												<div align="center">
+													<table id="idTituloAQTs" class="tabela fundoPadraoAEscuro2"
+														style="width: 100%; font-weight: bold; border-bottom: none;">
+														<tbody>
+															<tr>
+																<th><span id="titulo100"> ANEFs para análise </span></th>
+															</tr>
+														</tbody>
+													</table>
+													<table id="idDadosAQTs" class="tabela" style="width: 100%;">
+														<thead>
+															<tr>
+																<th nowrap="" id="ordenar_ciclo.entidadeSupervisionavel.nome" class="wicket_orderUp crescente"
+																	style="width: 45%">
+																	<table href="#" id="idOrdenarCicloentidadeSupervisionavelnome"
+																		onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./supervisor?3-1.ILinkListener-formulario-consultaAQTSupervisor-tabela-tabelaDados-dados-cabecalhos-0-celula-orderByLink'; } ;return false">
+																		<tbody>
+																			<tr>
+																				<th width="100%">
+																					<div>
+																						<span id="valor104"> ES </span>
+																					</div>
+																				</th>
+																				<th><img id="ordenar105" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																				</th>
+																			</tr>
+																		</tbody>
+																	</table>
+																</th>
+																<th nowrap="" id="ordenar_parametroAQT.descricao" class="wicket_orderNone fundoPadraoAEscuro4"
+																	style="width: 35%">
+																	<table href="#" id="idOrdenarParametroAQTdescricao"
+																		onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./supervisor?3-1.ILinkListener-formulario-consultaAQTSupervisor-tabela-tabelaDados-dados-cabecalhos-1-celula-orderByLink'; } ;return false">
+																		<tbody>
+																			<tr>
+																				<th width="100%">
+																					<div>
+																						<span id="valor108"> Componente </span>
+																					</div>
+																				</th>
+																				<th><img id="ordenar109" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																				</th>
+																			</tr>
+																		</tbody>
+																	</table>
+																</th>
+																<th nowrap="" id="ordenar_estado.descricao" class="wicket_orderNone fundoPadraoAEscuro4"
+																	style="width: 10%">
+																	<table href="#" id="idOrdenarEstadodescricao"
+																		onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./supervisor?3-1.ILinkListener-formulario-consultaAQTSupervisor-tabela-tabelaDados-dados-cabecalhos-2-celula-orderByLink'; } ;return false">
+																		<tbody>
+																			<tr>
+																				<th width="100%">
+																					<div>
+																						<span id="valor10c"> Estado </span>
+																					</div>
+																				</th>
+																				<th><img id="ordenar10d" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																				</th>
+																			</tr>
+																		</tbody>
+																	</table>
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr class="fundoPadraoAClaro2" id="id110e">
+																<td id="id110f"><span id="cell110"> ABN AMRO </span></td>
+																<td id="id2111"><span id="cell112"> Liquidez </span></td>
+																<td id="id3113"><span id="cell114"> <a
+																		href="./supervisor?3-1.ILinkListener-formulario-consultaAQTSupervisor-tabela-tabelaDados-dados-linhas-1-cells-3-cell-link"
+																		align="center" id="link_AQT2"> Análise delegada </a>
+																</span></td>
+															</tr>
+															<tr class="fundoPadraoAClaro3" id="id2115">
+																<td id="id1116"><span id="cell117"> ABN AMRO </span></td>
+																<td id="id2118"><span id="cell119"> Exigibilidades </span></td>
+																<td id="id311a"><span id="cell11b"> <a
+																		href="./supervisor?3-1.ILinkListener-formulario-consultaAQTSupervisor-tabela-tabelaDados-dados-linhas-2-cells-3-cell-link"
+																		align="center" id="link_AQT4"> Preenchido </a>
+																</span></td>
+															</tr>
+															<tr class="fundoPadraoAClaro2" id="id311c">
+																<td id="id111d"><span id="cell11e"> ABN AMRO </span></td>
+																<td id="id211f"><span id="cell120"> Capital </span></td>
+																<td id="id3121"><span id="cell122"> <a
+																		href="./supervisor?3-1.ILinkListener-formulario-consultaAQTSupervisor-tabela-tabelaDados-dados-linhas-3-cells-3-cell-link"
+																		align="center" id="link_AQT6"> Em análise </a>
+																</span></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</span>
+										</div>
+										<br>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <br></td>
+		</tr>
+
+
+
+		<tr class="scenario">
+			<td class='title'><b>[C002] - </b>Supervisor não possui ANEFs para análise</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq115>é "deliq.sisliq115"</sisliq115></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='tConsultaAQTSupervisor']">
+					<table id="tConsultaAQTSupervisor" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr style="width: 90%; margin: auto;">
+								<td>
+									<div align="center" style="width: 100%; margin: auto;" id="consultaAQTSupervisor6f">
+										<div class="centralizado">
+											<span id="tabela70">
+												<div align="center">
+													<table id="idTituloAQTs" class="tabela fundoPadraoAEscuro2"
+														style="width: 100%; font-weight: bold; border-bottom: none;">
+														<tbody>
+															<tr>
+																<th><span id="titulo71"> ANEFs para análise </span></th>
+															</tr>
+														</tbody>
+													</table>
+													<table id="idDadosAQTs" class="tabela" style="width: 100%;">
+														<tbody>
+															<tr id="linha73" class="fundoPadraoAClaro3">
+																<td id="mensagem74" style="padding: 4px">Nenhum registro que satisfaça os critérios de pesquisa foi
+																	encontrado.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</span>
+										</div>
+										<br>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <br></td>
+		</tr>
+
+
+	</table>
+</body>
+</html>

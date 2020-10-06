@@ -1,0 +1,222 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Recuperar registros para o Painel do Inspetor</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória - Localização simulada do Administrador</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>26/05/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+        As regras da estória encontram-se <a href="../../administrador/index.html#simularLocalizacaoAdministrador">aqui</a>
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="mock_bcpessoa_DadoQue.html" class="include">carregada</a></li>
+		  <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq105"</span>'
+        </strong>.
+        </li>
+
+		<banco />
+
+		<li>Os dados encontram-se <a href="TestR001SimularLocalizacaoAdministrador_DadoQue.html" class="include">aqui</a></li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		<a href="indexNegocio.html#listarciclovosInspetor">Cenários para validar a recuperação de registros para o Painel do
+			Inspetor</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th colspan="2">Cenário</th>
+						</tr>
+						<tr>
+							<td class='title' colspan="2"><b>[C001] - </b>Validação da lista de ciclovos antes da alteração da localização.</td>
+						</tr>
+						<tr>
+							<th colspan="2">Executar</th>
+						</tr>
+						<td>Verificar</td>
+						<td>a lista de ciclovos é: <br/>
+						<table>
+                    	<tr><th style="background-color: green; width: 454px">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+							<table class="verifyRows" name="ciclovo" value="$THIS.consultaPainelInspetor()">
+								<tr>
+									<th class="eq" value="$THIS.getES(ciclovo)">ES</th>
+									<th class="eq" value="$THIS.getDataInicio(ciclovo)">Início</th>
+									<th class="eq" value="$THIS.getDataPrevisaoCorec(ciclovo)">Corec</th>
+									<th class="eq" value="$THIS.getEstado(ciclovo)">Estado</th>
+								</tr>
+								<tr>
+									<td>BANCO FIBRA S.A.</td>
+									<td>28/05/2014</td>
+									<td>28/05/2016</td>
+									<td>Em andamento</td>
+								</tr>
+
+							</table>
+						</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class=exemplos>
+					<tr>
+						<th colspan="2">Cenário</th>
+					</tr>
+					<tr>
+						<td class='title' colspan="2"><b>[C002] - </b>Validação da lista de ciclovos após a alteração da localização e cancelar simulação.</td>
+					</tr>
+
+					<tr>
+						<th colspan="2">Executar</th>
+					</tr>
+					<tr>
+						<td>Alterar</td>
+						<td>a localização para <span class="set" name="localizacao" converter="String">DEINF/GEDEG/DIREC</span>
+						    <span class="execute" value="$THIS.alterarLocalizacaoSimulada(localizacao)"/>
+						 </td>
+					</tr>
+					<tr>
+						<td>Verificar</td>
+						<td>a lista de ciclovos é: <br/>
+						<table>
+                    	<tr><th style="background-color: green;width: 186px">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+                    	</table>
+						<table class="verifyRows" name="ciclovo" value="$THIS.consultaPainelInspetor()">
+								<tr>
+									<th class="eq" value="$THIS.getES(ciclovo)">ES</th>
+									<th class="eq" value="$THIS.getDataInicio(ciclovo)">Início</th>
+									<th class="eq" value="$THIS.getDataPrevisaoCorec(ciclovo)">Corec</th>
+									<th class="eq" value="$THIS.getEstado(ciclovo)">Estado</th>
+								</tr>
+
+							</table></td>
+					</tr>
+					<tr>
+						<td>Alterar</td>
+						<td>a localização para: <span class="set" name="localizacao" converter="String">DELIQ/GLIQ1/GTBHO</span>
+						    <span class="execute" value="$THIS.alterarLocalizacaoSimulada(localizacao)">
+						</td>
+					</tr>
+					<tr>
+						<td>Verificar</td>
+						<td>a lista de ciclovos é: <br/>
+						<table>
+                    	<tr><th style="background-color: green; width: 365px">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+                    	</table>
+						<table class="verifyRows" name="ciclovo" value="$THIS.consultaPainelInspetor()">
+								<tr>
+									<th class="eq" value="$THIS.getES(ciclovo)">ES</th>
+									<th class="eq" value="$THIS.getDataInicio(ciclovo)">Início</th>
+									<th class="eq" value="$THIS.getDataPrevisaoCorec(ciclovo)">Corec</th>
+									<th class="eq" value="$THIS.getEstado(ciclovo)">Estado</th>
+								</tr>
+
+								<tr>
+									<td>ABN AMRO</td>
+									<td>28/05/2014</td>
+									<td>28/05/2015</td>
+									<td>Em andamento</td>
+								</tr>
+
+								<tr>
+									<td>BB</td>
+									<td>28/05/2014</td>
+									<td>28/05/2016</td>
+									<td>Em andamento</td>
+								</tr>
+
+								<tr>
+									<td>GOLDMAN SACHS</td>
+									<td>17/03/2014</td>
+									<td>17/03/2015</td>
+									<td>Corec</td>
+								</tr>
+
+								<tr>
+									<td>ITAU</td>
+									<td>14/04/2014</td>
+									<td>14/04/2015</td>
+									<td>Em andamento</td>
+								</tr>
+							</table></td>
+					</tr>
+					<tr>
+						<td>Cancelar</td>
+						<td>a simulação <span class="execute" value="$THIS.cancelarLocalizacaoSimulada()"></td>
+					</tr>
+					<tr>
+					<tr>
+						<td>Verificar</td>
+						<td>a lista de ciclovos é: <br/>
+						<table>
+                    	<tr><th style="background-color: green; width: 454px">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+                    	</table>
+							<table class="verifyRows" name="ciclovo" value="$THIS.consultaPainelInspetor()">
+								<tr>
+									<th class="eq" value="$THIS.getES(ciclovo)">ES</th>
+									<th class="eq" value="$THIS.getDataInicio(ciclovo)">Início</th>
+									<th class="eq" value="$THIS.getDataPrevisaoCorec(ciclovo)">Corec</th>
+									<th class="eq" value="$THIS.getEstado(ciclovo)">Estado</th>
+								</tr>
+								<tr>
+									<td>BANCO FIBRA S.A.</td>
+									<td>28/05/2014</td>
+									<td>28/05/2016</td>
+									<td>Em andamento</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+
+
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

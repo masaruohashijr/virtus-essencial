@@ -1,0 +1,39 @@
+<wicket:panel>
+	<table id="tDadosAnefGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label wicket:id="idNomeDoGrupo"></label></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="nomeCampo" style="width: 25%;">Nota do ANEF calculada</td>
+				<td class="fundoPadraoAClaro3"><label wicket:id="idNovaNotaAnef"></label></td>
+			</tr>
+
+			<wicket:enclosure child="idNotaCorec">
+
+				<tr>
+					<td class="nomeCampo" style="width: 25%;">Nota do ANEF ajustada</td>
+					<td class="fundoPadraoAClaro3"><label wicket:id="idNotaCorec"></label></td>
+				</tr>
+
+			</wicket:enclosure>
+
+
+
+			<wicket:enclosure child="GrupoEspansivelNota">
+
+				<tr>
+					<td style="background-color: #93abc5;" wicket:id="GrupoEspansivelNota"></td>
+					<td class="fundoPadraoAClaro3"><label style="width: 10%;" wicket:id="idNovaNotaAnefAjustada"></label> <br />
+					</td>
+				</tr>
+			</wicket:enclosure>
+		</tbody>
+	</table>
+	<div wicket:id="idPainelNota"></div>
+
+
+
+</wicket:panel>

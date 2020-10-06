@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Perfil 'Consulta somente não bloqueados'</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Perfil 'Consulta não bloqueados'</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="corec" class="menu">Perfil 'Consulta somente não bloqueados'</a>
+ </h2>
+
+
+ 	<h3>
+ 	    <a name="painelConsulta" class="menu">Painel de consulta</a>
+ 	</h3>
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/ConsultaTudo/Painel/painel_consulta.html">protótipo</a>.</li>
+			
+			<li>Regras gerais:</li>
+			   <ul>
+			   <li>Observar o que está descrito em <a href="../../NegocioSisaps.html#acumuloPerfisConsulta">acúmulo de perfis de consulta</a>.</li>  
+			   <li>Filtros:<li>
+			   <ul>
+			       <li>Parte do nome da ES:</li>
+			           <ul>
+			               <li>É possível consultar a ES digitando apenas parte do seu nome.</li>
+			           </ul>    
+			       <li>Equipe:</li>
+			           <ul>
+			               <li>Deve abranger as equipes das ESs ativas(com prioridade e que pertencem ao SRC) cadastradas.</li>
+			               <li>Em todos os combos, deve ter a opção 'Todos'.</li>
+			               <li>Inicialmente, apenas o combo mais a esquerda deve exibir as opções de unidade disponíveis.</li>
+			               <li>Para cada combo que for selecionada, o combo imediatamente à direita apresentará as subunidades subordinadas.</li> 
+			           </ul>    
+			       <li>Supervisor titular:</li>
+			           <ul>
+			               <li>Deve abranger os supervisores titulares das ESs ativas cadastradas.</li>
+			               <li>Deve ter a opção 'Todos'.</li>
+			           </ul>    
+			       <li>Prioridade:</li>
+			           <ul>
+			               <li>Deve exibir as opções do 'Parâmetro prioridade' da metodologia ordenados pela prioridade.</li>
+			               <li>Deve ter a opção 'Todos'.</li>
+			           </ul>    
+			   </ul>
+			   <li>Resultados da consulta:<li>
+			   <ul>
+			       <li>Deve listar as ESs ativas(com ou sem ciclo) que atendem ao critério de consulta.</li>
+			       <li>Apenas nos casos em que houver ciclo, deve listar a ES com um link para <a href="#detalharPerfilRisco">detalhar o perfil de risco</a>.</li>
+			   </ul>
+		       <li>Ao selecionar uma ES:</li>
+		           <ul>
+		           <li>Caso a ES não esteja bloqueada:</li>
+		               <ul>
+		                   <li>Exibir perfil de risco.</li>
+		               </ul>
+		           <li>Senão:</li>    
+			           <ul>
+			               <li>Exibir caixa de mensagem informativa com o nome da ES e a mensagem 'Para informações sobre este Perfil de Risco, consulte o Supervisor responsável pela ES'.</li>
+			               <li>Logar a informação que usuário tentou acessar o perfil da ES.</li>
+			           </ul>     
+			      </ul>
+		      </ul>
+		</ul>
+        
+        <blockquote>
+		    <a href="painelconsulta/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+    
+ 	<h3>    
+	    <a name="perfilRisco" class="menu">Perfil de risco</a>
+    </h3>	  
+		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/ConsultaTudo/PerfilRisco/perfil_risco_consulta_atual_atual.html">protótipo</a>.</li>
+        </ul>
+	
+	<h4>    
+	    <a name="detalharPerfilRisco" class="menu">Detalhar perfil de risco</a>
+    </h4>
+    	<ul>
+			<li>Observar o descrito em <a href="#perfilRisco">perfil de risco</a>.</li>
+			<li>A informação de que a nota foi ajustada pelo corec "(Corec)" ao lado da nota pode aparecer na 'Nota final' da ES e na 'Nota ajustada' da 'Análise de riscos e controles' e na nota da 'Análise Econômico-financeira', mas não poderá ser exibida nas notas dos ARC/ANEF (Tela de consulta do ARC/ANEF)".</li>
+        </ul>
+        
+        <blockquote>
+			<a href="detalharperfilrisco/indexNegocio.html">Cenários para testes manuais</a><br>
+		</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+/* mostra o scroll sempre, evita redimensionamentos desnecessários na tela */
+
+
+div.head1 {
+background-color: #003d79;
+color: #ffffff;
+font-weight: bold;
+height: 24px;
+line-height: 24px;
+margin: 24px auto 1px;
+padding: 0 5px;
+vertical-align: middle;
+}
+
+
+
+div.content {
+background-color: #f2f4f6;
+margin: 1px auto;
+padding: 10px 5px;
+}
+
+div.attachments {
+margin: 10px auto;
+}
+
+
+
+
+
+
+
+html {
+overflow: -moz-scrollbars-vertical; 
+overflow-y: scroll;
+}
+
+body {
+	font-size: 10pt;
+}
+th {
+    padding: 4px;
+    border-bottom: 1px;
+}
+
+thead tr {
+  background-color: #4A73A2;
+  color:#000;
+
+}
+
+.invisivel {
+	display: none;
+	visibility: hidden;
+}
+
+.quebraQualquer, .quebraQualquer span {
+	text-wrap: unrestricted;
+	word-wrap: break-word;
+}
+
+.tamanhoProcessoMatriz {
+}
+
+td.nomeCampo, td.nomeCampo+td  {
+	border-bottom:1px solid white;
+}
+
+.nomeCampo {
+	background-color: #93abc5;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+
+.nomeCampoAnefPercentual {
+	background-color: #93abc5;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+
+
+
+.nomeCampoEsquerdo {
+	background-color: #93abc5;
+	vertical-align: top;
+	font-weight: bold;
+	text-align: left;
+}
+
+
+
+.nomeMatriz {
+	background-color: #93abc5;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.nomeMatrizSemNegrito {
+	background-color: #93abc5;
+	vertical-align: middle;
+}
+
+
+.nomeUnidade {
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+
+.nomeAtividade {
+	vertical-align: middle;
+}
+
+
+.nomeArc {
+	vertical-align: middle;
+	font-style: italic;
+}
+
+
+
+.campoDescricaoSintese {
+	margin: 0 50px;
+}
+.linhaCampo td,  .linhaCampo th {
+	border-bottom:1px solid white;
+}
+
+.bordaDemaisAndamentos td{
+    border: 1px solid #EBEEF1;
+}
+
+.nomeProcesso {
+	min-width: 350px;
+}
+
+.botao {
+	width: 90px;
+}
+
+.tabela th {
+	border-width: 0px;
+	border-bottom: none;
+	padding: 0px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.tabela td {
+	text-wrap: unrestricted;
+	word-wrap: break-word;
+}
+
+.crescente,.decrescente,.crescente th,.decrescente th {
+	background-color: #bdbcbc;
+}
+
+.centralizado {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.adireita {
+	text-align: right;
+}
+
+.adireitaAoTopo {
+	vertical-align: top;
+	text-align: right;
+}
+
+.aesquerda {
+	text-align: left;
+}
+
+.aotopo {
+	vertical-align: top;
+	text-align: left;
+}
+
+.grupoAuditar {
+	padding: 4px;
+}
+
+/* Para ABAS de AjaxTabbedPanel */
+.abas .tab-row ul {
+	float: left;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.abas .tab-row a {
+	float: left;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	background-color: #003d79;
+	padding: 7px 10px 7px 10px;
+	border-right: 1px solid white;
+}
+
+/*
+Cliente pediu p/não mudar de cor.
+.abas .tab-row a:hover {
+	background-color: #4a73a2;
+}
+*/
+
+.abas .tab-row li {
+	display: inline;
+	background-color: #003d79;
+}
+
+.abas .tab-row li.selected a {
+	background-color: #4a73a2;
+	
+}
+
+.tab-panel {
+	clear: none;
+}
+
+/* Ajustes para a simulação de matriz */
+.comWrap {
+	white-space: normal;
+}
+
+/* Ajustes para a simulação de matriz */
+.comWrap {
+	white-space: normal;
+}
+.semWrap {
+	white-space: nowrap;
+}
+
+.preWrap {
+	white-space: pre-wrap;
+}
+
+.incluidoPriorizacao {
+	background-color: #C1FFC1;
+}
+
+.fatorDeterminante {
+	background-color: #F08080;
+}
+
+.skyblue {
+	background-color: #87CEEB;
+}
+
+.blue {
+	background-color: #bbddee;
+}
+
+.lightgreen {
+	background-color: #C1FFC1;
+}
+
+.green {
+	background-color: #bbeebb;
+}
+
+.brown{
+	background-color: #8B4513;
+}
+
+
+.gray{
+	background-color: #bbbbbb;
+}
+
+
+.Yellow2 {
+	background-color: #EEEE00;
+}
+
+.yellow {
+	background-color: #eeeebb
+}
+
+.red {
+	background-color: #eebbbb;
+}
+
+.darkred {
+	background-color: #ff0000;
+}
+
+.orange {
+	background-color: #FFA500;
+}
+
+.naoAplicavel {
+	background-color: #000000;
+	color: white;
+}
+
+.acoes {
+	vertical-align: top;
+	text-align: left;
+}
+
+.seisLinhasEscopo{
+	height: 90px;
+	white-space: normal;
+}
+
+ins {
+	background-color: #CCFFCC;	
+}
+
+del {
+	background-color: #FFCCCC;	
+}
+
+/* CUSTOMIZAÇÕES DO DATE PICKER */
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 8pt; }
+
+.ui-datepicker { width: 18em; padding: 1px; }
+
+.ui-datepicker-week-end {
+	color: orange;
+}
+
+.ui-datepicker-week-end .ui-state-default {
+	color: orange;
+}
+
+.ui-datepicker-week-end .ui-state-active {
+	color: red;
+	border
+}
+
+.ui-datepicker-month {
+	width: 200px;
+	min-width: 100px;
+}
+
+.ui-datepicker-today .ui-state-default {
+	border: 1px dotted black;
+}
+
+.ui-datepicker-current-day .ui-state-highlight {
+	color: red;	
+}
+
+li.msgSucesso {
+	list-style-position: inside;
+}
+
+
+.fundoPadraoAClaro4a {
+	BACKGROUND-COLOR: #CDD6E3; COLOR: #000
+}
+
+.fundoPadraoAEscuro4{background-color:#93abc5; color:#000;}
+.fundoPadraoAEscuro4 div{background-color:#93abc5; color:#000;}
+.fundoPadraoAEscuro4 th{background-color:#93abc5; color:#000;}
+.fundoPadraoAEscuro4 tr{background-color:#93abc5; color:#000;}
+
+.cke_textarea_inline {
+    border: 1px solid gray;
+    min-height: 5em;
+    border-width:1px;
+    background-color: white;
+    word-wrap: break-word;
+    width: 99,99%;
+}
+
+
+.toc {
+  border-bottom: 1px solid #93abc5;
+  border-top: 1px solid #93abc5;
+  margin: 20px auto;
+  padding: 3px 0;
+  text-align: center;
+  width: 90%;
+}
+
+.toc span {
+  margin: 0 15px;
+}
+
+.alturaLinha {
+	height: 25px;
+}

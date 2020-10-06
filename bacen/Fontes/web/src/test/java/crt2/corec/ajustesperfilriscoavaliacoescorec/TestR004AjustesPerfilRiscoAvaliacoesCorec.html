@@ -1,0 +1,251 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R004 - Ajustes no perfil de risco para destacar avaliações Corec</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória 'Ajustes no perfil de risco para destacar avaliações Corec'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>23/04/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/index.html#ajustesPerfilRiscoAvaliacoesCorec">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		<a href="indexWeb.html#destaquesEdiçãodeARC">Cenários para validar os destaques na tela de Edição de ARC</a>.
+	</blockquote>
+
+	<table class="scenario" execute="true">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001] - </b>Ciclo com estado 'Em andamento'; com ajuste do comitê no Corec anterior.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR004AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco52" sleep="8000">"4" do ARC "Risco" do grupo "Crédito"
+										da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0302]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="3" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td></td>
+												<td>4 (Corec)</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td></td>
+												<td>Estabilidade</td>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<table id="tDadosNotaArc" cellspacing="0" cellpadding="3" style="width: 90%">
+											<thead>
+												<tr class="fundoPadraoAEscuro2">
+													<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5"><label
+														id="idNomeGrupoRiscoControle368">Risco de Crédito</label></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="fundoPadraoAClaro3">
+													<td class="nomeCampo" colspan="2" style="width: 25%;">Nota vigente do ARC</td>
+													<td colspan="2"><label id="idNotaVigenteArc369">4 (Corec)</label></td>
+												</tr>
+												<tr class="fundoPadraoAClaro3">
+													<td class="nomeCampo" rowspan="3">Nova nota inspetor</td>
+													<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+													<td colspan="2" id="idNovaNotaArc36a"></td>
+												</tr>
+												<tr class="fundoPadraoAClaro3">
+													<td class="nomeCampo " style="border-left: 1px solid white;">Ajuste</td>
+													<td>
+														<table style="width: 100%;">
+															<tbody>
+																<tr>
+																	<td>
+																		<ul class="options" by="id:idSelectNovaNotaArcAjustada">
+																			<li>Selecione</li>
+																			<li>1</li>
+																			<li>2</li>
+																			<li>3</li>
+																			<li>4</li>
+																		</ul>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div>
+																			<textarea id="idJustificativa" contenteditable="true"
+																				name="idPainelAvaliacaoARCInspetor:idJustificativa" style="display: none;"></textarea>
+																			<div contenteditable="true"
+																				class="cke_textarea_inline cke_editable cke_editable_inline cke_contents_ltr" tabindex="0"
+																				spellcheck="false" role="textbox" aria-label="" aria-describedby="cke_64"></div>
+
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div align="right">
+																			 <input type="button"
+																				class="botao" value="Salvar" id="bttSalvarAvaliacaoARC">
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+													<td style="width: 25%;"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+						</td>
+					</tr>
+				</table>
+				</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+</body>
+</html>

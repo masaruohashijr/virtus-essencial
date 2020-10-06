@@ -1,0 +1,1420 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>E1 Metodologia e parâmetros</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+</head>
+<body>
+	<table class="exemplos">
+		<tr>
+			<th>Data</th>
+			<th>Versão</th>
+			<th>Descrição</th>
+			<th>Autor</th>	
+		</tr>
+		<tr>
+			<td>24/03/2014</td>
+			<td>1.0</td>
+			<td>Versão inicial - Criação do documento e especificação.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+		<tr>
+			<td>01/04/2014</td>
+			<td>1.1</td>
+			<td>Modelo de dados: <br>
+				Inclusão de novo parâmetro (PIA) para E1.3.<br>
+				Informações sobre as entidades que serão removidas do modelo de dados do rating.<br>
+				Escopo final da iteração 01.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+		<tr>
+			<td>04/04/2014</td>
+			<td>1.4</td>
+			<td>Alterações após a iteração 01<br|>
+				Reforçar que o parâmetro Fator de relevância de riscos e controles não tem relação com o fator de relevância de atividade corporativas e de negócio. <br>
+			</td>
+			<td>Eliane/DIREC</td>
+		</tr>		
+		<tr>
+			<td>08/04/2014</td>
+			<td>1.5</td>
+			<td>Alterações após a iteração 02<br>
+				Novo parâmetro tendência do ARC e alteração no parâmetro perspectiva.<br>
+				Incluir número de versão para controle de concorrência.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+	</table>
+	<h2><a id="E1_1">E1.1 Carga inicial da metodologia default e criação da entidade - Iteração 01</a></h2>
+	
+	<h3>Pré-requisitos</h3>
+	<blockquote>
+	<p>Não há pré-requisitos para a inclusão da metodologia.</p>
+	</blockquote>
+	<h3>Item de menu</h3>
+	<blockquote>
+	<p>Não disponível nesta iteração.</p>
+	</blockquote>
+	<h3>Descrição</h3>
+	<blockquote>
+	<p>Uma metodologia é uma instância do conjunto de parâmetros:</p>
+	<ul>
+		<li>Grupo de risco ou controle;</li>
+		<li>Elemento de risco ou controle;</li>
+		<li>Itens a avaliar do elementos de risco ou controle;</li>
+		<li>Tipo de atividade de negócio;</li>
+		<li>Fator de relevância de risco ou controle;</li>
+		<li>Nota;</li>
+		<li>Peso;</li>
+		<li>Perspectiva;</li>
+		<li>Mensagem.</li>
+	</ul>
+	<p>O parâmetro "Instituição financeira" que passa a ser notado por "Entidade supervisionável" é detalhado na estória 
+	<a href="dominio/entidadesupervisionaveis/Estorias.html">E10.1 - Inclusão de ES a partir da integração com o Sigas.</a></p>
+	<p>Os parâmetros "Atividade de negócio ou corporativa", "Associação Atividade x risco/controle", "Prazo para data-base" e "Papel de trabalho (PT) gerencial" serão excluídos.</p>
+	<p>O parâmetro "Fases do rating" será eliminado, no entanto haverá um controle semelhante de datas para os "Estados do ciclo".</p>
+	<p>O parâmetro Categoria da instituição financeira pode ser eliminado, não conhecimento sobre a sua funcionalidade.</p>
+	<p>Os parâmetros Perspectiva e Mensagem serão tratados posteriormente na estória 
+	<a href="dominio/corec/Estorias.html">E12.2 - Possibilitar o ajuste da perspectiva e mensagem.</a></p>
+	<p>Observar: <a href="E1_A1_carga_metodologia_e_parametros.html#E1_A1">E1.A1 Metodologia e parâmetros - Alteção 1.</a></p>
+	</blockquote>
+
+	<h3>Regras específicas</h3>
+	<blockquote>
+	<ul>
+		<li>Trata-se da Carga inicial de metodologia default do SRC;</li>
+	</ul> 
+		<h3>Dados da metodologia:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Título</td>
+				<td>Discriminar o título da metodologia</td>
+				<td>Texto com tamanho máximo <span class="global"
+					name="maximoTitulo">120</span> (${maximoTitulo}) caracteres.
+				</td>
+				<td>Sim</td>
+				<td>Deve descrever unicamente as metodologias cadastradas. Não poderá haver
+					metodologias com nomes repetidos.</td>
+			</tr>
+			<tr>
+				<td>Descrição</td>
+				<td>Fornece uma breve descrição da metodologia</td>
+				<td>Texto com tamanho máximo <span class="global"
+					name="maximoDescricao">255</span> (${maximoDescricao}) caracteres.
+				</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Metodologia default</td>
+				<td>Atributo binário que identifique a metodologia como default.</td>
+				<td>Domínio:
+					<ul>
+						<li><span class="global" name="metodologiaDefault">1 - Sim</span>(${metodologiaDefault})</li>
+						<li>2 - Não</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Deverá haverá obrigatoriamente e apenas uma versão de metodologia concluída e default;</td>
+			</tr>
+			<tr>
+				<td>Estado</td>
+				<td>Indica se a categoria está Concluída ou Em alteração.</td>
+				<td>Domínio:
+					<ul>
+						<li>1 - Concluída</li>
+						<li>2 - Em alteração</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Valor na carga inicial: 
+					<ul>
+						<li>Concluída</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>Data da inclusão</td>
+				<td>Data da inclusão da metodologia.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Data da alteração</td>
+				<td>Data e hora da última alteração da metodologia.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração da metodologia.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+
+	</blockquote>
+	
+	<h2><a id="E1_2">E1.2 Adequar parâmetros no contexto da metodologia - Iteração 01</a></h2>
+	<h3>Grupo e risco e controle - (<a href="#E1_2_1">ver alterações após a iteração 01</a>)</h3>
+	<blockquote>Atributos eliminados:
+		<ul>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados do grupo de risco e controle:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Nome do grupo</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Nome abreviado </td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Descrição do grupo</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Endereço do manual</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Tipo do grupo de risco e controle</td>
+				<td>Preservado do rating</td>
+				<td>Domínio:
+					<ul>
+						<li>1 - Risco</li>
+						<li>2 - Controle</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Ordem do grupo</td>
+				<td>Ordem na seqüência de colunas em que o grupo deve ser exibido na matriz de riscos e controle</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Data e hora da última alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>
+	</blockquote>
+	
+	<h3>Elemento de risco ou controle</h3>
+		<blockquote>Atributos eliminados:
+		<ul>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados do elemento de risco e controle:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Nome do elemento</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Descrição do elemento</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Itens a avaliar</td>
+				<td>Itens que serão avaliados. Encontram-se disponíveis no manual da supervisão.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Exemplo: Para o elemento Risco de crédito
+					<ul>
+						<li>Risco</li>
+						<li>Controle</li>
+					</ul>
+				</td>
+			</tr>			
+			<tr>
+				<td>Grupo de risco e controle</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Endereço do manual</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Ordem do elemento</td>
+				<td>Número de ordem para exibição do elemento no ARC</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Data e hora da última alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>
+	</blockquote>
+			
+	<h3>Fator de relevância de riscos e controles</h3>
+		<blockquote>
+		Atributos eliminados:
+		<ul>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados do fator de relevância:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Fator de relevância do risco (alfa)</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Fator de relevância do controle (beta)</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Data e hora da última alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>	
+	</blockquote>
+			
+	<h3>Tipo de atividade de negócio</h3>
+		<blockquote>
+		O parâmetro tipo de atividade de negócio ou corporativo será reduzido para negócio apenas.<br>
+		 
+		Atributos eliminados:
+		<ul>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados do tipo de atividade:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Tipo de atividade</td>
+				<td>Preservado do rating apenas para negócio</td>
+				<td>Exemplo:
+					<ul>
+						<li>Crédito</li>
+						<li>Varejo</li>
+						<li>Crédito atacado</li>
+						<li>Tesouraria</li>
+						<li>Não supervisionáveis</li>
+						<li>Serviços</li>
+						<li>Câmbio</li>
+						<li>Unidades no exterior</li>
+						<li>Outras</li>
+					</ul></td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>Descrição do tipo de atividade</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Data e hora da última alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>
+	</blockquote>
+	
+	<h3>Nota</h3>
+		<blockquote>
+		Atributos eliminados:
+		<ul>
+			<li>Prazo para o próximo rating em meses;</li>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados da nota:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Valor da nota</td>
+				<td>Preservado do rating. Valor da nota usada em análises quantitativas e qualitativas.</td>
+				<td>
+					<ul>
+						<li>inteiros >= 0</li>
+						<li>N/A</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Atributo lógico "Não se aplica"</td>
+				<td>Determina se a nota é do tipo N/A. No caso do valor da nota = N/A</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Valor do limite inferior</td>
+				<td>Preservado do rating.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Valor do limite superior</td>
+				<td>Preservado do rating.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Grau de preocupação</td>
+				<td>Representa o valor semântico da nota.</td>
+				<td>Exemplos:
+					<ul>
+						<li>1 - muito baixa</li>
+						<li>2 - baixa</li>
+						<li>3 - média</li>
+						<li>4 - alta</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>			
+			
+			<tr>
+				<td>Data e hora da última alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>	
+	</blockquote>	
+
+	<h3>Peso</h3>
+		<blockquote>
+		Atributos eliminados:
+		<ul>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados do peso:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Valor do peso</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Sigla do peso</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Descrição do peso</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			
+			<tr>
+				<td>Data e hora da última alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>	
+	</blockquote>	
+	<h2><a id="E1_3">E1.3 Incluir novo parâmetro - Itens a avaliar - Iteração 01</a></h2>
+	<blockquote>
+		Tratado na estória E1.2 Adequar parâmetros no contexto da metodologia - Elemento de risco ou controle.
+	</blockquote>
+	<h2><a id="E1_4">E1.4 Incluir grau de preocupação no parâmetro nota - Iteração 01</a></h2>
+	<blockquote>
+		Tratado na estória E1.2 Adequar parâmetros no contexto da metodologia - Nota.
+	</blockquote>
+	<h2><a id="E1_5">E1.5 Remover parâmetro fases do rating - Iteração 01</a></h2>
+	<blockquote>
+	<ul>
+		<li>Com a remoção deste parâmetro, elimina-se o tratamento de Data prevista de início, Data efetiva de início, Data prevista de término, Data efetiva de término para as fases que representavam mudança de estado do rating.</li>
+		<li>Ao detalhar rating realizado no passado é suficiente exibir as data prevista e efetiva de início e término da fase de homologação (atual encerramento).</li>
+		<li>Em substituição a fases do rating haverá o controle dos Estados do ciclo (Em andamento, COREC, Pós-COREC, Encerrado, Excluído). </li>
+		<li>Os Estados do ciclo não correspondem a um parâmetro.</li>
+		<li>Uma fase do rating possui atributo prazo da fase, não haverá atributo semelhante para os estados do ciclo. </li>
+		<li>Um rating possui fase e estado, no entanto, um ciclo possui apenas estado.</li> 
+	</ul>
+	</blockquote>
+	<h2><a id="E1_6">E1.6 Eliminar outros parâmetros - Iteração 01</a></h2>
+	<h3>Parâmetros eliminados:</h3>
+	<blockquote>
+	<ul>
+		<li>Atividade;</li>
+		<li>Categoria;</li>
+		<li>Associação Atividade x Risco/Controle: A associção passa a ser realizada livremente na edição da matriz;</li>
+		<li>Prazos para data base; </li>
+		<li>Papel de trabalho (PT).</li>
+	</ul>
+	<h2>Alterações após a iteração 01</h2>
+	<h3><a id="E1_2_1">Grupo e risco e controle - Iteração xx</a></h3>
+	É formado por um par (Risco e Controle)
+	<blockquote>Atributos eliminados:
+		<ul>
+			<li>Data de início de vigência;</li>
+			<li>Data de fim de vigência;</li>
+			<li>Data da inclusão.</li>
+		</ul> 
+		<h3>Dados do grupo de risco e controle:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Nome do grupo - Risco</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Nome do grupo - Controle</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Nome abreviado - Risco</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Nome abreviado - Controle</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Descrição do grupo - Risco</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Descrição do grupo - Controle</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Endereço do manual para o par (Risco, Controle)</td>
+				<td>Preservado do rating</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Tipo do grupo - Risco</td>
+				<td>Sempre haverá um par (risco, controle)</td>
+				<td>Domínio:
+					<ul>
+						<li>1 - Risco</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Tipo do grupo - Controle</td>
+				<td>Sempre haverá um par (risco, controle)</td>
+				<td>Domínio:
+					<ul>
+						<li>2 - Controle</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Ordem do grupo par (Risco, Controle)</td>
+				<td>Ordem na seqüência de colunas em que o grupo deve ser exibido na matriz de riscos e controle</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Controle asssociado ao risco</td>
+				<td>Controle asssociado ao risco</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Novo conceito</td>
+			</tr>
+			<tr>
+				<td>Data e hora da última alteração par (Risco, Controle)</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Usuário responsável pela última alteração  par (Risco, Controle)</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+		</table>
+	</blockquote>
+	<h2>Cenários de teste para <a href="../test/TestE1CargaMetodologia.html">E1. Metodologia e parâmetros</a>.</h2>
+	<h2>Modelo de dados para E1. Metodologia e parâmetros.</h2>
+	<br><br>
+	DROP TABLE SUP.PAR_PAR_ATV_RIS_CON
+	<br><br>
+	DROP TABLE SUP.PAV_PAR_ATIVIDADE
+	<br><br>
+	DROP TABLE SUP.PCA_PAR_CATEGORIA
+	<br><br>
+	DROP TABLE SUP.PDE_PAR_DEF_EVENTO
+	<br><br>
+	DROP TABLE SUP.PEL_PAR_ELEMENTO
+	<br><br>
+	DROP TABLE SUP.PFA_PAR_FASE
+	<br><br>
+	DROP TABLE SUP.PIF_PAR_INST_FINAN
+	<br><br>
+	DROP TABLE SUP.PLI_PAR_LIMITE
+	<br><br>
+	DROP TABLE SUP.PME_PAR_MENSAGEM
+	<br><br>
+	DROP TABLE SUP.PNO_PAR_NOTA
+	<br><br>
+	DROP TABLE SUP.PPD_PAR_PRZ_DT_BASE
+	<br><br>
+	DROP TABLE SUP.PPG_PAR_PT_GERENC
+	<br><br>
+	DROP TABLE SUP.PPS_PAR_PESO
+	<br><br>
+	DROP TABLE SUP.PRR_PAR_RISCO_RESID
+	<br><br>
+	DROP TABLE SUP.PLI_PAR_LIMITE
+	<br><br>
+CREATE TABLE SUP.MET_METODOLOGIA
+(
+   MET_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   MET_NM_TITULO VARCHAR(40),
+   MET_DS VARCHAR(255),
+   MET_CD_ESTADO SMALLINT NOT NULL,
+   MET_IB_DEFAULT SMALLINT,
+   MET_NU_VERSAO INT NOT NULL,
+   MET_DT_INCLUSAO DATE NOT NULL,
+   MET_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   MET_DH_ATUALZ TIMESTAMP NOT NULL
+);
+<br><br>
+comment on table SUP.MET_METODOLOGIA is
+'/NOME: Metodologia (MET)
+/FUNÇÃO: Registrar as informações de uma metodologia. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_NM_TITULO is 
+'/NOME: Título da metodologia.
+/FUNÇÃO: Identificar o título da metodologia.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_DS is 
+'/NOME: Descrição da metodologia.
+/FUNÇÃO: Identificar a descrição da metodologia.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_CD_ESTADO is 
+'/NOME: Estado da metodologia.
+/FUNÇÃO: Identificar o estado da metodologia.
+/DOMÍNIO: 1 - Concluída; 2 - Em alteração.
+/FONTE: Gerado pelo sistema de acordo com a regra de negócio de versionamento da metodologia.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_IB_DEFAULT is 
+'/NOME: Atributo logico para identifcar a metodologia default.
+/FUNÇÃO: Identificar a metodologia default.
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_DT_INCLUSAO is 
+'/NOME: Data da inclusão.
+/FUNÇÃO: Identificar a data da inclusão da metodologia.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.MET_METODOLOGIA.MET_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+CREATE TABLE SUP.PRC_PAR_GRP_RIS_CON
+(
+   PRC_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PRC_NM VARCHAR(40) NOT NULL,
+   PRC_NM_ABREVIADO CHAR(3) NOT NULL,
+   PRC_DS VARCHAR(255) NOT NULL,
+   PRC_CD_TIPO smallint NOT NULL,
+   PRC_DS_END_MANUAL VARCHAR(100) NOT NULL,
+   PRC_NU_ORDEM SMALLINT NOT NULL,
+   PRC_ID_CONTROLE INTEGER NOT NULL,
+   PRC_NU_VERSAO INT NOT NULL,
+   PRC_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PRC_DH_ATUALZ TIMESTAMP NOT NULL,
+   MET_ID INTEGER NOT NULL
+);
+<br><br>
+ALTER TABLE SUP.PRC_PAR_GRP_RIS_CON ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+);
+<br><br>
+ALTER TABLE SUP.PRC_PAR_GRP_RIS_CON ADD FOREIGN KEY
+(
+   PRC_ID_CONTROLE
+)
+REFERENCES SUP.PRC_PAR_GRP_RIS_CON
+(
+   MET_ID
+);
+<br><br>
+comment on table SUP.PRC_PAR_GRP_RIS_CON is
+'/NOME: Parâmetro grupo de risco ou controle (PRC) 
+/FUNÇÃO: Registrar as informações de um grupo de risco ou controle. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_NM is 
+'/NOME: Nome do parâmetro.
+/FUNÇÃO: Identificar o nome do parâmetro.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_NM_ABREVIADO is 
+'/NOME: Nome abreviado do parâmetro grupo de risco ou controle
+/FUNÇÃO: Identificar o nome abreviado do grupo de risco ou controle.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_DS is 
+'/NOME: Descrição do parâmetro.
+/FUNÇÃO: Identificar a descrição do parâmetro.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_CD_TIPO is 
+'/NOME: Tipo do parâmetro grupo de risco ou controle.
+/FUNÇÃO: Identificar o tipo de grupo de risco ou controle.
+/DOMÍNIO: 1 - Risco; 2 - Controle.
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_DS_END_MANUAL is 
+'/NOME: Descrição do endereço do manual do parâmetro.
+/FUNÇÃO: Identificar a descrição do endereço do manual do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_NU_ORDEM is 
+'/NOME: Número de ordem do parâmetro grupo de risco ou controle.
+/FUNÇÃO: Determinar a ordem na sequência de colunas em que o grupo deve ser exibido na matriz de riscos e controles.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_NU_ORDEM is 
+'/NOME: Número de ordem do parâmetro grupo de risco ou controle.
+/FUNÇÃO: Determinar a ordem na sequência de colunas em que o grupo deve ser exibido na matriz de riscos e controles.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_ID_CONTROLE is 
+'/NOME: Controle associado ao risco.
+/FUNÇÃO: Registrar o controle associado ao risco.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.PRC_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PRC_PAR_GRP_RIS_CON.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este grupo de risco ou controle está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+CREATE TABLE SUP.PEL_PAR_ELEMENTO_RIS_CON
+(	
+   PEL_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PEL_NM VARCHAR(40) NOT NULL,
+   PEL_DS VARCHAR(255) NOT NULL,
+   PEL_DS_END_MANUAL VARCHAR(100) NOT NULL,
+   PEL_NU_ORDEM SMALLINT NOT NULL,
+   PEL_NU_VERSAO INT NOT NULL,
+   PEL_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PEL_DH_ATUALZ TIMESTAMP NOT NULL,
+   PRC_ID INTEGER NOT NULL,
+   MET_ID INTEGER NOT NULL
+);
+<br><br>
+ALTER TABLE SUP.PEL_PAR_ELEMENTO_RIC_CON ADD FOREIGN KEY
+(
+   PRC_ID
+)
+REFERENCES SUP.PRC_PAR_GRP_RIS_CON
+(
+   PRC_ID
+)
+<br><br>
+ALTER TABLE SUP.PEL_PAR_ELEMENTO_RIS_CON ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+comment on table SUP.PEL_PAR_ELEMENTO_RIC_CON is
+'/NOME: Parâmetro elemento de risco ou controle (PEL) 
+/FUNÇÃO: Registrar as informações de um elemento de risco ou controle. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIC_CON.PEL_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_NM is 
+'/NOME: Nome do parâmetro.
+/FUNÇÃO: Identificar o nome do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_DS is 
+'/NOME: Descrição do parâmetro .
+/FUNÇÃO: Identificar a descrição do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_DS_END_MANUAL is 
+'/NOME: Descrição do endereço do manual do parâmetro.
+/FUNÇÃO: Identificar a descrição do endereço do manual do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_NU_ORDEM is 
+'/NOME: Número de ordem do parâmetro elemento de risco ou controle.
+/FUNÇÃO: Determinar a ordem de exibição do elemento de risco ou contole no ARC.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PEL_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.PRC_ID is 
+'/NOME: Identificador do parâmetro grupo de risco ou controle.
+/FUNÇÃO: Referenciar o parâmetro grupo de risco ou controle à qual este elemento de risco ou controle está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PEL_PAR_ELEMENTO_RIS_CON.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este elemento de risco ou controle está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+CREATE TABLE SUP.PIE_PAR_ITEM_ELEMENTO 
+(
+   PIE_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PIE_NM VARCHAR(100) NOT NULL,
+   PIE_DS_END_MANUAL VARCHAR(100) NOT NULL,
+   PIE_NU_VERSAO INT NOT NULL,
+   PIE_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PIE_DH_ATUALZ TIMESTAMP NOT NULL,
+   PEL_ID INTEGER NOT NULL,
+   MET_ID INTEGER NOT NULL
+)
+<br><br>
+ALTER TABLE SUP.PIA_PAR_IT_AVAL_ELEMENTO ADD FOREIGN KEY
+(
+   PEL_ID
+)
+REFERENCES SUP.PEL_PAR_ELEMENTO_RIS_CON
+(
+   PEL_ID
+)
+<br><br>
+ALTER TABLE SUP.PIA_PAR_IT_AVAL_ELEMENTO ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+comment on table SUP.PIE_PAR_ITEM_ELEMENTO is
+'/NOME: Parâmetro itens a avaliar para o elemento de risco ou controle (PIA) 
+/FUNÇÃO: Registrar as informações de um item a avaliar de um elemento de risco ou controle. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PIE_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PIE_NM is 
+'/NOME: Nome do parâmetro.
+/FUNÇÃO: Identificar o nome do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PIE_DS_END_MANUAL is 
+'/NOME: Descrição do endereço do manual do parâmetro.
+/FUNÇÃO: Identificar a descrição do endereço do manual do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PIE_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PIE_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PIE_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.PEL_ID is 
+'/NOME: Identificador do parâmetro elemento de risco ou controle.
+/FUNÇÃO: Referenciar o parâmetro elemento de risco ou controle à qual este item a avaliar está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PIE_PAR_ITEM_ELEMENTO.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este item a avaliar está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+CREATE TABLE SUP.PFR_PAR_FATOR_RELEV_RIS_CON
+(
+   PFR_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PFR_VL_ALFA DECIMAL (5,2)  NOT NULL,
+   PFR_VL_BETA DECIMAL (5,2) NOT NULL,
+   PFR_NU_VERSAO INT NOT NULL,
+   PFR_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PFR_DH_ATUALZ TIMESTAMP NOT NULL,
+   MET_ID INTEGER NOT NULL
+)
+<br><br>
+ALTER TABLE SUP.PEL_PAR_ELEMENTO_RIS_CON ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+comment on table SUP.PFR_PAR_FATOR_RELEV_RIS_CON is
+'/NOME: Parâmetro fator de relevância (PFR) dos elementos de risco e controle 
+/FUNÇÃO: Registrar as informações de um parâmetro fator de relevância. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.PFR_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.PFR_VL_ALFA is 
+'/NOME: Valor alfa do fator de relevância.
+/FUNÇÃO: Identificar o Valor alfa do fator de relevância.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.PFR_VL_BETA is 
+'/NOME: Valor beta do fator de relevância.
+/FUNÇÃO: Identificar o valor beta do fator de relevância.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.PFR_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.PFR_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.PFR_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PFR_PAR_FATOR_RELEV_RIS_CON.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este fator de relevância está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+<br><br>
+CREATE TABLE SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO
+(
+   PTA_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PTA_NM VARCHAR (40) NOT NULL,
+   PTA_DS VARCHAR (255) NOT NULL,
+   PTA_DS_END_MANUAL VARCHAR (100) NOT NULL,
+   PTA_NU_VERSAO INT NOT NULL,
+   PTA_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PTA_DH_ATUALZ TIMESTAMP NOT NULL,
+   MET_ID INTEGER NOT NULL
+)
+<br><br>
+ALTER TABLE SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+comment on table SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO is
+'/NOME: Parâmetro tipo de atividade de negócio (PTA) 
+/FUNÇÃO: Registrar as informações de um parâmetro tipo de atividade de negócio. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_NM is 
+'/NOME: Nome do parâmetro.
+/FUNÇÃO: Identificar o nome do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_DS is 
+'/NOME: Descrição do parâmetro.
+/FUNÇÃO: Identificar a descrição do parâmetro .
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_DS_END_MANUAL is 
+'/NOME: Descrição do endereço do manual do parâmetro.
+/FUNÇÃO: Identificar a descrição do endereço do manual do parâmetro.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.PTA_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este parâmetro tipo de atividade de negócio está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+<br><br>
+CREATE TABLE SUP.PNO_PAR_NOTA
+(
+   PNO_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PNO_CD_VALOR SMALLINT NOT NULL,
+   PNO_VL_LIM_INFER DECIMAL (5,2),
+   PNO_VL_LIM_SUPER DECIMAL (5,2),
+   PNO_IB_NOTA_NA SMALLINT,
+   PNO_CD_GRAU_PREOCUPACAO SMALLINT NOT NULL,
+   PNO_NU_VERSAO INT NOT NULL,
+   PNO_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PNO_DH_ATUALZ TIMESTAMP NOT NULL,
+   MET_ID INTEGER NOT NULL
+)
+<br><br>
+ALTER TABLE SUP.PNO_PAR_NOTA ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+comment on table SUP.PNO_PAR_NOTA is
+'/NOME: Parâmetro nota (PNO) 
+/FUNÇÃO: Registrar as informações de um parâmetro nota. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_CD_VALOR is 
+'/NOME: Valor do parâmetro nota.
+/FUNÇÃO: Identificar o valor do parâmetro nota, podendo ser inteiros maiores que 1 ou N/A.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_VL_LIM_INFER is 
+'/NOME: Valor do limite inferior.
+/FUNÇÃO: Identificar o valor do limite inferior.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_VL_LIM_SUPER is 
+'/NOME: Valor do limite superior.
+/FUNÇÃO: Identificar o valor do limite superior.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_IB_NOTA_NA is 
+'/NOME: Atributo lógico para identificar nota do tipo N/A.
+/FUNÇÃO: Identificar nota do tipo N/A.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_CD_GRAU_PREOCUPACAO is 
+'/NOME: Grau de preocupação do parâmetro.
+/FUNÇÃO: Identificar o grau de preocupação do parâmetro.
+/DOMÍNIO: 1- Muito baixa; 2 - Baixa; 3 - Média; 4 - Alta.
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.PNO_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PNO_PAR_NOTA.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este parâmetro nota está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+CREATE TABLE SUP.PPS_PAR_PESO
+(
+   PPS_ID INTEGER GENERATED BY DEFAULT AS IDENTITY(START WITH 1) NOT NULL PRIMARY KEY,
+   PPS_SL CHAR(2) NOT NULL,
+   PPS_QT SMALLINT NOT NULL,
+   PPS_DS VARCHAR (40),
+   PPS_NU_VERSAO INT NOT NULL,
+   PPS_CD_OPER_ATUALZ CHAR(20) NOT NULL,
+   PPS_DH_ATUALZ TIMESTAMP NOT NULL,
+   MET_ID INTEGER NOT NULL
+)
+<br><br>
+ALTER TABLE SUP.PPS_PAR_PESO ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+comment on table SUP.PPS_PAR_PESO is
+'/NOME: Parâmetro peso (PPS) 
+/FUNÇÃO: Registrar as informações de um parâmetro peso. 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_SL is 
+'/NOME: Sigla do peso.
+/FUNÇÃO: Identificar a sigla do peso.
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_QT is 
+'/NOME: Valor quantitativo do peso.
+/FUNÇÃO: Identificar o valor quantitativo do peso.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_DS is 
+'/NOME: Descrição do parâmetro.
+/FUNÇÃO: Identificar a descrição do parâmetro .
+/DOMÍNIO: 
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.PPS_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.PPS_PAR_PESO.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia à qual este parâmetro peso está associado.
+/DOMÍNIO:
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+</body>
+</html>

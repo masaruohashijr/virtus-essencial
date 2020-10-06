@@ -1,0 +1,52 @@
+<wicket:extend>
+
+	<script>
+		function pageScroll() {
+			window.scroll(0, 0); 
+		}
+
+		function verificaDadosNaoSalvos() {
+			if ($('#idAlertaDadosNaoSalvos').css("visibility") == "hidden") {
+				return true;
+			} else {
+				atualizarAlerta('idAlertaDadosNaoSalvosInferior', true);
+				return false;
+			}
+		}
+	</script>
+
+
+	<div style="margin: auto; text-align: center; visibility: hidden;" id="idAlertaDadosNaoSalvosInferior"
+		class="centralizado">
+		<ul>
+			<li class="msgErro">Todos os dados da tela devem ser salvos antes de concluir a edição.</li>
+		</ul>
+		<input type="hidden" wicket:id="loadScriptAlertaInferior" /> <input type="hidden" wicket:id="hideScriptAlertaInferior" />
+	</div>
+
+	<form wicket:id="formulario">
+		<span wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></span> <span
+			wicket:id="idPainelInformacoesAnef"></span> <span wicket:id="idPainelResumoElementosAnef"></span> <span
+			wicket:id="idPainelAvaliacaoANEFInspetor"></span> <span wicket:id="idPainelElementos"></span> <br />
+		<div align="center" wicket:id="idPainelAnexoAnef" style="width: 100%; margin: auto;"></div>
+		<br />
+
+		<div class="centralizado">
+			<span style="color: white; background-color: red; margin: auto; text-align: center; visibility: hidden;"
+				id="idAlertaDadosNaoSalvos"> Há informações não salvas nesta página. </span> <input type="hidden"
+				wicket:id="loadScriptAlerta" />
+		</div>
+<br />
+
+		<div class="centralizado">
+			<input type="button" class="botao" style="width: 300px" id="bttConcluir" wicket:id="bttConcluir"
+				value="Concluir e encaminhar para análise do supervisor" onclick="pageScroll()" /> <input name="bttVoltar"
+				type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" title="Voltar para a p&aacute;gina anterior"
+				value="Voltar">
+		</div>
+		<br /> <br />
+	</form>
+
+</wicket:extend>
+
+

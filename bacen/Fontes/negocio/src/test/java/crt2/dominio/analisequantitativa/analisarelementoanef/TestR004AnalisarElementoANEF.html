@@ -1,0 +1,173 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R004 - Analisar elementos do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Analisar elementos do ANEF'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>10/07/2017</td>
+			<td>Kalina Lígia</td>
+			<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#analisarElementoANEF">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<li><banco/>Os dados encontram-se <a href="TestR004AnalisarElementoANEF-DadoQue.html" class="include">aqui</a>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarListaValoresElementoANEFNovoCalculo">validar a lista de valores para o campo 'Nota supervisor' de nota do ANEF</a>.<br/>
+	</blockquote>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar lista de valores quando não há nota do supervisor salva.
+						</td>
+					</tr>
+					<tr>
+					    <th>Validação</th>
+					<tr>
+					    <td>
+					    	<table>
+								<tr>
+									<th>Entrada</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Elemento</th>
+									<th style="background-color: green">Lista de valores</th>
+								</tr>
+				                <tr>
+				                    <td class="set" name="idElemento" converter="Integer">13</td>
+				                    <td> 
+				                    	<table class="verifyRows" name="parametroNota" value="$THIS.getListaParametrosNotaElementoANEF(idElemento)" >
+					                    	<tr style="display:none">
+					                    		<th class="eq" value="$THIS.getNota(parametroNota)"></th>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>1,00</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>2,00</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>2,50</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>3,00</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>3,50</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>4,00</td>
+					                    	</tr>
+					                    </table>
+					                </td>
+								</tr>
+				            </table>
+					    </td>
+					</tr>    
+				</table>
+			</td>
+		</tr>
+	</table><br/>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT002]</b> - Validar lista de valores quando há nota do supervisor salva igual a nota do inspetor.
+						</td>
+					</tr>
+					<tr>
+					    <th>Validação</th>
+					<tr>
+					    <td>
+					    	<table>
+								<tr>
+									<th>Entrada</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Elemento</th>
+									<th style="background-color: green">Lista de valores</th>
+								</tr>
+				                <tr>
+				                    <td class="set" name="idElemento" converter="Integer">16</td>
+				                    <td> 
+				                    	<table class="verifyRows" name="parametroNota" value="$THIS.getListaParametrosNotaElementoANEF(idElemento)" >
+					                    	<tr style="display:none">
+					                    		<th class="eq" value="$THIS.getNota(parametroNota)"></th>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>1,00</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>1,50</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>2,00</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>2,50</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>3,00</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>3,50</td>
+					                    	</tr>
+					                    	<tr>
+					                    		<td>4,00</td>
+					                    	</tr>
+					                    </table>
+					                </td>
+								</tr>
+				            </table>
+					    </td>
+					</tr>    
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

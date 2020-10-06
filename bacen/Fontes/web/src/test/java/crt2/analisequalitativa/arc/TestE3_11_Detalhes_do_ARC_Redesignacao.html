@@ -1,0 +1,1091 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Testando a designação de ARCs</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 3.11 - Designação de ARCs</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+    	<table class="exemplos historico">
+	        <tr>
+	            <th>Versão</th>
+	            <th>Data</th>
+	            <th>Responsável</th>
+	            <th>Descrição</th>
+	        </tr>
+
+        	<tr>
+	            <td>1.0</td>
+	            <td>04/09/2014</td>
+	            <td>Christiano Nogueira</td>
+	            <td>Estória - AQL (Governança de ARCs) - Adequar designação de ARCs à mudança de estado do ciclo (designação permanente)</td>
+	        </tr>
+	        
+	        <tr>
+			<td>1.1</td>
+			<td>27/08/2014</td>
+			<td>Victor Vasconcelos</td>
+			<td>Estória - Ajuste da regra de associação de ESs com
+				inspetores, supervisores e gerentes (demais telas)</td>
+			</tr>
+			
+			<tr>
+			<td>1.2</td>
+			<td>04/09/2014</td>
+			<td>Christiano Nogueira</td>
+			<td>Estória - AQL (Governança de ARCs) - Adequar designação de
+				ARCs à mudança de estado do ciclo (designação permanente)</td>
+			</tr>
+    	</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+    	<blockquote>
+        	Para as regras da estória:
+
+        	<ul>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequalitativa/arc/espec/E3_11_Designacao_ARC.html">E3_11_Designacao_ARC.html</a>.</li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+        	</ul>
+    	</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+    	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">carregada.</a></li>
+		<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora
+			atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+    	</ul>
+    
+		<h2>Cenários de falha para a estória 3.11 - Designação de ARCs</h2>
+
+	<blockquote>Cenários onde devem ser apresentadas mensagens
+		de erro/impedimento para a designação de ARCs.</blockquote>
+
+    	<jetty/>
+
+    	<dataHoraAtual valor="17/03/2014 00:00:00"/>
+
+		<table class="exemplos">
+			<tr>
+				<th width="10%">Cenário</th>
+				<th width="30%">Dados pré-existentes</th>
+				<th width="10%">Ação pretendida</th>
+				<th width="50%">Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+			<td class='title'><b>C001 </b><br> <br> Designar ARC
+				com estado 5 - Previsto</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br> os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C001.html"
+				class="incluse">aqui</a></td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+			<td class='title'><b>C002 </b><br> <br> Designar ARC
+				com estado 2 - Designado</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br> os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C002.html"
+				class="incluse">aqui</a></td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Nova
+								designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+			<td class='title'><b>C003 </b><br> <br> Designar ARC
+				com estado 3 - Em edição</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br> os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C003.html"
+				class="incluse">aqui</a></td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Nova
+								designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+			<td class='title'><b>C004 </b><br> <br> Designar ARC
+				com estado 4 - Preenchido</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br> os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C004.html"
+				class="incluse">aqui</a>
+
+            	</td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Nova
+								designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+			<td class='title'><b>C005 </b><br> <br> Designar ARC
+				com estado 1 - Análise delegada</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br>
+
+os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C005.html"
+				class="incluse">aqui</a>
+                    Ajuste no ciclo se encontram <a href="dadoque/TestE3_11_Detalhes_do_ARC_Redesignacao_dadoque5.html" class="include">aqui</a>
+					
+
+            	</td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Nova
+								designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+			<td class='title'><b>C006 </b><br> <br> Designar ARC
+				com estado 6 - Em análise</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br>
+
+				os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C006.html"
+				class="incluse">aqui</a>
+                    Ajuste no ciclo se encontram <a href="dadoque/TestE3_11_Detalhes_do_ARC_Redesignacao_dadoque6.html" class="include">aqui</a>
+					
+            	</td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Nova
+								designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr class="scenario" pending="true"> <!-- Pendente de integração para a estória: Perfis de acesso vs responsabilidade de ESs para supervisor substituto -->
+			<td class='title'><b>C007 </b><br> <br> Designar ARC
+				com estado 8 - Analisado</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/arc/test/dadoque/TestE3_11_Designacao_ARC_dadoque.html"
+				class="include">aqui</a><br> <br>
+
+Ajuste no ciclo se encontram <a href="dadoque/TestE3_11_Detalhes_do_ARC_Redesignacao_dadoque8.html" class="include">aqui</a>
+					
+os dados complemetares
+				se encontram <a href="../arc/dadoque/detalhes_arc_dadoque_C007.html"
+				class="incluse">aqui</a>
+
+
+            	</td>
+
+            	<td>
+					<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3"
+							do ARC "Risco" do grupo "Risco de Crédito" da Atividade
+							corporativa</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"DESUP"
+							em "Outros servidsores"</span></li>
+					<li>Seleciona: <span class="clickon" by="id:linkRisco21">"CHRISTIANO
+							ATHAÍDE DROGBA" em "Outros servidsores"</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='tDadosArcDesignar']">
+						<table>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">AÇÕES</th>
+						</tr>
+						<tr>
+							<th colspan="2" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Nova
+								designação</th>
+						</tr>
+
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+
+								<td colspan="1">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecionar</li>
+									<li><span class="selected"
+										by="id:idServidorUnidadeSelecionada">CHRISTIANO ATHAÍDE
+											DROGBA</span></li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar"
+								title="Designar" value="Designar" type="submit" /></td>
+							</tr>
+						</table>
+			</span> <br> <br>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq113</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>99990830</td>
+							<td>1</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr class="scenario" pending="true"> <!-- Pendente de integração para a estória: Perfis de acesso vs responsabilidade de ESs para supervisor substituto -->
+				<td class='title'>
+					<b>C010 </b><br><br>Falha - Acesso concorrente.
+				</td>
+
+				<td>Mesmo estado anterior</td>
+
+            	<td>
+					<ul>
+						<li>O usuário logado <sisliq113>é "deliq.sisliq113"</sisliq113></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+						<li>Clica na nota: <span class="clickon" by="id:linkRisco21">"3" do ARC "Risco" do grupo "Risco de Crédito" da Atividade corporativa</span></li>
+						<li>Seleciona Servidores da equipe: <span class="clickon" by="id:linkRisco21">"TESTESLQB13 MASSA DE TESTE"</span></li>
+						<li>Alterando registro <a href="../comum/TestE3_11_Designacao_ARC_concorrencia_dadoque.html" class="include">aqui</a></li>
+						<li>Clica no botão: <span class="clickon" by="id:linkRisco21">"Designar"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul><li><span class="contains">Erro de acesso concorrente.</span></li></ul>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.7. Edição de ARC perfil inspetor</title>
+		<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>16/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>29/04/2014</td>
+				<td>2.0</td>
+				<td>Versão atualizada - Correção nos estados do ARC, adequação de funcionalidades e regras e cenários de teste.</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_7">E3.7. Edição de ARC perfil inspetor</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir ARCs designados nos estados 2 - Designado ou 3 - Em edição para o inspetor logado no sistema.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Inspetor.</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela inicial da aplicação para o perfil inspetor</p>
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Edição de ARC</b></p>
+			<p>Trilha: Não se aplica</p>
+			<p>Código de tela: [APSFW0604]</p>
+
+			<ul>Comandos:
+				<li>Salvar nota do ARC e justificativa da nota do ARC - Para o ARC.</li>
+				<li>Salvar nota do elemento - Para cada elemento do ARC.</li>
+				<li>Salvar justificativa associada ao item a avaliar do elemento - Para cada item a avaliar do elemento.</li>
+				<li>Anexar arquivo na justificativa da nota do elemento - Para cada item a avaliar do elemento.</li>
+				<li>Visualizar arquivo anexado na justificativa da nota do elemento - Para cada item a avaliar do elemento.</li>
+				<li>Excluir arquivo anexado na justificativa da nota do elemento - Para cada item a avaliar do elemento.</li>
+				<li>Salvar tendência do ARC e justificativa da tendência do ARC - Para o ARC.</li>
+				<li>Concluir e encaminhar para a análise do Supervisor - Para o ARC.</li>
+			</ul>
+
+			<input type="image" src="Tela01_E3_7.png"/>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade básica de edição do ARC designado para o inspetor.</p>
+			<p>Funcionalidades disponíveis apenas para o perfil <b>Inspetor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Tela de edição do ARC para o inspetor atualizador.</li>
+
+			<li>Trantando-se da primeira edição do ARC para a ES, os campos abaixo não possuem valor para exibição:
+				<ul>
+					<li>Nota vigente do ARC.</li>
+					<li>Nota vigente do elemento - Para cada elemento.</li>
+					<li>Justificativa vigente associada ao item a avaliar do elemento - Para cada item a avaliar de cada elemento.</li>
+					<li>Anexos vigentes associados ao item a avaliar do elemento - Para cada item a avaliar de cada elemento.</li>
+					<li>Tendência vigente - Para o ARC.</li>
+				</ul>
+			</li>
+
+			<li>Caso contrário, sempre serão exibidas as informações vigentes e uma área de edição para informar os novos valores das informações (nota, justificativa, etc)</li>
+			<li>Cada ARC possui elementos associados.</li>
+			<li>Cada elemento possui itens a avaliar associados.</li>
+			<li>Elemento é parâmetro.</li>
+			<li>Item a avaliar do elemento é parâmetro.</li>
+			<li>Tendência é parâmetro.</li>
+			<li>Nota é parâmetro.</li>
+
+			<li>A aplicação deve gerar alertas indicando a existência de informações que foram editadas, mas que não foram salvas pelo usuário.
+				<ul>
+					<li>"Ná informações não salvas nesta página." - Trata-se de um alerta geral abaixo do título da página.</li>
+					<li>Atenção texto não salvo - Trata-se de um alerta específico para um campo texto e deve ser exibido próximo ao campo.</li>
+					<li>Atenção informações não salvas - Trata-se de um alerta específico para um conjunto de informações e deve ser exibido próximo ao conjunto.</li>
+					<li>Atenção nota não salva  - Trata-se de um alerta específico para um campo nota e deve ser exibido próximo ao campo.</li>
+				</ul>
+			</li> 
+
+			<li>Ao salvar a nota de cada elemento, o campo Nova nota do ARC deve ser 'recalculado' sendo atribuido a ele a menor das notas dadas aos elementos do ARC.</li>
+
+			<li>Ciclo de vida do ARC:
+				<ul>
+					<li>1 - Previsto: na criação do ARC após liberação da matriz na inclusão manual do ciclo ou na inclusão automática do ciclo,
+							ambos por usuário com perfil supervisor (responsável da ES).</li>
+					<li>2 - Designado: após a designação de atualização do ARC pelo usuário com perfil supervisor (responsável da ES).</li>
+					<li>3 - Em edição: após alteração do ARC pelo usuário designado. Permanece neste estado até o usuário designado concluir o preenchimento.</li>
+					<li>4 - Preenchido: usuário informa que finalizou a inclusão de notas.</li>
+					<li>5 - Análise delegada: supervisor responsável da ES delega a análise do ARC para outro usuário.</li>
+					<li>6 - Em análise: supervisor responsável da ES ou outro usuário por ele delegado está analisando o ARC.</li>
+				</ul>
+			</li>
+
+			<li>Ao se salvar pela primeira vez qualquer seção da tela o estado do ARC deve sair de Designado para Em edição.</li>
+			<li>Ao se clicar em Concluir e enviar para análise do Supervisor o estado do ARC deve sair de Em Edição para Preenchido.</li>
+		</ul>
+
+		<h2>Cenários de teste</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<h3><a href="TestE3_7_Edicao_de_ARCs_perfil_inspetor.html">Negócio</a>.</h3>
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Inspetor altera e salva ARC não designado para ele. Mensagem:
+				<ul><li>"Inspetor não designado para o ARC."</li></ul>
+			</li>
+
+			<li>
+				<b id="C002">C002</b> Falha - Inspetor altera e salva ARC com estado diferente de 2 - Designado ou 3 - Em edição. Mensagem:
+				<ul><li>"ARC no estado estado_do_ARC não pode ser alterado pelo Inspetor."</li></ul>
+			</li>
+
+			<li>
+				<b id="C003">C003</b> Falha - Ciclo e matriz em estados que não permitem edição de ARC. Mensagem:
+
+				<ul>
+					<li>Não é possível edição de ARC em ciclo no estado diferente de <b>Em andamento</b>.</li>
+					<li>Não é possível edição de ARC de matriz no estado diferente de <b>Vigente</b>.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C004">C004</b> Sucesso - Ao se clicar no comando Salvar da seção que representa o elemento. Mensagem:
+
+				<ul>
+					<li>Nota para nome_do_elemento salva com sucesso.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C005">C005</b> Sucesso - Ao se clicar no comando Salvar da seção que representa o item de avaliação do elemento. Mensagem:
+
+				<ul>
+					<li>Justificativa para nome_do_item_de_avaliação salva com sucesso.</li>
+				</ul>
+			</li>
+
+			<li><b id="C006">C006</b> Sucesso - Salvando a nota de um elemento, o campo Nova nota do ARC deve ser igual a menor das notas dadas aos elementos do ARC.</li>
+
+			<li>
+				<b id="C007">C007</b> Falha - Selecionar uma nota para Nova nova do ARC (ajustada) sem preencher a respectiva justificatica e salvar. Mensagem:
+
+				<ul>
+					<li>A justificativa para Nova nova do ARC (ajustada) é de preenchimento obrigatório.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C008">C008</b> Falha - Selecionar uma tendência sem preencher a respectiva justificatica e clicar no salvar. Mensagem:
+
+				<ul>
+					<li>A justificativa para tendência é de preenchimento obrigatório.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C009">C009</b> Falha - Não selecionar um valor para tendência e clicar em Concluir e enviar para análise do Supervisor. Mensagem:
+
+				<ul>
+					<li>O campo tendência é de preenchimento obrigatório.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C010">C010</b> Falha - Clicar em Concluir e enviar para análise do Supervisor sem informar notas para todos os elementos do ARC. Mensagem:
+
+				<ul>
+					<li>O campo Nova nota do elemento de nome_do_elemento é de preenchimento obrigatório.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C011">C011</b> Falha - Clicar em Concluir e enviar para análise do Supervisor sem informar, ao menos, uma justificativa para os itens de avaliação de cada elemento quando a nota do elemento for diferente de N/A. Mensagem:
+
+				<ul>
+					<li>É necessário informar, ao menos, uma justificativa para os itens de avaliação dos elemento do ARC.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C012">C012</b> Falha - Clicar em Concluir e enviar para análise do Supervisor informando, ao menos, uma justificativa para os itens de avaliação do elemento quando a nota deste for N/A. Mensagem:
+
+				<ul>
+					<li>Não é permitida a justificativa de item de avaliação quando a nota do elemento é igual a N/A.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C013">C013</b> Sucesso - Ao se salvar pela primeira vez qualquer seção da tela o estado do ARC deve sair de Designado para Em edição.
+			</li>
+
+			<li>
+				<b id="C014">C014</b> Sucesso - Clicar em Concluir e enviar para análise do Supervisor. Mensagem:
+
+				<ul>
+					<li>ARC concluído com sucesso.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C015">C015</b> Sucesso - ao se clicar em Concluir e enviar para análise do Supervisor o estado do ARC deve sair de Em Edição para Preenchido.
+			</li>
+		</ul>
+
+		<h3><a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_7_Edicao_de_ARCs_perfil_inspetor.html">Web</a>.</h3>	
+
+		<ul>
+			<li>Teste web equivalente - <b><a href="#C004">C004</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C005">C005</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C006">C006</a></b> - Conferir apenas se na tela o valor para Nova nota do ARC é igual a menor nota dos elementos do ARC.</li>
+			<li>Teste web equivalente - <b><a href="#C007">C007</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C008">C008</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C009">C009</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C010">C010</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C011">C011</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C012">C012</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C013">C013</a></b> - Conferir apenas o novo estado do ARC.</li>
+			<li>Teste web equivalente - <b><a href="#C014">C014</a></b> - Conferir apenas a mensagem.</li>
+			<li>Teste web equivalente - <b><a href="#C015">C015</a></b> - Conferir apenas o novo estado do ARC.</li>
+			<li>Conferir - Ao se alterar, pela primeira vez, o valor de qualquer dado na tela e sem ainda ter clicado no respectivo salvar, se são apresentadas as mensagens de informação não salva conforme imagem anexa.</li>
+			<li>Conferir - Ao se anexar um determinado arquivo se este mesmo arquivo faz parte da respectiva lista de arquivos anexados.</li>
+			<li>Conferir - Ao se excluir um arquivo anexado se este mesmo arquivo foi removido da respectiva lista de arquivos anexados.</li>
+		</ul>
+	</body>
+</html>

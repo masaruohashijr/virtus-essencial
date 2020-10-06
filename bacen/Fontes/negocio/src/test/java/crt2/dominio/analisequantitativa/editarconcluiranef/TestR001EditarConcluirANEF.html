@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Concluir a edição do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Concluir a edição do ANEF'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>16/03/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#concluirEdicaoANEF">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+	    <banco/>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<li>Os dados encontram-se <a href="TestR001EditarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarMsgErro">validar as mensagens de erro ao tentar concluir a edição do ANEF</a>.<br/>
+	</blockquote>
+	
+	<table class="exemplos">
+		<tr>
+			<td>
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Cenários para validar mensagens de erro ao tentar concluir a edição do ANEF.
+						</td>
+					</tr>
+					<tr>
+					    <th>Ação/Validação</th>
+					<tr>
+					    <td>
+					    	<table>
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Mensagem de erro?</th>
+								</tr>
+				                <tr>
+				                	<td class="set" name="idAnef" converter="Integer">4</td>
+				                    <td> 
+				                    	<table class="execute" value="$THIS.concluirEdicaoAnef(idAnef)" >
+					                    	<ul class="execute" value.="$THIS.verificar($NODE)">
+						                    	<li style="color: red">Campo 'Nota inspetor' do elemento 'Suficiência' é de preenchimento obrigatório.</li>
+						                    	<li style="color: red">Campo 'Justificativa do ajuste' é de preenchimento obrigatório.</li>
+						                    	<li style="color: red">É necessário informar, ao menos, uma justificativa para os itens de avaliação do elemento 'Qualidade'.</li>
+					                    	</ul>
+					                    </table>
+					                </td>
+								</tr>
+								<tr>
+				                	<td class="set" name="idAnef" converter="Integer">5</td>
+				                    <td> 
+				                    	<table class="execute" value="$THIS.concluirEdicaoAnef(idAnef)" >
+					                    		<ul class="execute" value.="$THIS.verificar($NODE)">
+							                    	<li style="color: red"> Pelo menos um elemento deve ter nota preenchida diferente de N/A.</li>
+						                    	</ul>
+					                    </table>
+					                </td>
+								</tr>
+				            </table>
+					    </td>
+					</tr>    
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

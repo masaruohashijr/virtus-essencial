@@ -1,0 +1,46 @@
+<wicket:panel>
+ <table align="center" id="tARCs" width="90%" cellspacing="0" cellpadding="3">
+        <thead>
+            <tr class="fundoPadraoAEscuro2">
+                <th colspan="2" class="thform" style="text-align: left; border-bottom: 0px;">ARCs históricos</th>
+            </tr>
+            <tr class="fundoPadraoAEscuro3">
+                <th colspan="2" class="thform" style="text-align: left; border-bottom: 0px;">Filtro</th>
+            </tr>
+        </thead>
+        <tbody>
+	        <tr class="fundoPadraoAClaro3">
+	            <td class="nomeCampo" style="width: 25%;">Parte do nome da ES</td>
+	            <td><input type="text" id="idNomeEs"  maxlength="200" style="width: 404px;" wicket:id="idNomeEs"></input></td>
+	        </tr>
+	        
+	        <tr class="fundoPadraoAClaro3">
+	            <td class="nomeCampo" style="width: 25%;">Parte da atividade</td>
+	            <td><input type="text" id="idAtividade"  maxlength="100" style="width: 404px;" wicket:id="idAtividade"></input></td>
+	        </tr>
+	        
+	       <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Grupo</td>
+                <td><select id="idGrupoRiscoControle" wicket:id="idGrupoRiscoControle"></select></td>
+            </tr>
+            
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Risco/Controle</td>
+                <td><select id="idTipoGrupoRiscoControle" wicket:id="idTipoGrupoRiscoControle"></select></td>
+            </tr>
+            
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Ação</td>
+                <td><select id="idEstadoARC" wicket:id="idEstadoARC"></select></td>
+            </tr>
+            
+           <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">&nbsp;</td>
+                <td>
+                    <input name="bttFiltrarArc" type="submit" class="botao" id="bttFiltrarArc" wicket:id="bttFiltrarArc" value="Filtrar">&nbsp;
+                    <input name="bttLimparFiltrosArc" style="width: 100px;" type="submit" class="botao" id="bttLimparFiltrosArc" wicket:id="bttLimparFiltrosArc" value="Limpar filtros">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>

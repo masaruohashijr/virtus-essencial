@@ -1,0 +1,288 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Perfil 'Administrador' - Alterar comitê a realizar</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Perfil 'Administrador' - Alterar comitê a realizar'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>30/07/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#alterarComiteRealizar">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq105"</span></strong>.
+		</li>
+		<li><dataHoraAtual valor="28/05/2015 00:00:00">Data/hora atual do sistema: 28/05/2015 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarCorec">validar alteração no campo 'Corec previsto'</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Alterar 'Corec previsto' sem nova observação.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<banco />
+								<li>Os dados encontram-se <a href="TestR001AlterarComiteRealizar-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Salvar os dados da Agenda conforme tabela abaixo:</p>
+
+
+
+							<table>
+								<tr>
+									<th colspan="3">Entradas</th>
+								</tr>
+								<tr>
+									<th>Ciclo</th>
+									<th>Corec previsto</th>
+								</tr>
+								<tr>
+									<td class="set" name="idCiclo">6</td>
+									<td class="set" name="corecPrevisto">"16/01/2016"</td>
+									<span class="eq" value="$THIS.inicializar()"></span>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.incluirAgenda(idCiclo, corecPrevisto)">
+									<li>O sistema deverá exibir a seguinte mensagem de erro: <span class="eq" value="$THIS.getMensagem()">Pelo menos uma nova observação deve ser registrada.</span></li>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+    <br/>
+    
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Alterar 'Corec previsto' quando não há registro de agenda.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<banco />
+								<li>Os dados encontram-se <a href="TestR001AlterarComiteRealizar-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Salvar os dados da Agenda conforme tabela abaixo:</p>
+
+
+
+							<table>
+								<tr>
+									<th colspan="3">Entradas</th>
+								</tr>
+								<tr>
+									<th>Ciclo</th>
+									<th>Corec previsto</th>
+									<th>Observações</th>
+								</tr>
+								<tr>
+									<td class="set" name="idCiclo">6</td>
+									<td class="set" name="corecPrevisto">"16/01/2016"</td>
+									<span class="eq" value="$THIS.inicializar()"></span>
+									<td>
+										<table class="executeRows" name="result" value="$THIS.addObservacao(idObservacao, texto)">
+											<tr>
+												<th style="display: none" class="set" name="idObservacao">Id Observação</th>
+												<th class="set" name="texto">Texto</th>
+											</tr>
+											<tr>
+												<td style="display: none"></td>
+												<td>Nova observação 1</td>
+											</tr>
+
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.incluirAgenda(idCiclo, corecPrevisto)">
+									<li>O sistema deverá exibir a seguinte mensagem de sucesso: <span class="eq" value="$THIS.getMensagem()">Agenda
+											do comitê salva com sucesso.</span></li>
+									<li>Os dados alterados estão <a href="TestR003C002AlterarComiteRealizar-PorFim.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Alterar 'Corec previsto' quando há registro de agenda.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<banco />
+								<li>Os dados encontram-se <a href="TestR001AlterarComiteRealizar-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Salvar os dados da Agenda conforme tabela abaixo:</p>
+
+							<table>
+								<tr>
+									<th colspan="3">Entradas</th>
+								</tr>
+								<tr>
+									<th>Agenda</th>
+									<th>Corec previsto</th>
+									<th>Observações</th>
+								</tr>
+								<tr>
+									<td class="set" name="idAgenda">3</td>
+									<td class="set" name="corecPrevisto" converter="string">"17/01/2016"</td>
+									<span class="eq" value="$THIS.inicializar()"></span>
+									<td>
+										<table class="executeRows" name="result" value="$THIS.addObservacao(operacao, idObservacao, texto)">
+											<tr>
+												<th class="set" name="operacao" converter="String">Ação</th>
+												<th class="set" name="idObservacao" converter="String">Id Observação</th>
+												<th class="set" name="texto" converter="String">Texto</th>
+											</tr>
+											<tr>
+												<td>Excluir</td>
+												<td>3</td>
+												<td>Texto da observação</td>
+											</tr>
+											<tr>
+												<td>Incluir</td>
+												<td></td>
+												<td>Nova observação 1</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.salvarAgenda(idAgenda, corecPrevisto)">
+									<li>O sistema deverá exibir a seguinte mensagem de sucesso: <span class="eq" value="$THIS.getMensagem()">Agenda
+											do comitê salva com sucesso.</span></li>
+									<li>Os dados alterados estão <a href="TestR003C003AlterarComiteRealizar-PorFim.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

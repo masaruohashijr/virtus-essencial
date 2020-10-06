@@ -1,0 +1,97 @@
+/**
+CRT - Central de Requisitos e Testes
+Copyright 2008-2011 Banco Central do Brasil
+
+Este arquivo é parte do programa CRT - Central de Requisitos e Testes
+
+O CRT é um software livre; você pode redistribui-lo e/ou modifica-lo dentro 
+dos termos da Licença Pública Geral GNU como publicada pela Fundação do Software 
+Livre (FSF); na versão 2 da Licença.
+
+Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA 
+GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO 
+EM PARTICULAR. Veja a Licença Pública Geral GNU para maiores detalhes.
+
+Você deve ter recebido uma cópia da Licença Pública Geral GNU versao 2, sob o 
+título "LICENCA.txt", junto com este programa, se não, escreva para a Fundação do 
+Software Livre(FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+body {
+	font-family: 'Verdana', Courier, monospace;
+	font-size: 10pt
+	}
+
+table.crt {
+	border-style: solid;
+	border-collapse: collapse;
+	border: 2px solid black;
+	margin: 10pt;
+	font-size: 10pt;
+	
+}
+
+table.crt th {
+	border-style: solid;
+	border-collapse: collapse;
+	border: 2px solid black;
+	background-color: #003366;
+	color: white
+}
+
+table.crt caption {
+    font-size: 12pt;
+    font-weight:bold;
+    text-align:left;
+    border-collapse: collapse;
+    border: 2px solid black;
+    background-color: #DDDDDD;
+    padding: 5px;
+}
+
+table.tabela_entrada th {
+    /*background-color: #DDDDDD;*/
+}
+table.tabela_saida th {
+    /*background-color: #DDDDDD;*/
+}
+
+table.crt td {
+	border-style: solid;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+th,td {
+	text-align: left;
+	vertical-align: top;
+	padding: 5px;
+}
+
+.botaoCrt {
+	font-weight: bold;
+	width:60pt;
+	background-color:#99FFFF;
+	border: 2px solid black;
+}
+
+
+a.include {
+	background:transparent url(mao_direita.png) center left no-repeat;
+	display:inline-block;
+	padding-left:23px;
+	line-height:18px;
+}
+
+
+
+/*.include {
+	text-decoration: overline;
+}
+
+.include:after {
+	content:"INCLUÍDO";
+	font-size: 50%;
+	font-family: verdana;
+	vertical-align: top;
+}
+*/

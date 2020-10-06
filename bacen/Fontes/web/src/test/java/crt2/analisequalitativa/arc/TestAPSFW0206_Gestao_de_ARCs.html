@@ -1,0 +1,2826 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória APSFW0206 - Gestão de ARCs.</h1>
+	<span id="index"></span>
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>04/07/2014</td>
+			<td>David Moura</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>27/08/2014</td>
+			<td>Victor Vasconcelos</td>
+			<td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas)</td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>05/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Cálculo da nota final e nota refinada da matriz</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>23/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Perfis de acesso vs responsabilidade de ESs para supervisor
+				substituto.</td>
+		</tr>
+		<tr>
+			<td>1.4</td>
+			<td>26/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas).</td>
+		</tr>
+		<tr>
+			<td>1.6</td>
+			<td>07/10/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+		</tr>
+		<tr>
+			<td>1.7</td>
+			<td>17/11/2014</td>
+			<td>David Moura</td>
+			<td>Ajuste em links de ARCs nas seções: 'Em análise', 'Em atualização' da Tela Gestão de ARCs</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+		<dataHoraAtual valor="17/03/2014 00:00:00" />
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória:
+		<ul>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/APSFW0206_Gestao_de_ARCs.xlsx">APSFW0206_Gestao_de_ARCs.xlsx</a>.</li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+		</ul>
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	</ul>
+
+	<h2>Cenários de teste para a estória APSFW0206 - Gestão de ARCs.</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens de erro/impedimento e sucesso para a Gestão de
+		ARCs.</blockquote>
+	<jetty />
+	<table class="exemplos">
+		<tr>
+			<th width="10%">Cenário</th>
+			<th width="20%">Dados pré-existentes</th>
+			<th width="20%">Ação pretendida</th>
+			<th width="50%">Resultado esperado</th>
+		</tr>
+
+		  <tr class="scenario" >
+			<td class='title'><b>C001</b><br> <br> <b>Sucesso</b> - Acessar a funcionalidade Gerenciar ARCs.
+				Equipe do usuário é a responsável pela ES. Todos os ARCs no estado previsto. Perfil de risco vigente - 1º ciclo -
+				Usar a versão vigente da matriz de riscos e controles e ciclo em andamento.</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABNAMRO(00000191)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td>28/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td>28/05/2015</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Matriz de riscos e controles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div id="idPainelMatrizVigente">
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo246">
+															Matriz vigente </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1249">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0247"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo248">
+																Crédito</span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo24a">
+																TI </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink24b"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24d">
+																50% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24f">
+																50% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0250"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id0252">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo253">Unidade de negócio 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo254">50%</td>
+														<td align="center" class="" id="dadosRisco256" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco20f"> <span id="risco257"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle258" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle20e"> <span id="controle259"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco25b" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco211"> <span id="risco25c"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle25d" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle210"> <span id="controle25e"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id125f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo260">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo261">50%</td>
+														<td align="center" class="" id="dadosRisco263" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco213"> <span id="risco264"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle265" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+															id="linkControle212"> <span id="controle266"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco268" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco269"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle26a" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+															id="linkControle3"> <span id="controle26b"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id226c">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo26d">Atividade corporativa 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo26e">50%</td>
+														<td align="center" class="" id="dadosRisco270" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco2"> <span id="risco271"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle272" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle1"> <span id="controle273"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco275" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco215"> <span id="risco276"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle277" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle214"> <span id="controle278"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais27a" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27c" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27e" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais280" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais282" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais284" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+											<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel285">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+													<tbody>
+														<tr class="fundoPadraoAClaro3">
+															<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+															<td style="width: 15%;" id="colunaNotaCalculada286">*A</td>
+															<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+															<td style="width: 15%;" id="colunaNotarRefinada287"></td>
+															<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle288"><span
+																class="nomeCampo" id="controle289"> <a
+																	href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																	id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem28a"
+																		src="srunnerw7480103596196435914/mais-ver-1410386936277.gif">
+																</a>
+															</span></td>
+															<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada28b">Nota ajustada</td>
+															<td style="width: 20%;" id="colunaNotaAjustadaValor28c"><label id="notaAjustadaMatriz28d"> </label></td>
+														</tr>
+														<tr id="idLinhaJustificativaNotaAjustadaMatriz28e" style="display: none">
+														</tr>
+													</tbody>
+													<tbody id="LinhaAAvaliar28f">
+														<tr>
+															<td colspan="100" align="right">*a avaliar</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<tr>
+							<td colspan="5">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+						</tr>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										atualização</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Designado</a></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 1</td>
+								<td>TI</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 1</td>
+								<td>TI</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='tDesignacaoLote']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Designação
+										em lote</b></th>
+							</tr>
+							<td><input class="present" by="conter:" type="button" value="Designar em lote" />
+								</li></td>
+						</thead>
+					</table>
+			</span><br>
+							<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			
+			</td>
+			</tr>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000191</td>
+												<td>ABN AMRO</td>
+												<td>1</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+			
+			
+						
+			
+			
+					
+
+		
+
+
+		<tr  class="scenario" >
+			<td class='title'><b>C002</b><br> <br> <b>Sucesso</b> - Acessar a funcionalidade Gerenciar ARCs.
+				Equipe do usuário é a responsável pela ES. Não há ARCs Preenchido, Delegado e Em análise. Há ARCs previstos sem notas. Perfil de risco vigente - 1º ciclo - Usar a versão vigente da matriz de riscos e
+				controles do ciclo em andamento.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ITAU(00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td>29/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td>29/05/2016</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Matriz de riscos e controles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div id="idPainelMatrizVigente">
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo243">
+															Matriz vigente </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1246">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0244"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo245">
+																Crédito </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo247">
+																TI </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink248"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24a">
+																50% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24c">
+																50% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id024d"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id024f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo250">Unidade de negócio 2</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo251">50%</td>
+														<td align="center" class="" id="dadosRisco253" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco20d"> <span id="risco254"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle255" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle20c"> <span id="controle256"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco258" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco20f"> <span id="risco259"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle25a" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle20e"> <span id="controle25b"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id125c">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo25d">Atividade de negócio 2</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo25e">50%</td>
+														<td align="center" class="" id="dadosRisco260" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco211"> <span id="risco261"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle262" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+															id="linkControle210"> <span id="controle263"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco265" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco8"> <span id="risco266"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle267" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+															id="linkControle7"> <span id="controle268"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id2269">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo26a">Atividade corporativa 2</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo26b">50%</td>
+														<td align="center" class="" id="dadosRisco26d" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco6"> <span id="risco26e"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle26f" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle5"> <span id="controle270"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco272" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco213"> <span id="risco273"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle274" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle212"> <span id="controle275"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais277" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais279" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27b" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27d" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais27f" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais281" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+											<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel282">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+													<tbody>
+														<tr class="fundoPadraoAClaro3">
+															<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+															<td style="width: 15%;" id="colunaNotaCalculada283">*A</td>
+															<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+															<td style="width: 15%;" id="colunaNotarRefinada284"></td>
+															<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle285"><span
+																class="nomeCampo" id="controle286"> <a
+																	href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																	id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem287"
+																		src="srunnerw5859105110573772454/mais-ver-1410386936277.gif">
+																</a>
+															</span></td>
+															<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada288">Nota ajustada</td>
+															<td style="width: 20%;" id="colunaNotaAjustadaValor289"><label id="notaAjustadaMatriz28a"> </label></td>
+														</tr>
+														<tr id="idLinhaJustificativaNotaAjustadaMatriz28b" style="display: none">
+														</tr>
+													</tbody>
+													<tbody id="LinhaAAvaliar28c">
+														<tr>
+															<td colspan="100" align="right">*a avaliar</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="8" class="aesquerda" style="width: 450px; background-color: #4a73a2"><b>ARCs</b></td>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<tr>
+							<td colspan="5">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										atualização</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa 2</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa 2</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 2</td>
+								<td>TI</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 2</td>
+								<td>TI</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> 
+			<span class="compareTable dados" by="xpath://table[@id='tDesignacaoLote']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Designação
+										em lote</b></th>
+							</tr>
+							<tr>
+							<td><li><input class="present" by="conter:" type="button" value="Designar em lote" /></li>
+							<input class="present" by="conter:" type="button" value="Voltar" />
+							</tr>	
+								</td>
+							
+						</thead>
+					
+					</table>
+	</span>
+	</td>
+	</tr>
+			
+			<tr>
+			<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											 <tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000191</td>
+												<td>ABN AMRO</td>
+												<td>1</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>2</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+									</td>
+                    	</tr>
+			
+			
+				
+			</tr>
+						
+		
+
+
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br> <br> <b>Sucesso</b> - Acessar a funcionalidade Gerenciar ARCs.
+				Equipe do usuário é a responsável pela ES. Não há ARCs Preenchido, Delegado e Em análise. Há ARCs previstos,
+				designados e em edição. Perfil de risco vigente - 1º ciclo - Usar a versão vigente da matriz de riscos e controles.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES9">"NATIXIS BRASIL S/A"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>NATIXISBRASILS/A(58963214)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td>30/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td>30/05/2015</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Matriz de riscos e controles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div id="idPainelMatrizVigente">
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo243">
+															Matriz vigente </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1246">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0244"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo245">
+																Crédito </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo247">
+																TI </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink248"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24a">
+																50% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24c">
+																50% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id024d"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id024f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo250">Unidade de negócio 3</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo251">50%</td>
+														<td align="center" class="" id="dadosRisco253" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco20d"> <span id="risco254"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle255" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle20c"> <span id="controle256"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco258" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco20f"> <span id="risco259"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle25a" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle20e"> <span id="controle25b"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id125c">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo25d">Atividade de negócio 3</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo25e">50%</td>
+														<td align="center" class="" id="dadosRisco260" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco211"> <span id="risco261"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle262" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+															id="linkControle210"> <span id="controle263"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco265" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco12"> <span id="risco266"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle267" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+															id="linkControle11"> <span id="controle268"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id2269">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo26a">Atividade corporativa 3</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo26b">50%</td>
+														<td align="center" class="" id="dadosRisco26d" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco10"> <span id="risco26e"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle26f" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle9"> <span id="controle270"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco272" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco213"> <span id="risco273"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle274" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle212"> <span id="controle275"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais277" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais279" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27b" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27d" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais27f" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais281" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+											<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel282">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+													<tbody>
+														<tr class="fundoPadraoAClaro3">
+															<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+															<td style="width: 15%;" id="colunaNotaCalculada283">*A</td>
+															<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+															<td style="width: 15%;" id="colunaNotarRefinada284"></td>
+															<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle285"><span
+																class="nomeCampo" id="controle286"> <a
+																	href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																	id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem287"
+																		src="srunnerw7368648983248636729/mais-ver-1410386936277.gif">
+																</a>
+															</span></td>
+															<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada288">Nota ajustada</td>
+															<td style="width: 20%;" id="colunaNotaAjustadaValor289"><label id="notaAjustadaMatriz28a"> </label></td>
+														</tr>
+														<tr id="idLinhaJustificativaNotaAjustadaMatriz28b" style="display: none">
+														</tr>
+													</tbody>
+													<tbody id="LinhaAAvaliar28c">
+														<tr>
+															<td colspan="100" align="right">*a avaliar</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="5">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										atualização</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa 3</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa 3</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 3</td>
+								<td>TI</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Designado</a></td>
+								<td>CAIO DUARTE CINTRA</td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 3</td>
+								<td>TI</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Em edição</a></td>
+								<td>CAIO DUARTE CINTRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='tDesignacaoLote']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Designação
+										em lote</b></th>
+							</tr>
+							<td><input class="present" by="conter:" type="button" value="Designar em lote" />
+								</li></td>
+						</thead>
+					</table>
+			</span><br>
+
+				<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</td>
+		</tr>
+
+		<tr class="scenario" > 
+			<td class='title'><b>C004</b><br> <br> <b>Sucesso</b> - Acessar a funcionalidade Gerenciar ARCs.
+				Equipe do usuário é a responsável pela ES. Não há ARCs previstos, designados e em edição. Perfil de risco vigente -
+				1º ciclo - Usar a versão vigente da matriz de riscos e controles.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>GOLDMANSACHS(59820367)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td>31/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td>31/05/2015</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Matriz de riscos e controles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div id="idPainelMatrizVigente">
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo243">
+															Matriz vigente </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1246">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0244"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo245">
+																Crédito </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo247">
+																TI </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink248"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24a">
+																50% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24c">
+																50% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id024d"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id024f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo250">Unidade de negócio 4</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo251">50%</td>
+														<td align="center" class="" id="dadosRisco253" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco20d"> <span id="risco254"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle255" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle20c"> <span id="controle256"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco258" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco20f"> <span id="risco259"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle25a" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle20e"> <span id="controle25b"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id125c">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo25d">Atividade de negócio 4</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo25e">50%</td>
+														<td align="center" class="" id="dadosRisco260" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco211"> <span id="risco261"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle262" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+															id="linkControle210"> <span id="controle263"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco265" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco16"> <span id="risco266"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle267" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+															id="linkControle15"> <span id="controle268"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id2269">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo26a">Atividade corporativa 4</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo26b">50%</td>
+														<td align="center" class="" id="dadosRisco26d" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco14"> <span id="risco26e"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle26f" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle13"> <span id="controle270"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco272" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco213"> <span id="risco273"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle274" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle212"> <span id="controle275"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais277" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais279" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27b" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27d" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais27f" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais281" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+											<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel282">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+													<tbody>
+														<tr class="fundoPadraoAClaro3">
+															<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+															<td style="width: 15%;" id="colunaNotaCalculada283">*A</td>
+															<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+															<td style="width: 15%;" id="colunaNotarRefinada284"></td>
+															<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle285"><span
+																class="nomeCampo" id="controle286"> <a
+																	href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																	id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem287"
+																		src="srunnerw7509110333021935271/mais-ver-1410386936277.gif">
+																</a>
+															</span></td>
+															<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada288">Nota ajustada</td>
+															<td style="width: 20%;" id="colunaNotaAjustadaValor289"><label id="notaAjustadaMatriz28a"> </label></td>
+														</tr>
+														<tr id="idLinhaJustificativaNotaAjustadaMatriz28b" style="display: none">
+														</tr>
+													</tbody>
+													<tbody id="LinhaAAvaliar28c">
+														<tr>
+															<td colspan="100" align="right">*a avaliar</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa 4</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa 4</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 4</td>
+								<td>TI</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Análise delegada</a></td>
+								<td>CAIO DUARTE CINTRA</td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 4</td>
+								<td>TI</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Em análise</a></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										atualização</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoDados']">
+					<table>
+						<tr>
+							<td colspan="5">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+						</tr>
+					</table>
+			</span><br>
+				<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</td> 
+		
+		<tr class="scenario" >
+			<td class='title'><b>C005</b><br> <br>Verificar -
+				Existência da seção de 'arcs em análise' na gestão de ARCs.</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades e seus estados se encontram <a
+				href="../comum/TestE3_32_Analise_ARC_dadoque.html" class="include">aqui</a><br>
+				
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>8</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>17/03/2014 00:00:00</td>
+					</tr>
+				</table><br><br>
+				
+				
+				
+			</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Seleciona a ES: 
+						<span class="clickon" by="id:link_ES1">ABN AMRO</span>
+					</li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image" src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> 
+				<span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td colspan="8" class="aesquerda"
+                                    style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+                            </tr>
+                        </thead>
+                    </table>
+	            </span> 
+	           <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+	                    <table>
+	                        <thead>
+	                            <tr>
+	                                <th colspan="5" class="aesquerda"
+	                                    style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em análise</b></th>
+	                            </tr>
+	                        </thead>
+	                    </table>
+	            </span><br> 
+	            <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Análise delegada</a></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Analisado</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 2</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 2</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> 
+			</td>
+		</tr>
+		
+		
+		<tr class="scenario" >
+			<td class='title'><b>C006</b><br> <br>Verificar -
+				Existência da seção de 'arcs em análise' na gestão de ARCs.</td>
+			<td>Mesmo estado anterior<br><br>
+			
+			<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>6</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+					</tr>
+				</table><br><br>
+			
+			
+			</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Seleciona a ES: 
+						<span class="clickon" by="id:link_ES1">ABN AMRO</span>
+					</li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image" src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> 
+				<span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td colspan="8" class="aesquerda"
+                                    style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+                            </tr>
+                        </thead>
+                    </table>
+	            </span> 
+	           <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+	                    <table>
+	                        <thead>
+	                            <tr>
+	                                <th colspan="5" class="aesquerda"
+	                                    style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em análise</b></th>
+	                            </tr>
+	                        </thead>
+	                    </table>
+	            </span><br> 
+	            <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda"
+									style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Em análise</a></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Analisado</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 2</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 2</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0203">Preenchido</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> 
+			</td>
+		</tr>
+		
+		 <tr class="scenario">
+			<td class='title'><b>C007</b><br> <br> <b>Sucesso</b> - Acessar link ARCs - Em análise - estado: <b>'Analisado'</b></td>
+			<td>Mesmo "dadoque" do cenário anterior..</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc2" sleep="3000">"Analisado"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains"> <span class="contains">Início <input
+								type="image" src="../../../crt2/seta.gif" />Painel do supervisor <input type="image"
+								src="../../../crt2/seta.gif" />Perfil de risco <input type="image" src="../../../crt2/seta.gif" />Gestão de
+								ARCs <input type="image" src="../../../crt2/seta.gif" />Detalhes do ARC
+						</span>
+							<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+ 
+		 <tr class="scenario">
+			<td class='title'><b>C008</b><br> <br> <b>Sucesso</b> - Acessar link ARCs - Em análise - estado: <b>'Preenchido'</b></td>
+			<td><banco />As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a><br> Dados de avaliações do ARC, Tendências, Elementos, Itens de
+				elemento e Documentos se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque_C006.html" class="include">aqui</a>.
+				<br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc14" sleep="3000">"Preenchido"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image"
+							src="../../../crt2/seta.gif" />Análise do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		 <tr class="scenario">
+			<td class='title'><b>C009</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em análise - estado: <b>'Delegado'</b></td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc15" sleep="3000">"Análise delegada"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains"> <span class="contains">Início <input
+								type="image" src="../../../crt2/seta.gif" />Painel do supervisor <input type="image"
+								src="../../../crt2/seta.gif" />Perfil de risco <input type="image" src="../../../crt2/seta.gif" />Gestão de
+								ARCs <input type="image" src="../../../crt2/seta.gif" />Detalhes do ARC
+						</span>
+							<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em análise - estado: <b>'Em
+					análise'</b></td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc16" sleep="3000">"Em análise"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image"
+							src="../../../crt2/seta.gif" />Análise do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C011</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em análise - estado: <b>'Em
+					análise' p/ o inspetor delegado</b></td>
+			<td>Mesmo "dadoque" do cenário anterior..<br>
+			
+			<table class="prepare dados">
+	<caption>DEL_DELEGACAO_ARC</caption>
+	<tr>
+		<th>Ação</th>
+		<th>DEL_ID</th>
+		<th>DEL_NU_VERSAO</th>
+		<th>DEL_CD_OPER_ATUALZ</th>
+		<th>DEL_DH_ATUALZ</th>
+		<th>DEL_CD_MATRICULA</th>
+		<th>ARC_ID</th>
+	</tr>
+	<tr>
+		<td>I</td>
+		<td>2</td>
+		<td>0</td>
+		<td>deliq.sisliq101</td>
+		<td>07/05/2014 00:00:00</td>
+		<td>99990830</td>
+		<td>16</td>
+	</tr>
+</table>
+<br>
+			
+			</td>
+			
+			
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc16" sleep="3000">"Em análise"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains"> <span class="contains">Início <input
+								type="image" src="../../../crt2/seta.gif" />Painel do supervisor <input type="image"
+								src="../../../crt2/seta.gif" />Perfil de risco <input type="image" src="../../../crt2/seta.gif" />Gestão de
+								ARCs <input type="image" src="../../../crt2/seta.gif" />Detalhes do ARC
+						</span>
+							<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C012</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em análise - estado: <b>'Análise delegada' p/ o próprio supervisor logado</b></td>
+			<td>Mesmo "dadoque" do cenário anterior..<br><br>
+			
+			
+			<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>16</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>31/05/2014 00:00:00</td>
+					</tr>
+				</table><br><br>
+				
+			<table class="prepare dados">
+	<caption>DEL_DELEGACAO_ARC</caption>
+	<tr>
+		<th>Ação</th>
+		<th>DEL_ID</th>
+		<th>DEL_NU_VERSAO</th>
+		<th>DEL_CD_OPER_ATUALZ</th>
+		<th>DEL_DH_ATUALZ</th>
+		<th>DEL_CD_MATRICULA</th>
+		<th>ARC_ID</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>2</td>
+		<td>0</td>
+		<td>deliq.sisliq101</td>
+		<td>07/05/2014 00:00:00</td>
+		<td>96186186</td>
+		<td>16</td>
+	</tr>
+</table>
+<br>
+			
+			</td>
+			
+			
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc16" sleep="3000">"Análise delegada"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains"> <span class="contains">Início <input
+								type="image" src="../../../crt2/seta.gif" />Painel do supervisor <input type="image"
+								src="../../../crt2/seta.gif" />Perfil de risco <input type="image" src="../../../crt2/seta.gif" />Gestão de
+								ARCs <input type="image" src="../../../crt2/seta.gif" />Detalhes do ARC
+						</span>
+							<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C013</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em atualização - estado: <b>'Previsto'</b></td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES9">"NATIXIS BRASIL S/A"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc10" sleep="3000">"Previsto"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image"
+							src="../../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C014</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em atualização - estado: <b>'Designado'</b></td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES9">"NATIXIS BRASIL S/A"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc11" sleep="3000">"Designado"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image"
+							src="../../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C015</b><br> <br> <b>Sucesso</b> - Acessar Link ARCs - Em atualização - estado: <b>'Em
+					edição'</b></td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES9">"NATIXIS BRASIL S/A"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no Estado: <span class="clickon" by="id:link_Arc12" sleep="3000">"Em edição"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image"
+							src="../../../crt2/seta.gif" />Detalhes do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C016</b><br> <br> <b>Sucesso</b> - Acessar o botão: 'Designar em lote'</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES9">"NATIXIS BRASIL S/A"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttDesignacaooLoteARCs" sleep="3000">'Designar em lote'</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0208]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor <input type="image" src="../../../crt2/seta.gif" />Perfil
+							de risco <input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs <input type="image"
+							src="../../../crt2/seta.gif" />
+					</span>
+					</li> O título da tela deve ser:
+					<span class="contains"><b>Designação em lotes de ARCs<b></span>
+					</li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C017</b><br> <br> <b>Sucesso</b> - Verificar a não existência do botão de 'Designar em Lote'</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">"GOLDMAN SACHS"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image" src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> 
+				
+				<li>O botão de 'Designar em lote não aparece':<br>
+				<br> <input class="notPresent" by="id:bttDesignacaooLoteARCs" type="button" value="Designar em lote" /></li>
+			</td>
+		</tr>
+		
+		 <tr class="scenario"> 
+			<td class='title'><b>C018</b><br> <br> <b>Sucesso</b>
+				Considerando a regra de perfil de acesso cadastrada: 
+				1 - Perfil: "Supervisor", Função comissionada "FDT-1" e Substituto eventual "Em exercício". 
+				Usuário 01 (sisliq101 - DELIQ/GLIQ1/GTBHO) com função FDT-1, 
+				Usuário 02 (sisliq110 - DESUP/GBPM1/GTSP4) substituto eventual do Usuário 01. 
+				Usuário 02 Acessa a funcionalidade Gerenciar ARCs da ES com localização: DELIQ/GLIQ1/GTBHO.</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a
+				href="../../paineldosupervisor/dadoque/TestAPSFW0201_Painel_do_supervisor_substituto_dadoque_1.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq110>deliq.sisliq110</sisliq110></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABNAMRO(00000191)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td>28/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td>28/05/2015</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Matriz de riscos e controles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div id="idPainelMatrizVigente">
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo246">
+															Matriz vigente </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1249">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0247"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo248">
+																Crédito </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo24a">
+																TI</span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink24b"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24d">
+																50% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24f">
+																50% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0250"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id0252">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo253">Unidade de negócio 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo254">50%</td>
+														<td align="center" class="" id="dadosRisco256" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco20f"> <span id="risco257"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle258" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle20e"> <span id="controle259"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco25b" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco211"> <span id="risco25c"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle25d" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle210"> <span id="controle25e"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id125f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo260">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo261">50%</td>
+														<td align="center" class="" id="dadosRisco263" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco213"> <span id="risco264"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle265" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+															id="linkControle212"> <span id="controle266"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco268" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco269"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle26a" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+															id="linkControle3"> <span id="controle26b"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id226c">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo26d">Atividade corporativa 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo26e">50%</td>
+														<td align="center" class="" id="dadosRisco270" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco2"> <span id="risco271"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle272" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle1"> <span id="controle273"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco275" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco215"> <span id="risco276"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle277" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle214"> <span id="controle278"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais27a" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27c" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27e" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais280" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais282" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais284" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+											<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel285">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+													<tbody>
+														<tr class="fundoPadraoAClaro3">
+															<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+															<td style="width: 15%;" id="colunaNotaCalculada286">*A</td>
+															<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+															<td style="width: 15%;" id="colunaNotarRefinada287"></td>
+															<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle288"><span
+																class="nomeCampo" id="controle289"> <a
+																	href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																	id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem28a"
+																		src="srunnerw7480103596196435914/mais-ver-1410386936277.gif">
+																</a>
+															</span></td>
+															<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada28b">Nota ajustada</td>
+															<td style="width: 20%;" id="colunaNotaAjustadaValor28c"><label id="notaAjustadaMatriz28d"> </label></td>
+														</tr>
+														<tr id="idLinhaJustificativaNotaAjustadaMatriz28e" style="display: none">
+														</tr>
+													</tbody>
+													<tbody id="LinhaAAvaliar28f">
+														<tr>
+															<td colspan="100" align="right">*a avaliar</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<tr>
+							<td colspan="5">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										atualização</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Designado</a></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 1</td>
+								<td>TI</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 1</td>
+								<td>TI</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='tDesignacaoLote']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Designação
+										em lote</b></th>
+							</tr>
+							<td><input class="present" by="conter:" type="button" value="Designar em lote" />
+								</li></td>
+						</thead>
+					</table>
+			</span><br>
+
+				<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C019</b><br> <br> <b>Sucesso</b>
+				Usuário diferente do
+				supervisor titular da ES, com regra cadastrada para o perfil
+				"Supervisor" da mesma localização da ES, Acessa a funcionalidade Gerenciar ARCs.</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a
+				href="../../paineldosupervisor/dadoque/TestAPSFW0201_Painel_do_supervisor_regra_supervisor_dadoque.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0206]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABNAMRO(00000191)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td>28/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td>28/05/2015</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Matriz de riscos e controles</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div id="idPainelMatrizVigente">
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo246">
+															Matriz vigente </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1249">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0247"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo248">
+																Crédito </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo24a">
+																TI </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink24b"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24d">
+																50% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo24f">
+																50% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0250"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id0252">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo253">Unidade de negócio 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo254">50%</td>
+														<td align="center" class="" id="dadosRisco256" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco20f"> <span id="risco257"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle258" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle20e"> <span id="controle259"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco25b" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco211"> <span id="risco25c"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle25d" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle210"> <span id="controle25e"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id125f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo260">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo261">50%</td>
+														<td align="center" class="" id="dadosRisco263" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco213"> <span id="risco264"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle265" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+															id="linkControle212"> <span id="controle266"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco268" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco269"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle26a" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+															id="linkControle3"> <span id="controle26b"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id226c">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo26d">Atividade corporativa 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo26e">50%</td>
+														<td align="center" class="" id="dadosRisco270" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco2"> <span id="risco271"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle272" bgcolor="#bbbbbb"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle1"> <span id="controle273"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco275" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco215"> <span id="risco276"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle277" bgcolor="#F2F4F6"><a
+															href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle214"> <span id="controle278"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais27a" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27c" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais27e" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais280" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais282" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais284" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+											<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel285">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+													<tbody>
+														<tr class="fundoPadraoAClaro3">
+															<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+															<td style="width: 15%;" id="colunaNotaCalculada286">*A</td>
+															<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+															<td style="width: 15%;" id="colunaNotarRefinada287"></td>
+															<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle288"><span
+																class="nomeCampo" id="controle289"> <a
+																	href="./page?11-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																	id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem28a"
+																		src="srunnerw7480103596196435914/mais-ver-1410386936277.gif">
+																</a>
+															</span></td>
+															<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada28b">Nota ajustada</td>
+															<td style="width: 20%;" id="colunaNotaAjustadaValor28c"><label id="notaAjustadaMatriz28d"> </label></td>
+														</tr>
+														<tr id="idLinhaJustificativaNotaAjustadaMatriz28e" style="display: none">
+														</tr>
+													</tbody>
+													<tbody id="LinhaAAvaliar28f">
+														<tr>
+															<td colspan="100" align="right">*a avaliar</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <span class="compareTable dados" by="xpath://table[@id='tTituloAnaliseArcs']">
+					<table>
+						<thead>
+							<tr>
+								<td colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ARCs</b></td>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAnaliseDados']">
+					<table>
+						<tr>
+							<td colspan="5">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Em
+										atualização</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='idArcAtualizacaoDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Atividade<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Grupo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>R/C<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Estado<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Responsável<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Designado</a></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 1</td>
+								<td>TI</td>
+								<td>C</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Atividade de negócio 1</td>
+								<td>TI</td>
+								<td>R</td>
+								<td><a href="APSFW0207">Previsto</a></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <span class="compareTable dados" by="xpath://table[@id='tDesignacaoLote']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Designação
+										em lote</b></th>
+							</tr>
+							<td><input class="present" by="conter:" type="button" value="Designar em lote" />
+								</li></td>
+						</thead>
+					</table>
+			</span><br>
+
+				<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</td>
+		</tr>  
+
+	</table> 
+</body>
+</html>

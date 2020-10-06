@@ -1,0 +1,1604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema name="SUP" alias="Sistema APS-SRC">
+	<table name="MET_METODOLOGIA_SRC">
+    	<!-- chave -->
+    	<column name="MET_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="MET_DS"/>
+    	<column name="MET_DS_TITULO"/>
+    	<column name="MET_CD_ESTADO" converter="int"/>
+    	<column name="MET_IB_DEFAULT" converter="int"/>
+        <column name="MET_IB_CALC_MEDIA" converter="int"/>
+		<column name="MET_DT_INCLUSAO" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="MET_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="MET_CD_OPER_ATUALZ"/>
+
+    	<column name="MET_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PPR_PAR_PERSPECTIVA">
+    	<!-- chave -->
+    	<column name="PPR_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PPR_NM"/>
+    	<column name="PPR_DS"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PPR_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PPR_CD_OPER_ATUALZ"/>
+
+    	<column name="PPR_NU_VERSAO" converter="int"/>
+	</table>
+  
+    <table name="PST_PAR_SITUACAO">
+        <!-- chave -->
+        <column name="PST_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="PST_NM"/>
+        <column name="PST_DS"/>
+        <column name="PST_IB_NORMALIDADE" converter="int"/>
+
+        <!-- chave extrangeira -->
+        <column name="MET_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="PST_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="PST_CD_OPER_ATUALZ"/>
+
+        <column name="PST_NU_VERSAO" converter="int"/>
+    </table>
+
+	<table name="PTE_PAR_TENDENCIA">
+    	<!-- chave -->
+    	<column name="PTE_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PTE_NM"/>
+    	<column name="PTE_DS"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PTE_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PTE_CD_OPER_ATUALZ"/>
+
+    	<column name="PTE_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PTA_PAR_TIPO_ATIVIDADE_NEGOCIO">
+		<!-- chave -->
+    	<column name="PTA_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PTA_NM"/>
+    	<column name="PTA_DS"/>
+    	<column name="PTA_DS_END_MANUAL"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PTA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PTA_CD_OPER_ATUALZ"/>
+
+    	<column name="PTA_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PNO_PAR_NOTA">
+    	<!-- chave -->
+    	<column name="PNO_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PNO_CD_VALOR" converter="bigdecimal"/>
+    	<column name="PNO_VL_LIM_INFER" converter="bigdecimal"/>
+    	<column name="PNO_VL_LIM_SUPER" converter="bigdecimal"/>
+    	<column name="PNO_IB_NOTA_NA" converter="int"/>
+        <column name="PNO_IB_NOTA_ELEMENTO" converter="int"/>
+    	<column name="PNO_CD_GRAU_PREOCUPACAO" converter="int"/>
+    	<column name="PNO_DS_NOTA"/>
+    	<column name="PNO_DS_COR"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PNO_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PNO_CD_OPER_ATUALZ"/>
+
+    	<column name="PNO_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PFR_PAR_FATOR_RELEV_RIS_CON">
+    	<!-- chave -->
+    	<column name="PFR_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PFR_VL_ALFA" converter="bigdecimal"/>
+    	<column name="PFR_VL_BETA" converter="bigdecimal"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PFR_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PFR_CD_OPER_ATUALZ"/>
+
+    	<column name="PFR_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PPS_PAR_PESO">
+    	<!-- chave -->
+    	<column name="PPS_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PPS_SL"/>
+    	<column name="PPS_QT" converter="int"/>
+    	<column name="PPS_DS"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PPS_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PPS_CD_OPER_ATUALZ"/>
+
+    	<column name="PPS_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PRC_PAR_GRP_RIS_CON">
+    	<!-- chave -->
+    	<column name="PRC_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PRC_NM_RISCO"/>
+    	<column name="PRC_NM_CONTROLE"/>
+    	<column name="PRC_NM_ABREVIADO"/>
+    	<column name="PRC_DS"/>
+    	<!-- <column name="PRC_CD_TIPO" converter="int"/> -->
+    	<column name="PRC_DS_END_MANUAL"/>
+    	<column name="PRC_NU_ORDEM" converter="int"/>
+    	<!-- <column name="PRC_ID_CONTROLE" converter="int"/> -->
+    	<column name="PRC_IB_SINTESE_OBRIG" converter="int" default="0"/>
+		<column name="PRC_CD_TP_GRP" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.TipoParametroGrupoRiscoControleEnum" arg1="getDescricao" arg2="getCodigo"/>
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PRC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PRC_CD_OPER_ATUALZ"/>
+
+    	<column name="PRC_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PEL_PAR_ELEMENTO_RIS_CON">
+    	<!-- chave -->
+    	<column name="PEL_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PEL_NM"/>
+    	<column name="PEL_DS"/>
+    	<column name="PEL_DS_END_MANUAL"/>
+    	<column name="PEL_NU_ORDEM" converter="int"/>
+    	<column name="PEL_CD_TIPO" converter="int"/>
+
+		<!-- chaves extrangeiras -->
+    	<column name="PRC_ID" converter="int"/>
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PEL_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PEL_CD_OPER_ATUALZ"/>
+
+    	<column name="PEL_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="PIE_PAR_ITEM_ELEMENTO">
+    	<!-- chave -->
+    	<column name="PIE_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PIE_NM"/>
+    	<column name="PIE_DS_END_MANUAL"/>
+    	<column name="PIE_NU_ORDEM" converter="int"/>
+
+		<!-- chaves extrangeiras -->
+    	<column name="PEL_ID" converter="int"/>
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PIE_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PIE_CD_OPER_ATUALZ"/>
+
+    	<column name="PIE_NU_VERSAO" converter="int"/>
+	</table>
+  
+    <table name="PPD_PAR_PRIORIDADE_ES">
+        <!-- chave -->
+        <column name="PPD_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="PPD_DS"/>
+        <column name="PPD_CD" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="PPD_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="PPD_CD_OPER_ATUALZ"/>
+
+        <column name="PPD_NU_VERSAO" converter="int"/>
+    </table>
+
+	<table name="ENS_ENTIDADE_SUPERVISIONAVEL">
+    	<!-- chave -->
+    	<column name="ENS_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="ENS_CD_CNPJ"/>
+    	<column name="ENS_NM"/>
+    	<column name="ENS_DS_PORTE"/>
+    	<column name="ENS_DS_SEGMENTO"/>
+    	<column name="ENS_IB_PERTENCE_SRC" converter="int"/>
+    	<column name="ENS_DS_LOCALIZACAO"/>
+    	<column name="ENS_CD_MAT_SUP_RESP"/>
+    	<column name="ENS_DT_INCLUSAO" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+        <column name="ENS_QT_ANOS_PREVISAO_COREC" converter="int"/>
+
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        <column name="PPD_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="ENS_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="ENS_CD_OPER_ATUALZ"/>
+
+    	<column name="ENS_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="CIC_CICLO_SRC">
+    	<!-- chave -->
+    	<column name="CIC_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="CIC_CD_PT_PE"/>
+    	<column name="CIC_DT_INICIO" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+    	<column name="CIC_DT_INICIO_COREC" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+    	<column name="CIC_DT_PREV_COREC" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+    	<column name="CIC_CD_MAT_SEG_SUB_SUP"/>
+
+		<!-- chaves extrangeiras -->
+    	<column name="MET_ID" converter="int"/>
+    	<column name="ENS_ID" converter="int"/>
+    	<column name="ECI_ID" converter="int"/>
+    	<column name="MAT_ID" converter="int"/>
+    	<column name="NCI_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="CIC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="CIC_CD_OPER_ATUALZ"/>
+
+    	<column name="CIC_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="ECI_ESTADO_CICLO">
+    	<!-- chave -->
+    	<column name="ECI_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="ECI_CD_ESTADO" converter="int" />
+
+		<!-- chave extrangeira -->
+    	<column name="CIC_ID" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="ECI_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="ECI_CD_OPER_ATUALZ"/>
+
+    	<column name="ECI_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="MAT_MATRIZ_SRC">
+    	<!-- chave -->
+    	<column name="MAT_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="MAT_CD_ESTADO" converter="int"/>
+        <column name="MAT_NU_FT_RELEV_UC" converter="bigdecimal"/>
+      
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="MAT_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="MAT_CD_OPER_ATUALZ"/>
+    	<column name="MAT_NU_VERSAO" converter="int"/>
+		<column name="MAT_NU_FT_RELEV_AE" converter="bigdecimal"/>
+		
+	</table>
+
+	<table name="UND_UNIDADE_MAT">
+    	<!-- chave -->
+    	<column name="UND_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="UND_NM"/>
+        <column name="UND_CD_TIPO" converter="int" />
+
+		<!-- chave extrangeira -->
+    	<column name="MAT_ID" converter="int"/>
+    	<column name="PPS_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="UND_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="UND_CD_OPER_ATUALZ"/>
+
+    	<column name="UND_NU_VERSAO" converter="int"/>
+	</table>
+  
+    <table name="ATV_ATIVIDADE_MAT">
+        <!-- chave -->
+        <column name="ATV_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="ATV_NM"/>
+        <column name="ATV_PC_PARTICIPACAO" converter="bigdecimal"/>
+        <column name="ATV_CD_TIPO" converter="int"/>
+        
+        <!-- chave extrangeira -->
+        <column name="MAT_ID" converter="int"/>
+        <column name="PPS_ID" converter="int"/>
+        <column name="PTA_ID" converter="int"/>
+        <column name="UND_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="ATV_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ATV_CD_OPER_ATUALZ"/>
+
+        <column name="ATV_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ARC_AVAL_RIS_CON">
+        <!-- chave -->
+        <column name="ARC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="ARC_DS_END_MANUAL"/>
+        <column name="ARC_PC_PARTICIPACAO" converter="bigdecimal"/>
+        <column name="ARC_CD_ESTADO" converter="int"/>
+        <column name="ARC_CD_TIPO" converter="int"/>
+        
+        <column name="PNO_ID_COREC" reference="true" converter="int"  comparator="integer"/>
+
+        <!-- chave extrangeira -->
+        <column name="PNO_ID_SUPERVISOR" converter="int"/>
+        <column name="ARC_ID_ANTERIOR" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="ARC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ARC_CD_OPER_ATUALZ"/>
+
+        <column name="ARC_NU_VERSAO" converter="int"/>
+
+        <column name="ARC_DH_CONCLUSAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ARC_CD_OPER_CONCLUSAO"/>
+
+        <column name="ARC_DH_ANALISE" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ARC_CD_OPER_ANALISE"/>
+
+        <column name="ARC_DH_PREENCHIDO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ARC_CD_OPER_PREENCHIDO"/>
+        
+        <!-- Valor média nota -->
+        <column name="ARC_VL_NOTA" converter="bigdecimal"/>
+    </table>
+    
+    <table name="AAT_ARC_ATV">
+        <column name="ARC_ID" key="true" converter="int"/>
+        <column name="ATV_ID" key="true" converter="int"/>
+    </table>
+    
+    <table name="DES_DESIGNACAO_ARC">
+        <!-- chave -->
+        <column name="DES_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="DES_CD_MATRICULA"/>
+        
+        <!-- chave extrangeira -->
+        <column name="ARC_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="DES_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="DES_CD_OPER_ATUALZ"/>
+
+        <column name="DES_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ELE_ELEMENTO_ARC">
+        <!-- chave -->
+        <column name="ELE_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="ELE_AN_JUST_SUPERVISOR" comparator="clob"/>
+        
+        <!-- chave extrangeira -->
+        <column name="PEL_ID" converter="int"/>
+        <column name="ARC_ID" converter="int"/>
+        <column name="PNO_ID_INSPETOR" converter="int"/>
+        <column name="PNO_ID_SUPERVISOR" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="ELE_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ELE_CD_OPER_ATUALZ"/>
+
+        <column name="ELE_NU_VERSAO" converter="int"/>
+
+        <column name="ELE_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ELE_CD_OPER_ALTERACAO"/>
+    </table>
+    
+    <table name="ITE_ITEM_ELEMENTO">
+        <!-- chave -->
+        <column name="ITE_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="DOC_ID" converter="int"/>
+        <column name="DOC_ID_VIGENTE" converter="int"/>
+        <column name="ELE_ID" converter="int"/>
+        <column name="PIE_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="ITE_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ITE_CD_OPER_ATUALZ"/>
+
+        <column name="ITE_NU_VERSAO" converter="int"/>
+
+        <column name="ITE_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ITE_CD_OPER_ALTERACAO"/>
+    </table>
+    
+    <table name="DEL_DELEGACAO_ARC">
+        <!-- chave -->
+        <column name="DEL_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="DEL_CD_MATRICULA"/>
+        
+        <!-- chave extrangeira -->
+        <column name="ARC_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="DEL_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="DEL_CD_OPER_ATUALZ"/>
+
+        <column name="DEL_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="DOC_DOCUMENTO_SRC">
+        <!-- chave -->
+        <column name="DOC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="DOC_AN_JUSTIFICATIVA" comparator="clob"/>
+        
+         
+        <column name="DOC_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="DOC_CD_OPER_ALTERACAO"/>
+       
+
+        <!-- dados de auditoria -->
+        <column name="DOC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="DOC_CD_OPER_ATUALZ"/>
+
+        <column name="DOC_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="AVA_AVALIACAO_ARC">
+        <!-- chave -->
+        <column name="AVA_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="AVA_CD_PERFIL" converter="int"/>
+        <column name="AVA_AN_JUSTIFICATIVA" comparator="clob"/>
+
+        <!-- chave extrangeira -->
+        <column name="ARC_ID" converter="int"/>
+        <column name="PNO_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="AVA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="AVA_CD_OPER_ATUALZ"/>
+
+        <column name="AVA_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="TEN_TENDENCIA_ARC">
+        <!-- chave -->
+        <column name="TEN_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="TEN_CD_PERFIL" converter="int"/>
+        <column name="TEN_AN_JUSTIFICATIVA" comparator="clob"/>
+
+        <!-- chave extrangeira -->
+        <column name="ARC_ID" converter="int"/>
+        <column name="PTE_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="TEN_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="TEN_CD_OPER_ATUALZ"/>
+
+        <column name="TEN_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="AND_ANEXO_DOCUMENTO">
+        <!-- chave -->
+        <column name="AND_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="AND_DS_LINK"/>
+
+        <!-- chave extrangeira -->
+        <column name="DOC_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="AND_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="AND_CD_OPER_ATUALZ"/>
+    </table>
+    
+    <table name="ANA_ANEXO_ARC">
+        <!-- chave -->
+        <column name="ANA_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="ANA_DS_LINK"/>
+
+        <!-- chave extrangeira -->
+        <column name="ARC_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="ANA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ANA_CD_OPER_ATUALZ"/>
+    </table>
+
+    <table name="PER_PERFIL_RISCO">
+		<!-- chave -->
+        <column name="PER_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="PER_DH_CRIACAO" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+    </table>
+
+    <table name="VER_VERSAO_PERFIL_RISCO">
+		<!-- chave -->
+        <column name="VER_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="VER_CD_TIPO" converter="int"/>
+    </table>
+
+    <table name="PVE_PER_VER">
+		<!-- chave -->
+        <column name="PER_ID" key="true" converter="int" reference="true"/>
+        <column name="VER_ID" key="true" converter="int" reference="true"/>
+    </table>
+    
+    <table name="RPA_REGRA_PERFIL_ACESSO">
+        <!-- chave -->
+        <column name="RPA_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="RPA_CD_FUNCAO"/>
+        <column name="RPA_DS_LOCALIZACAO"/>
+        <column name="RPA_IB_SUB_LOCALIZACAO" converter="int"/>
+        <column name="RPA_CD_MATRICULA"/>
+        <column name="RPA_CD_PERFIL" converter="int"/>
+        <column name="RPA_CD_SITUACAO" converter="int"/>
+        <column name="RPA_CD_SUBST_EVENTUAL_FUNCAO" converter="int"/>
+        <column name="RPA_CD_SUBST_PRAZO_CERTO" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="RPA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="RPA_CD_OPER_ATUALZ"/>
+
+        <column name="RPA_NU_VERSAO" converter="int"/>
+    </table>
+
+	<table name="PGP_PAR_GRAU_PREOCUPACAO">
+    	<!-- chave -->
+    	<column name="PGP_ID" key="true" converter="int" reference="true"/>
+
+    	<!-- dados normais -->
+    	<column name="PGP_CD_VALOR"/>
+    	<column name="PGP_DS"/>
+      
+		<!-- chave extrangeira -->
+    	<column name="MET_ID" converter="int"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="PGP_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="PGP_CD_OPER_ATUALZ"/>
+
+    	<column name="PGP_NU_VERSAO" converter="int"/>
+	</table>
+
+	<table name="SIR_SINTESE_RISCO">
+    	<!-- chave -->
+    	<column name="SIR_ID" key="true" converter="int" reference="true"/>
+        <column name="SIR_AN_SINTESE" comparator="clob"/>
+        
+		<!-- chave extrangeira -->
+    	<column name="PNO_ID" converter="int"/>
+		<column name="PRC_ID" converter="int"/>
+		<column name="VER_ID" converter="int"/>
+        <column name="SIR_ID_ANTERIOR" converter="int"/>
+        <column name="CIC_ID" converter="int"/>
+
+    	<!-- dados normais -->
+    	<column name="SIR_AN_SINTESE_VIG" comparator="clob"/>
+    	<column name="SIR_AN_SINTESE_TEMP" comparator="clob"/>
+
+    	<!-- dados de auditoria -->
+    	<column name="SIR_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    	<column name="SIR_CD_OPER_ATUALZ"/>
+
+    	<column name="SIR_NU_VERSAO" converter="int"/>
+	</table>
+
+    <table name="NMA_NOTA_MATRIZ">
+        <!-- chave -->
+        <column name="NMA_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="PNO_ID" converter="int"/>
+        <column name="MAT_ID" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        <column name="NMA_ID_ANTERIOR" converter="int"/>
+
+        <!-- dados normais -->
+        <column name="NMA_DS_NOTA_MAT"/>
+
+        <!-- dados de auditoria -->
+        <column name="NMA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="NMA_CD_OPER_ATUALZ"/>
+
+        <column name="NMA_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ESG_ES_GRAU_PREOCUPACAO">
+        <!-- chave -->
+        <column name="ESG_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="PGP_ID" converter="int"/>
+        
+        <column name="PNO_ID" converter="int"/>
+        <column name="ESG_AN_JUSTIFICATIVA" comparator="clob"/>
+        <column name="ESG_NU_FT_RELEV_ANEF" converter="bigdecimal"/>
+        
+        <column name="ESG_ID_ANTERIOR" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        
+        <column name="ESG_IB_PENDENTE" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+        <column name="ESG_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESG_CD_OPER_ENCAMINHAMENTO"/>
+
+        <!-- dados de auditoria -->
+        <column name="ESG_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESG_CD_OPER_ATUALZ"/>
+
+        <column name="ESG_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ESP_ES_PERFIL_ATUACAO">
+        <!-- chave -->
+        <column name="ESP_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="DOC_ID_PERFIL_ATUACAO" converter="int"/>
+        <column name="ESP_ID_ANTERIOR" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        
+        <column name="ESP_IB_PENDENTE" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+        <column name="ESP_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESP_CD_OPER_ENCAMINHAMENTO"/>
+
+        <!-- dados de auditoria -->
+        <column name="ESP_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESP_CD_OPER_ATUALZ"/>
+
+        <column name="ESP_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ESC_ES_CONCLUSAO">
+        <!-- chave -->
+        <column name="ESC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="DOC_ID_CONCLUSAO" converter="int"/>
+        <column name="ESC_ID_ANTERIOR" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        
+        <column name="ESC_IB_PENDENTE" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+        <column name="ESC_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESC_CD_OPER_ENCAMINHAMENTO"/>
+
+        <!-- dados de auditoria -->
+        <column name="ESC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESC_CD_OPER_ATUALZ"/>
+
+        <column name="ESC_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ESR_ES_PERSPECTIVA">
+        <!-- chave -->
+        <column name="ESR_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="PPR_ID" converter="int"/>
+        <column name="ESR_ID_ANTERIOR" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        
+        <!-- dados normais -->
+        <column name="ESR_DS_JUST_PERSPECTIVA"/>
+        <column name="ESR_IB_PENDENTE" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+        <column name="ESR_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESR_CD_OPER_ENCAMINHAMENTO"/>
+
+        <!-- dados de auditoria -->
+        <column name="ESR_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESR_CD_OPER_ATUALZ"/>
+
+        <column name="ESR_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ESS_ES_SITUACAO">
+        <!-- chave -->
+        <column name="ESS_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="PST_ID" converter="int"/>
+        <column name="ESS_ID_ANTERIOR" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+        
+        <!-- dados normais -->
+        <column name="ESS_DS_JUST_SITUACAO"/>
+        <column name="ESS_IB_PENDENTE" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+        <column name="ESS_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESS_CD_OPER_ENCAMINHAMENTO"/>
+
+        <!-- dados de auditoria -->
+        <column name="ESS_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ESS_CD_OPER_ATUALZ"/>
+
+        <column name="ESS_NU_VERSAO" converter="int"/>
+    </table>
+    
+    <table name="ATC_ATIVIDADE_CICLO">
+        <!-- chave -->
+        <column name="ATC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="VER_ID" converter="int"/>
+        
+        <!-- dados normais -->
+        <column name="ATC_CD_CNPJ_ES"/>
+        <column name="ATC_CD_ATIVIDADE"/>
+        <column name="ATC_DT_BASE" date="true" converter="date" arg0="MM/yyyy" comparator="date"/>
+        <column name="ATC_AA" converter="int"/>
+        <column name="ATC_DS"/>
+        <column name="ATC_CD_SITUACAO"/>
+
+        <!-- dados de auditoria -->
+        <column name="ATC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ATC_CD_OPER_ATUALZ"/>
+    </table>
+    
+    <table name="EAT_ETL_ATC">
+        <!-- chave -->
+        <column name="EAT_ID" key="true" converter="int" reference="true"/>
+        
+        <!-- dados normais -->
+        <column name="EAT_CD_CNPJ_ES"/>
+        <column name="EAT_CD_ATIVIDADE"/>
+        <column name="EAT_DT_BASE" date="true" converter="date" arg0="MM/yyyy" comparator="date"/>
+        <column name="EAT_AA"/>
+        <column name="EAT_DS"/>
+        <column name="EAT_CD_SITUACAO"/>
+
+        <!-- dados de auditoria -->
+        <column name="EAT_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="EAT_CD_OPER_ATUALZ"/>
+    </table>
+    
+    <table name="ANC_ANEXO_CICLO">
+        <!-- chave -->
+        <column name="ANC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="ANC_DS_NOME"/>
+        <column name="ANC_DS_LINK"/>
+        <column name="ANC_NU_ORDEM" converter="int"/>
+
+        <!-- chave extrangeira -->
+        <column name="CIC_ID" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="ANC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="ANC_CD_OPER_ATUALZ"/>
+    </table>
+    
+    <table name="HLE_HISTORICO_LEGADO">
+        <!-- chave -->
+        <column name="CIC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- dados normais -->
+        <column name="HLE_CD_DATA_BASE"/>
+        <column name="HLE_CD_MAT_SUPERVISOR"/>
+        <column name="HLE_CD_MAT_GERENTE"/>
+    </table>
+    
+    <table name="EET_ETL_ENS">
+        <!-- chave -->
+        <column name="EET_ID" key="true" converter="int" reference="true"/>
+        
+        <!-- dados normais -->
+        <column name="EET_CD_CNPJ"/>
+        <column name="EET_NM"/>
+        <column name="EET_DS_PORTE"/>
+        <column name="EET_DS_SEGMENTO"/>
+        <column name="EET_DS_LOCALIZACAO"/>
+        <column name="EET_DT_INCLUSAO" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date"/>
+        <column name="EET_IB_PERTENCE_SRC" converter="int"/>
+        
+        <!-- chave extrangeira -->
+        <column name="PPD_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="EET_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="EET_CD_OPER_ATUALZ"/>
+    </table>
+    
+
+   <!-- Tabelas para análise quantitativa -->
+
+  <table name="DBE_DATA_BASE_ENS" alias="Data base carregada por entidade supervisionável">
+    <!-- chave -->
+    <column name="DBE_CD" key="true" converter="int" alias="Código data-base" />
+    <!-- dado comum -->
+    <column name="DBE_CD_CNPJ" key="true"   alias="CNPJ entidade supervisionável" />
+  </table>
+
+
+  <table name="CAQ_CONTA_ANALISE_QUANT" alias="Conta para o quadro posição financeira">
+    <!-- chave -->
+    <column name="CAQ_ID" key="true" converter="int" alias="ID conta" />
+    <column name="CAQ_NM_CONTA" alias="Nome da conta" />
+    <column name="CAQ_DS" alias="Descrição da conta" />
+    <column name="CAQ_CD_TP_CONTA" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.TipoConta" arg1="getDescricao" arg2="getCodigo" alias="Tipo da conta" />
+    <column name="CAQ_IB_DIVERSOS"  alias="Indicador para conta de diversos" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" />
+    <column name="CAQ_CD_DATABE_INI" converter="int" comparator="integer" alias="Código data-base inicial" />
+    <column name="CAQ_CD_DATABE_FIM" converter="int" comparator="integer" alias="Código data-base final" />
+  </table>
+  
+  <table name="OIA_OUTRA_INFO_ANALISE_QUANT" alias="Outra informação para o quadro da posição financeira">
+    <!-- chave -->
+    <column name="OIA_ID" key="true" converter="int" alias="ID" />
+    <!-- dados normais -->
+    <column name="OIA_NM" alias="Nome" />
+    <column name="OIA_DS" alias="Descrição" />
+    <column name="OIA_CD_TIPO" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.TipoInformacaoEnum" arg1="getDescricao" arg2="getCodigo"  alias="Tipo informação" />
+    <column name="OIA_CD_DATABE_INI" converter="int" comparator="integer" alias="Código data-base inicial" />
+    <column name="OIA_CD_DATABE_FIM" converter="int" comparator="integer" alias="Código data-base final" />
+  </table>
+
+  <table name="ECA_ETL_CONTA_ANALISE_QUANT" alias="Extração de dados para as contas para o quadro posição financeira">
+    <!-- chave -->
+    <column name="ECA_ID" key="true" converter="int" alias="ID extração" />
+    <!-- chave extrangeira -->
+    <column name="CAQ_ID" reference="true" converter="int" alias="ID conta" />
+    <column name="DBE_CD" reference="true" converter="int" alias="Código data-base" />
+    <column name="DBE_CD_CNPJ" reference="true"   alias="CNPJ entidade supervisionável" />
+
+    <!-- dados normais -->
+    <column name="ECA_VL_CAQ" alias="Valor" converter="int" />
+  </table>
+
+  <table name="EAQ_ETL_ANALISE_QUANT_ECONO" alias="Extração de dados para analise quantitativa e análise econômico-financeira">
+    <!-- chave -->
+    <column name="EAQ_ID" key="true" converter="int" alias="Id extração" />
+
+    <!-- chave extrangeira -->
+    <column name="DBE_CD" reference="true" converter="int" alias="Código data-base" />
+    <column name="DBE_CD_CNPJ" reference="true"  alias="CNPJ entidade supervisionável" />
+
+    <!-- dados normais -->
+    <column name="EAQ_VL_LUCRO" alias="Lucro" converter="int" comparator="integer" />
+    <column name="EAQ_VL_RSPLA" converter="bigdecimal" alias="RSPLA" comparator="bigdecimal" />
+    <column name="EAQ_VL_PR_NIVEL_1" alias="PR nível 1" converter="int" comparator="integer" />
+    <column name="EAQ_VL_CAPITAL_PRINCIPAL" alias="Capital principal" converter="int" comparator="integer" />
+    <column name="EAQ_VL_CAPITAL_COMPLEMENTAR" alias="Capital complementar" converter="int" comparator="integer" />
+    <column name="EAQ_VL_PR_NIVEL_2" alias="PR nível 2" converter="int" comparator="integer" />
+    <column name="EAQ_VL_IND_BASILEIA" converter="bigdecimal" alias="Índice de basiléia" comparator="bigdecimal" />
+    <column name="EAQ_VL_IND_BASILEIA_AMPL" converter="bigdecimal" alias="Índice de basiléia amplo" comparator="bigdecimal" />
+    <column name="EAQ_VL_IND_IMOBILIZACAO" converter="bigdecimal" alias="Índice de imobilização" comparator="bigdecimal" />
+    <column name="EAQ_VL_ESCORE_FINAL_AUTO" converter="bigdecimal" alias="Escore final automático" comparator="bigdecimal" />
+  </table>
+  
+  <table name="EOI_ETL_OUTRA_INFO_ANALISE_QUANT" alias="Extração de dados para as outras informações para o quadro da posição financeira">
+    <!-- chave -->
+    <column name="EOI_ID" key="true" converter="int" alias="ID" />
+    <!-- chave extrangeira -->
+    <column name="OIA_ID" reference="true" converter="int" alias="Id informação" />
+    <column name="DBE_CD" reference="true" converter="int" alias="Cód. data-base" />
+    <column name="DBE_CD_CNPJ" reference="true"  alias="CNPJ ES" />
+    <!-- dados normais -->
+    <column name="EOI_VL_OIA" converter="bigdecimal" comparator="bigdecimal" alias="Valor" />
+  </table>
+
+  <table name="LAQ_LAYOUT_ANALISE_QUANTITATIVA" alias="Layout por data base">
+    <!-- chave -->
+    <column name="LAQ_ID" key="true" converter="int" alias="Id layout" />
+
+    <!-- dados normais -->
+    <column name="LAQ_CD_DATABE_INI" alias="Código data-base inicial" />
+    <column name="LAQ_CD_DATABE_FIM" alias="Código data-base final" />
+  </table>
+
+  <table name="LCA_LAYOUT_CONTA_ANALISE_QUANT" alias="Layout para contas da análise quantitativa">
+    <!-- chave -->
+    <column name="LCA_ID" key="true" converter="int" alias="Id layout conta" />
+    <!-- chave extrangeira -->
+    <column name="LAQ_ID" reference="true" converter="int" alias="Id layouT" />
+    <column name="CAQ_ID" reference="true" converter="int" alias="Id conta" />
+    <column name="CAQ_ID_PAI" reference="true" converter="int" alias="Id conta pai" />
+
+    <!-- dados normais -->
+    <column name="LCA_SQ_SEQUENCIAL" alias="Sequencial" />
+    <column name="LCA_IB_OBRIGATORIO" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Obrigatória" />
+    <column name="LCA_IB_EDITAR_AJUSTE" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Editar ajuste" />
+    <column name="LCA_IB_NEGRITO" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Negrito" />
+    <column name="LCA_IB_SUBNIVEL" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Subnível" />
+    <column name="LCA_IB_SEPARACAO_DEPOIS" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Separação depois" />
+  </table>
+  
+  <table name="LOI_LAYOUT_OUTRA_INFO_ANALISE_QUANT" alias="Layout para outras informações do quadro da posição financeira">
+    <!-- chave -->
+    <column name="LOI_ID" key="true" converter="int" alias="Id" />
+    <!-- chave extrangeira -->
+    <column name="LAQ_ID" reference="true" converter="int" alias="Id layout" />
+    <column name="OIA_ID" reference="true" converter="int" alias="Id informação" />
+    <!-- dados normais -->
+    <column name="LOI_SQ_SEQUENCIAL" alias="Sequencial" />
+    <column name="LOI_NU_CASAS_DECIMAIS" alias="Número casas decimais" />
+    <column name="LOI_NU_CASAS_INTEIRAS" alias="Número casas inteiras" />
+    <column name="LOI_IB_EXIBIR_NULO" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Exibir quando nulo" />
+    <column name="LOI_CD_TIPO_EDICAO" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.TipoEdicaoInformacaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Tipo de edição" />
+  </table>
+
+
+  <table name="QPF_QUADRO_POSICAO_FINANCEIRA" alias="Quadro da posição financeira">
+    <!-- chave -->
+    <column name="QPF_ID" key="true" converter="int" alias="Id quadro" />
+
+    <!-- chave extrangeira -->
+    <column name="CIC_ID" reference="true" converter="int" alias="Id ciclo" />
+    <column name="VER_ID" reference="true" converter="int" alias="Id versão" />
+
+    <!-- dados normais -->
+    <column name="QPF_CD_DTB" converter="int" comparator="integer" alias="Código data-base" />
+    <column name="QPF_VL_PR_NIVEL_1" converter="int" comparator="integer" alias="Pr nível 1" />
+    <column name="QPF_VL_AJUSTE_PR_NIVEL_1" converter="int" comparator="integer" alias="Ajuste pr nível 1" />
+    <column name="QPF_VL_CAPITAL_PRINCIPAL" converter="int" comparator="integer" alias="Capital principal" />
+    <column name="QPF_VL_AJUSTE_CAPITAL_PRINCIPAL" converter="int" comparator="integer" alias="Ajuste capital principal" />
+    <column name="QPF_VL_CAPITAL_COMPLEMENTAR" converter="int" comparator="integer" alias="Capital complementar" />
+    <column name="QPF_VL_AJUSTE_CAPITAL_COMPLEMENTAR" converter="int" comparator="integer" alias="Ajuste capital complementar" />
+    <column name="QPF_VL_PR_NIVEL_2" converter="int" comparator="integer" alias="Pr nível 2" />
+    <column name="QPF_VL_AJUSTE_PR_NIVEL_2" converter="int" comparator="integer" alias="Ajuste pr nível 2" />
+    <column name="QPF_VL_IND_BASILEIA" converter="bigdecimal" comparator="bigdecimal" alias="Índice de basiléia" />
+    <column name="QPF_VL_IND_BASILEIA_AJUSTADO" converter="bigdecimal" comparator="bigdecimal" alias="Índice de basiléia ajustado" />
+    <column name="QPF_VL_IND_BASILEIA_AMPL" converter="bigdecimal" comparator="bigdecimal" alias="Índice de basiléia amplo" />
+    <column name="QPF_VL_IND_BASILEIA_AMPL_AJUSTADO" converter="bigdecimal" comparator="bigdecimal" alias="Índice de basiléia amplo ajustado" />
+    <column name="QPF_VL_IND_IMOBILIZACAO" converter="bigdecimal" comparator="bigdecimal" alias="Índice de imobilização" />
+    <column name="QPF_VL_IND_IMOBILIZACAO_AJUSTADO" converter="bigdecimal" comparator="bigdecimal" alias="Índice de imobilização ajustado" />
+
+    <!-- dados de auditoria -->
+     <column name="QPF_DH_ATUALZ" alias="Data hora atualização" default="data hora atual" date="true" converter="dataHoraAtual"
+      comparator="date" />
+    <column name="QPF_CD_OPERADOR" alias="Operador" />
+    <column name="QPF_CD_VERSAO" converter="int" alias="Versão" />
+  </table>
+
+  <table name="CQP_CONTA_QUADRO_POSICAO_FINANCEIRA" alias="Conta do quadro da posição financeira" >
+    <!-- chave -->
+    <column name="CQP_ID" key="true" converter="int" alias="ID" />
+
+    <!-- chave extrangeira -->
+    <column name="QPF_ID" reference="true" converter="int" alias="ID quadro" />
+    <column name="LCA_ID" reference="true" converter="int" alias="ID layout conta" />
+
+    <!-- dados normais -->
+    <column name="CQP_VL_VALOR" comparator="integer" converter="int" alias="Valor" />
+    <column name="CQP_VL_AJUSTE" comparator="integer" converter="int" alias="Ajuste" />
+    <column name="CQP_IB_EXIBIR" converter="enumValue"
+      arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="Exibir" />
+
+    <!-- dados de auditoria -->
+    <column name="CQP_DH_ATUALZ" alias="Data hora atualização" default="data hora atual" date="true" converter="dataHoraAtual"
+      comparator="date" />
+    <column name="CQP_CD_OPERADOR" alias="Operador"  />
+    <column name="CQP_CD_VERSAO" converter="int" alias="Versão" />
+    
+  </table>
+  
+  <table name="OQP_OUTRA_INFO_QUADRO_POSICAO_FINAN" alias="Outra informação do quadro da posição financeira" >
+    <!-- chave -->
+    <column name="OQP_ID" key="true" converter="int" alias="ID" />
+    <!-- chave extrangeira -->
+    <column name="QPF_ID" reference="true" converter="int" alias="ID quadro" />
+    <column name="LOI_ID" reference="true" converter="int" alias="ID layout informação" />
+    <!-- dados normais -->
+    <column name="OQP_NU_PERIODO" comparator="integer" converter="int" alias="Período" />
+    <column name="OQP_VL_VALOR" converter="bigdecimal" comparator="bigdecimal" alias="Valor" />
+    <column name="OQP_VL_VALOR_EDITADO"  converter="bigdecimal" comparator="bigdecimal" alias="Valor editado" />
+    <!-- dados de auditoria -->
+    <column name="OQP_DH_ATUALZ" alias="Data hora atualização" default="data hora atual" date="true" converter="dataHoraAtual"
+      comparator="date" />
+    <column name="OQP_CD_OPER_ATUALZ" alias="Operador"  />
+    <column name="OQP_NU_VERSAO" converter="int" alias="Versão" />
+  </table>
+
+  <table name="REQ_RESULTADO_QUADRO_POS_FINAN" alias="Resultado do quadro da posição financeira" >
+    <!-- chave -->
+    <column name="REQ_ID" key="true" converter="int"  alias="Id"/>
+
+    <!-- chave extrangeira -->
+    <column name="QPF_ID" reference="true" converter="int" alias="Id quadro" />
+
+    <!-- dados normais -->
+    <column name="REQ_NU_PERIODO" comparator="integer" converter="int" alias="Código data-base" />
+    <column name="REQ_VL_LUCRO"  converter="int" comparator="integer" alias="Lucro líquido" />
+    <column name="REQ_VL_AJUSTE_LUCRO" converter="bigdecimal" comparator="bigdecimal" alias="Ajuste lucro líquido"  />
+    <column name="REQ_VL_RSPLA" converter="bigdecimal" comparator="bigdecimal" alias="RSPLA" />
+    <column name="REQ_VL_RSPLA_AJUSTADO" converter="bigdecimal" comparator="bigdecimal" alias="RSPLA ajustado"  />
+
+    <!-- dados de auditoria -->
+     <column name="REQ_DH_ATUALZ" alias="Data hora atualização" default="data hora atual" date="true" converter="dataHoraAtual"
+      comparator="date" />
+    <column name="REQ_CD_OPERADOR" alias="Operador" />
+     <column name="REQ_CD_VERSAO" converter="int" alias="Versão" />
+  </table>
+  
+	<table name="AQP_ANEXO_QUADRO_POS_FINAN" alias="Anexo do quadro da posição financeira">
+        <!-- chave -->
+        <column name="AQP_ID" key="true" converter="int" alias="Id"/>
+        
+        <!-- chave extrangeira -->
+        <column name="QPF_ID" reference="true" converter="int" alias="Id quadro" />
+        
+        <!-- dados normais -->
+        <column name="AQP_DS_LINK" alias="Descrição link"/>
+        
+        <!-- dados de auditoria -->
+        <column name="AQP_DH_ATUALZ" alias="Data hora atualização" default="data hora atual" date="true" converter="dataHoraAtual"
+      comparator="date"/>
+        <column name="AQP_CD_OPER_ATUALZ" alias="Operador"/>
+	</table>
+
+    
+    <table name="LOP_LOG_OPERACOES" >
+        <column name="LOP_ID"  key="true" converter="int" reference="true"/>
+        <column name="LOP_CD_CNPJ"   />
+        <column name="LOP_DS_NOME_ES"   />
+        <column name="PER_ID" converter="int"  />
+        <column name="LOP_DS_TRILHA"   />
+        <column name="LOP_DS_TITULO_TELA"   />
+        <column name="LOP_CD_CODIGO_TELA"  />
+        <column name="LOP_DH_OPERACAO"  date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="LOP_CD_RESP_OPERACAO"  />
+    </table>
+
+	<table name="CRC_CELULA_RISCO_CONTROLE">
+        <!-- chave -->
+        <column name="CRC_ID" key="true" converter="int" reference="true"/>
+
+        <!-- chave extrangeira -->
+        <column name="ATV_ID" converter="int"/>
+        <column name="PRC_ID" converter="int"/>
+        <column name="PPS_ID" converter="int"/>
+        <column name="ARC_ID_RISCO" converter="int"/>
+        <column name="ARC_ID_CONTROLE" converter="int"/>
+        <column name="VER_ID" converter="int"/>
+
+        <!-- dados de auditoria -->
+        <column name="CRC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+        <column name="CRC_CD_OPER_ATUALZ"/>
+
+        <column name="CRC_NU_VERSAO" converter="int"/>
+    </table>    
+    
+    <table name="AQT_AVAL_ANALISE_QUANT" alias="ANÁLISE QUANTITATIVA (ANEF)">
+        <column name="AQT_ID" key="true" converter="int" alias="ID"/>
+        <column name="AQT_CD_ESTADO" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.EstadoAQTEnum" arg1="getDescricao" arg2="getCodigo" alias="ESTADO"/>
+        <column name="PNA_ID_SUPERVISOR" reference="true"  converter="int"  alias="NOTA SUPERVISOR"/>
+        <column name="PAT_ID" converter="int"  comparator="integer"  reference="true" alias="ID PARÂMETRO ANEF"/>
+        <column name="CIC_ID" reference="true" converter="int"  comparator="integer"  alias="ID CICLO"/>
+        <column name="PNA_ID_COREC_ANTERIOR" reference="true" converter="int"  alias="NOTA COREC ANTERIOR"/>
+	  	<column name="PNA_ID_COREC_ATUAL" reference="true" converter="int"  alias="NOTA COREC ATUAL"/>
+        <column name="AQT_VL_NOTA" converter="bigdecimal" comparator="bigdecimal" alias="VALOR NOTA"/>
+	  	
+        <column name="AQT_DH_CONCLUSAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA CONCLUSAO"/>
+        <column name="AQT_CD_OPER_CONCLUSAO" alias="CÓD. OP. CONCLUSAO "/>
+        
+        <column name="AQT_DH_PREENCHIDO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA PREENCHIDO"/>
+        <column name="AQT_CD_OPER_PREENCHIDO" alias="CÓD. OP. PREENCHIDO "/> 
+        
+        <column name="AQT_DH_ANALISE" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ANÁLISE"/>
+        <column name="AQT_CD_OPER_ANALISE" alias="CÓD. OP. ANÁLISE"/> 
+        
+        <column name="AQT_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="AQT_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="AQT_NU_VERSAO" converter="int"  comparator="integer"  alias="VERSÃO"/>
+        <column name="VER_ID" reference="true" converter="int" comparator="integer"  alias="ID VERSÃO" />
+    </table>
+    
+    <table name="PAT_PAR_AQT" alias="PARÂMETRO ANEF">
+        <column name="PAT_ID"  key="true" converter="int" alias="ID"/>
+        <column name="PAT_DS" alias="DESCRIÇÃO"/>
+        <column name="PAT_QT_PESO" converter="int"  comparator="integer"  alias="PESO"/>
+        <column name="PAT_NU_ORDEM" converter="int"  comparator="integer"  alias="ORDEM"/>
+        <column name="MET_ID" alias="ID METODOLOGIA"/>
+        <column name="PAT_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PAT_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="PAT_NU_VERSAO" converter="int"  comparator="integer"  alias="VERSÃO"/>
+    </table>
+    
+    <table name="PAQ_PESO_AQT" alias="PESO ANEF">
+        <column name="PAQ_ID"  key="true" converter="int" alias="ID"/>
+        <column name="PAQ_QT_PESO" converter="int"  comparator="integer"  alias="PESO"/>
+        <column name="CIC_ID" reference="true" converter="int"  comparator="integer" alias="ID CICLO"/>
+        <column name="PAT_ID" reference="true" converter="int"  comparator="integer" alias="ID PARÂMETRO ANEF"/>
+        <column name="PAQ_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PAQ_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="PAQ_NU_VERSAO"  converter="int"  comparator="integer" alias="VERSÃO"/>
+        <column name="VER_ID" reference="true" converter="int" comparator="integer"  alias="ID VERSÃO" />
+    </table>
+    
+    <table name="PEA_PAR_ELEMENTO_AQT" alias="PARÂMETRO ELEMENTO ANEF">
+        <column name="PEA_ID"  key="true" converter="int" alias="ID"/>
+        <column name="PEA_DS" alias="DESCRIÇÃO"/>
+        <column name="PEA_NU_ORDEM" converter="int"  comparator="integer" alias="ORDEM"/>
+        <column name="PAT_ID" converter="int" comparator="integer" alias="ID PARÂMETRO ANEF"/>
+        <column name="MET_ID" alias="ID METODOLOGIA"/>
+        <column name="PEA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PEA_CD_OPER_ATUALZ"  comparator="integer" alias="CÓD. OPERADOR"/>
+        <column name="PEA_NU_VERSAO" converter="int" alias="VERSÃO"/>
+    </table>
+    
+    <table name="PIA_PAR_ITEM_ELEMENTO_AQT" alias="PARÂMETRO ITEM ELEMENTO ANEF">
+        <column name="PIA_ID"  key="true" converter="int" alias="ID"/>
+        <column name="PIA_DS" alias="DESCRIÇÃO"/>
+        <column name="PIA_NU_ORDEM" converter="int"  comparator="integer" alias="ORDEM"/>
+        <column name="PEA_ID" converter="int" alias="ID PARÂMETRO ELEMENTO ANEF"/>
+        <column name="MET_ID" alias="ID METODOLOGIA"/>
+        <column name="PIA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PIA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="PIA_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    <table name="PNA_PAR_NOTA_AQT" alias="PARÂMETRO NOTA ANEF">
+       <column name="PNA_ID"  key="true" converter="int" alias="ID"/>
+       <column name="PNA_CD_VALOR" converter="bigdecimal" comparator="bigdecimal"  alias="VALOR"/>
+       <column name="PNA_VL_LIM_INFER"  converter="bigdecimal" alias="LIMITE INFERIOR"/>
+       <column name="PNA_VL_LIM_SUPER"  converter="bigdecimal" alias="LIMITE SUPERIOR"/>
+       <column name="PNA_IB_NOTA_NA" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="NOTA N/A?"/>
+       <column name="PNA_IB_NOTA_ELEMENTO" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo" alias="NOTA ELEMENTO?"/>
+       <column name="PNA_DS_COR" alias="COR"/>
+       <column name="PNA_DS_NOTA" alias="DESCRIÇÃO"/>
+       <column name="MET_ID" converter="int" comparator="integer" alias="ID METODOLOGIA"/>
+       <column name="PNA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+       <column name="PNA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+       <column name="PNA_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+   <table name="SRA_SINTESE_RISCO_AQT" alias="SÍNTESE ANEF">
+        <column name="SRA_ID"  key="true" converter="int" alias="ID"/>
+        <column name="SRA_AN_JUSTIFICATIVA" alias="JUSTIFICATIVA" comparator="clob"/>
+        <column name="CIC_ID" reference="true" converter="int"  comparator="integer" alias="ID CICLO"/>
+        <column name="PAT_ID" reference="true" converter="int"  comparator="integer" alias="ID PARÂMETRO ANEF"/>
+        <column name="SRA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="SRA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="SRA_NU_VERSAO"  converter="int"  comparator="integer" alias="VERSÃO"/>
+        <column name="VER_ID" reference="true" converter="int" comparator="integer"  alias="ID VERSÃO" />
+    </table>
+    
+    <table name="NAA_NOTA_AJUSTADA_AEF" alias="NOTA AJUSTADA AEF">
+        <column name="NAA_ID" key="true" converter="int" alias="ID"/>
+        <column name="PNA_ID" converter="int"  comparator="integer" alias="ID PARÂMETRO NOTA"/>
+        <column name="NAA_AN_JUSTIFICATIVA" alias="JUSTIFICATIVA" comparator="clob"/>
+        <column name="CIC_ID" converter="int"  comparator="integer"  alias="ID CICLO"/>
+        <column name="NAA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="NAA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="NAA_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+        <column name="VER_ID" converter="int"  comparator="integer" alias="ID VERSÃO"/>
+    </table>
+
+	<table name="AVT_AVALIACAO_AQT" alias="AVALIAÇÃO ANEF">
+        <column name="AVT_ID"  key="true" converter="int" alias="ID"/>
+        <column name="AQT_ID"  reference="true" converter="int"   alias="ID ANEF"/>
+        <column name="PNA_ID"   reference="true" converter="int" alias="ID NOTA"/>
+        <column name="AVT_CD_PERFIL" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.PerfisNotificacaoEnum" arg1="getDescricao" arg2="getCodigo" alias="CÓD. PERFIL"/>
+        <column name="AVT_AN_JUSTIFICATIVA" alias="JUSTIFICATIVA" comparator="clob"/>
+        <column name="AVT_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="AVT_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="AVT_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+    </table>
+
+	<table name="ELA_ELEMENTO_AQT" alias="ELEMENTO ANEF">
+        <column name="ELA_ID" key="true" converter="int"  alias="ID"/>
+        <column name="AQT_ID" reference="true" converter="int" alias="ID ANEF"/>
+        <column name="PNA_ID_INSPETOR" converter="int"  comparator="integer" alias="NOTA INSPETOR"/>
+        <column name="PNA_ID_SUPERVISOR" converter="int"  comparator="integer"  alias="NOTA SUPERVISOR"/>
+        <column name="ELA_AN_JUST_SUPERVISOR" alias="JUSTIFICATIVA SUPERVISOR" comparator="clob"/>
+        <column name="PEA_ID" reference="true" converter="int" alias="ID PARÂMETRO ELEMENTO ANEF"/>
+        
+        <column name="ELA_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ALTERAÇÃO"/>
+        <column name="ELA_CD_OPER_ALTERACAO" alias="CÓD. OPERADOR ALTERAÇÃO"/>
+        
+        <column name="ELA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="ELA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="ELA_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+    </table>
+
+	<table name="ITA_ITEM_ELEMENTO_AQT" alias="ITEM ELEMENTO ANEF">
+        <column name="ITA_ID"  key="true" converter="int" alias="ID"/>
+        <column name="DOC_ID" converter="int"  reference="true" comparator="integer" alias="ID DOCUMENTO"/>
+        <column name="ELA_ID" converter="int"  reference="true" comparator="integer" alias="ID ELEMENTO ANEF"/>
+        <column name="PIA_ID" converter="int"  reference="true" comparator="integer" alias="ID PARÂMETRO ITEM ANEF"/>
+       
+        <column name="ITA_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ALTERAÇÃO"/>
+        <column name="ITA_CD_OPER_ALTERACAO" alias="CÓD. OPERADOR ALTERAÇÃO"/>
+         
+        <column name="ITA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="ITA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="ITA_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+    </table>
+
+	<table name="DEA_DELEGACAO_AQT" alias="DELEGAÇÃO ANEF">
+        <column name="DEA_ID" key="true" converter="int" alias="ID"/>
+        <column name="DEA_CD_MATRICULA" alias="MATRÍCULA"/>
+        <column name="AQT_ID" converter="int" reference="true" comparator="integer" alias="ID ANEF"/>
+        <column name="DEA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="DEA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="DEA_NU_VERSAO" converter="int"  comparator="integer" alias="VERSÃO"/>
+    </table>
+
+	<table name="DAQ_DESIGNACAO_AQT" alias="DESIGNAÇÃO ANEF">
+        <column name="DAQ_ID" key="true" converter="int" alias="ID"/>
+        <column name="DAQ_CD_MATRICULA" alias="MATRÍCULA"/>
+        <column name="AQT_ID" reference="true" converter="int"  comparator="integer" alias="ID ANEF"/>
+        <column name="DAQ_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="DAQ_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="DAQ_NU_VERSAO" converter="int"  comparator="integer"  alias="VERSÃO"/>
+    </table>
+    
+    <table name="AAQ_ANEXO_AQT" alias="ANEXO ANEF">
+        <column name="AAQ_ID" key="true" converter="int" alias="ID"/>
+        <column name="AAQ_DS_LINK" alias="DESCRIÇÃO LINK"/>
+        <column name="AQT_ID" converter="int"  comparator="integer" alias="ID ANEF"/>
+        <column name="AAQ_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="AAQ_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+    </table>
+
+
+	 <table name="AJC_AJUSTE_COREC" alias="AJUSTES COMITÊ">
+		<column name="AJC_ID" key="true" converter="int" alias="ID" />
+	  	<column name="CIC_ID" reference="true" converter="int"  comparator="integer" alias="ID CICLO"/>
+	  	<column name="PNO_ID_QUALITATIVA" reference="true" converter="int"  comparator="integer" alias="NOTA QUALITATIVA"/>
+	  	<column name="PNA_ID_QUANTITATIVA" reference="true" converter="int"  comparator="integer" alias="NOTA QUANTITATIVA"/>
+	  	<column name="PGP_ID" reference="true" converter="int"  comparator="integer" alias="NOTA GRAU PREOCUPACAO"/>
+        <column name="PNO_ID_FINAL" reference="true" converter="int"  comparator="integer" alias="NOTA FINAL"/>
+	  	<column name="PPR_ID" reference="true" converter="int"  comparator="integer" alias="PARAMETRO PERSPECTIVA"/>
+        <column name="AJC_AN_DELIBERACOES" alias="OUTRAS DELIBERAÇÕES" comparator="clob"/> 
+	  	<column name="AJC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+		<column name="AJC_CD_OPER_ATUALZ" alias="CÓD. OPERADOR" />
+		<column name="AJC_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO" />
+	</table>
+	
+	<table name="APC_ANEXO_POS_COREC" alias="ANEXOS PÓS-COREC">
+        <column name="APC_ID" key="true" converter="int" reference="true" alias="ID"/>
+        <column name="APC_DS_LINK" alias="NOME"/>
+        <column name="CIC_ID" reference="true" converter="int"  comparator="integer" alias="ID CICLO"/>
+        <column name="APC_CD" alias="TIPO ANEXO"/>
+        <column name="APC_DT_ENTREGA" date="true" converter="date" arg0="dd/MM/yyyy" comparator="date" alias="DATA ENTREGA" />
+        <column name="APC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="APC_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+    </table>
+
+    <table name="BLE_BLOQUEIO_ES" alias="BLOQUEIO ES">
+        <!-- chave -->
+        <column name="BLE_ID" key="true" converter="int" reference="true" alias="ID"/>
+
+        <!-- dados normais -->
+        <column name="BLE_CD_CNPJ" alias="CNPJ"/>
+        <column name="BLE_DH_BLOQUEIO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA BLOQUEIO"/>
+        <column name="BLE_CD_OPER_BLOQUEIO" alias="CÓD. OPERADOR BLOQUEIO"/>
+        <column name="BLE_DH_DESBLOQUEIO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA DESBLOQUEIO"/>
+        <column name="BLE_CD_OPER_DESBLOQUEIO" alias="CÓD. OPERADOR DESBLOQUEIO"/>
+        <column name="BLE_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+		<column name="BLE_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+		<column name="BLE_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    <table name="AGC_AGENDA_COREC" alias="AGENDA COREC">
+        <column name="AGC_ID" key="true" converter="int" reference="true" alias="ID"/>
+        
+        <column name="CIC_ID" reference="true" converter="int"  comparator="integer" alias="ID CICLO"/>
+        
+        <column name="AGC_DS_LOCAL" alias="LOCAL"/>
+        
+        <column name="AGC_HR_COREC" alias="HORA" date="true" converter="date" arg0="HH:mm" comparator="date" />
+        <column name="AGC_DH_EMAIL_APRESENTACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ENVIO EMAIL APRESENTAÇÃO"/>
+        <column name="AGC_DH_EMAIL_DISPONIBILIDADE" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ENVIO EMAIL DISPONIBILIDADE"/> 
+       
+        
+        <column name="AGC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="AGC_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="AGC_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    
+    <table name="OBA_OBSERVACAO_AGENDA" alias="OBSERVAÇÃO AGENDA">
+        <column name="OBA_ID" key="true" converter="int" reference="true" alias="ID"/>
+        
+        <column name="AGC_ID" reference="true" converter="int"  comparator="integer" alias="ID AGENDA"/>
+        
+        <column name="OBA_AN" alias="OBSERVAÇÃO" comparator="clob"/>
+        
+        <column name="OBA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="OBA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="OBA_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    
+    <table name="PAC_PARTICIPANTE_COREC" alias="PARTICIPANTE COREC">
+        <column name="PAC_ID" key="true" converter="int" reference="true" alias="ID"/>
+        
+        <column name="AGC_ID" reference="true" converter="int"  comparator="integer" alias="ID AGENDA"/>
+        
+        <column name="PAC_CD_MATRICULA" alias="MATRÍCULA"/>
+        <column name="PAC_DH_ASSINATURA_ATA" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ASSINATURA ATA"/>
+        
+        <column name="PAC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PAC_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="PAC_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    <table name="PEM_PAR_EMAIL" alias="PARÂMETRO EMAIL">
+        <column name="PEM_ID" key="true" converter="int" reference="true" alias="ID"/>
+
+        <column name="PEM_CD_TIPO" alias="TIPO" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.TipoEmailCorecEnum" arg1="getDescricao" arg2="getCodigo" />
+        <column name="PEM_DS_REMETENTE" alias="REMETENTE"/>
+        <column name="PEM_DS_TITULO" alias="TÍTULO"/>
+        <column name="PEM_AN_CORPO" alias="CORPO" comparator="clob"/>
+        <column name="PEM_QT_PRAZO" converter="int" alias="PRAZO"/>
+		<column name="PEM_IB_PRAZO_OBRIGATORIO" alias="PRAZO OBRIGATORIO" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>        
+
+        <column name="PEM_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PEM_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="PEM_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+
+	</table>
+     
+    <table name="APA_ARQUIVO_PARTICIPANTES_COMITE" alias="ARQUIVO PARTICIPANTES COMITÊ">
+        <column name="APA_ID" key="true" converter="int" reference="true" alias="ID"/>
+        
+        <column name="APA_NM" alias="NOME ARQUIVO"/>
+        <column name="APA_DH_UPLOAD" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA UPLOAD"/>
+        <column name="APA_DH_PROCESSAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA PROCESSAMENTO"/>
+        <column name="APA_CD_STATUS" alias="STATUS"/>
+        
+        <column name="APA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="APA_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="APA_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    
+	<table name="CPC_CARGA_PARTICIPANTES_COMITE" alias="CARGA DE PARTICIPANTES">
+        <column name="CPC_ID" key="true" converter="int" reference="true" alias="ID"/>
+        <column name="CPC_CD_PRIORIDADE" alias="PRIORIDADE"/>
+        <column name="CPC_DS_EMAIL" alias="E-MAIL"/>
+        <column name="CPC_CD_MATRICULA" alias="MATRÍCULA"/>
+        <column name="CPC_NM_PARTICIPANTE" alias="NOME"/>
+        <column name="CPC_DS_EQUIPE" alias="EQUIPE"/>
+        <column name="CPC_CD_FUNCAO" alias="FUNÇÃO"/>
+        <column name="CPC_DS_EQP_EXCLUIR" alias="EQUIPE A EXCLUIR"/>
+        <column name="CPC_CD_SUB_EXCLUIR" alias="SUBORDINADAS A EXCLUIR"/>
+        <column name="CPC_DS_EQP_INCLUIR" alias="EQUIPE A INCLUIR"/>
+        <column name="CPC_CD_SUB_INCLUIR" alias="SUBORDINADAS A INCLUIR"/>
+	</table>
+     
+    
+	<table name="ECO_EMAIL_COREC" alias="E-MAIL COREC">
+        <column name="ECO_ID" key="true" converter="int" reference="true" alias="ID"/>
+        <column name="AGC_ID" reference="true" converter="int"  comparator="integer" alias="ID AGENDA"/>
+        <column name="ECO_CD_MATRICULA" alias="MATRÍCULA"/>
+        <column name="ECO_CD_TIPO" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.TipoEmailCorecEnum" arg1="getDescricao" arg2="getCodigo" alias="TIPO"/>
+        <column name="ECO_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="ECO_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+    </table>
+    
+    <table name="PTC_PAR_ATA_COREC" alias="PARÂMETRO ATA COREC">
+        <column name="PTC_ID" key="true" converter="int" reference="true" alias="ID"/>
+        <column name="PTC_AN_CORPO" alias="CORPO" comparator="clob"/>       
+        <column name="PTC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="PTC_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="PTC_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    <table name="CEC_CONTROLE_ENCERRAR_COREC" alias="PROCESSO ENCERRAMENTO COREC">
+        <column name="CEC_ID" key="true" converter="int" reference="true" alias="ID"/>
+        <column name="CIC_ID" reference="true" converter="int"  comparator="integer" alias="ID CICLO"/>
+        <column name="CEC_CD_ESTADO" converter="enumValue" arg0="br.gov.bcb.sisaps.src.dominio.enumeracoes.EstadoExecucaoEnum" arg1="getDescricao" arg2="getCodigo" alias="ESTADO"/>
+        <column name="CEC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+        <column name="CEC_CD_OPER_ATUALZ" alias="CÓD. OPERADOR"/>
+        <column name="CEC_NU_VERSAO" converter="int" comparator="integer" alias="VERSÃO"/>
+    </table>
+    
+    <table name="CON_CONSOLIDADO_APS" alias="CONSOLIDADO">
+      <column name="CON_ID" converter="long" key="true" alias="ID"  reference="true"/>
+      <column name="CON_DS_SUPERVISAO" alias="SUPERVISÃO"/>
+      <column name="CON_CD_CNPJ_DEFAULT" alias="CNPJ ES DEFAULT"/>
+      <column name="CON_DH_ATUALZ"  date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+      <column name="CON_CD_OPER_ATUALZ" alias="OPERADOR"/>
+      <column name="CON_NU_VERSAO" alias="VERSÃO" comparator="integer"/>
+    </table>
+   
+  <table name="ENU_ENTIDADE_UNICAD" alias="ENTIDADE UNICAD">
+    <column name="ENU_ID" converter="long" key="true" alias="ID" reference="true"/>
+    <column name="ENU_NM" alias="NOME"/>
+    <column name="ENU_NM_ABREVIADO" alias="NOME ABREVIADO"/>
+    <column name="ENU_CD_CNPJ" alias="CNPJ/CONGLOMERADO"/>
+    <column name="ENU_CD_CNPJ_LIDER" alias="CNPJ LÍDER"/>
+    <column name="CON_ID" converter="long" alias="ID CONSOLIDADO"/>
+    <column name="ENU_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+    <column name="ENU_CD_OPER_ATUALZ" alias="OPERADOR"/>
+    <column name="ENU_NU_VERSAO" alias="VERSÃO" converter="integer"/>
+  </table>
+  
+    <table name="DOA_DOCUMENTO_APS" alias="DOCUMENTO APS">
+       <column name="DOA_ID" converter="long" key="true" alias="ID" reference="true"/>
+       <column name="DOA_AN_CONTEUDO" alias="JUSTIFICATIVA" comparator="clob"/>
+       <column name="DOA_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"/>
+       <column name="DOA_CD_OPER_ATUALZ" alias="OPERADOR" />
+       <column name="DOA_NU_VERSAO" alias="VERSÃO" converter="integer"/>
+   </table>
+   
+    <table name="OCC_OPINIAO_CONCLUSIVA_CON" alias="OPINIÃO CONCLUSIVA CONSOLIDADO">
+      <column name="OCC_ID" converter="long" key="true" alias="ID" reference="true"/>
+      <column name="CON_ID" alias="ID CONSOLIDADO" table="CONSOLIDADO" virtual="true"/>
+      <column name="DOA_ID" alias="ID DOCUMENTO" table="DOCUMENTO APS" virtual="true"/>
+      <column name="OCC_ID_POSTERIOR" alias="ID OPINIÃO POSTERIOR" converter="integer"/>
+      <column name="OCC_CD_STATUS" alias="STATUS"/>
+      <column name="OCC_CD_BLOQUEADO" alias="ESTÁ BLOQUEADO?" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+      <column name="OCC_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ENCAMINHAMENTO" /> 
+      <column name="OCC_CD_OPER_ENCAMINHAMENTO" alias="OPERADOR ENCAMINHAMENTO"/>
+      <column name="OCC_DH_PUBLICACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"  alias="DATA HORA PUBLICAÇÃO"/> 
+      <column name="OCC_CD_OPER_PUBLICACAO" alias="OPERADOR DE PUBLICAÇÃO"/>
+      <column name="OCC_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"  alias="DATA HORA ALTERAÇÃO"/> 
+      <column name="OCC_CD_OPER_ALTERACAO" alias="OPERADOR ALTERAÇÃO"/>
+      <column name="OCC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO" />
+      <column name="OCC_CD_OPER_ATUALZ" alias="OPERADOR"/>
+      <column name="OCC_NU_VERSAO" alias="VERSÃO" converter="integer"/>
+  </table>
+  
+  
+  <table name="PRT_PERFIL_ATUACAO_CON" alias="PERFIL ATUAÇÃO CONSOLIDADO">
+      <column name="PRT_ID" converter="long" key="true" alias="ID" reference="true"/>
+      <column name="CON_ID" alias="ID CONSOLIDADO" table="CONSOLIDADO" virtual="true"/>
+      <column name="DOA_ID" alias="ID DOCUMENTO" table="DOCUMENTO APS" virtual="true"/>
+      <column name="PRT_ID_POSTERIOR" alias="ID PERFIL POSTERIOR" converter="integer"/>
+      <column name="PRT_CD_STATUS" alias="STATUS" />
+      <column name="PRT_CD_BLOQUEADO" alias="ESTÁ BLOQUEADO?" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+      <column name="PRT_DH_ENCAMINHAMENTO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ENCAMINHAMENTO"/> 
+      <column name="PRT_CD_OPER_ENCAMINHAMENTO" alias="OPERADOR ENCAMINHAMENTO"/>
+      <column name="PRT_DH_PUBLICACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"  alias="DATA HORA PUBLICAÇÃO"/> 
+      <column name="PRT_CD_OPER_PUBLICACAO" alias="OPERADOR DE PUBLICAÇÃO" converter="notNullOrEmpty"/>
+      <column name="PRT_DH_ALTERACAO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"  alias="DATA HORA ALTERAÇÃO"/> 
+      <column name="PRT_CD_OPER_ALTERACAO" alias="OPERADOR ALTERAÇÃO" converter="notNullOrEmpty"/>
+      <column name="PRT_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"  alias="DATA HORA ATUALIZAÇÃO"/>
+      <column name="PRT_CD_OPER_ATUALZ" alias="OPERADOR"/>
+      <column name="PRT_NU_VERSAO" alias="VERSÃO"  converter="integer" />
+  </table>
+  
+   <table name="EVC_EVENTO_CONSOLIDADO" alias="EVENTOS CONSOLIDADO">
+      <column name="EVC_ID" converter="long" key="true" alias="ID" reference="true"></column>
+      <column name="CON_ID" alias="ID CONSOLIDADO" table="CONSOLIDADO" virtual="true"></column>
+      <column name="EVC_CD_TIPO" alias="TIPO EVENTO" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.TipoEventoConsolidadoEnum" arg1="getDescricao" arg2="getCodigo"/>
+      <column name="EVC_DS_DEPARTAMENTO" alias="DEPARTAMENTO"></column>
+      <column name="EVC_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date" alias="DATA HORA ATUALIZAÇÃO"></column>
+      <column name="EVC_CD_OPER_ATUALZ" alias="OPERADOR"></column>
+  </table>
+  
+   <table name="EOC_EVENTOS_OPINIAO_CONCLUSIVA" alias="EVENTOS OPINIÃO CONCLUSIVA">
+    <column name="EOC_ID" converter="long" key="true" alias="ID" reference="true"></column>
+    <column name="EVC_ID" alias="ID EVENTO CONSOLIDADO" table="EVENTOS CONSOLIDADO" converter="integer" ></column>
+    <column name="OCC_ID" alias="ID OPINIÃO CONCLUSIVA" table="OPINIÃO CONCLUSIVA CONSOLIDADO" converter="integer"></column>
+    <column name="EOC_CD_CNPJ_ORIGEM" alias="CNPJ/CÓDIGO ORIGEM SRC"/>
+  </table>
+  
+  <table name="EPA_EVENTOS_PERFIL_ATUACAO" alias="EVENTOS PERFIL ATUAÇÃO">
+    <column name="EPA_ID" converter="long" key="true" alias="ID" reference="true"></column>
+    <column name="EVC_ID" alias="ID EVENTO CONSOLIDADO" table="EVENTOS CONSOLIDADO" converter="integer"></column>
+    <column name="PRT_ID" alias="ID PERFIL ATUAÇÃO" table="PERFIL ATUAÇÃO CONSOLIDADO" converter="integer"></column>
+    <column name="EPA_CD_CNPJ_ORIGEM" alias="CNPJ/CÓDIGO ORIGEM SRC"/>
+  </table>
+  
+  <table name="EPR_EVENTO_PERFIL_DE_RISCO_SRC" alias="EVENTOS PERFIL DE RISCO SRC">
+    <column name="EPR_ID" converter="long" key="true" alias="ID" reference="true"></column>
+    <column name="EVC_ID" alias="ID EVENTO CONSOLIDADO" table="EVENTOS CONSOLIDADO" converter="integer"></column>
+    <column name="EPR_ID_PERFIL" alias="ID PERFIL DE RISCO" table="PER_PERFIL_RISCO" converter="integer"></column>
+    <column name="EPR_CD_BLOQUEADO" alias="ESTÁ BLOQUEADO?" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.SimNaoEnum" arg1="getDescricao" arg2="getCodigo"/>
+  </table>
+  
+  <table name="SPR_SUBEVENTO_PERFIL_DE_RISCO" alias="SUBEVENTOS PERFIL DE RISCO SRC">
+    <column name="SPR_ID" converter="long" key="true" alias="ID" reference="true"></column>
+    <column name="EPR_ID" alias="ID EVENTO PERFIL" table="EVENTOS PERFIL DE RISCO SRC" converter="integer"></column>
+    <column name="SPR_CD_TIPO" alias="TIPO" converter="enumValue" arg0="br.gov.bcb.sisaps.util.enumeracoes.TipoSubEventoPerfilRiscoSRC" arg1="getDescricao" arg2="getCodigo"/>
+  </table>
+  
+  <table name="ADA_ANEXO_DOCUMENTO_ARQ" alias="ANEXO DOCUMENTO APS">
+    <column name="ADA_ID" converter="long" key="true" alias="ID" reference="true"/>
+    <column name="ADA_DS_NOME_ARQ" alias="NOME"/>
+    <column name="ADA_BI_ARQUIVO" alias="ARQUIVO" converter="blob" comparator="md5" reader="url"/>
+    <column name="DOA_ID" alias="ID DOCUMENTO" table="DOCUMENTO APS" virtual="true"/>
+    <column name="ADA_CD_EXCLUIDO" alias="EXCLUÍDO?" />
+    <column name="ADA_DH_ATUALZ" alias="DATA HORA ATUALIZAÇÃO" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"/>
+    <column name="ADA_CD_OPER_ATUALZ" alias="OPERADOR" converter="notNullOrEmpty"/>
+  </table>
+
+  <table name="PEA_PARAMETRO_EMAIL_APS" alias="PARÂMETROS E-MAIL">
+  <column name="PEA_ID" converter="long" key="true" alias="ID" reference="true"/>
+  <column name="PEA_CD_ROTULO" alias="RÓTULO"/>
+  <column name="PEA_DS_EMAIL" alias="E-MAIL"/>
+  </table>
+  
+  <table name="AEX_ARC_EXTERNO" alias="ARC EXTERNO">
+  <column name="AEX_ID" converter="long" key="true" alias="ID" reference="true"/>
+  <column name="PRC_ID" converter="int"/>
+  <column name="ARC_ID" alias="ID ARC" table="ARC_AVAL_RIS_CON" converter="int"></column>
+  <column name="CIC_ID" converter="int" />
+  <column name="AEX_CD_OPER_ATUALZ" alias="OPERADOR"/>
+  <column name="AEX_DH_ATUALZ" date="true" converter="date" arg0="dd/MM/yyyy HH:mm:ss" comparator="date"  alias="DATA HORA ATUALIZAÇÃO"/>
+  <column name="AEX_NU_VERSAO" alias="VERSÃO"  converter="integer" />  
+  </table>
+  
+</schema>

@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Painel do gerente - Pendências do gerente</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 'Painel do gerente - Pendências do gerente'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>23/07/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/gerente/index.html#pendenciasGerente">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/gerente/pendencias/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#listarPendencias">validar manualmente a listagem de pendências do gerente</a>.
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dado que</th>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr class="scenario" > 
+			<td class='title'><b>[C001] - </b>Exibindo pendências do Gerente</td>
+			<td>
+				<ul>
+					<li>
+						<banco />
+						Os dados encontram-se 
+						<a href="../../../../../../../negocio/src/test/java/crt2/dominio/gerente/pendencias/TestR001PendenciasGerente-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq102>é "deliq.sisliq102"</sisliq102></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/gerente">sisaps/gerente</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>[C002] - </b>Não há pendências do Gerente</td>
+			<td>
+				<ul>
+					<li>
+						<banco />
+						Os dados encontram-se 
+						<a href="../../../../../../../negocio/src/test/java/crt2/dominio/gerente/pendencias/TestR001C002PendenciasGerente-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq102>é "deliq.sisliq102"</sisliq102></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/gerente">sisaps/gerente</span></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

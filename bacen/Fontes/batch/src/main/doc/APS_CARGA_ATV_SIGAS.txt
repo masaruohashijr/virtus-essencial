@@ -1,0 +1,18 @@
+Job Name .....................: APS_CARGA_ATV_SIGAS
+Descrição ....................: Carga de atividades a partir da base do Sigas
+Servidor .....................: sbcdf262
+File name (script) ...........: 
+Path (diretório) .............: cd /opt/quartz/jobs/sisapsBatch.SisapsApp/bin; ./run.sh BatchMigracaoDadosETLAtividadesCiclo
+Owner (usuário de execução) ..: root
+Periocidade ..................: depois da execução com sucesso do job WKF_ATIVIDADES_SIGAS_ATUALIZACAO_INCREMENTAL
+Doc Mem ......................: APS_CARGA_ATV_SIGAS.txt
+Doc Lib ......................: /opt/quartz/jobs/sisapsBatch.SisapsApp/doc
+Max Wait .....................: 3
+
+----------------------------------OBSERVACOES---------------------------------------
+
+Em caso de cancelamento ou termino anormal:
+
+Apenas registrar o incidente para o grupo WKG-DEINF/DINE4-JAVABATCH.
+
+------------------- CRIADO EM 24/02/2015 POR DEINF.DINALDO -----------------------

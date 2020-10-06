@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_sisaps">
+
+  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="ApplicationDeployment_sisaps"
+    startingWeight="10">
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="WebModuleDeployment_sisaps" startingWeight="10000"
+      uri="sisaps.war" classloaderMode="PARENT_LAST" />
+    <classloader xmi:id="Classloader_sisaps" mode="PARENT_LAST" />
+  </deployedObject>
+
+</appdeployment:Deployment>

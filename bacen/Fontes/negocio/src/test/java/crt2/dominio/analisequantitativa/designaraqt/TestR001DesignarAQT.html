@@ -1,0 +1,245 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Designar ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Designar/Redesignar ANEF'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>27/01/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#designarAQT">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+
+		<banco />
+
+	
+	     	<li>Os dados encontram-se <a href="TestR001DesignarAQT-DadoQue.html" class="include">aqui</a>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#podeDesignar">verificar se o ANEF pode ser designado</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Verificar se o ANEF pode ser designado por usuário que possui perfil
+							supervisor.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					<tr>
+						<td>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'
+						</strong>.
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 173px">Entradas</th>
+									<th style="width: 153px; background-color: green">Saída</th>
+								</tr>
+							</table>
+							<table class="column">
+								<tr>
+									<th>ANEF</th>
+									<th>Estado<span style="visibility: hidden">?</span></th>
+									<th>Pode ser designado ?</th>
+								</tr>
+
+								<tr>
+									<td>4</td>
+									<td>Previsto</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>5</td>
+									<td>Designado</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>6</td>
+									<td>Em edição</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>10</td>
+									<td>Preenchido</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>11</td>
+									<td>Em análise</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>12</td>
+									<td>Análise delegada</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>22</td>
+									<td>Concluído</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>24</td>
+									<td>Analisado</td>
+									<td>Sim</td>
+								</tr>
+							</table>
+					</td>
+					</tr>
+				</table><br/>
+	</td>
+	</tr>
+	</table>			
+
+	<table class="scenario">
+		<tr>
+		  <td>
+
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Verificar se o ANEF pode ser designado por usuário que possui perfil
+							inspetor.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					<tr>
+						<td>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq113"
+					</span>'
+						</strong>.
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 173px">Entradas</th>
+									<th style="width: 153px; background-color: green">Saída</th>
+								</tr>
+							</table>
+							<table class="column">
+								<tr>
+									<th>ANEF</th>
+									<th>Estado<span style="visibility: hidden">?</span></th>
+									<th>Pode ser designado ?</th>
+								</tr>
+
+								<tr>
+									<td>4</td>
+									<td>Previsto</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>5</td>
+									<td>Designado</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>6</td>
+									<td>Em edição</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>10</td>
+									<td>Preenchido</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>11</td>
+									<td>Em análise</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>12</td>
+									<td>Análise delegada</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>22</td>
+									<td>Concluído</td>
+									<td>Não</td>
+								</tr>
+
+								<tr>
+									<td>24</td>
+									<td>Analisado</td>
+									<td>Não</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

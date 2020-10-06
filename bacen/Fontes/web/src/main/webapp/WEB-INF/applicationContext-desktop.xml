@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+  <description>Desenvolvimento local</description>
+
+  <import resource="classpath:applicationContext-teste.xml" />
+
+<!-- JTA: Atomikos -->
+  
+  <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init"
+    destroy-method="close">
+    <property name="forceShutdown" value="true" />
+  </bean>
+  
+  <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp"/>
+  
+
+  <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+    <property name="userTransaction" ref="atomikosUserTransaction" />
+    <property name="transactionManager" ref="atomikosTransactionManager" />
+    <property name="allowCustomIsolationLevels" value="true" />
+    <property name="defaultTimeout" value="120" />
+  </bean> 
+
+  <!-- DB: HSQLDB -->
+ <bean id="mainDS" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean" destroy-method="close">
+    <property name="url" ref="urlBanco" />
+    <property name="poolSize" value="20" />
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+    <property name="user" value="sa" />
+    <property name="password" value="" />
+    <property name="uniqueResourceName" value="atomikosDatasource" />
+    <property name="borrowConnectionTimeout" value="180" />
+  </bean>
+  
+  <bean id="urlBanco" class="crt2.util.DataSourceUrlProviderSpring" factory-method="getUrl"></bean>
+
+  <!-- DB: DB2 WAS-T  
+  <bean id="mainDS" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean" destroy-method="close">
+      <property name="url" value=""/>
+      <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver" />
+      <property name="poolSize" value="3" />
+      <property name="user" value="" />
+      <property name="password" value="" />
+      <property name="uniqueResourceName" value="atomikosDatasource" />
+  </bean> 
+  -->
+ 
+  <!-- Hibernate -->
+  <bean id="sessionFactory" parent="abstractHbnSessionFactory">
+    <property name="hibernateProperties">
+      <props merge="true">
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.format_sql">true</prop>
+        <!-- HSQLDB Desenvolvimento -->
+        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+        <prop key="hibernate.hbm2ddl.auto">#{ T(crt2.util.Hbm2ddlProviderSpring).getValue() }</prop>
+        <prop key="hibernate.connection.shutdown">true</prop>
+        <prop key="hibernate.jdbc.batch_size">0</prop>
+        <prop key="hibernate.default_schema">SUP</prop>
+        
+        <!-- DB2 - Coloque abaixo o Schema DB2, se for usar o banco db2 
+        <prop key="hibernate.dialect">br.gov.bcb.app.stuff.hibernate.BcDB2Dialect</prop> 
+        -->
+        
+      </props>
+    </property>
+  </bean>
+  
+  <!-- Carga de dados e de Stubs para o Jetty Local - Comente caso queira usar o BcPessoaReal -->
+  <bean id="CargaBcPessoaStubJetty" class="br.gov.bcb.sisaps.stubs.integracao.pessoa.CargaBcPessoaStubJetty" init-method="fazerCarga" />
+  
+  <!--  Caso queira utilizar o BcPessoa real via rest descomente essa linha.
+  Não esqueça de colocar as credenciais de um usuário de sistema no JettyMain 
+  e de cadastrar os usuários no realm.properties -->
+  <!-- bean id="BcPessoaProvider" class="br.gov.bcb.sisaps.integracao.pessoa.LocalizadorProviderBcPessoaReal"/ -->
+  
+  
+</beans>

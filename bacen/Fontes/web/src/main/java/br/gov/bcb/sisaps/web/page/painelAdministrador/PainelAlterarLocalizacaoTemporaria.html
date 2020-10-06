@@ -1,0 +1,28 @@
+<wicket:panel>
+	<table class="fundoPadraoAEscuro2" id="tTituloLocalizacaoSimulada" cellspacing="0" cellpadding="0"
+		style="width: 100%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Simular localização</th>
+			</tr>
+		</thead>
+	</table>
+	<table id="tDadosLocalizacaoSimulada" cellspacing="1" cellpadding="3" style="width: 100%">
+		<tbody>
+			<tr class="fundoPadraoAClaro3" style="height: 23px">
+				<td class="nomeCampo" style="width: 20%; vertical-align: middle;">Localização simulada atual</td>
+				<td><label wicket:id="idLocalizacaoSimulada"></label><input type="text" style="visibility: hidden;"></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="vertical-align: middle;">Nova localização</td>
+				<td><input type="text" maxlength="30" size="40" wicket:id="idNovaLocalizacaoSimulada"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div align="center">
+		<br> <input type="submit" class="botao" id="bttAlterarLocalizacao" wicket:id="bttAlterarLocalizacao"
+			value="Alterar"> <input type="submit" class="botao"  style="  width: 180px;" id="bttLimparLocalicacao"
+			wicket:id="bttLimparLocalicacao" value="Cancelar simulação">
+	</div>
+
+</wicket:panel>

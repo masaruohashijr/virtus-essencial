@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>R003 - Alterar percentuais do ANEF</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+		</head>
+
+	<body>
+		<h1>Cenários da estória 'Alterar percentuais do ANEF'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+			<td>1.0</td>
+			<td>23/02/2015</td>
+			<td>Kalina Lígia</td>
+			<td>Versão Inicial</td>
+		</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			As regras da estória encontram-se <a href="../index.html#alterarPercentuais">aqui</a>.
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#validarAlteracaoSucesso">validar alteração com sucesso</a>.</blockquote>
+
+		<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Verificar que o botão 'Confirmar percentual em edição' estará habilitado quando houver alteração do percentual. </td>
+					</tr>
+					<tr>
+						<th>Dados pré-existentes</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR003AlterarPercentuaisANEF-DadoQueC001.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+									<tr>
+										<th>Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+									<th  style="background-color: green">Botão habilitado?</th>
+								</tr>
+								<tr>
+									<td><span  class="set" name="ciclo" converter="Integer">1</td>
+									<td><span class="eq" value="$THIS.exibirBotaoConfirmar(ciclo)">Sim</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT002]</a></b> - Verificar que o botão 'Confirmar percentual em edição' estará desabilitado quando não houver alteração do percentual.</td>
+					</tr>
+					<tr>
+						<th>Dados pré-existentes</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados da ANEF encontram- se 
+							<a href="TestR003AlterarPercentuaisANEF-DadoQueC002.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th>Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th >Ciclo</th>
+									<th style="background-color: green">Botão habilitado?</th>
+								</tr>
+								<tr>
+									<td><span  class="set" name="ciclo" converter="Integer">1</td>
+									<td><span class="eq" value="$THIS.exibirBotaoConfirmar(ciclo)">Não</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<wicket:panel>
+	<div wicket:id="listaItens">
+		<table wicket:id="tabelaDadosItem" width="90%" cellspacing="0" cellpadding="3" style="margin: auto;">
+			<thead>
+				<tr class="fundoPadraoAClaro3">
+					<td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;" wicket:id="idTituloItem" />
+				</tr>
+			</thead>
+
+
+
+			<tbody>
+				<tr class="fundoPadraoAClaro3">
+					<td colspan="3" style="color: #F2F4F6;">|</td>
+				</tr>
+				<wicket:enclosure child="idJustificativa">
+					<tr class="fundoPadraoAClaro3">
+						<td width="5%"></td>
+						<td align="left" style="text-align: left;"><label wicket:id="idJustificativa"></label> <br /> <br /></td>
+						<td width="5%"></td>
+					</tr>
+				</wicket:enclosure>
+
+				<wicket:enclosure child="idTabelaAnexoDocumento">
+					<tr class="fundoPadraoAClaro3">
+						<td width="5%"></td>
+						<td align="center" style="text-align: center;">
+							<div class="centralizado" wicket:id="idTabelaAnexoDocumento" />
+						</td>
+						<td width="5%"></td>
+					</tr>
+				</wicket:enclosure>
+
+			</tbody>
+		</table>
+	</div>
+</wicket:panel>

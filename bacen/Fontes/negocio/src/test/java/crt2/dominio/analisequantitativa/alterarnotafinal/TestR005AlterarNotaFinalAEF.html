@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>R005 - Ajuste de nota final qualitativa</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+		</head>
+
+	<body>
+		<h1>Cenários da estória 'Ajuste de nota final qualitativa'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>11/07/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			As regras da estória encontram-se <a href="../index.html#alterarNotaFinal">aqui</a>.
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		     <li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong>.</li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#validarMsgErroNovoCalculo">validar as mensagens de erro ao tentar confirmar novo ajuste de nota final</a>.</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Confirmar novo ajuste quando não há um ajuste vigente.</td>
+					</tr>
+					<tr>
+						<th>Dados pré-existentes</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR005C001AlterarNotaFinalAEF-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Tentar confirmar o ajuste na nota conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+									<th style="background-color: green">Mensagem de alerta?</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="perfil" converter="Integer">3</span></td>
+									<td><span style="color: red" class="eq" value="$THIS.confirmarNotaMatriz(perfil)">[Campo 'Justificativa' da 'Nova nota ajustada' é de preenchimento obrigatório.]</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class="title"><b><a name="CT002">[CT002]</a></b> - Confirmar novo ajuste quando há um ajuste vigente (''Análise Econômico-Financeira'' possuindo nota calculada igual a <b>'*A'</b>).</td>
+					</tr>
+					<tr>
+						<th>Dados pré-existentes</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR005C002AlterarNotaFinalAEF-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Tentar confirmar o ajuste na nota conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+									<th style="background-color: green">Mensagem de alerta?</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="perfil" converter="Integer">1</span></td>
+									<td><span style="color: red" class="eq" value="$THIS.confirmarNotaMatriz(perfil)">[Ajuste de nota final não pode ser confirmada no perfil de risco com nota calculada igual a '*A'.]</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	</body>
+</html>

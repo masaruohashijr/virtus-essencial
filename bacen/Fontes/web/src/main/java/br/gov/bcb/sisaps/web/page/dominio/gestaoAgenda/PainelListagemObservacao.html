@@ -1,0 +1,23 @@
+
+<wicket:panel>
+	<table cellspacing="0" cellpadding="3" style="width: 100%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Observações</th>
+			</tr>
+		</thead>
+	</table>
+	<div wicket:id="tabela"></div>
+
+	<wicket:enclosure child="idTextoNovaObservacao">
+	<table cellspacing="0" cellspading="3" style="width: 100%" id="Inclusao">
+
+		<tr class="fundoPadraoAClaro3">
+			<td style="width: 95%"><input type="text" maxlength="80" style="width: 404px;" wicket:id="idTextoNovaObservacao" /></td>
+
+			<td style="width: 5%"><a href="#" wicket:id="LinkIncluir"> <img wicket:id="incluir"></img>
+			</a></td>
+		</tr>
+	</table>
+	</wicket:enclosure>
+</wicket:panel>

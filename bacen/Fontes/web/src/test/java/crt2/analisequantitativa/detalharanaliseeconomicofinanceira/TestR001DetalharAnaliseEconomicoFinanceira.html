@@ -1,0 +1,438 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Detalhar análise economico-financeira (tela de perfil de risco)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Detalhar análise economico-financeira (tela de perfil de risco)'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>16/01/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>25/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Tratando a issue related e a estória 48474. Estória afetada pela mudança do ajuste de COREC.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#detalharAnaliseEconomicoFinanceira">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<li><banco /> Os dados encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharanaliseeconomicofinanceira/TestR001DetalharAnaliseEconomicoFinanceira-DadoQue.html"
+			class="include">aqui</a>.</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarEstadoInicialSemAjusteCorec">verificar o estado inicial da tela sem ajuste do corec</a>.
+	</blockquote>
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Verificar exibição da seção para o primeiro perfil de risco (criado ao iniciar o ciclo).</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">15/12/2014</span></li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+						       <span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="4" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+									<table >
+										<thead id="idTitulo1a3">
+											<tr class="fundoPadraoAEscuro3">
+												<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+												<td style="width: 15%;" id="colunaNotaCalculada1a4">*A</td>
+												<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+												<td style="width: 15%;" id="colunaNotarRefinada1a5">*A</td>
+											</tr>
+											<tr id="idLinhaJustificativaNotaAjustadaAQT1a6" style="display: none"></tr>
+										</tbody>
+									</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+									</thead>
+									<tbody id="id019a">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423000999640_543360439297674">Resultados</label></td>
+											<td>30%</td>	
+											<td><span id="linkNotaAQTResultados">*A</span></td>
+											<td></td>	
+											
+										</tr>
+
+										<tr id="linhaResultados" style="display: none"></tr>
+									</tbody>
+									<tbody id="id119d">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423000999643_543360441605374">Capital</label></td>
+											<td>50%</td>
+											<td><span id="linkNotaAQTCapital">*A</span></td>
+											<td></td>	
+										</tr>
+
+										<tr id="linhaCapital" style="display: none"></tr>
+									</tbody>
+									<tbody id="id21a0">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423000999645_543360443869909">Exigibilidades/Liquidez</label></td>
+											<td>20%</td>
+											<td><span id="linkNotaAQTExigibilidades/Liquidez">*A</span></td>
+											<td></td>	
+										</tr>
+
+										<tr id="linhaExigibilidades/Liquidez" style="display: none"></tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT002">[CT002]</a></b> - Verificar exibição da seção para um perfil de risco com 2 ANEF's e suas respectivas sínteses publicadas e sem nota ajustada.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">17/12/2014</span></li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							     <span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="4" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+									<table >
+										<thead id="idTitulo1a3">
+											<tr class="fundoPadraoAEscuro3">
+												<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+												<td style="width: 15%;" id="colunaNotaCalculada1a4">2,40</td>
+												<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+												<td style="width: 15%;" id="colunaNotarRefinada1a5">2</td>
+											</tr>
+											<tr id="idLinhaJustificativaNotaAjustadaAQT1a6" style="display: none"></tr>
+										</tbody>
+									</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+									</thead>
+									<tbody id="id019a">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle19b">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem19c"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423000999640_543360439297674">Resultados</label></td>
+											<td>30%</td>
+											<td><span id="linkNotaAQTResultados">2</span></td>
+												<td></td>
+										</tr>
+
+										<tr id="linhaResultados" style="display: none"></tr>
+									</tbody>
+									<tbody id="id119d">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423000999643_543360441605374">Capital</label></td>
+											<td>50%</td>
+											<td><span id="linkNotaAQTCapital">*A</span></td>
+												<td></td>
+										</tr>
+
+										<tr id="linhaCapital" style="display: none"></tr>
+									</tbody>
+									<tbody id="id21a0">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423000999645_543360443869909">Exigibilidades/Liquidez</label></td>
+											<td>20%</td>
+											<td><span id="linkNotaAQTExigibilidades/Liquidez">3</span></td>
+												<td></td>
+										</tr>
+
+										<tr id="linhaExigibilidades/Liquidez" style="display: none"></tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT003">[CT003]</a></b> - Verificar exibição da seção para um perfil vigente com todos os ANEF's e suas respectivas sínteses publicadas, nota
+							ajustada e os grupos expansíveis expandidos.</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:idExpandirJustificativaNotaAjustada_1">Nota
+										ajustada do ANEF</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelCapital">Capital</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelExigibilidades/Liquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+							</ul> <span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="4" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table >
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">1,70</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">2</td>
+											<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle169"><span
+												class="nomeCampo" id="controle16a"> <a
+													href="./page?4-1.ILinkListener-formulario-grupoDeResumoSintesesAQT-tResumoSinteseAQTCiclo-colunaControle-controle-link"
+													id="idExpandirJustificativaNotaAjustada_1"><img id="imagem16b"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">3</label></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="idLinhaJustificativaNotaAjustadaAQT16f">
+											<td colspan="7"><label id="idJustificativaNotaAjustadaAQT184">Texto de justificativa da nota
+													ajustada da análise quantitativa.</label></td>
+										</tr>
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/menos.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">2</a></td>
+												<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="4" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Texto da síntese
+													publicada do ANEF Resultados.</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/menos.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Capital</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTCapital" href="#">1</a></td>
+												<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="4" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Texto da síntese
+													publicada do ANEF Capital.</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/menos.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Exigibilidades/Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTExigibilidades/Liquidez" href="#">3</a></td>
+												<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="4" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Texto da síntese
+													publicada do ANEF Exigibilidades/Liquidez.</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+  <description>Contexto do Ambiente Websphere</description>  
+
+  <import resource="classpath:applicationContext-negocio.xml" />
+
+  
+
+  <!-- JTA -->
+
+  <!-- 
+    Em http://www-128.ibm.com/developerworks/websphere/techjournal/0609_alcott/0609_alcott.html,
+    a IBM recomenda o uso de WebSphereUowTransactionManager como gerenciador de transações com Spring.
+
+    No entanto, a versão 6.1.0.11 do Websphere tem um bug que impede o uso desse gerenciador com
+    a estratégia de exceções Runtime na camada de negócio. O bug está descrito em:
+    http://www-1.ibm.com/support/docview.wss?uid=swg1PK49179.
+  
+    Na prática, devemos usar o JtaTransactionManager comum do Spring, que atende perfeitamente aos
+    requisitos da maioria dos sistemas. Perdemos, nesse caso, a possibilidade de transações "requires new"
+    e "not supported", bem como atribuição de timeout por transação. Esses não são requisitos do
+    sistema.
+
+    Para configurar o WebSphereUowTransactionManager:
+    <bean id="transactionManager" class="org.springframework.transaction.jta.WebSphereUowTransactionManager"/>
+  -->
+
+  <!-- Veja comentário acima -->
+  <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+    <property name="allowCustomIsolationLevels" value="true" />
+  </bean>
+  
+  
+   <bean id="dataSourceDoSISAPS" class="org.springframework.jndi.JndiObjectFactoryBean">
+  <property name="jndiName" value="java:comp/env/jdbc/sisaps"/>
+</bean>
+
+
+<bean id="mainDS" class="org.springframework.jdbc.datasource.WebSphereDataSourceAdapter">
+    <property name="targetDataSource" ref="dataSourceDoSISAPS" />
+</bean>
+
+  <!-- DB: DB2 Servidor de Aplicações -->
+ <!--  <bean id="mainDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:comp/env/jdbc/sisaps" />
+    <property name="lookupOnStartup" value="false" />
+    <property name="cache" value="true" />
+    <property name="proxyInterface" value="javax.sql.DataSource" />
+  </bean> -->
+
+  <!-- Hibernate -->
+  <bean id="sessionFactory" parent="abstractHbnSessionFactory">
+    <property name="hibernateProperties">
+      <props merge="true">
+        <!-- DB2 -->
+        <prop key="hibernate.dialect">br.gov.bcb.app.stuff.hibernate.BcDB2Dialect</prop>
+        <prop key="hibernate.show_sql">false</prop>
+        <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
+        <prop key="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.WebSphereTransactionManagerLookup</prop>
+        <prop key="jta.UserTransaction">java:comp/UserTransaction</prop>
+
+        <!-- TODO - -configurar aqui o default schema do banco de dados DB2 da sua aplicacao. normalmente eh igual a sigla -->
+        <prop key="hibernate.default_schema">SUP</prop>
+      </props>
+    </property>
+  </bean>
+  
+</beans>

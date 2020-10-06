@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Verificar pendências para iniciar fase Corec </title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Verificar pendências para iniciar fase Corec'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+				<td>1.0</td>
+				<td>11/08/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+			</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#verificacaoRegrasIniciarCorec">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#verificarBotaoHabilitadoNovoCalculo">verificar se o botão 'Iniciar fase Corec' deve ficar habilitado ou não após clicar no botão 'Verificar pendências para Corec'</a>
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - O botão 'Iniciar fase Corec' deve ficar habilitado. 
+						</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					<tr>
+						<td><banco /> Os dados encontram-se <a
+							href="TestR005VerificacaoRegrasIniciarCorec-DadoQueC001.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação/Validação</th>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 80px">Entradas</th>
+									<th style="background-color: green;width: 127px">Saída</th>
+								</tr>
+							</table>
+							<table class="column">
+								<tr>
+									<th style="width: 80px" class="set" name="idCiclo" >Ciclo</th>
+									<th style="background-color: green">Botão habilitado? </th>
+								</tr>
+								<tr>
+									<td class="set" name="idCiclo" converter="Integer">2</td>
+									 <td>Sim</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table>	
+
+		
+	<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - O botão 'Iniciar fase Corec' não deve ficar habilitado. 
+						</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					<tr>
+						<td><banco /> Os dados encontram-se <a
+							href="TestR003VerificacaoRegrasIniciarCorec-DadoQueC003.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação/Validação</th>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 80px">Entradas</th>
+									<th style="background-color: green; width: 127px">Saída</th>
+								</tr>
+							</table>
+							<table class="column">
+								<tr>
+									<th style="width: 80px" class="set" name="idCiclo" >Ciclo</th>
+									<th style="background-color: green">Botão habilitado? </th>
+								</tr>
+								<tr>
+									<td class="set" name="idCiclo" converter="Integer">1</td>
+									 <td>Não</td>
+									
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table>
+</body>
+</html>

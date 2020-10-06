@@ -1,0 +1,275 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Gerenciar quadro da posição financeira</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Gerenciar quadro da posição financeira'</h1>
+
+	<span id="index"></span>
+
+    <h2>Histórico</h2>	
+	<table class="exemplos historico">
+             <tr>
+                    <th>Versão</th>
+                    <th>Data</th>
+                    <th>Responsável</th>
+                    <th>Descrição</th>
+             </tr>
+             <tr>
+                    <td>1.0</td>
+                    <td>06/08/2014</td>
+                    <td>Adjamir Galvão</td>
+                    <td>Versão Inicial</td>
+             </tr>
+			<tr>
+				<td>2.0</td>
+				<td>26/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+			</tr>
+	</table>
+
+   <span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#gerenciarQuadroPosicaoFinanceira">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	
+	<h2>Cenários</h2>
+	<blockquote>
+	    Cenários de sucesso e falha para <a href="indexNegocio.html#definirLayout">definir layout</a>.
+	</blockquote>    
+
+<table class="scenario" >
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário</th>
+		</tr>
+		<tr>
+			<td class='title'><b>[CT001]</b> - Consultar layout com 2 períodos sobrepostos sem período de fim definido.</td>
+		</tr>
+		<tr>
+		     <th>Dado Que</th>
+		</tr>     	
+		<tr>
+		   <td>
+			<ul>
+	    		<banco />
+  				<li>Os dados encontram-se <a  href="TestR003C007GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Validação</th>
+		</tr>
+			<td>
+			    <table>
+					<tr>
+						<th style="width: 82px">Entradas</th>
+						<th style="width: 171px; background-color: green">Saída</th>
+						</tr>
+		           	</table>
+                <table class="column">
+	                <tr>
+	                    <th style="width: 82px">Data-base</th>
+	                    <th feature="quallayoututilizar" style="width: 171px; background-color: green">Qual o layout a utilizar?</th>
+	                </tr>
+                    <tr>
+                        <td>"12/2012"</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>"01/2013"</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>"12/2013"</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>"01/2014"</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>"02/2014"</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>"01/2015"</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br>
+
+<table class="scenario"  >
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário</th>
+		</tr>
+		<tr>
+			<td class='title'><b>[CT002]</b> - Consultar layout com 3 períodos sobrepostos sem período de fim definido.</td>
+		</tr>
+		<tr>
+		     <th>Dado Que</th>
+		</tr>     	
+		<tr>
+		   <td>
+			<ul>
+	    		<banco />
+  				<li>Os dados encontram-se <a  href="TestR001C002GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Validação</th>
+		</tr>
+			<td>
+			    <table>
+					<tr>
+						<th style="width: 82px">Entradas</th>
+						<th style="width: 171px; background-color: green">Saída</th>
+						</tr>
+		           	</table>
+                <table class="column">
+	                <tr>
+	                    <th  style="width: 82px">Data-base</th>
+	                    <th feature="quallayoututilizar" style="width: 171px; background-color: green">Qual o layout a utilizar?</th>
+	                </tr>
+                   <tr>
+                        <td>"12/2012"</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>"01/2013"</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>"12/2013"</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>"01/2014"</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>"02/2014"</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>"03/2014"</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>"01/2015"</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br>
+
+
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário</th>
+		</tr>
+		<tr>
+			<td class='title'><b>[CT003]</b> - Consultar layout com períodos não sobrespostos e período de fim definido em 1 deles.</td>
+		</tr>
+		<tr>
+		     <th>Dado Que</th>
+		</tr>     	
+		<tr>
+		   <td>
+			<ul>
+	    		<banco />
+  				<li>Os dados encontram-se <a  href="TestR003C003GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Validação</th>
+		</tr>
+			<td>
+			    <table>
+					<tr>
+						<th style="width: 82px">Entradas</th>
+						<th style="width: 171px; background-color: green">Saída</th>
+						</tr>
+		           	</table>
+                <table class="column">
+	                <tr>
+	                    <th  style="width: 82px">Data-base</th>
+	                    <th feature="quallayoututilizar" style="width: 171px; background-color: green">Qual o layout a utilizar?</th>
+	                </tr>
+                    <tr>
+                        <td>"05/2012"</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>"06/2012"</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>"07/2012"</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>"11/2013"</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>"12/2013"</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>"01/2014"</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>"12/2014"</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br>
+
+
+
+</body>
+</html>

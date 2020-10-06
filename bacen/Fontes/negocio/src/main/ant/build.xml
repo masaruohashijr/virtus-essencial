@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="negocio" basedir=".">
+
+	<target name="default" depends="set.properties">
+		   <echo message="Arquivo ajustado para ${arquivo}"/>
+           <copy file="src/main/resources/email/${arquivo}.properties" tofile="target/classes/apsEmail.properties"
+                 overwrite="true" verbose="true"/>
+  	</target>
+	
+	<target name="set.properties" depends="cond.ambiente.exist,cond.ambiente.not.exist">
+	</target>
+
+	<target name="cond.ambiente.exist" depends="cond.check" if="cond-is-true">
+	    <property name="arquivo"  value="${ambiente}" />
+	</target>   
+
+	<target name="cond.ambiente.not.exist" depends="cond.check" unless="cond-is-true">
+	    <property name="arquivo"  value="LOCAL" />
+	</target>  
+
+    <target name="cond.check">
+    	<echo message="A variável AMBIENTE é: ${AMBIENTE}"/>
+        <condition property="cond-is-true">
+            <isset property="AMBIENTE"/>
+        </condition>
+        <echo message="A variável existe? R: ${cond-is-true}"/>
+    </target>   
+</project>

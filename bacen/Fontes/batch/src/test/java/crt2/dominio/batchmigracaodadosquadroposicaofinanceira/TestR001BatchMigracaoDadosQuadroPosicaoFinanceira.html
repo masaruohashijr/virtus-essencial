@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Batch para migração de dados legados do quadro da posição financeira</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória - Batch para migração de dados legados do quadro da posição financeira</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>28/08/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<!-- <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/administrador/index.html#batchEmailDisponibilidade">aqui</a>
+	</blockquote> -->
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+	</ul>
+
+	<h2>Validar envio do e-mail</h2>
+	<blockquote>
+		<a href="indexNegocio.html#validarMigracao">Cenários para validar manualmente a migração dos dados legados do quadro da posição.</a>
+	</blockquote>
+	<br>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Validação manual da migração dos dados legados do quadro da posição.</td>
+					</tr>
+					<tr>
+						<th>Dados pré-existentes</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR001BatchMigracaoDadosQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td style="width: 5%"><span class="sentence" method="executarBatch">Executar batch</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

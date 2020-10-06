@@ -1,0 +1,747 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Análise qualitativa</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Análise qualitativa</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+
+ <h2>       
+     <a name="analiseRiscosControles" class="menu">Análise de riscos e controles</a>
+ </h2>
+
+   <ul>
+  	   	<li>Protótipo <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">protótipo</a>.</li>
+   </ul>  	   	    
+
+
+  	<h3>
+  	     <a name="notaCalculadaAnaliseQualitativa" class="menu">Detalhar análise qualitativa no perfil de risco</a>
+  	</h3>   	       
+  	      <ul>
+  	           <li>Regras gerais:</li>
+  	             <ul>
+  	                <li>Seção 'Matriz de riscos e controles':</li>
+  	                   <ul>
+  	                       <li>Nesta seção devem ser exibidas a 'Nota calculada' da matriz de riscos e controles e a matriz vigente.</li>
+			               <li>Exibição de link nas notas e navegação dos ANEFs:</li>
+            			      <ul>
+        	           			<li>Deverá exibir link e navegar se houver tela definida em <a href="#navegarMatrizRiscosControles">navegar matriz de riscos e controles</a>.</li>
+        	      			</ul>     
+  	                   </ul>
+  	                <li>Seção 'Governança corporativa':</li>
+  	                   <ul>
+  	                       <li>Esta seção só estará visível se tiver sido <a href="#editarMatrizRiscosControles">definido</a> % para o bloco 'Atividade x Governança' de ARC externo.</li>
+			               <li>Exibição de link nas notas e navegação dos ANEFs:</li>
+            			      <ul>
+        	           			<li>Deverá exibir link e navegar se houver tela definida em <a href="#navegarMatrizRiscosControles">navegar matriz de riscos e controles</a>.</li>
+        	      			</ul>     
+  	                   </ul>
+  	                <li>Seção 'Nota final da análise de riscos e controles':</li>
+  	                <ul>
+  	                	<li>Coluna 'Nota calculada':</li>
+  	                	<ul>
+	  	   	 	        	<li>É a média ponderada da 'Nota calculada' da 'Matriz de riscos e controles' e o 'ARC externo'.</li>
+	  	   	 	        	<li><b>Observações:</b></li>
+	  	   	 	        	<ul>
+  		   	 	        		<li>Seu valor é '*A' quando os componentes de sua nota ('Matriz de riscos e controles' e 'ARC externo') tem nota '*A'.</li>
+  		   	 	        	    <li>Se houver percentual definido para 'ARC externo' e um dos componentes do cálculo da nota ponderada ('Matriz de riscos e controles' ou 'ARC externo') tiver nota '*A', a nota calculada será igual a do componente que tiver valor, sem ponderação.</li>
+  		   	 	        	</ul>      
+  		   	 	        </ul>	
+  	                	<li>Coluna 'Nota refinada':</li>
+  	                	<ul>
+	  	   	 	        	<li>Deve ser cálculada conforme o 'Parâmetro nota' definido na metodologia utilizando a 'Nota calculada'.</li>
+  		   	 	        	<li>Caso não haja 'Nota calculada' seu valor será '*A'.</li>
+  		   	 	        </ul>	
+               			<li>Coluna 'Nota ajustada':</li>	
+               			<ul>
+       		      			<li>Valor: </li>
+       		          			<ul>
+       		              			<li>Caso o estado do ciclo seja 'Corec' e o usuário logado não for supervisor ou gerente; ou o estado do ciclo for 'Em andamento'</li>
+       		                  			<ul>
+       		                      			<li>Utilizar a 'Nota ajustada' do supervisor. Caso não tenha sido fornecida, utilizar a nota ajustada fornecida pelo comitê no ciclo <b>anterior</b>.</li>
+       		                  			</ul>
+       		              			<li>Senão:</li>     
+       		                  			<ul>
+		       		                      <li>Utilizar a nota ajustada fornecida pelo comitê no ciclo <b>atual</b>. Caso não tenha sido fornecida, utilizar a 'Nota ajustada' do supervisor. Caso não tenha sido fornecida, utilizar a nota ajustada fornecida pelo comitê no <b>anterior</b>.</li>
+       				                  </ul> 
+       		    			    </ul>
+       		      				<li>Caso não haja 'Nota ajustada' ou ela seja nula todo o campo deve ser omitido, inclusive o nome da coluna.</li>
+       		      				<li>Caso seja utilizado a 'Nota ajustada' do comitê (anterior ou atual) deve-se exibir a palavra "(Corec)" suprimindo a justificativa, inclusive o botão "(+)"</li>
+       		   </ul>   
+  	   	 	        </ul>
+   	             </ul>
+   	      </ul>           
+
+      <blockquote>
+		  <a href="notacalculada/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+
+ <h3>       
+     <a name="matrizRiscosControles" class="menu">Matriz de riscos e controles</a>
+ </h3>
+
+ <h4>
+ 	 <a name="navegarMatrizRiscosControles" class="menu">Navegar matriz de riscos e controles</a>
+ </h4>
+      <blockquote> 
+          Nesta sessão é definida para qual tela o sistema deverá navegar quando o usuário clicar no link associado ao ARC.  
+      </blockquote>
+      <ul>
+          <li>Regras gerais:</li>
+              <ul>
+                 <li>Utilizar as seguintes planilhas de documentação:</li>
+                     <ul>
+                         <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/Navegabilidade_a_partir_da_matriz.xlsx">Navegabilidade_a_partir_da_matriz.xlsx</a></li>
+                         <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/ARC_navega%C3%A7%C3%A3o.xlsx">ARC_navegação.xlsx</a></li>
+                     </ul>
+              </ul>
+      </ul>
+      
+      <blockquote>
+          Testes antigos:
+          <ul>
+		      <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0202_Navegabilidade_perfil_de_risco_matriz.html">TestAPSFW0202_Navegabilidade_perfil_de_risco_matriz.html</a></li>
+		  </ul>
+      </blockquote>
+ 
+     <h5>	    
+	    <a name="navegarMatrizRiscosControlesGerente" class="menu">Navegar matriz de riscos e controles para gerente</a>
+    </h5> 	    
+       <ul>
+            <li>Regras gerais:</li>
+                <ul>
+                  <li>Observar o descrito em <a href="#navegarMatrizRiscosControles">navegar matriz de riscos e controles</a>.</li>
+                </ul>
+            <li>Para os perfis de risco vigente:
+                <ul>
+                    <li>Ir para a tela de detalhar ARC, exibindo os mesmos dados do perfil supervisor.</li>
+                </ul>
+            </li>
+            <li>Para os perfis anteriores:
+                <ul>
+                    <li>Se houver nota diferente de '*A', Ir para a tela de detalhar ARC, exibindo os mesmos dados do perfil supervisor.</li>
+                </ul>
+            </li>
+       </ul>
+ 
+       <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequalitativa/navegararcgerente/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+ 	
+ 
+
+ <h3>       
+     <a name="arc" class="menu">Avaliação de risco e controle (ARC)</a>
+ </h3>
+   <ul>
+		<li>Ao detalhar/editar/analisar um ARC do tipo 'Externo', devem ser omitidas as linhas 'Unidade', 'Atividade' e 'Risco/Controle'.</li>
+   </ul>
+
+    <h4>
+  	     <a name="detalharARC" class="menu">Detalhar ARC</a>
+  	</h4>
+	     <ul>
+  	   	    <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesARC/detalhes_arc_supervisor_previsto.html">protótipo</a>.</li>
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+ 	            <li>Observar as regras descritas em <a href="#arc">avaliação de risco e controle (ARC)</a>.</li>
+ 	        <li>Seguir as seguintes planilhas de documentação:</li>
+ 	            <ul>
+                    <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/ARC_navega%C3%A7%C3%A3o.xlsx">ARC_navegação.xlsx</a></li>
+ 	            </ul> 
+ 	        <li>Observar as regras para <a href="#avaliacaoRiscoControle">exibir as 'informações adicionais' dos itens dos elementos e as datas/horas de conclusão da edição e análise</a>.</li>    
+  	   	    </ul>
+  	   	 </ul>   
+
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequalitativa/detalhararc/indexWeb.html">Cenários de teste web</a>
+      </blockquote>
+      <blockquote>
+          Testes antigos:
+		  <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0202_Detalhes_arc_supervisor.html">TestAPSFW0202_Detalhes_arc_supervisor.html</a></li>
+		  <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior.html">TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior.html</a></li>
+		  <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0202_Detalhes_arc_inspetor_com_versao_anterior.html">TestAPSFW0202_Detalhes_arc_inspetor_com_versao_anterior.html</a></li>
+		  </ul>
+      </blockquote>
+
+    <h5>
+  	     <a name="delegarARC" class="menu">Delegar análise do ARC</a>
+  	</h5>
+  	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Nova delegação de análise' do protótipo descrito em <a href="#detalharARC">detalhar ARC</a>.</li>
+   	                  <li>A delegação pode ocorrer na tela de <a href="#detalharARC">detalhar ARC</a> ou <a href="#analisarARC">analisar ARC</a>.</li>
+   	               </ul>
+   	           <li>ARCs passivos de delegação:</li>
+   	               <ul>
+   	                   <li>Apenas os ARCs de rascunho nos estados 'Preenchido', 'Análise delegada', 'Em análise' ou 'Analisado' podem ser delegados. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá delegar a análise do ARC.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Delegação de análise'/'Nova delegação de análise':</li>
+   	               <ul>
+   	                   <li>Caso haja delegação para o ARC, o nome do painel será 'Nova delegação de análise'.</li>
+   	                   <li>Caso contrário, o nome do painel será 'Delegação de análise'.</li>
+   	                   <li>Caso o ARC não possa ser delegado, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Lista de servidores para delegação:</li>
+   	               <ul>
+   	                   <li>O sistema deverá listar os servidores da equipe da ES em 'Servidores da equipe'.</li>
+   	                   <li>O sistema deverá listar os demais servidores na listagem 'Outros servidores' agrupando a nível de 'Unidade'.</li>
+   	                   <li>Deverá ser excluído das listagens o próprio servidor que já estiver delegado e o supervisor.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Delegar'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do ARC seja 'Analisado', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC já analisado.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Em análise' e haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC com análise em andamento por delegado.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Em análise' e não haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC com análise em andamento.'</span>.</li>
+   	              </ul>    
+   	           <li>Validações ao clicar no botão 'Delegar':</li>
+   	              <ul>
+   	                 <li>Caso nenhum servidor tenha sido selecionado, o sistema deverá exibir a mensagem: "'É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.".</li>
+   	                 <li>Caso o usuário selecione servidores nas 2 listagens, o sistema deverá exibir a mensagem: 'Selecione apenas um único servidor para a delegação.'.</li>
+   	              </ul>   
+  	           <li>Ao delegar:</li>
+  	              <ul>
+  	                   <li>Caso exista delegação vigente para outro usuário, atualiza-la para o usuário selecionado.</li>
+  	                   <li>Mudar estado do ARC:</li>
+  	                       <ul>
+  	                          <li>Caso o estado do ARC seja 'Analisado', alterar para 'Em análise'.</li>
+  	                          <li>Senão, caso o estado do ARC seja 'Preenchido', alterar para 'Análise delegada'.</li>
+  	                       </ul>   
+  	                   <li>Se houver, remover as informações de data/hora e usuário que analisou o ARC.</li>       
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do ARC.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Caso o usuário esteja na tela de <a href="#analisarARC">analisar ARC</a>, deverá ir para a tela de <a href="#detalharARC">detalhar ARC</a>.</li>    
+  	                          <li>Caso contrário, deve permanecer na mesma tela, atualizando as informações.</li>    
+  	                       </ul>
+  	                   <li>Na tela de resultado exibir mensagem de sucesso: '<span span class="set" name="msgSucessoDelegar">ARC delegado com sucesso.</span>'.</li>
+  	              </ul>
+   	      </ul>     
+
+
+      <blockquote>
+		  <a href="delegararc/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+   <h5>
+  	     <a name="designarARC" class="menu">Designar ARC</a>
+  	</h5>
+  	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Nova designação' do protótipo descrito em <a href="#detalharARC">detalhar ARC</a>.</li>
+   	                  <li>A designação pode ocorrer na tela de <a href="#detalharARC">detalhar ARC</a> ou <a href="#analisarARC">analisar ARC</a>.</li>
+   	               </ul>
+   	           <li>ARCs passivos de designação:</li>
+   	               <ul>
+   	                   <li>Apenas os ARCs não concluídos podem ser designados. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá designar ARC.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Designação'/'Nova designação':</li>
+   	               <ul>
+   	                   <li>Caso haja designação para o ARC, o nome do painel será 'Nova designação'.</li>
+   	                   <li>Caso contrário, o nome do painel será 'Designação'.</li>
+   	                   <li>Caso o ARC não possa ser designado, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Lista de servidores para designação:</li>
+   	               <ul>
+   	                   <li>O sistema deverá listar os servidores da equipe da ES em 'Servidores da equipe'.</li>
+   	                   <li>O sistema deverá listar os demais servidores na listagem 'Outros servidores' agrupando a nível de 'Unidade'.</li>
+   	                   <li>Caso o estado do ARC seja 'Designado' ou 'Em edição', deverá ser excluído das listagens o próprio servidor que já estiver designado.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Designar'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do ARC seja 'Em edição', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC pendente de conclusão pelo inspetor designado.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Preenchido' ou 'Análise delegada', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC já preenchido por inspetor.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Em análise' e haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC já preenchido por inspetor e com análise em andamento por delegado.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Em análise' e não haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC já preenchido por inspetor e com análise em andamento.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Analisado', exibir a mensagem em vermelho <span style="color: red"> ''Atenção ARC já analisado.'</span>.</li>
+   	              </ul>    
+   	           <li>Validações ao clicar no botão 'Designar':</li>
+   	              <ul>
+   	                 <li>Caso nenhum servidor tenha sido selecionado, o sistema deverá exibir a mensagem: "'É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.".</li>
+   	                 <li>Caso o usuário selecione servidores nas 2 listagens, o sistema deverá exibir a mensagem: 'Selecione apenas um único servidor para a designação.'.</li>
+   	              </ul>   
+  	           <li>Ao designar:</li>
+  	              <ul>
+  	                   <li>Caso exista delegação vigente, excluí-la.</li>
+  	                   <li>Caso exista designação vigente para outro usuário, atualiza-la para o usuário selecionado.</li>
+  	                   <li>Mudar estado do ARC:</li>
+  	                       <ul>
+  	                          <li>Caso o estado do ARC seja 'Preenchido', 'Análise delegada', 'Em análise' ou 'Analisado', alterar para 'Em edição'.</li>
+  	                          <li>Senão, caso o estado do ARC seja 'Previsto', alterar para 'Designado'.</li>
+  	                       </ul>
+  	                   <li>Se houver, remover as informações de data/hora e usuário que preencheu e analisou o ARC.</li>       
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do ARC.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Caso o usuário esteja na tela de <a href="#analisarARC">analisar ARC</a>, deverá ir para a tela de <a href="#detalharARC">detalhar ARC</a>.</li>    
+  	                          <li>Caso contrário, deve permanecer na mesma tela, atualizando as informações.</li>    
+  	                       </ul>
+  	                   <li>Na tela de resultado exibir mensagem de sucesso: '<span span class="set" name="msgSucessoDesignar">ARC designado com sucesso.</span>'.</li>
+  	              </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="designararc/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+
+  <h5>
+  	     <a name="retomarAnaliseARC" class="menu">Retomar/Reiniciar análise do ARC</a>
+  	</h5>
+   	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Análise' do protótipo descrito em <a href="#detalharARC">detalhar ARC</a>.</li>
+   	               </ul>
+   	           <li>ARCs passivos de retomar/reiniciar análise:</li>
+   	               <ul>
+   	                   <li>Apenas os ARCs nos estados 'Análise delegada'; 'Em análise', desde que haja delegação; ou 'Analisado' podem ter a análise retomada/reiniciada. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá executar esta ação.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Análise':</li>
+   	               <ul>
+   	                   <li>Caso o ARC não possa ter a análise retomada/reiniciada, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Analisar'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do ARC seja 'Analisado', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC já analisado.'</span>.</li>
+   	                 <li>Caso o estado do ARC seja 'Em análise' e haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ARC com análise em andamento por delegado.'</span>.</li>
+   	              </ul>    
+  	           <li>Ao retomar/reiniciar análise:</li>
+  	              <ul>
+  	                   <li>Caso exista delegação vigente, exclui-la.</li>
+  	                   <li>Mudar estado do ARC:</li>
+  	                       <ul>
+  	                          <li>Caso o estado do ARC seja 'Analisado', alterar para 'Em análise'.</li>
+  	                          <li>Caso o estado do ARC seja 'Análise delegada', alterar para 'Preenchido'.</li>
+  	                       </ul>   
+  	                   <li>Se houver, remover as informações de data/hora e usuário que analisou o ARC.</li>       
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do ARC.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Ir para a tela de <a href="#analisarARC">analisar ARC</a>.</li>    
+  	                       </ul>
+  	              </ul>
+   	      </ul>     
+
+
+      <blockquote>
+		  <a href="retomaranalisearc/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+   <h4>
+  	     <a name="designarARCsLote" class="menu">Designar ARCs em lote</a>
+  	</h4>
+  	      <ul>
+  	           <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DesignacaoARCsLote/designacao_arcs_lote_supervisor.html">protótipo</a>.</li>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar a especificação da planilha <a href="../paineldosupervisor/requirement/APSFW0208_Designacao_em_lote.xlsx">APSFW0208_Designacao_em_lote.xlsx</a>.</li>
+		   	           <li>ARCs passivos de designação:</li>
+   	    		           <ul>
+   	            		       <li>São os mesmos definidos em <a href="#designarARC">Designar ARC</a>.</li>
+   	               			</ul>      
+		   	           <li>Filtros:</li>
+   	    	           <ul>
+   	        	           <li>Atividade:</li>
+   	        	               <ul>
+   	        	                    <li>O ARC do tipo 'Externo' só será filtrado se for escolhida a opção 'Todos'.</li> 
+   	        	               </ul>
+   	        	           <li>Risco/Controle:</li>
+   	        	               <ul>
+   	        	                    <li>O ARC do tipo 'Externo' só será filtrado se for escolhida a opção 'Todos'.</li> 
+   	        	               </ul>
+   	            	   </ul>      
+   	               </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="designararclote/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+ 	<h4>
+	     <a name="editarARC" class="menu">Editar ARC</a>
+	</h4>
+	   <ul>
+	       <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Inspetor/EdicaoArc/edicao_arc_inspetor.html">protótipo</a>.
+             <li>Regras gerais:</li>
+                <ul>
+                    <li>Seguir a planilha de especificação:</li>
+                        <ul>
+                             <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldoinspetor/requirement/APSFW0302_Edicao_do_ARC.xlsx">APSFW0302_Edicao_do_ARC.xlsx</a></li>
+                        </ul>
+		            <li>Observar as regras descritas em <a href="#arc">avaliação de risco e controle (ARC)</a>.</li>
+ 	        	    <li>Observar as regras para <a href="#avaliacaoRiscoControle">exibir as 'informações adicionais' dos itens dos elementos e as datas/horas de conclusão da edição e análise</a>.</li>    
+                </ul>
+	   </ul>
+	    <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequalitativa/editararc/indexWeb.html">Cenários de teste web</a>
+       </blockquote>
+	
+ 	<h5>
+	     <a name="concluirEdicaoARC" class="menu">Concluir a edição do ARC</a>
+	</h5>
+         <ul>
+             <li>Regras gerais:</li>
+                <ul>
+                    <li>Observar o descrito em <a href="#editarARC">editar ARC</a>.</li>
+                    <li>Caso exista tendência salva pelo usuário com perfil de inspetor, atualizar o registro com o usuário logado e data e hora atual.</li>     
+                </ul>
+         </ul>
+        <blockquote>
+		   <a href="editarconcluirarc/indexNegocio.html">Cenários de teste de negócio</a>
+        </blockquote>
+        
+        
+ 	<h4>
+	     <a name="analisarARC" class="menu">Analisar ARC</a>
+	</h4>
+	   <ul>
+	       <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/AnaliseARC/analise_arc_supervisor_preenchido.html">protótipo</a>.
+             <li>Regras gerais:</li>
+                <ul>
+                    <li>Seguir a planilha de especificação:</li>
+                        <ul>
+                             <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/APSFW0203_Analise_do_ARC.xlsx">APSFW0203_Analise_do_ARC.xlsx</a>.</li>
+                        </ul>
+		            <li>Observar as regras descritas em <a href="#arc">avaliação de risco e controle (ARC)</a>.</li>
+ 	                <li>Observar as regras para <a href="#avaliacaoRiscoControle">exibir as 'informações adicionais' dos itens dos elementos e as datas/horas de conclusão da edição e análise</a>.</li>    
+                </ul>
+       </ul>         
+       <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequalitativa/analisararc/indexWeb.html">Cenários de teste web</a>
+       </blockquote>        
+    <h5>
+	     <a name="concluirAnaliseARC" class="menu">Concluir a análise do ARC</a>
+	</h5>
+         <ul>
+             <li>Regras gerais:</li>
+                <ul>
+                    <li>Observar o descrito em <a href="#analisarARC">analisar ARC</a>.</li>
+                    <li>Seguir as planilhas de especificação:</li>
+                        <ul>
+                             <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/APSFW0203_Analise_do_ARC_Concluir_Analise_do_ARC.xlsx">APSFW0203_Analise_do_ARC_Concluir_Analise_do_ARC.xlsx</a></li>
+                        </ul>
+                    <li>Caso exista tendência salva pelo usuário com perfil de supervisor, atualizar o registro com o usuário logado e data e hora atual.</li>     
+                </ul>
+         </ul>
+        
+         <blockquote>
+		    <a href="analisarconcluirarc/indexNegocio.html">Cenários de teste de negócio</a>
+         </blockquote>
+        
+  <h4>       
+     <a name="avaliacaoRiscoControle" class="menu">Exibir as 'informações adicionais' dos itens dos elementos e as datas/horas de conclusão da edição e análise</a>
+ </h4>
+        <ul>
+           <li>Regras gerais:</li>
+               <ul>
+                   <li>Observar como são exibidos as informações adicionais, data de conclusão e edição no ANEF conforme as seguintes estórias:</li>
+                   <ul>
+                         <li><a href="../analisequantitativa/index.html#detalharResumoInformacoesAQT">Exibir informações e resumo do ANEF</a>;</li>
+                         <li><a href="../analisequantitativa/index.html#detalharElementosANEF">Exibir elementos do ANEF</a>;</li>
+                         <li><a href="../analisequantitativa/index.html#editarElementoItemANEF">Editar elementos e itens do ANEF</a>; e </li>
+                         <li><a href="../analisequantitativa/index.html#analisarElementoANEF">Analisar elementos do ANEF</a>.</li> 
+                   </ul>
+                   <li>Para os campos de 'Tendência' (vigente, inspetor e supervisor) do ARC:</li>
+                      <ul>
+                          <li>Na tela de detalhamento seguir o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesARC/detalhes_arc_supervisor_analisado.html">protótipo</a>.</li>
+                          <li>Na tela de edição seguir o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Inspetor/EdicaoArc/edicao_arc_inspetor.html">protótipo</a>.</li>
+                          <li>Na tela de análise seguir o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/AnaliseARC/analise_arc_supervisor_analise.html">protótipo</a>.</li>
+                          <li>Observação para os campos de edição:</li>
+                           <ul>
+                               <li>Nos campos editáveis se não houver informações salvas no banco, exibir a mensagem 'Sem alterações salvas.'.</li>
+                               <li>Caso contrário exibir 'Última alteração salva <i>&lt;&lt;usuário que salvou&gt;&gt;</i> em <i>&lt;&lt;data/hora que usuário salvou&gt;&gt;</i>' se houve salvamento de informações.</li>
+                          </ul>
+                      </ul>
+               </ul>
+        </ul>
+        
+        
+   <h4>
+	     <a name="concluirSinteseARC" class="menu">Concluir síntese e atualizar perfil de risco</a>
+	</h4>
+	  <ul>
+	     <li>Ao atualizar perfil de risco, gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+	  </ul>	     
+         <blockquote>
+		     <a href="concluirsintese/indexNegocio.html">Cenários de teste de negócio</a>
+         </blockquote>
+
+
+	<h3>
+  	     <a name="editarAnaliseRiscosControles" class="menu">Editar análise de riscos e controles</a>
+  	</h3>   	       
+  	   <ul>
+ 	        <li>Utilizar <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/EdicaoMatriz/edicao_matriz_supervisor.html">este protótipo</a>.</li>
+ 	        <li>Seguir as seguintes planilhas de documentação:</li>
+ 	            <ul>
+ 	                <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequalitativa/matriz/espec/APSFW0205_Edicao_de_matriz.xlsx">APSFW0205_Edicao_de_matriz.xlsx</a>.</li>
+ 	            </ul> 
+  	   </ul>
+
+ 	<h4>
+  	     <a name="editarMatrizRiscosControles" class="menu">Editar seção de blocos</a>
+  	</h4>   	       
+  	      <ul>
+  	           <li>Regras gerais:</li>
+  	             <ul>
+		            <li>Observar as regras definidas em <a href="#editarAnaliseRiscosControles">editar análise de riscos e controles</a>.</li>
+ 	                <li>Observar as regras definidas em <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequalitativa/matriz/espec/APSFW0205_Edicao_de_matriz_secao_blocos.xlsx">APSFW0205_Edicao_de_matriz_secao_blocos.xlsx</a>.</li>
+   	             </ul>    
+                <li>Além das ações definidas nas regras gerais, deve ser feito:</li>
+                <ul>
+                    <li>É possível que uma matriz possua apenas bloco de negócio ou corporativo.</li>
+                    <li>Sub-seção 'Atividade x Governança'</li>
+                        <ul>
+                           <li>É composta pelo 'Bloco de atividades' e o nome do grupo de risco e controle da metolologia cujo tipo é 'Externo'.</li>
+                           <li>Na sub-seção 'Atividade x Governança' da seção de 'Blocos' não pode ser definido percentual de 100% para o ARC Externo.</li>
+                           <li>Quando o usuário zerar o percentual do ARC externo. e clicar no botão 'Alterar', exibir uma mensagem de alerta do tipo "Atenção. essa operação exclui todo o conteúdo do ARC de Governança. Deseja continuar?</li>
+                        </ul>   
+                </ul>
+          </ul>     
+
+      <blockquote>
+		  <a href="editarmatriz/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+      
+ 	<h4>
+  	     <a name="editarMatrizRiscosControles1" class="menu">Editar matriz de riscos e controles</a>
+  	</h4>
+  	   	       
+      <h5>
+  	     <a name="alteracaoUnidadesAtividades" class="menu">Alteração de unidades e atividades</a>
+  	  </h5>
+  	
+		<ul>
+		    <li>Observar as regras definidas em <a href="#editarAnaliseRiscosControles">editar análise de riscos e controles</a>.</li>
+			<li>O ícone para a exclusão da unidade só será exibido caso todas as atividades associadas a ela não tiverem ARCs vinculados.</li>
+			<li>O ícone para a exclusão da atividade só será exibido caso não existam ARCs vinculados a ela.</li>
+            <li>Somente os 'Grupos de Risco e controle' cujo tipo seja 'Matriz' podem ser utilizados para incluir ARCs na matriz.</li>
+			<li>Ao alterar uma atividade, será possível excluir todos os ARCs vinculados a ela.</li>
+			<ul>
+				<li>Ao clicar no ícone de exclusão dos ARCs:</li>
+				<ul>
+					<li>Exibir um pop-up com a seguinte mensagem: 'Atenção, essa operação exclui todo o conteúdo dos ARCs. Deseja continuar?'; e com as opções 'Sim' e 'Não'.</li>
+					<li>Ao clicar na opção 'Sim':</li>
+		 			<ul>
+		 				<li>Remover os ARCs da lista.</li>
+		 			</ul>
+	 				<li>Ao clicar na opção 'Não':</li>
+	 				<ul>
+	 					<li>Fechar o pop-up e não realizar nenhuma ação.</li>
+	 				</ul>
+				</ul>
+				<li>Ao clicar no botão 'Confirmar'</li>
+				<ul>
+					<li>Caso os ARCs excluídos na tela estejam associados a uma atividade de outra matriz, apagar apenas o registro da célula de risco e controle.</li>
+					<li>Senão, além de apagar o registro da célula de risco e controle, excluir também o próprio registro do ARC.</li>
+				</ul>
+			</ul>
+		</ul>
+		
+		<blockquote>
+			<a href="editarmatriz/excluirgruposatividadesunidades/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+      <blockquote>
+          Testes antigos:
+          <ul>
+		      <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0205_Edicao_matriz_inclusao_linhas_e_colunas.html">TestAPSFW0205_Edicao_matriz_inclusao_linhas_e_colunas.html</a></li>
+		      <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0205_Edicao_de_matriz_exclusao_linhas_e_colunas.html">TestAPSFW0205_Edicao_de_matriz_exclusao_linhas_e_colunas.html</a></li>
+		      <li><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/TestAPSFW0205_Edicao_matriz_transferir_arcs.html">TestAPSFW0205_Edicao_matriz_transferir_arcs.html</a></li>
+		  </ul>
+      </blockquote>
+
+
+      <h4>
+  	     <a name="liberarMatriz" class="menu">Liberar análise de riscos e controles</a>
+  	  </h4>
+  	
+		<ul>
+		    <li>Validações:</li>
+		        <ul>
+		            <li>Observar as regras definidas em <a href="#editarAnaliseRiscosControles">editar análise de riscos e controles</a>.</li>
+		            <li>Caso a matriz seja definida como sendo 100% 'Corporativa':</li>
+		            <ul>
+		                <li>Não pode haver unidade de negócio.</li>
+		                <li>Não pode haver atividade cuja 'Unidade associada' de negócio.</li>
+		            </ul>
+		            <li>Caso a matriz seja definida como sendo 100% 'Negócio':</li>
+		            <ul>
+		                <li>Não pode haver atividade cuja 'Unidade associada' seja 'Corporativa'.</li>
+		                <li>Não pode haver atividade cujo 'Tipo' seja 'Corporativo'.</li>
+		            </ul>
+		            <li>No bloco 'Atividade x Governança' o percentual para 'Governança corporativa' não pode ser 100%.</li>
+		        </ul>
+			<li>Após clicar e passar com sucesso pelas validações:</li>
+			<ul>
+				<li>Tratar ARC externo:</li>
+				   <ul>
+				      <li>Caso no bloco 'Atividade x Governança' seja definido percentual > 0 para o ARC externo:</li>
+				          <ul>
+				          <li>Caso já tenha sido publicado ARC externo ciclo atual:</li>
+				                 <ul>
+				                     <li>Deve-se recuperar o último ARC para o 'Grupos de Risco e controle' cujo tipo seja 'Externo' publicado para adicionar ao perfil de risco.</li>
+				                     <li>O respectivo rascunho do ARC deverá ser zerado.</li>
+				                 </ul>
+				              <li>Senão:</li>
+				                 <ul>
+				                     <li>Deve-se criar no perfil o ARC para o 'Grupos de Risco e controle' cujo tipo seja 'Externo'.</li>
+				                 </ul>
+				          </ul>  
+				      <li>Caso no bloco 'Atividade x Governança' seja definido percentual = 0 para o ARC externo:</li>
+				          <ul>
+				               <li>Remover do perfil de risco o ARC para o 'Grupos de Risco e controle' cujo tipo seja 'Externo'.</li>
+				          </ul>     
+				   </ul>     
+				<li>Criar registro no perfil de risco para a 'Nota ajustada' da nova matriz indicando que não há ajuste.</li>
+				<li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+				
+			</ul>
+		</ul>    
+      
+      <blockquote>
+		  <a href="liberarmatriz/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+      
+   <h3>
+  	     <a name="notasAnaliseQualitativa" class="menu">Notas</a>
+  	</h3>   	       
+
+  	<h4>
+  	     <a name="alterarNotaFinal" class="menu">Ajuste de nota final da análise de riscos e controles</a>
+  	</h4>   	       
+  	      <ul>
+  	           <li>Regras gerais:</li>
+  	             <ul>
+  	   	 	        <li>Utilizar <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/AjusteNotaFinal/ajuste_nota_final_supervisor.html">este protótipo</a>.</li>
+  	   	 	        <li>A funcionalidade é acionada pelo supervisor ao clicar no botão 'Ajustar nota final' na <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">tela de perfil de risco</a>.</li>
+   	             </ul>    
+               <li>Matriz vigente:</li>
+                   <ul>
+                      <li>Deve-se exibir a matriz vigente do perfil de risco permitindo a mesma navegação nos ARCs.</li>
+                   </ul>          
+                <li>Seção 'Ajuste de nota final':</li>
+   	                <ul>   
+  	                <li>Campo 'Nota ajustada vigente':</li>
+  	                    <ul>
+   	                        <li>As informações do campo devem ser recuperadas do perfil de risco vigente.</li>
+   	                            <ul>
+   	                                <li>Caso não haja registro e no ciclo anterior exista ajuste feito pelo COREC, deve-se exibir apenas o valor do ajuste com a palavra '(Corec)'.</li>
+   	                            </ul>
+                            <li>Informações adicionais:</li>
+                            <ul>      
+							    <li>Caso não seja exibido o ajuste feito pelo COREC, exibir o usuário e data/hora da atualização.</li>
+							</ul> 
+   	                    </ul>        
+                		<li>Campo 'Nova nota ajustada':</li>
+  	                    <ul>
+   	                        <li>As informações do campo devem ser recuperadas do rascunho.</li>
+   	                        <li>Valores para seleção e comportamento:</li>
+   	                            <ul>
+                            	    <li>Os valores possíveis de seleção são nulo (Remover ajuste) e a lista de valores do 'Parâmetro nota do ARC' exceto o valor correspondente a 'N/A' da metodologia.</li>
+                                    <li>Ao selecionar 'Remover ajuste', a justificativa deve ser suprimida.</li>
+                                </ul>
+                            <li>Informações adicionais:</li>
+                            <ul>      
+							    <li>Caso a 'Nova nota ajustada' nunca tenha sido salva, deve-se exibir a mensagem 'Sem alterações salvas'; senão</li>
+							    <li>Caso as informações da 'Nova nota ajustada' (nota, justificativa, usuário e data de alteração) de rascunho sejam iguais a vigente, o sistema deverá exibir a a mensagem 'Sem alterações salvas'; senão.</li>
+							    <li>Exibir o usuário e data/hora da última atualização.</li>
+							</ul> 
+                            <li>Caso o usuário, data/hora e texto sejam iguais</li>     
+   	                    </ul>
+				    <li>Alertas:</li> 
+                        <ul> 
+                            <li>Caso o usuário altere a 'Nova nota ajustada' e enquanto não salvar, exibir a mensagem em vermelho <span style="color:red">'Atenção informações não salvas.'</span> ao lado do botão 'Salvar'.</li>
+                        </ul>       	                            
+   	                </ul>    
+   	           <li>Botão 'Salvar':</li>
+   	                <ul>
+   	                <li>Após clicar e passar com sucesso pelas validações:</li>      
+   	               		<ul>
+   	                    	<li>Salvar a 'Nova nota ajustada de rascunho'.</li>
+   	                    	   <ul>
+   	                    	       <li>Caso a nota ajustada seja 'Remover ajuste', salvar nulo no valor e no campo de justificativa.</li>
+   	                    	   </ul>     
+   	                    	<li>Atualizar as informações adicionais.</li>
+   	                    	<li>Validar se o botão 'Confirmar novo ajuste de nota final e atualizar Perfil de Risco' deve estar habilitado.</li>
+   	               		</ul>
+   	               	</ul>	   
+   	           <li>Botão 'Confirmar novo ajuste de nota final e atualizar Perfil de Risco':</li>
+   	              <ul>
+   	           		  <li>Validações:</li>
+   	           		      <ul>
+   	                         <li>O botão só deverá estar habilitado caso haja diferença entre a 'Nova nota ajustada' e a 'Nota ajustada vigente'.</li>
+						     <li>Caso a 'Nova nota ajustada' tenha uma nota diferente de 'Remover ajuste' e não houver justificativa, exibir a mensagem de erro: 'Campo 'Justificativa' da 'Nova nota ajustada' é de preenchimento obrigatório.'.</li>
+  	  	   	 	        	 <li>Caso a 'Nota calculada' seja '*A', exibir mensagem de erro indicando que não poderá fazer o ajuste da nota, pois não há nota calculada.</li>  
+  	  	   	 	        	 <li>Caso a 'Nova nota ajustada' seja 'Remover ajuste', passa a valer a nota calculada vigente e se despreza o ajuste do COREC feito no ciclo anterior.</li>  
+   	                      </ul>   
+   	                <li>Após clicar:</li>      
+   	               		<ul>
+  	                        <li>Criar novo perfil de risco, recuperando as informações do perfil de risco vigente observando as seguintes regras:</li>
+  	                        <ul>
+                                <li>Utilizar a 'Nova nota ajustada' de rascunho que será o vigente.</li>
+                                <li>Criar novo 'Nova nota ajustada' de rascunho com os mesmos valores do vigente.</li>
+  	                        </ul>
+		  				    <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+  	                        <li>Atualizar o quadro 'Ajuste de nota final'.</li>
+   	                    </ul>	 
+   	              </ul>  
+	   	    <li>Botão 'Voltar/Voltar sem salvar':</li>
+	   	     <ul>
+	   	         <li>Sempre que houver alguma informação alterada sem ter sido salva pelo usuário será exibido o botão 'Voltar sem salvar'. Caso contrário, será exibido o 'Voltar'. </li>
+	   	     </ul>
+	     </ul>
+
+      <blockquote>
+		  <a href="alterarnotafinal/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+ 	
+ 	<h3>
+  	     <a name="imprimirMatrizPDF" class="menu">Impressão da análise de riscos e controles em PDF</a>
+  	</h3>
+ 	
+ 		<ul>
+ 			<li>Gerar um arquivo PDF da seção de análise de riscos e controles da tela do perfil de risco.
+ 			<ul>
+	 			<li>Utilizar o <a href="Matriz.pdf">modelo</a> como referência, lembrando que ele foi desenvolvimento quando essa seção continha apenas a matriz de riscos e controles.</li>
+ 			</ul>
+ 		</ul>
+ 		
+ 		<blockquote>
+		  <a href="imprimirdossiearc/indexNegocio.html">Cenários para testes manuais das notas dos ARCs</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/corec/ajustesperfilriscoavaliacoescorec/indexWeb.html">Cenários para testes manuais dos ajustes da nota da Matriz pelo comitê</a>
+      	</blockquote>
+
+     </body>
+     
+     
+</html>

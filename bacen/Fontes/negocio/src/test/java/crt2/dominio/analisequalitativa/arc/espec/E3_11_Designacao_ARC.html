@@ -1,0 +1,252 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.11. Designação de ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>25/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>25/04/2014</td>
+				<td>1.0</td>
+				<td>Código de tela segue o padrão [APSTTNNNN], onde TT - Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório); NNNN - Numérico.</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_11">E3.11. Designação de ARC</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC no estado em andamento cadastrado no sistema de acordo com a metodologia da ES e uma versão da matriz no estado 2 - Vigente.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela inicial da aplicação para o perfil supervisor</p>
+			<p>Início --> Ciclo SRC --> Consulta</p>
+		</blockquote>
+
+		<h3>Tela</h3>
+
+		<blockquote>
+			<p><b>Título: Designação em lote de ARCs</b></p>
+			<p>Trilha: Início --> Ciclo SRC --> Consulta --> Designação de ARC</p>
+			<p>Código de tela: [APSFW0000]</p>
+			<p>Comando: Designar e Voltar</p>
+
+			<input type="image" src="Tela01_E3_11.png"/>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade para designação em lote de ARCs cadastrados para uma matriz de riscos e controles.</p>
+			<p>Tela disponível apenas para o perfil <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>A funcionalidade exibe os ARCs da matriz do ciclo selecionado no painel do supervisor nos estados:
+				<ul>
+					<li>Previsto;</li>
+					<li>Designado.</li>
+				</ul>
+			</li>
+
+			<li>A funcionalidade deve permitir filtrar os ARCs utilizando os critérios disponíveis.</li>
+			<li>A funcionalidade deve permitir a seleção de um ou mais ARCs simultaneamente.</li>
+			<li>A funcionalidade deve permitir a designação de um servidor responsável para um ou mais ARCs simultaneamente.</li>
+			<li>A funcionalidade deve permitir a redesignação de um servidor responsável para um ou mais ARCs simultaneamente.</li>
+			<li>A funcionalidade deve permitir a seleção de servidor integrante da equipe da ES (Servidores da equipe).</li>
+			<li>A funcionalidade deve permitir a seleção de servidor diverso, exibido de acordo com a sua respectiva unidade (Outros servidores).</li>
+			<li>As funcionalidades básicas de um usuário com perfil supervisor são filtrar e designar ARCs.</li>
+			<li>O critério 'Atividade' do filtro exibe somente as atividades pertencentes ao conjunto de ARCs da matriz selecionada.</li>
+			<li>O critério 'Grupo' do filtro exibe somente os grupos pertencentes ao conjunto de ARCs da matriz selecionada.</li>
+			<li>O critério 'Risco/Controle' do filtro exibe somente os valores 'Risco' e 'Controle'.</li>
+			<li>O critério 'Estado' do filtro exibe somente os valores 'Previsto' e 'Designado'.</li>
+			<li>O critério 'Responsável' do filtro exibe somente os servidores já designados como responsáveis para os ARCs da matriz selecionada.</li>
+
+			<li>Ciclo de vida do ARC:
+				<ul>
+					<li>1 - Previsto: na criação do ARC após liberação da matriz na inclusão manual do ciclo ou na inclusão automática do ciclo,
+							ambos por usuário com perfil supervisor (responsável da ES).</li>
+					<li>2 - Designado: após a designação de atualização do ARC pelo usuário com perfil supervisor (responsável da ES).</li>
+					<li>3 - Em edição: após alteração do ARC pelo usuário designado. Permanece neste estado até o usuário designado concluir o preenchimento.</li>
+					<li>4 - Preenchido: usuário informa que finalizou a inclusão de notas.</li>
+					<li>5 - Análise delegada: supervisor responsável da ES delega a análise do ARC para outro usuário.</li>
+					<li>6 - Em análise: supervisor responsável da ES ou outro usuário por ele delegado está analisando o ARC.</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../test/TestE3_11DesignacaoARC.html">Negócio</a>.</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Clicar no botão designar sem selecionar, ao menos, um ARC. Mensagem:
+				<ul><li>"Seleção de ARC é obrigatória."</li></ul>
+			</li>
+
+			<li>
+				<b id="C002">C002</b> Falha - Clicar no botão designar sem selecionar um servidor. Mensagem:
+				<ul><li>"É obrigatória a seleção do campo Servidores da equipe ou Outros servidores."</li></ul>
+			</li>
+
+			<li>
+				<b id="C003">C003</b> Falha - Clicar no botão designar tendo selecionado os campos 'Servidores da equipe' e 'Outros servidores' simultaneamente. Mensagem:
+				<ul><li>"Selecione apenas um único servidor para designação."</li></ul>
+			</li>
+
+			<li>
+				<b id="C004">C004</b> Falha - Designar ARC de matriz no estado 1 - Esboçada. Mensagem:
+				<ul><li>"Só é permitada a designação de ARC em matriz com estado Vigente."</li></ul>
+			</li>
+
+			<li>
+				<b id="C005">C005</b> Falha - Designar ARC no estado 3 - Em edição. Mensagem:
+				<ul><li>"Só é permitada a designação para ARC com estados Previsto ou Designado."</li></ul>
+			</li>
+
+			<li>
+				<b id="C006">C006</b> Falha - Designar ARC no estado 4 - Preenchido. Mensagem:
+				<ul><li>"Só é permitada a designação para ARC com estados Previsto ou Designado."</li></ul>
+			</li>
+
+			<li>
+				<b id="C007">C007</b> Falha - Designar ARC no estado 5 - Análise delegada. Mensagem:
+				<ul><li>"Só é permitada a designação para ARC com estados Previsto ou Designado."</li></ul>
+			</li>
+
+			<li>
+				<b id="C008">C008</b> Falha - Designar ARC no estado 6 - Em análise. Mensagem:
+				<ul><li>"Só é permitada a designação para ARC com estados Previsto ou Designado."</li></ul>
+			</li>
+
+			<li>
+				<b id="C009">C009</b> Sucesso - Designar ARC. Mensagem:
+				<ul><li>"ARC(s) designado(s) com sucesso."</li></ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_11_Designacao_ARCs.html">Web</a>.</h2>	
+
+		<ul>
+			<li>Conferir - se na tela de designação há somente ARCs nos estados 1 - Previsto ou 2 - Designado.</li>
+			<li>Conferir - se o critério 'Atividade' do filtro exibe somente as atividades pertencentes ao conjunto de ARCs da matriz selecionada.</li>
+			<li>Conferir - se o critério 'Grupo' do filtro exibe somente os grupos pertencentes ao conjunto de ARCs da matriz selecionada.</li>
+			<li>Conferir - se o critério 'Risco/Controle' do filtro exibe somente os valores 'Risco' e 'Controle'.</li>
+			<li>Conferir - se o critério 'Estado' do filtro exibe somente os valores 'Previsto' e 'Designado'.</li>
+			<li>Teste web equivalente - <b><a href="#C001">C001</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C002">C002</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C003">C003</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C004">C004</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C005">C005</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C006">C006</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C007">C007</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C008">C008</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C009">C009</a></b> - Conferir apenas a mesangem.</li>
+			<li>Conferir - se o critério 'Responsável' do filtro exibe somente os servidores já designados como responsáveis para os ARCs da matriz selecionada.</li>
+			<li>Conferir - Combinar critérios e clicar no botão 'Filtrar'. Verificar se o resultado do filtro é o esperado para os critérios combinados.</li>
+			<li>Sucesso - Testar a navegabilidade do comando Voltar.</li>
+		</ul>
+
+		<h2><a id="modelo_de_dados"></a>Modelo de dados</h2>
+
+		DROP TABLE SUP.DES_DESIGNACAO_ARC	
+
+		<br><br>	
+
+		CREATE TABLE SUP.DES_DESIGNACAO_ARC (DES_ID int PRIMARY KEY NOT NULL,
+   			DES_CD_MATRICULA int NOT NULL,
+   			ARC_ID int NOT NULL,
+   			DES_CD_OPER_ATUALZ char(30) NOT NULL,
+   			DES_DH_ATUALZ timestamp NOT NULL,
+   			DES_NU_VERSAO int NOT NULL);
+
+		<br><br>
+
+		comment on table SUP.DES_DESIGNACAO_ARC is
+		'/NOME: Designação do ARC (DES)
+		/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+
+		<br><br>
+
+		comment on column SUP.DES_DESIGNACAO_ARC.DES_ID is 
+		'/NOME: Identificador de registro.
+		/FUNÇÃO: Identificar unicamente o registro na tabela.
+		/DOMÍNIO:
+		/FONTE: Gerado automaticamente pelo sistema.';
+
+		<br><br>
+
+		comment on column SUP.DES_DESIGNACAO_ARC.SER_CD_MATRICULA is 
+		'/NOME: Número da matrícula do servidor.
+		/FUNÇÃO: Referenciar o servidor associado a designação do ARC.
+		/DOMÍNIO:
+		/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+
+		<br><br>
+
+		comment on column SUP.DES_DESIGNACAO_ARC.ARC_ID is 
+		'/NOME: Identificador da análise de riscos e controle (ARC).
+		/FUNÇÃO: Referenciar o ARC associada a designação do ARC.
+		/DOMÍNIO:
+		/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+
+		<br><br>
+
+		comment on column SUP.DES_DESIGNACAO_ARC.DES_CD_OPER_ATUALZ is 
+		'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+		/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+		/DOMÍNIO:
+		/FONTE: Gerado automaticamente pelo sistema.';
+
+		<br><br>
+
+		comment on column SUP.DES_DESIGNACAO_ARC.DES_DH_ATUALZ is 
+		'/NOME: Momento da última operação realizada sobre esta versão do registro.
+		/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+		/DOMÍNIO:
+		/FONTE: Gerado pelo sistema.';
+
+		<br><br>
+
+		comment on column SUP.DES_DESIGNACAO_ARC.DES_NU_VERSAO is 
+		'/NOME: Número de versão para controle de concorrência.
+		/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+		/FONTE: Gerado pelo sistema.';
+
+		<br><br>
+
+		ALTER TABLE SUP.DES_DESIGNACAO_ARC ADD FOREIGN KEY (ARC_ID) REFERENCES SUP.ARC_AVAL_RIS_CON (ARC_ID);
+	</body>
+</html>

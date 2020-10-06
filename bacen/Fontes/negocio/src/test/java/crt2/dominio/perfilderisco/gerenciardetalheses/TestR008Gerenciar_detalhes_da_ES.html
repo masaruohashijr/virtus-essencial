@@ -1,0 +1,812 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R008 - Gerenciar detalhes da ES</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Nota calculada da análise de riscos e controles'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>27/07/2017</td>
+			<td>David Nascimento</td>
+			<td>Adicionando roteiro para contemplar a mudança na 'Nota final ajustada' onde agora deixa de ser um valor selecionado pelo usuário e passa a ser cálculada pelo sistema com base na média ponderada entre a nota da 'análise econômico-financeira' e a nota da 'análise de riscos e controles'.</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>21/08/2017</td>
+			<td>Kalina Lígia</td>
+			<td>Novo cenário: Exibir nota final mesmo sem ter feito publicação de percentuais ou ajuste.</td>
+		</tr>
+		<tr>
+			<td>2.1</td>
+			<td>12/09/2017</td>
+			<td>David Nascimento</td>
+			<td>Ajustando cenário CT006 e adicionando os cenários CT007 a CT015 a fim de contemplar a alteração na forma de calcular a nota final quando houver ajuistes do COREC ou do supervisor. Além do mais, o percentual default para ES com ciclo de 3 anos será de 50%, tanto para 'Análise econômica-financeira', como para 'Análise de riscos e controles'.</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#gerenciarDetalhesdaES">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	<ul>
+	    <banco/>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+		<li>Data/hora atual do sistema: <strong><dataHoraAtual valor="14/12/2017 00:00:00">14/12/2016 00:00:00</dataHoraAtual></strong></li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#verificarCalculo">verificar o valor da nota calculada e nota refinada</a>.
+	</blockquote>
+	       
+	       	       
+    <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Verificar a Nota final calculada e refinada quando não há notas  calculadas na 'análise econômico-financeira' e na 'análise de riscos e controles'.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C001_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">3</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">*A</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">*A</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">*A</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">*A</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+       </table><br>
+	       
+	       
+	    <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Verificar a Nota final calculada e refinada quando não há nota calculada na 'análise econômico-financeira', mas há nota calculada na 'análise de riscos e controles'.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C002_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">3</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">*A</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">1,48</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">1,48</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">1</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">4+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table><br>
+	       
+	       
+	       
+	    <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Verificar a Nota final calculada e refinada quando há nota calculada na 'análise econômico-financeira', mas não há nota calculada na 'análise de riscos e controles'.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C003_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">4</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">2,95</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">*A</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,95</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">3-</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">4+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table><br>
+	       
+	       
+	       <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004]</b> - Verificar a Nota final calculada e refinada quando há notas calculadas na 'análise econômico-financeira' e na 'análise de riscos e controles'.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C004_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,07</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2+</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">3+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT005]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' mesmo sem ter feito publicação de percentuais ou ajuste.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C005_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,29</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	    <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT006]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC no ciclo atual e sem ajuste do supervisor (ES em ciclo com mais de 3 anos).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C006_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,18</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)"></span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	        <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT007]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' sem ajuste do COREC e com ajuste do supervisor no ciclo atual.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C007_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">3,10</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">3,50</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">3,22</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">4+</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">3+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	       <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT008]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC no ciclo anterior e sem ajuste do supervisor.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C008_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">3,50</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">4,00</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">3,85</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">4</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">Baixo (Corec)</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	   <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT009]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' sem ajuste do COREC e com ajuste do supervisor no ciclo anterior.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C009_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,29</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">3+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	       <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT010]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC e com ajuste do supervisor (ambos no ciclo anterior).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C010_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">3,50</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">4,00</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">3,85</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">4</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">Baixo (Corec)</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	    <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT011]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC e com ajuste do supervisor (ambos no ciclo atual).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C011_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">3,10</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">3,50</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">3,22</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">4+</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">3+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	        <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT012]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC  no ciclo atual e com ajuste do supervisor no ciclo anterior.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C012_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,29</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">3+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	       <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT013]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC no ciclo anterior e com ajuste do supervisor no ciclo atual.</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C013_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">5</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">3,10</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">3,50</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">3,22</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">4+</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)">3+</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	    <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT014]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC no ciclo anterior e com ajuste do supervisor no ciclo atual (supervisor removeu ajustes).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C014_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">6</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,07</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2+</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)"></span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+	       
+	       
+	       <table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT015]</b> - Verificar a nota final calculada da 'análise econômico-financeira' e na 'análise de riscos e controles' com ajuste do COREC anterior e com ajuste do supervisor no ciclo anterior (supervisor removeu ajustes).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+						<banco/>
+						<td>Os dados encontram-se <a href="TestR008Gerenciar_detalhes_da_ES_C015_DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+					<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th >Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td class="set" name="perfil" converter="Integer">6</td>
+                    	    <td>
+		    	                 <ul>
+		    	                     <li>Nota calculada da Análise econômica-financeira: <strong><span class="eq" value="$THIS.getNotaCalculadaAEF(perfil)">1,90</span></strong></li>
+		    	                     <li>Nota calculada da Análise de riscos e controles: <strong><span class="eq" value="$THIS.getNotaCalculadaARC(perfil)">2,46</span></strong></li>
+		    	                     <li>Nota final calculada: <strong><span class="eq" value="$THIS.getNotaFinalCalculada(perfil)">2,29</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    		                 <li>Nota final ajustada vigente: <strong><span class="eq" value="$THIS.getNotaAjustadaVigente(perfil)"></span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+						</td>
+					</tr>
+				</table>
+	       </table>
+</body>
+</html>

@@ -1,0 +1,1765 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória APSFW0402 - Consulta de ARCs</h1>
+
+	<span id="index"></span>
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>18/07/2014</td>
+			<td>David Moura</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>04/08/2014</td>
+			<td>David Moura</td>
+			<td>Estória - Perfil de risco customizado para o "perfil consulta"</td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>27/08/2014</td>
+			<td>Victor Vasconcelos</td>
+			<td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas)</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>09/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Todas as telas - Detalhes do ARC a partir da matriz (7 telas - 5 para cada tela)</td>
+		</tr>
+		<tr>
+			<td>1.4</td>
+			<td>03/12/2014</td>
+			<td>David Nascimento</td>
+			<td>Adicionado cenário C008 para a cobertura da estória: "ordem de Elementos e Itens de elementos nas telas do
+				sistema (iteração 27)."</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória:
+		<ul>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/APSFW0402_Consulta_de_ARCs.xlsx">APSFW0402_Consulta_de_ARCs.xlsx</a>.</li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/ARC%20navega%C3%A7%C3%A3o.xlsx">ARC
+					navegação.xlsx</a>.</li>
+		</ul>
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários de falha para a estória APSFW0402 - Consulta de ARCs</h2>
+	<blockquote>Cenários WEB de conferência para a estória Consulta de ARCs</blockquote>
+
+	<table class="exemplos" style="width: 944px;">
+		<tr>
+			<th style="width: 88px;">Cenário</th>
+			<th style="width: 84px;">Dados pré-existentes</th>
+			<th style="width: 195px;">Ação pretendida</th>
+			<th style="width: 1402px;">Resultado esperado</th>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C001</b> - Ao entrar na tela de Consulta de ARCs, a Combobox 'Versão', deverá estar com a
+				listagem de datas dos ARCs concluídos. Por default seu valor inicial deverá estar setado como = 'Vigente'.</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a> <br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_1.html" class="include">aqui</a> e <a
+				href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_2.html" class="include">aqui</a><br> <br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Clica na Nota: <span class="clickon" sleep="3000" by="id:linkControle12"><b>2</b></span></li>
+					<li>Clica no expandir: <span class="clickon" by="id:bttExpandirNotaAjustada"><b>Nota ajustada</b></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Consulta de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Consulta de ARCs</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+				</ul> <span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td><b>Versão</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idAvaliacaoRiscoControle">
+										<li>vigente</li>
+										<li>25/05/2014</li>
+									</ul>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABNAMRO(00000191)</b>
+								</th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>25/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+								<td>25/05/2015</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+
+					</table> <br>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informações do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Atividade</b></td>
+								<td>Atividade corporativa 1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Grupo</b></td>
+								<td>Crédito</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Risco/Controle</b></td>
+								<td>Controle</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Analisado por</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tARCResumido']">
+					<table id="tARCResumido" cellspacing="1" cellpadding="3" style="width: 90%">
+						<thead>
+							<tr class="fundoPadraoAEscuro3">
+								<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#idTituloElemento11" id="linkElemento1d2"> Ambiente
+										de controle</a></td>
+								<td id="notaFinal1d4">2</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota calculada</td>
+								<td id="notaCalculadaArrastoFinal1d5">2</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota ajustada</td>
+								<td id="notaAjustadaFinal1d6"><label style="" id="labelNotaAjustadaFinal1d7">2</label></td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#tDadosTendenciaRiscoMercado">Tendência</a></td>
+								<td id="notaTendenciaFinal1d8">Melhora</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Gestão do Risco de
+									Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do ARC calculada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a> <img
+										src="../../../crt2/menos-p.gif">
+								</a><b>Nota do ARC ajustada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa para Controle de Risco de Crédito (versão 2 - Supervisor)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosElementos11']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ambiente de controle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do elemento</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Qualidade da
+															carteira de crédito</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>JustificativaparaoitemQualidadedacarteiradecrédito Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+
+									</div>
+								</td>
+							</tr>
+					</table>
+			</span> <br> <span class="compareTable" by="xpath://table[@id='tabelaAnaliseDados11']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Análise do supervisor
+									para o elemento "Ambiente de controle"</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa do supervisor para o elemento Ambiente de controle (versão 3)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Tendência - Gestão do
+									Risco de Crédito</th>
+							</tr>
+						</thead>
+
+						<tr class="fundoPadraoAClaro3">
+							<td style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+							<td>
+								<table style="width: 100%;">
+									<tr>
+										<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+									</tr>
+									<tr>
+										<td><label><b>Melhora</b></label></td>
+									</tr>
+									<tr>
+										<td><div style="width: 100%">Justificativa para Melhora (versão2)</div></td>
+									</tr>
+								</table>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+			</span><br> <br> <span type="table">
+					<table>
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2; color: black;"><span>Anexo 1</span></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</span><br>
+				<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C001_porfim.html" class="include">As tabelas populadas
+						se encontram aqui</a></li>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C002</b> - Selecionar a versão do perfil de risco anterior a penúltima.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Clica na Nota: <span class="clickon" by="id:linkControle12" sleep="2000"><b>2</b></span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idAvaliacaoRiscoControle" sleep="2000">25/05/2014</span></li>
+					<li>Clica no expandir: <span class="clickon" by="id:bttExpandirNotaAjustada"><b>Nota ajustada</b></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta <input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco <input type="image" src="../../../crt2/seta.gif" />Consulta de ARCs
+					</span>
+					</li>
+					<li>O título da tela deve ser: <span class="contains"><b>Consulta de ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+				</ul> <span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td><b>Versão</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idAvaliacaoRiscoControle">
+										<li>vigente</li>
+										<li>25/05/2014</li>
+									</ul>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO(00000191)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>25/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+								<td>25/05/2015</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+
+					</table> <br>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informações do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Atividade</b></td>
+								<td>Atividade corporativa 1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Grupo</b></td>
+								<td>Crédito</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Risco/Controle</b></td>
+								<td>Controle</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Analisado por</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tARCResumido']">
+					<table id="tARCResumido" cellspacing="1" cellpadding="3" style="width: 90%">
+						<thead>
+							<tr class="fundoPadraoAEscuro3">
+								<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#idTituloElemento7" id="linkElemento205"> Ambiente
+										de controle</a></td>
+								<td id="notaFinal207">1</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota calculada</td>
+								<td id="notaCalculadaArrastoFinal1d2">1</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota ajustada</td>
+								<td id="notaAjustadaFinal1d3"><label style="" id="labelNotaAjustadaFinal1d4">1</label></td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#tDadosTendenciaRiscoMercado">Tendência</a></td>
+								<td id="notaTendenciaFinal1d5">Estabilidade</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Gestão do Risco de
+									Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do ARC calculada</b></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a> <img
+										src="../../../crt2/menos-p.gif">
+								</a><b>Nota do ARC ajustada</b></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa para Controle de Risco de Crédito (versão 1 - Supervisor)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosElementos7']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ambiente de controle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do elemento</b></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Risco de liquidação</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>Justificativa para o item Risco de liquidação Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+
+									</div>
+								</td>
+							</tr>
+					</table>
+			</span> <br> <span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Tendência - Gestão do
+									Risco de Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+							<tr class="fundoPadraoAClaro3">
+								<td style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+								<td>
+									<table style="width: 100%;">
+										<tr>
+											<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+										</tr>
+										<tr>
+											<td><label><b>Estabilidade </b></label></td>
+										</tr>
+										<tr>
+											<td><div style="width: 100%">Justificativa para Estabilidade (versão 1)</div></td>
+										</tr>
+									</table>
+								</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span type="table">
+					<table>
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2; color: black;"><span>Anexo 1</span></td>
+								<td><a>Documento.docx</a></td>
+							</tr>
+						</tbody>
+
+					</table>
+					<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</span><br>
+				<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C002_porfim.html" class="include">As tabelas populadas
+						se encontram aqui</a></li>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C003</b> - Selecionar a versão do perfil de risco anterior a vigente. <br> <br>(OBS.:
+				Selecionar na tela de Perfil de risco o Ciclo anterior)</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="5000">23/05/2014</span></li>
+					<li>Clica na Nota: <span class="clickon" by="id:linkControle6" sleep="2000"><b>4</b></span></li>
+					<li>Clica no expandir: <span class="clickon" by="id:bttExpandirNotaAjustada"><b>Nota ajustada</b></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta <input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco <input type="image" src="../../../crt2/seta.gif" />Consulta de ARCs
+					</span>
+					</li>
+					<li>O título da tela deve ser: <span class="contains"><b>Consulta de ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+				</ul> <span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr class="aesquerda">
+								<td style="width: 25%; text-align: right;">Versão</td>
+								<td colspan="3">
+									<ul class="options" by="id:idAvaliacaoRiscoControle">
+										<li>vigente</li>
+										<li>25/05/2014</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO(00000191)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Pós-corec</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>23/05/2013</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>23/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+
+					</table> <br>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informações do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Atividade</b></td>
+								<td>Atividade corporativa 1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Grupo</b></td>
+								<td>Crédito</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Risco/Controle</b></td>
+								<td>Controle</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Analisado por</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tARCResumido']">
+					<table id="tARCResumido" cellspacing="1" cellpadding="3" style="width: 90%">
+						<thead>
+							<tr class="fundoPadraoAEscuro3">
+								<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#idTituloElemento5" id="linkElemento222"> Ambiente
+										de controle</a></td>
+								<td id="notaFinal224">4</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota calculada</td>
+								<td id="notaCalculadaArrastoFinal225">4</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota ajustada</td>
+								<td id="notaAjustadaFinal226"><label style="" id="labelNotaAjustadaFinal227">4</label></td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#tDadosTendenciaRiscoMercado">Tendência</a></td>
+								<td id="notaTendenciaFinal228">Melhora</td>
+							</tr>
+
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Gestão do Risco de
+									Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do ARC calculada</b></td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a> <img
+										src="../../../crt2/menos-p.gif">
+								</a><b>Nota do ARC ajustada</b></td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa para Controle de Risco de Crédito (versão 2 - Supervisor)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosElementos5']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ambiente de controle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do elemento</b></td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Qualidade da
+															carteira de crédito</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>JustificativaparaoitemQualidadedacarteiradecrédito Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+
+									</div>
+								</td>
+							</tr>
+					</table>
+			</span> <br> <span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Tendência - Gestão do
+									Risco de Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+								<td>
+									<table style="width: 100%;">
+										<tr>
+											<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+										</tr>
+										<tr>
+											<td><label><b>Melhora</b></label></td>
+										</tr>
+										<tr>
+											<td><div style="width: 100%">Justificativa para Melhora (versão2)</div></td>
+										</tr>
+									</table>
+								</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span type="table">
+					<table>
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2; color: black;"><span>Anexo 1</span></td>
+								<td><a>Documento.docx</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</span><br>
+				<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C003_porfim.html" class="include">As tabelas populadas
+						se encontram aqui</a></li>
+
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C004</b> - Selecionar a versão do perfil de risco anterior a penúltima. <br> <br>(OBS.:
+				Selecionar na tela de Perfil de risco o Ciclo anterior)</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="5000">23/05/2014</span></li>
+					<li>Clica na Nota: <span class="clickon" by="id:linkControle6" sleep="2000"><b>2</b></span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idAvaliacaoRiscoControle" sleep="2000">25/05/2014</span></li>
+					<li>Clica no expandir: <span class="clickon" by="id:bttExpandirNotaAjustada"><b>Nota ajustada</b></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta <input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco <input type="image" src="../../../crt2/seta.gif" />Consulta de ARCs
+					</span>
+
+					</li>
+					<li>O título da tela deve ser: <span class="contains"><b>Consulta de ARCs</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+				</ul> <span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr class="aesquerda">
+								<td style="width: 25%; text-align: right;">Versão</td>
+								<td colspan="3">
+									<ul class="options" by="id:idAvaliacaoRiscoControle">
+										<li>vigente</li>
+										<li>25/05/2014</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO(00000191)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Pós-corec</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>23/05/2013</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>23/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+
+					</table> <br>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informações do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Atividade</b></td>
+								<td>Atividade corporativa 1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Grupo</b></td>
+								<td>Crédito</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Risco/Controle</b></td>
+								<td>Controle</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Analisado por</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tARCResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Ambiente de controle</b></td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+								<td>Estabilidade</td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Gestão do Risco de
+									Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do ARC calculada</b></td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a> <img
+										src="../../../crt2/menos-p.gif">
+								</a><b>Nota do ARC ajustada</b></td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa para Controle de Risco de Crédito (versão 1 - Supervisor)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosElementos1']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ambiente de controle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do elemento</b></td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Risco de liquidação</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>JustificativaparaoitemRiscodeliquidação Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+
+									</div>
+								</td>
+							</tr>
+					</table>
+			</span> <br> <span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Tendência - Gestão do
+									Risco de Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr class="fundoPadraoAClaro3">
+								<td style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+								<td>
+									<table style="width: 100%;">
+										<tr>
+											<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+										</tr>
+										<tr>
+											<td><label><b>Estabilidade</b></label></td>
+										</tr>
+										<tr>
+											<td><div style="width: 100%">Justificativa para Estabilidade (versão 1)</div></td>
+										</tr>
+									</table>
+								</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span type="table">
+					<table>
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2; color: black;"><span>Anexo 1</span></td>
+								<td><a>Documento.docx</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</span><br>
+				<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C004_porfim.html" class="include">As tabelas populadas
+						se encontram aqui</a></li>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C005</b> - Entrar na tela Consulta de ARC, clicar no botão voltar, sendo então
+				redirecionado para a tela de Perfil de risco.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Clica na Nota: <span class="clickon" by="id:linkControle12" Sleep="2000"><b>2</b></span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttVoltar">Voltar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser:Início <input type="image" src="../../../crt2/seta.gif" />Painel de
+						consulta <input type="image" src="../../../crt2/seta.gif" />Perfil de risco </span>
+
+					</li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C005_porfim.html" class="include">As tabelas populadas
+							se encontram aqui</a></li>
+				</ul>
+
+			</td>
+
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C006</b> - Entrar na tela Consulta de ARC, clicar no botão voltar, sendo redirecionado para
+				a tela de Perfil de risco, clicar no botão "voltar" da tela de perfil de risco, sendo então redirecionado para a
+				tela de Painel de consulta.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1" sleep="2000"><b>ABN AMRO</b></span></li>
+					<li>Clica na Nota: <span class="clickon" by="id:linkControle12"><b>2</b></span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttVoltar" sleep="5000">Voltar</span> da tela Consulta de ARC
+					</li>
+					<li>Clica no botão: <span class="clickon" by="id:bttVoltar" sleep="5000">Voltar</span> da tela Perfil de Risco
+					</li>
+					<li>Clica no botão: <span class="clickon" by="id:bttVoltar" sleep="5000">Voltar</span> da tela Perfil de Risco
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta
+					</span>
+
+					</li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta</b></span></li>
+					<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C006_porfim.html" class="include">As tabelas populadas
+							se encontram aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C007</b> - teste para entra na tela em um Arcs de risco.</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a> <br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_1.html" class="include">aqui</a> e <a
+				href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_3.html" class="include">aqui</a><br> <br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Clica na Nota: <span class="clickon" sleep="3000" by="id:linkRisco12"><b>2</b></span></li>
+					<li>Clica no expandir: <span class="clickon" by="id:bttExpandirNotaAjustada"><b>Nota ajustada</b></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Consulta de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Consulta de ARCs</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+				</ul> <span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+
+
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABNAMRO(00000191)</b>
+								</th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>25/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+								<td>25/05/2015</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+
+					</table> <br>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informações do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Atividade</b></td>
+								<td>Atividade corporativa 1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Grupo</b></td>
+								<td>Crédito</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Risco/Controle</b></td>
+								<td>Risco</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Analisado por</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tARCResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Ambiente de controle</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+								<td>Melhora</td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Risco de Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do ARC calculada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a> <img
+										src="../../../crt2/menos-p.gif">
+								</a><b>Nota do ARC ajustada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa para Controle de Risco de Crédito (versão2-Supervisor)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <br> <span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Tendência - Risco de
+									Crédito</th>
+							</tr>
+						</thead>
+
+						<tr class="fundoPadraoAClaro3">
+							<td style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+							<td>
+								<table style="width: 100%;">
+									<tr>
+										<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+									</tr>
+									<tr>
+										<td><label><b>Melhora</b></label></td>
+									</tr>
+									<tr>
+										<td><div style="width: 100%">Justificativa para Melhora (versão2)</div></td>
+									</tr>
+								</table>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+			</span><br>
+				<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C007_porfim.html" class="include">As tabelas populadas
+						se encontram aqui</a></li>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C008</b> - Testando a ordem dos elementos e seus respectivos itens a avaliar.</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a> <br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se
+				encontram <a href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_1.html" class="include">aqui</a> e <a
+				href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_2.html" class="include">aqui</a><br> <br> Os
+				dados complementares a fim de testar a ordem dos elementos se encontram <a
+				href="../arc/dadoque/TestAPSFW0402_Consulta_de_ARCs_dadoque_complementar.html" class="include">aqui</a></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1"><b>ABN AMRO</b></span></li>
+					<li>Clica na Nota: <span class="clickon" sleep="3000" by="id:linkControle12"><b>2</b></span></li>
+					<li>Clica no expandir: <span class="clickon" by="id:bttExpandirNotaAjustada"><b>Nota ajustada</b></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Consulta de ARCs
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Consulta de ARCs</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+				</ul> <span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+					<table cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td><b>Versão</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idAvaliacaoRiscoControle">
+										<li>vigente</li>
+										<li>25/05/2014</li>
+									</ul>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABNAMRO(00000191)</b>
+								</th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>25/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+								<td>25/05/2015</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+
+					</table> <br>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informações do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Atividade</b></td>
+								<td>Atividade corporativa 1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Grupo</b></td>
+								<td>Crédito</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Risco/Controle</b></td>
+								<td>Controle</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td>TESTESLQB13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Analisado por</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tARCResumido']">
+					<table id="tARCResumido" cellspacing="1" cellpadding="3" style="width: 90%">
+						<thead>
+							<tr class="fundoPadraoAEscuro3">
+								<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#idTituloElemento12" id="linkElemento1cf"> Risco de
+										Liquidação</a></td>
+								<td id="notaFinal1d1">2</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#idTituloElemento11" id="linkElemento1d3"> Ambiente
+										de controle</a></td>
+								<td id="notaFinal1d5">2</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota calculada</td>
+								<td id="notaCalculadaArrastoFinal1d6">2</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Nota ajustada</td>
+								<td id="notaAjustadaFinal1d7"><label style="" id="labelNotaAjustadaFinal1d8">2</label></td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;"><a href="#tDadosTendenciaRiscoMercado">Tendência</a></td>
+								<td id="notaTendenciaFinal1d9">Melhora</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Gestão do Risco de
+									Crédito</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do ARC calculada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a> <img
+										src="../../../crt2/menos-p.gif">
+								</a><b>Nota do ARC ajustada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa para Controle de Risco de Crédito (versão 2 - Supervisor)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosElementos12']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Risco de Liquidação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do elemento</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Risco de liquidação</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>JustificativaparaoitemRiscodeliquidação Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Comunicação</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>JustificativaparaoitemComunicação Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+									</div>
+								</td>
+							</tr>
+					</table>
+			</span> <br> <span class="compareTable" by="xpath://table[@id='tabelaAnaliseDados12']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Análise do supervisor
+									para o elemento "Risco de Liquidação"</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa do supervisor para o elemento Risco de Liquidação (versão 3)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosElementos11']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ambiente de controle</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota do elemento</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>
+									<div>
+
+
+										<div>
+											<table>
+												<thead>
+													<tr>
+														<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Qualidade da
+															carteira de crédito</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td></td>
+														<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+														<td></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td></td>
+														<td><label>JustificativaparaoitemQualidadedacarteiradecrédito Anexo Documento.docx</label></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+									</div>
+									<div>
+										<table>
+											<thead>
+												<tr>
+													<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Informação</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td></td>
+													<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+													<td></td>
+												</tr>
+												<tr class="fundoPadraoAClaro3">
+													<td></td>
+													<td><label>JustificativaparaoitemInformação Anexo Documento.docx</label></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+									</div>
+								</td>
+							</tr>
+					</table>
+			</span><br> <span class="compareTable" by="xpath://table[@id='tabelaAnaliseDados11']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Análise do supervisor
+									para o elemento "Ambiente de controle"</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2">Justificativa do supervisor para o elemento Ambiente de controle (versão 3)</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Tendência - Gestão do
+									Risco de Crédito</th>
+							</tr>
+						</thead>
+
+						<tr class="fundoPadraoAClaro3">
+							<td style="color: black; background-color: #4a73a2"><b>Tendência</b></td>
+							<td>
+								<table style="width: 100%;">
+									<tr>
+										<td style="text-align: right;"><label style="font-size: 7pt;"></label></td>
+									</tr>
+									<tr>
+										<td><label><b>Melhora</b></label></td>
+									</tr>
+									<tr>
+										<td><div style="width: 100%">Justificativa para Melhora (versão2)</div></td>
+									</tr>
+								</table>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+			</span><br> <br> <span type="table">
+					<table>
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2; color: black;"><span>Anexo 1</span></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+			</span><br>
+				<li><a href="porfim/TestAPSFW0402_Consulta_de_ARCs_C007_porfim.html" class="include">As tabelas populadas
+						se encontram aqui</a></li>
+				<table class="verify dados">
+					<caption>LOP_LOG_OPERACOES</caption>
+					<tr>
+						<th>Ação</th>
+						<th>LOP_ID</th>
+						<th>LOP_CD_CNPJ</th>
+						<th>LOP_DS_NOME_ES</th>
+						<th>PER_ID</th>
+						<th>LOP_DS_TRILHA</th>
+						<th>LOP_DS_TITULO_TELA</th>
+						<th>LOP_CD_CODIGO_TELA</th>
+						<th>LOP_DH_OPERACAO</th>
+						<th>LOP_CD_RESP_OPERACAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>00000191</td>
+						<td>ABN AMRO</td>
+						<td>6</td>
+						<td>Início-Painel de consulta-Perfil de risco</td>
+						<td>Perfil de risco</td>
+						<td>APSFW0202</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>deliq.sisliq106</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>00000191</td>
+						<td>ABN AMRO</td>
+						<td>6</td>
+						<td>Início-Painel de consulta-Perfil de risco-Consulta de ARCs</td>
+						<td>Consulta de ARCs</td>
+						<td>APSFW0402</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>deliq.sisliq106</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

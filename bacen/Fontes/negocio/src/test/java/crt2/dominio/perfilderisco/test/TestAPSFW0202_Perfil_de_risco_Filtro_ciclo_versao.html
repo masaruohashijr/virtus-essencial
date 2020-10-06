@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Perfil de Risco - Filtro
+		(Ciclo e Versão)</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Servidores
+		<pessoa>aqui</pessoa>
+	</blockquote>
+	<blockquote>
+		<dataHoraAtual valor="28/05/2014 00:00:00">Data atual:
+		28/05/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de teste para a estória - Perfil de Risco - Filtro
+		(Ciclo e Versão)</h2>
+	<blockquote>
+		Cenários de negócio para filtro (ciclo e versão) (<b>Perfil:
+			"Supervisor"</b>)
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+
+
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br>
+			<br>Falha - Acessar o Perfil de risco de ES sem ciclo iniciado - Perfil: "Supervisor"</td>
+			<td><banco /> As regras para os perfis de acesso se encontram:
+				<regra>Aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>Aqui</parametros><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<!-- <li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186" </span></li> -->
+					<li><span class="sentence" method="detalharPerfilRisco">Entidade Supervisionável (Nome=NATIXIS BRASIL S/A) ENS_ID ="9"</span></li>
+				</ul>
+		    </td>
+			<td>
+			    <ul class="execute" value="$THIS.verificar($NODE)">
+				   <li>Entidade supervisionável não possui ciclo de supervisão.</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+
+
+	<blockquote>
+		Cenários de negócio para filtro (ciclo e versão) (<b>Perfil: "Consulta Tudo"</b>)
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br>
+			<br>Falha - Acessar o Perfil de risco de ES sem ciclo iniciado - Perfil: "Consulta Tudo"</td>
+			<td><banco /> As regras para os perfis de acesso se encontram:
+				<regra>Aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>Aqui</parametros><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<!-- <li><span class="sentence" method="logar">login "deliq.sisliq106" matricula "11283766" </span></li> -->
+					<li><span class="sentence" method="detalharPerfilRisco">Entidade Supervisionável (Nome=NATIXIS BRASIL S/A) ENS_ID ="9"</span></li>
+				</ul>
+			</td>
+			<td>
+			    <ul class="execute" value="$THIS.verificar($NODE)">
+				   <li>Entidade supervisionável não possui ciclo de supervisão.</li>
+				</ul>
+			</td>
+		  </tr>
+		  
+		
+	</table>
+</body>
+</html>

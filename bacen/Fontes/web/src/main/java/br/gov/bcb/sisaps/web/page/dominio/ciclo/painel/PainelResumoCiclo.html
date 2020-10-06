@@ -1,0 +1,45 @@
+<wicket:panel>
+	<table id="tDadosCicloResumido" cellspacing="0" cellpadding="3"  style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2"><span
+					wicket:id="idNomeConglomerado"></span></th>
+
+			</tr>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Ciclo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;" wicket:id="idTituloEstado"></td>
+				<td style=""><b><label wicket:id="idEstadoCiclo"></label></b></td>
+			</tr>
+			<wicket:enclosure child=idDataInicioCiclo>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" style="width: 25%;">Início</td>
+					<td style=""><label wicket:id="idDataInicioCiclo"></label></td>
+				</tr>
+			</wicket:enclosure>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;"><label wicket:id="idCorec">Corec previsto</label></td>
+				<td style=""><label wicket:id=idDataPrevistaCorec></label></td>
+			</tr>
+			<wicket:enclosure child=idDataBaseCicloMigrado>
+				<tr class="fundoPadraoAClaro3">
+	                <td class="nomeCampo" style="width: 25%;">Data-base</td>
+	                <td style=""><label wicket:id="idDataBaseCicloMigrado"></label></td>
+	            </tr>
+			</wicket:enclosure>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;"><label wicket:id="idSupervisor">Supervisor titular</label></td>
+				<td style=""><label wicket:id="idNomeSupervisor"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;"><label wicket:id="idGerente">Gerente titular</label></td>
+				<td style=""><label wicket:id="idNomeGerente"></label></td>
+			</tr>
+		</tbody>
+
+	</table>
+</wicket:panel>

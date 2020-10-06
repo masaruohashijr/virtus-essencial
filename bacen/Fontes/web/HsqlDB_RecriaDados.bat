@@ -1,0 +1,2 @@
+call HsqlDB_Recria.bat
+java -cp "%M2_REPO%/org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.jar;%M2_REPO%/org/hsqldb/sqltool/2.3.2/sqltool-2.3.2.jar" org.hsqldb.cmdline.SqlTool --driver org.hsqldb.jdbcDriver --rcFile sqltool.rc localhost-sa ..\negocio\src\test\resources\scripts\dados.sql

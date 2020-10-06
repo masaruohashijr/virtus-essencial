@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R002 - Desbloquear ES</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Desbloquear ES'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>10/07/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>22/07/2016</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração no roteiro para que ao desbloquear a ES no SRC-Dinâmico, os perfís de atuação e opinições conclusivas geradas por essa ES dentro do APS também sejam desbloqueadas.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#desbloquearES">aqui</a></blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul>
+			<li>A lista de servidores foi <a href="../bloqueares/TestR001BloquearES-MockBcPessoa.html" class="include">carregada</a></li>
+
+			
+			<li>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq102"</span></strong>.</li>
+	     	<li><dataHoraAtual valor="28/06/2015 00:00:00">Data/hora atual do sistema: 28/06/2015 00:00:00</dataHoraAtual></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#desbloquear">para validar o desbloqueio de uma ES</a>.</blockquote>
+		<table>
+			<tr>
+				<td>
+					<table class="exemplos" >
+						<tr>
+						    <th>Cenário</th>
+						    <th>Dado que</th>
+						    <th>Ação pretendida</th>
+						    <th>Resultado esperado</th>
+						</tr>
+
+						<tr class="scenario">
+							<td class='title'> <b>[CT001]</b> - Desbloquear uma ES que ainda não possua registro de bloqueio anteriormente e que tenha dados no APS para desbloquear.</td>
+							<td>
+								<banco/>
+								Os dados encontram-se <a href="../bloqueares/TestR001BloquearES-DadoQue.html" class="include">aqui</a>
+							</td>
+							<td>
+								Desbloquear a ES de ID <strong><span class="set" name="idES" converter="Integer">1</span></strong>.
+							</td>
+							<td>
+								<ul>
+									<li>
+										<span class="execute" name="result" value="$THIS.bloquearES(idES)"></span>
+										<span class="eq" value="result">ES desbloqueada com sucesso.</span>
+									</li>
+									<li>Os dados alterados estão <a href="TestR002C001DesbloquearES-PorFim.html" class="include">aqui</a></li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="scenario">
+							<td class='title'> <b>[CT002]</b> - Desbloquear uma ES que possua registro de bloqueio anteriormente e que tenha dados no APS para desbloquear.</td>
+							<td>
+								<banco/>
+								Os dados encontram-se <a href="../bloqueares/TestR001BloquearES-DadoQue.html" class="include">aqui</a>
+							</td>
+							<td>
+								Desbloquear a ES de ID <strong><span class="set" name="idES" converter="Integer">2</span></strong>.
+							</td>
+							<td>
+								<ul>
+									<li>
+										<span class="execute" name="result" value="$THIS.bloquearES(idES)"></span>
+										<span class="eq" value="result">ES desbloqueada com sucesso.</span>
+									</li>
+									<li>Os dados alterados estão <a href="TestR002C002DesbloquearES-PorFim.html" class="include">aqui</a></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

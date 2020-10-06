@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+
+	<table wicket:id="tDadosAnaliseElementoSupervisor" cellspacing="0" cellpadding="3" style="width:90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th colspan="6" class="thform" style="text-align: left; border-bottom: 0px;" wicket:id="idTituloElementoSupervisor" />
+			</tr>
+		</thead>
+		<wicket:enclosure child="idNovaAvaliacao">
+			<tbody>
+				 <tr class="fundoPadraoAClaro3">
+						<td></td>
+						<td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataAvaliacao"></label></td>
+						<td></td>
+				</tr>
+					
+				<tr class="fundoPadraoAClaro3">
+					<td width="5%"></td>
+					<td width="90%">
+						<div style="text-align: left ; border-left: 21px solid white";>
+							<strong>Nova análise</strong>
+						</div>
+					</td>
+					<td width="5%"></td>
+				</tr>
+	
+				<tr class="fundoPadraoAClaro3">
+					<td width="5%"></td>
+						<div>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;<label wicket:id="idNovaAvaliacao"></label> <br /> <br /></td>
+						</div> <br />
+					<td></td>
+				</tr>
+			</tbody>
+		</wicket:enclosure>
+	</table>
+
+	<table cellspacing="0" cellpadding="3" style="width:90%" wicket:id="idAvaliacaoElementoSupervisorVigente">
+		<tr class="fundoPadraoAClaro3">
+			<td></td>
+			<td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataAvaliacaoVigente"></label></td>
+			<td></td>
+		</tr>
+
+		<tr class="fundoPadraoAClaro3">
+			<td width="5%" class="fundoPadraoAClaro3"></td>
+			<td width="90%" class="fundoPadraoAClaro3">
+				<div style="" wicket:id="idGrupoExpansivelAnaliseVigente"></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;<div wicket:id="idPainelJustificativaAnalise"></div>
+			</td>
+			<td width="5%" class="fundoPadraoAClaro3"></td>
+		</tr>
+	</table>
+</wicket:panel>

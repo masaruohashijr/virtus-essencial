@@ -1,0 +1,12 @@
+DIV.menu {
+	BORDER-BOTTOM: #000000 1px solid; BACKGROUND-COLOR: #efefef; HEIGHT: 20px; COLOR: #003366; FONT-WEIGHT: bold
+}
+DIV.menu TD {
+	BORDER-LEFT: #003063 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; CURSOR: pointer; PADDING-TOP: 2px
+}
+DIV.menu TD:hover {
+	BACKGROUND-COLOR: #ffffff
+}
+DIV.menu TD.first {
+	BORDER-LEFT-STYLE: none
+}

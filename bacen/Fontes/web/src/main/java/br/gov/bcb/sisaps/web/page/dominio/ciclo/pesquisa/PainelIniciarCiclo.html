@@ -1,0 +1,30 @@
+<wicket:extend>
+    <form wicket:id="form">
+    
+        <div id="pInicioCiclo">
+            <table width="100%" cellspacing="0" id="idTabela">
+                <thead>
+                    <tr class="fundoPadraoAEscuro2" >
+                        <th colspan="4" style="text-align: left"><span wicket:id="idNomeEs"></span></th>
+                    </tr>
+                        <tr class="fundoPadraoAEscuro3">
+                        <th colspan="4" class="thform" style="text-align: left">Iniciar ciclo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr class="fundoPadraoAClaro1a">
+                            <td class="nomeCampo" style="width: 35%;">Data de início do ciclo </td>
+                            <td style="">
+	                            <input name="idDataInicio" type="text" id="idDataInicio" wicket:id="idDataInicio"
+	                                title="Informe a data do início do ciclo" size="11" maxlength="10" onblur="" value="" onkeyup="" onkeypress="" /></td>
+                       </tr>
+                </tbody>
+            </table>
+            <br>
+            <div align="center">
+                <input type="button" class="botao centralizado" id="btnIniciarNewCiclo" wicket:id="btnIniciarNewCiclo" style="width: 120px" value="Iniciar novo ciclo">
+                <input type="button" class="botao centralizado" id="bttVoltar" wicket:id="bttVoltar" style="width: 110px" value="Voltar">
+            </div>
+        </div>
+    </form>
+</wicket:extend>

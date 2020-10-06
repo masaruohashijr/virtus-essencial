@@ -1,0 +1,83 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table width="100%" cellspacing="0" cellpadding="0">
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<table id="tDadosquadroVigenteQuadroPosicaoFinanceira" cellspacing="0"
+						cellpadding="1" style="width: 100%">
+						<tbody>
+							<tr valign="top">
+								<td style="width: 50%"><span id="quadroVigenteAtivo" wicket:id="quadroVigenteAtivo"></span></td>
+								<td style="width: 50%"><span id="quadroVigentePassivo"
+									wicket:id="quadroVigentePassivo"></span></td>
+							</tr>
+							
+							<tr valign="top" >
+								<td colspan="2">
+									<wicket:enclosure child="resultadosVigente">
+										<div style="float:left; margin-left: auto; width: 50%" >
+											<table  id="tDadosResultadosVigente" cellspacing="1" cellpadding="5"
+										        style="width: 100%">
+										        <thead>
+										            <tr class="fundoPadraoAClaro3">
+										                <th class="nomeCampo" style="text-align: right; border-bottom: 0px;"
+										                    colspan="2">Resultados</th>
+										            </tr>
+										        </thead>
+										     </table> 
+											<div wicket:id="resultadosVigente"></div>
+										</div>	
+									</wicket:enclosure>
+
+									<wicket:enclosure child="patrimoniosVigente">
+										<div style="float:left; margin-left: auto; width: 50%" >
+											<table  id="tDadosPatrimoniosVigente" cellspacing="1" cellpadding="5"
+										        style="width: 100%">
+										        <thead>
+										            <tr class="fundoPadraoAClaro3">
+										                <th class="nomeCampo" style="text-align: right; border-bottom: 0px;"
+										                    colspan="2">Patrimônios de referência</th>
+										            </tr>
+										        </thead>
+										     </table>  
+											<span wicket:id="patrimoniosVigente"></span>
+										</div>
+									</wicket:enclosure>
+									<wicket:enclosure child="indicesVigente">
+										<div style="float:left; margin-left: auto; width: 50%" >
+											<table  id="tDadosIndicesVigente" cellspacing="1" cellpadding="5"
+										        style="width: 100%">
+										        <thead>
+										            <tr class="fundoPadraoAClaro3">
+										                <th class="nomeCampo" style="text-align: right; border-bottom: 0px;"
+										                    colspan="2">Índices</th>
+										            </tr>
+										        </thead>
+										     </table>  
+											<span wicket:id="indicesVigente"></span>
+										</div>
+									</wicket:enclosure>
+								</td>	
+							</tr>
+
+                            <tr>
+                                <td colspan="2">
+                                   <span wicket:id="anexoVigente"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table width="100%" cellspacing="0" cellpadding="0">
+		<tbody>
+			<tr>
+				<td colspan="2">
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</wicket:panel>

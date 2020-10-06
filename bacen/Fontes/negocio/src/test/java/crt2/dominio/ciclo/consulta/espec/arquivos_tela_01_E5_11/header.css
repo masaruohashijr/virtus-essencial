@@ -1,0 +1,24 @@
+DIV.header {
+	BACKGROUND-COLOR: #003366; HEIGHT: 40px; COLOR: #ffffff
+}
+DIV.header TABLE {
+	WIDTH: 100%
+}
+DIV.header TD.logo {
+	WIDTH: 235px
+}
+DIV.header IMG.logo {
+	MARGIN: 1px 7px
+}
+DIV.header TD.title {
+	FONT-WEIGHT: bold
+}
+DIV.header TD.id {
+	WIDTH: 120px
+}
+DIV.header TD.id DIV.user {
+	TEXT-ALIGN: right; MARGIN-RIGHT: 7px
+}
+DIV.header TD.id DIV.date {
+	TEXT-ALIGN: right; FONT-SIZE: 10px; MARGIN-RIGHT: 7px
+}

@@ -1,0 +1,320 @@
+@page {
+  size: A4;  
+}
+
+@media print {	
+	
+	.tela {
+		display:none;
+	}
+	
+	.quebra {
+		page-break-before: always;
+	}
+		
+}
+
+@media screen {
+	.impre {
+		display:none;
+	}
+}
+
+body {
+    font-family: verdana;
+    margin: 0;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+span.reference {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+div.adjust {
+    border: 5px solid #0094ff;
+    bottom: 0;
+    left: 50%;
+    margin-bottom: 10px;
+    margin-left: -512px;
+    margin-top: 10px;
+    padding: 30px;
+    position: fixed;
+    top: 0;
+    width: 1024px;
+}
+
+div.wrapper {
+    margin: 0 auto;
+    padding-bottom: 71px;
+    padding-top: 91px;
+    width: 1024px;
+}
+
+div.head {
+    background-color: #ffffff;
+    border-bottom: 1px solid #000000;
+    height: 91px;
+    padding: 0 5px;
+    position: fixed;
+    top: 0;
+    width: 1024px;
+}
+
+    div.head img {
+        vertical-align: middle;
+    }
+
+    div.head div.title {
+        display: inline-block;
+        margin-left: 50px;
+        text-align: right;
+        vertical-align: middle;
+        width: 700px;
+    }
+
+        div.head div.title span {
+            font-style: italic;
+            font-size: 22pt;
+            font-weight: bold;
+        }
+
+div.headImpre {
+    background-color: #ffffff;
+    border-bottom: 1px solid #000000;
+    height: 91px;
+    padding: 0 5px;
+    top: 0;
+    width: 1024px;
+}
+
+    div.headImpre img {
+        vertical-align: middle;
+    }
+
+    div.headImpre div.title {
+        display: inline-block;
+        margin-left: 50px;
+        text-align: right;
+        vertical-align: middle;
+        width: 700px;
+    }
+
+        div.headImpre div.title span {
+            font-style: italic;
+            font-size: 22pt;
+            font-weight: bold;
+        }
+
+div.foot {
+    background-color: #ffffff;
+    border-top: 1px solid #000000;
+    bottom: 0;
+    height: 71px;
+    padding: 0 5px;
+    position: fixed;
+    width: 1024px;
+}
+
+	div.foot div.es {
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 650px;
+	}
+	
+		div.foot div.es span {
+		    font-size: 16pt;
+		    font-weight: bold;
+		}
+
+	div.foot div.page {
+	    display: inline-block;
+	    margin-left: 20px;
+	    text-align: right;
+	    vertical-align: middle;
+	    width: 330px;
+	}
+
+        div.foot div.page span {
+            font-size: 16pt;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+
+        div.foot div.page button {
+            vertical-align: middle;
+        }
+
+div.footImpre {
+    background-color: #ffffff;
+    border-top: 1px solid #000000;
+    bottom: 0px;
+    height: 71px;
+    padding: 0 5px;
+    position: fixed;
+    width: 1024px;
+   clear: both; 
+}
+
+    div.footImpre div.es {
+        display: inline-block;
+        vertical-align: middle;
+        width: 650px;
+    }
+
+        div.footImpre div.es span {
+            font-size: 16pt;
+            font-weight: bold;
+        }
+
+    div.footImpre div.page {
+        display: inline-block;
+        margin-left: 20px;
+        text-align: right;
+        vertical-align: middle;
+        width: 280px;
+     
+    }
+
+        div.footImpre div.page span {
+            font-size: 16pt;
+            font-weight: bold;
+            vertical-align: middle;
+            
+        }
+
+
+div.content {
+    font-size: 14pt;
+    padding: 20px;
+    paddin-bottom: 200px;
+}
+
+    div.content div.slide.index {
+        padding: 30px;
+    }
+
+    div.content div.slide.title {
+        font-size: 44pt;
+        font-weight: bold;
+        margin: 200px auto 0;
+        text-align: center;
+        width: 700px;
+    }
+
+        div.content div.slide.title.highlight {
+            color: #333399;
+        }
+
+    div.content div.slide.image {
+        text-align: center;
+    }
+
+    div.content div.slide.bloco_topico {
+        margin-bottom: 25px;
+    }
+
+        div.content div.slide.bloco_topico div.titulo {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+    div.content div.slide_src.es {
+        font-size: 30pt;
+        font-weight: bold;
+        margin-bottom: 30pt;
+        text-align: right;
+    }
+
+    div.content div.slide_src.supervisor {
+        font-size: 30pt;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    div.content div.slide_src.data {
+        font-size: 30pt;
+        text-align: right;
+    }
+
+    div.content div.slide_src.atributo {
+        font-size: 30pt;
+        margin-top: 30pt;
+        text-align: right;
+    }
+
+    div.content table.padrao {
+        margin: 0 auto 20px;
+        width: 980px;
+    }
+
+        div.content table.padrao caption {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 2px 5px;
+        }
+
+        div.content table.padrao th {
+            background-color: #dddddd;
+            border: 1px solid #000000;
+            font-size: 12pt;
+            padding: 2px 5px;
+        }
+
+        div.content table.padrao td {
+            border: 1px solid #000000;
+            font-size: 12pt;
+            padding: 2px 5px;
+        }
+
+            div.content table.padrao td.nivel_1 {
+                font-weight: bold;
+                padding-left: 15px;
+            }
+
+            div.content table.padrao td.nivel_2 {
+                padding-left: 40px;
+            }
+
+	div.content td {
+		padding: 1px;
+	}
+
+	div.content div {
+		padding: 1px;
+	}
+	
+	.fundoPadraoAClaro3 {
+		background-color: #F2F4F6;
+	}
+	
+	.fundoPadraoAClaro3 td {
+		border: solid 1px white;
+		padding: 1px;
+	}
+	
+	div.content th.nomeCampo {
+		background-color: #93abc5;
+		padding-right: 5px;
+	}
+	
+	.fundoPadraoAEscuro3 {
+		color: #fff;
+		background-color: #003d79;
+	}
+
+	.nomeMatriz {
+		background-color: #93abc5;
+		font-weight: bold;
+	}
+
+	.nomeMatrizSemNegrito {
+		background-color: #93abc5;
+	}
+
+	

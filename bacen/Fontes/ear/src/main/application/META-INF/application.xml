@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5">
+  <description>APS - SRC Dinâmico</description>
+  <display-name>APS - SRC Dinâmico</display-name>
+  
+  <module>
+    <web>
+      <web-uri>sisaps.war</web-uri>
+      <context-root>/aps-src</context-root>
+    </web>
+  </module>
+  <security-role>
+<role-name>FUNCI</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT001</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT002</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT003</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT004</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT005</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT006</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT007</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT008</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT009</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT010</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT011</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT012</role-name>
+</security-role>
+<security-role>
+<role-name>SRAT013</role-name>
+</security-role>
+
+  
+</application>

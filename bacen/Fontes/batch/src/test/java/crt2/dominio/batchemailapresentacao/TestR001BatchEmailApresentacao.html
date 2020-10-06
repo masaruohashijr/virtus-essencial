@@ -1,0 +1,282 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Notificações de agendamento via e-mail - E-mail de apresentação</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória - Notificações de agendamento via e-mail - E-mail de apresentação</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>07/08/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/administrador/index.html#batchEmailApresentacao">aqui</a>
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+		<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq105"</span></strong></li>
+		<li><dataHoraAtual valor="28/05/2015 00:00:00">Data/hora atual do sistema: 28/05/2015 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Validar envio do e-mail</h2>
+	<blockquote>
+		<a
+			href="indexNegocio.html#validarEmail">Cenários
+			para validar o envio do e-mail</a>
+	</blockquote>
+
+	<br>
+	<table class="exemplos">
+		<tr>
+			<th>Descrição dados</th>
+		</tr>
+		<tr>
+			<td style="width: 35%">
+				<table class="exemplos">
+					<thead>
+						<tr>
+							<th style="width: 5%">Ciclo</th>
+							<th style="width: 5%">Envia e-mail</th>
+							<th style="width: 90%">Motivo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Não</td>
+							<td>Estado "Pós-corec"</td>
+						</tr>
+
+						<tr>
+							<td>2</td>
+							<td>Não</td>
+							<td>Estado "Em andamento" mais 'Data e-mail apresentação' vazia e ('Corec previsto' - 'prazo definido no
+								parâmetro e-mail apresentação') maior que a data atual</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Não</td>
+							<td>Estado "Encerrado"</td>
+						</tr>
+
+						<tr>
+							<td>4</td>
+							<td>Não</td>
+							<td>Estado "Encerrado"</td>
+						</tr>
+
+						<tr>
+							<td>5</td>
+							<td>Sim</td>
+							<td>Estado "Corec" e ('Corec previsto' - 'prazo definido no parâmetro e-mail apresentação') menor que a data
+								atual</td>
+						</tr>
+
+						<tr>
+							<td>6</td>
+							<td>Não</td>
+							<td>Estado "Em andamento" mais 'Data e-mail apresentação' vazia e ('Corec previsto' - 'prazo definido no
+								parâmetro e-mail apresentação') maior que a data atual</td>
+						</tr>
+
+						<tr>
+							<td>7</td>
+							<td>Nao</td>
+							<td>Estado "Em andamento" mais 'Data e-mail apresentação' preenchida</td>
+						</tr>
+
+						<tr>
+							<td>8</td>
+							<td>Sim</td>
+							<td>Estado "Em andamento" mais possui agenda com 'Data e-mail apresentação' vazia e ('Corec previsto' -
+								'prazo definido no parâmetro e-mail apresentação') menor que a data atual</td>
+						</tr>
+
+
+						<tr>
+							<td>9</td>
+							<td>Sim</td>
+							<td>Estado "Em andamento" mais não possui agenda e ('Corec previsto' - 'prazo definido no parâmetro e-mail
+								apresentação') menor que a data atual</td>
+						</tr>
+
+						<tr>
+							<td>10</td>
+							<td>Não</td>
+							<td>Estado "Excluído"</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</td>
+		</tr>
+
+	</table>
+	<br>
+
+
+
+	<span class="scenario" execute="true">
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+
+			</tr>
+			<tr>
+				<td class='title' style="width: 5%"><b>[CT001]</b> - Executar batch envio de e-mail apresentação </td>
+			</tr>
+			<tr>
+				<th>Dados pré-existentes</th>
+			</tr>
+			<tr>
+				<td style="width: 15%"><banco /> Os dados encontram-se <a href="TestR001BatchEmailApresentacao-DadoQue.html"
+					class="include">aqui</a></td>
+			</tr>
+
+			<tr>
+				<th>Ação pretendida</th>
+			</tr>
+			<tr>
+				<td style="width: 5%"><span class="sentence" method="executarBatch">Executar batch</span></td>
+			</tr>
+			<tr>
+				<th>Resultado esperado</th>
+			</tr>
+			<tr>
+				<td style="width: 45%"><a href="TestR001BatchEmailApresentacao-PorFim.html" class="include">A tabela
+						populada se encontra aqui</a> <br> <br> Os e-mails enviados são: <br> <br>
+
+
+
+					<table class="verifyRows" name="resultado" value="$THIS.getEmailsEnviados()">
+						<tr>
+							<th style="background-color: green;" class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+							<th style="background-color: green;" class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+							<th style="background-color: green;" class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+							<th style="background-color: green;" class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+						</tr>
+						<tr>
+							<td>remetenteapresentacao@bcb.gov.br</td>
+							<td>[sisliq101@bcb.gov.br,deliq.caio@bcb.gov.br]</td>
+							<td>*** Confirmar *** Apresentação ao Comitê em 28/05/2015</td>
+
+							<td reader="xml">Prezado(a) comissionado(a), Solicitamos confirmar a apresentação, ao Comitê, do trabalho de
+								SRC da instituição sob sua responsabilidade no próximo dia 28/05/2015 a partir das quando será apresentado o
+								resultado do SRC da instituição abaixo.
+
+								<table width="90%" border="1">
+									<thead>
+										<tr style="background-color: #EBEEF1;">
+											<th width="25%" style="text-align: left">ES</th>
+											<th width="25%" style="text-align: left">Localização</th>
+											<th width="25%" style="text-align: left">Supervisortitular</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td>GOLDMAN SACHS</td>
+											<td>DELIQ/GLIQ1/GTBHO</td>
+											<td>ROBERTO SANTOS ALENCAR</td>
+										</tr>
+									</tbody>
+								</table> Mais detalhes em: Agenda Corec Atenciosamente, Desup/Dirap/Cogin (mensagem enviada via web pela Agenda Corec)
+								Para ver a agenda das salas de videconferência: Agenda Salas Video Conferência
+							</td>
+						</tr>
+						<tr>
+							<td>remetenteapresentacao@bcb.gov.br</td>
+							<td>[sisliq101@bcb.gov.br,deliq.caio@bcb.gov.br]</td>
+							<td>*** Confirmar *** Apresentação ao Comitê em 18/03/2015</td>
+							<td reader="xml">Prezado(a) comissionado(a), Solicitamos confirmar a apresentação, ao Comitê, do trabalho de
+								SRC da instituição sob sua responsabilidade no próximo dia 18/03/2015 a partir das 11:30 quando será apresentado
+								o resultado do SRC da instituição abaixo.
+
+								<table width="90%" border="1">
+									<thead>
+										<tr style="background-color: #EBEEF1;">
+											<th width="25%" style="text-align: left">ES</th>
+											<th width="25%" style="text-align: left">Localização</th>
+											<th width="25%" style="text-align: left">Supervisortitular</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>ITAU</td>
+											<td>DELIQ/GLIQ1/GTBHO</td>
+											<td>ROBERTO SANTOS ALENCAR</td>
+										</tr>
+									</tbody>
+								</table> Mais detalhes em: Agenda Corec Atenciosamente, Desup/Dirap/Cogin (mensagem enviada via web pela Agenda Corec)
+								Para ver a agenda das salas de videconferência: Agenda Salas Video Conferência
+							</td>
+						</tr>
+
+						<tr>
+							<td>remetenteapresentacao@bcb.gov.br</td>
+							<td>[sisliq101@bcb.gov.br,deliq.caio@bcb.gov.br]</td>
+							<td>*** Confirmar *** Apresentação ao Comitê em 27/05/2015</td>
+
+							<td reader="xml">Prezado(a) comissionado(a), Solicitamos confirmar a apresentação, ao Comitê, do trabalho de
+								SRC da instituição sob sua responsabilidade no próximo dia 27/05/2015 a partir das quando será apresentado o
+								resultado do SRC da instituição abaixo.
+
+								<table width="90%" border="1">
+									<thead>
+										<tr style="background-color: #EBEEF1;">
+											<th width="25%" style="text-align: left">ES</th>
+											<th width="25%" style="text-align: left">Localização</th>
+											<th width="25%" style="text-align: left">Supervisortitular</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr>
+											<td>BB</td>
+											<td>DELIQ/GLIQ1/GTBHO</td>
+											<td>ROBERTO SANTOS ALENCAR</td>
+										</tr>
+									</tbody>
+								</table> Mais detalhes em: Agenda Corec Atenciosamente, Desup/Dirap/Cogin (mensagem enviada via web pela Agenda Corec)
+								Para ver a agenda das salas de videconferência: Agenda Salas Video Conferência
+							</td>
+						</tr>
+
+
+					</table></td>
+			</tr>
+		</table>
+	</span>
+
+</body>
+</html>

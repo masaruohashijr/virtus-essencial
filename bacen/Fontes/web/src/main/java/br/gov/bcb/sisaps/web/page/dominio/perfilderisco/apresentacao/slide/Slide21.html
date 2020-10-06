@@ -1,0 +1,33 @@
+<wicket:panel>
+	<wicket:extend>
+		<div wicket:id="matrizVigentePanel"></div>
+		<table style="margin: auto;">
+			<tr style="font-weight: bold;">
+				<td>Nota final&nbsp;</td>
+				<td wicket:id="idNotaCalculada" style="width: 100px; text-align: right;"></td>
+			</tr>
+			<tr style="font-weight: bold;">
+				<td>Nota final refinada&nbsp;</td>
+				<td wicket:id="idNotaRefinada" style="width: 100px; text-align: right;"></td>
+			</tr>
+			<wicket:enclosure child=idNotaAjustada>
+				<tr style="font-weight: bold;">
+					<td>Nota final ajustada&nbsp;</td>
+					<td wicket:id="idNotaAjustada" style="width: 105px; text-align: right;"></td>
+				</tr>
+				<tr style="font-weight: bold;">
+					<td wicket:id="idJustificativa" colspan="2"></td>
+				</tr>
+			</wicket:enclosure>
+
+
+
+		</table>
+		<script type="text/javascript">
+			$(function() {
+				$("#tPainelTituloVigente").hide();
+				$("#tResumoMatrizRecalculada").hide();
+			});
+		</script>
+	</wicket:extend>
+</wicket:panel>

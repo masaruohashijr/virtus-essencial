@@ -1,0 +1,27 @@
+<wicket:panel>
+	<table id="tDadosSintesesAQT" cellspacing="0" cellpadding="3" style="width: 100%">
+		<thead>
+
+			<tr class="fundoPadraoAEscuro3">
+				<th colspan="7" class="thform" style="text-align: left; border-top: 0px; border-bottom: 1px;"><label wicket:id="idTitulo"></label></th>
+			</tr>
+
+		</thead>
+		<tbody wicket:id="listaSintesesAQT">
+			<div wicket:id="grupoExpansivel"></div>
+			<tr wicket:id="linha" class="fundoPadraoAClaro3">
+				<td colspan="5" class="campoDescricaoSintese"><div style="margin: 0 50px;"><label wicket:id="idDescricaoSintese"></label></div></td>
+			</tr>
+		</tbody>
+		<wicket:enclosure child="idMostrarAAvaliar">
+		<tbody wicket:id="idMostrarAAvaliar">
+			<tr>
+				<td colspan="100" align="right">*a avaliar</td>
+			</tr>
+		</tbody>
+		</wicket:enclosure>
+	</table>
+	<wicket:enclosure child="idPainelResumoInferior">
+		<div wicket:id="idPainelResumoInferior"></div>
+	</wicket:enclosure>
+</wicket:panel>

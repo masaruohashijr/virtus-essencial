@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Navegar análise economico-financeira (perfil consulta)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Navegar análise economico-financeira (perfil consulta)'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>20/01/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#navegarAnaliseEconomicoFinanceiraConsulta">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+		    <li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<banco/> 
+		    <li>Os dados encontram-se <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtsupervisor/TestR004NavegarAQTSupervisor-DadoQue.html" class="include">aqui</a>.</li>
+		    </ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenário para <a href="indexWeb.html#verificarLinkPerfilRisco">verificar o link no 'Perfil de risco'</a> para usuário com perfil de consulta.
+	</blockquote>
+
+	<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+						<th>Ações</th>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr class="scenario">
+						<td class='title'>
+							<b>[CT001]</b> - Verificar o link da nota do ANEF no perfil de risco vigente.
+						</td>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+			                    <li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+			                    <li>Clica na ES: <span class="clickon" by="id:linkPerfil10"><b>GOLDMAN SACHS</b></span></li>
+			                    <li>Clica na Nota <span class="clickon" by="id:link_ANEF23" sleep="8000"><b>3</b></span> do ANEF 'Exigibilidades/Liquidez'</li>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li>O título da tela deve ser: <span class="contains"><b>Consulta de ANEF</b></span></li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="scenario">
+						<td class='title'>
+							<b>[CT002]</b> - Verificar o link da nota do ANEF no perfil de risco anterior.
+						</td>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+			                    <li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+			                    <li>Clica na ES: <span class="clickon" by="id:linkPerfil10"><b>GOLDMAN SACHS</b></span></li>
+			                    <li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">16/12/2014</span></li>
+			                    <li>Clica na Nota <span class="clickon" by="id:link_ANEF22" sleep="8000"><b>2</b></span> do ANEF 'Resultados'</li>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<li>O título da tela deve ser: <span class="contains"><b>Consulta de ANEF</b></span></li>
+							</ul>
+						</td>
+					</tr>
+	</table>
+</body>
+</html>

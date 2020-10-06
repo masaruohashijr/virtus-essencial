@@ -1,0 +1,265 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R003 - Validar a não exibição da seção 'Ações' na tela de Detalhes de ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 'Bloquear edição para inspetor e supervisor'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>25/02/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>23/05/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Inclusão do ARC Externo</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>As regras da estória encontram-se <a href="../index.html#bloquearEdicaoInspetorSupervisor">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+		<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<li> O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong> </li>
+			 <div style="visibility: hidden"> <span  class="set" name="ciclo" converter="Integer"/>1</div>
+					
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote><a href="indexNegocio.html#validarSecaoAcoesARC">Cenário para validar a exibição ou não da seção 'Ações'</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Validação</th>
+			</tr>
+
+					
+			<tr class="scenario">
+				<td class='title'><b>[C001]</b> - Verificar a exibição da seção para o perfil <b>supervisor</b> em ciclo com estado 'Corec'.</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<table>
+						<tr>
+							<th style="width: 110px">Entrada</th>
+							<th style="width: 120px; background-color: green">Saída</th>
+						</tr>
+					</table>
+
+					<table class="column">
+						<tr>
+							<th style="width: 50px">Ciclo</th>
+							<th style="width: 50px">ARC</th>
+							<th style="width: 120px">Mostrar seção?</th>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td>10</td>
+							<td>Não</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C002]</b> - Verificar a exibição da seção para o perfil <b>supervisor</b> em ciclo com estado 'Pós-corec'.</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C002-DadoQue.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<table>
+						<tr>
+							<th style="width: 110px">Entrada</th>
+							<th style="width: 120px; background-color: green">Saída</th>
+						</tr>
+					</table>
+
+					<table class="column">
+						<tr>
+							<th style="width: 50px">Ciclo</th>
+							<th style="width: 50px">ARC</th>
+							<th style="width: 120px">Mostrar seção?</th>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td>10</td>
+							<td>Não</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C003]</b> - Verificar a exibição da seção para o perfil <b>supervisor</b> em ciclo com estado 'Encerrado'.</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C003-DadoQue.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<table>
+						<tr>
+							<th style="width: 110px">Entrada</th>
+							<th style="width: 120px; background-color: green">Saída</th>
+						</tr>
+					</table>
+
+					<table class="column">
+						<tr>
+							<th style="width: 50px">Ciclo</th>
+							<th style="width: 50px">ARC</th>
+							<th style="width: 120px">Mostrar seção?</th>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td>10</td>
+							<td>Não</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr class="scenario">
+				<td class='title'><b>[C004]</b> - Verificar a exibição da seção para o perfil <b>supervisor</b> em ciclo com estado 'Corec' e ARC externo.</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C004-DadoQue.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<table>
+						<tr>
+							<th style="width: 110px">Entrada</th>
+							<th style="width: 120px; background-color: green">Saída</th>
+						</tr>
+					</table>
+
+					<table class="column">
+						<tr>
+							<th style="width: 50px">Ciclo</th>
+							<th style="width: 50px">ARC</th>
+							<th style="width: 120px">Mostrar seção?</th>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td>13</td>
+							<td>Não</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C005]</b> - Verificar a exibição da seção para o perfil <b>supervisor</b> em ciclo com estado 'Pós-corec' e ARC externo.</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C005-DadoQue.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<table>
+						<tr>
+							<th style="width: 110px">Entrada</th>
+							<th style="width: 120px; background-color: green">Saída</th>
+						</tr>
+					</table>
+
+					<table class="column">
+						<tr>
+							<th style="width: 50px">Ciclo</th>
+							<th style="width: 50px">ARC</th>
+							<th style="width: 120px">Mostrar seção?</th>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td>13</td>
+							<td>Não</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C006]</b> - Verificar a exibição da seção para o perfil <b>supervisor</b> em ciclo com estado 'Encerrado' e ARC externo.</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C006-DadoQue.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<table>
+						<tr>
+							<th style="width: 110px">Entrada</th>
+							<th style="width: 120px; background-color: green">Saída</th>
+						</tr>
+					</table>
+
+					<table class="column">
+						<tr>
+							<th style="width: 50px">Ciclo</th>
+							<th style="width: 50px">ARC</th>
+							<th style="width: 120px">Mostrar seção?</th>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td>13</td>
+							<td>Não</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

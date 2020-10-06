@@ -1,0 +1,55 @@
+<wicket:panel>
+
+	<table cellpadding="1" cellspacing="0" style="width: 100%">
+		<thead>
+            <tr class="fundoPadraoAEscuro3">
+                <th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Ofício</th>
+            </tr>
+        </thead>
+        <tbody wicket:id="idEdicaoOficio" style="background-color: #f2f4f6;">
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+			<tr>
+				<td style="width: 25%"></td>
+				<th style="text-align: right; width: 15%; border-bottom:1px solid white; background-color: #93abc5; font-weight: bold;">Ofício entregue em</th>
+				<td colspan="2"> <input name="idData" type="text" id="idData" wicket:id="idData" size="11" maxlength="10" onblur="" value="" onkeyup="" onkeypress="" /></td>
+                <td style="width: 25%"></td>
+			</tr>
+			<tr>
+				<td style="width: 25%"></td>
+				<th style="text-align: right; width: 15%; border-bottom:1px solid white; background-color: #93abc5; font-weight: bold;">Anexo</th>
+				<td style="text-align: left; width: 30%;"><input  type="file" wicket:id="idFieldUploadAnexoOficio" /></td>
+				<td style="width: 10%;"><input type="button" class="botao" style="width: 70px" wicket:id="botaoAnexarAquivoOficio" value="Anexar"></td>
+				<td style="width: 25%"></td>
+			</tr>
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+		</tbody>
+		<tbody wicket:id="idListaOficio" style="background-color: #f2f4f6;">
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+			<tr>
+				<td style="width: 25%"></td>
+				<th style="text-align: right; width: 15%; border-bottom:1px solid white; background-color: #93abc5; font-weight: bold;">Ofício entregue em</th>
+				<td colspan="2" style="text-align: left;">&nbsp;<label wicket:id="dataEntrega">25/06/1987</label></td>
+				<td style="width: 25%"></td>
+			</tr>
+			<tr>
+				<td style="width: 25%"></td>
+				<th style="text-align: right; width: 15%; border-bottom:1px solid white; background-color: #93abc5; font-weight: bold;">Anexo</th>
+				<td style="text-align: left; width: 30%;"><div class="centralizado" wicket:id="idTabelaAnexoOficio" ></div></td>
+				<td style="width: 10%;"><input type="button" class="botao" style="width: 70px"
+					wicket:id="bttExcluirAnexoOficio" value="Excluir"></td>
+				<td style="width: 25%"></td>
+			</tr>
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+		</tbody>
+	</table>
+	
+</wicket:panel>
+

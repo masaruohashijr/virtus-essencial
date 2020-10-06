@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<title>Login de sistema</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<body>
+	<h3>Como logar no sistema?</h3>
+	<jetty />
+	<ul>
+		<li>Abra um <span class="browser" name_="${nome}">navegador</span> e 
+			<span class="startIn size position" provider="org.specrunner.jetty.JettyStringProvider" name_="${nome}" 
+				width="${w}" height="${h}" x="${x}" y="${y}">acesse</span> 
+			<span class="open" url="/aplicacao" name_="${nome}">a página principal</span>;
+		</li>
+
+		<global name="usuário" value="${usuário}" />
+		<li>Preencha <span class="type" by="id:unidade" value="${unidade}" name_="${nome}">a unidade</span>, 
+			<span class="type" by="id:operador" value="${usuário}" name_="${nome}">o usuário</span> e 
+			<span class="type" by="id:senha" value="${senha}" name_="${nome}">a senha</span>;
+		</li>
+		<li>Clique em '<span class="clickon" by="conter:" name_="${nome}" sleep="pausaSeIE">Entrar</span>';
+		</li>
+	</ul>
+</body>
+</html>

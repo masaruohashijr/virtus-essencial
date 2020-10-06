@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false">
+
+	<!-- Perfil de risco -->
+	<cache name="query.PerfilRiscoAtual" maxEntriesLocalHeap="5"
+		eternal="false" timeToLiveSeconds="30">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<!-- Default cache -->
+	<defaultCache maxElementsInMemory="1000" eternal="false"
+		timeToLiveSeconds="30" overflowToDisk="false"
+		memoryStoreEvictionPolicy="LRU" />
+		
+	<diskStore path="ehcachedir"/>
+
+</ehcache>

@@ -1,0 +1,239 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Concluir síntese e atualizar perfil de risco</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Concluir síntese e atualizar perfil de risco</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>20/01/2015</td>
+			<td>Denilson Roberto</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a href="../index.html#concluirSintese">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<banco />
+		<li>Os dados encontram-se <a href="TestR001ConcluirSintese_dadoque_c001.html" class="include">aqui</a></li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários de <a href="indexNegocio.html#validarBotao">validar nome do botão e se deve estar habilitado</a>.
+	</blockquote>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Verificar o titulo do botão.</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 752px">Entradas</th>
+									<th style="width: 386px; background-color: green">Saída</th>
+								</tr>
+							</table>
+
+							<table class="column">
+								<tr>
+									<th>ANEF</th>
+									<th>Parametro ANEF <span style="visibility: hidden">?</span></th>
+									<th>Estado <span style="visibility: hidden">?</span></th>
+									<th>Possui síntese rascunho <span style="visibility: hidden">?</span></th>
+									<th>Síntese racunho igual a vigente <span style="visibility: hidden">?</span></th>
+									<th style="background-color: green">Título do botão?</th>
+								</tr>
+
+
+								<tr>
+									<td>2</td>
+									<td>Resultados</td>
+									<td>Analisado</td>
+									<td>Sim</td>
+									<td>Sim</td>
+									<td>Confirmar síntese vigente sem alteração e publicar ANEF</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>Processo</td>
+									<td>Analisado</td>
+									<td>Sim</td>
+									<td>Não</td>
+									<td>Concluir nova síntese e atualizar perfil de risco</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>Pratica</td>
+									<td>Analisado</td>
+									<td>Não</td>
+									<td>Não</td>
+									<td>Concluir nova síntese e atualizar perfil de risco</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Exigibilidades/Liquidez</td>
+									<td>Preenchido</td>
+									<td>Não</td>
+									<td>Não</td>
+									<td>Concluir nova síntese e atualizar perfil de risco</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>Capital</td>
+									<td>Designado</td>
+									<td>Sim</td>
+									<td>Não</td>
+									<td>Concluir nova síntese e atualizar perfil de risco</td>
+								</tr>
+
+								<tr>
+									<td>13</td>
+									<td>Coletiva</td>
+									<td>Em edição</td>
+									<td>Sim</td>
+									<td>Sim</td>
+									<td>Concluir nova síntese e atualizar perfil de risco</td>
+								</tr>
+
+
+
+
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT002]</a></b> - Verificar quando o botão estará habilitado.</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 752px">Entradas</th>
+									<th style="width: 127px; background-color: green">Saída</th>
+								</tr>
+							</table>
+
+							<table class="column">
+								<tr>
+									<th>ANEF</th>
+									<th>Parametro ANEF <span style="visibility: hidden">?</span></th>
+									<th>Estado <span style="visibility: hidden">?</span></th>
+									<th>Possui síntese rascunho <span style="visibility: hidden">?</span></th>
+									<th>Síntese racunho igual a vigente <span style="visibility: hidden">?</span></th>
+									<th style="background-color: green">Botão habilitado?</th>
+								</tr>
+
+								<tr>
+									<td>2</td>
+									<td>Resultados</td>
+									<td>Analisado</td>
+									<td>Sim</td>
+									<td>Sim</td>
+									<td>Sim</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>Processo</td>
+									<td>Analisado</td>
+									<td>Sim</td>
+									<td>Não</td>
+									<td>Sim</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>Pratica</td>
+									<td>Analisado</td>
+									<td>Não</td>
+									<td>Não</td>
+									<td>Não</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Exigibilidades/Liquidez</td>
+									<td>Preenchido</td>
+									<td>Não</td>
+									<td>Não</td>
+									<td>Não</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>Capital</td>
+									<td>Designado</td>
+									<td>Sim</td>
+									<td>Não</td>
+									<td>Sim</td>
+								</tr>
+
+								<tr>
+									<td>13</td>
+									<td>Coletiva</td>
+									<td>Em edição</td>
+									<td>Sim</td>
+									<td>Sim</td>
+									<td>Não</td>
+								</tr>
+
+
+							</table>
+					</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
+</body>
+</html>

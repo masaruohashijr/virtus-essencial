@@ -1,0 +1,33 @@
+<wicket:extend>
+    <input type="hidden" wicket:id="loadScriptAlerta"/>
+	<form wicket:id="formulario">
+	    <input wicket:id="idFieldUploadAnexo" style="visibility: hidden;" type="file"/>
+	    <div align="center" wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></div>
+	    <br>
+	    <table id="tTituloMatriz" cellspacing="0" cellpadding="3" style="width: 90%">
+            <thead>
+                <tr class="fundoPadraoAEscuro2">
+                    <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Análise de riscos e controles</th>
+                </tr>
+            </thead>
+        </table>
+	    <table id="tPainelMatrizVigente" cellpadding="0" cellspacing="0" style="width: 90%">
+            <tr style="width: 100%; margin: auto;">
+                <td><div align="center" wicket:id="matrizVigentePanel" style="width: 100%; margin: auto;"></div></td>
+            </tr>
+        </table>
+       <br>
+		<div align="center" wicket:id="gerenciarNotaPanel" style="width: 100%; margin: auto;"></div>
+		<br>
+		<div align="center">
+			<input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" style="visibility: visible;" 
+			     title="Voltar para a p&aacute;gina anterior" value="Voltar">
+			<br>
+			<input name="bttVoltarSemSalvar" type="button" class="botao" id="bttVoltarSemSalvar" 
+			     style="visibility: hidden; width: 120px; background-color: red; color: white;"
+			     wicket:id="bttVoltarSemSalvar" title="Voltar para a p&aacute;gina anterior" value="Voltar sem salvar">
+		</div>
+		<br>
+	</form>
+</wicket:extend>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+			<div wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></div>
+			
+			<br>
+			<table id="idTituloPerfilAcesso" cellpadding="0" cellspacing="0" style="width: 90%">
+                <thead>
+                    <tr class="fundoPadraoAEscuro2">
+                        <th class="thform" style="text-align: left; border-bottom: 0px;">Anexos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                		<td>
+							<div wicket:id="anexoAtaPanel" style="width: 100%; margin: auto;"></div>
+                		</td>
+                	</tr>
+                	<tr>
+                		<td>
+							<div wicket:id="anexoOficioPanel" style="width: 100%; margin: auto;"></div>
+                		</td>
+                	</tr>
+                </tbody>
+            </table>
+            <table wicket:id="idParticipantes" cellpadding="0" cellspacing="0" style="width: 90%">
+               <thead>
+                    <tr class="fundoPadraoAEscuro2">
+                        <th class="thform" style="text-align: left; border-bottom: 0px;">Participantes do comitê</th>
+                    </tr>
+                </thead>
+                	<tr>
+                		<td>
+							<div wicket:id="participantesCorec" style="width: 100%; margin: auto;"></div>
+                		</td>
+                	</tr>
+            </table>
+			<br>
+			<div class="centralizado">
+				<input type="button" class="botao" style="width: 150px"
+					id="bttEncerrarCiclo" wicket:id="bttEncerrarCiclo"
+					value="Encerrar ciclo" />
+				<input type="button" class="botao"
+					id="bttVoltar" wicket:id="bttVoltar"
+					value="Voltar" />
+			</div>
+			<br><br>
+		</form>
+	</wicket:extend>
+</body>
+</html>
+

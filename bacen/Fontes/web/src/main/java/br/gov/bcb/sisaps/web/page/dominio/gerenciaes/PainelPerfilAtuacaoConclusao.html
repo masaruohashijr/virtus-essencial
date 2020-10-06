@@ -1,0 +1,114 @@
+<wicket:panel>
+    <table wicket:id="tDados" cellspacing="0" cellpadding="3" style="width: 90%">
+        <thead>
+            <tr class="fundoPadraoAEscuro2">
+                <th class="thform" colspan="3" style="text-align: left; border-bottom: 0px;"><label
+                    wicket:id="idTitulo">Perfil de atuação</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;"><label wicket:id="idCampoVigente">Perfil
+                        de atuação</label> vigente</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataVigente">Atualizado
+                                    em dd/MM/yyyy </label></td>
+                        </tr>
+                        <tr>
+                            <td><label wicket:id="idDescricaoVigente"></label></td>
+                        </tr>
+                        <tr>
+                            <td><div style="width: 100%" wicket:id="idTabelaAnexoDocumentoVigente"></div></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 1%;"></td>
+            </tr>
+        </tbody>
+        <tbody wicket:id="paineilSupervisor">
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;"><label wicket:id="idCampo">Novo
+                        perfil de atuação</label></td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr class="fundoPadraoAClaro3">
+                            <td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataNova">Última
+                                    alteração salva USUARIO em dd/MM/yyyy mm:ssh </label></td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3">
+                            <td>
+                                <div>
+                                    <textarea wicket:id="idDescricaoNova" contentEditable="true"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3">
+                            <td>
+                                <div align="right">
+                                    <label
+                                        style="color: red; font-size: 7pt; margin: auto; text-align: right; visibility: hidden;"
+                                        wicket:id="idAlertaDadosNaoSalvos"> Atenção texto não salvo. </label> <input
+                                        style="width: 130px;" type="submit" class="botao" value="Salvar informações"
+                                        wicket:id="bttSalvar" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3">
+                            <td>
+                                <div style="width: 100%" class="centralizado" wicket:id="idTabelaAnexoDocumento"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="centralizado">
+                                    <br /> <label title="Arquivo que será anexado.">Arquivo</label><input
+                                        wicket:id="idFieldUploadAnexo" type="file" size="65" /> <br />
+                                    <br /> <input type="submit" wicket:id="idAnexarArquivo" style="width: 150px;"
+                                        class="botao" value="Anexar arquivo novo" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+            </tr>
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%;"></td>
+                <td colspan="2"><input type="submit" class="botao" wicket:id="bttEncaminharPerfilAtuacao"
+                    value="Confirmar novo perfil de atuação e encaminhar para o gerente" style="width: 380px"> <input
+                    type="submit" class="botao" wicket:id="bttEncaminharNovaConclusao"
+                    value="Confirmar nova conclusão e encaminhar para o gerente" style="width: 350px"></td>
+            </tr>
+        </tbody>
+         <tbody wicket:id="paineilGerente">
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;"><label wicket:id="idCampoEncaminhado">Perfil
+                        de atuação</label> vigente</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataEncaminhado">Atualizado
+                                    em dd/MM/yyyy </label></td>
+                        </tr>
+                        <tr>
+                            <td><label wicket:id="idDescricaoEncaminhado"></label></td>
+                        </tr>
+                        <tr>
+                            <td><div style="width: 100%" wicket:id="idTabelaAnexoDocumentoEncaminhado"></div></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 1%;"></td>
+            </tr>
+              <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%;"></td>
+                <td colspan="2"><input type="submit" class="botao" wicket:id="bttConcluirNovoPerfilAtuacao"
+                    value="Confirmar novo perfil de atuação e atualizar perfil de risco" style="width: 380px"> <input
+                    type="submit" class="botao" wicket:id="bttConcluirNovaConclusao"
+                    value="Confirmar nova conclusão e atualizar perfil de risco" style="width: 380px"></td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>

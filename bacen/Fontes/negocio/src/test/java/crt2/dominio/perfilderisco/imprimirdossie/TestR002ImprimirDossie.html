@@ -1,0 +1,143 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R002 - Imprimir dossiê (variações da ata COREC)</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória: "Imprimir dossiê (variações da ata COREC)"</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>08/09/2015</td>
+				<td>David Nascimento</td>
+				<td>Versão inicial</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>As regras da estória encontram-se <a href="../index.html#imprimirDossie">aqui</a>.</blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<blockquote><li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></blockquote>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#validarInclusaoATA">verificar em quais estados do ciclo a ata deverá ser incluída no dossiê</a>.</blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b><a name="CT001">[CT001]</a></b> - Ciclos nos estados: 'Encerrado' (sem ata anexada) e 'Em andamento'.</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<banco/>
+
+							<td>Os dados encontram-se <a href="TestR001ImprimirDossie-DadoQue-CT001.html" class="include">aqui</a>.</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="2">Entradas</th>
+										<th style="background-color: green">Saídas</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th>Estado</th>
+										<th style="background-color: green">Incluir ata no dossiê?</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="ciclo" converter="Integer">1</td>
+										<td>Encerrado</td>
+										<td class="eq" value="$THIS.incluirAta(ciclo)">Sim</td>
+									</tr>
+
+									<tr>
+										<td class="set" name="ciclo" converter="Integer">2</td>
+										<td>Em andamento</td>
+										<td class="eq" value="$THIS.incluirAta(ciclo)">Não</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b><a name="CT002">[CT002]</a></b> - Ciclos nos estados: 'Pós-Corec' (com ata anexada) e 'Corec'.</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<banco/>
+
+							<td>Os dados encontram-se <a href="TestR001ImprimirDossie-DadoQue-CT002.html" class="include">aqui</a>.</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="2">Entradas</th>
+										<th style="background-color: green">Saídas</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th>Estado</th>
+										<th style="background-color: green">Incluir ata no dossiê?</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="ciclo" converter="Integer">1</td>
+										<td>Pós-Corec</td>
+										<td class="eq" value="$THIS.incluirAta(ciclo)">Sim</td>
+									</tr>
+
+									<tr>
+										<td class="set" name="ciclo" converter="Integer">2</td>
+										<td>Corec</td>
+										<td class="eq" value="$THIS.incluirAta(ciclo)">Não</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

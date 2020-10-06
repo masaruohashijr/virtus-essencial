@@ -1,0 +1,51 @@
+<wicket:extend>
+	<form wicket:id="formInclusaoRegra">
+		<table id="tDadosInclusaoRegra" width="100%" cellspacing="0" cellpadding="3" class="tabela">
+			<thead>
+				<tr class="fundoPadraoAEscuro3">
+					<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;">Regra</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" style="width: 35%;">Localização</td>
+					<td><input type="text" maxlength="30" size="40" wicket:id="idLocalizacao" /></td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo">Localizações subordinadas</td>
+					<td>
+                        <wicket:container wicket:id="idLocalizacoesSubordinadas">
+						    <label><input wicket:id="idLocalizacoesSubordinadasSim" type="radio"/>Sim</label>
+						    <label><input wicket:id="idLocalizacoesSubordinadasNao" type="radio"/>Não</label>
+                        </wicket:container>
+					</td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo">Função</td>
+					<td><select id="idFuncao" wicket:id="idFuncao"></select></td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo">Incluir substituto eventual</td>
+					<td><select id="idSubstitutoEventual" wicket:id="idSubstitutoEventual"></select></td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo">Incluir substituto prazo certo</td>
+					<td><select id="idSubstitutoPrazoCerto" wicket:id="idSubstitutoPrazoCerto"></select></td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo">Situação</td>
+					<td><select id="idSituacao" wicket:id="idSituacao"></select></td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo"><label>Matrícula</label></td>
+					<td><input type="text" wicket:id="idMatricula" size="11" maxlength="11"></input></td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div align="center">
+			<br> <input type="button" class="botao" id="bttIncluirRegra" wicket:id="bttIncluirRegra" value="Incluir">
+			<input type="button" class="botao" id="bttVoltarInclusaoRegra" wicket:id="bttVoltarInclusaoRegra" value="Voltar">
+		</div>
+	</form>
+</wicket:extend>

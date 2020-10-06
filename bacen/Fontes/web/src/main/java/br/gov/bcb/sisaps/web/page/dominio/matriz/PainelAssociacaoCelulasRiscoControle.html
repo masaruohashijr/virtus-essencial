@@ -1,0 +1,28 @@
+<wicket:panel>
+	<table id="tAssociacaoAtividadeGrupoRC" style="width: 100%;" cellspacing="1" cellpadding="3">
+
+		<thead>
+			<tr>
+				<th class="fundoPadraoAEscuro3" colspan="3">Grupos de riscos e controles</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="3"><div wicket:id="listagemCelulasRiscoControle"/></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td style="width: 54%;">
+					<select id="idParametroGrupoRC" wicket:id="idParametroGrupoRC"></select>
+				</td>
+				<td style="width: 26%;">
+					<select id="idPesoGrupoRC" wicket:id="idPesoGrupoRC"></select>
+				</td>
+				<td class="centralizado" style="width: 10%;">
+					<a href="#" wicket:id="linkAdicionar"><img wicket:id="adicionar" /></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+
+</wicket:panel>

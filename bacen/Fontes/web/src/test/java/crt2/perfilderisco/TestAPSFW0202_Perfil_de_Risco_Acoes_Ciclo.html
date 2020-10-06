@@ -1,0 +1,1626 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória APSFW0202 - Perfil de risco -
+		Matriz.</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>Vide as regras do tema.</blockquote>
+
+	<h2>Cenários de teste para a estória APSFW0202 - Ações do Ciclo
+		</h2>
+
+	<blockquote>Cenários onde devem ser apresentadas mensagens
+		de erro/impedimento e sucesso para o Perfil de risco - Matriz.</blockquote>
+
+	<pessoa>
+	<blockquote>MOCK do componente BCPessoa</blockquote>
+	</pessoa>
+	<h2>Histórico</h2>
+	    <table class="exemplos historico">
+	        <tr>
+	            <th>Versão</th>
+	            <th>Data</th>
+	            <th>Responsável</th>
+	            <th>Descrição</th>
+	        </tr>
+	        <tr>
+	            <td>1.0</td>
+	            <td>08/10/2014</td>
+	            <td>Cleonides Macriny</td>
+	            <td>História - Logs de operações no sistema</td>
+	        </tr>
+	    </table>
+	<jetty />
+
+	<dataHoraAtual valor="17/03/2014 00:00:00" />
+
+	<table class="exemplos">
+		<tr>
+			<th width="10%">Cenário</th>
+			<th width="20%">Dados pré-existentes</th>
+			<th width="20%">Ação pretendida</th>
+			<th width="50%">Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br><br>Conferir - </td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <regra>aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html"
+				class="include">aqui</a><br><br>
+				
+				
+				<table class="prepare dados">
+					<caption>ENS_ENTIDADE_SUPERVISIONAVEL</caption>
+					<tr>
+					    <th>Ação</th>
+					    <th>ENS_ID</th>
+					    <th>VER_ID</th>
+					</tr>
+					<tr>
+					    <td>U</td>
+					    <td>3</td>
+					    <td>8</td>
+					</tr>
+				</table><br><br>
+				
+			</td>
+
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Seleciona a Ciclo: <span class="select" by="id:idCiclo" sleep="1000">17/03/2010</span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idPerfilRisco" sleep="1000">17/03/2008</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAnterior">'Expandir ações no ciclo 2007'</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAtual">'Expandir ações no ciclo 2008'</span></li>
+					
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+				
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul><br>
+				<span class="compareTable" by="xpath://table[@id='tDadosAtividadesCiclo']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="10" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ações no ciclo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2007</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table>
+                                        <tbody>
+			                                <tr>
+			                                    <td>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+			                                </tr>
+			                            </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2008</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+			    <br><br>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>6</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>2</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>3</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>1</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+		
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br><br>Conferir - </td>
+
+			<td>... Mesmo "dadoque" do cenário anterior<br><br><a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_4.html"
+				class="include">aqui</a><br><br>
+				
+				<table class="prepare dados">
+					<caption>ENS_ENTIDADE_SUPERVISIONAVEL</caption>
+					<tr>
+					    <th>Ação</th>
+					    <th>ENS_ID</th>
+					    <th>VER_ID</th>
+					</tr>
+					<tr>
+					    <td>U</td>
+					    <td>3</td>
+					    <td>8</td>
+					</tr>
+				</table>
+				<br><br>
+			</td>
+
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Seleciona a Ciclo: <span class="select" by="id:idCiclo" sleep="1000">17/03/2010</span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idPerfilRisco">corec</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAnterior">'Expandir ações no ciclo 2010'</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAtual">'Expandir ações no ciclo 2011'</span></li>
+					
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+				
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul><br>
+				<span class="compareTable" by="xpath://table[@id='tDadosAtividadesCiclo']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="10" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ações no ciclo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2010</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+			                            <tbody>
+			                                 <tr>
+			                                    <th style="background-color: #4a73a2">
+			                                        <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+			                                    </th>
+			                                    <th style="background-color: #4a73a2">
+			                                        <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+			                                    </th>
+			                                    <th style="background-color: #4a73a2">
+			                                        <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+			                                    </th>
+			                                    <th style="background-color: #4a73a2">
+			                                        <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+			                                    </th>
+			                                </tr>
+			                                
+			                                <tr>
+			                                    <td>37841</td>
+			                                    <td>03/2010</td>
+			                                    <td>Acomp. Específico - IRB Risco de Crédito</td>
+			                                    <td>interrompida</td>
+			                                </tr>
+			                                <tr>
+			                                    <td>37843</td>
+			                                    <td>03/2010</td>
+			                                    <td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+			                                    <td>cancelada</td>
+			                                </tr>
+			                            </tbody>
+			                        </table>
+                                </td>
+                            </tr>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2011</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>37847</td>
+                                                <td>03/2011</td>
+                                                <td>VE Unidades no Exterior - Banco Patagonia</td>
+                                                <td>concluída</td>
+                                            </tr>
+                                            <tr>
+                                                <td>37848</td>
+                                                <td>03/2011</td>
+                                                <td>VE Contingências</td>
+                                                <td>em execução</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<br><br>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>4</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>6</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>5</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>2</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br><br>Conferir - </td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <regra>aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_4.html"
+				class="include">aqui</a><br><br>
+				
+				
+				<table class="prepare dados">
+					<caption>ENS_ENTIDADE_SUPERVISIONAVEL</caption>
+					<tr>
+					    <th>Ação</th>
+					    <th>ENS_ID</th>
+					    <th>VER_ID</th>
+					</tr>
+					<tr>
+					    <td>U</td>
+					    <td>3</td>
+					    <td>20</td>
+					</tr>
+				</table><br><br>
+				
+				<table class="prepare dados">
+                 <caption>VER_VERSAO_PERFIL_RISCO</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>VER_ID</th>
+                       <th>VER_CD_TIPO</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>35</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>36</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>37</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>38</td>
+                       <td>14</td>
+                  </tr>
+             </table><br><br>
+            
+            <table class="prepare dados">
+                 <caption>PVE_PER_VER</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>PER_ID</th>
+                       <th>VER_ID</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>3</td>
+                       <td>35</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>3</td>
+                       <td>36</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>3</td>
+                       <td>37</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>3</td>
+                       <td>38</td>
+                  </tr>
+            </table><br><br>
+                 
+			<table class="prepare dados">
+					<caption>ATC_ATIVIDADE_CICLO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ATC_ID</th>
+						<th>ATC_CD_CNPJ_ES</th>
+						<th>ATC_CD_ATIVIDADE</th>
+						<th>ATC_DT_BASE</th>
+						<th>ATC_AA</th>
+						<th>ATC_DS</th>
+						<th>ATC_CD_SITUACAO</th>
+						<th>VER_ID</th>
+						<th>ATC_DH_ATUALZ</th>
+						<th>ATC_CD_OPER_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>00000776</td>
+						<td>37841</td>
+						<td>03/2009</td>
+						<td>2009</td>
+						<td>Acomp. Específico - IRB Risco de Crédito</td>
+						<td>interrompida</td>
+						<td>35</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>00000776</td>
+						<td>37843</td>
+						<td>03/2009</td>
+						<td>2005</td>
+						<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+						<td>cancelada</td>
+						<td>36</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td>00000776</td>
+						<td>37847</td>
+						<td>03/2011</td>
+						<td>2010</td>
+						<td>VE Unidades no Exterior - Banco Patagonia</td>
+						<td>concluída</td>
+						<td>37</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>4</td>
+						<td>00000776</td>
+						<td>37848</td>
+						<td>03/2011</td>
+						<td>2010</td>
+						<td>VE Contingências</td>
+						<td>em execução</td>
+						<td>38</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+          </table><br><br>
+        </td>
+
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Seleciona a Ciclo: <span class="select" by="id:idCiclo" sleep="1000">18/03/2012</span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idPerfilRisco" sleep="1000">18/03/2010</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAnterior" sleep="1000">'Expandir ações no ciclo 2009'</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAtual">'Expandir ações no ciclo 2010'</span></li>
+					
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+				
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul><br>
+				<span class="compareTable" by="xpath://table[@id='tDadosAtividadesCiclo']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="10" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ações no ciclo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2009</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>37841</td>
+                                                <td>03/2009</td>
+                                                <td>Acomp. Específico - IRB Risco de Crédito</td>
+                                                <td>interrompida</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2010</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>37847</td>
+                                                <td>03/2011</td>
+                                                <td>VE Unidades no Exterior - Banco Patagonia</td>
+                                                <td>concluída</td>
+                                            </tr>
+                                            <tr>
+                                                <td>37848</td>
+                                                <td>03/2011</td>
+                                                <td>VE Contingências</td>
+                                                <td>em execução</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<br><br>
+			</td>
+				<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>6</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>4</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>3</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>3</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br><br>Conferir - </td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <regra>aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html"
+				class="include">aqui</a><br><br>				
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_4.html"
+				class="include">aqui</a><br><br>
+				
+				
+				<table class="prepare dados">
+					<caption>ENS_ENTIDADE_SUPERVISIONAVEL</caption>
+					<tr>
+					    <th>Ação</th>
+					    <th>ENS_ID</th>
+					    <th>VER_ID</th>
+					</tr>
+					<tr>
+					    <td>U</td>
+					    <td>3</td>
+					    <td>20</td>
+					</tr>
+				</table><br><br>
+				
+				
+				<table class="prepare dados">
+                 <caption>VER_VERSAO_PERFIL_RISCO</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>VER_ID</th>
+                       <th>VER_CD_TIPO</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>35</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>36</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>37</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>38</td>
+                       <td>14</td>
+                  </tr>
+             </table><br><br>
+			
+			
+            
+            <table class="prepare dados">
+                 <caption>PVE_PER_VER</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>PER_ID</th>
+                       <th>VER_ID</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>4</td>
+                       <td>35</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>4</td>
+                       <td>36</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>4</td>
+                       <td>37</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>4</td>
+                       <td>38</td>
+                  </tr>
+            </table><br><br>
+                 
+			<table class="prepare dados">
+					<caption>ATC_ATIVIDADE_CICLO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ATC_ID</th>
+						<th>ATC_CD_CNPJ_ES</th>
+						<th>ATC_CD_ATIVIDADE</th>
+						<th>ATC_DT_BASE</th>
+						<th>ATC_AA</th>
+						<th>ATC_DS</th>
+						<th>ATC_CD_SITUACAO</th>
+						<th>VER_ID</th>
+						<th>ATC_DH_ATUALZ</th>
+						<th>ATC_CD_OPER_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>00000776</td>
+						<td>37841</td>
+						<td>03/2010</td>
+						<td>2009</td>
+						<td>Acomp. Específico - IRB Risco de Crédito</td>
+						<td>suspensa</td>
+						<td>35</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>00000776</td>
+						<td>37843</td>
+						<td>03/2010</td>
+						<td>2009</td>
+						<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+						<td>cancelada</td>
+						<td>36</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td>00000776</td>
+						<td>37847</td>
+						<td>02/2011</td>
+						<td>2011</td>
+						<td>VE Unidades no Exterior - Banco Patagonia</td>
+						<td>concluída</td>
+						<td>37</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>4</td>
+						<td>00000776</td>
+						<td>37848</td>
+						<td>03/2011</td>
+						<td>2011</td>
+						<td>VE Contingências</td>
+						<td>suspensa</td>
+						<td>38</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+          </table><br><br>
+
+
+             
+           </td>
+
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Seleciona a Ciclo: <span class="select" by="id:idCiclo" sleep="1000">18/03/2012</span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idPerfilRisco">corec</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAnterior">'Expandir ações no ciclo 2010'</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAtual">'Expandir ações no ciclo 2011'</span></li>
+					
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+				
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul><br>
+				<span class="compareTable" by="xpath://table[@id='tDadosAtividadesCiclo']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="10" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ações no ciclo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2010</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width:100%;">
+			                            <tbody>
+			                                <tr>
+			                                    <td>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+			                                </tr>
+			                            </tbody>
+			                        </table>
+                                </td>
+                            </tr>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2011</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>37847</td>
+                                                <td>02/2011</td>
+                                                <td>VE Unidades no Exterior - Banco Patagonia</td>
+                                                <td>concluída</td>
+                                            </tr>
+                                            <tr>
+                                                <td>37848</td>
+                                                <td>03/2011</td>
+                                                <td>VE Contingências</td>
+                                                <td>suspensa</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<br><br>
+			    
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>6</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>4</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br><br>Conferir - </td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <regra>aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_4.html"
+				class="include">aqui</a><br><br>
+				
+				
+				<table class="prepare dados">
+                 <caption>VER_VERSAO_PERFIL_RISCO</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>VER_ID</th>
+                       <th>VER_CD_TIPO</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>35</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>36</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>37</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>38</td>
+                       <td>14</td>
+                  </tr>
+             </table><br><br>
+			
+			
+            
+            <table class="prepare dados">
+                 <caption>PVE_PER_VER</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>PER_ID</th>
+                       <th>VER_ID</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>5</td>
+                       <td>35</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>5</td>
+                       <td>36</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>5</td>
+                       <td>37</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>5</td>
+                       <td>38</td>
+                  </tr>
+            </table><br><br>
+                 
+			<table class="prepare dados">
+					<caption>ATC_ATIVIDADE_CICLO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ATC_ID</th>
+						<th>ATC_CD_CNPJ_ES</th>
+						<th>ATC_CD_ATIVIDADE</th>
+						<th>ATC_DT_BASE</th>
+						<th>ATC_AA</th>
+						<th>ATC_DS</th>
+						<th>ATC_CD_SITUACAO</th>
+						<th>VER_ID</th>
+						<th>ATC_DH_ATUALZ</th>
+						<th>ATC_CD_OPER_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>00000191</td>
+						<td>37841</td>
+						<td>03/2010</td>
+						<td>2011</td>
+						<td>Acomp. Específico - IRB Risco de Crédito</td>
+						<td>suspensa</td>
+						<td>35</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>00000776</td>
+						<td>37845</td>
+						<td>03/2010</td>
+						<td>2011</td>
+						<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+						<td>cancelada</td>
+						<td>36</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td>00000776</td>
+						<td>37847</td>
+						<td>03/2011</td>
+						<td>2012</td>
+						<td>VE Unidades no Exterior - Banco Patagonia</td>
+						<td>concluída</td>
+						<td>37</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>4</td>
+						<td>00000776</td>
+						<td>37848</td>
+						<td>03/2012</td>
+						<td>2013</td>
+						<td>VE Contingências</td>
+						<td>não iniciada</td>
+						<td>38</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+          </table><br><br>
+
+
+              
+           </td>
+
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Seleciona a Ciclo: <span class="select" by="id:idCiclo" sleep="1000">atual</span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idPerfilRisco">19/03/2012</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAnterior">'Expandir ações no ciclo 2011'</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAtual">'Expandir ações no ciclo 2012'</span></li>
+					
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+				
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul><br>
+				<span class="compareTable" by="xpath://table[@id='tDadosAtividadesCiclo']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="10" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ações no ciclo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2011</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>37845</td>
+                                                <td>03/2010</td>
+                                                <td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+                                                <td>cancelada</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2012</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>37847</td>
+                                                <td>03/2011</td>
+                                                <td>VE Unidades no Exterior - Banco Patagonia</td>
+                                                <td>concluída</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<br><br>
+			    
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>6</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>2</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br><br>Conferir - </td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <regra>aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html"
+				class="include">aqui</a><br><br>
+				<a
+				href="dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_4.html"
+				class="include">aqui</a><br><br>
+			
+			
+			
+			<table class="prepare dados">
+                 <caption>VER_VERSAO_PERFIL_RISCO</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>VER_ID</th>
+                       <th>VER_CD_TIPO</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>35</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>36</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>37</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>38</td>
+                       <td>14</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>39</td>
+                       <td>14</td>
+                  </tr>
+             </table><br><br>
+			
+			
+            
+            <table class="prepare dados">
+                 <caption>PVE_PER_VER</caption>
+                    <tr>
+                       <th>Ação</th>
+                       <th>PER_ID</th>
+                       <th>VER_ID</th>
+                   </tr>
+                   <tr>
+                       <td>I</td>
+                       <td>6</td>
+                       <td>35</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>6</td>
+                       <td>36</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>5</td>
+                       <td>37</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>6</td>
+                       <td>38</td>
+                  </tr>
+                  <tr>
+                       <td>I</td>
+                       <td>6</td>
+                       <td>39</td>
+                  </tr>
+            </table><br><br>
+                 
+			<table class="prepare dados">
+					<caption>ATC_ATIVIDADE_CICLO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ATC_ID</th>
+						<th>ATC_CD_CNPJ_ES</th>
+						<th>ATC_CD_ATIVIDADE</th>
+						<th>ATC_DT_BASE</th>
+						<th>ATC_AA</th>
+						<th>ATC_DS</th>
+						<th>ATC_CD_SITUACAO</th>
+						<th>VER_ID</th>
+						<th>ATC_DH_ATUALZ</th>
+						<th>ATC_CD_OPER_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>00000776</td>
+						<td>37841</td>
+						<td>03/2011</td>
+						<td>2011</td>
+						<td>Acomp. Específico - IRB Risco de Crédito</td>
+						<td>interrompida</td>
+						<td></td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>00000776</td>
+						<td>37843</td>
+						<td>03/2011</td>
+						<td>2011</td>
+						<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+						<td>cancelada</td>
+						<td>34</td>
+						<td>17/03/2010 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td>00000776</td>
+						<td>37847</td>
+						<td>03/2012</td>
+						<td>2012</td>
+						<td>VE Unidades no Exterior - Banco Patagonia</td>
+						<td>concluída</td>
+						<td>37</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>4</td>
+						<td>00000776</td>
+						<td>37848</td>
+						<td>03/2012</td>
+						<td>2012</td>
+						<td>VE Contingências</td>
+						<td>não iniciada</td>
+						<td>38</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>00000776</td>
+						<td>37849</td>
+						<td>03/2014</td>
+						<td>2014</td>
+						<td>VE Contingências</td>
+						<td>não iniciada</td>
+						<td>39</td>
+						<td>17/03/2011 00:00:00</td>
+						<td>deliq.sisliq105</td>
+					</tr>
+          </table><br><br>
+       </td>
+
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Seleciona a Ciclo: <span class="select" by="id:idCiclo" sleep="1000">atual</span></li>
+					<li>Seleciona a Versão: <span class="select" by="id:idPerfilRisco">vigente</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAnterior">'Expandir ações no ciclo 2013'</span></li>
+					<li>Clica no grupo expansível: <span class="clickon" by="id:grupo_controle_ExpansivelAtividadesAnoAtual">'Expandir ações no ciclo 2014'</span></li>
+					
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+				
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul><br>
+				<span class="compareTable" by="xpath://table[@id='tDadosAtividadesCiclo']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="10" class="aesquerda" style="width: 459px; background-color: #4a73a2">Ações no ciclo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2013</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width:100%;">
+			                            <tbody>
+			                                <tr>
+			                                    <td>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+			                                </tr>
+			                            </tbody>
+			                        </table>
+                                </td>
+                            </tr>
+                            <tr style="background-color: #4a73a2; color: white; font-weight: bold;">
+                                <td>
+                                    <span><a><img></a></span>
+                                    <span>2014</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td type="table">
+                                    <table style="width: 100%">
+                                        <tbody>
+                                             <tr>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Ação<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Data-base<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Descrição<input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                                <th style="background-color: #4a73a2">
+                                                    <b>Situação<input type="image"src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>37849</td>
+                                                <td>03/2014</td>
+                                                <td>VE Contingências</td>
+                                                <td>não iniciada</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<br><br>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>6</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+	</table>   
+</body>
+</html>

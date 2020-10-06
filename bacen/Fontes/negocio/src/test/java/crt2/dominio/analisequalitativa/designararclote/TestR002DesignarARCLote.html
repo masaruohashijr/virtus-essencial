@@ -1,0 +1,381 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Designar ARC em lote</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Designar ARC em lote, com ARC do tipo
+		Externo.</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>26/05/2017</td>
+			<td>Kalina Lígia</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a
+			href="../index.html#designarARCLote">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">carregada</a>.
+		</li>
+
+		<banco />
+
+		<li>O usuário é <strong><span class="sentence"method="logar">"deliq.sisliq114"</span></strong>.</li>
+		<li><banco /> Os dados encontram-se <a href="TestR001C001DesignarARCLote-DadoQue.html" class="include">aqui</a></li>
+		<li><dataHoraAtual valor="28/06/2015 00:00:00">Data/hora atual do sistema: 28/06/2015 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#designarARCLote">validar
+			cenários ao efetuar a designação</a>.
+	</blockquote>
+
+	<table>
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+						<th>Validação</th>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr class="scenario">
+						<td class='title'><b>[C001]</b> - Validar filtro "Atividade" para exibir ARC do tipo Externo. Com filtro Atividade igual "Todos".</td>
+		
+						<td>
+							<li>Com <b>'Ciclo'</b> igual a <b><span class="set" name="ciclo" converter="Integer">1</b></li>
+							<li>Com filtro para <b>'Atividade'</b> igual a <b><span class="set" name="atividade">"Todos"</b></li>
+						</td>
+		
+		    	    	<td>
+							<table>
+		                    	<tr><th style="background-color: green;">Saída</th></tr>
+		                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+		
+		                    	<tr>
+		                    	    <td>
+										<table class="verifyRows" name="arc" value="$THIS.consultaArcs(ciclo, atividade, true)">
+			                    			<tr>
+			                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+			                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+			                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+			                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+			                        			<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>1</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>3</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>1</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>3</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>5</td>
+			                        			<td></td>
+			                        			<td>Governança corporativa</td>
+			                        			<td></td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+										</table>
+				        		    </td>
+				        		</tr>
+		                    </table>
+					    </td>
+					</tr>
+					
+					<tr class="scenario">
+						<td class='title'><b>[C002]</b> - Validar filtro "Atividade" para exibir ARC do tipo Externo. Com filtro Atividade igual "Atividade de negócio".</td>
+		
+						<td>
+							<li>Com <b>'Ciclo'</b> igual a <b><span class="set" name="ciclo" converter="Integer">1</b></li>
+							<li>Filtro para <b>'Atividade'</b> igual a <b><span class="set" name="atividade">"Atividade de negócio"</b></li>
+						</td>
+		
+		    	    	<td>
+							<table>
+		                    	<tr><th style="background-color: green;">Saída</th></tr>
+		                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+		
+		                    	<tr>
+		                    	    <td>
+										<table class="verifyRows" name="arc" value="$THIS.consultaArcs(ciclo, atividade, true)">
+			                    			<tr>
+			                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+			                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+			                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+			                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+			                        			<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>1</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>3</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+										</table>
+				        		    </td>
+				        		</tr>
+		                    </table>
+					    </td>
+					</tr>
+					
+					<tr class="scenario">
+						<td class='title'><b>[C003]</b> - Validar filtro "Risco/Controle" para exibir ARC do tipo Externo. Com filtro Risco/Controle igual "Todos".</td>
+		
+						<td>
+							<li>Com <b>'Ciclo'</b> igual a <b><span class="set" name="ciclo" converter="Integer">1</b></li>
+							<li>Filtro para <b>'Risco/Controle'</b> igual a <b><span class="set" name="riscoControle">"Todos"</b></li>
+						</td>
+		
+		    	    	<td>
+							<table>
+		                    	<tr><th style="background-color: green;">Saída</th></tr>
+		                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+		
+		                    	<tr>
+		                    	    <td>
+										<table class="verifyRows" name="arc" value="$THIS.consultaArcs(ciclo, riscoControle, false)">
+			                    			<tr>
+			                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+			                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+			                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+			                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+			                        			<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>1</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>3</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>1</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>3</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>R</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>5</td>
+			                        			<td></td>
+			                        			<td>Governança corporativa</td>
+			                        			<td></td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+										</table>
+				        		    </td>
+				        		</tr>
+		                    </table>
+					    </td>
+					</tr>
+					
+					<tr class="scenario">
+						<td class='title'><b>[C004]</b> - Validar filtro "Risco/Controle" para exibir ARC do tipo Externo. Com filtro Risco/Controle igual "Controle".</td>
+		
+						<td>
+							<li>Com <b>'Ciclo'</b> igual a <b><span class="set" name="ciclo" converter="Integer">1</b></li>
+							<li>Filtro para <b>'Risco/Controle'</b> igual a <b><span class="set" name="riscoControle">"Controle"</b></li>
+						</td>
+		
+		    	    	<td>
+							<table>
+		                    	<tr><th style="background-color: green;">Saída</th></tr>
+		                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+		
+		                    	<tr>
+		                    	    <td>
+										<table class="verifyRows" name="arc" value="$THIS.consultaArcs(ciclo, riscoControle, false)">
+			                    			<tr>
+			                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+			                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+			                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+			                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+			                        			<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade corporativa</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>2</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+			                    			<tr>
+			                        			<td>4</td>
+			                        			<td>Atividade de negócio</td>
+			                        			<td>Estratégia</td>
+			                        			<td>C</td>
+			                        			<td>Previsto</td>
+			                    			</tr>
+										</table>
+				        		    </td>
+				        		</tr>
+		                    </table>
+					    </td>
+					</tr>
+					
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

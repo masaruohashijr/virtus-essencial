@@ -1,0 +1,74 @@
+<wicket:panel>
+	<table id="tDadosES" cellspacing="0" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Detalhes da ES</th>
+			</tr>
+		</thead>
+		<tbody id="idTabelaDadosPerfilRisco">
+		<wicket:enclosure child=idPrioridade>
+			<tr class="fundoPadraoAClaro3">
+				<td colspan="2" class="nomeCampo" style="width: 25%;">Prioridade</td>
+				<td style="" colspan="3"><label wicket:id="idPrioridade"></label></td>
+			</tr>
+			</wicket:enclosure>
+			
+			<div wicket:id="grupoExpansivelNotaFinal"></div>
+			<tr wicket:id="wmcNotaFinalVigente">
+				<td colspan="5" style="padding: 0px;"><span wicket:id="idPainelNotaFinalVigente"></span></td>
+			</tr>
+           
+			
+			<tr class="fundoPadraoAClaro3">
+				<td colspan="2" class="nomeCampo" style="width: 25%;">Porte</td>
+				<td style="" colspan="3"><label wicket:id=idPorte></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td colspan="2" class="nomeCampo" style="width: 25%;">Segmento</td>
+				<td style="" colspan="3"><label wicket:id="idSegmento"></label></td>
+			</tr>
+			<div wicket:id="grupoExpansivelPerfilAtuacao"></div>
+            <tr wicket:id="linhaPerfilAtuacao" class="fundoPadraoAClaro3">
+                <td colspan="5" >
+                    <table style="width: 100%">
+                        <tr>
+                            <td colspan="3"><label wicket:id="idJustificativaPerfilAtuacao"></label></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 25%"></td>
+                            <td><div style="width: 100%" class="centralizado" wicket:id="idTabelaAnexoDocumentoPerfilAtuacao"></div></td>
+                            <td style="width: 25%"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+			<div wicket:id="grupoExpansivelConclusao"></div>
+            <tr wicket:id="linhaConclusao" class="fundoPadraoAClaro3">
+                <td colspan="5">
+                    <table style="width: 100%">
+                        <tr>
+                            <td colspan="3"><label wicket:id="idJustificativaConclusao"></label></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 25%"></td>
+                            <td><div style="width: 100%" class="centralizado" wicket:id="idTabelaAnexoDocumentoConclusao"></div></td>
+                            <td style="width: 25%"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+			<div wicket:id="grupoExpansivelPerspectiva"></div>
+			<tr wicket:id="linhaPerspectiva" class="fundoPadraoAClaro3">
+                <td colspan="5">
+                   <label wicket:id="idJustificativaPerspectiva"></label>
+                </td>
+            </tr>
+            <div wicket:id="grupoExpansivelSituacao"></div>
+            <tr wicket:id="linhaSituacao" class="fundoPadraoAClaro3">
+                <td colspan="5">
+                   <label wicket:id="idJustificativaSituacao"></label>
+                </td>
+            </tr>
+		</tbody>
+	</table>
+</wicket:panel>

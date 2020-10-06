@@ -1,0 +1,528 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R006 - Destaques na tela de Gestão de detalhes da ES</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para as estórias 'Exibir ajuste do nota final corec' e 'Exibir ajuste da perspectiva corec'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>15/06/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>26/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>As regras da estória encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/index.html#ajustesPerfilRiscoAvaliacoesCorec">aqui</a>.</blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul><li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li></ul>
+
+		<h2>Cenários</h2>
+		<blockquote><a href="indexWeb.html#destaquesGestaoDetalhesES">Cenários para validar os destaques na tela de Gestão de detalhes da ES</a>.</blockquote>
+
+
+<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C004] - </b>Sem ajustes do comitê e com ajustes do supervisor.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<ul><li>Os dados para este cenário encontram-se <a href="TestR006AjustesPerfilRiscoAvaliacoesCorec-C004-DadoQue.html" class="include">aqui</a>.</li></ul>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+									<li>Acessar o menu: <span class="open" url="sisaps/supervisor">inicio</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+									<li>Clicar no botão: <span class="clickon" by="id:bttGerenciarDetalheES">Gerenciar detalhes da ES</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul><li>O código da tela deve ser: <span class="contains"><b>[APSFW0204]</b></span></li></ul>
+
+								<table>
+       								<thead>
+       									<tr class="fundoPadraoAEscuro2"><th>Nota final</th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nota final vigente</td>
+
+               								<td>
+												<span class="compareTable" by="xpath://table[@id='tPainelGrauPreocupacaoVigente']">
+	                   								<table>
+	                       								<tbody>
+	                       									<tr><td><label>Atualizado por ROBERTO SANTOS ALENCAR em 28/01/2015 00:00h.</label></td></tr>
+		                									<tr><td><label>Muito Alto</label></td></tr>
+	                   									</tbody>
+	                   								</table>
+	                   							</span>
+               								</td>
+           								</tr>
+
+										<tr class="fundoPadraoAClaro3">
+               								<td>Nova nota final</td>
+
+               								<td>
+               								    <table>
+													<tr><td><label>Sem alterações salvas.</label></td></tr>
+               								       	<tr><td><span class="selected" by="id:idNovoGrauPreocupacao">Muito Alto</span></td></tr>
+               								   </table>
+               								</td>
+           								</tr>
+       								</tbody>
+   								</table>
+
+								<br>
+
+								<table>
+       								<thead>
+           								<tr class="fundoPadraoAEscuro2"><th><label>Perspectiva</label></th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td><label>Perspectiva</label> vigente</td>
+
+               								<td>
+												<span class="compareTable" by="xpath://table[@id='tPainelPerspectivaVigente']">
+	                   								<table>
+	                       								<tbody>
+	                       									<tr><td><label>Atualizado por ROBERTO SANTOS ALENCAR em 28/01/2015 00:00h.</label></td></tr>
+	                       									<tr><td><label>Estabilidade</label></td></tr>
+	                       									<tr><td><label>Perspectiva de Estabilidade (supervisor)</label></td></tr>
+	                   									</tbody>
+	                   								</table>
+	                   							</span>
+               								</td>
+
+               								<td></td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova <label>perspectiva</label></td>
+
+               								<td>
+                   								<table>
+                       								<tbody>
+                       									<tr class="fundoPadraoAClaro3"><td><label>Sem alterações salvas.</label></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><span class="selected" by="id:perspectiva_idConceitoNovo">Estabilidade</span></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><div><textarea>Perspectiva de Estabilidade (supervisor)</textarea></div></td></tr>
+                   									</tbody>
+                   								</table>
+               								</td>
+
+               								<td></td>
+           								</tr>
+       								</tbody>
+   								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C001] - </b>Com ajustes do comitê e do supervisor (rascunho).</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<ul><li>Os dados para este cenário encontram-se <a href="TestR006AjustesPerfilRiscoAvaliacoesCorec-C001-DadoQue.html" class="include">aqui</a>.</li></ul>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+									<li>Acessar o menu: <span class="open" url="sisaps/supervisor">inicio</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+									<li>Clicar no botão: <span class="clickon" by="id:bttGerenciarDetalheES">Gerenciar detalhes da ES</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul><li>O código da tela deve ser: <span class="contains"><b>[APSFW0204]</b></span></li></ul> 
+
+								<table>
+       								<thead>
+       									<tr class="fundoPadraoAEscuro2"><th>Nota final</th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nota final vigente</td>
+
+               								<td>
+               									<span class="compareTable" by="xpath://table[@id='tPainelGrauPreocupacaoVigente']">
+                   								<table>
+                       								<tbody>
+                       									<tr><td><label>Atualizado por Comitê 104 em 15/12/2014 00:00h.</label></td></tr>
+	                									<tr><td><label>Médio (Corec)</label></td></tr>
+                   									</tbody>
+                   								</table>
+                   								</span>
+               								</td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova nota final</td>
+
+               								<td>
+               								    <table>
+													<tr><td><label>Encaminhado por ROBERTO SANTOS ALENCAR em 17/12/2015 00:00h.</label></td></tr>
+               								       	<tr><td><span class="selected" by="id:idNovoGrauPreocupacao">Muito Alto</span></td></tr>
+               								   </table>
+               								</td>
+           								</tr>
+            						</tbody>
+   								</table>
+
+								<br>
+
+								<table>
+       								<thead>
+           								<tr class="fundoPadraoAEscuro2"><th><label>Perspectiva</label></th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td><label>Perspectiva</label> vigente</td>
+
+               								<td>
+               									<span class="compareTable" by="xpath://table[@id='tPainelPerspectivaVigente']">
+	                   								<table>
+	                       								<tbody>
+	                       									<tr><td><label>Atualizado por Comitê 104 em 15/12/2014 00:00h.</label></td></tr>
+	                       									<tr><td><label>Piora (Corec)</label></td></tr>
+	                       									<tr><td><label></label></td></tr>
+	                   									</tbody>
+	                   								</table>
+                   								</span>
+               								</td>
+
+               								<td></td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova <label>perspectiva</label></td>
+
+               								<td>
+                   								<table>
+                       								<tbody>
+                       									<tr class="fundoPadraoAClaro3"><td><label>Encaminhado por ROBERTO SANTOS ALENCAR em 17/12/2015 00:00h.</label></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><span class="selected" by="id:perspectiva_idConceitoNovo">Inviabilidade</span></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><div><textarea>Perspectiva de Inviabilidade</textarea></div></td></tr>
+                   									</tbody>
+                   								</table>
+               								</td>
+
+               								<td></td>
+           								</tr>
+       								</tbody>
+   								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C002] - </b>Com ajustes do comitê e do supervisor (vigente).</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<ul><li>Os dados para este cenário encontram-se <a href="TestR006AjustesPerfilRiscoAvaliacoesCorec-C002-DadoQue.html" class="include">aqui</a>.</li></ul>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+									<li>Acessar o menu: <span class="open" url="sisaps/supervisor">inicio</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+									<li>Clicar no botão: <span class="clickon" by="id:bttGerenciarDetalheES">Gerenciar detalhes da ES</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul><li>O código da tela deve ser: <span class="contains"><b>[APSFW0204]</b></span></li></ul> 
+
+								<table>
+       								<thead>
+       									<tr class="fundoPadraoAEscuro2"><th>Nota final</th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nota final vigente</td>
+
+               								<td>
+												<span class="compareTable" by="xpath://table[@id='tPainelGrauPreocupacaoVigente']">
+	                   								<table>
+	                       								<tbody>
+	                       									<tr><td><label>Atualizado por ROBERTO SANTOS ALENCAR em 28/01/2015 00:00h.</label></td></tr>
+		                									<tr><td><label>Muito Alto</label></td></tr>
+	                   									</tbody>
+	                   								</table>
+	                   							</span>
+               								</td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova nota final</td>
+
+               								<td>
+               								    <table>
+													<tr><td><label>Sem alterações salvas.</label></td></tr>
+               								       	<tr><td><span class="selected" by="id:idNovoGrauPreocupacao">Muito Alto</span></td></tr>
+               								   </table>
+               								</td>
+           								</tr>
+       								</tbody>
+   								</table>
+
+								<br>
+
+								<table>
+       								<thead>
+           								<tr class="fundoPadraoAEscuro2"><th><label>Perspectiva</label></th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td><label>Perspectiva</label> vigente</td>
+
+               								<td>
+												<span class="compareTable" by="xpath://table[@id='tPainelPerspectivaVigente']">
+	                   								<table>
+	                       								<tbody>
+	                       									<tr><td><label>Atualizado por ROBERTO SANTOS ALENCAR em 28/01/2015 00:00h.</label></td></tr>
+	                       									<tr><td><label>Estabilidade</label></td></tr>
+	                       									<tr><td><label>Perspectiva de Estabilidade (supervisor)</label></td></tr>
+	                   									</tbody>
+	                   								</table>
+	                   							</span>
+               								</td>
+
+               								<td></td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova <label>perspectiva</label></td>
+
+               								<td>
+                   								<table>
+                       								<tbody>
+                       									<tr class="fundoPadraoAClaro3"><td><label>Última alteração salva ROBERTO SANTOS ALENCAR em 29/01/2015 00:00h.</label></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><span class="selected" by="id:perspectiva_idConceitoNovo">Indefinida</span></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><div><textarea cols="50">Perspectiva Indefinida</textarea></div></td></tr>
+                   									</tbody>
+                   								</table>
+               								</td>
+
+               								<td></td>
+           								</tr>
+       								</tbody>
+   								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C003] - </b>Com ajuste do comitê e sem ajuste do supervisor.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<ul><li>Os dados para este cenário encontram-se <a href="TestR001AjustesPerfilRiscoAvaliacoesCorec-C002-DadoQue.html" class="include">aqui</a>.</li></ul>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+									<li>Acessar o menu: <span class="open" url="sisaps/supervisor">inicio</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+									<li>Clicar no botão: <span class="clickon" by="id:bttGerenciarDetalheES">Gerenciar detalhes da ES</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul><li>O código da tela deve ser: <span class="contains"><b>[APSFW0204]</b></span></li></ul>
+
+								<table>
+       								<thead>
+       									<tr class="fundoPadraoAEscuro2"><th>Nota final</th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nota final vigente</td>
+
+               								<td>
+												<span class="compareTable" by="xpath://table[@id='tPainelGrauPreocupacaoVigente']">
+                    								<table>
+                        								<tbody>
+                        									<tr><td><label>Atualizado por Comitê 104 em 15/12/2014 00:00h.</label></td></tr>
+		                									<tr><td><label>Médio (Corec)</label></td></tr>
+                    									</tbody>
+                    								</table>
+                    							</span>
+               								</td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova nota final</td>
+               								<td><span class="selected" by="id:idNovoGrauPreocupacao">Selecione</span></td>
+           								</tr>
+       								</tbody>
+   								</table>
+
+								<br>
+
+								<table>
+       								<thead>
+           								<tr class="fundoPadraoAEscuro2"><th><label>Perspectiva</label></th></tr>
+       								</thead>
+
+       								<tbody>
+           								<tr class="fundoPadraoAClaro3">
+               								<td><label>Perspectiva</label> vigente</td>
+
+               								<td>
+												<span class="compareTable" by="xpath://table[@id='tPainelPerspectivaVigente']">
+                    								<table>
+                        								<tbody>
+                        									<tr><td><label>Atualizado por Comitê 104 em 15/12/2014 00:00h.</label></td></tr>
+                        									<tr><td><label>Piora (Corec)</label></td></tr>
+                        									<tr><td><label></label></td></tr>
+                    									</tbody>
+                    								</table>
+                    							</span>
+               								</td>
+
+               								<td></td>
+           								</tr>
+
+           								<tr class="fundoPadraoAClaro3">
+               								<td>Nova <label>perspectiva</label></td>
+
+               								<td>
+                   								<table>
+                       								<tbody>
+                       									<tr class="fundoPadraoAClaro3"><td><label></label></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><span class="selected" by="id:perspectiva_idConceitoNovo">Selecione</span></td></tr>
+                       									<tr class="fundoPadraoAClaro3"><td><div><textarea></textarea></div></td></tr>
+                   									</tbody>
+                   								</table>
+               								</td>
+
+               								<td></td>
+           								</tr>
+       								</tbody>
+   								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		
+		
+		
+	
+	</body>
+</html>

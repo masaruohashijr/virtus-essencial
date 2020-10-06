@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Detalhar análise economico-financeira (tela de perfil de risco) </title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Detalhar análise economico-financeira (tela de perfil de risco)'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>15/01/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>25/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Adotando o padrão de entrada e saída nos testes</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#detalharAnaliseEconomicoFinanceira">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	<ul>
+	    <banco/>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<li>Os dados encontram-se <a href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenário para <a href="indexNegocio.html#validarNotaCalculadaRefinada">validar cálculos dos campos 'Nota calculada' e 'Nota Refinada'</a>.
+	</blockquote>
+
+		<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Validação</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[CT001] - </b>Verificar a nota calculada e a nota refinada quando não há notas nos ANEF's.</td>
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th class="set" name="perfil">Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td><span class="set" name="perfil" converter="Integer">1</span></td>
+                    	    <td>
+		    	                 <ul>
+		    		                 <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(perfil)">*A</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">*A</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[CT002] - </b>Verificar a nota calculada e a nota refinada quando apenas um ANEF possui nota.</td>
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th class="set" name="perfil">Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td><span class="set" name="perfil" converter="Integer">2</span></td>
+                    	    <td>
+		    	                 <ul>
+		    		                 <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(perfil)">2</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[CT003] - </b>Verificar a nota calculada e a nota refinada quando dois ANEF's possuem notas.</td>
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th class="set" name="perfil">Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td><span class="set" name="perfil" converter="Integer">3</span></td>
+                    	    <td>
+		    	                 <ul>
+		    		                 <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(perfil)">2,40</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[CT004] - </b>Verificar a nota calculada e a nota refinada quando todos os ANEF's possuem notas.</td>
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="width: 102px">Entrada</th>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                    	   <th class="set" name="perfil">Perfil de risco</th>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td><span class="set" name="perfil" converter="Integer">4</span></td>
+                    	    <td>
+		    	                 <ul>
+		    		                 <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(perfil)">1,70</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(perfil)">2</span></strong></li>
+		    	                </ul>
+		                    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		
+		
+	</table>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>R003 - Gerenciar detalhes da ES pelo gerente</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+		</head>
+
+	<body>
+		<h1>Cenários da estória 'Gerenciar detalhes da ES pelo gerente'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>16/06/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>1.1</td>
+				<td>14/07/2016</td>
+				<td>David Nascimento</td>
+				<td>Adicionando no "porfim" a geração do evento de perfil de risco para que seja refletido no APS.</td>
+			</tr>
+			<tr>
+				<td>1.2</td>
+				<td>03/08/2016</td>
+				<td>David Nascimento</td>
+				<td>Alterando &quot;PorFim&quot; do CT001 e adicionando os cenários CT002 a CT005 a fim de testar a geração do evento de opinião conclusiva, para que  assim seja refletido no APS.</td>
+			</tr>
+			<tr>
+			    <td>1.3</td>
+			    <td>10/10/2016</td>
+			    <td>David Nascimento</td>
+			    <td>Atualizando os cenários para que ao realizar uma publicação dispare e-mails para os grupos responsáveis.</td>
+		    </tr>
+		    <tr>
+			    <td>1.4</td>
+			    <td>03/04/2017</td>
+			    <td>David Nascimento</td>
+			    <td>Alterando remetente, assunto e texto padrão dos emails automatizados (issue: 83763).</td>
+		    </tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			As regras da estória encontram-se <a href="../index.html#gerenciarDetalhesES">aqui</a>.
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		     <li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq102"</span></strong>.</li>
+		     <li>Data/hora atual do sistema: <strong><dataHoraAtual valor="12/06/2015 00:00:00">12/06/2015 00:00:00</dataHoraAtual></strong></li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#confirmarConclusao">validar a confirmação da nova Conclusão</a>.</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Confirmar nova Conclusão e atualizar o perfil de risco (sem publicação e sem rascunho de opinião conclusiva no APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR003C001GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar a nova Conclusão conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Conclusão da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR003C001GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+								<li>Os e-mails enviados são:</li>
+							</ul>
+							
+							
+							<table>
+					<tr>
+						<th style="background-color: green">Saída</th>
+					</tr>
+					<tr>
+						<th style="background-color: green">E-mails</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="verifyRows" name="resultado"
+								value="$THIS.getEmailsEnviados()">
+								<tr>
+									<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+									<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+									<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+									<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+								</tr>
+								<tr>
+									<td>remetentepublicacaoeventos@bcb.gov.br</td>
+									<td>GD-DEGEF-APSE-EMAILS-DESUP; GD-DEGEF-APSE-EMAILS-DELIQ; GRUPO-TODOS-EVENTOS; GRUPO-AUXILIAR-PERFIL-RISCO-SRC; GRUPO-AUXILIAR-OPINIAO-CONCLUSIVA</td>
+									<td>APS-Painéis - Publicação de opinião conclusiva - ABN</td>
+									<td reader="xml">Foi publicada nova opinião conclusiva no APS-Painéis em <a href="https://localhost:8080/aps/#/opinioes-conclusivas/9/detalhes">12/06/2015 00:00</a> por Gerente 102.<br>
+									Equipe responsável pela informação: DESUP/GBPM1/GTSP4 <br>
+									Entidade Supervisionada: 191 ABN 
+								    </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT002">[CT002]</a></b> - Confirmar nova Conclusão e atualizar o perfil de risco (sem publicação e com rascunho de opinião conclusiva em 'Edição' no APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR003C002GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar a nova Conclusão conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Conclusão da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR003C002GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+								<li>Os e-mails enviados são:</li>
+							</ul>
+							
+							
+							<table>
+					<tr>
+						<th style="background-color: green">Saída</th>
+					</tr>
+					<tr>
+						<th style="background-color: green">E-mails</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="verifyRows" name="resultado"
+								value="$THIS.getEmailsEnviados()">
+								<tr>
+									<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+									<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+									<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+									<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+								</tr>
+								<tr>
+									<td>remetentepublicacaoeventos@bcb.gov.br</td>
+									<td>GD-DEGEF-APSE-EMAILS-DESUP; GD-DEGEF-APSE-EMAILS-DELIQ; GRUPO-TODOS-EVENTOS; GRUPO-AUXILIAR-PERFIL-RISCO-SRC; GRUPO-AUXILIAR-OPINIAO-CONCLUSIVA</td>
+									<td>APS-Painéis - Publicação de opinião conclusiva - ABN</td>
+									<td reader="xml">Foi publicada nova opinião conclusiva no APS-Painéis em <a href="https://localhost:8080/aps/#/opinioes-conclusivas/9/detalhes">12/06/2015 00:00</a> por Gerente 102.<br>
+									Equipe responsável pela informação: DESUP/GBPM1/GTSP4 <br>
+									Entidade Supervisionada: 191 ABN 
+								    </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT003">[CT003]</a></b> - Confirmar nova Conclusão e atualizar o perfil de risco (sem publicação e com rascunho de opinião conclusiva em 'Homologação' no APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR003C003GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar a nova Conclusão conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Conclusão da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR003C003GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+								<li>Os e-mails enviados são:</li>
+							</ul>
+							
+							
+							<table>
+					<tr>
+						<th style="background-color: green">Saída</th>
+					</tr>
+					<tr>
+						<th style="background-color: green">E-mails</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="verifyRows" name="resultado"
+								value="$THIS.getEmailsEnviados()">
+								<tr>
+									<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+									<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+									<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+									<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+								</tr>
+								<tr>
+									<td>remetentepublicacaoeventos@bcb.gov.br</td>
+									<td>GD-DEGEF-APSE-EMAILS-DESUP; GD-DEGEF-APSE-EMAILS-DELIQ; GRUPO-TODOS-EVENTOS; GRUPO-AUXILIAR-PERFIL-RISCO-SRC; GRUPO-AUXILIAR-OPINIAO-CONCLUSIVA</td>
+									<td>APS-Painéis - Publicação de opinião conclusiva - ABN</td>
+									<td reader="xml">Foi publicada nova opinião conclusiva no APS-Painéis em <a href="https://localhost:8080/aps/#/opinioes-conclusivas/9/detalhes">12/06/2015 00:00</a> por Gerente 102.<br>
+									Equipe responsável pela informação: DESUP/GBPM1/GTSP4 <br>
+									Entidade Supervisionada: 191 ABN 
+								    </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br><br>
+	
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT003">[CT004]</a></b> - Confirmar nova Conclusão e atualizar o perfil de risco (com opinião conclusiva 'Publicada' e com rascunho no APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR003C004GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar a nova Conclusão conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Conclusão da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR003C004GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+								<li>Os e-mails enviados são:</li>
+							</ul>
+							
+							
+							<table>
+					<tr>
+						<th style="background-color: green">Saída</th>
+					</tr>
+					<tr>
+						<th style="background-color: green">E-mails</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="verifyRows" name="resultado"
+								value="$THIS.getEmailsEnviados()">
+								<tr>
+									<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+									<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+									<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+									<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+								</tr>
+								<tr>
+									<td>remetentepublicacaoeventos@bcb.gov.br</td>
+									<td>GD-DEGEF-APSE-EMAILS-DESUP; GD-DEGEF-APSE-EMAILS-DELIQ; GRUPO-TODOS-EVENTOS; GRUPO-AUXILIAR-PERFIL-RISCO-SRC; GRUPO-AUXILIAR-OPINIAO-CONCLUSIVA</td>
+									<td>APS-Painéis - Publicação de opinião conclusiva - ABN</td>
+									<td reader="xml">Foi publicada nova opinião conclusiva no APS-Painéis em <a href="https://localhost:8080/aps/#/opinioes-conclusivas/9/detalhes">12/06/2015 00:00</a> por Gerente 102.<br>
+									Equipe responsável pela informação: DESUP/GBPM1/GTSP4 <br>
+									Entidade Supervisionada: 191 ABN 
+								    </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br><br>
+	
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT003">[CT005]</a></b> - Confirmar nova Conclusão e atualizar o perfil de risco (ES bloqueada no SRC; e com opinião conclusiva 'Publicada' e sem rascunho no APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR003C005GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar a nova Conclusão conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Conclusão da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR003C005GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+								<li>Os e-mails enviados são:</li>
+							</ul>
+							
+							
+							<table>
+					<tr>
+						<th style="background-color: green">Saída</th>
+					</tr>
+					<tr>
+						<th style="background-color: green">E-mails</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="verifyRows" name="resultado"
+								value="$THIS.getEmailsEnviados()">
+								<tr>
+									<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+									<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+									<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+									<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+								</tr>
+								<tr>
+									<td>remetentepublicacaoeventos@bcb.gov.br</td>
+									<td>GD-DEGEF-APSE-EMAILS-DESUP; GD-DEGEF-APSE-EMAILS-DELIQ; GRUPO-TODOS-EVENTOS; GRUPO-AUXILIAR-PERFIL-RISCO-SRC; GRUPO-AUXILIAR-OPINIAO-CONCLUSIVA</td>
+									<td>APS-Painéis - Publicação de opinião conclusiva - ABN</td>
+									<td reader="xml">Foi publicada nova opinião conclusiva no APS-Painéis em <a href="https://localhost:8080/aps/#/opinioes-conclusivas/9/detalhes">12/06/2015 00:00</a> por Gerente 102.<br>
+									Equipe responsável pela informação: DESUP/GBPM1/GTSP4 <br>
+									Entidade Supervisionada: 191 ABN 
+								    </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	</body>
+</html>

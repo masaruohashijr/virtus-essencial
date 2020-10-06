@@ -1,0 +1,185 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R005 - Navegar análise economico-financeira (perfil supervisor); para ciclo atual com estado diferente de 'Em andamento'</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+        <script type="text/javascript" src="../../jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Navegar análise economico-financeira (perfil supervisor)'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>23/02/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+    
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#navegarAnaliseEconomicoFinanceiraSupervisor">aqui</a>.</blockquote>
+    
+    	<h2>Premissas iniciais</h2>
+
+		<ul>
+			<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<li><td>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong></td></li>
+        </ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenário para <a href="indexNegocio.html#navegarAQTDiferenteEmAndamento">verificar tela de navegação para ciclo com estado diferente de 'Em andamento'</a>.</blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Verificar qual a tela de destino para ANEF no estado 'Concluído'. Ciclo no estado 'Corec'</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR005NavegarAQTSupervisor-C001-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+									<table>
+										<tr>
+										<th style="width: 172px">Entradas</th>
+										<th style="width: 166px; background-color: green">Saída</th>
+										</tr>
+									</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>3</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Verificar qual a tela de destino para ANEF no estado 'Concluído'. Ciclo no estado 'Pós-corec'</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR005NavegarAQTSupervisor-C002-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+								<table>
+									<tr>
+									<th style="width: 172px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+									</tr>
+								</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>1</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> - Verificar qual a tela de destino para ANEF no estado 'Concluído'. Ciclo no estado 'Encerrado'</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR005NavegarAQTSupervisor-C003-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+									<table>
+										<tr>
+										<th style="width: 172px">Entradas</th>
+										<th style="width: 166px; background-color: green">Saída</th>
+										</tr>
+									</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>6</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>2</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

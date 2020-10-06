@@ -1,0 +1,239 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Iniciar ciclo SRC com criação de ANEFs</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 3.21 - Painel do supervisor e estória 3.8 Atualizar 'Iniciar ciclo' para criar ANEFs vazios</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>12/01/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>1.1</td>
+				<td>16/05/2017</td>
+				<td>David Nascimento</td>
+				<td>Ajuste no "PorFim" a fim de incluir a coluna de fator de relevância com valor nulo para o ARC externo.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			Para as regras da estória clique <a href="../../ciclo/index.html#iniciarCiclo">aqui</a>.
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+			<li><a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">A lista de servidores foi carregada</a></li>
+			<li><dataHoraAtual valor="29/05/2014 00:00:00">Data atual: 29/05/2014 00:00:00</dataHoraAtual></li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote><a href="../../ciclo/index.html#iniciarCiclo">Cenários para validar a criação de ciclo</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C001]</b> - Incluir ciclo sem informar a ES</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+				<td>
+					<ul>
+						<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+						<li><span class="sentence" method="salvar">Entidade Supervisionável " ", Data inicio "29/05/2014"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					Mensagens de impedimento: 
+
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Entidade supervisionável" é de preenchimento obrigatório.</li>
+						<li>Campo "Metodologia" é de preenchimento obrigatório.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C002]</b> - Incluir ciclo sem Data de início do ciclo</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+				<td>
+					<ul>
+						<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+						<li><span class="sentence" method="salvar">Entidade Supervisionável (NOME=ITAU) ENS_ID ="3", Data inicio ""</span></li>
+					</ul>
+				</td>
+
+				<td>
+					Mensagem de impedimento:
+
+					<ul class="execute" value="$THIS.verificar($NODE)"><li>Campo "Data de início do ciclo" é de preenchimento obrigatório.</li></ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C003]</b> - Incluir ciclo, informar ES que possui ciclo</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+				<td>
+					<ul>
+						<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+						<li><span class="sentence" method="salvar">Entidade Supervisionável (NOME=ABN AMRO) ID= "1", Data inicio "29/05/2014"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					Mensagem de impedimento:
+
+					<ul class="execute" value="$THIS.verificar($NODE)"><li>Entidade supervisionável já possui ciclo de supervisão.</li></ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C004]</b> - Incluir ciclo com Data de início do ciclo inválida</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+				<td>
+					<ul>
+						<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+						<li><span class="sentence" method="salvar">Entidade Supervisionável (NOME=ITAU) ID "3", Data inicio "2014/05/29"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					Mensagem de impedimento:
+
+					<ul class="execute" value="$THIS.verificar($NODE)"><li>O valor do campo 'Data de início do ciclo' não é uma data válida.</li></ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C005]</b> - Incluir ciclo com Data de início do ciclo maior que a data corrente</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+				<td>
+					<ul>
+						<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+						<li><span class="sentence" method="salvar">Entidade Supervisionável (NOME=ITAU) "3", Data inicio "28/06/2014"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					Mensagem de impedimento:
+
+					<ul class="execute" value="$THIS.verificar($NODE)"><li>A data de início de ciclo deve ser menor ou igual à data corrente.</li></ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C006]</b> - Incluir ciclo de ES Nova sem prioridade definida.</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+				<td>
+					<ul>
+						<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+						<li><span class="sentence" method="salvar">Entidade Supervisionável (NOME=BANCO STANDARD DE INVEST. S.A.) ID "12", Data inicio "28/05/2014"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					Mensagem de impedimento:
+
+					<ul class="execute" value="$THIS.verificar($NODE)"><li>Entidade supervisionável não possui prioridade definida.</li></ul>
+				</td>
+			</tr>
+
+			<tr class="scenario" >
+            	<td class='title'><b>[C007]</b> - Incluir ciclo informando ES e data de início de ciclo válida.</td>
+
+				<td>
+					<banco/>
+
+					<ul><li>Os dados de entrada para o cenário se encontram <a href="TestAPSFW0201_Painel_do_supervisor_entradas.html" class="include">aqui</a><br><br></li></ul>
+				</td>
+
+            	<td>
+                	<ul>
+                    	<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186"</span></li>
+                    	<li><span class="sentence" method="salvar">Entidade Supervisionável (NOME=ITAU) ID "3", Data inicio "25/05/2014"</span></li>
+                	</ul>
+            	</td>
+
+            	<td>
+					Mensagens de sucesso:
+
+                	<ul>
+                    	<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+                    	<li>A matriz de riscos e controles está disponível para edição.</li>
+                	</ul>
+
+					Registros na base de dados:
+
+                	<ul>
+                    	<li>Os dados finais do Ciclo e tabelas correlacionadas se encontram <a href="TestAPSFW0201_Painel_do_supervisor_porfim.html" class="include">aqui</a></li>
+                	</ul>
+            	</td>
+        	</tr>
+		</table>
+	</body>
+</html>

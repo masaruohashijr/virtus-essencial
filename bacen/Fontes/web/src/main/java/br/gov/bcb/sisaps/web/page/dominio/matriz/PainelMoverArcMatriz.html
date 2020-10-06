@@ -1,0 +1,39 @@
+<wicket:extend>
+	<form wicket:id="form">
+		<div>
+			<table id="tDadosArc" width="100%" cellspacing="0" cellpadding="3" name="tDadosArc">
+				<thead>
+					<tr>
+						<th class="fundoPadraoAEscuro3" style="text-align: left; border-bottom: 0px;" colspan="3">ARCs</th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 35%;">ARCs</td>
+						<td wicket:id="idNomeGrupoRisco"></td>
+					</tr>
+
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo">Associados à atividade</td>
+						<td wicket:id="idAtividadeAssociada"></td>
+					</tr>
+
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo">Alterar associação para atividade</td>
+						<td style=""><select id="idAtividadeDestino" wicket:id="idAtividadeDestino"></select></td>
+					</tr>
+
+
+
+				</tbody>
+			</table>
+			<div align="center">
+				<br> <input type="button" class="botao centralizado" id="bttAlterarAssociacao" style="width: 180px;" wicket:id="bttAlterarAssociacao"
+					value="Alterar associação dos ARCs"> <input type="button" class="botao centralizado" id="bttVoltarModal"
+					wicket:id="bttVoltarModal" value="Voltar">
+			</div>
+		</div>
+	</form>
+</wicket:extend>

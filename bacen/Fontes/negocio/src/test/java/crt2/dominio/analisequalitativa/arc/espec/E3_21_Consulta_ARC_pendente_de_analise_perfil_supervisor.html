@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.21. Consulta ARCs pendentes de análise para perfil supervisor</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>14/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>09/05/2014</td>
+				<td>2.0</td>
+				<td>Adequação a nova visão da funcionalidade.</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_21">E3.21. Painel do Supervisor</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC no estado em andamento cadastrado no sistema de acordo com a metodologia da ES</p>
+			<p>Uma matriz no estado 2 - Vigente</p>
+			<p>ARCs nos estados Preenchido, Análise delegada e Em análise de ciclo que o supervisor seja titular ou ARC para o qual ele tenha sido delegado como analisador</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor.</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela inicial da aplicação para o perfil supervisor</p>
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Painel do Supervisor</b></p>
+			<p>Início -- Painel do Supervisor</p>
+			<p>Código de tela: [APSFW0000]</p>
+			<p>Comando: Detalhar</p>
+
+			<input type="image" src="Tela01_E3_21.png"/>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade disponível apenas para o perfil <b>Supervisor</b>.</p>
+			<p>Funcionalidade básica de listar os ARCs delegados ou sob responsabilidade do supervisor.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>A funcionalidade exibe os ARCs de ciclo do qual o supervisor seja responsável ou ainda os ARCs para os quais o supervisor tenha sido delegado. Estado válidos:
+				<ul>
+					<li>Preenchido</li>
+					<li>Análise delegada</li>
+					<li>Em análise</li>
+				</ul>
+			</li>
+
+			<li>A funcionalidade deve exibir, conforme protótipo, os elementos de tela.</li>
+			<li>O botão Detalhar abre a tela de detalhamento para o ARC selecionado.</li>
+		</ul>
+
+		<h2>Cenários de teste - Negócio.</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Clicar no botão Detalhar sem selecionar um ARC. Mensagem:
+				<ul><li>"Seleção de ARC é obrigatória."</li></ul>
+			</li>
+
+			<li>
+				<b id="C002">C002</b> Falha - Consulta não retorna dados (lista de ARCs vazia). Mensagem:
+				<ul><li>"Não há ARCs pendentes de análise."</li></ul>
+			</li>
+
+			<li><b id="C003">C003</b> Sucesso - Consulta retorna dados de acordo com tabelas dado_que</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_21_Consulta_ARC_pendente_de_analise_perfil_supervisor.html">Web</a>.</h2>	
+
+		<ul>
+			<li>Teste web equivalente - <b><a href="#C001">C001</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C002">C002</a></b> - Conferir apenas a mesangem.</li>
+			<li>Conferir - se a listagem de ARCs obedece às regras dispostas acima.</li>
+			<li>Sucesso - Testar a navegabilidade dos comandos Detalhar e Voltar.</li>
+		</ul>
+	</body>
+</html>

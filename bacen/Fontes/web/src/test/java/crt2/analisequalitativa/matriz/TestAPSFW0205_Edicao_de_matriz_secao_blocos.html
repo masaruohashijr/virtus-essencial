@@ -1,0 +1,1179 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para APSFW0205 - Edicao de Matriz (Seção percentual bloco corporativo)</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>15/07/2014</td>
+			<td>David Moura</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>05/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Cálculo da nota final e nota refinada da matriz</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>07/10/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória:
+		<ul>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0205_Edicao_de_matriz_secao_blocos.xlsx">APSFW0205_Edicao_de_matriz_secao_blocos.xlsx</a>.</li>
+		</ul>
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	</ul>
+
+	<blockquote>
+		<dataHoraAtual valor="28/05/2014 00:00:00">Data atual: 28/05/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de teste para a estória APSFW0205 - Edicao de Matriz (Seção percentual bloco corporativo)</h2>
+	<blockquote>Cenários onde devem ser apresentadas os elementos de tela conforme protótipo para a estória de
+		Edicao de Matriz (Seção percentual bloco corporativo), bem como as mensagens de erro/impedimento.</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br> <br> <b>Conferir</b> - Preencher percentual no campo 'Novo' com
+				número inteiro válido de 0 a 100 e verificar a diferença no campo em edição Corporativo (verificar a presença do
+				botão 'Alterar' e 'Liberar nova Matriz')</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se
+				encontram <a href="../matriz/dadoque/TestAPSFW0205_Edicao_de_matriz_secao_blocos_dadoque.html" class="include">aqui</a><br>
+				<br></td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">inicio/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz" s>Editar Estrutura da Matriz</span></li>
+					<li>Digite: <span class="type" by="id:idNovoPercentualCorporativo">99</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Edição de matriz de riscos e controles
+					</span>
+					</li>
+					<li>O título da tela deve ser: <span class="contains"><b>Edição de matriz de riscos e controles</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0205]</b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tBloco']">
+
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th class="thform" style="text-align: left; border-bottom: 0px; background-color: #4a73a2" colspan="5">Blocos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2"></td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2">Vigente</td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2">Em edição</td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2" colspan="2">Novo</td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%; background-color: #4a73a2">Negócio</td>
+								<td style="text-align: left;"><label id="idPercentualVigenteNegocio33a"> 40% </label></td>
+								<td style="text-align: left;"><label id="idPercentualEsbocadaNegocio33b"> 40% </label></td>
+								<td style="text-align: left;"><label id="idNovoPercentualNegocio33c"> 1% </label></td>
+								<td style="text-align: center;" rowspan="2"><input type="submit" title="Alterar" value="Alterar"
+									name="idPainelBloco:bttAlterarPercentualPercentual" id="bttAlterarPercentualPercentual"></td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%; background-color: #4a73a2">Corporativo</td>
+								<td style="text-align: left;"><label id="dPercentualVigenteCorporativo33d"> 60% </label></td>
+								<td style="text-align: left;"><label id="idPercentualEsbocadaCorporativo33e"> 60% </label></td>
+								<td style="text-align: left;"><input type="text" maxlength="2" value="99"
+									name="idPainelBloco:idNovoPercentualCorporativo" id="idNovoPercentualCorporativo"
+									onfocus="mascara('##', this, 2, false);" onblur="mascara('##', this, 2, false);"
+									onkeydown="mascara('##', this, 2, false);" onkeypress="mascara('##', this, 2, false);"
+									onkeyup="mascara('##', this, 2, false);"> %</td>
+							</tr>
+						</tbody>
+					</table>
+
+			</span><br>
+
+				<li>O botão de 'Alterar':<br> <br> <input class="present" by="conter:" type="button" value="Alterar" /></li>
+				<li>O botão de 'Liberar nova Matriz':<br> <br> <input class="present" by="conter:" type="button"
+					value="Liberar nova Matriz" /></li>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br> <br> <b>Falha</b> - Preencher percentual no campo 'Novo' com número
+				inteiro com valor = Nulo e verificar a diferença no campo em edição Corporativo que deverá estar alimentado com 100%
+				(verificar a presença do botão 'Alterar' e 'Liberar nova Matriz')</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se
+				encontram <a href="../matriz/dadoque/TestAPSFW0205_Edicao_de_matriz_secao_blocos_dadoque.html" class="include">aqui</a><br>
+				<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">inicio/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar Estrutura da Matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttAlterarPercentual">Alterar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Edição de matriz de riscos e controles
+					</span>
+					</li>
+					<li>O título da tela deve ser: <span class="contains"><b>Edição de matriz de riscos e controles</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0205]</b></span></li>
+					<li>A mensagem de erro: <span class="contains"><b>Campo participação percentual do bloco
+								corporativo é de preenchimento obrigatório</b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tBloco']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th class="thform" style="text-align: left; border-bottom: 0px; background-color: #4a73a2" colspan="5">Blocos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2"></td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2">Vigente</td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2">Em edição</td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2" colspan="2">Novo</td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%; background-color: #4a73a2">Negócio</td>
+								<td style="text-align: left;"><label id="idPercentualVigenteNegocio33a"> 40% </label></td>
+								<td style="text-align: left;"><label id="idPercentualEsbocadaNegocio33b"> 40% </label></td>
+								<td style="text-align: left;"><label id="idNovoPercentualNegocio33c"> </label></td>
+								<td style="text-align: center;" rowspan="2"><input type="submit" title="Alterar" value="Alterar"
+									name="idPainelBloco:bttAlterarPercentualPercentual" id="bttAlterarPercentualPercentual"></td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%; background-color: #4a73a2">Corporativo</td>
+								<td style="text-align: left;"><label id="dPercentualVigenteCorporativo33d"> 60% </label></td>
+								<td style="text-align: left;"><label id="idPercentualEsbocadaCorporativo33e"> 60% </label></td>
+								<td style="text-align: left;"><input type="text" maxlength="2" value=""
+									name="idPainelBloco:idNovoPercentualCorporativo" id="idNovoPercentualCorporativo"
+									onfocus="mascara('###', this, 2, false);" onblur="mascara('###', this, 2, false);"
+									onkeydown="mascara('###', this, 2, false);" onkeypress="mascara('###', this, 2, false);"
+									onkeyup="mascara('###', this, 2, false);"> %</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br>
+
+				<li>O botão de 'Alterar':<br> <br> <input class="present" by="conter:" type="button" value="Alterar" /></li>
+				<li>O botão de 'Liberar nova Matriz':<br> <br> <input class="present" by="conter:" type="button"
+					value="Liberar nova Matriz" /></li>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class="title"><b>C003</b><br /> <br /> <b>Conferir</b> - Preencher percentual no campo 'Novo', clicar no
+				botão 'Alterar' e verificar se o percentual das colunas (ARCs) e linhas (atividades) da Matriz em edição (esboçada)
+				foram alterados</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se
+				encontram <a href="../matriz/dadoque/TestAPSFW0205_Edicao_de_matriz_secao_blocos_dadoque.html" class="include">aqui</a><br>
+				<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">inicio/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar Estrutura da Matriz</span></li>
+					<li>Digite: <span class="type" by="id:idNovoPercentualCorporativo">70</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttAlterarPercentual">Alterar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco<input type="image" src="../../../crt2/seta.gif" />Edição de matriz de riscos e controles
+					</span>
+					</li>
+					<li>O título da tela deve ser: <span class="contains"><b>Edição de matriz de riscos e controles</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0205]</b></span></li>
+
+					<li><span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+							<table id="tPainelMatrizVigente" cellpadding="0" cellspacing="0" style="width: 90%">
+								<tbody>
+									<tr style="width: 100%; margin: auto;">
+										<td>
+											<div id="idPainelMatrizVigente249">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+													<thead>
+														<tr class="fundoPadraoAEscuro3">
+															<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo24a">
+																	Matriz vigente </span></th>
+														</tr>
+													</thead>
+												</table>
+												<span id="id124d">
+													<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+														<tbody>
+															<tr class="fundoPadraoAClaro3">
+																<td class="fundoPadraoAClaro3" colspan="2"><span id="id024b"> </span></td>
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo24c">
+																		Crédito </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo24e">
+																		Contágio </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo250">
+																		Estratégia </span></td>
+
+															</tr>
+															<tr class="fundoPadraoAClaro3">
+																<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+																	id="labelPossuiLink251"> Clique nas notas para ler o ARC. </label></td>
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span
+																	id="percentualGrupo253"> 32% </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span
+																	id="percentualGrupo255"> 12,6% </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span
+																	id="percentualGrupo257"> 55,4% </span></td>
+
+															</tr>
+															<tr class="fundoPadraoAClaro3">
+																<td class="fundoPadraoAClaro3" colspan="2"><span id="id0258"> </span></td>
+																<td width="60px" align="center" class="nomeMatriz">R</td>
+																<td width="60px" align="center" class="nomeMatriz">C</td>
+
+																<td width="60px" align="center" class="nomeMatriz">R</td>
+																<td width="60px" align="center" class="nomeMatriz">C</td>
+
+																<td width="60px" align="center" class="nomeMatriz">R</td>
+																<td width="60px" align="center" class="nomeMatriz">C</td>
+
+															</tr>
+														</tbody>
+														<tbody id="id025b">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo25c">Unidade de negócio</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo25d">40%</td>
+																<td align="center" class="" id="dadosRisco25f" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+																	id="linkRisco1f3"> <span id="risco260"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle261" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+																	id="linkControle1f4"> <span id="controle262"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco264" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+																	id="linkRisco1f5"> <span id="risco265"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle266" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+																	id="linkControle1f6"> <span id="controle267"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco269" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-2-dadosRisco-linkRisco"
+																	id="linkRisco1f7"> <span id="risco26a"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle26b" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-2-dadosControle-linkControle"
+																	id="linkControle1f8"> <span id="controle26c"> </span>
+																</a></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id126d">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatrizSemNegrito" id="nomeLinhaVo26e">Atividade de negócio 1</td>
+																<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo26f">32%</td>
+																<td align="center" class="" id="dadosRisco271" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosRisco-linkRisco"
+																	id="linkRisco14"> <span id="risco272"> 3 </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle273" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-0-dadosControle-linkControle"
+																	id="linkControle13"> <span id="controle274"> 3 </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco276" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+																	id="linkRisco1f9"> <span id="risco277"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle278" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosControle-linkControle"
+																	id="linkControle1fa"> <span id="controle279"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco27b" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-2-dadosRisco-linkRisco"
+																	id="linkRisco1fb"> <span id="risco27c"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle27d" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-2-dadosControle-linkControle"
+																	id="linkControle1fc"> <span id="controle27e"> </span>
+																</a></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id227f">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatrizSemNegrito" id="nomeLinhaVo280">Atividade de negócio 2</td>
+																<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo281">8%</td>
+																<td align="center" class="" id="dadosRisco283" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+																	id="linkRisco1fd"> <span id="risco284"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle285" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+																	id="linkControle1fe"> <span id="controle286"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco288" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+																	id="linkRisco18"> <span id="risco289"> 3 </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle28a" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+																	id="linkControle17"> <span id="controle28b"> 3 </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco28d" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-2-dadosRisco-linkRisco"
+																	id="linkRisco1ff"> <span id="risco28e"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle28f" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-2-dadosControle-linkControle"
+																	id="linkControle200"> <span id="controle290"> </span>
+																</a></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id3291">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo292">Atividade corporativa 1</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo293">4,6%</td>
+																<td align="center" class="" id="dadosRisco295" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-0-dadosRisco-linkRisco"
+																	id="linkRisco201"> <span id="risco296"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle297" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-0-dadosControle-linkControle"
+																	id="linkControle202"> <span id="controle298"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco29a" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-1-dadosRisco-linkRisco"
+																	id="linkRisco12"> <span id="risco29b"> 3 </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle29c" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-1-dadosControle-linkControle"
+																	id="linkControle11"> <span id="controle29d"> 3 </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco29f" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-2-dadosRisco-linkRisco"
+																	id="linkRisco203"> <span id="risco2a0"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2a1" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-2-dadosControle-linkControle"
+																	id="linkControle204"> <span id="controle2a2"> </span>
+																</a></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id42a3">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo2a4">Atividade corporativa 2</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo2a5">36,9%</td>
+																<td align="center" class="" id="dadosRisco2a7" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-0-dadosRisco-linkRisco"
+																	id="linkRisco205"> <span id="risco2a8"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2a9" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-0-dadosControle-linkControle"
+																	id="linkControle206"> <span id="controle2aa"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco2ac" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-1-dadosRisco-linkRisco"
+																	id="linkRisco207"> <span id="risco2ad"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2ae" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-1-dadosControle-linkControle"
+																	id="linkControle208"> <span id="controle2af"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco2b1" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-2-dadosRisco-linkRisco"
+																	id="linkRisco16"> <span id="risco2b2"> 3 </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2b3" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-2-dadosControle-linkControle"
+																	id="linkControle15"> <span id="controle2b4"> 3 </span>
+																</a></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id52b5">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo2b6">Atividade corporativa isolada</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo2b7">18,5%</td>
+																<td align="center" class="" id="dadosRisco2b9" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-0-dadosRisco-linkRisco"
+																	id="linkRisco209"> <span id="risco2ba"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2bb" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-0-dadosControle-linkControle"
+																	id="linkControle20a"> <span id="controle2bc"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco2be" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-1-dadosRisco-linkRisco"
+																	id="linkRisco20b"> <span id="risco2bf"> </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2c0" bgcolor="#F2F4F6"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-1-dadosControle-linkControle"
+																	id="linkControle20c"> <span id="controle2c1"> </span>
+																</a></td>
+
+																<td align="center" class="" id="dadosRisco2c3" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-2-dadosRisco-linkRisco"
+																	id="linkRisco20"> <span id="risco2c4"> 3 </span>
+																</a></td>
+																<td align="center" class="" id="dadosControle2c5" bgcolor="FFFFFF"><a
+																	href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-2-dadosControle-linkControle"
+																	id="linkControle19"> <span id="controle2c6"> 3 </span>
+																</a></td>
+
+															</tr>
+														</tbody>
+														<tbody>
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+																<td align="center" class="" id="notasResiduais2c8" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais2ca" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais2cc" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais2ce" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais2d0" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais2d2" bgcolor="FFFFFF">3,00</td>
+
+															</tr>
+															<tr class="fundoPadraoAClaro3">
+																<td align="center" class="" colspan="2" id="mediasResiduais2d4" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" colspan="2" id="mediasResiduais2d6" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" colspan="2" id="mediasResiduais2d8" bgcolor="FFFFFF">3,00</td>
+
+															</tr>
+														</tbody>
+													</table>
+													<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel2d9">
+														<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+															<tbody>
+																<tr class="fundoPadraoAClaro3">
+																	<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+																	<td style="width: 15%;" id="colunaNotaCalculada2da">3,00</td>
+																	<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+																	<td style="width: 15%;" id="colunaNotarRefinada2db">3</td>
+																	<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle2dc"><span
+																		class="nomeCampo" id="controle2dd"> <a
+																			href="./page?5-1.ILinkListener-formulario-idPainelMatrizVigente-resumoMatrizRecalculadaPanel-tResumoMatriz-colunaControle-controle-link"
+																			id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem2de"
+																				src="srunnerw825913409337396296/mais-ver-1421424962872.gif">
+																		</a>
+																	</span></td>
+																	<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada2df">Nota ajustada</td>
+																	<td style="width: 20%;" id="colunaNotaAjustadaValor2e0"><label id="notaAjustadaMatriz2e1">
+																	</label></td>
+																</tr>
+																<tr id="idLinhaJustificativaNotaAjustadaMatriz2e2" style="display: none">
+																</tr>
+															</tbody>
+														</table>
+													</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+					</span></li>
+					<li><span class="compareTable" by="xpath://table[@id='tPainelMatrizEsbocada']">
+							<table id="tPainelMatrizEsbocada" cellpadding="0" cellspacing="0" style="width: 90%">
+								<tbody>
+									<tr style="width: 100%; margin: auto;">
+										<td>
+											<div id="idPainelMatriz2d7">
+												<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloEsboçada">
+													<thead>
+														<tr class="fundoPadraoAEscuro3">
+															<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo461">
+																	Matriz em edição (notas vigentes) </span></th>
+														</tr>
+													</thead>
+												</table>
+												<span id="id1464">
+													<table width="100%" cellspacing="1" id="tPainelCorpoEsboçada">
+														<tbody>
+															<tr class="fundoPadraoAClaro3">
+																<td class="fundoPadraoAClaro3" colspan="2"><span id="id0462"> </span></td>
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo463">
+																		Crédito </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo465">
+																		Contágio </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo467">
+																		Estratégia </span></td>
+
+															</tr>
+															<tr class="fundoPadraoAClaro3">
+																<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+																	id="labelPossuiLink468"> </label></td>
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span
+																	id="percentualGrupo46a"> 24% </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span
+																	id="percentualGrupo46c"> 11,4% </span></td>
+
+																<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span
+																	id="percentualGrupo46e"> 64,6% </span></td>
+
+															</tr>
+															<tr class="fundoPadraoAClaro3">
+																<td class="fundoPadraoAClaro3" colspan="2"><span id="id046f"> </span></td>
+																<td width="60px" align="center" class="nomeMatriz">R</td>
+																<td width="60px" align="center" class="nomeMatriz">C</td>
+
+																<td width="60px" align="center" class="nomeMatriz">R</td>
+																<td width="60px" align="center" class="nomeMatriz">C</td>
+
+																<td width="60px" align="center" class="nomeMatriz">R</td>
+																<td width="60px" align="center" class="nomeMatriz">C</td>
+
+															</tr>
+														</tbody>
+														<tbody id="id0472">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo473">Unidade de negócio</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo474">30%</td>
+																<td align="center" class="" id="dadosRisco476" bgcolor="#F2F4F6"><span id="risco477"> </span></td>
+																<td align="center" class="" id="dadosControle478" bgcolor="#F2F4F6"><span id="controle479">
+																</span></td>
+
+																<td align="center" class="" id="dadosRisco47b" bgcolor="#F2F4F6"><span id="risco47c"> </span></td>
+																<td align="center" class="" id="dadosControle47d" bgcolor="#F2F4F6"><span id="controle47e">
+																</span></td>
+
+																<td align="center" class="" id="dadosRisco480" bgcolor="#F2F4F6"><span id="risco481"> </span></td>
+																<td align="center" class="" id="dadosControle482" bgcolor="#F2F4F6"><span id="controle483">
+																</span></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id1484">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatrizSemNegrito" id="nomeLinhaVo485">Atividade de negócio 1</td>
+																<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo486">24%</td>
+																<td align="center" class="" id="dadosRisco48d" bgcolor="FFFFFF"><span id="risco48e"> 3 </span></td>
+																<td align="center" class="" id="dadosRisco48d" bgcolor="FFFFFF"><span id="risco48e"> 3 </span></td>
+
+																<td align="center" class="" id="dadosRisco49f" bgcolor="#F2F4F6"><span id="risco4a0"> </span></td>
+																<td align="center" class="" id="dadosRisco49f" bgcolor="#F2F4F6"><span id="risco4a0"> </span></td>
+
+																<td align="center" class="" id="dadosRisco492" bgcolor="#F2F4F6"><span id="risco493"> </span></td>
+																<td align="center" class="" id="dadosControle494" bgcolor="#F2F4F6"><span id="controle495">
+																</span></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id2496">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatrizSemNegrito" id="nomeLinhaVo497">Atividade de negócio 2</td>
+																<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo498">6%</td>
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+																<td align="center" class="" id="dadosControle49c" bgcolor="#F2F4F6"><span id="controle49d">
+																</span></td>
+
+																<td align="center" class="" id="dadosRisco48d" bgcolor="FFFFFF"><span id="risco48e"> 3 </span></td>
+																<td align="center" class="" id="dadosRisco48d" bgcolor="FFFFFF"><span id="risco48e"> 3 </span></td>
+
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id34a8">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo4a9">Atividade corporativa 1</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo4aa">5,4%</td>
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+
+																<td align="center" class="" id="dadosRisco48d" bgcolor="FFFFFF"><span id="risco48e"> 3 </span></td>
+																<td align="center" class="" id="dadosRisco48d" bgcolor="FFFFFF"><span id="risco48e"> 3 </span></td>
+
+																<td align="center" class="" id="dadosRisco4b6" bgcolor="#F2F4F6"><span id="risco4b7"> </span></td>
+																<td align="center" class="" id="dadosControle4b8" bgcolor="#F2F4F6"><span id="controle4b9">
+																</span></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id44ba">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo4bb">Atividade corporativa 2</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo4bc">43,1%</td>
+																<td align="center" class="" id="dadosRisco4be" bgcolor="#F2F4F6"><span id="risco4bf"> </span></td>
+																<td align="center" class="" id="dadosControle4c0" bgcolor="#F2F4F6"><span id="controle4c1">
+																</span></td>
+
+																<td align="center" class="" id="dadosRisco4c3" bgcolor="#F2F4F6"><span id="risco4c4"> </span></td>
+																<td align="center" class="" id="dadosControle4c5" bgcolor="#F2F4F6"><span id="controle4c6">
+																</span></td>
+
+																<td align="center" class="" id="dadosRisco4c8" bgcolor="FFFFFF"><span id="risco4c9"> 3 </span></td>
+																<td align="center" class="" id="dadosControle4ca" bgcolor="FFFFFF"><span id="controle4cb"> 3
+																</span></td>
+
+															</tr>
+														</tbody>
+														<tbody id="id54cc">
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" id="nomeLinhaVo4cd">Atividade corporativa isolada</td>
+																<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo4ce">21,5%</td>
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+																<td align="center" class="" id="dadosRisco49a" bgcolor="#F2F4F6"><span id="risco49b"> </span></td>
+
+																<td align="center" class="" id="dadosRisco4d5" bgcolor="#F2F4F6"><span id="risco4d6"> </span></td>
+																<td align="center" class="" id="dadosControle4d7" bgcolor="#F2F4F6"><span id="controle4d8">
+																</span></td>
+
+																<td align="center" class="" id="dadosRisco4c8" bgcolor="FFFFFF"><span id="risco4c9"> 3 </span></td>
+																<td align="center" class="" id="dadosRisco4c8" bgcolor="FFFFFF"><span id="risco4c9"> 3 </span></td>
+
+															</tr>
+														</tbody>
+														<tbody>
+															<tr class="fundoPadraoAClaro3">
+																<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+																<td align="center" class="" id="notasResiduais4df" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais4e1" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais4e3" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais4e5" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais4e7" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" id="notasResiduais4e9" bgcolor="FFFFFF">3,00</td>
+
+															</tr>
+															<tr class="fundoPadraoAClaro3">
+																<td align="center" class="" colspan="2" id="mediasResiduais4eb" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" colspan="2" id="mediasResiduais4ed" bgcolor="FFFFFF">3,00</td>
+
+																<td align="center" class="" colspan="2" id="mediasResiduais4ef" bgcolor="FFFFFF">3,00</td>
+
+															</tr>
+														</tbody>
+													</table>
+													<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizRecalculadaPanel367">
+														<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatrizRecalculada">
+															<tbody>
+																<tr class="fundoPadraoAClaro3">
+																	<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+																	<td style="width: 15%;" id="colunaNotaCalculada4f0">3,00</td>
+																	<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+																	<td style="width: 15%;" id="colunaNotarRefinada4f1">3</td>
+																</tr>
+																<tr id="idLinhaJustificativaNotaAjustadaMatriz4f2" style="display: none">
+																</tr>
+															</tbody>
+															<tbody id="LinhaAAvaliar4f3">
+																<tr>
+																	<td colspan="100" align="right">*a avaliar</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					</span></li>
+
+				</ul> <br> <br> <span class="compareTable" by="xpath://table[@id='tBloco']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th class="thform" style="text-align: left; border-bottom: 0px; background-color: #4a73a2" colspan="5">Blocos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2"></td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2">Vigente</td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2">Em edição</td>
+								<td class="nomeCampoEsquerdo" style="width: 25%; background-color: #4a73a2" colspan="2">Novo</td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%; background-color: #4a73a2">Negócio</td>
+								<td style="text-align: left;"><label id="idPercentualVigenteNegocio33a"> 40% </label></td>
+								<td style="text-align: left;"><label id="idPercentualEsbocadaNegocio33b">30% </label></td>
+								<td style="text-align: left;"><label id="idNovoPercentualNegocio33c"> </label></td>
+								<td style="text-align: center;" rowspan="2"><input type="submit" title="Alterar" value="Alterar"
+									name="idPainelBloco:bttAlterarPercentualPercentual" id="bttAlterarPercentualPercentual"></td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%; background-color: #4a73a2">Corporativo</td>
+								<td style="text-align: left;"><label id="dPercentualVigenteCorporativo33d"> 60% </label></td>
+								<td style="text-align: left;"><label id="idPercentualEsbocadaCorporativo33e"> 70% </label></td>
+								<td style="text-align: left;"><input type="text" maxlength="2" value=""
+									name="idPainelBloco:idNovoPercentualCorporativo" id="idNovoPercentualCorporativo"
+									onfocus="mascara('###', this, 2, false);" onblur="mascara('###', this, 2, false);"
+									onkeydown="mascara('###', this, 2, false);" onkeypress="mascara('###', this, 2, false);"
+									onkeyup="mascara('###', this, 2, false);"> %</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br>
+
+				<li>O botão de 'Alterar':<br> <br> <input class="present" by="conter:" type="button" value="Alterar" /></li>
+				<li>O botão de 'Liberar nova Matriz':<br> <br> <input class="present" by="conter:" type="button"
+					value="Liberar nova Matriz" /></li>
+			</td>
+		</tr>
+
+		<tr class="scenario" pending="true">
+			<!-- Pendente de evolução do CRT -->
+			<td class="title"><b>C004</b><br /> <br /> <b>Sucesso</b> - <br> Preencher percentual no campo 'Novo',
+				clicar no botão 'Alterar', clicar no botão 'Liberar nova Matriz' e verificar se a Matriz vigente foi alterada nas
+				colunas dos ARCs e os dados finais foram alterados corretamente.</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se
+				encontram <a href="../matriz/dadoque/TestAPSFW0205_Edicao_de_matriz_secao_blocos_dadoque_C006.html" class="include">aqui</a><br>
+				<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">inicio/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar Estrutura da Matriz</span></li>
+					<li>Digite: <span class="type" by="id:idNovoPercentualCorporativo">33</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttAlterarPercentual">Alterar</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova Matriz</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de
+							risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+					<table id="tPainelMatrizVigente" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr style="width: 100%; margin: auto;">
+								<td>
+									<div id="matrizVigentePanel">
+										<div align="center" style="width: 100%; margin: auto;" id="resumoMatrizPanel50b">
+											<table width="100%" cellspacing="0" cellpadding="3" id="tResumoMatriz">
+												<thead id="idTitulo50c">
+													<tr class="fundoPadraoAEscuro3">
+														<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+														<td style="width: 15%;" id="colunaNotaCalculada50d">*A</td>
+														<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+														<td style="width: 15%;" id="colunaNotarRefinada50e"></td>
+														<td class="nomeCampo" style="width: 5%; text-align: left;" id="colunaControle50f"><span
+															class="nomeCampo" id="controle510"> <a
+																href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-resumoMatrizPanel-tResumoMatriz-colunaControle-controle-link"
+																id="idExpandirJustificativaNotaAjustadaMatriz"> <img id="imagem511"
+																	src="srunnerw1741974168665032640/mais-ver-1410386936277_4.gif">
+															</a>
+														</span></td>
+														<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada512">Nota ajustada</td>
+														<td style="width: 20%;" id="colunaNotaAjustadaValor513"><label id="notaAjustadaMatriz514"> </label></td>
+													</tr>
+													<tr id="idLinhaJustificativaNotaAjustadaMatriz515" style="display: none">
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+											<thead>
+												<tr class="fundoPadraoAEscuro3">
+													<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo516">
+															Matriz de riscos e controles </span></th>
+												</tr>
+											</thead>
+										</table>
+										<span id="id1519">
+											<table width="100%" cellspacing="1" id="tPainelCorpoVigente">
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0517"> </span></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo518">
+																Crédito </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo51a">
+																Contágio </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="nomeGrupo51c">
+																Estratégia </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;"
+															id="labelPossuiLink51d"> Clique nas notas para ler o ARC. </label></td>
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo51f">
+																53,6% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo521">
+																12,7% </span></td>
+
+														<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span id="percentualGrupo523">
+																33,7% </span></td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td class="fundoPadraoAClaro3" colspan="2"><span id="id0524"> </span></td>
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+														<td width="60px" align="center" class="nomeMatriz">R</td>
+														<td width="60px" align="center" class="nomeMatriz">C</td>
+
+													</tr>
+												</tbody>
+												<tbody id="id0527">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo528">Unidade de negócio</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo529">67%</td>
+														<td align="center" class="" id="dadosRisco52b" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4b4"> <span id="risco52c"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle52d" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-0-dadosControle-linkControle"
+															id="linkControle4b3"> <span id="controle52e"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco530" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4b6"> <span id="risco531"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle532" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-1-dadosControle-linkControle"
+															id="linkControle4b5"> <span id="controle533"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco535" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco4b8"> <span id="risco536"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle537" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-0-listaArc-2-dadosControle-linkControle"
+															id="linkControle4b7"> <span id="controle538"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id1539">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo53a">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo53b">53,6%</td>
+														<td align="center" class="" id="dadosRisco542" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco543"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco542" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco543"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco547" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco4bc"> <span id="risco548"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle549" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-2-dadosControle-linkControle"
+															id="linkControle4bb"> <span id="controle54a"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id254b">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatrizSemNegrito" id="nomeLinhaVo54c">Atividade de negócio 2</td>
+														<td class="nomeMatrizSemNegrito" width="80px" align="center" id="percentualLinhaVo54d">13,4%</td>
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle551" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosControle-linkControle"
+															id="linkControle4bd"> <span id="controle552"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco554" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4c0"> <span id="risco555"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle556" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-1-dadosControle-linkControle"
+															id="linkControle4bf"> <span id="controle557"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco559" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco10"> <span id="risco55a"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle55b" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-2-dadosControle-linkControle"
+															id="linkControle9"> <span id="controle55c"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id355d">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo55e">Atividade corporativa 1</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo55f">2,5%</td>
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco542" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco543"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco542" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco543"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco56b" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco4c4"> <span id="risco56c"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle56d" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-3-listaArc-2-dadosControle-linkControle"
+															id="linkControle4c3"> <span id="controle56e"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id456f">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo570">Atividade corporativa 2</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo571">20,3%</td>
+														<td align="center" class="" id="dadosRisco573" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4c6"> <span id="risco574"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle575" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-0-dadosControle-linkControle"
+															id="linkControle4c5"> <span id="controle576"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco578" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4c8"> <span id="risco579"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle57a" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-4-listaArc-1-dadosControle-linkControle"
+															id="linkControle4c7"> <span id="controle57b"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco559" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco10"> <span id="risco55a"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco559" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco10"> <span id="risco55a"> *A </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody id="id5581">
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" id="nomeLinhaVo582">Atividade corporativa isolada</td>
+														<td class="nomeMatriz" width="80px" align="center" id="percentualLinhaVo583">10,2%</td>
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco54f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-2-listaArc-0-dadosRisco-linkRisco"
+															id="linkRisco4be"> <span id="risco550"> </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco542" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco543"> *A </span>
+														</a></td>
+														<td align="center" class="" id="dadosRisco542" bgcolor="#bbbbbb"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-1-listaArc-1-dadosRisco-linkRisco"
+															id="linkRisco4"> <span id="risco543"> *A </span>
+														</a></td>
+
+														<td align="center" class="" id="dadosRisco58f" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-2-dadosRisco-linkRisco"
+															id="linkRisco4cc"> <span id="risco590"> </span>
+														</a></td>
+														<td align="center" class="" id="dadosControle591" bgcolor="#F2F4F6"><a
+															href="./page?12-1.ILinkListener-formulario-matrizVigentePanel-tPainelCorpo-listaLinhaMatrizVo-5-listaArc-2-dadosControle-linkControle"
+															id="linkControle4cb"> <span id="controle592"> </span>
+														</a></td>
+
+													</tr>
+												</tbody>
+												<tbody>
+													<tr class="fundoPadraoAClaro3">
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="" id="notasResiduais594" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais596" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais598" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais59a" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais59c" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" id="notasResiduais59e" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+													<tr class="fundoPadraoAClaro3">
+														<td align="center" class="" colspan="2" id="mediasResiduais5a0" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais5a2" bgcolor="#bbbbbb">*A</td>
+
+														<td align="center" class="" colspan="2" id="mediasResiduais5a4" bgcolor="#bbbbbb">*A</td>
+
+													</tr>
+												</tbody>
+											</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+
+				<ul>
+					<li>Os dados finais da Matriz, ARCs e atividades se encontram <a
+						href="../matriz/porfim/TestAPSFW0205_Edicao_de_matriz_secao_blocos_porfim.html" class="include">aqui</a><br>
+						<br>
+					</li>
+				</ul>
+			</td>
+		</tr>
+
+	</table>
+
+</body>
+</html>

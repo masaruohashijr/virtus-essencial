@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>br.gov.bcb.sisaps</groupId>
+    <artifactId>modulos</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>batch</artifactId>
+  <packaging>jar</packaging>
+
+  <name>sisaps - Batch</name>
+  <description>Modulo jar para empacotar classes utilizadas em execucao de batches do projeto sisaps</description>
+
+    <dependencies>
+    <!-- DEIXAR AS DEPENDÊNCIAS DA BcWish COMO AS PRIMEIRAS! As dependências da BcWish NÃO devem ficar abaixo das dependências 
+      dos componentes de negócio (exemplo BcMoeda) para não virem versões erradas das dependências por transitividade, vindas dos 
+      componentes de negócio. -->
+    <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+    </dependency>
+
+    <!-- Bibliotecas BcWish -->
+    <dependency>
+      <groupId>br.gov.bcb.componente.wish.pom</groupId>
+      <artifactId>BcPomNegocio</artifactId>
+      <type>pom</type>
+      <exclusions>
+      	<exclusion>
+      		<groupId>joda-time</groupId>
+      		<artifactId>joda-time</artifactId>
+      	</exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>br.gov.bcb.componente.wish.pom</groupId>
+      <artifactId>BcPomBatch</artifactId>
+      <type>pom</type>
+    </dependency>
+    <!-- Bibliotecas BcWish de Teste -->
+    <dependency>
+      <groupId>br.gov.bcb.componente.wish.pom</groupId>
+      <artifactId>BcPomTeste</artifactId>
+      <type>pom</type>
+      <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>joda-time</groupId>
+      		<artifactId>joda-time</artifactId>
+      	</exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>br.gov.bcb.componente.wish.pom</groupId>
+      <artifactId>BcPomEspecificacao</artifactId>
+      <type>pom</type>
+      <scope>test</scope>
+      <exclusions>
+      	<exclusion>
+      		<groupId>joda-time</groupId>
+      		<artifactId>joda-time</artifactId>
+      	</exclusion>
+      </exclusions>
+    </dependency>
+    
+    <!-- Bibliotecas de infra -->
+    <dependency>
+      <groupId>com.atomikos</groupId>
+      <artifactId>transactions-jdbc</artifactId>
+      <version>3.8.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>4.2.2.Final</version>
+    </dependency>
+    
+    <!-- SR -->
+    <dependency>
+      <groupId>org.specrunner</groupId>
+      <artifactId>specrunner-core-spring</artifactId>
+      <exclusions>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>joda-time</groupId>
+					<artifactId>joda-time</artifactId>
+				</exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.specrunner</groupId>
+      <artifactId>specrunner-sql</artifactId>
+    </dependency>
+
+    <!-- Dependências internas -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>negocio</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>negocio</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+      <scope>test</scope>
+      <classifier>tests</classifier>
+    </dependency>
+
+    <!-- Componentes de negócio do Bacen -->
+    <!-- TODO aqui vão as configurações dos componentes de negócio do Bacen. -->
+
+    <!-- Bibliotecas de infra do Bacen -->
+    <!-- TODO aqui vão as configurações dos componentes de infra do Bacen. -->
+
+    <!-- Bibliotecas de infra -->
+    <!-- TODO aqui vão as configurações dos componentes de infra. -->
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <targetPath>bin/</targetPath>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>run.sh</include>
+        </includes>
+      </resource>
+      <resource>
+        <targetPath>.</targetPath>
+        <directory>${basedir}/src/main/config/batch</directory>
+        <includes>
+          <include>applicationContext*.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <targetPath>.</targetPath>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>jndi.properties</include>
+          <include>log4j.properties</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${maven-assembly-plugin.version}</version>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <outputDirectory>${project.build.directory}/publicacao</outputDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>deployment</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+              <finalName>SisapsApp</finalName>
+              <descriptors>
+                <descriptor>src/main/assembly/assembly-app.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>run</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+              <finalName>${mainClass}</finalName>
+              <descriptors>
+                <descriptor>src/main/assembly/assembly-run.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  </project>

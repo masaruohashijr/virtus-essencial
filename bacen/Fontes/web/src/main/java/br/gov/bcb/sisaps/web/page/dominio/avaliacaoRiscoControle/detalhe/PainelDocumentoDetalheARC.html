@@ -1,0 +1,47 @@
+<wicket:panel>
+	<div wicket:id="exibirNovaJustificativa">
+
+	    <tr class="fundoPadraoAClaro3">
+			<td></td>
+			<td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataItemElemento"></label></td>
+			<td></td>
+		</tr>
+		
+		<tr class="fundoPadraoAClaro3">
+			<td width="5%"></td>
+			<td width="90%">&nbsp;&nbsp;&nbsp;&nbsp;<strong wicket:id="tituloNovaJustificativa">Nova avaliação</strong></td>
+			<td width="5%"></td>
+		</tr>
+	
+		<tr class="fundoPadraoAClaro3">
+			<td></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;<label wicket:id="idNovaJustificativa"></label></td>
+			<td></td>
+		</tr>
+	
+	
+		<tr class="fundoPadraoAClaro3">
+			<td></td>
+			<td><div class="centralizado" wicket:id="idTabelaAnexoDocumento" /></td>
+			<td></td>
+		</tr>
+	</div>
+		
+	<wicket:enclosure child="idDataItem">
+		<tr class="fundoPadraoAClaro3">
+			<td></td>
+			<td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataItem"></label></td>
+			<td></td>
+		</tr>
+	</wicket:enclosure>
+	<wicket:enclosure child="grupoExpansivelAvaliacao">
+		<tr>
+			<td width="5%" class="fundoPadraoAClaro3"></td>
+			<td width="90%" class="fundoPadraoAClaro3";>
+				<div style="" wicket:id="grupoExpansivelAvaliacao"></div>
+				<div style="" wicket:id="idPainelJustificativaVigente"></div>
+			</td>
+			<td width="5%" class="fundoPadraoAClaro3"></td>
+		</tr>
+	</wicket:enclosure>
+</wicket:panel>

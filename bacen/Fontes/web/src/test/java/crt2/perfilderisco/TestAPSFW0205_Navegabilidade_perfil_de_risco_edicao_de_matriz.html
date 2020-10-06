@@ -1,0 +1,1230 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória APSFW0202 - Perfil de
+	risco - Matriz.</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória a APSFW0205 - Navegabilidade
+		a partir da matriz (Perfil de risco - edição de matriz)</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>01/09/2014</td>
+			<td>David Nascimento</td>
+			<td>Ajustes para atender: Bug 43992:REQ - Testes da Iteração 21</td>
+		</tr>
+	</table>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras desta estória específica clique <a
+			href="../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/requirement/Navegabilidade_a_partir_da_matriz.xlsx">aqui</a>
+	</blockquote>
+
+
+
+	<h2>Premissas iniciais</h2>
+
+	<blockquote>
+		Lista de servidores: <a
+			href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">aqui</a>
+	</blockquote>
+
+
+
+	<h2>Cenários de teste para a estória a APSFW0205 - Navegabilidade
+		a partir da matriz (Perfil de risco - edição de matriz)</h2>
+	<blockquote>Cenários onde devem ser apresentadas as
+		trilhas, códigos e títulos de diversas telas a partir dos links dos
+		ARCs da  matriz vigente (inclusão de linhas e colunas)</blockquote>
+
+	<span id="cenarios"></span>
+
+ 	<table class="scenario"  >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+		<tr>
+			<td class='title'><b>C001</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Previsto'</b> e verificar se está sendo
+				direcionado para a tela de Detalhes do ARC
+			</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> 
+		    <banco /> 
+				os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br>
+			 			<table class="prepare dados">
+							<caption>ARC_AVAL_RIS_CON</caption>
+							<tr>
+								<th>Ação</th>
+								<th>ARC_ID</th>
+								<th>ARC_CD_ESTADO</th>
+								<th>ARC_NU_VERSAO</th>
+								<th>PNO_ID_SUPERVISOR</th>
+							</tr>
+
+							<tr>
+								<td>U</td>
+								<td>3</td>
+								<td>5</td>
+								<td>5</td>
+								<td>1000</td>
+							</tr>
+							</table>
+							
+			 </td>
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco21" sleep="3000">"*" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif"/>Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+</tbody>
+</table>
+</td>
+</tr>
+</table> 
+
+	 
+	 
+	 
+ <table class="scenario" >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+
+		<tr class="exemplos">
+			<td class='title'><b>C002</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Designado' para outro usuário</b> e
+				verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+		     <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>VER_ID</th>
+						<th>ARC_ID_ANTERIOR</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td />
+						<td>Controle de Risco de Crédito.htm</td>
+						<td>2</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td></td>
+						<td> </td>
+						<td> </td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td> 
+		</tr>
+		
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		   <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 							
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+
+	 
+		 
+ <table class="scenario"  >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário 003
+						</th>
+					</tr>
+
+		<tr class="exemplos">
+		     <td class='title'><b>C003</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Designado' para o supervisor</b> e 
+				verificar se está sendo direcionado para a tela de Detalhes do ARC</td>   
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		     <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br><br> <br>
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>VER_ID</th>
+						<th>ARC_ID_ANTERIOR</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td />
+						<td>Controle de Risco de Crédito.htm</td>
+						<td>2</td>
+						<td>3</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td></td>
+						<td>17</td>
+						<td>11</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>96186186</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>23</td>
+						<td>7</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>1</td>
+						<td></td>
+						<td></td>
+						<td>116</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+					</tr>
+				</table>
+			</td>
+			
+			
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 
+	 	 							
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+
+<br/></br>
+	 
+	 
+	  
+					
+<table class="scenario"  >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+		<tr class="exemplos">
+			<td class='title'><b>C004</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Em edição' para outro usuário</b> e
+				verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+					<table class="prepare dados">
+						<caption>ARC_AVAL_RIS_CON</caption>
+						<tr>
+							<th>Ação</th>
+							<th>ARC_ID</th>
+							<th>ARC_CD_ESTADO</th>
+							<th>ARC_NU_VERSAO</th>
+							<th>PNO_ID_SUPERVISOR</th>
+						</tr>
+		
+						<tr>
+							<td>U</td>
+							<td>3</td>
+							<td>3</td>
+							<td>5</td>
+							<td>1000</td>
+						</tr>
+					</table>
+				
+			  <br>
+
+
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>3</td>
+					</tr>
+				</table>
+            </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 	 							
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+
+<br/></br>	 
+	 
+	 
+	 
+					
+<table class="scenario" >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+
+		<tr class="exemplos">
+			<td class='title'><b>C005</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Em edição' para o supervisor</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		     <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br> <br>
+					<table class="prepare dados">
+							<caption>ARC_AVAL_RIS_CON</caption>
+							<tr>
+								<th>Ação</th>
+								<th>ARC_ID</th>
+								<th>ARC_CD_ESTADO</th>
+								<th>ARC_NU_VERSAO</th>
+								<th>PNO_ID_SUPERVISOR</th>
+							</tr>
+
+							<tr>
+								<td>U</td>
+								<td>3</td>
+								<td>3</td>
+								<td>5</td>
+								<td>1000</td>
+							</tr>
+							</table>
+				
+				
+				 <br>
+
+
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>96186186</td>
+						<td>3</td>
+					</tr>
+				</table>
+           </td>
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+			</td>
+		</tr>
+								
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+	 
+	 
+	 
+	<table class="scenario">
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+
+		<tr class="exemplos" >
+			<td class='title'><b>C006</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Preenchido'</b> e  verificar se está
+				sendo direcionado para a tela de Análise do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+				
+					<table class="prepare dados">
+						<caption>ARC_AVAL_RIS_CON</caption>
+						<tr>
+							<th>Ação</th>
+							<th>ARC_ID</th>
+							<th>ARC_CD_ESTADO</th>
+							<th>ARC_NU_VERSAO</th>
+							<th>PNO_ID_SUPERVISOR</th>
+						</tr>
+	
+						<tr>
+							<td>U</td>
+							<td>21</td>
+							<td>4</td>
+							<td>5</td>
+							<td>1000</td>
+						</tr>
+					</table>
+				<br>
+
+            </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Análise
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise
+								do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+	 	 
+	 
+	 
+	 
+ <table class="scenario"  >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+
+		<tr class="exemplos">
+			<td class='title'><b>C007</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Em análise'</b> e verificar se está
+				sendo direcionado para a tela de Análise do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		     <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+			<table class="prepare dados">
+							<caption>ARC_AVAL_RIS_CON</caption>
+							<tr>
+								<th>Ação</th>
+								<th>ARC_ID</th>
+								<th>ARC_CD_ESTADO</th>
+								<th>ARC_NU_VERSAO</th>
+								<th>PNO_ID_SUPERVISOR</th>
+							</tr>
+
+							<tr>
+								<td>U</td>
+								<td>21</td>
+								<td>6</td>
+								<td>5</td>
+								<td>1000</td>
+							</tr>
+							</table>
+				<br>
+				</table> <br> <br>
+            </td>
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Análise
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise
+								do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+							
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+<br/>	 
+	 
+	 
+	 
+					
+<table class="scenario">
+	<tr>
+			<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+
+		<tr class="exemplos">
+			<td class='title'><b>C008</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Em análise' para outro usuário</b> e
+				verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+				<table class="prepare dados">
+							<caption>ARC_AVAL_RIS_CON</caption>
+							<tr>
+								<th>Ação</th>
+								<th>ARC_ID</th>
+								<th>ARC_CD_ESTADO</th>
+								<th>ARC_NU_VERSAO</th>
+								<th>PNO_ID_SUPERVISOR</th>
+							</tr>
+
+							<tr>
+								<td>U</td>
+								<td>3</td>
+								<td>6</td>
+								<td>5</td>
+								<td>1000</td>
+							</tr>
+							</table>
+				<br> <br>
+
+				<table class="prepare dados">
+					<caption>DEL_DELEGACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DEL_ID</th>
+						<th>DEL_NU_VERSAO</th>
+						<th>DEL_CD_OPER_ATUALZ</th>
+						<th>DEL_DH_ATUALZ</th>
+						<th>DEL_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>3</td>
+					</tr>
+				</table>
+            </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+							
+							
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+							
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+<br/>	 	 
+	 
+	 
+	 
+					
+<table class="scenario"  >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+
+		<tr class="exemplos">
+			<td class='title'><b>C009</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Análise delegada' para outro
+					usuário</b> e verificar se está sendo direcionado para a tela de
+				Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+				<table class="prepare dados">
+				<caption>ARC_AVAL_RIS_CON</caption>
+				<tr>
+					<th>Ação</th>
+					<th>ARC_ID</th>
+					<th>ARC_CD_ESTADO</th>
+					<th>ARC_NU_VERSAO</th>
+					<th>PNO_ID_SUPERVISOR</th>
+				</tr>
+
+				<tr>
+					<td>U</td>
+					<td>3</td>
+					<td>1</td>
+					<td>5</td>
+					<td>1000</td>
+				</tr>
+				</table>
+				<br> <br>
+
+				<table class="prepare dados">
+					<caption>DEL_DELEGACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DEL_ID</th>
+						<th>DEL_NU_VERSAO</th>
+						<th>DEL_CD_OPER_ATUALZ</th>
+						<th>DEL_DH_ATUALZ</th>
+						<th>DEL_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>3</td>
+					</tr>
+				</table>
+            </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+					
+							
+</tbody>
+</table>
+</td>
+</tr>
+</table>	 
+	 
+	 
+	 
+					
+<table class="scenario" >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+		<tr class="exemplos">
+			<td class='title'><b>C010</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Analisado'</b> e verificar se está
+				sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+				<table class="prepare dados">
+							<caption>ARC_AVAL_RIS_CON</caption>
+							<tr>
+								<th>Ação</th>
+								<th>ARC_ID</th>
+								<th>ARC_CD_ESTADO</th>
+								<th>ARC_NU_VERSAO</th>
+								<th>PNO_ID_SUPERVISOR</th>
+							</tr>
+
+							<tr>
+								<td>U</td>
+								<td>3</td>
+								<td>8</td>
+								<td>5</td>
+								<td>1000</td>
+							</tr>
+							</table>
+				<br> <br>
+             </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+					
+							
+</tbody>
+</table>
+</td>
+</tr>
+</table>	 	 
+	 
+	 
+				
+<table class="scenario"  >
+	<tr>
+		<td>
+			<table class="exemplos" >
+				<tbody>
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					
+		<tr class="exemplos">
+			<td class='title'><b>C011</b><br> <br>Sucesso - Clicar
+				sobre uma nota em estado <b>'Concluído'</b> e verificar se está
+				sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td> <banco /> 
+				Os dados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_comum.html" class="include">aqui</a><br><br><br> <br>
+				<table class="prepare dados">
+							<caption>ARC_AVAL_RIS_CON</caption>
+							<tr>
+								<th>Ação</th>
+								<th>ARC_ID</th>
+								<th>ARC_CD_ESTADO</th>
+								<th>ARC_NU_VERSAO</th>
+								<th>PNO_ID_SUPERVISOR</th>
+							</tr>
+
+							<tr>
+								<td>U</td>
+								<td>3</td>
+								<td>7</td>
+								<td>5</td>
+								<td>1000</td>
+							</tr>
+							</table>
+				<br> <br>
+            </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é
+						"deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN
+							AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttEditarMatriz">"Editar estrutura da matriz"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon"
+						by="id:linkRisco21" sleep="3000">"2" do ARC "Risco" do grupo "Risco de
+							Crédito" da Atividade de negócio isolada 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco<input
+							type="image" src="../../crt2/seta.gif" />Edição de matriz de
+							riscos e controles<input type="image" src="../../crt2/seta.gif" />Detalhes
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes
+								do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+							
+</tbody>
+</table>
+</td>
+</tr>
+</table> 	 	   
+	 								
+</body>
+</html>

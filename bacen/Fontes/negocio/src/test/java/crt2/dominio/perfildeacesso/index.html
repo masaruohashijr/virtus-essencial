@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Perfil de acesso</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"	media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+	<h1>Perfil de acesso</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+
+	<h2> 
+	    <a name=regrasGerais class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+	<h2> 
+	    <a name=Definições  class="menu">Definições</a>
+	</h2>
+   
+      <ul>
+         <li>'Supervisor titular' e do 'Gerente titular' são pessoas cuja função é FDO-1 (supervisor) ou FDT-1 (gerente), 'efetivo' ou 'interino' apenas, na localização da respectiva ES. Neste ponto, não serão usados substitutos de nenhum tipo.
+      </ul>
+
+	<h2>
+       <a name="responsabilidadeInspSupGeren"  class="menu">Associar responsabilidade de ESs com os perfis de inspetor, supervisor e gerente</a>
+    </h2>   
+	     <ul>
+	       <li>Os perfis de acesso são cadastrados na <a href="#gestaoPerfilAcesso">gestão de perfil de acesso</a>.</li>
+	       <li>Além disso, deve-se validar o relacionamento da localização da ESs com a localização do servidor, conforme abaixo.</li>
+	       <ul>
+              <li><b>Servidores com perfil 'supervisor'</b> - Serão supervisores das ESs cuja localização seja a mesma do próprio servidor.</li>
+              <li><b>Servidores com perfil 'inspetor'</b> - Serão inspetores das ESs cuja localização seja a mesma do próprio servidor.</li>
+              <li><b>Servidores com perfil 'gerente' </b> - Serão gerentes das ESs cuja localização seja <b>subordinada</b> à localização do próprio servidor. O gerente fica lotado em nível acima das equipes de supervisão.</li>
+           </ul>
+  	   	 </ul>      
+
+      <blockquote>
+		  <a href="">Cenários de teste de negócio</a><br>
+		  <a href="">Cenários de teste web</a><br>
+      </blockquote>
+
+	<h2>
+       <a name="substituicao"  class="menu">Regras de substituição</a>
+    </h2>   
+	     <ul>
+	       <li>Caso um servidor esteja acessando o sistema com um dos perfis descritos por estar incluído em regra de substituição naquele perfil, a localização do servidor a ser usada na comparação com as ESs deve ser a do servidor titular da função substituída</li>
+  	   	 </ul>      
+
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/paineldosupervisor/TestAPSFW0201_Painel_do_supervisor.html">Cenários de teste web - Painel do supervisor</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/paineldoinspetor/TestAPSFW0301_Painel_do_inspetor_ciclo.html">Cenários de teste web - Painel do inspetor (Ciclos)</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/paineldoinspetor/TestAPSFW0301_Painel_do_inspetor_Designacao_Delegacao.html">Cenários de teste web - Painel do inspetor (ARCs)</a><br>
+      </blockquote>
+
+	<h2>
+       <a name="gestaoPerfilAcesso"  class="menu">Gestão de perfil de acesso</a>
+    </h2>   
+	     <ul>
+    	   	 <li>Utilizar a <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0502_Gestao_de_perfil_de_acesso.xlsx">especificação</a>.</li>
+    	   	 <li>Utilizar a <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0502_Gestao_de_perfil_de_acesso_Substituto_Prazo_Certo.xlsx">especificação</a>.</li>
+  	   	 </ul>      
+
+      <blockquote>
+		  <a href="test/TestAPSFW0502_Gestao_de_perfil_de_acesso.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/perfildeacesso/TestAPSFW0502_Gestao_de_perfil_de_acesso.html">Cenários de teste web</a><br>
+      </blockquote>
+ 
+</body>
+</html>

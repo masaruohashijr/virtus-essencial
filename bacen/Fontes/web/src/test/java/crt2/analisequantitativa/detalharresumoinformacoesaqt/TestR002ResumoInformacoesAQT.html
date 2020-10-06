@@ -1,0 +1,1159 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Exibir informações e resumo do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Exibir informações e resumo do ANEF"</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>26/02/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>10/04/2015</td>
+			<td>Adjamir Galvão</td>
+			<td>Adiconando os cenários C010 e C011 para validar a alteração da regra para calcular a nota final do ANEF</td>
+		</tr>
+		<tr>
+			<td>3.0</td>
+			<td>15/06/2015</td>
+			<td>David Nascimento</td>
+			<td>Adicionando caso de teste (C012) para contemplar a tela de detalhes do ANEF (Estado: 'Preenchido'; Perfil: 'Gerente').</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#detalharResumoInformacoesAQT">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/gerente/pendencias/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">carregada.</a>
+		</li>
+	</blockquote>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para <a href="indexWeb.html#validarResumoAQT">validar que campos exibir e seus valores para o grupo 'Resumo do ANEF'</a>.</blockquote>
+
+
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C001] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Previsto'.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"  url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES10">GOLDMAN SACHS</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF41" sleep="2000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                            <table class="compareTable" by="xpath://table[@id='tANEFResumido']" style="width: 100%">
+							<thead>
+								<tr class="fundoPadraoAEscuro3">
+									<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do ANEF</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="fundoPadraoAClaro3">
+									<th class="nomeCampo" style="width:55%; background-color: #4a73a2" ></th>
+									<th colspan="1" style="background-color: #4a73a2" style="width: 160px;">Vigente</th>
+								</tr>
+							
+								<tr>
+									<td class="nomeCampo" style="background-color: #4a73a2"><a href="#idTituloElementoAQT87">Suficiência</a></td>
+									<td id=""></td>
+								</tr>
+							
+								<tr>
+									<td class="nomeCampo" style="background-color: #4a73a2"><a href="#idTituloElementoAQT88" >Qualidade</a></td>
+									<td id=""></td>
+								</tr>
+							
+								<tr>
+									<td class="nomeCampo" style="background-color: #4a73a2">Nota calculada</td>
+									<td id=""></td>
+								</tr>
+								
+								<tr>
+									<td class="nomeCampo" style="background-color: #4a73a2">Nota ajustada</td>
+									<td id=""></td>
+								</tr>
+								</tbody>
+							</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C002] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Designado'.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF35" sleep="2000"><b>Resultados</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Qualidade</b></a></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Suficiência</b></a></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+
+
+<table class="scenario"  >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C003] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Em edição'.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES7">SAFRA</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF20" sleep="2000"><b>Resultados</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="3" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Qualidade</b></a></td>
+								<td>3</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>3</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+	
+
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C004] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Em análise' (com delegação).
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES8">PORTO SEGURO</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF30" sleep="2000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>3</td>
+								<td>3</td>
+								<td>2</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td><font color="#8B8989">1</font></td>
+								<td>1</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>3</td>
+								<td>3</td>
+								<td>2</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td>2</td>
+								<td>2</td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>	
+	
+	
+	
+	
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C005] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Análise delegada'.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF33" sleep="2000"><b>Liquidez</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="3" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+								<td>4 (Corec)</td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C006] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Analisado'.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF34" sleep="2000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></b></b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td>1</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td><font color="#8B8989">1</font></td>
+								<td>1</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>1</td>
+								<td>1</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td>4</td>
+								<td>4</td>
+								<td>2</td>
+								<td></td>
+							</tr>
+							<tr>
+						</tr></tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C007] - </b>Verificar a seção para ANEF no status: 'Concluído' (ciclo em "Corec") e perfil supervisor.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN
+							    AMRO</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF5" sleep="2000"><b>Liquidez</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></b></b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td><font color="#8B8989">1</font></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td>1</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>1</td>
+								<td>1</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td>2 (Corec)</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+						</tr></tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C008] - </b>Verificar a seção para ANEF no status: 'Concluído' (ciclo em "Corec") para perfil inspetor.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/inspetor">inicio/painelinspetor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN
+							    AMRO</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF5" sleep="2000"><b>Liquidez</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></b></b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td><font color="#8B8989">1</font></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td>1</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>1</td>
+								<td>1</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td>3</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+						</tr></tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C009] - </b>Verificar a seção para ANEF de perfil de risco anterior.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue-C009.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/inspetor">inicio/painelinspetor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN  AMRO</span></li>
+							    <li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="10000">03/12/2014</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF3" sleep="10000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></b></b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td><font color="#8B8989">1</font></td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>2</td>
+								<td>2</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>2</td>
+								<td>2</td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td>2 (Corec)</td>
+								<td>4</td>
+								<td>1</td>
+							</tr>
+							<tr>
+						</tr></tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br/>
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C010] - </b>Verificar a seção para ANEF quando o supervisor fez ajuste apenas na nota dos elementos.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001C010ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF34" sleep="2000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></b></b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td>1</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td><font color="#8B8989">1</font></td>
+								<td>1</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>1</td>
+								<td>1</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+								<td></td>
+								<td>2</td>
+								<td></td>
+							</tr>
+							<tr>
+						</tr></tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C011] - </b>Verificar a seção para ANEF quando o supervisor fez ajuste apenas na nota do elemento e a nota calculada fica igual a do inspetor.
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001C011ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF34" sleep="2000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></b></b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></b></b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+								<td>3</td>
+								<td><font color="#8B8989">3</font></td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+								<td>3</td>
+								<td>3</td>
+								<td>1</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>3</td>
+								<td>3</td>
+								<td>3</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+								<td></td>
+								<td>2</td>
+								<td></td>
+							</tr>
+							<tr>
+						</tr></tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table><br>
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C012] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no status: 'Preenchido' (perfil: gerente).
+						</td>
+					</tr>
+					<tr>
+			             <th>Dado que</th>
+		            </tr>
+		            <tr>
+		                 <td> <banco />
+		                    <ul>
+		                       <li>Os dados para este cenário encontram-se <a  href="TestR001ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.</li>
+		                    </ul>   
+		                 </td>
+		            </tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/gerente">inicio/painelgerente</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES7">SAFRA</span></li>
+					            <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF22" sleep="2000"><b>Solvência Patrimonial</b></span></li>
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+						<thead>
+							<tr>
+								<th colspan="3" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">Resumo do
+									ANEF</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+							</tr>
+							
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Suficiência</b></a></td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Qualidade</b></a></td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+								<td>2 (Corec)</td>
+							</tr>
+							<tr>
+						</tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table>
+</body>
+</html>

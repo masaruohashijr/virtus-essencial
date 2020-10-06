@@ -1,0 +1,1700 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória APSFW0502 - Gestão de perfil de acesso.</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória APSFW0502 - Gestão de perfil de acesso.</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td></td>
+			<td>Wilkie Martins</td>
+			<td>Versão incial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>31/07/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Substituto prazo certo no gerenciamento de perfis ***</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da história clique 
+		<a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0502_Gestao_de_perfil_de_acesso.xlsx">aqui</a> e <br>
+		<a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0502_Gestao_de_perfil_de_acesso_Substituto_Prazo_Certo.xlsx">aqui</a>.	
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		Lista de servidores: <a
+			href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">aqui</a>
+	</blockquote>
+	
+	<dataHoraAtual valor="17/03/2014 00:00:00" />
+	<table class="exemplos">
+		<tr>
+			<th width="10%">Cenário</th>
+			<th width="20%">Dados pré-existentes</th>
+			<th width="20%">Ação pretendida</th>
+			<th width="50%">Resultado esperado</th>
+		</tr>
+   		<tr class="scenario">
+			<td class='title'><b>C001_1_falha</b><br> <br>Falha - Acessar a funcionalidade Gestão de perfil de
+				acesso com o perfil Gerente.</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq102>é "deliq.sisliq102"</sisliq102></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001_2_falha</b><br> <br>Falha - Acessar a funcionalidade Gestão de perfil de
+				acesso com o perfil Supervisor.</td>
+			<td>Mesmo estado do último teste.</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001_3_falha</b><br> <br>Falha - Acessar a funcionalidade Gestão de perfil de
+				acesso com o perfil Inspetor.</td>
+			<td>Mesmo estado do último teste.</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq113>é "deliq.sisliq113"</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001_4_falha</b><br> <br>Falha - Acessar a funcionalidade Gestão de perfil de
+				acesso com o perfil Consulta.</td>
+			<td>Mesmo estado do último teste.</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001_5_falha</b><br> <br>Falha - Acessar a funcionalidade Gestão de perfil de
+				acesso com o perfil Comitê.</td>
+			<td>Mesmo estado do último teste.</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq104>é "deliq.sisliq104"</sisliq104></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br> <br>Sucesso - "Acessar funcionalidade Gestão de perfil de acesso
+				para o perfil nome_do_perfil. não hÃ¡ regras registradas para o perfil."</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil5">"Consulta tudo"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de perfis de acesso<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0502]</b></span></li>
+				</ul> <span class="compareTable dados" by="xpath://table[@id='tDadosTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Consulta tudo</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTituloTabela']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="6" class="aesquerda" style="width: 482px; background-color: #4a73a2; height: 3px"><b>Regras
+										para acesso</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='tDadosNovaRegra']">
+					<table>
+						<tbody>
+
+							<tr>
+								<td colspan="6"><a href="link">Nova regra</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br> <br>Sucesso - Acessar funcionalidade Gestão de perfil de acesso para
+				o perfil "Consulta tudo".</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil5"> "Consulta tudo"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de perfis de acesso<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0502]</b></span></li>
+				</ul> <span class="compareTable dados" by="xpath://table[@id='tDadosTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 800px; background-color: #4a73a2"><b>Consulta tudo</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTituloTabela']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 800px; background-color: #4a73a2; height: 3px"><b>Regras
+										para acesso</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Localização<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Localizações subordinadas<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Função<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Substituto eventual<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								 <th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Substituto prazo certo<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th> 
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Situação<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Matrícula<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+								<th class="aesquerda" style="width: 50px; background-color: #4a73a2"><b>Ação</b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>FDO-1</td>
+								<td>Quando em exercício</td>
+								<td></td> 
+								<td>116</td>
+								<td>1.128.376-6</td>
+								<td>
+									<center>
+										<a><img title="acao" style="cursor: pointer;" src="../../crt2/excluir.gif" /></a>
+									</center>
+								</td>
+							</tr>
+							<tr>
+								<td>DELIQ/GLIQ1/GTBHO</td>
+								<td>Não incluir</td>
+								<td>FDT-1</td>
+								<td>Sempre</td>
+								<td></td>
+								<td>116</td>
+								<td>6.666.666-6</td>
+								<td>
+									<center>
+										<a><img title="acao" style="cursor: pointer;" src="../../crt2/excluir.gif" /></a>
+									</center>
+								</td>
+							</tr>
+							<tr>
+								<td>DESUP/GBPM1/GTSP4</td>
+								<td>Não incluir</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>116</td>
+								<td>0.505.050-5</td>
+								<td>
+									<center>
+										<a><img title="acao" style="cursor: pointer;" src="../../crt2/excluir.gif" /></a>
+									</center>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='tDadosNovaRegra']">
+					<table>
+						<tbody>
+
+							<tr>
+								<td colspan="6" style="width: 800px"><a href="link">Nova regra</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br> <br>Sucesso - Excluir uma regra existente para um dado perfil.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil5">"Consulta tudo"</span></li>
+					<li>Clica no botão <span class="clickon" by="id:linkExcluir_Regra10">Excluir regra</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttConfirmar" sleep="1000">Confirmar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso excluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>10</td>
+					</tr>
+				</table>
+			</td>
+		</tr> 
+
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br> <br>Tela inclusão de nova regra.</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable" by="xpath://table[@id='tDadosInclusaoRegra']">
+					<table>
+						<thead>
+							<tr class="fundoPadraoAEscuro3">
+								<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;">Regra</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 35%;">Localização</td>
+								<td><input maxlength="30" size="40" value=""></input></td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo">Localizações subordinadas</td>
+								<td><input type="radio"></input>Sim <input type="radio"></input> Não</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo">Função</td>
+								<td>
+									<ul class="options" by="id:idFuncao">
+								        <li>Selecione</li>
+										<li>FDT-1 CHEFE DE SUBUNIDADE</li>
+										<li>FDO-1 COORDENADOR</li>
+										<li>FDE-1 CHEFE DE UNIDADE</li>
+										<li>FDE-2 CHEFE ADJUNTO DE UNIDADE</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo">Incluir substituto eventual</td>
+								<td>
+								    <ul class="options disabled" by="id:idSubstitutoEventual">
+								        <li>Selecione</li>
+										<li>Nunca</li>
+										<li>Quando em exercício</li>
+										<li>Sempre</li>
+								    </ul>
+								</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo">Incluir substituto prazo certo</td>
+								<td>
+									<ul class="options disabled" by="id:idSubstitutoPrazoCerto">
+                                        <li>Selecione</li>
+										<li>Nunca</li>
+										<li>Quando em exercício</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo">Situação</td>
+								<td>
+									<ul class="options" by="id:idSituacao">
+                                        <li>Selecione</li>
+										<li>116 ATIVO NORMAL</li>
+										<li>117 ATIVO FÉRIAS</li>
+										<li>118 ATIVO NORMAL REQUISITADO BB</li>
+										<li>119 ATIVO NORMAL REQUISITADO DIVERSOS</li>
+										<li>120 ATIVO CLT</li>
+										<li>121 ATIVO ADIDO A PEDIDO</li>
+										<li>122 ATIVO ADIDO EX-OFFICIO</li>
+										<li>125 ESTÁGIO A PEDIDO</li>
+										<li>126 ESTÁGIO DE OFÍCIO</li>
+										<li>127 EXERCÍCIO TEMPORÁRIO</li>
+										<li>132 ATIVO EXCLUÍDO DE FOLHA TEMPORARIAMENTE</li>
+										<li>133 AFASTADO - ARTIGO 483 - CLT</li>
+										<li>142 ATIVO LICENÇA MATERNIDADE</li>
+										<li>143 ATIVO LICENÇA SAÚDE</li>
+										<li>144 ATIVO LICENÇA ACIDENTE DE TRABALHO</li>
+										<li>146 ATIVO C/ÔNUS REEMBOLSAVEL - REGESP</li>
+										<li>147 ATIVO MISSÃO NO EXTERIOR COM ÔNUS</li>
+										<li>159 LICENÇA POR MOTIVO DE DOENÇA NA FAMÍLIA</li>
+										<li>160 ATIVO LICENÇA PRÊMIO</li>
+										<li>169 ATIVO LIC. SAÚDE NÃO RECONHECIDA P/ BCO</li>
+										<li>188 ATIVO DIRETOR - PARCELA VARIÁVEL 25%</li>
+										<li>189 ATIVO DIRETOR</li>
+										<li>190 NÃO FUNCIONÁRIO - DIRETOR</li>
+										<li>191 NÃO FUNCIONÁRIO APOS - DIRETOR</li>
+										<li>251 CCT - NÃO FUNCIONÁRIO</li>
+										<li>252 FUNCIONÁRIO APOSENTADO - CCT TEMPORÁRIO</li>
+										<li>253 DIRETOR FUNCIONÁRIO APOSENTADO</li>
+										<li>254 DIRETOR FUNCIONÁRIO APOSENT. P/VELHICE</li>
+										<li>255 DIRETOR FUNCIONÁRIO APOSENTADO ESPECIAL</li>
+										<li>256 DIRETOR FUNCIONÁRIO APOSENT. EX-COMBATE</li>
+									</ul>
+								</td>
+							</tr>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo"><label>Matrícula</label></td>
+								<td><input  size="11" maxlength="11" value=""></input></td>
+							</tr>
+
+						</tbody>
+					</table>
+			</span>
+                <ul>
+					<li>O botão de 'Incluir':<br> <br> <input class="present" by="conter:" type="button" value="Incluir" /></li>
+					<li>O botão de 'Voltar':<br> <br> <input class="present" by="conter:" type="button" value="Voltar" /></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+                </ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br> <br>Falha - Incluir regra. não informar valores para os campos.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Pelo menos um campo é de preenchimento obrigatório.</span></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007</b><br> <br>Falha - Incluir regra. Informar valores para os campos
+				inválidos.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao">123</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Campo localização inválido.</span></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_2</b><br> <br>Falha - Incluir regra. Informar valores para os campos
+				inválidos.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher Matrícula: <span class="type" by="id:idMatricula">123</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Campo matrícula inválido.</span></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+				</ul>
+			</td>
+		</tr> 
+
+		<tr class="scenario">
+			<td class='title'><b>C007_3</b><br> <br>Falha - Incluir regra. Informar valores para os campos
+				inválidos.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao" sleep="3000">DEGEF/GEPLA/DISUP</span></li>
+					<li>Seleciona Localizações subordinadas: <span class="clickon" by="id:idLocalizacoesSubordinadasNao">Não</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra" sleep="3000">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Campo localização inválido.</span></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_4</b><br> <br>Falha - Incluir regra. Informar valores para os campos
+				inválidos.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher Matrícula: <span class="type" by="id:idMatricula">11111</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Campo matrícula inválido.</span></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_5</b><br> <br>Falha - Incluir regra. Informar valores para os campos
+				inválidos.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher Matrícula: <span class="type" by="id:idMatricula">XXXXXXXXXX</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Campo matrícula inválido.</span></li>
+					<li>Clicar no botão '<span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span>'.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C008_inclusão_1</b><br> <br>Sucesso - "Incluir regra. Informar apenas:
+				localização ou Incluir subunidades ou função ou Matrícula ou situação ou Substituto eventual."</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil<span class="clickon" by="id:linkPerfil1">"Administrador"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao" sleep="3000">DEINF/GEDEG/DIREC</span></li>
+					<li>Seleciona Localizações subordinadas: <span class="clickon" by="id:idLocalizacoesSubordinadasNao">Não</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra" sleep="4000">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>23</td>
+						<td>1</td>
+						<td>DEINF/GEDEG/DIREC</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_verificAção_1</b><br> <br>Sucesso - "Incluir regra. Informar apenas:
+				localização ou Incluir subunidades ou função ou Matrícula ou situação ou Substituto eventual."</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0501]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_inclusão_2</b><br> <br>Sucesso - "Incluir regra. Informar apenas:
+				localização ou Incluir subunidades ou função ou Matrícula ou situação ou Substituto eventual."</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+						class="include">aqui</a><br> Os dados das ESs se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+						class="include">aqui</a><br> As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil8">"Supervisor"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao" sleep="3000">DEINF/GEDEG/DIREC</span></li>
+					<li>Seleciona Localizações subordinadas: <span class="clickon" by="id:idLocalizacoesSubordinadasNao">não</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra" sleep="4000">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>23</td>
+						<td>8</td>
+						<td>DEINF/GEDEG/DIREC</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_verificAção_2</b><br> <br>Sucesso - "Incluir regra. Informar apenas:
+				localização ou Incluir subunidades ou função ou Matrícula ou situação ou Substituto eventual."</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administracao/ciclo/inclusao">sisaps/administracao/ciclo/inclusao</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0106]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_inclusão_3</b><br> <br>Sucesso - "Incluir regra. Informar apenas:
+				localização ou Incluir subunidades ou função ou Matrícula ou situação ou Substituto eventual."</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+						class="include">aqui</a><br> Os dados das ESs se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+						class="include">aqui</a><br> Os dados do Ciclo, Matriz, Unidades,
+				Atividades, ARCs e seus estados se encontram <a
+				href="../analisequalitativa/comum/TestE3_7_Edicao_de_ARCs_perfil_inspetor_dadoque.html" class="include">aqui</a><br>
+				As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil7">"Inspetor"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao" sleep="3000">DEINF/GEDEG/DIREC</span></li>
+					<li>Seleciona Localizações subordinadas: <span class="clickon" by="id:idLocalizacoesSubordinadasNao">não</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra" sleep="4000">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>23</td>
+						<td>7</td>
+						<td>DEINF/GEDEG/DIREC</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_verificAção_3</b><br> <br>Sucesso - "Incluir regra. Informar apenas:
+				localização ou Incluir subunidades ou função ou Matrícula ou situação ou Substituto eventual."</td>
+			<td>Mesmo dadoque anterior <br />
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_CD_MATRICULA</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>11283766</td>
+
+					</tr>
+				</table>
+
+			</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">Consulta inspetor</li>
+					<li>Seleciona o ARC <span class="clickon" by="id:link_Arc1">ABN AMRO - Atividade corporativa - Controle de Risco de Crédito</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0302]</b></span></li>
+				</ul>
+			</td>
+		</tr> 
+
+		<tr class="scenario">
+			<td class='title'><b>C009_inclusão</b><br> <br>Sucesso - Incluir regra. Informar apenas localização,
+				função, situação, substituto eventual, Matrícula.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+						class="include">aqui</a><br> Os dados das ESs se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+						class="include">aqui</a><br> Os dados do Ciclo, Matriz, Unidades,
+				Atividades, ARCs e seus estados se encontram <a
+				href="../analisequalitativa/comum/TestE3_7_Edicao_de_ARCs_perfil_inspetor_dadoque.html" class="include">aqui</a><br>
+				As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil8">"Supervisor"</span></li>
+					<li>Clica no link: <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao" sleep="3000">DEINF/GEDEG/DIREC</span></li>
+					<li>Seleciona Localizações subordinadas: <span class="clickon" by="id:idLocalizacoesSubordinadasNao">Não</span></li>
+					<li>Selecione a situação: <span class="select" by="id:idSituacao">116 ATIVO NORMAL</span></li>
+					<li>Preencher a Matrícula: <span class="type" by="id:idMatricula">11283766</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra" sleep="6000">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>23</td>
+						<td>8</td>
+						<td>DEINF/GEDEG/DIREC</td>
+						<td>0</td>
+						<td>116</td>
+						<td>11283766</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C009_verificAção</b><br> <br>Sucesso - Incluir regra. Informar apenas
+				localização, função, situação, substituto eventual, Matrícula.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br> <br>Sucesso - Preencher os dados e acionar Voltar sem incluir.</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil<span class="clickon" by="id:linkPerfil5">"Consulta tudo": </span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttVoltarInclusaoRegra">Voltar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0502]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C011</b><br> <br>Sucesso - há um única regra registrada que corresponde ï¿½
+				Matrícula do usuário logado na aplicAção ao perfil administrador. Excluir a regra.</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil<span class="clickon" by="id:linkPerfil1">"Administrador"</span></li>
+					<li>Clica no botão <span class="clickon" by="id:linkExcluir_Regra1">Excluir regra</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttConfirmar" sleep="2000">Confirmar</span></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>VerificAção mensagem na tela de login: <span class="contains">Acesso não autorizado</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C012</b><br> <br>Sucesso - há várias regras registradas: Regra 01 -
+				corresponde ï¿½ Matrícula do usuário logado na aplicAção ao perfil administrador. Regra 02 - corresponde ï¿½
+				Matrícula do usuário logado na aplicAção ao perfil supervisor. Excluir a Regra 01.</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>8</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil1">"Administrador"</span></li>
+					<li>Clica no botão <span class="clickon" by="id:linkExcluir_Regra1">Excluir regra</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttConfirmar">Confirmar</span></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>VerificAção mensagem na tela de login: <span class="contains">Acesso não autorizado</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C013</b><br> <br>Sucesso - Teste de concorrência. hÃ¡ duas regras com a Matrícula
+				de dois usuários para o perfil Administrador. usuário A com perfil Administrador aciona comando Nova regra para o
+				perfil Supervisor. usuário B com perfil Administrador aciona comando Excluir regra e remover o acesso do usuário A.
+				usuário A confirmar a inclusão da nova regra.</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>8</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil<span class="clickon" by="id:linkPerfil8">"Supervisor": </span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher localização: <span class="type" by="id:idLocalizacao" sleep="3000">DELIQ/GLIQ1/GTBHO</span></li>
+					<li>Seleciona Localizações subordinadas: <span class="clickon" by="id:idLocalizacoesSubordinadasNao">não</span></li>
+					<table class="prepare dados">
+						<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+						<tr>
+							<th>Ação</th>
+							<th>RPA_ID</th>
+						</tr>
+						<tr>
+							<td>D</td>
+							<td>1</td>
+						</tr>
+					</table>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra" sleep="6000">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Funcionalidade não autorizada.</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttVoltarInclusaoRegra">"Voltar"</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C015</b><br> <br>Falha - Incluir regra. Informar apenas função e não informar o
+				campo substituto eventual.</td>
+			<td>Mesmo dadoque anterior..<br>
+                <table class="prepare dados">
+                    <caption>RPA_REGRA_PERFIL_ACESSO</caption>
+                    <tr>
+                        <th>Ação</th>
+                        <th>RPA_ID</th>
+                        <th>RPA_CD_PERFIL</th>
+                        <th>RPA_CD_MATRICULA</th>
+                        <th>RPA_DH_ATUALZ</th>
+                        <th>RPA_CD_OPER_ATUALZ</th>
+                        <th>RPA_NU_VERSAO</th>
+                    </tr>
+                    <tr>
+                        <td>I</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>65264155</td>
+                        <td>17/03/2014 00:00:00</td>
+                        <td>deliq.sisliq101</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+             </td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil5">"Consulta tudo"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Selecione a função: <span class="select" by="id:idFuncao">FDO-1 COORDENADOR</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Campo "Substituto eventual" é de preenchimento obrigatório.</span></li>
+					<li><span class="contains">Campo "Substituto prazo certo" é de preenchimento obrigatório.</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttVoltarInclusaoRegra">"Voltar"</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C016</b><br> <br>Sucesso - "Incluir regra. Informar apenas: Matrícula que tenha
+				como dï¿½gito verificador o X."</td>
+			<td>Mesmo dadoque anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil<span class="clickon" by="id:linkPerfil1">"Administrador"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Preencher Matrícula: <span class="type" by="id:idMatricula">2805041X</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>1</td>
+						<td>2805041X</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C017</b><br> <br>Sucesso - 
+				Usuário 01 com função FDE-1 - está em exercício
+				Usuário 02 substituto eventual do Usuário 01
+				Usuário 03 substituto prazo certo do Usuário 01
+				Incluir a regra para Supervisor
+				Função FDE-1
+				Subst.Eventual - Sempre
+				Subst.Prazo Certo - Quando em exercício
+				Verificar que tem acesso ao Painel do supervisor: Usuário 01, Usuário 02.
+				Verificar que não tem acesso ao Painel do supervisor: Usuário 03.
+			</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil8">"Supervisor"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Selecione a função: <span class="select" by="id:idFuncao">FDE-1 CHEFE DE UNIDADE</span></li>
+					<li>Seleciona Substituto eventual: <span class="select" by="id:idSubstitutoEventual">Sempre</span></li>
+					<li>Seleciona Prazo certo: <span class="select" by="id:idSubstitutoPrazoCerto">Quando em exercício</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>8</td>
+						<td>FDE-1     </td>
+						<td>3</td>
+						<td>2</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C018</b><br> <br>Sucesso - Verificar permissão do Usuário 1.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq115>é "deliq.sisliq115"</sisliq115></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C019</b><br> <br>Sucesso - Verificar permissão do Usuário 2.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq116>é "deliq.sisliq116"</sisliq116></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C020</b><br> <br>Falha - Verificar permissão do Usuário 3.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq117>é "deliq.sisliq117"</sisliq117></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C021</b><br> <br>Sucesso - 
+				Usuário 01 com função FDE-2 - licenciado
+				Usuário 02 substituto eventual do Usuário 01 - está em exercício na função
+				Usuário 03 substituto prazo certo do Usuário 01
+				Incluir a regra para Supervisor
+				Função FDE-2
+				Subst.Eventual 2-Quando em exercício
+				Subst.Prazo Certo 2-Nunca
+				Verificar que tem acesso ao Painel do supervisor: Usuário 01, Usuário 02.
+				Verificar que não tem acesso ao Painel do supervisor: Usuário 03.
+			</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil8">"Supervisor"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Selecione a função: <span class="select" by="id:idFuncao">FDE-2 CHEFE ADJUNTO DE UNIDADE</span></li>
+					<li>Seleciona Substituto eventual: <span class="select" by="id:idSubstitutoEventual">Quando em exercício</span></li>
+					<li>Seleciona Prazo certo: <span class="select" by="id:idSubstitutoPrazoCerto">Nunca</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>8</td>
+						<td>FDE-2     </td>
+						<td>2</td>
+						<td>1</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C022</b><br> <br>Sucesso - Verificar permissão do Usuário 1.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq118>é "deliq.sisliq118"</sisliq118></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C023</b><br> <br>Sucesso - Verificar permissão do Usuário 2.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq119>é "deliq.sisliq119"</sisliq119></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C024</b><br> <br>Falha - Verificar permissão do Usuário 3.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq120>é "deliq.sisliq120"</sisliq120></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C025</b><br> <br>Sucesso - 
+				Usuário 01 com função FDE-2 - licenciado
+				Usuário 02 substituto eventual do Usuário 01 - está em exercício na função
+				Usuário 03 substituto prazo certo do Usuário 01
+				Incluir a regra para Supervisor
+				Função FDE-2
+				Subst.Eventual 2-Quando em exercício
+				Subst.Prazo Certo 2-Nunca
+				Verificar que tem acesso ao Painel do supervisor: Usuário 01, Usuário 02.
+				Verificar que não tem acesso ao Painel do supervisor: Usuário 03.
+			</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil8">"Supervisor"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Selecione a função: <span class="select" by="id:idFuncao">FDE-2 CHEFE ADJUNTO DE UNIDADE</span></li>
+					<li>Seleciona Substituto eventual: <span class="select" by="id:idSubstitutoEventual">Nunca</span></li>
+					<li>Seleciona Prazo certo: <span class="select" by="id:idSubstitutoPrazoCerto">Nunca</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>8</td>
+						<td>FDE-2     </td>
+						<td>1</td>
+						<td>1</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C026</b><br> <br>Sucesso - Verificar permissão do Usuário 1.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq118>é "deliq.sisliq118"</sisliq118></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C027</b><br> <br>Sucesso - Verificar permissão do Usuário 2.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq119>é "deliq.sisliq119"</sisliq119></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C028</b><br> <br>Falha - Verificar permissão do Usuário 3.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq120>é "deliq.sisliq120"</sisliq120></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C029</b><br> <br>Sucesso - 
+				Usuário 01 com função FDO-1 - licenciado
+				Usuário 02 substituto eventual do Usuário 01 - licenciado
+				Usuário 03 substituto prazo certo do Usuário 01 - em exercício na função
+				Incluir a regra para Supervisor
+				Função FST-1
+				Subst.Eventual 3-Nunca
+				Subst.Prazo Certo 1-Quando em exercício
+				Verificar que tem acesso ao Painel do supervisor: Usuário 01, Usuário 03.
+				Verificar que não tem acesso ao Painel do supervisor: Usuário02
+			</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>é "deliq.sisliq105"</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">sisaps/administrador</span></li>
+					<li>Clica no link do perfil: <span class="clickon" by="id:linkPerfil8">"Supervisor"</span></li>
+					<li>Clica no link <span class="clickon" by="id:linkIncluirRegra">"Nova regra"</span></li>
+					<li>Selecione a função: <span class="select" by="id:idFuncao">FDO-1 COORDENADOR</span></li>
+					<li>Seleciona Substituto eventual: <span class="select" by="id:idSubstitutoEventual">Nunca</span></li>
+					<li>Seleciona Prazo certo: <span class="select" by="id:idSubstitutoPrazoCerto">Quando em exercício</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttIncluirRegra">Incluir</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Regra de perfil de acesso incluída com sucesso.</span></li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>8</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C030</b><br> <br>Sucesso - Verificar permissão do Usuário 1.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C031</b><br> <br>Sucesso - Verificar permissão do Usuário 2.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq107>é "deliq.sisliq107"</sisliq107></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Acesso não autorizado</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C032</b><br> <br>Falha - Verificar permissão do Usuário 3.</td>
+			<td>Mesmo estado anterior</td>
+			<td>
+				<ul>
+					<li>O usuário logado <caio>é "deliq.caio"</caio></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+				</ul>
+			</td>
+		</tr> 
+	</table>
+</body>
+</html>

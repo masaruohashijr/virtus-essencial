@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando Login Múltiplo</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"
+	media="screen" />
+</head>
+<body>
+	<h1>Funcionalidade de 'Login Multiplo'</h1>
+
+	<banco/>
+
+	Considerando que a ${mensagem} de sucesso é :
+	<span class="local" name="mensagem">Seja bem-vindo à WiSH, tenha
+		bons projetos!!!</span>
+
+	<ul>
+		<local name="browser" value="browserAdmin" />
+		<li>Realize o login como <a href="loginAdmin.html?nome=browser"
+			class="include">administrador</a> , verifique a mensagem: <span
+			class="contains" name_="browser">${mensagem}</span> e compare a <a
+			href='tela.html?nome=browser' class="include">tela</a>;
+		</li>
+		<local name="browser" value="browserUser" />
+		<li>Realize o login como <a href="loginUser.html?nome=browser"
+			class="include">usuario</a> , verifique a mensagem: <span
+			class="contains" name_="browser">${mensagem}</span> e compare a <a
+			href='tela.html?nome=browser' class="include">tela</a>;
+		</li>
+		<li>Feche os <span class="quit" name="browserAdmin"><span
+				class="quit" name="browserUser">browsers</span></span>.
+		</li>
+
+	</ul>
+</body>
+</html>

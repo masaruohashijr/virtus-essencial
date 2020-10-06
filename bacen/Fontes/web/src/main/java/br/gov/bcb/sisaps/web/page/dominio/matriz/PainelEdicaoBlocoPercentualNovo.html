@@ -1,0 +1,55 @@
+<wicket:panel>
+
+
+	<script>
+		function handleChange(input) {
+			  if (input.value < 0) input.value = 0;
+			  if (input.value > 100) input.value = 100;
+		}
+		
+		
+		function Onlynumbers(e)
+		{
+			 var unicode = e.charCode ? e.charCode : e.keyCode;
+			  if (unicode != 8 && unicode != 9) {
+			   if (unicode<48||unicode>57) {
+			    return false
+			   }
+			  }
+		}
+	</script>
+	<table id="tBloco" cellspacing="0" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Atividade x Governança </th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampoEsquerdo" style="width: 25%;"></td>
+				<td class="nomeCampoEsquerdo" style="width: 25%;">Vigente</td>
+				<td class="nomeCampoEsquerdo" style="width: 25%;">Em edição</td>
+				<td class="nomeCampoEsquerdo" style="width: 25%;" colspan="2">Novo</td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Bloco de Atividades</td>
+				<td style="text-align: left;"><label wicket:id="idPercentualVigenteBlocoAtividades"></label></td>
+				<td style="text-align: left;"><label wicket:id="idPercentualEsbocadaBlocoAtividades"></label></td>
+				<td style="text-align: left;"><label wicket:id="idNovoPercentualBlocoAtividades" /></td>
+				<td style="text-align: center;" rowspan="2"><input type="submit" title="Alterar"
+					wicket:id="bttAlterarPercentualNovo" value="Alterar">&nbsp;</input></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Governança Corporativa</td>
+				<td style="text-align: left;"><label wicket:id="idPercentualVigenteGovernancaCorporativa"></label></td>
+				<td style="text-align: left;"><label wicket:id="idPercentualEsbocadaGovernancaCorporativa"></label></td>
+				<td style="text-align: left;"><input type="text" maxlength="3" wicket:id="idNovoPercentualBlocoGovernancaCorporativa"
+					 onkeypress="return Onlynumbers(event)"  onkeyup="handleChange(this)"/> %</td>
+			</tr>
+
+		</tbody>
+
+	</table>
+	<div wicket:id="modalExclusaoGov"/> 
+</wicket:panel>

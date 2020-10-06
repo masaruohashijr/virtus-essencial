@@ -1,0 +1,627 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória APSFW0202 - Perfil de risco - Matriz.</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para APSFW0301 - Painel do inspetor (Seção Ciclos da equipe)</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>29/08/2014</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>15/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Perfis de acesso vs responsabilidade de ESs para supervisor substituto</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras desta estória específica clique <a
+			href="../../../../../../negocio/src/test/java/crt2/dominio/paineldoinspetor/requirement/APSFW0301_Painel_do_inspetor_Secao_Ciclos_da_equipe.xlsx">aqui</a>
+	</blockquote>
+	<blockquote>
+		Para as regras que descreve a questão da prioridade da ES clique <a
+			href="../../../../../../negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/APSFW0201_Painel_do_supervisor.xlsx">
+			aqui</a>
+	</blockquote>
+	<blockquote>
+		Associar responsabilidade de ESs com os perfis de inspetor, supervisor e gerente <a
+			href="../../../../../../negocio/src/test/java/crt2/dominio/perfildeacesso/index.html">
+			aqui</a>
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+	  Nenhuma.
+	</blockquote>
+
+	<h2>Cenários de teste para a estória a APSFW0301 - Painel do inspetor (Seção: Ciclos da equipe)</h2>
+	<blockquote>Cenários onde devem ser apresentadas os elementos de tela conforme protótipo para o Painel do
+		inspetor para (Seção: 'Ciclos da equipe')</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+   		<tr class="scenario">
+			<td class='title'><b>C001</b> - Inspetor possuia ESs em sua localização.
+				Contudo sua localização foi alterada. (Conferir a seção com o título dinâmico de acordo com a localização do
+				inspetor).</td>
+			<td>
+			Lista de servidores: <a href="dadoque/MOCK_BCPESSOA_ALTERANDO_LOCALIZACAO_stubs_dadoque.html" class="include">aqui</a><br/>
+			<banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br>
+				A atualização da localização das regras de perfis de acesso se encontram aqui 
+				<a href="dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_C001_dadoque.html"class="include">aqui</a><br> <br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>DEINF/GEDEG/DIREC</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td colspan="8">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b> - Inspetor logado não possui ESs em sua
+				localização. (Conferir a seção com o título dinâmico de acordo com a localização do inspetor).</td>
+			<td>
+				
+					Lista de servidores: <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">aqui</a><br/>
+				<banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br>
+				A atualização da localização das ESs se encontram aqui 
+                <a href="dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_C002_dadoque.html"class="include">aqui</a><br> <br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel do inspetor
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do inspetor<b /></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0301]</b></span></li>
+				</ul> <span class="compareTable dados" by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td colspan="8">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class="title"><b>C003</b><br /> <br /> - Inspetor possui ESs em sua localização e ciclos
+				nos estados: 'Em andamento', 'Corec', 'Pós-Corec' e 'Encerrado'. Devem ser exibidos apenas os ciclos nos estados:
+				'Em andamento' e 'Corec'. (Conferir a seção com o título dinâmico de acordo com a localização do inspetor).</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a
+				href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_dadoque.html" class="include">aqui</a> <br>
+				<br>
+				A atualização da localização das ESs se encontram aqui 
+                <a href="dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_C003_dadoque.html"class="include">aqui</a><br> <br>
+			</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Início <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2015</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">GOLDMAN
+										SACHS</a></td>
+								<td colspan="2">17/03/2014</td>
+								<td colspan="2">17/03/2015</td>
+								<td colspan="2">Corec</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class="title"><b>C004</b><br /> <br /> - Acessar Link de ES e verificar que foi
+				direcionado a tela de Perfil de risco (com o filtro de pesquisa e sem os comandos)</td>
+			<td>
+			<banco /> As regras para os perfis de acesso se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+                <br> Os dados da Metodologia se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+                class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+                class="include">aqui</a><br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a
+                href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_dadoque.html" class="include">aqui</a> <br>
+                <br>
+                A atualização da localização das ESs se encontram aqui 
+                <a href="dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_C003_dadoque.html"class="include">aqui</a><br> <br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+					<li>Clica no Link da ES: <span class="clickon" by="id:link_ES6">BB</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <img src="../../crt2/seta.gif" />
+							Painel do inspetor <img src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+				</ul>
+
+				<li>O botão de 'Gerenciar notas e sínteses' não é exibido:<br> <br> <input class="notContains"
+					by="conter:" type="button" value="Gerenciar notas e sínteses" /></li>
+				<li>O botão de 'Gerenciar ARCs' não é exibido:<br> <br> <input class="notContains" by="conter:"
+					type="button" value="Gerenciar ARCs" /></li>
+				<li>O botão de 'Editar estrutura da matriz' não é exibido:<br> <br> <input class="notContains"
+					by="conter:" type="button" value="Editar estrutura da matriz" /></li>
+				<li>O botão de 'Gerenciar detalhes da ES' não é exibido:<br> <br> <input class="notContains"
+					by="conter:" type="button" value="Gerenciar detalhes da ES" /></li>
+				<li>O botão de 'Gerenciar quadro posição financeira' não é exibido:<br> <br> <input
+					class="notContains" by="conter:" type="button" value="Gerenciar quadro posição financeira" />
+			</li>
+				<li>O botão de 'Voltar' é exibido:<br> <br> <input class="present" by="conter:" type="button"
+					value="Voltar" /></li>
+
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class="title"><b>C005</b><br /> <br /> - Testar a navegabilidade do botão 'Voltar'.</td>
+			<td>
+			<banco /> As regras para os perfis de acesso se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+                <br> Os dados da Metodologia se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+                class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+                class="include">aqui</a><br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a
+                href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_dadoque.html" class="include">aqui</a> <br>
+                <br>
+                A atualização da localização das ESs se encontram aqui 
+                <a href="dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_C003_dadoque.html"class="include">aqui</a><br> <br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+					<li>Clica no Link da ES: <span class="clickon" by="id:link_ES6">BB</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttVoltar">Voltar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel do inspetor
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do inspetor<b /></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0301]</b></span></li>
+				</ul>
+
+
+
+			</td>
+		</tr>
+
+		<tr class="scenario"> 
+			<td class="title"><b>C006</b><br />Sucesso - Considerando a(s) regra(s) de perfil de acesso cadastrada: 
+				1 - Perfil: "Inspetor", Função comissionada "FDT-1" e Substituto eventual "Em exercício".
+				Usuário 01 (sisliq101 - DELIQ/GLIQ1/GTBHO) com função FDT-1, 
+				Usuário 02 (sisliq110 - DESUP/GBPM1/GTSP4) substituto eventual em exercício da função comissionada.
+				Verificar Ciclos e ARCs no Painel do supervisor com o Usuário 02.
+           	</td>
+			<td><banco /> 
+				As regras para os perfis de acesso se encontram <a 
+            	href="dadoque/TestAPSFW0301_Painel_do_inspetor_substituto_dadoque_1.html" class="include">aqui</a><br>
+            <!-- 	As regras para os perfis de acesso se encontram <a
+                href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+                 -->
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a
+				href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_dadoque.html" class="include">aqui</a> <br>
+				<br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq110>deliq.sisliq110</sisliq110></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Início <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2015</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">GOLDMAN
+										SACHS</a></td>
+								<td colspan="2">17/03/2014</td>
+								<td colspan="2">17/03/2015</td>
+								<td colspan="2">Corec</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br></td>
+		</tr>
+		
+		<tr class="scenario"  > 
+			<td class="title"><b>C007</b><br />Sucesso - Considerando a(s) regra(s) de perfil de acesso cadastrada: 
+				1 - Perfil: "Inspetor", "Função comissionada "FDT-1" e Substituto eventual "Em exercício".
+				2 - Perfil: "Inspetor", Matrícula: "65214892" (Usuário 2 - sisliq110).
+				Usuário 01 (sisliq101 - DELIQ/GLIQ1/GTBHO) com função FDT-1, 
+				Usuário 02 (sisliq110 - DESUP/GBPM1/GTSP4) substituto eventual do Usuário 01. 
+				Verificar Ciclos e ARCs no Painel do supervisor com o usuário 02.
+           	</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a 
+            	href="dadoque/TestAPSFW0301_Painel_do_inspetor_substituto_dadoque_2.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a
+				href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_dadoque.html" class="include">aqui</a> <br>
+				<br>
+				A atualização do estado do ciclo se encontra aqui 
+                <a href="dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_C007_dadoque.html"class="include">aqui</a><br> <br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq110>deliq.sisliq110</sisliq110></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Início <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2015</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">GOLDMAN
+										SACHS</a></td>
+								<td colspan="2">17/03/2014</td>
+								<td colspan="2">17/03/2015</td>
+								<td colspan="2">Corec</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br></td>
+		</tr>
+		
+		<tr class="scenario"> 
+			<td class="title"><b>C008</b><br />Sucesso - Considerando a(s) regra(s) de perfil de acesso cadastrada: 
+				1 - Perfil: "Inspetor", Função comissionada "FDT-1" e Substituto eventual "Sempre".
+				Usuário 01 (sisliq101 - DELIQ/GLIQ1/GTBHO) com função FDT-1, 
+				Usuário 02 (sisliq109 - DESUP/GBPM1/GTSP4) substituto eventual em exercício da função comissionada.
+				Verificar Ciclos e ARCs no Painel do supervisor com o Usuário 02.
+           	</td>
+			<td><banco /> 
+				As regras para os perfis de acesso se encontram <a 
+            	href="dadoque/TestAPSFW0301_Painel_do_inspetor_substituto_dadoque_3.html" class="include">aqui</a><br>
+				<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a
+				href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_ciclo_dadoque.html" class="include">aqui</a> <br>
+				<br>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq110>deliq.sisliq110</sisliq110></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Início <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado <input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2015</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">GOLDMAN
+										SACHS</a></td>
+								<td colspan="2">17/03/2014</td>
+								<td colspan="2">17/03/2015</td>
+								<td colspan="2">Corec</td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2016</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br></td>
+		</tr>
+
+	</table>
+</body>
+</html>

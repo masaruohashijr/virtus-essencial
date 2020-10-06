@@ -1,0 +1,17 @@
+<html xmlns:wicket>
+<body>
+    <wicket:panel>
+    	<br/>
+        <span wicket:id="plural">Foram encontrados <b><span wicket:id="total"></span></b> registros
+        </span>
+        <span wicket:id="singular">Foi encontrado <b><span wicket:id="total"></span></b> registro
+        </span>. Mostrando resultados de <b><span wicket:id="inicio"></span></b> a <b><span wicket:id="fim"></span></b>.<br />
+        <a wicket:id="first" id="idPaginaPrimeira">Primeira</a>&nbsp;|&nbsp;<a wicket:id="prev" id="idPaginaAnterior">Anterior</a>&nbsp;|
+        <span wicket:id="navigation"> <a wicket:id="pageLink" href="#"><span wicket:id="pageNumber">5</span> </a>
+        </span>|&nbsp;
+        <a wicket:id="next" id="idPaginaProxima">Próxima</a>&nbsp;|&nbsp;<a wicket:id="last" id="idPaginaUltima">Última</a>
+    	<br/>
+    	<br/>
+    </wicket:panel>
+</body>
+</html>

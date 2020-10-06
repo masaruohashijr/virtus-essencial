@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Apresentação</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Carga de dados para as estórias de Apresentação</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>11/05/2015</td>
+			<td>Denilson</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>25/09/2017</td>
+			<td>David Nascimento</td>
+			<td>Substituindo "DadoQue" para adaptá-lo à alteração na lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+		</tr>
+	</table>
+
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		As regras da estória encontram-se <a href="../index.html">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<li><dataHoraAtual valor="25/09/2017 00:00:00">Data/hora atual do sistema: 25/09/2017 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001] - </b>Dados necessários para a geração da apresentação (com metodologia para o novo cálculo das notas).</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestApresentacao-DadoQue-CT001.html"
+										class="include">aqui</a>. </li>
+							</ul></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="scenario" execute="true">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002] - </b>Dados necessários para a geração da apresentação (com as 2 metodologias: legado - "arrasto" e nova - "média").</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestApresentacao-DadoQue-CT002.html"
+										class="include">aqui</a>.</li>
+							</ul></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

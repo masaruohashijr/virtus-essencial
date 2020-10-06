@@ -1,0 +1,46 @@
+<wicket:panel>
+	<table id="tDadosArcGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+		<thead>
+			<tr class="fundoPadraoAEscuro2"  wicket:id="exibirNomeGrupo">
+				<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label wicket:id="idNomeDoGrupo"></label></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3" wicket:id="exibirNotaVigente">
+				<td class="nomeCampo" colspan="3" style="width: 25%;">Nota vigente do ARC</td>
+				<td><label wicket:id="idNotaVigenteArc"></label></td>
+			</tr>
+			
+			<div wicket:id="wmcExibirNotaInspetor">
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" style="vertical-align: middle; text-align: right;" rowspan="3" colspan="2">Nova nota inspetor</td>
+					<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+					<td wicket:id="idNotaArrastoArcInspetor"></td>
+				</tr>
+				<wicket:enclosure child="idJustificativaPreenchido">
+				<tr class="fundoPadraoAClaro3">
+					<td style="border-left: 1px solid white; vertical-align: middle; text-align: right;" class="nomeCampo">Ajuste</td>
+					<td><p><label wicket:id="idNovaNotaArcAjustadaPrenchido"></label></p><p><label wicket:id="idJustificativaPreenchido"></label></p><p></p></td>
+				</tr>
+				</wicket:enclosure>
+			</div>
+			
+			<div  wicket:id="wmcExibirNota">
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" style="width: 25%;" wicket:id="idTituloNovaNotaArc">Nova nota do ARC</td>
+					<td><label wicket:id="idNovaNotaArc"></label></td>
+				</tr>
+				
+				<tr class="fundoPadraoAClaro3" >
+					<td class="nomeCampo" style="width: 25%; vertical-align: middle;" wicket:id="idTituloNovaAjustada">Nova nota do ARC (ajustada)</td>
+					<td>
+						<label wicket:id="idNovaNotaArcAjustada"></label> <br /> 
+						<label wicket:id="idJustificativa" ></label>
+					</td>
+					
+				</tr>
+			</div>
+			
+		</tbody>
+	</table>
+</wicket:panel>

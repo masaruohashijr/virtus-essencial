@@ -1,0 +1,668 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Ajustes no perfil de risco para destacar avaliações Corec</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória 'Ajustes no perfil de risco para destacar avaliações Corec'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>24/03/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>23/04/2015</td>
+			<td>David Nascimento</td>
+			<td>Segunda versão</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/index.html#ajustesPerfilRiscoAvaliacoesCorec">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		<a href="indexWeb.html#destaquesConsultadeARC">Cenários para validar os destaques na tela de Consulta de ARC</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001] - </b>Ciclo com estado 'Em andamento'; com ajuste do comitê no Corec anterior.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco52" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="2" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+										<table id="tDadosArcGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+											<thead>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label
+														id="idNomeDoGrupo55e">Risco de Crédito</label></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="nomeCampo" style="width: 25%;">Nota do ARC calculada</td>
+													<td class="fundoPadraoAClaro3"><label id="idNovaNotaArc55f">1</label></td>
+												</tr>
+												<tr>
+													<td class="nomeCampo" style="" id="GrupoEspansivelNota5048">
+														<div align="center">
+															<div class="thform"
+																style="width: 99.04%; font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle; text-align: right;"
+																id="divGrupo560">
+																<span id="bttExpandir">Nota do ARC ajustada</span>
+															</div>
+														</div>
+													</td>
+													<td class="fundoPadraoAClaro3"><label style="width: 10%;" id="idNovaNotaArcAjustada561">4</label> <br>
+													</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td><span id="idPainelNota562" style="display: none"></span></td>
+													<td></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C003AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"1" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+								<li>A seção com o resumo do arc é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="2" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+										</tbody>
+									</table>
+								</li>
+
+								<li>A seção com o 'nome do arc' é:
+
+									<div class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+										<table id="tDadosArcGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+											<thead>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label
+														id="idNomeDoGrupo37c">Risco de Crédito</label></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="nomeCampo" style="width: 25%;">Nota do ARC calculada</td>
+													<td class="fundoPadraoAClaro3"><label id="idNovaNotaArc37d">1</label></td>
+												</tr>
+												<tr>
+
+													<td class="fundoPadraoAClaro3"><label style="width: 10%;" id="idNovaNotaArcAjustada37e"></label> <br>
+													</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td><span id="idPainelNota37f" style="display: none"></span></td>
+													<td></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003] - </b>Ciclo com estado 'Pós-Corec'; com ajuste do comitê no Corec atual.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="8000">15/12/2015</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="2" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+										<table id="tDadosArcGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+											<thead>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label
+														id="idNomeDoGrupo55e">Risco de Crédito</label></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="nomeCampo" style="width: 25%;">Nota do ARC calculada</td>
+													<td class="fundoPadraoAClaro3"><label id="idNovaNotaArc55f">1</label></td>
+												</tr>
+												<tr>
+													<td class="nomeCampo" style="" id="GrupoEspansivelNota5048">
+														<div align="center">
+															<div class="thform"
+																style="width: 99.04%; font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle; text-align: right;"
+																id="divGrupo560">
+																<span id="bttExpandir">Nota do ARC ajustada</span>
+															</div>
+														</div>
+													</td>
+													<td class="fundoPadraoAClaro3"><label style="width: 10%;" id="idNovaNotaArcAjustada561">4</label> <br>
+													</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td><span id="idPainelNota562" style="display: none"></span></td>
+													<td></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004] - </b>Ciclo com estado 'Encerrado'; com ajuste do comitê no Corec atual.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="8000">15/12/2015</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0402]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="2" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+										<table id="tDadosArcGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+											<thead>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label
+														id="idNomeDoGrupo55e">Risco de Crédito</label></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="nomeCampo" style="width: 25%;">Nota do ARC calculada</td>
+													<td class="fundoPadraoAClaro3"><label id="idNovaNotaArc55f">1</label></td>
+												</tr>
+												<tr>
+													<td class="nomeCampo" style="" id="GrupoEspansivelNota5048">
+														<div align="center">
+															<div class="thform"
+																style="width: 99.04%; font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle; text-align: right;"
+																id="divGrupo560">
+																<span id="bttExpandir">Nota do ARC ajustada</span>
+															</div>
+														</div>
+													</td>
+													<td class="fundoPadraoAClaro3"><label style="width: 10%;" id="idNovaNotaArcAjustada561">4</label> <br>
+													</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td><span id="idPainelNota562" style="display: none"></span></td>
+													<td></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.3. Detalhamento de ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>07/05/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_3">E3.3. Detalhamento de ARC</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC no estado em andamento cadastrado no sistema de acordo com a metodologia da ES</p>
+			<p>Uma matriz no estado 2 - Vigente</p>
+			<p>ARCs designados e/ou delegados para o usuário logado</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Inspetor</p>
+			<p>Supervisor</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela de detalhamento de ARCS para os perfis inspetor e supervisor</p>
+			<p>Início --> Painel do inspetor --> Detalhes de ARC</p>
+			<p>Início --> Painel do supervisor --> Detalhes de ARC</p>
+		</blockquote>
+
+		<h3>Tela</h3>
+
+		<blockquote>
+			<p><b>Título: Detalhes de ARC</b></p>
+			<p>Início --> Painel do inspetor --> Detalhes de ARC</p>
+			<p>Início --> Painel do supervisor --> Detalhes de ARC</p>
+			<p>Código de tela: [APSFW0000]</p>
+			<p>Comandos: Analisar, Delegar, Designar e Voltar</p>
+
+			<input type="image" src="Tela01_E3_3.png"/>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade de detalhamento de ARCs.</p>
+			<p>Tela disponível apenas para os perfis <b>Inspetor</b> e <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>A funcionalidade exibe os dados do ARC selecionado no painel do inspetor ou painel do supervisor nos estados:
+				<ul>
+					<li>Designado</li>
+					<li>Em edição</li>
+					<li>Preenchido</li>
+					<li>Análise delegada</li>
+					<li>Em análise</li>
+				</ul>
+			</li>
+
+			<li>A funcionalidade deve exibir, conforme protótipo, os dados do ARC selecionado.</li>
+			<li>A funcionalidade dos botões da seção AÇÃO será discutida na especificação que for tratar do assunto.</li>
+		</ul>
+
+		<h2>Cenários de teste - Negócio.</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<ul>
+			<li>Não se aplica</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_3_Detalhamento_ARCs.html">Web</a>.</h2>	
+
+		<ul>
+			<li>Conferir - os elementos de tela e dados exibidos conforme protótipo e tabelas no dado_que.</li>
+			<li>Sucesso - Testar a navegabilidade do comando Voltar.</li>
+		</ul>
+	</body>
+</html>

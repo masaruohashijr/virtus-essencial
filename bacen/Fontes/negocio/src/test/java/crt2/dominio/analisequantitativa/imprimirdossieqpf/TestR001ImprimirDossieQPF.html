@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Imprimir quadro da posição financeira no dossiê</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Imprimir quadro da posição financeira no dossiê"</h1>
+	<span id="index"></span>
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>27/03/2015</td>
+			<td>Denilson Roberto</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>02/07/2015</td>
+			<td>Denilson Roberto</td>
+			<td>Alteração do teste para a verificação dos anexos do quadro da posição financeira.</td>
+		</tr>
+		<tr>
+			<td>3.0</td>
+			<td>26/08/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../index.html#imprimirQuadroPosicaoFinanceiraDossie">aqui</a>.
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a
+			href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a>
+	</blockquote>
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenário para <a href="indexNegocio.html#validarImpressao">validação manual da impressão do quadro da posição financeira</a>.
+	</blockquote>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001] - </b>Imprimir quadro da posição financeira no dossiê</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001ImprimirDossieQPF-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

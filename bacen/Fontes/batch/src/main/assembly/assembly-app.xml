@@ -1,0 +1,49 @@
+<assembly>
+  <id>sisaps</id>
+    <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>/lib</outputDirectory>
+      <excludes>
+        <!-- 
+        Caso esse batch utilize outras bibliotecas do BC que estejam no W:/lib, declare-as aqui pra nao sejam empacotadas 
+        no zip gerado. Essas bibliotecas sao declaradas no arquivo "run.sh" de execucao do batch, no classpath (ver comentario no 
+        "run.sh"). 
+          -->
+        <exclude>br.gov.bcb.componente:BcQuartz</exclude>
+      </excludes>
+    </dependencySet>
+  </dependencySets>
+  <fileSets>
+    <fileSet>
+      <directory>src/main/scripts</directory>
+      <outputDirectory>/bin</outputDirectory>
+      <includes>
+        <include>cpath.sh</include>
+		<include>run.sh</include>
+      </includes>  
+    </fileSet>
+    <fileSet>
+      <directory>src/main/doc</directory>
+      <outputDirectory>/doc</outputDirectory>
+      <includes>
+        <include>APS_*.txt</include>
+      </includes>  
+    </fileSet>
+   </fileSets>  
+   <files>
+    <file>
+      <source>src/main/resources/log4j.properties</source>
+      <outputDirectory>properties</outputDirectory>
+      <filtered>true</filtered>
+    </file>
+    <file>
+      <source>${basedir}/../batch/src/main/resources/sas.client.props</source>
+      <outputDirectory>properties</outputDirectory>
+      <filtered>true</filtered>
+    </file>
+  </files>
+</assembly>

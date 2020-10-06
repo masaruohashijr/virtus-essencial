@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ImpressaoArcMatriz" pageWidth="595" pageHeight="842" columnWidth="533" leftMargin="24" rightMargin="38" topMargin="39" bottomMargin="30">
+	<property name="ireport.zoom" value="1.1000000000000012"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUB_RELATORIO_ITEM" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUB_RELATORIO" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="notaCalculada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="notaAjustada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="justificativaNotaAjustada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rodape" class="java.lang.String"/>
+	<parameter name="booleanAjustada" class="java.lang.Boolean"/>
+	<parameter name="possuiCorec" class="java.lang.Boolean"/>
+	<parameter name="notaRefinada" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="booleanJustificativaAjustada" class="java.lang.Boolean"/>
+	<parameter name="CURRENTPAGE" class="java.lang.String"/>
+	<parameter name="TOTALPAGE" class="java.lang.String"/>
+	<field name="nomeConglomerado" class="java.lang.String"/>
+	<field name="sinteses" class="java.util.List"/>
+	<pageHeader>
+		<band height="160" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="81" width="384" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Departamento de Supervisão Bancária]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="98" width="58" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[Assunto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="55" y="102" width="478" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="113" width="381" height="20"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomeConglomerado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="55" y="153" width="478" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="62" y="126" width="150" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Análise econômico-financeira]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Left" vAlign="Top" isUsingCache="true">
+				<reportElement key="imgLogoBanco-1" stretchType="RelativeToTallestObject" mode="Opaque" x="54" y="32" width="242" height="48" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="54" y="0" width="478" height="21"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Informação protegida por sigilo legal, nos termos da Lei Complementar nº 105, de 10 de janeiro de 2001, e/ou de acesso restrito, nos termos do art. 5º do Decreto nº 7.724, de 16 de maio de 2012.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="173" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="54" y="118" width="478" height="19" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true">
+					<printWhenExpression><![CDATA[$P{booleanJustificativaAjustada}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{justificativaNotaAjustada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="61" y="7" width="77" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<text><![CDATA[1. Resumo]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="214" y="39" width="147" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{notaCalculada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="131" y="37" width="85" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<text><![CDATA[Nota calculada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="131" y="64" width="85" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<text><![CDATA[Nota refinada:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="209" y="93" width="87" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true">
+					<printWhenExpression><![CDATA[$P{booleanAjustada}]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{notaAjustada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="131" y="91" width="85" height="16">
+					<printWhenExpression><![CDATA[$P{booleanAjustada}]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<text><![CDATA[Nota ajustada:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="207" y="66" width="147" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{notaRefinada}]]></textFieldExpression>
+			</textField>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="54" y="145" width="478" height="18" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true"/>
+				<subreportParameter name="SUB_RELATORIO_ITEM">
+					<subreportParameterExpression><![CDATA[$P{SUB_RELATORIO_ITEM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{sinteses})]]></dataSourceExpression>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{SUB_RELATORIO}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="57" splitType="Stretch">
+			<line>
+				<reportElement x="55" y="3" width="478" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="316" y="4" width="233" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[SRC - Sistema de Avaliação de Riscos e Controles]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="57" y="8" width="261" height="16"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{rodape}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="502" y="36" width="10" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="36" width="430" height="21"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Informação protegida por sigilo legal, nos termos da Lei Complementar nº 105, de 10 de janeiro de 2001, e/ou de acesso restrito, nos termos do art. 5º do Decreto nº 7.724, de 16 de maio de 2012.]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="487" y="36" width="15" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{CURRENTPAGE} == null ? $V{PAGE_NUMBER}.toString() : $P{CURRENTPAGE})]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="512" y="36" width="15" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($P{TOTALPAGE} == null ? $V{PAGE_NUMBER}.toString() : $P{TOTALPAGE})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

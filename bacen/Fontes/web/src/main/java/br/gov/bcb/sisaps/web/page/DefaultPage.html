@@ -1,0 +1,29 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+<title>SISAPS</title>
+<wicket:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="js/funcoes-gerais.js"></script>
+	<script type="text/javascript" src="/js/padroes/padraoInterface.js"></script>
+	<script type="text/javascript" src="/js/overlib/overlibmws.js"></script>
+	<script type="text/javascript" src="/js/overlib/overlibmws_hide.js"></script>
+	<script type="text/javascript" src="/js/overlib/overlibmws_draggable.js"></script>
+	<script type="text/javascript" src="js/calendario/v2/calendar.js"></script>
+	<script type="text/javascript" src="js/calendario/v2/calendar-br.js"></script>
+
+</wicket:head>
+
+</head>
+<body>
+	<wicket:extend>
+		<script wicket:id="scriptErro" type="text/javascript">
+			window.scrollTo(0, 0);
+		</script>
+		<div wicket:id="ckEditor">
+			<script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+		</div>
+		<wicket:child />
+
+	</wicket:extend>
+</body>
+</html>

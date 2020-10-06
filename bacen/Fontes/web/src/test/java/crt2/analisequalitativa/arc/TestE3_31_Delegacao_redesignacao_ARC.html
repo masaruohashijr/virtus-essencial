@@ -1,0 +1,271 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 3.31 - Delegação e nova designação de ARC</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td></td>
+			<td>Wilkie Correia</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>27/08/2014</td>
+			<td>Victor Vasconcelos</td>
+			<td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas)</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória:
+		<ul>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequalitativa/arc/espec/E3_31_Delegacao_redesignacao_ARC.html">E3_31_Delegacao_redesignacao_ARC.html</a>.</li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+		</ul>
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<li><dataHoraAtual valor="17/03/2014 00:00:00">Data/hora atual do sistema: 17/03/2014 00:00:00</dataHoraAtual></li>
+		<li><jetty />
+			<banco />As regras para os perfis de acesso se encontram <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a></li>
+		<li>Os dados da Metodologia se encontram <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+			class="include">aqui</a></li>
+		<li>Os dados das ESs se encontram <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+			class="include">aqui</a></li>
+		<li>Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a
+			href="../comum/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a></li>
+		<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+	</ul>
+
+	<h2>Cenários de teste para a estória 3.31 - Delegação e nova designação de ARC</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens de erro/impedimento e sucesso para a delegação
+		e redesignação de ARCs.</blockquote>
+	<br>
+	<br>
+	<table class="exemplos">
+		<tr>
+			<th width="10%">Cenário</th>
+			<th width="30%">Dados pré-existentes / Ação pretendida</th>
+			<th width="60%">Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>Conferir</b><br> <br>Conferir - os demais elementos de tela e dados exibidos
+				conforme protótipo e tabelas no dado_que.</td>
+			<td>
+				<ul>
+					<li><span class="clickon" by="id:link_Arc1">Clica no estado Preenchido do ARC: Atividade corporativa -
+							Risco de Crédito ABN AMRO</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Análise
+							do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosArcDelegar']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Nova delegação de análise</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1"><b>Servidores da equipe</b></td>
+								<td colspan="1">
+									<ul class="options" by="id:idServidorEquipeDelegar">
+										<li><span class="selected" by="id:idServidorEquipeDelegar">Selecionar</span></li>
+										<li>ANFRISIO RODRIGUES VIEIRA</li>
+										<li>Administrador 105</li>
+										<li>Administrador 107</li>
+										<li>CAIO DUARTE CINTRA</li>
+										<li>CARLOS GOMES</li>
+										<li>Comitê 104</li>
+										<li>Consulta SNB 108</li>
+										<li>Gerente 102</li>
+										<li>ROBERTO SANTOS ALENCAR</li>
+										<li>Supervidor 114</li>
+										<li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="1"><b>Outros servidores</b></td>
+								<td colspan="1">
+									<ul class="options" by="id:idUnidadeDelegar">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidadeDelegar">DESUP</span></li>
+									</ul>
+									<ul class="options" by="id:idServidorUnidadeSelecionadaDelegar">
+										<li><span class="selected" by="id:idServidorUnidadeSelecionadaDelegar">Selecionar</span></li>
+										<li>CHRISTIANO ATHAÍDE DROGBA</li>
+										<li>Consulta SRPNB 110</li>
+										<li>Consulta SRPNB 109</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td class="nomeCampo" style="width: 25%;" /></td>
+								<td><input class="present" by="id:bttDelegar" title="Delegar" value="Delegar" type="submit" /> <label></label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <br> <span class="compareTable" by="xpath://table[@id='tDadosArcDesignar']">
+					<table>
+						<tr>
+							<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Nova designação</th>
+						</tr>
+						<tr>
+							<td colspan="1"><b>Servidores da equipe</b></td>
+							<td colspan="1">
+								<ul class="options" by="id:idServidorEquipe">
+									<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+									<li>ANFRISIO RODRIGUES VIEIRA</li>
+									<li>Administrador 105</li>
+									<li>Administrador 107</li>
+									<li>CAIO DUARTE CINTRA</li>
+									<li>CARLOS GOMES</li>
+									<li>Comitê 104</li>
+									<li>Consulta SNB 108</li>
+									<li>Gerente 102</li>
+									<li>ROBERTO SANTOS ALENCAR</li>
+									<li>Supervidor 114</li>
+									<li>TESTESLQB13 MASSA DE TESTE</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="1"><b>Outros servidores</b></td>
+							<td colspan="1">
+								<ul class="options" by="id:idUnidade">
+									<li>DEINF</li>
+									<li>DELIQ</li>
+									<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+								</ul>
+								<ul class="options" by="id:idServidorUnidadeSelecionada">
+									<li><span class="selected" by="id:idServidorUnidadeSelecionada">Selecionar</span></li>
+									<li>CHRISTIANO ATHAÍDE DROGBA</li>
+									<li>Consulta SRPNB 110</li>
+									<li>Consulta SRPNB 109</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="nomeCampo" style="width: 25%;" /></td>
+							<td><input class="present" by="id:bttDesignar" title="Designar" value="Designar" type="submit" /> <label>Atenção
+									ARC já preenchido por inspetor</label></td>
+						</tr>
+					</table>
+			</span><br> <br>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br> <br>Falha - Clicar no botão delegar sem selecionar um servidor.</td>
+			<td>
+				<ul>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipeDelegar">Selecionar</span></li>
+					<li>Seleciona outros servidores: <span class="select" by="id:idServidorUnidadeSelecionadaDelegar">Selecionar</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDelegar" sleep="2000">Delegar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">É obrigatória a seleção do campo Servidores da equipe ou Outros servidores.</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br> <br>Falha - Clicar no botão delegar tendo selecionado os campos
+				'Servidores da equipe' e 'Outros servidores' simultaneamente.</td>
+			<td>
+				<ul>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipeDelegar">ROBERTO SANTOS
+							ALENCAR</span></li>
+					<li>Seleciona outros servidores: <span class="select" by="id:idServidorUnidadeSelecionadaDelegar">CHRISTIANO
+							ATHAÍDE DROGBA</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDelegar" sleep="3000">Delegar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Selecione apenas um único servidor para a delegação.</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br> <br>Falha - Clicar no botão designar sem selecionar um servidor.</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li><span class="clickon" by="id:link_Arc1">Clica no estado Preenchido do ARC: Atividade corporativa -
+							Risco de Crédito ABN AMRO</span></li>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipe">Selecionar</span></li>
+					<li>Seleciona outros servidores: <span class="select" by="id:idServidorUnidadeSelecionada">Selecionar</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar" sleep="2000">Designar</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">É obrigatória a seleção do campo Servidores da equipe ou Outros servidores.</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>C004</b><br> <br>Falha - Clicar no botão designar tendo selecionado os campos
+				'Servidores da equipe' e 'Outros servidores' simultaneamente.</td>
+			<td>
+				<ul>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipe">ROBERTO SANTOS
+							ALENCAR</span></li>
+					<li>Seleciona outros servidores: <span class="select" by="id:idServidorUnidadeSelecionada">CHRISTIANO
+							ATHAÍDE DROGBA</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar" sleep="2000">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Selecione apenas um único servidor para a designação.</span></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+		 <table id="tPainel" cellpadding="0" cellspacing="0" style="width: 100%">
+	        <tr>
+	            <td wicket:id="idPainelDados"></td>
+	        </tr>
+	     </table>
+	     
+            <table id="tPainelDesignacao" cellpadding="0" cellspacing="0" style="width: 90%">
+				<div align="center" wicket:id="designacaoARCPanel" style="width: 100%; margin: auto;"></div>
+            </table>
+            
+            <div align="center">
+                <br/>
+                <input type="submit" class="botao" title="Designar" wicket:id="bttDesignar" value="Designar">&nbsp;</input>
+                <input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" 
+                    title="Voltar para a p&aacute;gina anterior" value="Voltar">&nbsp;</input>
+            </div>
+            <br>
+		</form>
+	</wicket:extend>
+</body>
+</html>
+

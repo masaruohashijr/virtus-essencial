@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns:wicket="http://wicket.apache.org/">
+	<wicket:head>
+	    <title>APS - SRC Dinâmico</title>
+	    <wicket:link>
+		    <link href="css/bootstrap.min.css" rel="stylesheet" />
+		    <link href="ApresentacaoPage.css" rel="stylesheet" />
+	    </wicket:link>
+	</wicket:head>
+	
+	<body style="margin:0; font-family: Verdana;">
+    <div class="wrapper">
+        <div class="head tela">
+            <span class="reference"></span>
+            <img src="img/logo_bc.png" wicket:id="idImagemLogo" />
+            <div class="title"><span id="spanTitulo">Título</span></div>
+        </div>
+        
+        <div class="content slide index">
+        </div>
+        
+		<div wicket:id="idPaineisSlides">
+			<div class="content" wicket:id="idPainelSlide" style="display:none" />
+		</div>
+		
+        <div class="foot tela">
+            <span class="reference"></span>
+            <div class="es" wicket:id="idNomeConglomerado"><span >Nome Conglomerado</span></div>
+            <div class="page">
+                <button type="button" class="btn btn-default btn-sm" id="btnIndice">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                </button>
+                 <button type="button" class="btn btn-default btn-sm" wicket:id="btnImpressao2">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm" id="btnAnterior">
+                    <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                </button>
+                <span id="spanPagina">SRC 1/31</span>
+                <button type="button" class="btn btn-default btn-sm" id="btnProximo">
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+	</body>
+</html>
+

@@ -1,0 +1,363 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>E3.2_A2 Edição de matriz (alteração e esxclusão de linhas e colunas) - Alteração 01</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css"	media="screen" />
+</head>
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+    <h2>Histórico</h2>	
+		<table class="exemplos historico">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>1/03/2014</td>
+				<td>1.0</td>
+				<td>Inclusão dos cenários de teste<br>
+				Estados da matriz passa a ser: 1- Esboçada; 2 - Vigente<br>
+				<a href="#E3_2_1">Alterações após a iteração 03</a><br>
+				Edição de nova versão de MRC.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>14/04/2014</td>
+				<td>1.1</td>
+				<td>Código de tela seguem o padrão [APSTTNNNN], onde TT - Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório); NNNN - Numérico.<br>
+				Os estados da matriz são: 1-Esboçada e 2-Vigente.<br>
+				Peso de unidade corporativa é não editável, igual ao maior peso da metodologia.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_2_A1">E3.2_A1 Edição de matriz (alteção e exclusão de linhas e colunas) - Alteração 01 - Iteração XX</a></h2>
+	
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Uma matriz vigentes, podendo incluir notas de ARC.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Sem alteração.</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Sem alteração.</p>
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Confirmação de inclusão de ciclo SRC.</b></p>
+			<p>Trilha: Sem alteração.</p>
+			<p>Código de tela: Sem alteração.</p>
+			<p>Comandos: Liberar, Visualizar impressão e Voltar.</p>
+
+			<input type="image" src="Tela01_E3_1.png"/>
+	
+			<p><b>Título: Edição de matriz de riscos e controles - Primeira versão.</b></p>
+			<p>Trilha: Sem alteração.</p>
+			<p>Código de tela: Sem alteração.</p>
+
+			<input type="image" src="Tela03_E3_1.png"/>
+		</blockquote>		
+	
+		<p><b>Título: Edição da matriz de riscos e controles - Versão de uma matriz vigente.</b></p>
+		<p>Trilha: Sem alteração.</p>
+		<p>Código de tela: Sem alteração.</p>
+
+		<input type="image" src="Tela04_E3_1.png"/>
+
+		<h2>Descrição</h2>
+
+		<p>Edição de uma matriz versionada a partir de uma matriz vigente.</p>
+		<p>Quando a matriz é liberada para o perfil de risco ela torna-se vigente no ciclo e sua edição somente será possível através da criação de uma nova versão desta matriz vigente.</p> 
+		<p>A criação de uma nova versão da matriz implica no versionamente da matriz e de todos os seus ARCs.</p>
+
+		<ul>
+			<li>No detalhamento da matriz vigente exibir a matriz com:
+				<ul>
+					<li>ARCs coloridos de acordo com a nota. Usa novo atributo cor da nota. Atualmente definido 1-azul;2-verde;3-amarelo;4-vermelho.</li>
+					<li>Percentual de participação de cada grupo par (risco, controle).</li>
+				</ul> 
+			</li>
+	
+			<li>O detalhamento da matriz vigente exibe a matriz usando um novo atributo cor da nota. Atualmente definido 1-azul;2-verde;3-amarelo;4-vermelho.</li>
+			<li>A nova versão da matriz exibirá uma cópia idêntica da matriz vigente, incluindo os ARCs e a notas.</li>
+			<li>A alteração de suas linhas e  colunas possui regras de negócio específicas.</li>
+		</ul>
+
+		<h2>Regras específicas</h2>
+
+		<ul>
+			<li>A alteração do peso da unidade corporativa:
+				<ul>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz, seus ARCs.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do fator de relevância da unidade corporativa:
+				<ul>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz, seus ARCs.</li>
+				</ul> 
+			</li>		
+
+			<li>A alteração do nome da atividade corporativa:
+				<ul>
+					<li>mantém os demais dados da matriz vigente.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do peso da atividade corporativa:
+				<ul>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz.</li>
+					<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do grupo (risco, controle) da atividade corporativa:
+				<ul>
+					<li>permite altera o peso</li>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz.</li>
+					<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do nome da unidade de negócio:
+				<ul>
+					<li>preserva suas atividades e seus ARCs.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do peso da unidade de negócio:
+				<ul>
+					<li>preserva suas atividades e seus ARCs.</li>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz, seus ARCs.</li>
+				</ul> 
+			</li>		
+
+			<li>A alteração do nome da atividade de negócio:
+				<ul>
+					<li>preserva os dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do peso da atividade de negócio:
+				<ul>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz.</li>
+					<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+	
+			<li>A alteração do tipo de atividade de negócio da atividade de negócio:
+				<ul>
+					<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração da unidade de negócio da atividade de negócio:
+				<ul>
+					<li>a atividade passa a ser uma atividade de negócio independente</li>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz.</li>
+					<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+
+			<li>A alteração do grupo (risco, controle) da atividade de negócio:
+				<ul>
+					<li>permite altera apenas o peso</li>
+					<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+					<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz.</li>
+					<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+				</ul> 
+			</li>
+
+			<ul>
+				<li>A exclusão de atividade corporativa, atividade de negócio ou grupos (risco, controle):
+					<ul>
+						<li>recalcula o percentual de participação de todas as atividades da matriz</li>
+						<li>recalcula o percentual de participação de todos os grupos par (risco, controle) da matriz, seus ARCs.</li>
+						<li>preserva os demais dados da matriz vigente associados a esta atividade, incluindo os ARC e notas do ARC se houver.</li>
+					</ul> 
+				</li>
+			</ul>
+		</ul>		
+
+		<h3>Dados básicos de uma Unidade corporativa:</h3>
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Peso da unidade corporativa</td>
+				<td>Peso da unidade corporativa</td>
+				<td>Não editável, igual ao maior peso da metodologia. Alterado de acordo com a metodologia.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>	
+
+		<h3>Dados básicos de uma atividade. Acrescentar:</h3>
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Percentual de participação</td>
+				<td>Percentual de participação</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Calculado de acordo com o valor do peso da atividade e por unidade de acordo com o fator de relevância definida no ciclo para unidades corporativas e de negócio.</td>
+			</tr>			
+		</table>
+
+		<h3>Dados básicos de um ARC:</h3>
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Percentual de participação</td>
+				<td>Percentual de participação</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Calculado de acordo com o valor do peso do ARC e por unidade de acordo com o fator de relevância definida no ciclo para unidades corporativas e de negócio.</td>
+			</tr>
+
+			<tr>
+				<td>Endereço do manual</td>
+				<td>Endereço do manual</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Fator de relevância</td>
+				<td>Fator de relevância</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Obtido no parâmetro fator de relevância da metodologia.</td>
+			</tr>		
+		</table>	
+
+		<h2>Cenários de teste - <a href="TestE3_1_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_e_colunas.html">Negócio</a>.</h2>
+
+		Observação: agrupar a maior quantidade de itens de teste no mesmo teste.<br>
+
+		<ul>
+			<li><b id="C001">C001</b>  Sucesso- Alterar peso da unidade corporativa. Coferir o percentual de participação e demais informações.</li>
+			<li><b id="C002">C002</b>  Sucesso- Alterar fator de relevância da unidade corporativa. Coferir o percentual de participação e demais informações.</li>
+			<li><b id="C003">C003</b>  Sucesso- Alterar nome da atividade corporativa. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C004">C004</b>  Sucesso- Alterar peso da atividade corporativa. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C005">C005</b>  Sucesso- Alterar nome de atividade de negócio independente. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C006">C006</b>  Sucesso- Alterar peso de atividade de negócio independente. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C007">C007</b>  Sucesso- Alterar tipo de atividade de negócio de atividade de negócio independente. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C008">C008</b>  Sucesso- Alterar unidade de negócio de atividade de negócio. Escolher outra unidade de negócio. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C009">C009</b>  Sucesso- Alterar nome unidade de negócio. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C010">C010</b>  Sucesso- Alterar peso da unidade de negócio. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C011">C011</b>  Sucesso- Alterar peso do grupo de uma atividade de negócio. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+			<li><b id="C012">C012</b>  Sucesso- Alterar peso do grupo de uma atividade corporativa. Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+
+			<li>
+				<b id="C013">C013</b>  Sucesso- Excluir uma unidade de negócio com atividades de negócio associadas. Resultado: 
+
+				<ul>
+					<li> As atividades de negócio associadas passam a ser atividades independentes.</li>
+					<li>Coferir o percentual de participação, ARCS suas notas e demais informações.</li>
+				</ul>
+			</li>		
+
+			<li>
+				<b id="C014">C014</b>  Sucesso- Excluir uma atividade corporativa. Resultado: 
+				<ul><li> Os pares (risco e controle) associados são excluídos.</li></ul>
+			</li>
+
+			<li>
+				<b id="C015">C015</b>  Sucesso- Excluir uma atividade de negócio. Resultado: 
+				<ul><li> Os pares (risco e controle) associados são excluídos.</li></ul>
+			</li>
+
+			<li><b>Teste de acesso a funcionalidade para cada perfil da aplicação</b></li>
+
+			<li>
+				<b id="C016">C016</b> Falha - Editar matriz, com todos os dados obrigatórios. Usuário logado possui perfil SUPERVISOR, mão não é supervisor responsável pela ES. Mensagem
+
+				<ul>
+					<li>Servidor não é supervisor responsável pela ES. Edição de matriz não é permitida.</li>
+				</ul>
+			</li>
+
+			<li>Falha - Editar matriz, com todos os dados obrigatórios. Usuário logado é supervisor responsável pela ES mas não possui perfil SUPERVISOR. Perfis que devem ser utilizados:
+				<ul>
+					<li><b id="C017">C017</b> GERENTE.</li>
+					<li><b id="C018">C018</b> INSPETOR.</li>
+					<li><b id="C019">C019</b> ADMINISTRADOR.</li>
+					<li><b id="C020">C020</b> COMITÊ.</li>
+					<li><b id="C021">C021</b> CONSULTA PERFIL DE RISCO.</li>
+					<li><b id="C022">C022</b> CONSULTA RESUMO.</li>
+				</ul>
+
+				Mensagem: "Usuário com perfil <b>perfil_do_usuário</b> não possui permissão para a funcionalidade de Edição de matriz de riscos e controle."
+			</li>		
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_1_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_e_colunas.html">Web</a></h2>	
+
+		<ul>
+			<li>Conferir - se a combobox peso da unidade de negócio exibe os pesos disponíveis na na metodologia da ES.</li>
+			<li>Conferir - se a combobox peso da atividade corporativa exibe os pesos disponíveis na na metodologia da ES.</li>
+			<li>Conferir - se a combobox peso da atividade de negócio exibe os pesos disponíveis na na metodologia da ES.</li>
+			<li>Conferir - se a combobox peso do grupo de RC exibe os pesos disponíveis na na metodologia da ES.</li>
+			<li>Conferir - se a combobox tipo de atividade da atividade de negócio exibe os tipos de atividade de negócio disponíveis na na metodologia da ES.</li>
+			<li>Conferir - se a combobox unidade de negócio da atividade de negócio exibe as unidades de negócio disponíveis na matriz.</li>
+			<li>Conferir - se a combobox grupo de RC exibe os grupos de RC disponíveis na na metodologia da ES.</li>
+			<li>Conferir - se a matriz exibe apenas o nome da atividade de negócio independente.</li>
+			<li>Conferir - se a matriz exibe apenas o nome da atividade de negócio associada a unidade de negócio.</li>
+			<li><b><a href="#C005">C005</a></b></li>
+			<li><b><a href="#C008">C008</a></b></li>
+			<li><b><a href="#C009">C009</a></b></li>
+			<li><b><a href="#C013">C013</a></b></li>
+			<li><b><a href="#C014">C014</a></b></li>
+			<li><b><a href="#C015">C015</a></b></li>
+			<li>Sucesso- Testar a navegabilidade entre as telas de edição da matriz e a tela de edição de linhas da matriz.</li>
+		</ul>
+	</body>
+</html>

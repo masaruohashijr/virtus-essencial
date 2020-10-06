@@ -1,0 +1,279 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a estória - Issue - ETL de ES - versão do perfil de risco</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para  a estória - Issue - ETL de ES - versão do perfil de risco</h1>
+
+    <span id="index"></span>
+
+    <h2>Histórico</h2>
+    <table class="exemplos historico">
+        <tr>
+            <th>Versão</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+        </tr>
+        <tr>
+            <td>1.0</td>
+            <td>09/10/2014</td>
+            <td>Victor Vasconcelos</td>
+            <td>Versão inicial.</td>
+        </tr>
+    </table>
+
+    <h2>Regras aplicáveis</h2>
+    <blockquote>
+        Para as regras desta estória se encontram no arquivo <br><br> <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/requirement/Issue_ETL_de_ES_versao_do_perfil_de_risco.xlsx">Issue_ETL_de_ES_versao_do_perfil_de_risco.xlsx</a><br><br>
+    </blockquote>
+
+
+
+    <h2>Premissas iniciais</h2>
+
+    <blockquote>
+        Lista de servidores: <a
+            href="../../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+            class="include">aqui</a>
+    </blockquote>
+    <blockquote>
+        <dataHoraAtual valor="28/06/2014 00:00:00">Data atual: 28/06/2014 00:00:00</dataHoraAtual>
+    </blockquote>
+
+
+    <h2>Cenários de teste para a estória - Issue - ETL de ES - versão do perfil de risco</h2>
+    <blockquote>Cenários onde devem ser apresentados os resultados da execução do batch responsável por tratar as informações vindas do SIGAS pelo ETL.</blockquote>
+
+    <span id="cenarios"></span>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		    
+		    
+		    
+	    <tr class="scenario">
+			<td class='title' style="width: 35%">
+                <b>C001</b> - Não existe dados na tabela do ETL e consequentemente não serão incluídos nenhum registro da tabela de Entidade Supervisionável 
+                (tabela ENS_ENTIDADE_SUPERVISIONAVEL no mesmo estado que no DadoQue)
+            </td>
+			<td style="width: 35%">
+			    <banco />
+			    Os dados da Metodologia se encontram 
+				<a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+				<br> Os dados das ESs se encontram 
+				<a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+				<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+				<a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+				Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+				Não há dados de ESs do vindos do ETL.
+			</td>
+            <td style="width: 15%">
+			    <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+			    Verificar se a tabela de ES (ENS_ENTIDADE_SUPERVISIONAVEL) se encontra no mesmo estado que no DadoQue.
+            </td>
+			<td style="width: 15%">
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C001.html" class="include">aqui</a></li>
+                </ul> 
+		    </td>
+	    </tr>
+	    <tr class="scenario">
+			<td class='title'><b>C002</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL não existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL)</td>
+			<td>
+                   <banco />
+                   Os dados da Metodologia se encontram 
+                   <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                   <br> Os dados das ESs se encontram 
+                   <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                   <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                   <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                   Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                   Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C002.html" class="include">aqui</a>
+               </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se houve a inclusão de uma nova ES com os dados do ETL, com a prioridade e o indicador que percente a um SRC nulos, associado à metodologia default.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C002.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+	    </tr>
+		    
+	    <tr class="scenario">
+			<td class='title'>
+                <b>C003</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL), 
+				CNPJ não mudou, mas seus dados (Nome, Localização, Segmento e Porte) foram alterados, e a ES não possui Ciclo. Além disso, a ES da tabela de 
+				Entidade Supervisionável não se trata de uma ES migrada do Rating.
+			</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados das ESs se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C003.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se o batch sobreponhe os dados da ES na tabela Entidade Supervisonável (ENS_ENTIDADE_SUPERVISIONAVEL) pelos dados vindos do ETL.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C003.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+		 </tr>
+		 
+		 <tr class="scenario">
+            <td class='title'>
+                <b>C004</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL), 
+                CNPJ não mudou, mas seus dados (Nome, Localização, Segmento e Porte) foram alterados, e a ES não possui Ciclo. Além disso, a ES da tabela de 
+                Entidade Supervisionável se trata de uma ES migrada do Rating.
+            </td>
+            <td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados das ESs se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C004.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se houve a inclusão de uma nova ES com os dados do ETL, com a prioridade e o indicador que percente a um SRC nulos, associado à metodologia default.
+            </td>
+            <td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C004.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+         </tr>
+		 
+		 <tr class="scenario">
+			<td class='title'><b>C005</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL), 
+			CNPJ não mudou, mas seus dados (Nome, Localização, Segmento e Porte) foram alterados, e a ES possui Ciclo. No ciclo, a ES está em apenas uma versão do perfil de risco.</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram  
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados das ESs se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C005.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se o batch sobreponhe os dados da ES do APS pelos dados vindos do ETL dessa versão do perfil de risco.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C005.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+		 </tr>
+		 
+		 <tr class="scenario">
+			<td class='title'><b>C006</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL), 
+			CNPJ não mudou, mas seus dados (Nome, Localização, Segmento e Porte) foram alterados, e a ES possui Ciclo. No ciclo, a ES está em mais de uma versão do perfil de risco.</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados das ESs se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C006.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar a criação de um novo registro da ES com os dados vindos do ETL (Nome, Localização, Segmento e Porte) e com a prioridade e o indicador que percente 
+                a um SRC da ES do APS. Esse novo registro da ES deve estar incluída na versão do perfil de risco vigente, no lugar do registro antigo.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C006.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+		 </tr>
+		 
+		 <tr class="scenario">
+			<td class='title'><b>C007</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL), 
+			CNPJ mudou, assim como seus dados (Nome, Localização, Segmento e Porte), e a ES não possui Ciclo.</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados das ESs se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C007.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se houve a inclusão de uma nova ES com os dados do ETL, com a prioridade e o indicador que percente a um SRC nulos, associado à metodologia default.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C007.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+		 </tr>
+	 
+		 
+		 <tr class="scenario">
+			<td class='title'><b>C008</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável (ENS_ENTIDADE_SUPERVISIONAVEL), 
+			CNPJ mudou, assim como seus dados (Nome, Localização, Segmento e Porte), e a ES possui Ciclo.</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados das ESs se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                <a href="dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C008.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se houve a inclusão de uma nova ES com os dados do ETL, com a prioridade e o indicador que percente a um SRC nulos, associado à metodologia default.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/Test_Issue_ETL_ES_porfim_C008.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+        </tr>
+   </body>
+</html>

@@ -1,0 +1,290 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Liberar matriz de riscos e controles</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória: 'Liberar matriz de riscos e controles'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>10/09/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#liberarMatriz">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'
+		</strong>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarMensagensErro">validar as mensagens de impedimento ao clicar no
+			botão 'Liberar nova matriz'</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar matriz com bloco 100% de negócio e atividade do tipo corporativa
+							associada. sem unidade/atividade negocio cadastrada</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco /> Os dados encontram-se <a href="TestR002C001LiberarMatrizRisco-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th>Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Matriz</th>
+									<th style="background-color: green">Mensagem de alerta</th>
+								</tr>
+								<tr>
+									<td class="set" converter="Integer" name="idMatriz">2</td>
+									<td>
+										<table class="execute" value="$THIS.liberarMatriz(idMatriz)">
+											<tr style="display: none">
+												<th></th>
+											</tr>
+											<tr>
+												<td style="color: red" class="eq" value="$THIS.getMensagem()">Para bloco corporativo com participação
+													0%, exclua atividades e ARCs associados., Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Validar matriz com bloco 100% corporativo e unidade de negócio e atividade
+							associada. sem unidade/atividade corporativa cadastrada</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco /> Os dados encontram-se <a href="TestR002C002LiberarMatrizRisco-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th>Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Matriz</th>
+									<th style="background-color: green">Mensagem de alerta?</th>
+								</tr>
+								<tr>
+									<td class="set" converter="Integer" name="idMatriz">2</td>
+									<td>
+										<table class="execute" value="$THIS.liberarMatriz(idMatriz)">
+											<tr style="display: none">
+												<th></th>
+											</tr>
+											<tr>
+												<td style="color: red" class="eq" value="$THIS.getMensagem()">Para bloco de negócio com participação
+													0%, exclua unidades, atividades e ARCs associados., Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Validar matriz com bloco 100% corporativo e unidade de negócio e atividade
+							associada.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco /> <a>Os dados encontram-se <a href="TestR002C003LiberarMatrizRisco-DadoQue.html"
+								class="include">aqui</a></td>
+					</tr>
+
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th>Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Matriz</th>
+									<th style="background-color: green">Mensagem de alerta?</th>
+								</tr>
+								<tr>
+									<td class="set" converter="Integer" name="idMatriz">1</td>
+									<td>
+										<table class="execute" value="$THIS.liberarMatriz(idMatriz)">
+											<tr style="display: none">
+												<th></th>
+											</tr>
+											<tr>
+												<td style="color: red" class="eq" value="$THIS.getMensagem()">Para bloco de negócio com participação
+													0%, exclua unidades, atividades e ARCs associados.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004]</b> - Validar matriz com bloco 100% negocio e unidade de negócio e atividade
+							associada.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco /> <a>Os dados encontram-se <a href="TestR002C004LiberarMatrizRisco-DadoQue.html"
+								class="include">aqui</a></td>
+					</tr>
+
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th>Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Matriz</th>
+									<th style="background-color: green">Mensagem de alerta?</th>
+								</tr>
+								<tr>
+									<td class="set" converter="Integer" name="idMatriz">1</td>
+									<td>
+										<table class="execute" value="$THIS.liberarMatriz(idMatriz)">
+											<tr style="display: none">
+												<th></th>
+											</tr>
+											<tr>
+												<td style="color: red" class="eq" value="$THIS.getMensagem()">Para bloco corporativo com participação
+													0%, exclua atividades e ARCs associados.</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	
+	
+	
+</body>
+</html>

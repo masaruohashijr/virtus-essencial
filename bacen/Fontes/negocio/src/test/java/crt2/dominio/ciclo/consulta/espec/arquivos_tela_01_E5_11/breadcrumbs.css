@@ -1,0 +1,12 @@
+DIV.breadcrumbs {
+	LINE-HEIGHT: 12px; HEIGHT: 12px; FONT-SIZE: 9px
+}
+DIV.breadcrumbs SPAN {
+	COLOR: #0036d7; CURSOR: pointer
+}
+DIV.breadcrumbs SPAN.arrow {
+	BACKGROUND-IMAGE: url(../Common/seta.gif); MARGIN: 0px 1px; WIDTH: 20px; DISPLAY: inline-block; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center center; HEIGHT: 10px; CURSOR: auto
+}
+DIV.breadcrumbs SPAN.last {
+	COLOR: ; CURSOR: auto
+}

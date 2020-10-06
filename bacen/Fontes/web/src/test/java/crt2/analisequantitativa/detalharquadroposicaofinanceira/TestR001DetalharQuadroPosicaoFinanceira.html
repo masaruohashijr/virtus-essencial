@@ -1,0 +1,1343 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Detalhar quadro da posição financeira</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Detalhar quadro da posição financeira'</h1>
+
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>02/10/2014</td>
+			<td>Adjamir Galvão</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>02/07/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Alteração dos cenários CT003 e CT004 para a verificação dos anexos do quadro da posição financeira.</td>
+		</tr>
+		<tr>
+			<td>3.0</td>
+			<td>26/08/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da história clique <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#detalharQuadroPosicaoFinanceira">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">carregada</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	    <blockquote> 
+	       Cenários para <a href="indexWeb.html#verificarEstadoInicial">verificar estado inicial da tela</a>.
+	    </blockquote> 
+
+	<!-- ##### -->
+	<!-- CT001 -->
+	<!-- ##### -->
+	<table class="scenario">
+	<tr>
+	<td>
+	<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b><a name="CT001">[CT001]</a></b> - Sem quadro vigente e sem novo quadro salvo.</td>
+						</tr>
+						<tr>
+							<th>Dado que</th>
+						</tr>
+						<tr>
+							<td><banco />
+								<ul>
+									<li>Os dados encontram-se <a
+										href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/gerenciarquadroposicaofinanceira/TestR003C001GerenciarQuadroPosicaoFinanceira-DadoQue.html"
+										class="include">aqui</a>.
+									</li>
+								</ul>
+						</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+									<li>Acessar o menu: <span class="open"
+										url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN
+											AMRO</span></li>
+
+								</ul>
+							</td>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+							<td>
+								<ul>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+									<li>A tabela da análise quantitativa é : <span
+										class="compareTable"
+										by="xpath://table[@id='tPainelQuantitativa']">
+											<table>
+												<tr>
+													<td>Quadro da posição financeira</td>
+												</tr>
+											</table>
+									</span>
+									</li>
+									<li>A página não contém o '<span class="notPresent"
+										by="xpath://tDadosquadroVigenteQuadroPosicaoFinanceira">Quadro
+											vigente do 'Quadro da posição financeira'</span>';
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<!-- ##### -->
+	<!-- CT002 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b><a name="CT002">[CT002]</a></b> - Sem quadro vigente e com novo
+								quadro.</td>
+						</tr>
+						<tr>
+							<th>Dado que</th>
+						</tr>
+						<tr>
+							<td><banco />
+								<ul>
+									<li>Os dados encontram-se <a
+										href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/gerenciarquadroposicaofinanceira/TestR003C002GerenciarQuadroPosicaoFinanceira-DadoQue.html"
+										class="include">aqui</a>.
+									</li>
+								</ul>
+						</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+									<li>Acessar o menu: <span class="open"
+										url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN
+											AMRO</span></li>
+								</ul>
+							</td>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+							<td>
+								<ul>
+									<li>A tabela da análise quantitativa é : <span>
+											<table>
+												<tr>
+													<td>Quadro da posição financeira</td>
+												</tr>
+											</table>
+									</span>
+									</li>
+									<li>A página não contém o '<span class="notPresent"
+										by="xpath://tDadosquadroVigenteQuadroPosicaoFinanceira">Quadro
+											vigente do 'Quadro da posição financeira'</span>';
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<!-- ##### -->
+	<!-- CT003 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b><a name="CT003">[CT003]</a></b> - Com quadro vigente e sem novo quadro.</td>
+						</tr>
+						<tr>
+							<th>Dado que</th>
+						</tr>
+						<tr>
+							<td><banco />
+								<ul>
+									<li>Os dados encontram-se <a
+										href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/gerenciarquadroposicaofinanceira/TestR003C003GerenciarQuadroPosicaoFinanceira-DadoQue.html"
+										class="include">aqui</a>.
+									</li>
+								</ul>
+						</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+						<tr>
+							<td>
+								<ul>
+									<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+
+									<li>Acessar o menu: <span class="open"
+										url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+									<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								</ul>
+							</td>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+						<td>
+						<ul>
+						<li>A tabela com o quadro vigente é:
+		<table id="tDadosquadroVigenteQuadroPosicaoFinanceira"
+			class="compareTable" by="xpath://table[@id='tDadosquadroVigenteQuadroPosicaoFinanceira']">
+			<tbody>
+				<tr valign="top">
+				<td style="width: 50%">
+					<span id="dataBaseAtivoquadroVigenteAtivo">
+					<table>
+					<thead>
+					<tr>
+						<td style='background-color: #93abc5'>Ativo</td>
+					</tr>
+					</thead>
+					<tbody>
+					<tr valign="top">
+						<td colspan="4"><strong>Data-base: <span
+										id="dataBaseAtivodd">01/2014</span></strong></td>
+					</tr>
+					<tr valign="top">
+					<td>
+					<table id="idDados" style="width: 100%;">
+						<thead>
+							<tr>
+								<td></td>
+								<td>Valor</td>
+								<td>Ajustado</td>
+								<td>%</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="font-weight: bold;">Ativo Total Ajustado</td>
+								<td style="font-weight: bold; color: #000">4.276</td>
+								<td style="font-weight: bold;">4.272</td>
+								<td style="font-weight: bold;">100%</td>
+							</tr>
+							<tr>
+								<td><br /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="font-weight: bold;">Circulante e RLP</td>
+								<td>4.272</td>
+								<td>4.268</td>
+								<td>99,9%</td>
+							</tr>
+							<tr>
+								<td>Disponibilidades</td>
+								<td>4.000</td>
+								<td>3.997</td>
+								<td>93,6%</td>
+							</tr>
+							<tr>
+								<td>Aplicações Interf. de Liquidez</td>
+								<td>200</td>
+								<td>199</td>
+								<td>4,7%</td>
+							</tr>
+							<tr>
+								<td>Diversos</td>
+								<td>72</td>
+								<td></td>
+								<td>1,7%</td>
+							</tr>
+							<tr>
+								<td><br /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="font-weight: bold;">Permanente</td>
+								<td>4</td>
+								<td></td>
+								<td>0,1%</td>
+							</tr>
+							</tbody>
+							</table>
+							</td>
+							</tr>
+						</tbody>
+					</table>
+					</span>
+				</td>
+				<td style="width: 50%">
+				<span id="quadroVigentePassivo">
+				<table>
+					<thead>
+						<tr>
+							<td style='background-color: #93abc5'>Passivo</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr valign="top">
+							<td style="text-align: right;" colspan="4"><strong>Em
+									R$ milhões</strong></td>
+						</tr>
+						<tr valign="top">
+							<td>
+							<table id="idDados" 
+								style="width: 100%;">
+								<thead>
+									<tr>
+										<td></td>
+										<td>Valor</td>
+										<td>Ajustado</td>
+										<td>%</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="font-weight: bold;">Passivo Total Ajustado</td>
+										<td style="font-weight: bold; color: #000">4.276</td>
+										<td style="font-weight: bold;">4.272</td>
+										<td style="font-weight: bold;">100%</td>
+									</tr>
+									<tr>
+										<td><br /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;">Exigibilidades</td>
+										<td>3.711</td>
+										<td>3.707</td>
+										<td>86,8%</td>
+									</tr>
+									<tr>
+										<td>Depósitos</td>
+										<td>3.700</td>
+										<td>3.696</td>
+										<td>86,5%</td>
+									</tr>
+									<tr>
+										<td>Diversos</td>
+										<td>11</td>
+										<td></td>
+										<td>0,3%</td>
+									</tr>
+									<tr>
+										<td><br /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;">Quase Capital</td>
+										<td>315</td>
+										<td></td>
+										<td>7,4%</td>
+									</tr>
+									<tr>
+										<td>Resultados de Exercícios Futuros</td>
+										<td>115</td>
+										<td></td>
+										<td>2,7%</td>
+									</tr>
+									<tr>
+										<td>Diversos</td>
+										<td>200</td>
+										<td></td>
+										<td>4,7%</td>
+									</tr>
+									<tr>
+										<td><br /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;">PLA</td>
+										<td>248</td>
+										<td></td>
+										<td>5,8%</td>
+									</tr>
+								</tbody>
+							</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</span>
+				</td>
+				</tr>
+				<tr valign="top">
+					<td colspan="2">
+			<div style="float: left; margin-left: auto; width: 50%">
+				<table id="tDadosResultadosVigente" cellspacing="1" cellpadding="5"
+					style="width: 100%">
+					<thead>
+						<tr class="fundoPadraoAClaro3">
+							<th class="nomeCampo" 
+								style="text-align: left; border-bottom: 0px;" colspan="2">Resultados</th>
+						</tr>
+					</thead>
+				</table>
+				<span id="resultadosVigente24c">
+					<div id="id0255"></div>
+					<div id="id1272"></div>
+					<table style="width: 100%" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td style="width: 15%">
+									<div id="id024d"></div>
+									<div id="id124f"></div>
+									<div id="id2251"></div>
+									<div id="id3253"></div>
+									<table class="tabela" style="width: 100%;" cellspacing="1">
+										<tbody>
+											<tr style="height: 16px">
+												<td><strong>Período</strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo24e">12/2012</span></strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo250">06/2013</span></strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo252">12/2013</span></strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo254">01/2014</span></strong></td>
+											</tr>
+		
+										</tbody>
+									</table>
+								</td>
+								<td>
+									<div id="tabelaResultados256">
+										<div align="center">
+		
+											<table id="idDados" class="tabela" style="width: 100%;"
+												cellspacing="1">
+		
+												<thead>
+													<tr>
+		
+														<th nowrap="" id="celula259"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 33%;"><span
+															id="valor25a">Lucro</span></th>
+		
+														<th nowrap="" id="celula25c"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 33%;"><span
+															id="valor25d">Ajustado</span></th>
+		
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id125e">
+														<td id="id125f"><span id="cell260">21</span></td>
+														<td id="id2261"><span id="cell262"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id2263">
+														<td id="id1264"><span id="cell265">36</span></td>
+														<td id="id2266"><span id="cell267"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id3268">
+														<td id="id1269"><span id="cell26a">37</span></td>
+														<td id="id226b"><span id="cell26c"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id426d">
+														<td id="id126e"><span id="cell26f">28</span></td>
+														<td id="id2270"><span id="cell271">27</span></td>
+													</tr>
+												</tbody>
+		
+		
+											</table>
+		
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div id="tabelaResultados273">
+										<div align="center">
+		
+											<table id="idDados" class="tabela" style="width: 100%;"
+												cellspacing="1">
+		
+												<thead>
+													<tr>
+		
+														<th nowrap="" id="celula276"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 50%;"><span
+															id="valor277">RSPLA</span></th>
+		
+														<th nowrap="" id="celula279"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 50%;"><span
+															id="valor27a">Ajustado</span></th>
+		
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id127b">
+														<td id="id127c"><span id="cell27d">7,0</span></td>
+														<td id="id227e"><span id="cell27f"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id2280">
+														<td id="id1281"><span id="cell282">11,3</span></td>
+														<td id="id2283"><span id="cell284"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id3285">
+														<td id="id1286"><span id="cell287">10,5</span></td>
+														<td id="id2288"><span id="cell289"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id428a">
+														<td id="id128b"><span id="cell28c">6,9</span></td>
+														<td id="id228d"><span id="cell28e">6,6</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</span>
+			</div>
+			<div style="float: left; margin-left: auto; width: 50%">
+				<table id="tDadosPatrimoniosVigente" cellspacing="1" cellpadding="5"
+					style="width: 100%">
+					<thead>
+						<tr class="fundoPadraoAClaro3">
+							<th class="nomeCampo"
+								style="text-align: left; border-bottom: 0px;" colspan="2">Patrimônios
+								de referência</th>
+						</tr>
+					</thead>
+				</table>
+				<span id="patrimoniosVigente292">
+					<span id="tabela293">
+						<div align="center">
+		
+							<table id="idDados_ajustePatrimônio" class="tabela"
+								style="width: 100%;" cellspacing="1">
+		
+								<thead>
+									<tr>
+		
+										<th nowrap="" id="celula296"
+											style="padding: 6px; background-color: #93abc5;; background-color: #fff; color: #000; width: 70%;"><span
+											id="valor297"></span></th>
+		
+										<th nowrap="" id="celula299"
+											style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+											id="valor29a">Valor</span></th>
+		
+										<th nowrap="" id="celula29c"
+											style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+											id="valor29d">Ajustado</span></th>
+		
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3" id="id129e">
+										<td id="id129f" style="font-weight: bold;"><span
+											id="cell2a0">PR nível 1</span></td>
+										<td id="id22a1"><span id="cell2a2">451</span></td>
+										<td id="id32a3"><span id="cell2a4">450</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id22a5">
+										<td id="id12a6" style="font-weight: bold;"><span
+											id="cell2a7">Capital principal</span></td>
+										<td id="id22a8"><span id="cell2a9">215</span></td>
+										<td id="id32aa"><span id="cell2ab">213</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id32ac">
+										<td id="id12ad" style="font-weight: bold;"><span
+											id="cell2ae">Capital complementar</span></td>
+										<td id="id22af"><span id="cell2b0">135</span></td>
+										<td id="id32b1"><span id="cell2b2">136</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id42b3">
+										<td id="id12b4" style="font-weight: bold;"><span
+											id="cell2b5">PR nível 2</span></td>
+										<td id="id22b6"><span id="cell2b7">115</span></td>
+										<td id="id32b8"><span id="cell2b9">113</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</span>
+				</span>
+			</div>
+			<div style="float: left; margin-left: auto; width: 50%">
+			<table id="tDadosIndicesVigente" cellspacing="1" cellpadding="5"
+				style="width: 100%">
+				<thead>
+					<tr class="fundoPadraoAClaro3">
+						<th class="nomeCampo"
+							style="text-align: left; border-bottom: 0px;" colspan="2">Índices</th>
+					</tr>
+				</thead>
+			</table>
+			<span id="indicesVigente2bb">
+				<span id="tabela2bc">
+					<div align="center">
+						<table id="idDados_ajusteÍndice" class="tabela"
+							style="width: 100%;" cellspacing="1">
+							<thead>
+								<tr>
+									<th nowrap="" id="celula2bf"
+										style="padding: 6px; background-color: #93abc5;; background-color: #fff; color: #000; width: 70%;"><span
+										id="valor2c0"></span></th>
+	
+									<th nowrap="" id="celula2c2"
+										style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+										id="valor2c3">Índice</span></th>
+	
+									<th nowrap="" id="celula2c5"
+										style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+										id="valor2c6">Ajustado</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="fundoPadraoAClaro3" id="id12c7">
+									<td id="id12c8" style="font-weight: bold;"><span
+										id="cell2c9">Basiléia</span></td>
+									<td id="id22ca"><span id="cell2cb">16,55</span></td>
+									<td id="id32cc"><span id="cell2cd">15,33</span></td>
+								</tr>
+								<tr class="fundoPadraoAClaro3" id="id22ce">
+									<td id="id12cf" style="font-weight: bold;"><span
+										id="cell2d0">Basiléia Amplo (inclui RBAN)</span></td>
+									<td id="id22d1"><span id="cell2d2">16,35</span></td>
+									<td id="id32d3"><span id="cell2d4">16,36</span></td>
+								</tr>
+								<tr class="fundoPadraoAClaro3" id="id32d5">
+									<td id="id12d6" style="font-weight: bold;"><span
+										id="cell2d7">Imobilização</span></td>
+									<td id="id22d8"><span id="cell2d9">0,74</span></td>
+									<td id="id32da"><span id="cell2db">0,75</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</span>
+			</span>
+		</div>
+			</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table id="tAnexosQPF" width="100%" cellspacing="0" cellpadding="0" style="margin: auto;">
+
+                                                            <thead id="tituloDetalhe47e">
+                                                                <tr class="fundoPadraoAClaro3">
+                                                                    <th colspan="5" class="nomeCampo" style='background-color: #93abc5'
+                                                                        style="text-align: left; border-bottom: 0px;">Anexos</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="fundoPadraoAClaro3">
+                                                                    <td colspan="3"><label style="color: #F2F4F6;">VAZIO</label></td>
+                                                                </tr>
+                                                                <tr class="fundoPadraoAClaro3">
+                                                                    <td width="25%"></td>
+                                                                    <td align="center" style="text-align: center;"><div
+                                                                            style="width: 100%" id="idTabelaAnexoQPF">
+                                                                            <table align="center" id="tListaARCs"
+                                                                                width="100%" cellspacing="0"
+                                                                                cellpadding="3" class="tabela">
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        style="width: 90%; margin: auto;">
+                                                                                        <td><span id="tabela7da">
+                                                                                                <div align="center">
+
+                                                                                                    <table id="idDados"
+                                                                                                        class="tabela"
+                                                                                                        style="width: 100%;"
+                                                                                                        cellspacing="1">
+
+                                                                                                        <thead>
+                                                                                                            <tr>
+
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            <tr
+                                                                                                                class="fundoPadraoAClaro2"
+                                                                                                                id="id17dc">
+                                                                                                                <td
+                                                                                                                    id="id17dd"
+                                                                                                                    class="nomeCampo"
+                                                                                                                    style="width: 20%"><span
+                                                                                                                    id="cell7de">Anexo</span></td>
+                                                                                                                <td
+                                                                                                                    id="id27df"><span
+                                                                                                                    id="cell7e0">
+                                                                                                                        <a
+                                                                                                                        href="./page?5-3.ILinkListener-formulario-tPainelQuantitativa-analiseQuantitativaPanel-anexoVigente-idTabelaAnexoQPF-tabela-tabelaDados-dados-linhas-1-cells-2-cell-link"
+                                                                                                                        align="center"
+                                                                                                                        id="linkanexo1">Anexo
+                                                                                                                            quadro
+                                                                                                                            1.pdf</a>
+                                                                                                                </span></td>
+                                                                                                            </tr>
+                                                                                                            <tr
+                                                                                                                class="fundoPadraoAClaro3"
+                                                                                                                id="id27e1">
+                                                                                                                <td
+                                                                                                                    id="id17e2"
+                                                                                                                    class="nomeCampo"
+                                                                                                                    style="width: 20%"><span
+                                                                                                                    id="cell7e3">Anexo</span></td>
+                                                                                                                <td
+                                                                                                                    id="id27e4"><span
+                                                                                                                    id="cell7e5">
+                                                                                                                        <a
+                                                                                                                        href="./page?5-3.ILinkListener-formulario-tPainelQuantitativa-analiseQuantitativaPanel-anexoVigente-idTabelaAnexoQPF-tabela-tabelaDados-dados-linhas-2-cells-2-cell-link"
+                                                                                                                        align="center"
+                                                                                                                        id="linkanexo2">Anexo
+                                                                                                                            quadro
+                                                                                                                            2.pdf</a>
+                                                                                                                </span></td>
+                                                                                                            </tr>
+                                                                                                            <tr
+                                                                                                                class="fundoPadraoAClaro2"
+                                                                                                                id="id37e6">
+                                                                                                                <td
+                                                                                                                    id="id17e7"
+                                                                                                                    class="nomeCampo"
+                                                                                                                    style="width: 20%"><span
+                                                                                                                    id="cell7e8">Anexo</span></td>
+                                                                                                                <td
+                                                                                                                    id="id27e9"><span
+                                                                                                                    id="cell7ea">
+                                                                                                                        <a
+                                                                                                                        href="./page?5-3.ILinkListener-formulario-tPainelQuantitativa-analiseQuantitativaPanel-anexoVigente-idTabelaAnexoQPF-tabela-tabelaDados-dados-linhas-3-cells-2-cell-link"
+                                                                                                                        align="center"
+                                                                                                                        id="linkanexo3">Anexo
+                                                                                                                            quadro
+                                                                                                                            3.pdf</a>
+                                                                                                                </span></td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+
+
+                                                                                                    </table>
+
+
+                                                                                                </div>
+                                                                                        </span></td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div></td>
+                                                                    <td width="25%"></td>
+                                                                </tr>
+
+
+                                                                <tr class="fundoPadraoAClaro3">
+                                                                    <td colspan="3"><label style="color: #F2F4F6;">VAZIO</label></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+			</tr>
+		</tbody>
+		</table>
+		</li>
+		</ul>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+		</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<!-- ##### -->
+	<!-- CT004 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+		<td>
+		<table class="exemplos">
+		<tbody>
+		<tr>
+			<th>Cenário</th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT004">[CT004]</a></b> - Com quadro vigente e com novo quadro.</td>
+		</tr>
+		<tr>
+			<th>Dado que</th>
+		</tr>
+		<tr>
+			<td><banco />
+				<ul>
+					<li>Os dados encontram-se <a
+						href="../gerenciarquadroposicaofinanceira/TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html"
+						class="include">aqui</a>.
+					</li>
+				</ul>
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acessar o menu: <span class="open"
+						url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+				</ul>
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		<td>
+		<ul>
+		<li>A tabela com o quadro vigente é:
+		<table id="tDadosquadroVigenteQuadroPosicaoFinanceira"
+			class="compareTable" by="xpath://table[@id='tDadosquadroVigenteQuadroPosicaoFinanceira']">
+			<tbody>
+				<tr valign="top">
+				<td style="width: 50%">
+					<span id="dataBaseAtivoquadroVigenteAtivo">
+					<table>
+					<thead>
+					<tr>
+						<td style='background-color: #93abc5'>Ativo</td>
+					</tr>
+					</thead>
+					<tbody>
+					<tr valign="top">
+						<td colspan="4"><strong>Data-base: <span
+										id="dataBaseAtivodd">01/2014</span></strong></td>
+					</tr>
+					<tr valign="top">
+					<td>
+					<table id="idDados" style="width: 100%;">
+						<thead>
+							<tr>
+								<td></td>
+								<td>Valor</td>
+								<td>Ajustado</td>
+								<td>%</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="font-weight: bold;">Ativo Total Ajustado</td>
+								<td style="font-weight: bold; color: #000">4.276</td>
+								<td style="font-weight: bold;">4.272</td>
+								<td style="font-weight: bold;">100%</td>
+							</tr>
+							<tr>
+								<td><br /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="font-weight: bold;">Circulante e RLP</td>
+								<td>4.272</td>
+								<td>4.268</td>
+								<td>99,9%</td>
+							</tr>
+							<tr>
+								<td>Disponibilidades</td>
+								<td>4.000</td>
+								<td>3.997</td>
+								<td>93,6%</td>
+							</tr>
+							<tr>
+								<td>Aplicações Interf. de Liquidez</td>
+								<td>200</td>
+								<td>199</td>
+								<td>4,7%</td>
+							</tr>
+							<tr>
+								<td>Diversos</td>
+								<td>72</td>
+								<td></td>
+								<td>1,7%</td>
+							</tr>
+							<tr>
+								<td><br /></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="font-weight: bold;">Permanente</td>
+								<td>4</td>
+								<td></td>
+								<td>0,1%</td>
+							</tr>
+							</tbody>
+							</table>
+							</td>
+							</tr>
+						</tbody>
+					</table>
+					</span>
+				</td>
+				<td style="width: 50%">
+				<span id="quadroVigentePassivo">
+				<table>
+					<thead>
+						<tr>
+							<td style='background-color: #93abc5'>Passivo</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr valign="top">
+							<td style="text-align: right;" colspan="4"><strong>Em
+									R$ milhões</strong></td>
+						</tr>
+						<tr valign="top">
+							<td>
+							<table id="idDados" 
+								style="width: 100%;">
+								<thead>
+									<tr>
+										<td></td>
+										<td>Valor</td>
+										<td>Ajustado</td>
+										<td>%</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="font-weight: bold;">Passivo Total Ajustado</td>
+										<td style="font-weight: bold; color: #000">4.276</td>
+										<td style="font-weight: bold;">4.272</td>
+										<td style="font-weight: bold;">100%</td>
+									</tr>
+									<tr>
+										<td><br /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;">Exigibilidades</td>
+										<td>3.711</td>
+										<td>3.707</td>
+										<td>86,8%</td>
+									</tr>
+									<tr>
+										<td>Depósitos</td>
+										<td>3.700</td>
+										<td>3.696</td>
+										<td>86,5%</td>
+									</tr>
+									<tr>
+										<td>Diversos</td>
+										<td>11</td>
+										<td></td>
+										<td>0,3%</td>
+									</tr>
+									<tr>
+										<td><br /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;">Quase Capital</td>
+										<td>315</td>
+										<td></td>
+										<td>7,4%</td>
+									</tr>
+									<tr>
+										<td>Resultados de Exercícios Futuros</td>
+										<td>115</td>
+										<td></td>
+										<td>2,7%</td>
+									</tr>
+									<tr>
+										<td>Diversos</td>
+										<td>200</td>
+										<td></td>
+										<td>4,7%</td>
+									</tr>
+									<tr>
+										<td><br /></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td style="font-weight: bold;">PLA</td>
+										<td>248</td>
+										<td></td>
+										<td>5,8%</td>
+									</tr>
+								</tbody>
+							</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</span>
+				</td>
+				</tr>
+				<tr valign="top">
+					<td colspan="2">
+			<div style="float: left; margin-left: auto; width: 50%">
+				<table id="tDadosResultadosVigente" cellspacing="1" cellpadding="5"
+					style="width: 100%">
+					<thead>
+						<tr class="fundoPadraoAClaro3">
+							<th class="nomeCampo"
+								style="text-align: right; border-bottom: 0px;" colspan="2">Resultados</th>
+						</tr>
+					</thead>
+				</table>
+				<span id="resultadosVigente24e">
+					<div id="id0257"></div>
+					<div id="id1274"></div>
+					<table style="width: 100%" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+								<td style="width: 15%">
+									<div id="id024f"></div>
+									<div id="id1251"></div>
+									<div id="id2253"></div>
+									<div id="id3255"></div>
+									<table class="tabela" style="width: 100%;" cellspacing="1">
+										<tbody>
+											<tr style="height: 16px">
+												<td><strong>Período</strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo250">12/2012</span></strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo252">06/2013</span></strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo254">12/2013</span></strong></td>
+											</tr>
+											<tr class="fundoPadraoAClaro3" style="height: 25px">
+												<td><strong><span id="periodo256">01/2014</span></strong></td>
+											</tr>
+		
+										</tbody>
+									</table>
+								</td>
+								<td>
+									<div id="tabelaResultados258">
+										<div align="center">
+											<table id="idDados" class="tabela" style="width: 100%;"
+												cellspacing="1">
+												<thead>
+													<tr>
+														<th nowrap="" id="celula25b"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 33%;"><span
+															id="valor25c">Lucro</span></th>
+		
+														<th nowrap="" id="celula25e"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 33%;"><span
+															id="valor25f">Ajustado</span></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id1260">
+														<td id="id1261"><span id="cell262">21</span></td>
+														<td id="id2263"><span id="cell264"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id2265">
+														<td id="id1266"><span id="cell267">36</span></td>
+														<td id="id2268"><span id="cell269"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id326a">
+														<td id="id126b"><span id="cell26c">37</span></td>
+														<td id="id226d"><span id="cell26e"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id426f">
+														<td id="id1270"><span id="cell271">28</span></td>
+														<td id="id2272"><span id="cell273">27</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div id="tabelaResultados275">
+										<div align="center">
+											<table id="idDados" class="tabela" style="width: 100%;"
+												cellspacing="1">
+												<thead>
+													<tr>
+														<th nowrap="" id="celula278"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 50%;"><span
+															id="valor279">RSPLA</span></th>
+		
+														<th nowrap="" id="celula27b"
+															style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 50%;"><span
+															id="valor27c">Ajustado</span></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id127d">
+														<td id="id127e"><span id="cell27f">7,0</span></td>
+														<td id="id2280"><span id="cell281"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id2282">
+														<td id="id1283"><span id="cell284">11,3</span></td>
+														<td id="id2285"><span id="cell286"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id3287">
+														<td id="id1288"><span id="cell289">10,5</span></td>
+														<td id="id228a"><span id="cell28b"></span></td>
+													</tr>
+													<tr class="fundoPadraoAClaro3 alturaLinha" id="id428c">
+														<td id="id128d"><span id="cell28e">6,9</span></td>
+														<td id="id228f"><span id="cell290">6,6</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</span>
+			</div>
+			<div style="float: left; margin-left: auto; width: 50%">
+				<table id="tDadosPatrimoniosVigente" cellspacing="1" cellpadding="5"
+					style="width: 100%">
+					<thead>
+						<tr class="fundoPadraoAClaro3">
+							<th class="nomeCampo"
+								style="text-align: right; border-bottom: 0px;" colspan="2">Patrimônios
+								de referência</th>
+						</tr>
+					</thead>
+				</table>
+				<span id="patrimoniosVigente292">
+					<span id="tabela293">
+						<div align="center">
+							<table id="idDados_ajustePatrimônio" class="tabela"
+								style="width: 100%;" cellspacing="1">
+								<thead>
+									<tr>
+										<th nowrap="" id="celula296"
+											style="padding: 6px; background-color: #93abc5;; background-color: #fff; color: #000; width: 70%;"><span
+											id="valor297"></span></th>
+		
+										<th nowrap="" id="celula299"
+											style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+											id="valor29a">Valor</span></th>
+		
+										<th nowrap="" id="celula29c"
+											style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+											id="valor29d">Ajustado</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3" id="id129e">
+										<td id="id129f" style="font-weight: bold;"><span
+											id="cell2a0">PR nível 1</span></td>
+										<td id="id22a1"><span id="cell2a2">451</span></td>
+										<td id="id32a3"><span id="cell2a4">450</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id22a5">
+										<td id="id12a6" style="font-weight: bold;"><span
+											id="cell2a7">Capital principal</span></td>
+										<td id="id22a8"><span id="cell2a9">215</span></td>
+										<td id="id32aa"><span id="cell2ab">213</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id32ac">
+										<td id="id12ad" style="font-weight: bold;"><span
+											id="cell2ae">Capital complementar</span></td>
+										<td id="id22af"><span id="cell2b0">135</span></td>
+										<td id="id32b1"><span id="cell2b2">136</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id42b3">
+										<td id="id12b4" style="font-weight: bold;"><span
+											id="cell2b5">PR nível 2</span></td>
+										<td id="id22b6"><span id="cell2b7">115</span></td>
+										<td id="id32b8"><span id="cell2b9">113</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</span>
+				</span>
+			</div>
+			<div style="float: left; margin-left: auto; width: 50%">
+				<table id="tDadosIndicesVigente" cellspacing="1" cellpadding="5"
+					style="width: 100%">
+					<thead>
+						<tr class="fundoPadraoAClaro3">
+							<th class="nomeCampo"
+								style="text-align: right; border-bottom: 0px;" colspan="2">Índices</th>
+						</tr>
+					</thead>
+				</table>
+				<span id="indicesVigente2bb">
+					<span id="tabela2bc">
+						<div align="center">
+							<table id="idDados_ajusteÍndice" class="tabela"
+								style="width: 100%;" cellspacing="1">
+								<thead>
+									<tr>
+										<th nowrap="" id="celula2bf"
+											style="padding: 6px; background-color: #93abc5;; background-color: #fff; color: #000; width: 70%;"><span
+											id="valor2c0"></span></th>
+										<th nowrap="" id="celula2c2"
+											style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+											id="valor2c3">Índice</span></th>
+										<th nowrap="" id="celula2c5"
+											style="padding: 6px; background-color: #93abc5;; padding: 0px; background-color: #fff; color: #000; width: 15%;"><span
+											id="valor2c6">Ajustado</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3" id="id12c7">
+										<td id="id12c8" style="font-weight: bold;"><span
+											id="cell2c9">Basiléia</span></td>
+										<td id="id22ca"><span id="cell2cb">16,55</span></td>
+										<td id="id32cc"><span id="cell2cd">15,33</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id22ce">
+										<td id="id12cf" style="font-weight: bold;"><span
+											id="cell2d0">Basiléia Amplo (inclui RBAN)</span></td>
+										<td id="id22d1"><span id="cell2d2">16,35</span></td>
+										<td id="id32d3"><span id="cell2d4">16,36</span></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3" id="id32d5">
+										<td id="id12d6" style="font-weight: bold;"><span
+											id="cell2d7">Imobilização</span></td>
+										<td id="id22d8"><span id="cell2d9">0,74</span></td>
+										<td id="id32da"><span id="cell2db">0,75</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</span>
+				</span>
+			</div>
+			</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table style="width: 100%; font-weight: bold; border-bottom: none;">
+						<tr>
+							<td style='background-color: #93abc5'>Anexos</td>
+						</tr>
+						<tr>
+							<td>
+								<div align="center">
+									<table>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td colspan="3"><label
+                                                style="color: #F2F4F6;">VAZIO</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 482px;">Nenhum
+                                                arquivo anexado.</td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td colspan="3"><label
+                                                style="color: #F2F4F6;">VAZIO</label></td>
+                                        </tr>
+                                    </table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		</li>
+		</ul>		
+		</td>
+		</tr>
+		</tbody>
+		</table>
+		</td>
+		</tr>
+	</table>
+</body>
+</html>

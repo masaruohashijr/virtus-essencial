@@ -1,0 +1,256 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Perfil 'Gerente'</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Perfil 'Gerente'</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="painelGerente" class="menu">Painel do gerente</a>
+ </h2>
+     <ul>
+        <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Gerente/Painel/painel_gerente.html">protótipo</a>.</li>
+     </ul>   
+
+ <h3>       
+     <a name="pendenciasGerente" class="menu">Pendências do gerente</a>
+ </h3>
+     <ul>
+        <li>Regras gerais:</li>
+           <ul>
+               <li>Observar as regras descritas em <a href="#painelGerente">painel do gerente</a>;</li>
+               <li>Deverão ser listadas as ES subordinadas a gerência que possuam pendências na <a href="#gerenciarDetalhesES">gestão de detalhes da ES</a>;</li> 
+               <li>Caso não haja pendências, exibir a mensagem: 'Nenhuma ES com pendências'.</li>
+           </ul>
+     </ul>
+	 <blockquote>
+	     <a href="pendencias/indexNegocio.html">Cenários de teste de negócio</a><br>
+	     <a href="../../../../../../../web/src/test/java/crt2/gerente/pendencias/indexWeb.html">Cenários de teste web</a>
+     </blockquote>
+
+
+ <h3>       
+     <a name="ciclosEquipes" class="menu">Ciclos das equipes</a>
+ </h3>
+     <ul>
+        <li>Regras gerais:</li>
+           <ul>
+               <li>Observar as regras descritas em <a href="#painelGerente">painel do gerente</a>;</li>
+               <li>Devem ser listadas as equipes subordinadas a gerência, indicando o supervisor títular;</li>
+               <li>Deverão ser listadas as ES da equipe que possuam ciclos;</li> 
+               <li>A ordenação deve ser a mesma do '<a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/Painel/painel_supervisor.html">Painel do Supervisor</a>';</li>
+               <li>Caso uma equipe não tenha ES com ciclo iniciado, exibir a mensagem: 'Nenhuma ES da equipe com ciclo iniciado'.</li>
+           </ul>
+     </ul>
+	 <blockquote>
+	     <a href="ciclosequipes/indexNegocio.html">Cenários de teste de negócio</a>
+     </blockquote>
+
+ <h2>       
+     <a name="perfilRiscoGerente" class="menu">Perfil de risco do gerente</a>
+ </h2>
+     <ul>
+        <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Gerente/PerfilRisco/perfil_risco_gerente_atual_atual.html">protótipo</a>.</li>
+        <li>Regras gerais:</li>
+           <ul>
+               <li>Exibir as mesmas informações do painel do supervisor;</li>
+               <li>Não é permitido:</li>
+                  <ul>
+                      <li>Gerenciar sínteses de riscos;</li>
+                      <li>Gerenciar ARCs;</li>
+                      <li><a href="../analisequalitativa/index.html#editarMatrizRiscosControles">Editar estrutura da matriz</a>;</li>
+                      <li><a href="../analisequalitativa/index.html#alterarNotaFinal">Ajuste de nota final qualitativa</a>;</li>
+                      <li><a href="../analisequantitativa/index.html#gerenciarAnaliseEconomicoFinanceira">Gerenciar análise econômico-financeira</a>;</li>
+                      <li><a href="../analisequantitativa/index.html#gerenciarQuadroPosicaoFinanceira">Gerenciar o quadro da posição financeira</a>;</li>
+                      <li><a href="../apresentacao/index.html#gestaoApresentacao">Gerenciar apresentação</a>;</li>
+                      <li><a href="../corec/index.html#verificacaoRegrasIniciarCorec">Verificações pendências para iniciar fase Corec</a>;</li>
+                      <li><a href="../corec/index.html#botaoIniciarCorec">Iniciar fase Corec</a>;</li>
+                  </ul>
+               
+           </ul>    
+     </ul>   
+	 <blockquote>
+	     <a href="perfilriscogerente/indexNegocio.html">Cenários para testes manuais</a>
+     </blockquote>
+
+
+ <h3>       
+     <a name="gerenciarDetalhesES" class="menu">Gerenciar detalhes da ES pelo gerente</a>
+ </h3>
+
+ 	<ul>
+		<li>Utilizar este <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Gerente/GestaoDetalhesES/gestao_detalhes_es_gerente.html">protótipo</a> 
+			e este outro <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Gerente/GestaoDetalhesES/gestao_detalhes_es_gerente_ajustes_corec.html">protótipo</a>.</li>
+		<li>Regras gerais para as seções 'Nota final', 'Perfil de atuação', 'Conclusão', 'Perspectiva' e 'Situação':</li>
+		<ul>
+			<li>A exibição dos dados vigentes devem seguir a mesma regra que na tela de <a href="../perfilderisco/index.html#gerenciarDetalhesdaES">gerenciar detalhes da ES pelo supervisor</a></li>
+			<li>A exibição dos novos dados só serão exibidos caso o respectivo registro de rascunho da seção possuir o indicador de pendência de confirmação pelo gerente. Caso não, o campo deve ser suprimido, assim como o respectivo botão de 'Confirmar novo [nome da seção] e atualizar Perfil de Risco'.</li>
+			<li>Para os campos novos:</li>
+			<ul>
+				<li>Informações adicionais:</li>
+				<ul>
+					<li>Exibir a menssagem 'Encaminhado por &lt;&lt;usuário do supervisor que realizou o encaminhamento&gt;&gt; em &lt;&lt;data hora que realizou o encaminhamento&gt;&gt;.'.</li>
+				</ul>
+			</ul>
+			<li>Ao clicar no respectivo botão 'Confirmar novo [nome da seção] e atualizar Perfil de Risco':</li>
+			<ul>
+			    
+		         <li><b>Atualizar informações no SRC-Dinâmico</b>:</li>
+		             <ul>
+						<li>O sistema deve gerar um novo perfil de risco e incluir o registro de rascunho da seção nesse novo perfil de risco, substituindo o antigo registro vigente, se existir.</li>
+ 	   	 	        	<li>Caso a publicação seja de 'Nota final' e 'Nova nota ajustada' seja 'Remover ajuste', passa a valer a nota calculada vigente e se despreza o ajuste do COREC feito no ciclo anterior.</li>  
+					</ul>
+		         <li><b>Atualizar informações no APS</b>:</li>
+				    <ul>
+		                 <li>Utilizando o CNPJ/Código do conglomerado da ES no perfil de risco, localizar a ES no APS.</li>
+			             <li>Se a ES é a <a href="http://svn/svn/fis/sisaps/branches/rest-adapter-test-branch/src/main/java/br/gov/bcb/aps/GLO_Glossario.html#glo_ENS_SRC_Dinamico">entidade supervisionável do SRC-Dinâmico</a> de um consolidado no APS:</li>
+				             <ul>
+				                    <li><b><a name="gerarEventoPerfilRisco">Gerar evento de 'Perfil de risco'</a>:</b></li>
+				                    <ul>
+				                        <li>Verificar se existe registro de evento 'atualização de perfil de risco' para a data atual.</li> 
+				                        <li>Se não existir:</li>
+				                        <ul>
+				                            <li>Registrar evento do consolidado de 'atualização de perfil de risco'.</li>
+				                               <ul>
+												<li>Ao registrar o evento a 'Localização' deverá ser a do titular da publicação, ou seja, deve considerar os mecanismos de substituição conforme <a href="http://svn/svn/fis/sisaps/branches/rest-adapter-test-branch/src/main/java/br/gov/bcb/aps/dominio/administracao/index.html#verificarPermissoes">verificar permissões de um usuário</a>.</li>
+												<li>No evento, acrescentar informação para que o perfil de risco possa ser acessado via link no APS.</li>
+											   </ul> 	 
+				                        </ul>
+				                        <li>Se existir:</li>
+				                        <ul>
+				                            <li>Caso a localização do evento seja diferente do titular da localização, atualizar.</li>
+				                        </ul>
+				                        <li>Verificar se já existe no perfil de risco indicador do tipo de atualização que está sendo feita ('Perfil de atuação', 'Conclusão', 'Nota final', Matriz de riscos e controles, etc.). Se não existir:</li>
+				                           <ul> 
+				                        		<li>Acrescentar ao evento indicador do tipo de atualização.</li>
+				                           </ul>
+				                    </ul>
+				                    <li><b>Gerar evento de 'Perfil de atuação':</b></li>
+				                    <ul>
+	     				            <li>Caso a publicação seja do 'Perfil de atuação':</li>
+				                     <ul>
+				                 		 <li>Caso exista registro de rascunho para 'Perfil de atuação', eliminar.</li>
+				                         <li>Criar registro de 'Perfil de atuação' replicando todas as informações e anexos do SRC-Dinâmico.</li>
+				                             <ul>
+				                                <li>Caso o perfil de risco esteja bloqueado, o registro deve ser criado bloqueado.</li>
+				                                <li>Adicionar informação indicando qual foi a ES do SRC-Dinamico que gerou o 'perfil de atuação'.</li>
+				                             </ul>   
+				                         <li>Registrar evento do consolidado conforme <a href="http://svn/svn/fis/sisaps/branches/rest-adapter-test-branch/src/main/java/br/gov/bcb/aps/dominio/supervisao/index.html#publicarPerfilAtuacaoGerente">publicar perfil de atuação pelo gerente</a>, indicando que a informação veio do SRC-Dinâmico.</li>
+				                     </ul>
+				                     </ul>    
+				                    <li><b>Gerar evento de 'Opinião conclusiva'</b>:</li>
+				                    <ul>
+	     				            <li>Caso a publicação seja da 'Conclusão':</li>
+				                     <ul>
+				                 		 <li>Caso exista registro de rascunho para 'Opinião conclusiva', eliminar.</li>
+				                         <li>Criar registro de 'Opinião conclusiva' replicando todas as informações e anexos do SRC-Dinâmico.</li>
+				                             <ul>
+				                                <li>Caso o perfil de risco esteja bloqueado, o registro deve ser criado bloqueado.</li>
+				                                <li>Adicionar informação indicando qual foi a ES do SRC-Dinamico que gerou a 'opinião conclusiva'.</li>
+				                             </ul>   
+				                         <li>Registrar evento do consolidado conforme <a href="http://svn/svn/fis/sisaps/branches/rest-adapter-test-branch/src/main/java/br/gov/bcb/aps/dominio/supervisao/index.html#publicarOpiniaoConclusivaGerente">publicar opinião conclusiva pelo gerente</a>, indicando que a informação veio do SRC-Dinâmico.</li>
+				                     </ul>    
+				                    </ul> 
+				             </ul> 
+				    </ul>
+				<li>A seção deve ser atualizada, suprimindo o campo de novos dados, assim como o botão.</li>
+				<li>Exibir a seguinte mensagem de sucesso: 'Atualização do(a) [nome da seção] da ES no perfil de risco realizada com sucesso.'</li>
+			</ul>
+		</ul>
+	</ul>
+	
+		<blockquote>
+		   <a href="gerenciardetalhesdaes/indexNegocio.html">Cenários de teste de negócio</a>
+        </blockquote>
+	
+ <h3>       
+     <a name="bloquearES" class="menu">Bloquear ES</a>
+ </h3>
+
+ 	<ul>
+ 	    <li>Regras gerais:</li>
+		<ul>
+			<li>O bloqueio será aplicável a uma ES que não está bloqueada.</li>
+			<li>Ao clicar no botão 'Bloquear ES':</li>
+			<ul>
+		         <li><b>Atualizar informações no SRC-Dinâmico</b>:</li>
+		             <ul>
+						<li>O sistema deve gerar um novo registro de bloqueio da ES, indicando usuário de bloqueio e a data do bloqueio.</li>
+				     </ul>
+		         <li><b>Atualizar informações no APS</b>:</li>
+		             <ul>
+	            		<li>Utilizando o CNPJ/Código do conglomerado da ES no perfil de risco, localizar a ES no APS.</li>
+	            		<li>Se a ES é a <a href="http://svn/svn/fis/sisaps/branches/rest-adapter-test-branch/src/main/java/br/gov/bcb/aps/GLO_Glossario.html#glo_ENS_SRC_Dinamico">entidade supervisionável do SRC-Dinâmico</a> de um consolidado no APS:</li>
+	              		<ul>
+	                  		<li>Bloquear todos os perfis de atuação que foram gerados pela ES no SRC-Dinâmico.</li>
+	                  		<li>Bloquear todas as opiniões conclusivas que foram gerados pela ES no SRC-Dinâmico.</li>
+	                  		<li>Bloquear todos os eventos de perfis de risco foram gerados pela ES no SRC-Dinâmico.</li>
+	              		</ul>
+	              </ul>
+				<li>Exibir a seguinte mensagem: 'ES bloqueada com sucesso'.</li>
+				<li>Atualizar a tela passando a exibir o botão de <a href="#desbloquearES">'Desbloquear ES'</a>.</li>
+			</ul>
+		</ul>
+	</ul>
+	
+		<blockquote>
+		   <a href="bloqueares/indexNegocio.html">Cenários de teste de negócio</a>
+        </blockquote>
+
+<h3>       
+     <a name="desbloquearES" class="menu">Desbloquear ES</a>
+ </h3>
+
+ 	<ul>
+ 	    <li>Regras gerais:</li>
+		<ul>
+			<li>O desbloqueio será aplicável a uma ES que está bloqueada.</li>
+			<li>Ao clicar no botão 'Desbloquear ES':</li>
+			<ul>
+		         <li><b>Atualizar informações no SRC-Dinâmico</b>:</li>
+		             <ul>
+						<li>O sistema deve alterar o registro de bloqueio da ES, indicando usuário de desbloqueio e a data do desbloqueio.</li>
+					</ul>
+		         <li><b>Atualizar informações no APS</b>:</li>
+		             <ul>
+	            		<li>Utilizando o CNPJ/Código do conglomerado da ES no perfil de risco, localizar a ES no APS.</li>
+	            		<li>Se a ES é a <a href="http://svn/svn/fis/sisaps/branches/rest-adapter-test-branch/src/main/java/br/gov/bcb/aps/GLO_Glossario.html#glo_ENS_SRC_Dinamico">entidade supervisionável do SRC-Dinâmico</a> de um consolidado no APS:</li>
+	              		<ul>
+	                  		<li>Desbloquear todos os perfis de atuação que foram gerados pela ES no SRC-Dinâmico.</li>
+	                  		<li>Desbloquear todas as opiniões conclusivas que foram gerados pela ES no SRC-Dinâmico.</li>
+	                  		<li>Desbloquear todos os eventos de perfis de risco foram gerados pela ES no SRC-Dinâmico.</li>
+	              		</ul>
+	              </ul>
+				<li>Exibir a seguinte mensagem: 'ES desbloqueada com sucesso'.</li>
+				<li>Atualizar a tela passando a exibir o botão de <a href="#bloquearES">'Bloquear ES'</a>.</li>
+			</ul>
+		</ul>
+	</ul>
+	
+		<blockquote>
+		   <a href="desbloqueares/indexNegocio.html">Cenários de teste de negócio</a>
+        </blockquote>
+		
+</body>
+</html>

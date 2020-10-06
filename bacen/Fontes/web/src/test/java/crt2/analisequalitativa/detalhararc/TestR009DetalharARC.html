@@ -1,0 +1,145 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R009 - Detalhar ARC</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Detalhar ARC"</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>06/07/2017</td>
+			<td>David Nascimento</td>
+			<td>Alteração da lógica de cálculo das notas dos ARCs.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/index.html#detalharARC">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a
+			href="TestR001DetalharARC-DadoQue-MOCK_BCPESSOA.html"
+			class="include">carregada.</a></li>
+		<banco/>
+		<li>Os dados encontram-se <a href="TestR009DetalharARC-DadoQue.html" class="include">aqui</a>.</li>
+	</blockquote>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para <a href="indexWeb.html#validarResumoARCNovoCalculo">validar que campos exibir e seus valores para o grupo 'Resumo do ARC'</a>.</blockquote>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C001] - </b>Verificar a seção para ARC cujo rascunho encontra-se no status: 'Preenchido' (perfil: gerente).
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+					            <li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+					            <li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="10000">ABN AMRO</span></li>
+					            <li>Clicar no ARC de 'Risco': <span class="clickon" by="id:linkRisco52" sleep="10000"><b>Crédito</b></span> pertencente a 'Atividade B'</li> 
+                            </ul>
+						</td>
+					</tr>	
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            
+                        <table class="compareTable" by="xpath://table[@id='tARCResumido']">
+						<thead>
+							<tr>
+								<th colspan="3" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">Resumo do ARC</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+							</tr>
+							
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkRiscoInadimplencia" href="#"><b>Risco de Inadimplência</b></a></td>
+								<td>3,00</td>
+								<td>1,00</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkRiscoConcentracao" href="#"><b>Risco de Concentração</b></a></td>
+								<td>3,50</td>
+								<td>N/A</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkRiscoIneficaciaMitigadores" href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+								<td>4,00</td>
+								<td>N/A</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkRiscoLiquidacao" href="#"><b>Risco de Liquidação</b></a></td>
+								<td>2,50</td>
+								<td>N/A</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkRiscoCreditoContraparteRCC" href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+								<td>N/A</td>
+								<td>1,50</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										calculada</b></td>
+								<td>3,25</td>
+								<td>1,25</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota
+										ajustada</b></td>
+								<td></td>
+								<td>2,50 (Corec)</td>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+								<td>Indefinida</td>
+								<td>Estabilidade</td>
+							</tr>
+						</tbody>
+					</table>
+			     </td>
+		      </tr>
+          </table>
+</table>
+</body>
+</html>

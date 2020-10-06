@@ -1,0 +1,662 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R004 - Verificar pendências para iniciar fase Corec </title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Verificar pendências para iniciar fase Corec'</h1>
+
+		<span id="index"></span>
+	
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>11/08/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais (CT014).</td>
+			</tr>
+			
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#verificacaoRegrasIniciarCorec">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+	    <ul><li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li></ul>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#validarMensagensInformativaNovoCalculo">validar as mensagens informativas ao clicar no botão 'Verificar pendências para Corec'</a>:<br/></blockquote>
+   
+   <table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Validar quando os percentuais da análise econômico-financeira de rascunho estão diferentes dos percentuais vigentes.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC004.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+									 	<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações dos percentuais da análise econômico-financeira <br> de rascunho serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> -  Validar quando a matriz esboçada é diferente da matriz vigente, pois o peso de uma das células de risco e controle está diferente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC005.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> -  Validar quando a matriz esboçada é diferente da matriz vigente, pois o peso de uma das atividades está diferente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC006.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT004]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois o nome de uma das atividades está diferente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC007.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>		
+
+		<table class="scenario">
+			<tr>
+				<td>		
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT005]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois possui uma unidade e atividade a mais.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC008.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>	
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT006]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois o tipo da atividade de negócio foi alterado.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC009.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>	
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT007]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois existe uma nova célula de risco e controle para uma atividade já existente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC010.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>		
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT008]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois existe uma nova célula de risco e controle para uma nova atividade.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC011.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>	
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT009]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois está com uma célula a menos e a atividade dela.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC012.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>	
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT010]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois o nome de uma das unidades está diferente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC013.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT011]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois o peso de uma das unidades está diferente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC014.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT012]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois foi removida uma unidade de negócio.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC015.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td  class="set" name="idCiclo" converter="Integer">2</td>
+										<td style="color: red"> <span class="eq" value="$THIS.verificarPendencias(idCiclo)">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT013]</b> - Validar quando a matriz esboçada é diferente da matriz vigente, pois foi alterada a participação do bloco corporativo e de negocio.  Com percentuais do bloco Atividade  e Governança de rascunho diferente do vigente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC016.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+									 	<td style="color: red">
+									 		<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendenciasDetalhesES(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">As alterações da matriz esboçada serão perdidas no encerramento do ciclo.</td></tr>
+							                	<tr><td style="color: red">As alterações dos percentuais do bloco 'Atividade x Governança' de rascunho serão perdidas no encerramento do ciclo.</td></tr>
+						            		</table>
+									 	</td>
+									</tr>
+									
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+     
+     <table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT014]</b> - Validar quando há registros dos detalhes da ES ainda não encaminhado para o gerente.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR004VerificacaoRegrasIniciarCorec-DadoQue.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem de erro</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+									 	<td style="color: red">
+									 		<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendenciasDetalhesES(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">A alteração no Perfil de atuação de rascunho será perdida no encerramento do ciclo.</td></tr>
+							                	<tr><td style="color: red">A alteração na Conclusão de rascunho será perdida no encerramento do ciclo.</td></tr>
+							                	<tr><td style="color: red">A alteração na Perspectiva de rascunho será perdida no encerramento do ciclo.</td></tr>
+							                	<tr><td style="color: red">A alteração na Situação de rascunho será perdida no encerramento do ciclo.</td></tr>
+							                	<tr><td style="color: red">A alteração na Nota final da ES de rascunho será perdida no encerramento do ciclo.</td></tr>
+						            		</table>
+									 	</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

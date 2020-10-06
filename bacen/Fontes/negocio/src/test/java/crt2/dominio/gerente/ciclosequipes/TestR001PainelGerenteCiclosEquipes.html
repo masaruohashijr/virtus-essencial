@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Painel Gerente Ciclos Equipe </title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Painel Gerente Ciclos Equipe</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>14/07/2015</td>
+			<td>Marília Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a href="../index.html#ciclosEquipes">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	<ul>
+	   <li>A lista de servidores foi <a href="../../../dominio/gerente/pendencias/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	   <li>O usuário da consulta é: <span class="sentence" method="logar">"deliq.sisliq102"</span></li>
+	   <li><banco /> Os dados encontram-se <a href="../pendencias/TestR001PendenciasGerente-DadoQue.html" class="include">aqui</a></li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para <a href="indexNegocio.html#listarPendencias">validar as equipes e supervisores do gerente</a>.</blockquote>
+
+			
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar as equipes e supervisores do gerente.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							Verificar a lista das equipes e dos supervisores do gerente.
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							Os servidores a serem listados são:
+							<br><br>
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											<table>
+												<tr>
+													<th style="background-color: green;">Saída</th>
+												</tr>
+												<tr>
+						                           <th style="background-color: green;">Registros recuperados</th>
+						                    	</tr>
+						                    	<tr>
+						                    		<td>
+														<table class="verifyRows" name="retorno" value="$THIS.buscarEquipe()">
+											                <tr>
+											                    <th class="eq" value="$THIS.getNomeEquipe(retorno)">Equipe</th>
+											                    <th class="eq" value="$THIS.getNomeSupervisor(retorno)">Supervisor</th>
+											                </tr>
+											                  <tr>
+											                    <td>GTBH0</td>
+											                    <td>ROBERTO SANTOS ALENCAR</td>
+											                </tr>
+											                <tr>
+											                    <td>GTBH1</td>
+											                    <td>CHEFE GTBH1</td>
+											                </tr>
+											                   <tr>
+											                    <td>GTBH2</td>
+											                    <td>CHEFE GTBH2</td>
+											                </tr>
+											                   <tr>
+											                    <td>GTBH3</td>
+											                    <td>CHEFE GTBH3</td>
+											                </tr>
+										                </table>
+						                    		</td>
+						                    	</tr>
+											</table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+	</td>
+	</tr>
+	</table>
+</body>
+</html>

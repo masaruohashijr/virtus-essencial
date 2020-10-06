@@ -1,0 +1,53 @@
+<wicket:panel>
+	<table id="tDadosArcInformacoes" cellspacing="0" cellpadding="3"  style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Informações do ARC</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirUnidade">
+				<td class="nomeCampo" style="width: 25%;">Unidade</td>
+				<td style=""><label wicket:id="idUnidadeArc"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirAtividade">
+				<td class="nomeCampo" style="width: 25%;">Atividade</td>
+				<td style=""><label wicket:id="idAtividadeArc"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Grupo</td>
+				<td style=""><label wicket:id=idGrupoArc></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirRiscoControle">
+				<td class="nomeCampo" style="width: 25%;">Risco/Controle</td>
+				<td style=""><label wicket:id="idTipoArc"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirEstado">
+				<td class="nomeCampo" style="width: 25%;">Estado</td>
+				<td style=""><b><label wicket:id="idEstadoArc"></label></b></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="idMostrarResponsavel">
+				<td class="nomeCampo" style="width: 25%;">Responsável</td>
+				<td style=""><label wicket:id="idResponsavel"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="idMostrarUltimaAtualizacao">
+				<td class="nomeCampo" style="width: 25%;">Última atualização</td>
+				<td style=""><label wicket:id="idUltimaAtualizacao"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirPreenchidoPor">
+				<td class="nomeCampo" style="width: 25%;">Preenchido por</td>
+				<td style=""><label wicket:id="idPrenchidoPor"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirAnalisadoPor">
+				<td class="nomeCampo" style="width: 25%;">Analisado por</td>
+				<td style=""><label wicket:id="idAnalisadoPor"></label></td>
+			</tr>
+			<wicket:enclosure child="wmcExibirConcluidoPor">
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirConcluidoPor">
+				<td class="nomeCampo" style="width: 25%;">Concluído por</td>
+				<td style=""><label wicket:id="idConcluirPor"></label></td>
+			</tr>
+			</wicket:enclosure>
+		</tbody>
+	</table>
+</wicket:panel>

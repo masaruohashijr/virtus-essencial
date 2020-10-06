@@ -1,0 +1,718 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Detalhes ARC histórico</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Meu histórico - Detalhes ARC histórico"</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>29/06/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>06/06/2017</td>
+			<td>David Nascimento</td>
+			<td>Adicionando os cenários de teste C005 e C006 a fim de validar a tela de detalhes do ARC externo (ARC de governança corporativa).</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/meuhistorico/index.html#detalharARCHistorico">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a>
+		</li>
+		<banco/>
+		<li>Os dados encontram-se <a href="TestR001DetalharARCHistorico_DadoQue.html" class="include">aqui</a>.</li>
+	</blockquote>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para <a href="indexWeb.html#verificarLink">validar o click no link da coluna 'Versão'</a>.</blockquote>
+
+
+
+
+<table class="scenario" execute="true">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C001] - </b>Verificar a tela de detalhes para ARC  no estado "Análise delegada".
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_Arc2" sleep="2000"><b>Análise delegada<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+                                 <li><span class="notPresent" by="xpath://table[@id='idAçoes']">A tabela de ações não está presente.</span></li>
+                            </ul>
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO (00000191)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>17/03/2014</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>17/03/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ARC</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Atividade</b></td>
+                                <td colspan="6">Atividade corporativa</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Grupo</b></td>
+                                <td colspan="6">Contágio</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Risco/Controle</b></td>
+                                <td colspan="6">Risco</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Análise delegada</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Responsável</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Última atualização</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR em 17/03/2014 00:00h</td>
+                            </tr>
+                            </thead>
+                            </table>
+						
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C002] - </b>Verificar a tela de detalhes para ARC no estado "Concluído" (inspetor preencheu) .
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_Arc10" sleep="2000"><b>08/06/2015<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO (00000191)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>17/03/2014</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>17/03/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ARC</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Unidade</b></td>
+                                <td colspan="6">Unidade de negócio</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Atividade</b></td>
+                                <td colspan="6">Atividade de negócio</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Grupo</b></td>
+                                <td colspan="6">Contágio</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Risco/Controle</b></td>
+                                <td colspan="6">Risco</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Concluído</b></td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE em 06/06/2015 00:30h</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR  em 07/06/2015 00:30h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Concluído por</b></td>
+                                <td colspan="6">Supervidor 114 em 08/06/2015 00:30h</td>
+                            </tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C003] - </b>Verificar a tela de detalhes para ARC no estado "Preenchido".
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_Arc1" sleep="2000"><b>Preenchido<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+                                 <li><span class="notPresent" by="xpath://table[@id='idAçoes']">A tabela de ações não está presente.</span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO (00000191)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>17/03/2014</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>17/03/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ARC</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Atividade</b></td>
+                                <td colspan="6">Atividade corporativa</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Grupo</b></td>
+                                <td colspan="6">Contágio</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Risco/Controle</b></td>
+                                <td colspan="6">Controle</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Preenchido</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Última atualização</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR em 18/03/2014 00:00h</td>
+                            </tr>
+                            <tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+								<td colspan="6">ROBERTO SANTOS ALENCAR em 08/06/2015 00:00h</td>
+							</tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C004] - </b>Verificar a tela de detalhes para ARC no estado "Concluído" (supervisor analisou).
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_Arc10" sleep="2000"><b>08/06/2015<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO (00000191)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>17/03/2014</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>17/03/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ARC</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Unidade</b></td>
+                                <td colspan="6">Unidade de negócio</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Atividade</b></td>
+                                <td colspan="6">Atividade de negócio</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Grupo</b></td>
+                                <td colspan="6">Contágio</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Risco/Controle</b></td>
+                                <td colspan="6">Risco</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Concluído</b></td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE em 06/06/2015 00:30h</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR  em 07/06/2015 00:30h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Concluído por</b></td>
+                                <td colspan="6">Supervidor 114 em 08/06/2015 00:30h</td>
+                            </tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C005] - </b>Verificar a tela de detalhes para ARC no estado "Concluído" (supervisor analisou - "ARC externo").
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_Arc12" sleep="2000"><b>09/06/2015<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO (00000191)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>17/03/2014</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>17/03/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ARC</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Grupo</b></td>
+                                <td colspan="6">Governança corporativa</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Concluído</b></td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE em 06/06/2015 00:30h</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR  em 07/06/2015 00:30h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Concluído por</b></td>
+                                <td colspan="6">Supervidor 114 em 09/06/2015 00:30h</td>
+                            </tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C006] - </b>Verificar a tela de detalhes para ARC no estado "Concluído" (inspetor preencheu - "ARC externo").
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_Arc12" sleep="2000"><b>09/06/2015<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ABN AMRO (00000191)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>17/03/2014</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>17/03/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosArcInformacoes']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ARC</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Grupo</b></td>
+                                <td colspan="6">Governança corporativa</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Concluído</b></td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE em 06/06/2015 00:30h</td>
+                            </tr>
+                             <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR  em 07/06/2015 00:30h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Concluído por</b></td>
+                                <td colspan="6">Supervidor 114 em 09/06/2015 00:30h</td>
+                            </tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure id="FileServer" class="org.eclipse.jetty.server.Server">
+
+	<Call name="setAttribute">
+      <Arg>org.eclipse.jetty.webapp.configuration</Arg>
+      <Arg>
+          <Array type="java.lang.String">
+              <Item>org.eclipse.jetty.webapp.WebInfConfiguration</Item>
+              <Item>org.eclipse.jetty.webapp.WebXmlConfiguration</Item>
+              <Item>org.eclipse.jetty.webapp.MetaInfConfiguration</Item>
+              <Item>org.eclipse.jetty.webapp.FragmentConfiguration</Item>
+              <Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>
+              <Item>org.eclipse.jetty.plus.webapp.PlusConfiguration</Item>
+              <Item>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Item>
+              <Item>org.eclipse.jetty.webapp.TagLibConfiguration</Item>
+          </Array>
+      </Arg>
+    </Call>
+
+	<Call name="addConnector">
+		<Arg>
+			<New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+				<Set name="port">8080</Set>
+			</New>
+		</Arg>
+	</Call>
+
+	<Set name="handler">
+		<New class="org.eclipse.jetty.server.handler.HandlerList">
+			<Set name="handlers">
+				<Array type="org.eclipse.jetty.server.Handler">
+					<Item>
+						<New class="org.eclipse.jetty.webapp.WebAppContext">
+							<Call name="setContextPath">
+								<Arg>/sisaps</Arg>
+							</Call>
+							<Call name="setWar">
+								<Arg>./src/main/webapp</Arg>
+							</Call>
+							 <Get name="securityHandler">
+							    <Set name="loginService">
+							      <New class="org.eclipse.jetty.security.HashLoginService">
+							            <Set name="name">Test Realm</Set>
+										<Set name="config"><SystemProperty name="user.dir"/>\src\main\config\jetty\realm.properties</Set>
+							      </New>
+							    </Set>
+							  </Get>
+						</New>
+					</Item>
+                    <Item>
+                        <New class="org.eclipse.jetty.server.handler.ContextHandler">
+                            <Call name="setContextPath">
+                                <Arg>/</Arg>
+                            </Call>
+                            <Call name="setResourceBase">
+                                <Arg>http://www.bcnet.bcb.gov.br</Arg>
+                            </Call>
+                            <Set name="handler">
+                                <New class="org.eclipse.jetty.server.handler.ResourceHandler"/>
+                            </Set>
+                        </New>
+                    </Item>
+				</Array>
+			</Set>
+		</New>
+	</Set>
+</Configure>

@@ -1,0 +1,1473 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 3.11 - Designação de ARCs</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+    <table class="exemplos historico">
+        <tr>
+            <th>Versão</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+        </tr>
+        <tr>
+            <td>1.0</td>
+            <td></td>
+            <td>David Moura</td>
+            <td>Versão Inicial</td>
+        </tr>
+        <tr>
+            <td>1.1</td>
+            <td>27/08/2014</td>
+            <td>Victor Vasconcelos</td>
+            <td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas)</td>
+        </tr>
+        <tr>
+			<td>1.2</td>
+			<td>23/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Perfis de acesso vs responsabilidade de ESs para supervisor
+				substituto.</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>26/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas).</td>
+		</tr>
+		<tr>
+			<td>1.4</td>
+			<td>07/10/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+		</tr>
+		<tr>
+            <td>1.5</td>
+            <td>07/10/2014</td>
+            <td>Victor Vasconcelos</td>
+            <td>Retirando o cenário C015, que testava acesso concorrente. Não foi possível testar o acesso concorrente, 
+            nesse caso, com o teste automatizado, pois o sistema trabalha com VO para montar a tela e no momento da designação 
+            consulta o registro que já estava atualizado momentos antes.</td>
+        </tr>
+	</table>
+    <span id="cenarios"></span>
+
+    <h2>Regras aplicáveis</h2>
+    <blockquote>
+        Para as regras da estória:
+        <ul>
+            <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequalitativa/arc/espec/E3_11_Designacao_ARC.html">E3_11_Designacao_ARC.html</a>.</li>
+            <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+        </ul>
+    </blockquote>
+    <h2>Premissas iniciais</h2>
+    <ul>
+        <li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+        <li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+    </ul>
+    
+	<h2>Cenários de falha para a estória 3.11 - Designação de ARCs</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens
+		de erro/impedimento para a designação de ARCs.</blockquote>
+    <jetty/>
+    <dataHoraAtual valor="17/03/2014 00:00:00"/>
+	<table class="exemplos">
+		<tr>
+			<th width="10%">Cenário</th>
+			<th width="30%">Dados pré-existentes</th>
+			<th width="10%">Ação pretendida</th>
+			<th width="50%">Resultado esperado</th>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>Conferir</b><br>
+			<br>Tela de designação (se há apenas ARCs nos estados Previsto [5] ou Designado [2]) e
+				os critérios dos grupos (atividade, grupo, risco/controle, estado e
+				responsável)</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+			<td>
+				<ul>
+                    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    <li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                    <li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttDesignacaooLoteARCs">Designar em lote</span></li>
+                </ul>
+			</td>
+
+			<td>
+				<ul>
+                    <li>O código da tela deve ser: <span class="contains"><b>[APSFW0208]</b></span></li>
+                    <li>A trilha na tela que deve ser: <span class="contains">Início <input type="image" src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image" src="../../../crt2/seta.gif" />Designação em lotes de ARCs</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Designação em lotes de ARCs<b></span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 482px; background-color: #4a73a2">
+								    <b>ABNAMRO(00000191)</b>
+								</th>
+							</tr>
+							<tr>
+                                <th colspan="4" class="aesquerda" style="width: 482px; background-color: #4a73a2">
+                                    <b>Ciclo</b>
+                                </th>
+                            </tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td colspan="3"><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td colspan="3">28/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td colspan="3">28/05/2015</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td colspan="3">ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+                                <td><b>Gerente titular</b></td>
+                                <td colspan="3">ANFRISIO RODRIGUES VIEIRA</td>
+                            </tr>
+						</tbody>
+					</table>
+			</span><br><br> <span class="compareTable" by="xpath://table[@id='tARCs']">
+					<table>
+						<tr>
+							<th colspan="4" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">ARCs para Designação</th>
+						</tr>
+						<tr>
+							<th colspan="4" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Filtro</th>
+						</tr>
+						<tr>
+							<td><b>Atividade</b></td>
+							<td colspan="3">
+								<ul class="options" by="id:idAtividade">
+									<li>Todos</li>
+									<li>Atividade de negócio 1</li>
+									<li>Atividade corporativa 1</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Grupo</b></td>
+							<td colspan="3">
+								
+								<ul class="options" by="id:idGrupoRiscoControle">
+									<li>Todos</li>
+									<li>Crédito</li>
+									<li>TI</li>
+								
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Risco/Controle</b></td>
+							<td colspan="3">
+								
+								<ul class="options" by="id:idTipoGrupoRiscoControle">
+									<li>Todos</li>
+									<li>Risco</li>
+									<li>Controle</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Estado</b></td>
+							<td colspan="3">
+								
+								<ul class="options" by="id:idEstadoARC">
+									<li>Todos</li>
+									<li>Previsto</li>
+									<li>Designado</li>
+								</ul>
+
+							</td>
+						</tr>
+						<tr>
+							<td><b>Responsável</b></td>
+							<td colspan="3">
+								
+								<ul class="options" by="id:idResponsavelARC">
+									<li>Todos</li>
+									<li>TESTESLQB13MASSADETESTE</li>
+								</ul>
+
+							</td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td colspan="3">
+				                <input class="present" by="conter:" type="button"
+				                    value="Filtrar" /> 
+				                <input class="present" by="conter:" type="button"
+				                    value="Limpar filtros" />
+							</td>
+						</tr>
+						</thead>
+					</table>
+			</span><br>
+			<br>
+
+			<br> 
+			<br> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="6" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">ARCs</th>
+							</tr>
+						</tbody>
+					</table>
+			</span> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+					<table>
+						<thead>
+							<tr>
+								<td><input type="checkbox" name="option1"></td>
+								<td><b>Atividade</b></td>
+								<td><b>Grupo</b></td>
+								<td><b>R/C</b></td>
+								<td><b>Estado</b></td>
+								<td><b>Responsável</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox" name="option1"></td>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>C</td>
+								<td>Designado</td>
+								<td>TESTE SLQB 13 MASSA DE TESTE</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="option1"></td>
+								<td>Atividade corporativa 1</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td>Previsto</td>
+								<td></td>
+							</tr>
+							<tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 1</td>
+                                <td>TI</td>
+                                <td>C</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 1</td>
+                                <td>TI</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable"
+				by="xpath://table[@id='tPainelServidores']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><p>Designação</p></th>
+							</tr>
+							<tr>
+								<td><b>Servidores da equipe</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+	                                    <li>ANFRISIO RODRIGUES VIEIRA</li>
+	                                    <li>Administrador 105</li>
+	                                    <li>Administrador 107</li>
+	                                    <li>CAIO DUARTE CINTRA</li>
+	                                    <li>CARLOS GOMES</li>
+	                                    <li>Comitê 104</li>
+	                                    <li>Consulta SNB 108</li>
+	                                    <li>Gerente 102</li>
+	                                    <li>ROBERTO SANTOS ALENCAR</li>
+	                                    <li>Supervidor 114</li>
+	                                    <li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+							</tr>
+							<tr>
+								<td><b>Outros servidores</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecione</li>
+										<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        <li>Consulta SRPNB 110</li>
+                                        <li>Consulta SRPNB 109</li>
+									</ul>
+							</tr>
+					</table>
+			</span><br> <br>
+				<li>O botão de designação:<br> <br> <input
+					class="present" by="conter:" type="button" value="Designar" /></li> <br>
+				<br>
+				<li>O botão de 'Voltar':<br> <br> <input
+					class="present" by="conter:" type="button" value="Voltar" /></li> <br>
+				<br>
+			</td>
+		</tr>
+		
+		 <tr class="scenario">
+			<td class='title'><b>Conferir</b><br>
+			<br>Combinar critérios e clicar no botão 'Filtrar'. Verificar se o resultado do filtro é o esperado para os critérios combinados</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+				    <li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttDesignacaooLoteARCs">Designar em lote</span></li>
+					<li>Seleciona a Atividade: <span class="select" by="id:idAtividade">Atividade corporativa 2</span></li>
+					<li>Seleciona o Grupo: <span class="select" by="id:idGrupoRiscoControle">Crédito</span></li>
+					<li>Seleciona o Risco/Controle: <span class="select" by="id:idTipoGrupoRiscoControle">Risco</span></li>
+					<li>Seleciona o Risco/Controle: <span class="select" by="id:idEstadoARC">Previsto</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					 <li>A trilha na tela que deve ser: <span class="contains">Início <input type="image" src="../../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../../crt2/seta.gif" />Gestão de ARCs<input type="image" src="../../../crt2/seta.gif" />Designação em lotes de ARCs</span></li>
+                        <li>O título da tela deve ser: <span class="contains"><b>Designação em lotes de ARCs<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0208]</b></span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda" style="width: 482px; background-color: #4a73a2">
+								    <b>ITAU(00000776)</b>
+								</th>
+							</tr>
+							<tr>
+                                <th colspan="4" class="aesquerda" style="width: 482px; background-color: #4a73a2">
+                                    <b>Ciclo</b>
+                                </th>
+                            </tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Estado</b></td>
+								<td colspan="3"><b>Em andamento</b></td>
+							</tr>
+							<tr>
+								<td><b>Início</b></td>
+								<td colspan="3">29/05/2014</td>
+							</tr>
+							<tr>
+								<td><b>Corec previsto</b></td>
+								<td colspan="3">29/05/2016</td>
+							</tr>
+							<tr>
+								<td><b>Supervisor titular</b></td>
+								<td colspan="3">ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+                                <td><b>Gerente titular</b></td>
+                                <td colspan="3">ANFRISIO RODRIGUES VIEIRA</td>
+                            </tr>
+						</tbody>
+					</table>
+			</span><br><br> <span class="compareTable"
+				by="xpath://table[@id='tARCs']">
+					<table>
+						<tr>
+							<th colspan="4" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">ARCs para Designação</th>
+						</tr>
+						<tr>
+							<th colspan="4" class="aesquerda"
+								style="width: 459px; background-color: #4a73a2">Filtro</th>
+						</tr>
+						<tr>
+							<td><b>Atividade</b></td>
+							<td colspan="3">
+								<ul class="options" by="id:idAtividade">
+									<li>Todos</li>
+									<li>Atividade de negócio 2</li>
+								    <li>Atividade corporativa 2</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Grupo</b></td>
+							<td colspan="3">
+								<ul class="options" by="id:idGrupoRiscoControle">
+								    <li>Todos</li>
+                                    		<li>Crédito</li>
+									<li>TI</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Risco/Controle</b></td>
+							<td colspan="3">
+								<ul class="options" by="id:idTipoGrupoRiscoControle">
+									<li>Todos</li>
+								    <li>Risco</li>
+									<li>Controle</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Estado</b></td>
+							<td colspan="3">
+								<ul class="options" by="id:idEstadoARC">
+									<li>Todos</li>
+									<li>Previsto</li>
+								    <li>Designado</li>
+								</ul>
+
+							</td>
+						</tr>
+						<tr>
+							<td><b>Responsável</b></td>
+							<td colspan="3">
+								<ul class="options" by="id:idResponsavelARC">
+									<li>Todos</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+                            <td></td>
+                            <td colspan="3">
+                                <input class="present" by="conter:" type="button"
+                                    value="Filtrar" /> 
+                                <input class="present" by="conter:" type="button"
+                                    value="Limpar filtros" />
+                            </td>
+                        </tr>
+						</thead>
+					</table>
+			</span><br>
+			<br>
+
+			<br> 
+			<br> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="6" class="aesquerda"
+									style="width: 459px; background-color: #4a73a2">ARCs</th>
+							</tr>
+						</tbody>
+					</table>
+			</span> 
+			<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+					<table>
+						<thead>
+						     <tr>
+                                <td></td>
+                                <td><b>Atividade</b></td>
+                                <td><b>Grupo</b></td>
+                                <td><b>R/C</b></td>
+                                <td><b>Estado</b></td>
+                                <td><b>Responsável</b></td>
+                            </tr>
+							<tr>
+								<td><input type="checkbox" name="option1"></td>
+								<td>Atividade corporativa 2</td>
+								<td>Crédito</td>
+								<td>R</td>
+								<td>Previsto</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+			</span><br> <br> <span class="compareTable"
+				by="xpath://table[@id='tPainelServidores']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="4" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><p>Designação</p></th>
+							</tr>
+							<tr>
+								<td><b>Servidores da equipe</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idServidorEquipe">
+										<li><span class="selected" by="id:idServidorEquipe">Selecionar</span></li>
+                                        <li>ANFRISIO RODRIGUES VIEIRA</li>
+                                        <li>Administrador 105</li>
+                                        <li>Administrador 107</li>
+                                        <li>CAIO DUARTE CINTRA</li>
+                                        <li>CARLOS GOMES</li>
+                                        <li>Comitê 104</li>
+                                        <li>Consulta SNB 108</li>
+                                        <li>Gerente 102</li>
+                                        <li>ROBERTO SANTOS ALENCAR</li>
+                                        <li>Supervidor 114</li>
+                                        <li>TESTESLQB13 MASSA DE TESTE</li>
+									</ul>
+							</tr>
+							<tr>
+								<td><b>Outros servidores</b></td>
+								<td colspan="3">
+									<ul class="options" by="id:idUnidade">
+										<li>DEINF</li>
+										<li>DELIQ</li>
+										<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+									</ul>
+									<ul class="options" by="id:idServidorUnidadeSelecionada">
+										<li>Selecione</li>
+										<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        <li>Consulta SRPNB 110</li>
+                                        <li>Consulta SRPNB 109</li>
+									</ul>
+							</tr>
+					</table>
+			</span><br> <br>
+				<li>O botão de designação:<br> <br> <input
+					class="present" by="conter:" type="button" value="Designar" /></li> <br>
+				<br>
+				<li>O botão de 'Voltar':<br> <br> <input
+					class="present" by="conter:" type="button" value="Voltar" /></li> <br>
+				<br>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>Conferir</b><br>
+			<br>Navegabilidade do comando 'Voltar'</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttVoltar">Voltar</span></li>
+
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains">[APSFW0206]</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de ARCs<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+
+
+		<tr class="scenario"  >
+			<td class='title'><b>C001</b><br>
+			<br>Falha - Clicar no botão 'designar' sem selecionar ao menos
+				um ARC</td>
+			<td>
+			
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+			<td>
+				<ul>
+				    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Seleciona o servidor da equipe <span class="select" by="id:idServidorEquipe">ROBERTO SANTOS ALENCAR</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Seleção de ARC é obrigatória.</span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br>
+			<br>Falha - Clicar no botão 'designar' sem selecionar um
+				servidor</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+
+				
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Seleciona o ARC <span class="clickon" by="id:checkArc5">Atividade corporativa 2</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>							 
+					<li><span class="contains">É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.</span></li>
+				</ul>
+			</td>
+		</tr> 
+		
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br>
+			<br>Falha - Clicar no botão 'designar' tendo selecionado os
+				campos 'Servidores da equipe' e 'Outros servidores' simultaneamente</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Seleciona o ARC <span class="clickon" by="id:checkArc5">Atividade corporativa 2</span></li>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipe">ROBERTO SANTOS ALENCAR</span></li>
+					<li>Seleciona Outros servidores1: <span class="select" by="id:idUnidade">DELIQ</span></li>
+					<li>Seleciona Outros servidores2: <span class="select" by="id:idServidorUnidadeSelecionada">CAIO DUARTE CINTRA</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li><span class="contains">Selecione apenas um único servidor para a designação.</span></li>
+				</ul>
+			</td>
+		</tr>
+
+
+
+		<tr class="scenario">
+			<td class='title'><b>C009</b><br> <br>Sucesso -
+				Designar ARC</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+            <td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Seleciona o ARC <span class="clickon" by="id:checkArc5">Atividade corporativa 2</span></li>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipe">ANFRISIO RODRIGUES VIEIRA</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+
+		      	<ul>
+                    <li><span class="contains">ARC(s) designado(s) com sucesso.</span></li>
+			</ul>
+                    
+				<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th colspan="6" class="aesquerda"
+                                    style="width: 459px; background-color: #4a73a2">ARCs</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+					<table>
+                        <thead>
+							<tr>
+								<td><input type="checkbox" name="option1" /></td>
+								<td><b>Atividade</b></td>
+								<td><b>Grupo</b></td>
+								<td><b>R/C</b></td>
+								<td><b>Estado</b></td>
+								<td><b>Responsável</b></td>
+							</tr>
+                        </thead>
+                        <tbody>
+							<tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 2</td>
+                                <td>Crédito</td>
+                                <td>C</td>
+                                <td>Designado</td>
+                                <td>ANFRISIO RODRIGUES VIEIRA</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 2</td>
+                                <td>Crédito</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 2</td>
+                                <td>TI</td>
+                                <td>C</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 2</td>
+                                <td>TI</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+					</table>
+			</span><br> <br>
+
+				<table class="verify dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>11111111</td>
+						<td>5</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="scenario" >
+            <td class='title'><b>C010 </b> - Preencher critérios de pesquisa e clicar no botão "Limpar Filtros"</td>
+            <td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+            <td>
+                <ul>
+                    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    <li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                    <li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttDesignacaooLoteARCs">Designar em lote</span></li>
+                    <li>Seleciona a Atividade: <span class="select" by="id:idAtividade">Atividade de negócio 1</span></li>
+                    <li>Seleciona o Grupo: <span class="select" by="id:idGrupoRiscoControle">Crédito</span></li>
+                    <li>Seleciona o Risco/Controle: <span class="select" by="id:idTipoGrupoRiscoControle">Risco</span></li>
+                    <li>Seleciona o Estado: <span class="select" by="id:idEstadoARC">Designado</span></li>
+                    <li>Seleciona o Responsável: <span class="select" by="id:idResponsavelARC">TESTESLQB13 MASSA DE TESTE </span></li>
+                    <li>Clica no botão <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+                    <li>Clica no botão <span class="clickon" by="id:bttLimparFiltros">Limpar filtros</span></li>
+                </ul>
+            </td>
+
+            <td>
+                <span class="compareTable" by="xpath://table[@id='tARCs']">
+                    <table>
+                        <tr>
+                            <th colspan="4" class="aesquerda"
+                                style="width: 459px; background-color: #4a73a2">ARCs para Designação</th>
+                        </tr>
+                        <tr>
+                            <th colspan="4" class="aesquerda"
+                                style="width: 459px; background-color: #4a73a2">Filtro</th>
+                        </tr>
+                        <tr>
+                            <td><b>Atividade</b></td>
+                            <td colspan="3">
+                                <ul class="options" by="id:idAtividade">
+                                    <li>Todos</li>
+                                    <li>Atividade de negócio 1</li>
+                                    <li>Atividade corporativa 1</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Grupo</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idGrupoRiscoControle">
+                                    <li>Todos</li>
+                                  		<li>Crédito</li>
+									<li>TI</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Risco/Controle</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idTipoGrupoRiscoControle">
+                                    <li><span class="selected" by="id:idTipoGrupoRiscoControle">Todos</span></li>
+                                    <li>Risco</li>
+                                    <li>Controle</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Estado</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idEstadoARC">
+                                    <li><span class="selected" by="id:idEstadoARC">Todos</span></li>
+                                    <li>Previsto</li>
+                                    <li>Designado</li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Responsável</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idResponsavelARC">
+                                    <li><span class="selected" by="id:idResponsavelARC">Todos</span></li>
+                                    <li>TESTESLQB13 MASSA DE TESTE</li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td></td>
+                            <td colspan="3">
+                                <input class="present" by="conter:" type="button" value="Filtrar" /> 
+                                <input class="present" by="conter:" type="button" value="Limpar filtros" />
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
+            </span><br>
+            <br> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th colspan="6" class="aesquerda"
+                                    style="width: 459px; background-color: #4a73a2">ARCs</th>
+                            </tr>
+                        </tbody>
+                    </table>
+            </span> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td><b>Atividade</b></td>
+                                <td><b>Grupo</b></td>
+                                <td><b>R/C</b></td>
+                                <td><b>Estado</b></td>
+                                <td><b>Responsável</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 1</td>
+                                <td>Crédito</td>
+                                <td>C</td>
+                                <td>Designado</td>
+                                <td>TESTESLQB13 MASSA DE TESTE</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 1</td>
+                                <td>Crédito</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 1</td>
+                                <td>TI</td>
+                                <td>C</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 1</td>
+                                <td>TI</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </span>
+            </td>
+        </tr>
+        <tr class="scenario">
+            <td class='title'><b>C011 </b> - Preencher critérios de pesquisa com "Todos" em todos os critérios e clicar no botão "Filtrar"</td>
+            <td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+            <td>
+                <ul>
+                    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    <li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                    <li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttDesignacaooLoteARCs">Designar em lote</span></li>
+                    <li>Seleciona a Atividade: <span class="select" by="id:idAtividade">Todos</span></li>
+                    <li>Seleciona o Grupo: <span class="select" by="id:idGrupoRiscoControle">Todos</span></li>
+                    <li>Seleciona o Risco/Controle: <span class="select" by="id:idTipoGrupoRiscoControle">Todos</span></li>
+                    <li>Seleciona o Estado: <span class="select" by="id:idEstadoARC">Todos</span></li>
+                    <li>Seleciona o Responsável: <span class="select" by="id:idResponsavelARC">Todos</span></li>
+                    <li>Clica no botão <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+                </ul>
+            </td>
+
+            <td>
+                <span class="compareTable" by="xpath://table[@id='tARCs']">
+                    <table>
+                        <tr>
+                            <th colspan="4" class="aesquerda"
+                                style="width: 459px; background-color: #4a73a2">ARCs para Designação</th>
+                        </tr>
+                        <tr>
+                            <th colspan="4" class="aesquerda"
+                                style="width: 459px; background-color: #4a73a2">Filtro</th>
+                        </tr>
+                        <tr>
+                            <td><b>Atividade</b></td>
+                            <td colspan="3">
+                                <ul class="options" by="id:idAtividade">
+                                    <li><span class="selected" by="id:idAtividade">Todos</span></li>
+                                    <li>Atividade de negócio 1</li>
+                                    <li>Atividade corporativa 1</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Grupo</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idGrupoRiscoControle">
+                                    <li><span class="selected" by="id:idGrupoRiscoControle">Todos</span></li>
+                                 		<li>Crédito</li>
+									<li>TI</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Risco/Controle</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idTipoGrupoRiscoControle">
+                                    <li><span class="selected" by="id:idTipoGrupoRiscoControle">Todos</span></li>
+                                    <li>Risco</li>
+                                    <li>Controle</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Estado</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idEstadoARC">
+                                    <li><span class="selected" by="id:idEstadoARC">Todos</span></li>
+                                    <li>Previsto</li>
+                                    <li>Designado</li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Responsável</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idResponsavelARC">
+                                    <li><span class="selected" by="id:idResponsavelARC">Todos</span></li>
+                                    <li>TESTESLQB13 MASSA DE TESTE</li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td></td>
+                            <td colspan="3">
+                                <input class="present" by="conter:" type="button" value="Filtrar" /> 
+                                <input class="present" by="conter:" type="button" value="Limpar filtros" />
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
+            </span><br>
+            <br> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th colspan="6" class="aesquerda"
+                                    style="width: 459px; background-color: #4a73a2">ARCs</th>
+                            </tr>
+                        </tbody>
+                    </table>
+            </span> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td><b>Atividade</b></td>
+                                <td><b>Grupo</b></td>
+                                <td><b>R/C</b></td>
+                                <td><b>Estado</b></td>
+                                <td><b>Responsável</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 1</td>
+                                <td>Crédito</td>
+                                <td>C</td>
+                                <td>Designado</td>
+                                <td>TESTESLQB13 MASSA DE TESTE</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 1</td>
+                                <td>Crédito</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 1</td>
+                                <td>TI</td>
+                                <td>C</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 1</td>
+                                <td>TI</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </span>
+            </td>
+        </tr>
+        <tr class="scenario">
+            <td class='title'><b>C012 </b> - Preencher critérios de pesquisa "Responsável" e clicar no botão "Filtrar"</td>
+            <td><banco />As regras para os perfis de acesso se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+            <td>
+                <ul>
+                    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    <li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                    <li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttGerenciarArcs">Gerenciar ARCs</span></li>
+                    <li>Clica no botão: <span class="clickon" by="id:bttDesignacaooLoteARCs">Designar em lote</span></li>
+                    <li>Seleciona o Responsável: <span class="select" by="id:idResponsavelARC">TESTESLQB13 MASSA DE TESTE</span></li>
+                    <li>Clica no botão <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+                </ul>
+            </td>
+
+            <td>
+                <span class="compareTable" by="xpath://table[@id='tARCs']">
+                    <table>
+                        <tr>
+                            <th colspan="4" class="aesquerda"
+                                style="width: 459px; background-color: #4a73a2">ARCs para Designação</th>
+                        </tr>
+                        <tr>
+                            <th colspan="4" class="aesquerda"
+                                style="width: 459px; background-color: #4a73a2">Filtro</th>
+                        </tr>
+                        <tr>
+                            <td><b>Atividade</b></td>
+                            <td colspan="3">
+                                <ul class="options" by="id:idAtividade">
+                                    <li><span class="selected" by="id:idAtividade">Todos</span></li>
+                                    <li>Atividade de negócio 1</li>
+                                    <li>Atividade corporativa 1</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Grupo</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idGrupoRiscoControle">
+                                    <li><span class="selected" by="id:idGrupoRiscoControle">Todos</span></li>
+                                    		<li>Crédito</li>
+									<li>TI</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Risco/Controle</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idTipoGrupoRiscoControle">
+                                    <li><span class="selected" by="id:idTipoGrupoRiscoControle">Todos</span></li>
+                                    <li>Risco</li>
+                                    <li>Controle</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Estado</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idEstadoARC">
+                                    <li><span class="selected" by="id:idEstadoARC">Todos</span></li>
+                                    <li>Previsto</li>
+                                    <li>Designado</li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Responsável</b></td>
+                            <td colspan="3">
+                                
+                                <ul class="options" by="id:idResponsavelARC">
+                                    <li>Todos</li>
+                                    <li><span class="selected" by="id:idResponsavelARC">TESTESLQB13 MASSA DE TESTE</span></li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td></td>
+                            <td colspan="3">
+                                <input class="present" by="conter:" type="button" value="Filtrar" /> 
+                                <input class="present" by="conter:" type="button" value="Limpar filtros" />
+                            </td>
+                        </tr>
+                        </thead>
+                    </table>
+            </span><br>
+            <br> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th colspan="6" class="aesquerda"
+                                    style="width: 459px; background-color: #4a73a2">ARCs</th>
+                            </tr>
+                        </tbody>
+                    </table>
+            </span> <span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td><b>Atividade</b></td>
+                                <td><b>Grupo</b></td>
+                                <td><b>R/C</b></td>
+                                <td><b>Estado</b></td>
+                                <td><b>Responsável</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 1</td>
+                                <td>Crédito</td>
+                                <td>C</td>
+                                <td>Designado</td>
+                                <td>TESTESLQB13 MASSA DE TESTE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </span>
+            </td>
+        </tr>
+        
+        <tr class="scenario"> <!-- Perfis de acesso vs responsabilidade de ESs para supervisor substituto. -->
+			<td class='title'><b>C013</b><br> <br>Sucesso -
+				Considerando a regra de perfil de acesso cadastrada: 
+				1 - Perfil: "Supervisor", Função comissionada "FDT-1" e Substituto eventual "Em exercício". 
+				Usuário 01 (sisliq101 - DELIQ/GLIQ1/GTBHO) com função FDT-1, 
+				Usuário 02 (sisliq110 - DESUP/GBPM1/GTSP4) substituto eventual do Usuário 01. 
+				Usuário 02 designa ARC da ES com localização: DELIQ/GLIQ1/GTBHO.</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../paineldosupervisor/dadoque/TestAPSFW0201_Painel_do_supervisor_substituto_dadoque_1.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+            <td>
+				<ul>
+					<li>Logar como: <sisliq110>deliq.sisliq110</sisliq110></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Seleciona o ARC <span class="clickon" by="id:checkArc5">Atividade corporativa 2</span></li>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipe">ANFRISIO RODRIGUES VIEIRA</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+
+		      	<ul>
+                    <li><span class="contains">ARC(s) designado(s) com sucesso.</span></li>
+			</ul>
+                    
+				<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th colspan="6" class="aesquerda"
+                                    style="width: 459px; background-color: #4a73a2">ARCs</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+					<table>
+                        <thead>
+							<tr>
+								<td><input type="checkbox" name="option1" /></td>
+								<td><b>Atividade</b></td>
+								<td><b>Grupo</b></td>
+								<td><b>R/C</b></td>
+								<td><b>Estado</b></td>
+								<td><b>Responsável</b></td>
+							</tr>
+                        </thead>
+                        <tbody>
+							<tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 2</td>
+                                <td>Crédito</td>
+                                <td>C</td>
+                                <td>Designado</td>
+                                <td>ANFRISIO RODRIGUES VIEIRA</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 2</td>
+                                <td>Crédito</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 2</td>
+                                <td>TI</td>
+                                <td>C</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 2</td>
+                                <td>TI</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+					</table>
+			</span><br> <br>
+
+				<table class="verify dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>0</td>
+						<td>deliq.sisliq110</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>11111111</td>
+						<td>5</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario"> <!-- Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas). -->
+			<td class='title'><b>C014</b><br> <br>Sucesso -
+				Usuário diferente do
+				supervisor titular da ES, com regra cadastrada para o perfil
+				"Supervisor" da mesma localização da ES, designa ARC.</td>
+			<td><banco />As regras para os perfis de acesso se encontram <a href="../../paineldosupervisor/dadoque/TestAPSFW0201_Painel_do_supervisor_regra_supervisor_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados da Metodologia se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados das ESs se encontram <a href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+                         Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a>
+            </td>
+            <td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">sisaps/supervisor/painelsupervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttGerenciarArcs">Gestão de ARCs</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignacaooLoteARCs">Designação em Lote de ARCs</span></li>
+					<li>Seleciona o ARC <span class="clickon" by="id:checkArc5">Atividade corporativa 2</span></li>
+					<li>Seleciona o servidor da equipe: <span class="select" by="id:idServidorEquipe">ANFRISIO RODRIGUES VIEIRA</span></li>
+					<li>Clica no botão <span class="clickon" by="id:bttDesignar" sleep="3000">Designar</span></li>
+				</ul>
+			</td>
+			<td>
+
+		      	<ul>
+                    <li><span class="contains">ARC(s) designado(s) com sucesso.</span></li>
+			</ul>
+                    
+				<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoTitulo']">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th colspan="6" class="aesquerda"
+                                    style="width: 459px; background-color: #4a73a2">ARCs</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+				<span class="compareTable" by="xpath://table[@id='idPainelListagemDesignacaoDados']">
+					<table>
+                        <thead>
+							<tr>
+								<td><input type="checkbox" name="option1" /></td>
+								<td><b>Atividade</b></td>
+								<td><b>Grupo</b></td>
+								<td><b>R/C</b></td>
+								<td><b>Estado</b></td>
+								<td><b>Responsável</b></td>
+							</tr>
+                        </thead>
+                        <tbody>
+							<tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 2</td>
+                                <td>Crédito</td>
+                                <td>C</td>
+                                <td>Designado</td>
+                                <td>ANFRISIO RODRIGUES VIEIRA</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade corporativa 2</td>
+                                <td>Crédito</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 2</td>
+                                <td>TI</td>
+                                <td>C</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="option1"></td>
+                                <td>Atividade de negócio 2</td>
+                                <td>TI</td>
+                                <td>R</td>
+                                <td>Previsto</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+					</table>
+			</span><br> <br>
+
+				<table class="verify dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>0</td>
+						<td>deliq.sisliq113</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>11111111</td>
+						<td>5</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R003 - Gerenciar quadro da posição financeira</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Gerenciar quadro da posição financeira'</h1>
+
+		<span id="index"></span>
+
+    	<h2>Histórico</h2>	
+
+		<table class="exemplos historico">
+			<tr>
+            	<th>Versão</th>
+                <th>Data</th>
+                <th>Responsável</th>
+                <th>Descrição</th>
+            </tr>
+
+            <tr>
+				<td>1.0</td>
+                <td>06/08/2014</td>
+                <td>Adjamir Galvão</td>
+                <td>Versão Inicial</td>
+			</tr>
+            <tr>
+				<td>1.1</td>
+                <td>18/02/2015</td>
+                <td>Christiano Nogueira</td>
+                <td>Adicionando novo cenário: CT003 - Supervisor não pode exibir botão para ciclo diferente de 'Em andamento.</td>
+			</tr>
+            <tr>
+				<td>2.0</td>
+				<td>27/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+			</tr>
+		</table>
+
+   		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#gerenciarQuadroPosicaoFinanceira">aqui</a>.</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+			<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		</ul>
+	
+		<h2>Cenários</h2>
+	    <blockquote>Cenários para <a href="indexWeb.html#alteracoes">validar permissões de que usuários estão autorizados a utilizar a funcionalidade</a>.</blockquote> 
+
+		<table class="exemplos">
+    		<tbody>
+				<tr>
+					<th>Cenário</th>
+					<th>Dados pré-existentes</th>
+					<th>Ação pretendida</th>
+					<th>Resultado esperado</th>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT001]</b> - Supervisor pode exibir botão e perfil risco vigente</td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+		   				<ul>
+		      				<li>O usuário <sisliq101>deliq.sisliq101</sisliq101> faz o login.</li>
+		      				<li>O usuário acessa o menu <span class="open" url="sisaps/supervisor">sisaps/supervisor</span>.</li>
+		      				<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:link_ES1">'ABN AMRO'</span>.</li>
+		   				</ul>
+					</td>
+
+					<td>
+		   				<ul>
+		     				<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+		     				<li>Mostra o botão:<br><br><input class="present" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+	       				</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario" >
+					<td class='title'><b>[CT002]</b> - Supervisor não pode exibir botão para perfis anteriores </td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq101>deliq.sisliq101</sisliq101> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/supervisor">sisaps/supervisor</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:link_ES1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				 			<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="1000">17/03/2014</span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT003]</b> - Supervisor não pode exibir botão para ciclo diferente de 'Em andamento'</td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR003C003GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+		   				<ul>
+		      				<li>O usuário <sisliq101>deliq.sisliq101</sisliq101> faz o login.</li>
+		      				<li>O usuário acessa o menu <span class="open" url="sisaps/supervisor">sisaps/supervisor</span>.</li>
+		      				<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:link_ES1">'ABN AMRO'</span>.</li>
+		   				</ul>
+					</td>
+
+					<td>
+		   				<ul>
+		     				<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+		     				<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+	       				</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT004]</b> - 'Consulta não bloqueados' não pode exibir botão e perfil risco vigente</td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq108>deliq.sisliq108</sisliq108> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:linkPerfil1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario" >
+					<td class='title'><b>[CT005]</b> - 'Consulta não bloqueados' não pode exibir botão para perfis anteriores </td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq108>deliq.sisliq108</sisliq108> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:linkPerfil1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				 			<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="1000">17/03/2014</span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT006]</b> - 'Consulta somente resumo de perfil não bloqueado' não pode exibir botão e perfil risco vigente</td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq109>deliq.sisliq109</sisliq109> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:linkPerfil1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT007]</b> - 'Consulta somente resumo de perfil não bloqueado' não pode exibir botão para perfis anteriores </td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq109>deliq.sisliq109</sisliq109> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:linkPerfil1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				 			<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="1000">17/03/2014</span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT008]</b> - 'Consulta tudo' não pode exibir botão e perfil risco vigente</td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq106>deliq.sisliq106</sisliq106> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:linkPerfil1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT009]</b> - 'Consulta tudo' não pode exibir botão para perfis anteriores </td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq106>deliq.sisliq106</sisliq106> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:linkPerfil1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				 			<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="1000">17/03/2014</span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT010]</b> - Inspetor não pode exibir botão e perfil risco vigente</td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq113>deliq.sisliq113</sisliq113> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:link_ES1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+				<tr class="scenario">
+					<td class='title'><b>[CT011]</b> - Inspetor não pode exibir botão para perfis anteriores </td>
+
+					<td>
+						<banco/>
+
+						Os dados encontram-se <a href="TestR001C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.
+					</td>
+
+					<td>
+			   			<ul>
+			      			<li>O usuário <sisliq113>deliq.sisliq113</sisliq113> faz o login.</li>
+			      			<li>O usuário acessa o menu <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span>.</li>
+			      			<li>O usuário clica na entidade supervisionável <span class="clickon" by="id:link_ES1">'ABN AMRO'</span>.</li>
+			   			</ul>
+					</td>
+
+					<td>
+			   			<ul>
+			     			<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				 			<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="1000">17/03/2014</span></li>
+			     			<li>Não mostra o botão:<br><br><input class="notPresent" by="value:Gerenciar quadro da posição financeira" type="button" value="Gerenciar quadro da posição financeira"/></li>  
+		       			</ul>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</body>
+</html>

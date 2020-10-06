@@ -1,0 +1,293 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Gestão de ESs - Alterar informações da ES</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Gestão de ESs - Alterar informações da ES'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>08/07/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>27/07/2015</td>
+			<td>David Nascimento</td>
+			<td>Alterando os cenários CT002 e CT003 (campo 'Corec previsto' não pode mais ser atualizado)</td>
+		</tr>
+		<tr>
+			<td>3.0</td>
+			<td>25/01/2016</td>
+			<td>Adjamir Galvão</td>
+			<td>Corrigindo o cenário CT002 que não deveria versionar perfil de risco ao alterar apenas o ciclo.</td>
+		</tr>
+		<tr>
+			<td>4.0</td>
+			<td>28/07/2016</td>
+			<td>David Nascimento</td>
+			<td>Adicionando no "porfim" do cenário CT003 a geração do evento de perfil de risco para que seja refletido no APS.</td>
+		</tr>
+		<tr>
+			<td>5.0</td>
+			<td>10/10/2016</td>
+			<td>Kalina Lígia</td>
+			<td>Disparo de envio de e-mails.</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>31/03/2017</td>
+			<td>Cleonides Nascimento</td>
+			<td>Removento o envio de e-mail.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#alterarES">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<banco />
+		<li>Os dados encontram-se <a href="TestR001AdministradorAlterarES-DadoQue.html" class="include">aqui</a>.
+		</li>
+		<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq105"</span></strong>.
+		</li>
+		<li><dataHoraAtual valor="28/05/2015 00:00:00">Data/hora atual do sistema: 28/05/2015 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#salvarES">para validar salvar os dados da ES</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Alterar dados de uma ES que não possua ciclo.</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					<tr>
+						<td>
+							<p>Salvar os dados da ES conforme tabela abaixo:</p>
+							<table>
+								<tr>
+									<th colspan="3">Entradas</th>
+								</tr>
+								<tr>
+									<th>ES</th>
+									<th>Prioridade</th>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td class="set" name="idES" converter="Integer">5</td>
+									<td class="set" name="prioridade">SIFI</td>
+									<td class="set" name="ciclo" converter="String">4</td>
+
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.salvar(idES, prioridade,  ciclo)">
+									<li>O sistema deverá exibir a seguinte mensagem de sucesso: <span class="eq" value="$THIS.getMensagem()">ES
+											alterada com sucesso.</span>
+									</li>
+									<li>Os dados alterados estão <a href="TestR003C001AdministradorAlterarES-Porfim.html" class="include">aqui</a>.</li>
+								</span>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Alterar dados de uma ES que possua ciclo sem agenda e que não versiona perfil de risco
+							(alterando apenas o ciclo)</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					<tr>
+						<td>
+							<p>Salvar os dados da ES conforme tabela abaixo:</p>
+							<table>
+								<tr>
+									<th colspan="2">Entradas</th>
+								</tr>
+								<tr>
+									<th>ES</th>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td class="set" name="idES" converter="Integer">1</td>
+									<td class="set" name="ciclo" converter="String">2</td>
+									<span class="set" name="prioridade"></span>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.salvar(idES, prioridade, ciclo)">
+									<li>O sistema deverá exibir a seguinte mensagem de sucesso: <span class="eq" value="$THIS.getMensagem()">ES alterada com sucesso.</span>
+								</li>
+									<li>Os dados alterados estão <a href="TestR003C002AdministradorAlterarES-Porfim.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Alterar dados de uma ES que possua ciclo e que versiona perfil de risco
+							(alterando apenas a prioridade)</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					<tr>
+						<td>
+							<p>Salvar os dados da ES conforme tabela abaixo:</p>
+							<table>
+								<tr>
+									<th colspan="2">Entradas</th>
+								</tr>
+								<tr>
+									<th>ES</th>
+									<th>Prioridade</th>
+								</tr>
+								<tr>
+									<td class="set" name="idES" converter="Integer">7</td>
+									<td class="set" name="prioridade">SIFI</td>
+									<span class="set" name="ciclo" converter="String"></span>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.salvar(idES, prioridade, ciclo)">
+									<li>O sistema deverá exibir a seguinte mensagem de sucesso: <span class="eq" value="$THIS.getMensagem()">ES
+											e perfil de risco atualizados com sucesso.</span>
+								</li>
+									<li>Os dados alterados estão <a href="TestR003C003AdministradorAlterarES-Porfim.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004]</b> - Alterar dados de uma ES que possua ciclo com agenda e que não versiona perfil de risco
+							(alterando apenas o ciclo)</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					<tr>
+						<td>
+							<p>Salvar os dados da ES conforme tabela abaixo:</p>
+							<table>
+								<tr>
+									<th colspan="2">Entradas</th>
+								</tr>
+								<tr>
+									<th>ES</th>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td class="set" name="idES" converter="Integer">2</td>
+									<td class="set" name="ciclo" converter="String">2</td>
+									<span class="set" name="prioridade"></span>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<span class="execute" value="$THIS.salvar(idES, prioridade, ciclo)">
+									<li>O sistema deverá exibir a seguinte mensagem de sucesso: <span class="eq" value="$THIS.getMensagem()">ES alterada com sucesso.</span>
+								</li>
+									<li>Os dados alterados estão <a href="TestR003C004AdministradorAlterarES-Porfim.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

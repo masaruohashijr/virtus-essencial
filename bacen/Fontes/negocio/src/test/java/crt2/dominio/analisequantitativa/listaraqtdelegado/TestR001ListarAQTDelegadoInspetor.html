@@ -1,0 +1,135 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Cenários de teste para a estória Listar ANEFs delegados no painel do inspetor</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória Listar ANEFs delegados no painel do inspetor</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>19/01/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>As regras da estória encontram-se <a href="../index.html#listarAQTDelegadoInspetor">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+		<ul>
+		    <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+	 <li>O usuário da consulta é: <b><span class="sentence" method="logar">"deliq.sisliq113"</span></b>.</li>
+		    </li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para validar a <a href="indexNegocio.html#listarAQT">recuperação de registros</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C001]</b> - Inspetor não possui ANEFs delegados</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001ListarAQTDelegadoInspetor_dadoque_c001.html" class="include">aqui</a>
+				</td>
+			    <td>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+							<table title="teste" class="verifyRows" name="aqt" value="$THIS.consultaPainelSupervisor()">
+                    		<tr>
+                        		<th class="eq" value="$THIS.getPK(aqt)">ID</th>
+                        		<th class="eq" value="$THIS.getES(aqt)">ES</th>
+                        		<th class="eq" value="$THIS.getComponente(aqt)">Componente</th>
+                        		<th class="eq" value="$THIS.getEstado(aqt)">Estado</th>
+                    		</tr>
+		        		    </table>
+		        		    </td>
+		        		</tr>
+                    </table>	
+			    </td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C002]</b> - Inspetor possui ANEFs delegados</td>
+
+				<td>
+					<banco/>
+
+					Os dados encontram-se <a href="TestR001ListarAQTDelegadoInspetor_dadoque_c002.html" class="include">aqui</a>
+				</td>
+			    <td>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+							<table title="teste" class="verifyRows" name="aqt" value="$THIS.consultaPainelSupervisor()">
+                    		<tr>
+                        		<th class="eq" value="$THIS.getPK(aqt)">ID</th>
+                        		<th class="eq" value="$THIS.getES(aqt)">ES</th>
+                        		<th class="eq" value="$THIS.getComponente(aqt)">Componente</th>
+                        		<th class="eq" value="$THIS.getEstado(aqt)">Estado</th>
+                    		</tr>
+                    		<tr>
+								<td>2</td>
+								<td>ABN AMRO</td>
+								<td>Resultados</td>
+								<td>Análise delegada</td>
+		            		</tr>
+		            		<tr>
+								<td>4</td>
+								<td>ABN AMRO</td>
+								<td>Exigibilidades/Liquidez</td>
+								<td>Em análise</td>
+		            		</tr>
+		        		    </table>
+		        		    </td>
+		        		</tr>
+                    </table>	
+			    </td>
+			</tr>
+		</table>
+	</body>
+</html>

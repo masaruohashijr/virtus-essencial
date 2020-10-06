@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../estilos.css" media="screen" />
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript" src="../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória APSFW0501 - Painel do administrador</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		<pessoa>Bcpessoa</pessoa>
+	</blockquote>
+
+	<h2>Cenários de teste para a estória APSFW0501 - Painel do administrador</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens de erro/impedimento e sucesso para a delegação
+		e redesignação de ARCs.</blockquote>
+
+	<jetty />
+	<table class="exemplos">
+		<tr>
+			<th width="10%">Cenário</th>
+			<th width="20%">Dados pré-existentes</th>
+			<th width="20%">Ação pretendida</th>
+			<th width="50%">Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>Conferir</b><br> <br>Conferir - os demais elementos de tela e dados exibidos
+				conforme protótipo e tabelas no dado_que.</td>
+			<td><banco /> As regras de acesso encontram-se <regra>aqui</regra></td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq105>deliq.sisliq105</sisliq105></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/administrador">Administrador</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel do administrador<b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0501]</b></span></li>
+
+				</ul> <span class="compareTable dados" by="xpath://table[@id='idTituloPerfilAcesso']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Perfis de acesso</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDadosPerfilAcesso']">
+					<table>
+						<thead>
+							<tr>
+								<th class="aesquerda" style="width: 300px; background-color: #4a73a2"><b>Perfil<img
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="link">Administrador</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Comitê</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Consulta somente não bloqueados</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Consulta somente resumo de perfil não bloqueado</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Consulta tudo</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Gerente</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Inspetor</a></td>
+							</tr>
+							<tr>
+								<td><a href="link">Supervisor</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

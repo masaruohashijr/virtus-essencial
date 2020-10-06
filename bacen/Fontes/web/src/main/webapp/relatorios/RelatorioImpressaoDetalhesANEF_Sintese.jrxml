@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioImpressaoArc_Elementos" language="groovy" pageWidth="535" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.2100000000000073"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="texto" fontName="Arial" fontSize="9"/>
+	<style name="texto-negrito" style="texto" fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="relevancia" class="java.lang.String"/>
+	<field name="nota" class="java.lang.String"/>
+	<field name="justificativaNota" class="java.lang.String"/>
+	<field name="condicao" class="java.lang.Boolean"/>
+	<detail>
+		<band height="117" splitType="Stretch">
+			<textField>
+				<reportElement style="texto-negrito" positionType="Float" mode="Opaque" x="1" y="0" width="343" height="17"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="78" y="23" width="59" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<text><![CDATA[Relevância:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement style="texto" x="137" y="26" width="101" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{relevancia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="texto" positionType="Float" x="1" y="88" width="478" height="18" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[!$F{justificativaNota}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Times New Roman" size="11" isBold="false" isStrikeThrough="false" pdfFontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{justificativaNota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="78" y="54" width="30" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<text><![CDATA[Nota:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="texto" x="108" y="57" width="143" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nota}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

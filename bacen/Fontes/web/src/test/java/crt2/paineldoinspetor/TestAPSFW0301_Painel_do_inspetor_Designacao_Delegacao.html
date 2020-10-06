@@ -1,0 +1,481 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando o painel do inspetor para as seções ARCs
+	DESIGNADOS e ARCs delegados para análise.</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para APSFW0301 - Painel do Inspetor (seções
+		ARCs designados e ARCs delegados para análise)</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>18/07/2014</td>
+			<td>Christiano Nogueira</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>15/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Perfis de acesso vs responsabilidade de ESs para
+				supervisor substituto</td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>07/10/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>17/12/2014</td>
+			<td>David Nascimento</td>
+			<td>Ajuste dos dadoque para contemplar  o novo modelo da matriz e readaptação dos testes</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória:
+		<ul>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldoinspetor/requirement/APSFW0301_Painel_do_inspetor_Secoes_ARCs_Designados_e_Delegados.xlsx">APSFW0301_Painel_do_inspetor_Secoes_ARCs_Designados_e_Delegados.xlsx</a>.</li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/index.html#">index.html</a>.</li>
+		</ul>
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">carregada</a>.
+		</li>
+		<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora
+			atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários onde devem ser apresentadas as telas, trilhas,
+		seções, títulos, mensagens e demais informações pertinentes ao Painel
+		do inspetor (seções ARCs designados e ARCs delegados para análise)</h2>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>C001</b><br>
+			<br>Sucesso - Inspetor logado com ARCs designados nos estados:
+				'Designado' e 'Em edição'</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia se
+				encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include"> aqui</a><br><br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Dados do perfil, ciclo,
+				análise quantitativa, matriz, unidades, atividades, ARCs,
+				designações e delegações <a
+				href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_Designacao_Delegacao_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel
+								do inspetor<b /></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0301]</b></span></li>
+				</ul>
+
+				<li>O título da tabela ARCs designados<span class="contains"><b>ARCs designados</b></span></li>
+				<span class="compareTable dados"
+				by="xpath://table[@id='idArcsDesignadosidDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Atividade<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Grupo<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>R/C<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2">ITAU</td>
+								<td colspan="2">Atividade corporativa</td>
+								<td colspan="2">Crédito</td>
+								<td colspan="2">C</td>
+								<td colspan="2"><a
+									href="inicio/painelinspetor/perfilderisco/gestãodeARCs/analisedeARC"
+									title="Link para a tela de Edição do ARC">Designado</a></td>
+							</tr>
+
+							<tr>
+								<td colspan="2">ITAU</td>
+								<td colspan="2">Atividade corporativa</td>
+								<td colspan="2">TI</td>
+								<td colspan="2">R</td>
+								<td colspan="2"><a
+									href="inicio/painelsupervisor/perfilderisco/gestãodeARCs/analisedeARC"
+									title="Link para a tela de Edição do ARC">Em edição</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>C002</b><br>
+			<br>Sucesso - Acessar link de ARCs designados</td>
+			<td>*** Banco não reinicializado. Dados iniciais iguais ao do
+				cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Clica no link: <span class="clickon" by="id:link_Arc2">Designado</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0302]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor<input
+							type="image" src="../../crt2/seta.gif" />Edição do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Edição
+								do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>C003</b><br>
+			<br>Sucesso - Acessar link de ARCs 'Em edição'</td>
+			<td>*** Banco não reinicializado. Dados iniciais iguais ao do
+				cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Clica no link: <span class="clickon" by="id:link_Arc3">Em
+							edição</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0302]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor<input
+							type="image" src="../../crt2/seta.gif" />Edição do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Edição
+								do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario"  >
+			<td class='title'><b>C004</b><br>
+			<br>Sucesso - Inspetor logado com ARCs delegados nos estados:
+				'Delegado' e 'Em análise'</td>
+			<td>*** Banco não reinicializado. Dados iniciais iguais ao do
+				cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel
+								do inspetor<b /></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0301]</b></span></li>
+				</ul>
+				<li>O título da tabela ARCs delegados<span class="contains"><b>ARCs delegados para análise</b></span></li>
+				<span class="compareTable dados"
+				by="xpath://table[@id='idArcsDelegadosidDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Atividade<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Grupo<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>R/C<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado<input
+										type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2">ITAU</td>
+								<td colspan="2">Atividade corporativa</td>
+								<td colspan="2">Crédito</td>
+								<td colspan="2">R</td>
+								<td colspan="2"><a
+									href="inicio/painelinspetor/perfilderisco/gestãodeARCs/analisedeARC"
+									title="Link para a tela de Análise do ARC">Análise delegada</a></td>
+							</tr>
+
+							<tr>
+								<td colspan="2">ITAU</td>
+								<td colspan="2">Atividade de negócio</td>
+								<td colspan="2">Liquidez</td>
+								<td colspan="2">C</td>
+								<td colspan="2"><a
+									href="inicio/painelsupervisor/perfilderisco/gestãodeARCs/analisedeARC"
+									title="Link para a tela de Análise do ARC">Em análise</a></td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br>
+			<br>Sucesso - Acessar link de ARCs delegados</td>
+			<td>*** Banco não reinicializado. Dados iniciais iguais ao do
+				cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Clica no link: <span class="clickon" by="id:link_Arc1">Análise
+							delegada</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor<input
+							type="image" src="../../crt2/seta.gif" />Análise do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise
+								do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>C006</b><br>
+			<br>Sucesso - Acessar link de ARCs 'Em análise'</td>
+			<td>*** Banco não reinicializado. Dados iniciais iguais ao do
+				cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Clica no link: <span class="clickon" by="id:link_Arc6">Em
+							análise</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor<input
+							type="image" src="../../crt2/seta.gif" />Análise do ARC
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC<b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007</b><br>
+			<br>Sucesso - Considerando a(s) regra(s) de perfil de acesso cadastrada: 
+				1 - Perfil: "Inspetor", Função comissionada "FDT-1" e Substituto eventual "Em exercício".
+				Usuário 01 (sisliq101 - DELIQ/GLIQ1/GTBHO) com função FDT-1, 
+				Usuário 02 (sisliq110 - DESUP/GBPM1/GTSP4) substituto eventual em exercício da função comissionada.
+				Verificar Ciclos e ARCs no Painel do supervisor com o Usuário 02.</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram<a
+				href="dadoque/TestAPSFW0301_Painel_do_inspetor_substituto_dadoque_1.html"
+				class="include">aqui</a><br>
+			<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include"> aqui</a><br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> <br> <a
+				href="../paineldoinspetor/dadoque/TestAPSFW0301_Painel_do_inspetor_Designacao_Delegacao_dadoque.html"
+				class="include">Dados do perfil, ciclo, análise quantitativa,
+					matriz, unidades, atividades, ARCs, designações e delegações</a><br>
+				<br></td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq110>deliq.sisliq110</sisliq110></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do inspetor
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Painel
+								do inspetor<b /></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0301]</b></span></li>
+				</ul> <span class="compareTable dados"
+				by="xpath://table[@id='idLocalizacao']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclos
+										da equipe</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span> <span class="compareTable dados" by="xpath://table[@id='idDados']">
+					<table>
+						<tbody>
+							<tr>
+								<th colspan="2" style="color: black; background-color: #4a73a2"><b>ES
+										<input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></th>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Início
+										<input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec
+										<input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+								<td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado
+										<input type="image"
+										src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+								</b></td>
+							</tr>
+							<tr>
+								<td colspan="2"><a href="sisaps/inspetor/perfilderisco"
+									title="Link para o perfil de risco">ITAU</a></td>
+								<td colspan="2">28/05/2014</td>
+								<td colspan="2">28/05/2015</td>
+								<td colspan="2">Em andamento</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> 
+			
+			
+			<span >
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ARCs designados</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span>
+			
+			<span class="compareTable dados" by="xpath://table[@id='idArcsDesignadosidDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td colspan="6">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+		
+			
+			<span >
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ARCs delegados para análise</b></th>
+							</tr>
+						</thead>
+					</table>
+			</span>
+			<span class="compareTable dados"
+				by="xpath://table[@id='idArcsDelegadosidDados']">
+					<table>
+						<tbody>
+							<tr>
+								<td colspan="6">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</tbody>
+					</table>
+			</span>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

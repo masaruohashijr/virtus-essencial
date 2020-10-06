@@ -1,0 +1,54 @@
+
+<wicket:extend>
+	<wicket:child />
+	<form wicket:id="formulario">
+
+
+		<div wicket:id="idPainelDados"></div>
+
+
+
+		<table id="pTituloMatriz" cellspacing="0" cellpadding="3" style="width: 90%">
+			<thead>
+				<tr class="fundoPadraoAEscuro2">
+					<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Análise de riscos e controles</th>
+				</tr>
+			</thead>
+		</table>
+
+		<table id="tPainelMatrizVigente" cellpadding="0" cellspacing="0" style="width: 90%">
+			<tr style="width: 100%; margin: auto;">
+				<td><div wicket:id="idPainelMatrizVigente"></div></td>
+			</tr>
+		</table> 
+
+		<br />
+
+
+		<table id="tPainelMatrizEsbocada" cellpadding="0" cellspacing="0" style="width: 90%">
+			<tr style="width: 100%; margin: auto;">
+				<td><div wicket:id="idPainelMatriz"></div></td>
+			</tr>
+		</table>
+		<br />
+		<div align="center" wicket:id="idPainelBloco" style="width: 100%; margin: auto;"></div>
+		
+		<div align="center" wicket:id="idPainelBlocoNovo" style="width: 100%; margin: auto;"></div>
+		
+		<br />
+		<div align="center" wicket:id="idPainelAtividades" style="width: 100%; margin: auto;"></div>
+
+		<div class="centralizado tamanho90" style="margin: auto; padding-bottom: 15px;">
+
+			<div align="center">
+				<br /> <input type="submit" class="botao" title="Liberar" wicket:id="bttLiberar" style="width: 140px"
+					id="bttLiberar" value="Liberar nova matriz" >&nbsp;</input> <input type="submit" class="botao"
+					title="Desfazer todas as alterações" style="width: 180px" wicket:id="bttDesfazer"
+					value="Desfazer todas as alterações">&nbsp;</input><input name="bttVoltar" type="button" class="botao"
+					id="bttVoltar" wicket:id="bttVoltar" title="Voltar para a p&aacute;gina anterior" value="Voltar">&nbsp;</input>
+
+			</div>
+		</div>
+
+	</form>
+</wicket:extend>

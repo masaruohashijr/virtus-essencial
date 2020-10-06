@@ -1,0 +1,19 @@
+<wicket:panel>
+	<table id="idPainelNovoQuadroAQT" cellspacing="0" cellpadding="3" style="width: 100%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				 <th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Novo quadro</th>
+			</tr>
+		</thead>
+		<tbody wicket:id="listaSintesesAQT">
+			<div wicket:id="grupoExpansivel"></div>
+			<tr wicket:id="linhaAnalise" class="fundoPadraoAClaro3">
+				<td colspan="5" class="campoDescricaoSintese"><label wicket:id="idDescricaoSintese"></label></td>
+			</tr>
+		</tbody>
+		
+	</table>
+	<wicket:enclosure child="idPainelResumoInferior">
+		<div wicket:id="idPainelResumoInferior"></div>
+	</wicket:enclosure>
+</wicket:panel>

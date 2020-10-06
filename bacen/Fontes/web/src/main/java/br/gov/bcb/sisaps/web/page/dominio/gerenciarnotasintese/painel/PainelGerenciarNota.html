@@ -1,0 +1,70 @@
+<wicket:panel>
+	<table id="tDadosGerenciarNota" cellspacing="0" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" colspan="3" style="text-align: left; border-bottom: 0px;">Ajuste de nota final</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%; vertical-align: middle;">Nota ajustada vigente</td>
+				<td>
+				    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: right;">
+                                <label style="font-size: 7pt;" wicket:id="idDataNotaAjustadaVigente">Atualizado em dd/MM/yyyy </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-weight: bold;" wicket:id="idNotaAjustadaVigente"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label wicket:id="idJustificativaNotaAjustadaVigente"></label></td>
+                        </tr>
+                    </table>
+				</td>
+				<td style="width: 1%;"></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Nova nota ajustada</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr class="fundoPadraoAClaro3">
+                            <td style="text-align: right;">
+                                <label style="font-size: 7pt;" wicket:id="idDataNovaNotaMatrizAjustada">Última alteração salva USUARIO em dd/MM/yyyy mm:ssh </label>
+                            </td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3">
+                            <td><select wicket:id="idNovaNotaMatrizAjustada"></select></td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3"  wicket:id="wmcJustificativaArc">
+                            <td>
+                                <div>
+                                    <textarea wicket:id="idJustificativaNovaNotaMatriz" contentEditable="true"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3">
+                            <td>
+                                <div align="right">
+                                    <label style="color: red; font-size:7pt; margin:auto; text-align:right; visibility: hidden;" id="idAlertaDadosNaoSalvosNotaMatriz">
+                                        Atenção informações não salvas.
+                                    </label>
+                                    <input style="width: 100px;" type="submit" class="botao" value="Salvar" wicket:id="bttSalvarNovaNotaMatrizAjustada" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 1%;"></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;"></td>
+                <td colspan="2">
+                    <input type="submit" class="botao" wicket:id="bttConcluirNovaNotaMatrizAjustada"
+                        value="Confirmar novo ajuste da nota final e atualizar Perfil de Risco" style="width: 380px">         
+                </td>
+			</tr>
+		</tbody>
+	</table>
+</wicket:panel>

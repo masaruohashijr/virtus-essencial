@@ -1,0 +1,33 @@
+<wicket:panel>
+
+	<table cellspacing="0" cellpadding="0"  style="width: 90%">
+		<tr class="fundoPadraoAEscuro2">
+			<th class="thform" style="text-align: left; border-bottom: 0px;">Participantes do comitê</th>
+		</tr>
+	</table>
+	<table cellspacing="0" cellpadding="0" style="width: 90%">
+		<tr class="fundoPadraoAEscuro3">
+			<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Lista de possíveis participantes</th>
+		</tr>
+		<tr>
+			<td><span wicket:id="tabelaPossiveisParticipantes" /></td>
+		</tr>
+	</table>
+	<table cellspacing="0" cellpadding="0" style="width: 90%">
+		<tr class="fundoPadraoAEscuro3">
+			<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Participantes efetivos do comitê</th>
+		</tr>
+		<tr>
+			<td><span wicket:id="tabelaParticipantesEfetivos" /></td>
+		</tr>
+	</table>
+	<br>
+	<table cellspacing="0" cellpadding="0" style="width: 90%">
+		<tr>
+			<td align=right>
+				<font align="center" color="red" style="vertical-align: text-top" wicket:id="alerta">* Atenção informações não salvas.</font> &nbsp
+				<input type="button" class="botao" style="width: 150px" wicket:id="bttSalvarInformacoesParticipantes" value="Salvar participantes">
+			</td>
+		</tr>
+	</table>
+</wicket:panel>

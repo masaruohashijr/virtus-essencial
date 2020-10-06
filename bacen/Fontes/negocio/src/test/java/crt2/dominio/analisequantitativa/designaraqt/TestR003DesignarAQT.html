@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Designar ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Designar/Redesignar ANEF'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>27/01/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#designarAQT">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+
+		<banco />
+
+		<li>Os dados encontram-se <a href="TestR001DesignarAQT-DadoQue.html" class="include">aqui</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarCamposObrigatorios">validar campos obrigatórios</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar mensagens de erro ao tentar designar um ANEF.</td>
+					</tr>
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+
+							<table>
+								<tr>
+									<th style="width: 498px">Entradas</th>
+									<th style="width: 545px; background-color: green">Saída</th>
+								</tr>
+							</table>
+							<table class="column">
+
+								<tr>
+									<th>ANEF</th>
+									<th>Estado<span style="visibility: hidden">?</span></th>
+									<th>Matrícula servidor equipe</th>
+									<th>Matrícula outro servidor</th>
+									<th>Mensagem esperada ao designar ?</th>
+								</tr>
+
+								<tr>
+									<td>25</td>
+									<td>Previsto</td>
+									<td></td>
+									<td></td>
+									<td>[É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.]</td>
+								</tr>
+
+								<tr>
+									<td>25</td>
+									<td>Previsto</td>
+									<td>99990830</td>
+									<td>96186186</td>
+									<td>[Selecione apenas um único servidor para a designação.]</td>
+								</tr>
+							</table>
+					</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

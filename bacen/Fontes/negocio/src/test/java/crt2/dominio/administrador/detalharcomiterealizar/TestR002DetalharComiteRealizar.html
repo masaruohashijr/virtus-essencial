@@ -1,0 +1,188 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R002 - Perfil 'Administrador' - Detalhar comitê a realizar</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Perfil 'Administrador' - Detalhar comitê a realizar'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>31/07/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>06/08/2015</td>
+				<td>David Nascimento</td>
+				<td>Alteração da estória: mudança de onde recuperar os registros de participante;<br>e o comitê a realizar será considerado nos ciclos em 'Em andamento' e 'Corec'.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#detalharComiteRealizar">aqui</a></blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq105"</span></strong></li>
+			<banco/>
+			<li>Os dados encontram-se <a href="TestR001DetalharComiteRealizar-DadoQue.html" class="include">aqui</a></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote><a href="indexNegocio.html#exibirParticipantes">Cenários para validar a exibição de partipantes</a></blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Listagem para ciclo com participantes.</td></tr>
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>Verificar a lista de participantes do ciclo:<br>
+								<table>
+									<tr><th colspan="1">Entrada</th></tr>
+									<tr><th>Ciclo</th></tr>
+									<tr><td class="set" name="cicloES">8</td></tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>Os participantes a serem exibidos são:<br>
+							
+							   <table>
+									<tr><th style="background-color: green;">Saída</th></tr>
+
+									<tr>
+										<td style="padding: 0px;">
+											<table class="verifyRows" name="resultado" value="$THIS.listar(cicloES)">
+												<tr><th style="background-color: green;" class="eq" value="$THIS.getNome(resultado)">Nome</th>
+												<th style="background-color: green;" class="eq" value="$THIS.getEmailDisponibilidade(resultado)">E-mail disponibilidade</th></tr>
+												<tr><td>CARLOS AHMAR</td><td>13/03/2015 10:00:00</td></tr>
+												<tr><td>CARLOS ROBERTO CREDIDIO CORDEIRO</td><td>13/03/2015 10:17:00</td></tr>
+												<tr><td>JOSE ROMUALDO COSTA JUNIOR</td><td>13/03/2015 10:10:00</td></tr>
+												<tr><td>LARISSA VENTURINI AKAMINE</td><td></td></tr>
+												<tr><td>MARCELO COLLI INGLEZ</td><td>14/03/2015 10:04:00</td></tr>
+												<tr><td>MARCELO DAVI XAVIER DA SILVEIRA DATZ</td><td>13/03/2015 11:20:00</td></tr>
+												<tr><td>MARCO ANTONIO DE CAMARGO</td><td>12/03/2015 10:15:00</td></tr>
+												<tr><td>NELSON MARINHO DE CARVALHO</td><td>24/05/2015 09:25:00</td></tr>
+												<tr><td>SAULO BOTELHO DE ALMEIDA</td><td>23/05/2015 09:20:00</td></tr>
+												<tr><td>SERGIO ALVES PERILO</td><td></td></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table><br>
+
+		
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Listagem para ciclo sem participantes.</td></tr>
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>Verificar a lista de participantes do ciclo:<br>
+								<table>
+									<tr><th colspan="1">Entrada</th></tr>
+									<tr><th>Ciclo</th></tr>
+									<tr><td class="set" name="cicloES">6</td></tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>Os participantes a serem exibidos são:<br>
+								<table>
+									<tr><th style="background-color: green;">Saída</th></tr>
+
+									<tr>
+										<td style="padding: 0px;">
+											<table class="verifyRows" name="resultado" value="$THIS.listar(cicloES)">
+												<tr><th style="background-color: green;" class="eq" value="$THIS.getNomeES(resultado)">Nome</th></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table><br>
+		
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> - Listagem para ciclo com participantes, porém sem registro na agenda.</td></tr>
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>Verificar a lista de participantes do ciclo:<br>
+								<table>
+									<tr><th colspan="1">Entrada</th></tr>
+									<tr><th>Ciclo</th></tr>
+									<tr><td class="set" name="cicloES">10</td></tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>Os participante a serem exibidos são:<br>
+								<table>
+									<tr><th style="background-color: green;">Saída</th></tr>
+
+									<tr>
+										<td style="padding: 0px;">
+											<table class="verifyRows" name="resultado" value="$THIS.listar(cicloES)">
+												<tr><th style="background-color: green;" class="eq" value="$THIS.getNome(resultado)">Nome</th>
+												<th style="background-color: green;" class="eq" value="$THIS.getEmailDisponibilidade(resultado)">E-mail disponibilidade</th></tr>
+												<tr><td>NANCY SHIBATA ONISHI</td><td></td></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

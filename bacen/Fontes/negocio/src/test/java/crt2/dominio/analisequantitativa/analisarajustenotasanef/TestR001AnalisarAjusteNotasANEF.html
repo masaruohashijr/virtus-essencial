@@ -1,0 +1,427 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Exibir cabeçalho, informações, resumo, ações e ajustar a nota do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória: 'Exibir cabeçalho, informações, resumo, ações e ajustar a nota do ANEF'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>18/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>23/03/2017</td>
+			<td>Victor Vasconcelos</td>
+			<td>Alteração nos roteiros para permitir que a nota vigente no momento também apareça no combo.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#analisarAjusteNotasAnef">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<banco />
+		<li>Os dados encontram-se <a href="TestR001AnalisarAjusteNotasANEF-DadoQue.html" class="include">aqui</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarListaValoresANEF">validar lista de valores para o campo 'Ajuste'
+			de nota do ANEF</a>.<br />
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar a lista de notas da combo apenas com nota calculada do inspetor.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>Os valores a serem listados são: <br> <br>
+
+							<table>
+
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th colspan="1" style="background-color: green" width="75px">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+
+									<td class="set" name="anef" converter="Integer">21</td>
+
+									<td>
+
+
+										<table class="verifyRows" name="nota" value="$THIS.isNotasAjuste(anef)">
+
+											<tr>
+												<th class="eq" value="$THIS.getNota(nota)">Ajuste</th>
+											</tr>
+
+											<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>4</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+
+
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Validar a lista de notas da combo com nota ajustada do inspetor.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>Os valores a serem listados são: <br> <br>
+							<table>
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th colspan="1" style="background-color: green" width="75px">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+									<td class="set" name="anef" converter="Integer">24</td>
+									<td>
+										<table class="verifyRows" name="nota" value="$THIS.isNotasAjuste(anef)">
+											<tr>
+												<th class="eq" value="$THIS.getNota(nota)">Ajuste</th>
+											</tr>
+											<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>4</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Validar a lista de notas da combo com nota calculada do supervisor
+							diferente do inspetor.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>Os valores a serem listados são: <br> <br>
+							<table>
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th colspan="1" style="background-color: green" width="75px">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+									<td class="set" name="anef" converter="Integer">29</td>
+									<td>
+										<table class="verifyRows" name="nota" value="$THIS.isNotasAjuste(anef)">
+											<tr>
+												<th class="eq" value="$THIS.getNota(nota)">Ajuste</th>
+											</tr>
+											<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>4</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+
+
+
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004]</b> - Validar a lista de notas da combo com nota ajustada do inspetor salva
+							diferente da nota ajustada do supervisor salva.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>Os valores a serem listados são: <br> <br>
+
+							<table>
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th colspan="1" style="background-color: green" width="75px">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+									<td class="set" name="anef" converter="Integer">36</td>
+									<td>
+										<table class="verifyRows" name="nota" value="$THIS.isNotasAjuste(anef)">
+											<tr>
+												<th class="eq" value="$THIS.getNota(nota)">Ajuste</th>
+											</tr>
+											<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>4</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT005]</b> - Validar a lista de notas da combo com nota ajustada do supervisor salva
+							igual a calculada.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>Os valores a serem listados são: <br> <br>
+							<table>
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th colspan="1" style="background-color: green" width="75px">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+									<td class="set" name="anef" converter="Integer">23</td>
+									<td>
+										<table class="verifyRows" name="nota" value="$THIS.isNotasAjuste(anef)">
+											<tr>
+												<th class="eq" value="$THIS.getNota(nota)">Ajuste</th>
+											</tr>
+											<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>4</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT006]</b> - Validar a lista de notas da combo com nota ajustada do supervisor salva
+							igual a nota ajustada do inspetor.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>Os valores a serem listados são: <br> <br>
+
+							<table>
+
+								<tr>
+									<th colspan="1">Entradas</th>
+									<th colspan="1" style="background-color: green" width="75px">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+
+									<td class="set" name="anef" converter="Integer">45</td>
+
+									<td>
+
+
+										<table class="verifyRows" name="nota" value="$THIS.isNotasAjuste(anef)">
+
+											<tr>
+												<th class="eq" value="$THIS.getNota(nota)">Ajuste</th>
+											</tr>
+
+											<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>4</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+
+
+
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

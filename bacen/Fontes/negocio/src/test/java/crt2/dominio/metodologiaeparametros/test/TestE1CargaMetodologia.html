@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testes - E1. Metodologia e parâmetros</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+</head>
+<body>
+	<h1>Testes - E1. Metodologia e parâmetros</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Vide as <a href="../espec/E1_carga_metodologia_e_parametros.html" >Regras para E1. Metodologia e parâmetros.</a>
+	</blockquote>
+
+	<h2>Exemplos de sucesso</h2>
+	<blockquote>
+	Cenários onde a operação deve ser bem sucedida.
+	</blockquote>
+<banco/>
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+			<td>Carga inicial de metodologia default e seus parâmetros</td>
+			<td><banco /> Nenhum</td>
+			<td>
+			
+				<ul>
+					<li>Incluir carga  de dados para a entidade Metodologia</li>
+					<li>Incluir carga de dados para as entidades:</li>
+					<ul>
+						<li>Parâmetro Grupo de risco e controle</li>
+						<li>Parâmetro Elementos de risco ou controle</li>
+						<li>Parâmetro Tipo de atividade de negócio</li>
+						<li>Parâmetro Fator de relevância</li>
+						<li>Parâmetro Nota</li>
+						<li>Parâmetro Peso</li>
+						<li>Parâmetro Tendência</li>
+						<li>Parâmetro Itens do elemento</li>
+						<li>Parâmetro Perspectiva</li>
+						<li>Parâmetro Situação</li>
+						<li>Parâmetro Prioridade da ES</li>
+					</ul>
+					<li>A carga da metodologia é realizada pelo script <a class="scripts" href="insert_metodologia.sql" value="href">insert_metodologia.sql</li>
+				</ul>				
+			</td>
+			<td>Os dados salvos estarão: <a href="porfim/TestE1CargaMetodologia_porfim.html" class="include">aqui</a></td>
+		</tr>
+
+		</table>
+		<br><br><br><br><br>
+</body>
+</html>

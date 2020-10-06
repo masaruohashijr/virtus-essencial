@@ -1,0 +1,37 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:panel>
+    <div align="center">
+        <table wicket:id="tabelaTitulo">
+                <tr>
+                    <th><span wicket:id="titulo"></span></th>
+                </tr>
+        </table>
+        <table wicket:id="tabelaDados">
+            <wicket:container wicket:id="dados">
+                <thead>
+                    <tr>
+                        <wicket:container wicket:id="cabecalhos">
+                            <th wicket:id="celula" nowrap><span wicket:id="valor"></span>
+                            </th>
+                        </wicket:container>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr wicket:id="linhas">
+                        <td wicket:id="cells"><span wicket:id="cell"> </span></td>
+                    </tr>
+                </tbody>
+            </wicket:container>
+            <wicket:container wicket:id="vazio">
+                <tbody>
+                    <tr wicket:id="linha">
+                        <td wicket:id="mensagem"></td>
+                    </tr>
+                </tbody>
+            </wicket:container>
+        </table>
+
+        <wicket:container wicket:id="paginador" />
+    </div>
+</wicket:panel>
+</html>

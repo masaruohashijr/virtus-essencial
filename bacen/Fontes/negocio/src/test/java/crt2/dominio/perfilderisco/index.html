@@ -1,0 +1,158 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Perfil de risco</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+	</head>
+
+	<script type="text/javascript" src="../../jquery.js"></script>
+	<script type="text/javascript" src="../../estilo.js"></script>
+    <script type="text/javascript" src="../../documentacao.js"></script>
+
+	<body>
+		<h1>Perfil de risco</h1>
+
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+
+    <h2>
+       <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+    </h2>
+		<blockquote>Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.</blockquote>
+
+    <h2>
+        <a name="ciclosMigrados">Exibir ciclos migrados (ciclos históricos)</a>
+    </h2>   
+		<ul>
+  	   		<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/ConsultaTudo/PerfilRisco/perfil_risco_consulta_historico.html">protótipo</a>.</li>
+   	     	<li>Permissão:</li>
+			<ul><li>Apenas O perfil  'Perfil Consulta Resumos Não Bloqueados' não visualiza os ciclos 'migrados' no combo de selecionar ciclos da tela de perfil de risco.</li></ul>
+  	   	 	<li>Os dados migrados devem ser exibidos como anexos no grupo 'Informações'.</li>
+		</ul>      
+
+      	<blockquote><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/indexWebCiclosMigrados.html">Cenários de teste web</a><br></blockquote>
+
+		<h2><a name="detalhesdaES" class="menu">Detalhar ES</a></h2>   
+		<ul><li>Utilizar a <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0202_Perfil_de_risco_Detalhes_da_ES.xlsx">especificação</a>.</li></ul>      
+
+      	<blockquote><a href="../../../../../../../web/src/test/java/crt2/perfilderisco/indexWebDetalhesES.html">Cenários de teste web</a><br></blockquote>
+
+    <h2>
+         <a name="gerenciarDetalhesdaES" class="menu">Gerenciar detalhes da ES</a>
+    </h2>
+
+		<ul>
+			<li>Utilizar este <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoDetalhesES/gestao_detalhes_es_supervisor.html">protótipo</a> 
+				e este outro <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoDetalhesES/gestao_detalhes_es_supervisor_ajustes_corec.html">protótipo</a>.
+			</li>
+
+			<li>Utilizar a <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0204_Gerenciar_detalhes_da_ES.xlsx">especificação</a>.</li>
+			<li>Considerar as seguintes alterações da especificação acima:</li>
+
+			<ul>
+				<li>Regras gerais:</li>
+				<ul>
+				    <li>Campos e seções:</li>
+				    <ul>
+					<li>Para os campos vigentes:</li>
+					<ul>
+						<li>Informações adicionais:</li>
+						<ul><li>Exibir a mensagem 'Atualizado por &lt;&lt;usuário do supervisor que realizou o encaminhamento&gt;&gt; em &lt;&lt;data de publicação&gt;&gt;.'</li></ul>
+					</ul>
+					<li>Para os campos novos:</li>
+					<ul>
+						<li>Informações adicionais:</li>
+
+						<ul>
+							<li>Caso exista o indicador que o registro está pendente da confirmação pelo gerente, exibir a menssagem 'Encaminhado por &lt;&lt;usuário do supervisor que realizou o encaminhamento&gt;&gt; em &lt;&lt;data hora que realizou o encaminhamento&gt;&gt;.'.</li>
+							<li>Senão, exibir a mensagem 'Última alteração salva &lt;&lt;usuário do supervisor que realizou a última alteração&gt;&gt; em &lt;&lt;data hora que realizou a última alteração&gt;&gt;.'.</li>
+						</ul>
+					</ul>
+  	                <li>Seção 'Nota final':</li>
+  	                <ul>
+  	                    <li>Pesos:</li>
+  	                    <ul>
+  	                         <li>Nenhum dos pesos poderá ser igual a 0.</li>
+  	                         <li>Os valores default são:</li>
+  	                            <ul>
+  	                             <li>Para ciclos menores que 3 anos:</li>
+  	                                <ul>
+  	                                   <li>30% para 'Nota da análise econômico financeira' e 70% 'Nota da análise de riscos e controles'.</li>
+  	                                </ul>    
+  	                             <li>Para os demais ciclos:
+  	                                <ul>
+  	                                   <li>50% para 'Nota da análise econômico financeira' e 50% 'Nota da análise de riscos e controles'.</li>
+  	                                </ul>    
+                             </ul>
+  	                    </ul>
+  	                	<li>Coluna 'Nota calculada':</li>
+  	                	<ul>
+	  	   	 	        	<li>É a média ponderada das notas para  'Análise econômico financeira' e 'Análise de riscos e controles'.</li>
+	  	   	 	        	<ul>
+	  	   	 	        	     <li>Caso a nota seja 'ajustada' (incluindo ajuste do COREC anterior vigente), deve-se exibir a nota correspondente ao 'range superior' da faixa que corresponde a nota.</li> 
+	  	   	 	        	</ul>
+	  	   	 	        	<li><b>Observações:</b></li>
+	  	   	 	        	<ul>
+  		   	 	        		<li>Seu valor é '*A' quando os componentes de sua nota ('Nota da análise econômico financeira' e 'Nota da análise de riscos e controles') tem nota '*A'.</li>
+  		   	 	        	    <li>Se um dos componentes do cálculo da nota ponderada ( 'Nota da análise econômico financeira' e 'Nota da análise de riscos e controles') tiver nota '*A', a nota calculada será igual a do componente que tiver valor, sem ponderação.</li>
+  		   	 	        	</ul>      
+  		   	 	        </ul>	
+  	                	<li>Coluna 'Nota refinada':</li>
+  	                	<ul>
+	  	   	 	        	<li>Deve ser cálculada conforme o 'Parâmetro nota' definido na metodologia utilizando a 'Nota calculada'.</li>
+  		   	 	        	<li>Caso não haja 'Nota calculada' seu valor será '*A'.</li>
+  		   	 	        </ul>
+  	                	<li>Coluna 'Nota ajustada':</li>
+  	                	<ul>
+	  	   	 	        	<li>Ao preencher, a justificativa é obrigatória.</li>
+	  	   	 	        	<li>Caso a 'Nota calculada' seja '*A', ao clicar no botão de 'Confirmar nova nota final e encaminhar para o gerente' irá receber uma mensagem de erro indicando que não poderá fazer o ajuste da nota, pois não há nota calculada.</li>  
+  		   	 	        </ul>
+  		   	 	   </ul>     
+  		   	 	   </ul>	
+                    <li>Ações:</li>
+                    <ul> 
+					<li>Ao clicar nos botões 'Salvar informações', o sistema deverá salvar o registro da seção e apagar o indicador de que o registro da seção está pendente da confirmação pelo gerente.</li>
+					<li>Os botões 'Confirmar novo [nome da seção] e encaminhar para o gerente' estarão habilitados quando:</li>
+
+					<ul><li>O registro da seção existir no banco de dados e não existir o indicador que o registro está pendente de confirmação pelo gerente</li></ul>
+					<li>Ao clicar nos botões 'Confirmar novo [nome da seção] e encaminhar para o gerente':</li>
+
+					<ul>
+						<li>O sistema não deve gerar um novo perfil de risco e nem tornar o registro da seção vigente. O sistema deverá marcar o indicador de que o registro da seção está pendente da confirmação pelo gerente.</li>
+						<li>Exibir a seguinte mensagem de sucesso: '[nome da seção] da ES encaminhado(a) para aprovação do gerente com sucesso.'</li>
+					</ul>
+					</ul>
+				</ul>
+			</ul>
+		</ul>
+
+		<blockquote><a href="gerenciardetalheses/indexNegocio.html">Cenários de teste de negócio</a></blockquote>
+	</body>
+	
+    <h2>
+         <a name="imprimirDossie" class="menu">Imprimir Dossiê</a>
+    </h2>
+        <ul>
+           <li>A impressão do dossiê é composta por:</li>
+               <ul>
+                   <li>Imprimir detalhes da ES.</li>
+                   <li><a href="../corec/index.html#impressaoMatrizEARC">Imprimir análise de riscos e controles e ARC considerando a nota do COREC</a>.</li>
+                   <li><a href="../analisequantitativa/index.html#imprimirAnaliseEconomicoFinanceiraDossie">Imprimir análise econômico-financeira no dossiê</a>.</li>
+                   <li><a href="../analisequantitativa/index.html#imprimirQuadroPosicaoFinanceiraDossie">Imprimir quadro da posição financeira no dossiê</a>.</li>
+                   <li>Imprimir ata do COREC.</li>
+               </ul>
+           <li>Impressão da ata do COREC:</li>
+              <ul>
+               <li>Caso o ciclo esteja nos estados 'Pós-Corec' ou 'Encerrado'.</li>
+                   <ul>
+                       <li>Se o ciclo possui uma ata anexada, incluí-la no dossiê.</li>
+                       <li>Senão, utilizando o parâmetro 'Ata corec', gerar pdf para incluir no dossiê.</li> 
+                   </ul>
+              </ul> 
+               
+        </ul>
+        <blockquote><a href="imprimirdossie/indexNegocio.html">Cenários de testes de negócio e manuais</a></blockquote>
+	
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+		
+			<div wicket:id="mensagemSucessoConclusaoARC" align="center">
+						       <li>
+								<label>
+									Análise do ARC concluída. ARC não publicado. Acesse e revise a <a wicket:id="linkPaginaGerenciarNotasSinteses">Síntese do Risco</a> para publicar este ARC no Perfil de Risco.
+								</label>
+						       </li>
+			</div>
+			<br/>
+	    
+			<table cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr>
+					<td><div align="center" wicket:id="consultaCicloPanel"></div></td>
+				</tr>
+			</table>
+					<br/>
+			<table id="tDadosARCsPendAnalise" cellpadding="0" cellspacing="0" style="width: 90%" wicket:id="tDadosARCsPendAnalise">
+                <tr style="width: 90%; margin: auto;">
+                    <td><div align="center" wicket:id="NovasEss" style="width: 100%; margin: auto;"></div></td>
+                </tr>
+            </table>
+            
+			<table id="tInclusaoCiclo" cellpadding="0" cellspacing="0" style="width: 90%">
+                <tr style="width: 90%; margin: auto;">
+                    <td><div align="center" wicket:id="consultaARCSupervisor" style="width: 100%; margin: auto;"></div></td>
+                </tr>
+            </table>
+            
+            <table id="tSintesesRiscoRevisao" cellpadding="0" cellspacing="0" style="width: 90%">
+                <tr style="width: 90%; margin: auto;">
+                    <td><div align="center" wicket:id="painelSintesesRiscoRevisao" style="width: 100%; margin: auto;"></div></td>
+                </tr>
+            </table>
+            
+            <table id="tConsultaAQTSupervisor" cellpadding="0" cellspacing="0" style="width: 90%">
+                <tr style="width: 90%; margin: auto;">
+                    <td><div align="center" wicket:id="consultaAQTSupervisor" style="width: 100%; margin: auto;"></div></td>
+                </tr>
+            </table>
+            
+            <table id="tSintesesAQTRevisao" cellpadding="0" cellspacing="0" style="width: 90%">
+                <tr style="width: 90%; margin: auto;">
+                    <td><div align="center" wicket:id="painelSintesesAQTRevisao" style="width: 100%; margin: auto;"></div></td>
+                </tr>
+            </table>
+		</form>
+	</wicket:extend>
+</body>
+</html>
+

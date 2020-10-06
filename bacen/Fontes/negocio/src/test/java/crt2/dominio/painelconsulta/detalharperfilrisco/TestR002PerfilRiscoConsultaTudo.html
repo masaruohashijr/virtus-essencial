@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R002 - Detalhar perfil de risco para o perfil 'Consulta tudo'</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Detalhar perfil de risco para o perfil 'Consulta tudo''</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>13/07/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Versão inicial</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#painelconsulta">aqui</a></blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+			<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+
+			<banco/>
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq106"</span></strong>.</li>
+			<li>Os dados encontram-se <a href="../painelconsulta/TestR001PainelConsultaTudo-DadoQue.html" class="include">aqui</a></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote>
+			Cenário para <a href="indexNegocio.html#perfilBloqueado">validar se pode ou não exibir o perfil de risco</a>
+			<br> <span style="color: red">Observação: Se a coluna "Mensagem" estiver vazia é porque não deve haver mensagem.</span>
+		</blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Verificar a mensagem a ser exibida no perfil de risco ao ser detalhado.</td></tr>
+
+						<tr><th style="width: 30%">Validação</th></tr>
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th>Entradas</th>
+										<th style="background-color: green" colspan="1">Saídas</th>
+									</tr>
+									<tr>
+										<th>Ciclo</th>
+										<th style="background-color: green">Mensagem?</th>
+									</tr>
+									<tr>
+										<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+										<td><span class="eq" value="$THIS.getMensagem(ciclo)" style="color: red">O perfil de risco acessado está bloqueado e tem consulta restrita.</span></td>
+									</tr>
+									<tr>
+										<td><span class="set" name="ciclo" converter="Integer">3</span></td>
+										<td><span class="eq" value="$THIS.getMensagem(ciclo)"></span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

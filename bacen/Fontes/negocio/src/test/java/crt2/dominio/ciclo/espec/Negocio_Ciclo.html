@@ -1,0 +1,190 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+</head>
+<body>
+	<h1>Validação de data de início e data de Corec</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Vide as <a href="RegrasGeraisCiclo.html" class="include">regras do tema</a>.
+	</blockquote>
+
+	<h2>Validações da estória...</h2>
+	<blockquote>Cenários onde a inclusão de Ciclo deve ser interrompida por erro.</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr class="scenario" >
+			<td class='title'>ES sem estar sob a responsabilidade do supervisor</td>
+			<td><banco />Os dados da ES e Servidores se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a>
+			</td>
+			<td class="sentence" method="salvar">Incluir a Entidade Supervisionavel "VOLKSWAGEN", Matricula "96186186"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>"ES não está sob responsabilidade do usuário."</li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario" >
+			<td class='title'>Supervisor titular fora de exercício</td>
+			<td><banco />Os dados da ES e Servidores se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a>
+			</td>
+			<td class="sentence" method="salvar"><b>OBS: se o sigas já consulta o siarh corretamente e apresenta o supervisor em exercício, então este teste é desnecessário</b></td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>"ES não está sob responsabilidade do usuário."</li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario" >
+			<td class='title'>Campos obrigatórios não informados</td>
+			<td><banco /></td>
+			<td class="sentence" method="salvar">Incluir a Entidade Supervisionável "", Data de início do ciclo "" e Data prevista do corec ""</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>"Campo Entidade Supervisionável é de preenchimento obrigatório".</li>
+					<li>"Campo Data de início do ciclo é de preenchimento obrigatório".</li>
+					<li>"Campo Data prevista do corec é de preenchimento obrigatório".</li>
+			    </ul>
+			</td>
+			</tr>
+	
+		
+	
+	<tr class="scenario" >
+			<td class='title'> Data de início do ciclo maior que a data corrente</td>
+			<td><banco /></td>
+			<td class="sentence" method="salvar">Incluir a Entidade Supervisionável "ABN AMRO", Data de início do ciclo "18/03/2014" e Data prevista do corec "17/03/2014"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>A data de início de ciclo deve ser menor ou igual à data corrente.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario" >
+			<td class='title'>Data prevista do corec menor que a data de início do ciclo.</td>
+			<td><banco /></td>
+			<td class="sentence" method="salvar">Incluir a Entidade Supervisionável "ABN AMRO", Data de início do ciclo "17/03/2014" e Data prevista do corec "16/03/2014"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>&quot;A data prevista do corec deve ser maior ou igual à data corrente.&quot;</li>
+				</ul>
+			</td>
+	<tr class="scenario" >
+			<td class='title'> Data prevista do corec maior que a data do início do ciclo e menor que a data corrente</td>
+			<td><banco /></td>
+			<td class="sentence" method="salvar">Incluir a Entidade Supervisionável "ABN AMRO", Data de início do ciclo "15/03/2014" e Data prevista do corec "16/03/2014"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>A data prevista do corec deve ser maior ou igual à data corrente.&quot;</li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario" >
+			<td class='title'>Metodologia não default e distinta daquela associada à ES</td>
+			<td><banco />Os dados da ES e Servidores se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+			Os dados da Metodologia se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a>
+			<td class="sentence" method="salvar">Incluir a Metodologia "Metodologia SRC versão 3" para a Entidade Supervisionável "VOTORANTIM"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>"Não é possível usar a metodologia selecionada para esta ES."</li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario" >
+			<td class='title'>Metodologia default e distinta daquela associada à ES</td>
+			<td><banco />Os dados da ES e Servidores se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+			Os dados da Metodologia se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a>
+			<td class="sentence" method="salvar">Incluir a Metodologia "Metodologia SRC versão inicial e default" para a Entidade Supervisionável "VOTORANTIM"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>"Não é possível usar a metodologia selecionada para esta ES."</li>
+				</ul>
+			</td>
+		<tr class="scenario" >
+			<td class='title'>Inclusão de PT/PE</td>
+			<td><banco /></td>
+			<td class="sentence" method="salvar">Incluir  o número do PT/PE com  numero ${maisQueMaximoCodigo}</td>
+			<td><table class="verify dados">
+	<caption>CIC_CICLO_SRC</caption>
+	<tr>
+	    <th>Ação</th>
+	    <th>CIC_ID</th>
+	    <th>CIC_CD_ESTADO</th>
+	    <th>CIC_COD_PROC_TRAB</th>
+	    <th>CIC_DT_INICIO</th>
+	    <th>CIC_DT_PREV_COREC</th>
+	    <th>ENS_ID</th>
+	    <th>MAT_ID</th>
+	    <th>ESC_ID</th>
+	 </tr>
+	 <tr>
+	    <td>I</td>
+	    <td>1</td>
+	    <td>Em andamento</td>
+	    <td>1234567890</td>
+	    <td>17/03/2014</td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td>1</td>
+	</tr>
+	</table>
+	
+		<tr class="scenario" >
+			<td class='title'>Não inclusão de PT/PE</td>
+			<td><banco /></td>
+			<td class="sentence" method="salvar">Incluir  o número do PT/PE com  numero &quot;&quot;</td>
+			<td><table class="verify dados">
+		<caption>CIC_CICLO_SRC</caption>
+	<tr>
+	    <th>Ação</th>
+	    <th>CIC_ID</th>
+	    <th>CIC_CD_ESTADO</th>
+	    <th>CIC_COD_PROC_TRAB</th>
+	    <th>CIC_DT_INICIO</th>
+	    <th>CIC_DT_PREV_COREC</th>
+	    <th>ENS_ID</th>
+	    <th>MAT_ID</th>
+	    <th>ESC_ID</th>
+	 </tr>
+	 <tr>
+	    <td>I</td>
+	    <td>1</td>
+	    <td>Em andamento</td>
+	    <td>1234567890</td>
+	    <td>17/03/2014</td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td>1</td>
+	</tr>
+	</table>
+	<tr class="scenario" >
+			<td class='title'> Ciclo cadastrado no sistema em estado diferente de excluído</td>
+			<td><banco />Os dados da ES e Servidores se encontram<a href="../comum/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a></td>
+			<td class="sentence" method="salvar">Incluir a Data do início do ciclo com Data "18/03/2014"</td>
+			<td>A mensagem impeditiva será:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>A Data do início do ciclo deve ser menor ou igual à data de hoje.</li>
+				</ul>
+			</td>
+		</tr>
+</table>
+<h2>Validando a data de início do ciclo</h2>
+	<blockquote>Cenários onde a inclusão de Ciclo deve ser interrompida por erro.</blockquote>
+</body>
+</html>

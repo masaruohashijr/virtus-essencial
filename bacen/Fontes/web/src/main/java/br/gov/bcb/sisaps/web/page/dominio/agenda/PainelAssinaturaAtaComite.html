@@ -1,0 +1,40 @@
+<wicket:panel>
+	<table id="tDadosCicloResumido" cellspacing="0" cellpadding="3" style="width: 100%">
+		<thead>
+
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Assinatura da ata do comitê</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Ata</td>
+				<div wicket:id="wmcExibirAta">
+					<td style=""><a href="#" wicket:id="link" align="center" target="_blank"/> <a wicket:id="linkImprimirAta" target="_blank">Ata COREC</a></td>
+				</div>
+				<div wicket:id="wmcExibirAnexo">
+					<td style=""> <span  wicket:id="idTabelaAta"></span></td>
+				</div>			
+			</tr>
+
+			<wicket:enclosure child=idAssinatura>
+
+				<tr class="fundoPadraoAClaro3">
+					<td colspan="2"><input type="checkbox" wicket:id="idAssinatura" /> Eu li e concordo com os termos da ata.</td>
+				</tr>
+
+			</wicket:enclosure>
+
+
+			<wicket:enclosure child=idLblAssinatura>
+
+				<tr class="fundoPadraoAClaro3">
+					<td colspan="2"><label wicket:id="idLblAssinatura"></label></td>
+				</tr>
+
+			</wicket:enclosure>
+
+		</tbody>
+
+	</table>
+</wicket:panel>

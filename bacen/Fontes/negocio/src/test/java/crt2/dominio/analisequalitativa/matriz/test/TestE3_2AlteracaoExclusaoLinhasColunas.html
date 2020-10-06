@@ -1,0 +1,427 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Testando a alteração e exclusão de linhas na matriz de riscos e controles</title>
+		<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 3.2 - Edição de matriz (alteração e exclusão de linhas e colunas)</h1>
+
+		<span id="index"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<h2>Cenários de sucesso e falha  para a estória 3.2 - Edição de matriz (alteração e exclusão de linhas e colunas)</h2>
+		<blockquote>Cenários onde a alteração e/ou exclusão de linhas devem apresentar os resultados esperados em caso de sucesso ou ser interrompida por mensagens de erro/impedimento</blockquote>
+		<dataHoraAtual valor="25/04/2014 00:00:00">Data atual: 25/04/2014 00:00:00</dataHoraAtual>
+
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar unidade corporativa em matriz no estado 2 (Vigente).</td>
+
+				<td>
+					<banco/>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarUnidade">Peso "a", Fator de relevância "1,0" <arg value="1"/></span><br><br>
+				</td>
+
+				<td>A mensagem impeditiva será:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Não é possível a edição de uma matriz no estado vigente.</li>
+			    	</ul>
+				</td>
+			</tr>
+				
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade corporativa em matriz no estado 2 (Vigente).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade">Nome da atividade "Atividade corporativa X", Peso "a" <arg value="1"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Não é possível a edição de uma matriz no estado vigente.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar unidade de negócio em matriz no estado 2 (Vigente). </td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarUnidade">Nome da unidade "Unidade de negócio X", Peso "a" <arg value="2"/></span><br><br>
+				</td>
+
+				<td>A mensagem impeditiva será:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Não é possível a edição de uma matriz no estado vigente.</li>
+			    	</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade de negócio em matriz no estado 2 (Vigente).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade">Nome da atividade "Atividade de negócio X", Peso "a" <arg value="2"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Não é possível a edição de uma matriz no estado vigente.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar unidade corporativa sem informar peso da unidade e sem informar o fator de relevância em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarUnidade">Peso "" <arg value=""/>, Fator de relevância " " <arg value=""/>   <arg value="3"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Peso da unidade" é de preenchimento obrigatório.</li>
+						<li>Campo "Fator de relevância" é de preenchimento obrigatório.</li>
+					</ul>
+				</td>
+			</tr>
+
+
+
+			<tr class="scenario">
+				<td class='title'>Alterar unidade corporativa informando o fator de relevância da unidade igual a zero em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarUnidade">Peso "a" <arg value="a"/>, Fator de relevância "0" <arg value="0"/> <arg value="3"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo Fator de relevância deve ser maior do que zero (0) e menor ou igual a um (1).</li>
+					</ul>
+				</td>
+			</tr>
+
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade corporativa sem informar peso da atividade em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade"> Peso ""  <arg value="Atividade corporativa"/> <arg value=" "/>  <arg value=" "/> <arg value="3"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Peso da atividade" é de preenchimento obrigatório.</li>
+						<li>Campo "Tipo de atividade" é de preenchimento obrigatório.</li> 
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade corporativa informando um nome de atividade corporativa já cadastrado em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade">Nome da atividade "Atividade corporativa" <arg value="Atividade corporativa"/> <arg value="1"/>  <arg value="Corporativa"/>  <arg value="5"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Unidade" é de preenchimento obrigatório.</li>
+						<li>Uma atividade de negócio não pode ser do tipo de atividade corporativo.</li>
+						<li>Não pode existir mais de uma atividade com o mesmo nome na matriz.</li>
+					</ul>
+				</td>
+			</tr>
+
+
+
+
+			<tr class="scenario">
+				<td class='title'>Alterar uma atividade corporativa sem grupo RC associado em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+						<span class="sentence" method="salvarAtividadeGrupoIncorreto">Grupo "" <arg value="3"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Grupo de risco e controle" é de preenchimento obrigatório.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar unidade de negócio sem informar nome da unidade em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarUnidadeNegocio">Nome da unidade " "  <arg value=" "/> Peso " "  <arg value=" "/> <arg value="3"/> </span><br><br>
+				</td>
+
+				<td>A mensagem impeditiva será:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Nome da unidade" é de preenchimento obrigatório.</li>
+						<li>Campo "Peso da unidade" é de preenchimento obrigatório.</li>
+			    	</ul>
+				</td>
+			</tr>
+
+
+
+
+			<tr class="scenario">
+				<td class='title'>Alterar unidade de negócio informando um nome de unidade já cadastrado em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarUnidadeNegocio">Nome da unidade "Unidade de negócio" <arg value="Unidade de negócio"/> <arg value="1"/>   <arg value="3"/> </span><br><br>
+				</td>
+
+				<td>A mensagem impeditiva será:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Não pode existir mais de uma unidade com o mesmo nome na matriz.</li>
+			    	</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar uma atividade de negócio informando um nome de atividade corporativa já cadastrado em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade">Nome da atividade "Atividade corporativa" <arg value="Atividade corporativa"/> <arg value="1"/>  <arg value="Negócio"/>  <arg value="4"/></span><br><br>
+				</td>
+
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Não pode existir mais de uma atividade com o mesmo nome na matriz.</li>
+					</ul>
+				</td>
+			</tr>
+
+
+			<tr class="scenario">
+				<td class='title'>Alterar a atividade de negócio sem informar um grupo RC em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+				<banco />
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include"> aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include"> aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividadeGrupoIncorreto">Grupo "" <arg value="4"/></span><br><br>
+				</td>
+
+				<td>As mensagens impeditiva é:
+					<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Campo "Grupo de risco e controle" é de preenchimento obrigatório.</li>
+					</ul>
+				</td>
+			</tr>
+
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade de negócio associada a uma unidade sem informar unidade em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+					<banco/>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="unidadeAssociada">Unidade associada ""<arg value=""/>  <arg value="4"/></span><br><br>
+				</td>
+
+				<td>Atividade de negócio passa a ser independente
+					<ul>
+						<li>Os dados finais se encontram <a href="porfim/TestE3_2_alteracao_de_atividades_sem_informar_unidade_porfim.html" class="include">aqui</a></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade de negócio independente informando unidade em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+					<banco/>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="unidadeAssociada">Unidade associada "Unidade de negócio"<arg value="2"/>  <arg value="5"/></span><br><br>
+				</td>
+
+				<td>Atividade de negócio passa a ser associada a unidade informada
+					<ul>
+						<li>Os dados finais se encontram <a href="porfim/TestE3_2_alteracao_de_atividades_informando_outra_unidade_porfim.html" class="include">aqui</a></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade de negócio que possui um nome de atividade distinto do nome do tipo de atividade de negócio sem informar nome da atividade em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+					<banco/>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade">Nome da atividade "" <arg value=" "/> <arg value="1"/>  <arg value="Negócio"/>  <arg value="5"/></span><br><br>
+				</td>
+
+				<td>Usar como nome da atividade o nome do tipo da atividade de negócio
+					<ul>
+						<<li>Os dados finais se encontram <a href="porfim/TestE3_2_alteracao_de_atividades_sem_informar_nome_porfim.html" class="include">aqui</a></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Alterar atividade corporativa sem informar nome da atividade em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+					<banco/>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="salvarAtividade">Nome da atividade "" <arg value=" "/> <arg value="1"/>  <arg value="Corporativa"/>  <arg value="3"/></span><br><br>
+				</td>
+
+				<td>Usar como nome da atividade o nome do tipo da atividade de negócio
+					<ul>
+						<li>Os dados finais se encontram <a href="porfim/TestE3_2_alteracao_de_atividades_corporativa_sem_informar_nome_porfim.html" class="include">aqui</a></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>Excluir uma unidade de negócio com atividades de negócio associadas em matriz no estado 1 (Esboçada).</td>
+
+				<td>
+					<banco/>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo e das linhas da Matriz se encontram <a href="../../../comum/dadoque/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<span class="sentence" method="excluirUnidade" >Unidade de negócio com atividades<arg value="5"/> </span><br><br>
+				</td>
+
+				<td>As atividades de negócio associadas passam a ser atividades independentes
+					<ul>
+						<li>Os dados finais se encontram <a href="porfim/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_e_colunas_porfim.html" class="include">aqui</a></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

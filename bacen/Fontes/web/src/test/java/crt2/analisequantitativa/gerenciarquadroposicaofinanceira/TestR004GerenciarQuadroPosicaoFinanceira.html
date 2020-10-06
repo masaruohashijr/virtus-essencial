@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R004 - Gerenciar quadro da posição financeira</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Gerenciar quadro da posição financeira'</h1>
+
+
+    <h2>Histórico</h2>	
+	<table class="exemplos historico">
+      <tr>
+         <th>Versão</th>
+         <th>Data</th>
+         <th>Responsável</th>
+         <th>Descrição</th>
+      </tr>
+      <tr>
+         <td>1.0</td>
+         <td>12/08/2014</td>
+         <td>Adjamir Galvão</td>
+         <td>Versão Inicial</td>
+      </tr>
+        <tr>
+			<td>2.0</td>
+			<td>27/08/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+		</tr>
+	</table>
+
+   <span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da história clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#gerenciarQuadroPosicaoFinanceira">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+	    <banco />
+		<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+        <li>Os dados encontram-se <a  href="TestR002GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+	</ul>
+	
+	<h2>Cenários</h2>
+	    <blockquote> 
+	       Cenários para <a href="indexWeb.html#botaoConcluir">verificar se o botão para concluir novo quadro deve estar habilitado</a>.
+	    </blockquote> 
+
+<!-- ##### -->
+<!-- CT001 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th colspan="2">Cenário </th>
+		</tr>
+		<tr>
+			<td class='title' colspan="2"><b><a name="CT001">[CT001]</a></b> - Ativo e passivo são iguais.</td>
+		</tr>
+		<tr>
+			<th colspan="2">Executar</th>
+		</tr>
+		<tr>
+			<td>Logar</td>
+			<td>O usuário <sisliq101>deliq_sisliq101</sisliq101> faz o login.</td>
+		</tr>	
+		<tr>
+			<td>Acessar</td>
+			<td>O usuário acessa o menu <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span>.</td>
+		</tr>	
+		<tr>
+			<td>Clicar</td>
+			<td>O usuário clica na entidade supervisionável <span class="clickon" by="id:link_ES1">'ABN AMRO'</span>.</td>
+		</tr>	
+		<tr>
+			<td>Clicar</td>
+			<td>O usuário clica no botão '<span class="clickon" by="id:bttGerenciarQuadroPosicaoFinanceira">Gerenciar quadro da posição financeira</span>'.</td>
+		</tr>	
+		<tr>
+		   <td>Verificar</td>
+		   <td>O botão <input class="present enabled" by="id:bttConcluir" type="button" value="Concluir novo quadro da posição financeira e atualizar Perfil de Risco" /> está habilidado</td>  
+		</tr>
+</tbody>
+</table>
+<br/>
+
+<!-- ##### -->
+<!-- CT002 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th colspan="2">Cenário </th>
+		</tr>
+		<tr>
+			<td class='title' colspan="2"><b><a name="CT002">[CT002]</a></b> - Ativo e passivo não são iguais (continuação do cenário anterior)</td>
+		</tr>
+		<tr>
+			<th colspan="2">Executar</th>
+		</tr>
+		<tr>
+			<td>Clicar</td>
+			<td>O usuário clica na conta <span class="clickon" by="id:idContaLayout3" sleep="2000">'Disponibilidades'</span>.</td>
+		</tr>
+		<tr>
+			<td>Digitar</td>
+			<td>O usuário digita o valor <span class="type" by="id:inputContaLayout3" sleep="2000" >100</span> nos ajustes de 'Disponibilidades'.</td>
+		</tr>	
+		<tr>
+		   <td>Verificar</td>
+		   <td>O botão <input class="present disabled" by="id:bttConcluir" type="button" sleep="2000" value="Concluir novo quadro da posição financeira e atualizar Perfil de Risco" /> está desabilidado</td>  
+		</tr>
+  </tbody>                                             
+</table>
+<br>
+
+<!-- ##### -->
+<!-- CT003 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th colspan="2">Cenário </th>
+		</tr>
+		<tr>
+			<td class='title' colspan="2"><b><a name="CT003">[CT003]</a></b> - Ativo e passivo voltam a ser iguais (continuação do cenário anterior)</td>
+		</tr>
+		<tr>
+			<th colspan="2">Executar</th>
+		</tr>
+		<tr>
+			<td>Clicar</td>
+			<td>O usuário clica na conta <span class="clickon" by="id:idContaLayout45" sleep="2000" >'IHCD'</span>.</td>
+		</tr>
+		<tr>
+			<td>Digitar</td>
+			<td>O usuário digita o valor <span class="type" by="id:inputContaLayout45"  >99</span> nos ajustes de 'IHCD'.</td>
+		</tr>	
+		<tr>
+		   <td>Verificar</td>
+		   <td>O botão <input class="present disabled" by="id:bttConcluir" type="button"   value="Concluir novo quadro da posição financeira e atualizar Perfil de Risco" /> está desabilidado</td>  
+		</tr>
+		<tr>
+			<td>Clicar</td>
+			<td>O usuário clica na conta <span class="clickon" by="id:idContaLayout46" sleep="2000">'Dívidas Subordinadas'</span>.</td>
+		</tr>
+		<tr>
+			<td>Digitar</td>
+			<td>O usuário digita o valor <span class="type" by="id:inputContaLayout46" sleep="2000"  >1</span> nos ajustes de 'Dívidas Subordinadas'.</td>
+		</tr>	
+		<tr>
+		   <td>Verificar</td>
+		   <td>O botão <input class="present enabled" by="id:bttConcluir" type="button"   value="Concluir novo quadro da posição financeira e atualizar Perfil de Risco" /> está habilidado</td>  
+		</tr>
+</tbody>
+</table>       
+<br>
+
+</body>
+</html>

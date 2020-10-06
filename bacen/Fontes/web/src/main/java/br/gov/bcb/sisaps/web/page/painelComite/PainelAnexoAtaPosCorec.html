@@ -1,0 +1,57 @@
+<wicket:panel>
+
+	<table cellpadding="1" cellspacing="0" style="border: 1px solid #ffffff; width: 100%">
+		<thead>
+            <tr class="fundoPadraoAEscuro3">
+                <th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Ata</th>
+            </tr>
+        </thead>
+        <tbody wicket:id="idEdicaoAta" style="background-color: #f2f4f6;">
+        	<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+			<tr>
+				<td style="width: 25%"></td>
+				<th style="text-align: right; width: 15%; border-bottom:1px solid white; background-color: #93abc5; font-weight: bold;">Anexo</th>
+				<td style="padding:0 5px; text-align: left; width: 30%;"><input  type="file" wicket:id="idFieldUploadAnexoAta" /></td>
+				<td style="padding:0 5px; width: 10%;"><input type="submit" class="botao" style="width: 70px" wicket:id="botaoAnexarAquivoAta"
+					 value="Anexar"></td>
+				<td style="width: 25%"></td>
+			</tr>
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+		</tbody>
+		<tbody wicket:id="idListaAta" style="background-color: #f2f4f6;">
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+			<tr>
+				<td style="width: 25%"></td>
+				<th style="text-align: right; width: 15%; border-bottom:1px solid white; background-color: #93abc5; font-weight: bold;">Anexo</th>
+				<td style="padding:0 5px; text-align: left; width: 30%;"><div class="centralizado" wicket:id="idTabelaAnexoAta" ></div></td>
+				<td style="padding:0 5px; width: 10%;"><input type="submit" class="botao" style="width: 70px"
+					wicket:id="bttExcluirAnexoAta" value="Excluir"></td>
+				<td style="width: 25%"></td>
+			</tr>
+			<tr>
+        		<td colspan="5">&nbsp;</td>
+        	</tr>
+		</tbody>
+		
+		<tr class="fundoPadraoAClaro3">
+			
+		
+
+		<div wicket:id="wmcExibirAta">
+			<td style="" colspan="5"><a wicket:id="linkImprimirAta" target="_blank">Ata COREC</a></td>
+		</div>
+		<div wicket:id="wmcExibirAnexo">
+			<td style="" ><span wicket:id="idTabelaAta"></span></td>
+		</div>
+		
+		</tr>
+
+	</table>
+
+</wicket:panel>

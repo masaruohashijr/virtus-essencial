@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Salvar informações da síntese</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Salvar informações da síntese.</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>21/01/2015</td>
+			<td>Cleonides Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#salvarSintese">aqui</a>
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+		<banco />
+		<li>Os dados encontram-se <a
+			href="../../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/salvarsintese/TestR001Salvar_Sintese_Listar_dadoque.html"
+			class="include">aqui</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários de <a href="indexNegocio.html#validarCampoMsgSucesso">validar campo obrigatório e mensagem de sucesso</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th colspan="2">Cenário</th>
+						</tr>
+						<tr>
+							<td class='title' colspan="2"><b><a name="CT001">[CT001]</a></b> - Validando a mensagem de retorno ao salvar
+								a síntese.</td>
+						</tr>
+						<tr>
+							<th colspan="2">Ação/Validação</th>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<ul>
+
+									<table>
+										<tr>
+											<th style="width: 205px">Entradas</th>
+											<th style="width: 364px; background-color: green">Saída</th>
+										</tr>
+									</table>
+									<table class="column">
+
+										<tr>
+											<th>Síntese</th>
+											<th>Texto Sintese</th>
+											<th style="background-color: green">Mensagem esperada ao salvar?</th>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td></td>
+											<td>Campo Nova síntese é de preenchimento obrigatório.</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Justificativa capital</td>
+											<td>Síntese salva com sucesso.</td>
+										</tr>
+									</table>
+								</ul>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+</body>
+</html>

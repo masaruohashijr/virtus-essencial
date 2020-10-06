@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+		
+			<div align="center" wicket:id="wmcExibirMensagem">
+				<li><label wicket:id="lblMsgInicial"></label><a href="#" wicket:id="linkPaginaGerenciarNotasSinteses"></a><label wicket:id="lblMsgFinal"></label></li>
+			</div>
+			<br />
+			
+			<table id="tPainelResumoCicloAqt" cellpadding="0" cellspacing="0" style="width: 90%">
+					<tr style="width: 100%; margin: auto;">
+						<div align="center" wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></div>
+					</tr>
+			</table>
+			
+			<table id="tPainelResumoElementoAqt" cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr style="width: 100%; margin: auto;">
+					<div wicket:id="idPainelResumoAqt"></div>
+				</tr>
+			</table>
+			
+			<table id="tPainelResumoElementoAnef" cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr style="width: 100%; margin: auto;">
+					<div wicket:id="idPainelResumoElementosAnef"></div>
+				</tr>
+			</table>
+			
+			
+			<table id="tPainelAcoes" cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr style="width: 100%; margin: auto;">
+					<wicket:container wicket:id="painelAcoesAnef"></wicket:container>
+				</tr>
+			</table>
+			
+			<br>
+			
+			<table id="tPainelNotasElementoAnef" cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr style="width: 100%; margin: auto;">
+					<div wicket:id="idPainelNotasElementosAnef"></div>
+				</tr>
+			</table>
+			
+			<table id="idPainelElementosAnefs" cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr style="width: 100%; margin: auto;">
+					<div wicket:id="idPainelElementosAnefs"></div>
+				</tr>
+			</table>
+			
+		<br>
+		<div align="center" wicket:id="painelAnexosAnef" style="width: 100%; margin: auto;"></div>
+		<br>
+		<div align="center">
+			<input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" style="visibility: visible;" 
+			     title="Voltar para a p&aacute;gina anterior" value="Voltar">
+			<br>
+			<input name="bttVoltarSemSalvar" type="button" class="botao" id="bttVoltarSemSalvar" 
+			     style="visibility: hidden; width: 120px; background-color: red; color: white;"
+			     wicket:id="bttVoltarSemSalvar" title="Voltar para a p&aacute;gina anterior" value="Voltar sem salvar">
+		</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+			<div align="center">
+
+				<div wicket:id="filtroPerfilRiscoPanel" style="width: 90%; margin: auto;"></div>
+				<br />
+				<div  wicket:id="idPainelMenuLink">
+					
+				</div>
+				<br>
+				<div wicket:id="mensagemSucessoConclusaoARC">
+					<ul>
+						<li><label> Análise do ARC concluída. ARC não publicado. Acesse e revise a <a
+								wicket:id="linkPaginaGerenciarNotasSinteses">Síntese do Risco</a> para publicar este ARC no Perfil de Risco.
+						</label></li>
+					</ul>
+					<br />
+				</div>
+				<div align="center">
+					<b><span wicket:id="perfilBloqueado">O perfil de risco acessado está bloqueado e tem consulta restrita.</span></b>
+				</div>
+				<br />
+
+				<div wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></div>
+				<div wicket:id="detalhesESPanel" style="width: 100%; margin: auto;"></div>
+
+				<br /> <input type="submit" class="botao" wicket:id="bttGerenciarDetalheES" id="bttGerenciarDetalheES"
+					value="Gerenciar detalhes da ES" style="width: 180px">&nbsp; <input type="submit" class="botao"
+					wicket:id="bttBloquearDesbloquearES" id="bttBloquearDesbloquearES" value="" style=""> <br /> <br />
+				<table cellspacing="0" cellpadding="3" style="width: 90%" wicket:id="tTituloMatriz">
+					<thead>
+						<tr class="fundoPadraoAEscuro2">
+							<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Análise de riscos e controles</th>
+						</tr>
+					</thead>
+				</table>
+				<table id="tPainelMatrizVigente" cellpadding="0" cellspacing="0" style="width: 90%">
+					<tr style="width: 100%; margin: auto;">
+						<td><div wicket:id="matrizVigentePanel"></div></td>
+					</tr>
+				</table>
+
+				<div wicket:id="grupoDeSinteses" style="width: 100%; margin: auto;"></div>
+
+
+				<br> <input type="submit" class="botao" wicket:id="bttGerenciarNotasSinteses" id="bttGerenciarNotasSinteses"
+					value="Gerenciar sínteses" style="width: 130px">&nbsp; <input type="submit" class="botao"
+					wicket:id="bttGerenciarArcs" id="bttGerenciarArcs" value="Gerenciar ARCs" style="width: 120px">&nbsp; <input
+					type="submit" class="botao" wicket:id="bttEditarMatriz" id="bttEditarMatriz" value="Editar estrutura da matriz"
+					style="width: 180px">&nbsp; <input type="submit" class="botao" wicket:id="bttAjusteNotaFinal"
+					id="bttAjusteNotaFinal" value="Ajustar nota final" style="width: 120px"> <br> <br> <br>
+
+				<table id="tAnaliseEconomicoFinanceira" cellspacing="0" cellpadding="3" style="width: 90%">
+					<thead>
+						<tr class="fundoPadraoAEscuro2">
+							<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Análise econômico-financeira</th>
+						</tr>
+					</thead>
+				</table>
+
+				<div wicket:id="grupoDeResumoSintesesAQT" style="width: 90%; margin: auto;"></div>
+				<div wicket:id="grupoDeSintesesAQT" style="width: 90%; margin: auto;"></div>
+				<br> <input type="submit" class="botao" wicket:id="bttGerenciarAEF" id="bttGerenciarAEF"
+					value="Gerenciar análise econômico-financeira" style="width: 240px">&nbsp; <br> <br>
+
+
+				<table wicket:id="tPainelQuantitativa" cellpadding="0" cellspacing="0" style="width: 90%">
+					<tbody>
+						<tr class="fundoPadraoAEscuro2">
+							<th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;">Quadro da posição financeira</th>
+						</tr>
+						<wicket:enclosure child="analiseQuantitativaPanel">
+							<tr class="fundoPadraoAEscuro3">
+								<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Quadro</th>
+							</tr>
+							<tr style="width: 100%; margin: auto;">
+								<td><span wicket:id="analiseQuantitativaPanel"></span></td>
+							</tr>
+						</wicket:enclosure>
+					</tbody>
+				</table>
+
+				<div>
+					<br> <input type="submit" class="botao" wicket:id="bttGerenciarQuadroPosicaoFinanceira"
+						id="bttGerenciarQuadroPosicaoFinanceira" value="Gerenciar quadro da posição financeira" style="width: 240px">&nbsp;</input>
+					<br>
+					<br>
+				</div>
+
+
+				<div wicket:id="atividadesCicloPanel" style="width: 100%; margin: auto;"></div>
+
+
+				<div wicket:id="informacoesCicloMigradoPanel" style="width: 100%; margin: auto;"></div>
+
+				<div wicket:id="idPainelAnexos" style="width: 100%; margin: auto;"></div>
+
+				<div wicket:id="idPainelCorec" style="width: 100%; margin: auto;"></div>
+						<br> <input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar"
+							title="Voltar para a p&aacute;gina anterior" value="Voltar">&nbsp; <br> <br>
+					
+					
+   <br>
+         
+          <br> <br> <br> <br> <br> <br>
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>
+

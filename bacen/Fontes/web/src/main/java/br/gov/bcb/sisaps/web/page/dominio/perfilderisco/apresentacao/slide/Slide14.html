@@ -1,0 +1,16 @@
+<wicket:panel>
+	<wicket:extend>
+		<div class="slide bloco_topico">
+			<div class="titulo">Nota calculada: <span wicket:id="idNotaCalculada"></span></div>
+			<div class="titulo">Nota refinada: <span wicket:id="idNotaRefinada"></span></div>
+			<wicket:enclosure child=idNotaAjustada>
+				<div class="titulo">Nota ajustada: <span wicket:id="idNotaAjustada"></span></div>
+			</wicket:enclosure>
+		</div>
+		<div class="slide bloco_topico" wicket:id="idListaSintesesAQT">
+			<div class="titulo"><span wicket:id="idNome"></span> (<span wicket:id="idPeso"></span>%)</div>
+			<div class="titulo">Nota <span wicket:id="idNota"></span></div>
+			<div class="conteudo" wicket:id="idJustificativa"></div>
+		</div>
+	</wicket:extend>
+</wicket:panel>

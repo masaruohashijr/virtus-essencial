@@ -1,0 +1,2084 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Análise quantitativa</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Análise quantitativa</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+
+ <h2>       
+     <a name="GloAnaliseEconomicoFinanceira" class="menu">Glossário</a>
+ </h2>
+  <blockquote>
+       O glossário encontram-se <a href="GLO_Glossario.html">aqui.</a>
+</blockquote>
+
+ <h2>       
+     <a name="analiseEconomicoFinanceira" class="menu">Análise economico-financeira</a>
+ </h2>
+
+ 	<h3>
+	     <a name="listarAnaliseEconomicoFinanceira" class="menu">Listar análise econômico-financeira</a>
+	</h3>
+        <ul>
+           <li>Regras gerais:</li>
+               <ul>
+                   <li>As regras de acesso e substituição definas na 'Gestão de perfil de acesso' devem ser consideradas.</li>
+                   <li>Todas as listagem de ANEFs devem ser exibidas conforme a ordenação definida na metodologia.</li>
+                   <li>Se nenhum registro for encontrado será exibida a mensagem '<span class="set" name="msgErroListarAQT">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</span>'</li>
+               </ul>
+        </ul>
+ 
+ 	<h4>
+	     <a name="listarAnaliseEconomicoFinanceiraSupervisor" class="menu">Listar análise econômico-financeira para supervisor</a>
+	</h4>
+
+    <h5>
+        <a name="listarAQTAnaliseSupervisor" class="menu">Listar ANEFs para análise no painel do supervisor</a>
+    </h5>
+      <ul>
+  	   	 <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/Painel/painel_supervisor.html">protótipo</a>.</li>
+  	   	 <li>Observar as regras definidas em <a href="#listarAnaliseEconomicoFinanceira">listar análise econômico-financeira</a>.</li>
+  	   	 <li>Deverão ser listados os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> da equipe do supervisor da ES nos seguintes estados: 'Preenchido', 'Em análise' e 'Análise delegada'.</li>
+  	   	 <li>Ao clicar no link da coluna 'Estado', deverá ir para a tela definida em <a href="#navegarAnaliseEconomicoFinanceiraSupervisor">navegar análise econômico-financeira para supervisor</a>.</li>
+      </ul>
+
+      <blockquote>
+		  <a href="listaraqtanalise/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/listaraqtanalise/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+
+    <h5>
+       <a name="listarSinteseAQTRevisaoSupervisor" class="menu">Listar ANEFs aguardando revisão no painel do supervisor</a>
+	</h5>
+      <ul>
+  	   	 <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/Painel/painel_supervisor.html">protótipo</a>.</li>
+  	   	 <li>Observar as regras definidas em <a href="#listarAnaliseEconomicoFinanceira">listar análise econômico-financeira</a>.</li>
+  	   	 <li>Deverão ser listados os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> da equipe do supervisor da ES nos seguintes estados: 'Analisado'.</li>
+  	   	 <li>Ao clicar no link da coluna 'Síntese', deverá ir para a tela definida em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>, devendo colocar o foco na respectiva síntese.</li>
+      </ul>
+
+      <blockquote>
+		  <a href="listaraqtsintese/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/listaraqtsintese/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+
+ 	<h4>
+	     <a name="listarAnaliseEconomicoFinanceiraInspetor" class="menu">Listar análise econômico-financeira para inspetor</a>
+	</h4>
+
+
+    <h5>
+        <a name="listarAQTDesignadoInspetor" class="menu">Listar ANEFs designados no painel do inspetor</a>
+    </h5>
+      <ul>
+  	   	 <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Inspetor/Painel/painel_inspetor.html">protótipo</a>.</li>
+  	   	 <li>Observar as regras definidas em <a href="#listarAnaliseEconomicoFinanceira">listar análise econômico-financeira</a>.</li>
+  	   	 <li>Deverão ser listados os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> vinculados ao ciclos no estado 'Em andamento' nos seguintes estados: 'Designado' e 'Em edição', cujo responsável seja o usuário logado.</li>
+  	   	 <li>Ao clicar no link da coluna 'Estado', deverá ir para a tela definida em <a href="#navegarAnaliseEconomicoFinanceiraInspetor">navegar análise econômico-financeira para inspetor</a>.</li>
+      </ul>
+
+      <blockquote>
+		  <a href="listaraqtdesignado/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/listaraqtdesignado/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+  
+    <h5>
+        <a name="listarAQTDelegadoInspetor" class="menu">Listar ANEFs delegados no painel do inspetor</a>
+    </h5>
+      <ul>
+  	   	 <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Inspetor/Painel/painel_inspetor.html">protótipo</a>.</li>
+  	   	 <li>Observar as regras definidas em <a href="#listarAnaliseEconomicoFinanceira">listar análise econômico-financeira</a>.</li>
+  	   	 <li>Deverão ser listados os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> vinculados nos seguintes estados: 'Análise delegada' e 'Em análise', cujo responsável seja o usuário logado.</li>
+  	   	 <li>Ao clicar no link da coluna 'Estado', deverá ir para a tela definida para a tela definida em <a href="#navegarAnaliseEconomicoFinanceiraInspetor">navegar análise econômico-financeira para inspetor</a>.</li>
+      </ul>
+
+      <blockquote>
+		  <a href="listaraqtdelegado/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/listaraqtdelegado/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+ 
+ 	<h3>
+ 	    <a name="navegarAnaliseEconomicoFinanceira" class="menu">Navegar análise economico-financeira</a>
+ 	</h3>
+      <blockquote> 
+          Nesta sessão é definida para qual tela o sistema deverá navegar quando o usuário clicar no link associado ao ANEF. Os ANEFs são exibidos com links em
+           <a href="#listarAnaliseEconomicoFinanceira">listar análise econômico-financeira</a>, <a href="#detalharAnaliseEconomicoFinanceira">detalhar análise econômico-financeira</a> e <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.  
+              
+      </blockquote>
+ 	
+ 	<h4>    
+	    <a name="navegarAnaliseEconomicoFinanceiraInspetor" class="menu">Navegar análise economico-financeira para inspetor</a>
+    </h4>	  
+        <ul>  
+            <li>Para o perfil de risco vigente, do ciclo atual com estado 'Em andamento': </li>
+                <ul>
+                    <li>ANEFs cujos <a href="GLO_Glossario.html#glo_ANEFRascunho">rascunhos</a> atendem as regras definidas em <a href="#listarAQTDesignadoInspetor">listar ANEFs designados no painel do inspetor</a>:</li>
+                       <ul>
+                          <li>Ir para a tela definida em <a href="#editarANEF">editar ANEF</a>.</li>
+                       </ul>   
+                    <li>ANEFs cujos <a href="GLO_Glossario.html#glo_ANEFRascunho">rascunhos</a> atendem as regras definidas em <a href="#listarAQTDelegadoInspetor">listar ANEFs delegados no painel do inspetor</a>:</li>
+                       <ul>
+                          <li>Ir para a tela definida em <a href="#analisarANEF">analisar ANEF</a>.</li>
+                       </ul>   
+                    <li>Demais casos:</li>                       
+                        <ul>
+                          <li>Se houver <a href="GLO_Glossario.html#glo_NotaANEF">nota</a> diferente de '*A', ir para a tela definida em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+                        </ul>  
+                </ul>
+            </li>
+            <li>Para os demais casos:
+                <ul>
+                    <li>Se houver <a href="GLO_Glossario.html#glo_NotaANEF">nota</a> diferente de '*A', ir para a tela definada em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+                </ul>
+            </li>
+         </ul>
+         
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtinspetor/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+         
+    <h4>
+	    <a name="navegarAnaliseEconomicoFinanceiraSupervisor" class="menu">Navegar análise economico-financeira para supervisor</a>
+    </h4>
+       <ul>
+            <li>Para o perfil de risco vigente, do ciclo atual com estado 'Em andamento': </li>
+                <ul>
+                   <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> correspondente seja 'Preenchido'; 'Analise delegada' e haja delegação para o ANEF para o próprio usuário ou; 'Em análise' e não haja delegação para o ANEF para outro usuário.</li>
+                       <ul>
+                           <li>Ir para a tela definida em <a href="#analisarANEF">analisar ANEF</a>.</li>
+                       </ul>
+                   <li>Demais casos:</li>
+                       <ul>   
+                            <li>Ir para a tela definida em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+                       </ul> 
+                </ul>
+            </li>
+            <li>Para os demais casos:
+                <ul>
+                    <li>Se houver <a href="GLO_Glossario.html#glo_NotaANEF">nota</a> diferente de '*A', ir para a tela definada em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+                </ul>
+            </li>
+       </ul>
+    
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtsupervisor/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtsupervisor/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+    <h4>	    
+	    <a name="navegarAnaliseEconomicoFinanceiraGerente" class="menu">Navegar análise economico-financeira para gerente</a>
+    </h4> 	    
+       <ul>
+            <li>Para os perfis de risco vigente:
+                <ul>
+                    <li>Ir para a tela definada em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+                </ul>
+            </li>
+            <li>Para os perfis anteriores:
+                <ul>
+                    <li>Se houver <a href="GLO_Glossario.html#glo_NotaANEF">nota</a> diferente de '*A', ir para a tela definada em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+                </ul>
+            </li>
+       </ul>
+ 
+       <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtgerente/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+ 
+    
+    <h4>	    
+	    <a name="navegarAnaliseEconomicoFinanceiraConsulta" class="menu">Navegar análise economico-financeira para consulta</a>
+    </h4> 	    
+       <ul>
+            <li>Para os perfis de risco vigente e anteriores:
+                <ul>
+                    <li>Se houver <a href="GLO_Glossario.html#glo_NotaANEF">nota</a> diferente de '*A', ir para a tela definada em <a href="#consultarAQT">consultar ANEF</a>.</li>
+                </ul>
+            </li>
+       </ul>
+ 
+       <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtconsulta/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/navegaraqtconsulta/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+ 
+ 	<h3>
+	     <a name="detalharAnaliseEconomicoFinanceira" class="menu">Detalhar análise econômico-financeira no perfil de risco</a>
+	</h3>
+      <ul>
+  	   	 <li>Utilizar <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">este protótipo</a> e <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_vazio.html"> este outro protótipo</a>.</li>
+         <li>Deverá ser exibida a análise obtida na <a href="#gerenciarAnaliseEconomicoFinanceira">gestão da análise econômico-financeira</a> para o perfil de risco selecionado. Isto é, deve-se utilizar os ANEFs versionados naquele momento.</li>
+         <li>As <a href="GLO_Glossario.html#glo_NotaANEF">notas dos ANEFs</a> devem ser exibidas com as cores definidas no 'Parâmetro nota' da metodologia utilizando a sua 'Nota final'.</li>
+       	 <li>Seção 'Resumo':</li>
+           <ul>
+               <li><a name="calculoNotaCalculadaAnaliseEconomica">Coluna 'Nota calculada':</li>
+                   <ul>
+                      <li>Corresponde a <a href="http://pt.wikipedia.org/wiki/M%C3%A9dia_aritm%C3%A9tica#Tipos_de_m.C3.A9dia_aritm.C3.A9tica">média aritmética ponderada</a> dos ANEFs com <a href="GLO_Glossario.html#glo_NotaANEF">notas</a> diferentes de '*A' e seus respectivos pesos <b>do perfil de risco</b>.</li>
+                      <li>Caso não haja nenhum ANEF com <a href="GLO_Glossario.html#glo_NotaANEF">nota</a> diferente de '*A', seu valor será '*A'.</li>
+                   </ul>
+                <li><a name="calculoNotaRefinadaAnaliseEconomica">Coluna 'Nota refinada':</a></li>
+  	   	           <ul>
+       	   	          <li>Deve ser cálculada conforme o 'Parâmetro nota' definido na metodologia utilizando a 'Nota calculada'.</li>
+                      <li>Caso não haja 'Nota calculada' seu valor será '*A'.</li>
+       	   	       </ul>
+               <li>Coluna 'Nota ajustada':</li>
+               <ul>
+       		      <li>Valor: </li>
+       		          <ul>
+       		              <li>Caso o estado do ciclo seja 'Corec' e o usuário logado não for supervisor ou gerente; ou o estado do ciclo for 'Em andamento'</li>
+       		                  <ul>
+       		                      <li>Utilizar a 'Nota ajustada' do supervisor. Caso não tenha sido fornecida, utilizar a nota ajustada fornecida pelo comitê no ciclo <b>anterior</b>.</li>
+       		                  </ul>
+       		              <li>Senão:</li>     
+       		                  <ul>
+       		                      <li>Utilizar a nota ajustada fornecida pelo comitê no ciclo <b>atual</b>. Caso não tenha sido fornecida, utilizar a 'Nota ajustada' do supervisor. Caso não tenha sido fornecida, utilizar a nota ajustada fornecida pelo comitê no <b>anterior</b>.</li>
+       		                  </ul> 
+       		          </ul>
+       		      <li>Caso não haja 'Nota ajustada' ou ela seja nula todo o campo deve ser omitido, inclusive o nome da coluna.</li>
+       		      <li>Caso seja utilizado a 'Nota ajustada' do comitê (anterior ou atual) deve-se exibir a palavra "(Corec)" suprimindo a justificativa, inclusive o botão "(+)"</li>
+       		   </ul>   
+           </ul>		
+       	 <li>Seção 'Componentes':</li>
+           <ul>
+               <li>Exibição de link nas notas e navegação dos ANEFs:</li>
+                  <ul>
+        	           <li>Deverá exibir link e navegar se houver tela definida em <a href="#navegarAnaliseEconomicoFinanceira">navegar análise econômico-financeira</a>.</li>
+        	      </ul>     
+           </ul>
+        <li>Botão 'Gerenciar análise econômico-financeira': </li>
+           <ul>
+               <li>Só está disponível no perfil de risco vigente, do ciclo atual com estado 'Em andamento' para o perfil de 'Supervisor'.</li>
+               <li>Ao clicar no botão o sistema irá para a tela definida em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.</li>
+           </ul>   
+      </ul>
+
+      <blockquote>
+		  <a href="detalharanaliseeconomicofinanceira/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/detalharanaliseeconomicofinanceira/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+ 
+	<h3>
+       <a name="gerenciarAnaliseEconomicoFinanceira" class="menu">Gerenciar análise econômico-financeira</a>
+    </h3>   
+	     <ul>
+  	   	    <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoAnaliseEconomicoFinanceira/gestao_analise_economico_financeira.html">protótipo</a>.</li>
+  	   	    <li>Permissão:</li>
+  	   	       <ul>
+  	   	           <li>Apenas o usuário com perfil de supervisor pode acessar esta funcionalidade a partir <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">do perfil de risco</a>.</li>
+  	   	       </ul>
+  	   	  </ul>     
+  	   	       
+  	<h4>
+  	     <a name="detalharGestaoAnaliseEconomicoFinanceira" class="menu">Detalhar gestão da análise economico-financeira</a>
+  	</h4>   	       
+  	      <ul>
+  	   	    <li>Regras gerais:</li>
+  	   	       <ul>
+  	   	           <li>Observar o descrito em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.</li>
+  	   	           <li>Ao clicar no link de um ANEF, deverá ir para a tela definida em <a href="#navegarAnaliseEconomicoFinanceira">navegar análise econômico-financeira</a>.</li>
+  	   	       </ul>   
+  	   	    <li>Ao entrar na tela:</li>
+  	   	       <ul>
+  	   	           <li>Deverão ser logados a ES, o perfil de risco e os dados da tela.</li>
+  	   	       </ul>   
+	   	    <li>Seção 'Quadro vigente':</li>
+	   	     <ul>
+	   	         <li>A montagem do 'Quadro vigente' deve ser feita conforme o <a href="#detalharAnaliseEconomicoFinanceira">detalhamento da análise econômico-financeira</a>.</li>
+	   	     </ul>
+	   	    <li>Seção 'Novo quadro':</li>
+	   	     <ul>
+	   	         <li>A montagem do 'Novo quadro' deve ser feita de maneira similar ao <a href="#detalharAnaliseEconomicoFinanceira">detalhamento da análise econômico-financeira</a> sendo que não serão exibidos links e as notas e pesos devem ser obtidos da seguinte maneira:</li>
+	   	           <ul>
+	   	               <li>Notas:</li>  
+	   	                 <ul>
+	   	                     <li>Caso o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> esteja no estado 'Analisado', deverá ser recuperado a sua nota.</li>
+	   	                     <li>Senão, a nota deverá ser obtida do <a href="GLO_Glossario.html#glo_ANEFVigente">ANEF vigente</a>.</li>
+	   	                 </ul>  
+	   	               <li>Pesos:</li>  
+	   	                 <ul>
+     	                    <li>Deverão ser utilizados os pesos de <b>rascunho</b> do perfil de risco.</li>
+     	                 </ul>   
+	   	           </ul>
+	   	         <li>Notas em destaque:</li>
+	   	            <ul>
+	   	               <li>As notas dos ANEFs com estado 'Analisado' deverão ser destacadas na tela conforme o protótipo da tela.</li>
+	   	            </ul>   
+	   	     </ul>
+	   	    <li>Seção 'Percentuais':</li>
+	   	     <ul>
+   	             <li>Observar as regras de exibição definidas em <a href="#alterarPercentuais">alterar percentuais do ANEF</a>.</li>      
+	   	     </ul>
+	   	    <li>Seção 'Ajuste de nota final':</li>
+	   	     <ul>
+   	             <li>Observar as regras de exibição definidas em <a href="#alterarNotaFinal">ajuste de nota final econômico-financeira</a>.</li>      
+	   	     </ul>
+	   	    <li>Listagem de 'Notas' e 'Sínteses' de ANEFs:</li>
+	   	     <ul>
+	   	         <li>Os ANEFs deverão ser listados de acordo com a ordem definida na metodologia.</li>
+	   	         <li>Para cada ANEF poderá haver uma síntese vigente e outra de rascunho.</li>
+	   	         <li>Campo 'Nota':</li>
+	   	             <ul>
+	   	                <li>No campo 'Nota' deverá ser informada a <a href="GLO_Glossario.html#glo_NotaANEFVigente">nota do ANEF vigente</a>.</li>
+	   	                <li>Caso o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> esteja no estado 'Analisado' também deverá ser exibido '->' e a <a href="GLO_Glossario.html#glo_NotaANEFRascunho">nota do ANEF de rascunho</a> em destaque.</li>
+	   	             </ul>
+	   	          <li>Campo 'Síntese vigente':</li>
+	   	             <ul>
+	   	                 <li>Caso exista, deverá ser exibido o valor da síntese vigente, assim com os dados da sua última atualização.</li>
+	   	             </ul>   
+	   	          <li>Campo 'Nova síntese':</li>
+	   	             <ul>
+	   	                 <li>Caso exista, deverá ser exibido o valor da síntese de rascunho, assim com os dados da sua última atualização.</li>
+	   	             </ul>
+	   	          <li>Observar as regras de exibição definidas em <a href="#salvarSintese">salvar informações da síntese</a> e <a href="#salvarSintese">concluir síntese</a>.</li>      
+	   	     </ul>
+	   	    <li>Seção 'ANEFs':</li>
+	   	     <ul>
+	   	         <li>Deverão ser listados os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> do ciclo.</li>
+	   	         <li>Coluna 'Responsável':</li>
+	   	             <ul>
+	   	         	    <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Análise delegada', deverá listar o usuário que possui a delegação.</li>
+	   	         		<li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> 'Em análise', deverá listar o usuário que está analisando o ANEF.</li>
+	   	         		<li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Designado' ou 'Em edição', deverá listar o usuário que possui a designação.</li>
+	   	             </ul>
+	   	     </ul>
+	   	    <li>Botão 'Voltar/Voltar sem salvar':</li>
+	   	     <ul>
+	   	         <li>Sempre que houver alguma informação alterada sem ter sido salva pelo usuário será exibido o botão 'Voltar sem salvar'. Caso contrário, será exibido o 'Voltar'. </li>
+	   	     </ul>
+	     </ul>
+
+      <blockquote>
+		  <a href="detalhargestaoanaliseeconomicofinanceira/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+        
+
+  	<h4>
+  	     <a name="alterarPercentuais" class="menu">Alterar percentuais do ANEF</a>
+  	</h4>   	       
+  	      <ul>
+  	           <li>Observar o descrito em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.</li>
+  	           <li>Colunas:</li>
+  	             <ul>
+   	                <li>'Vigente' e 'Em edição' : Deverão ser listados os percentuais dos ANEFs <a href="GLO_Glossario.html#glo_ANEFVigente">vigentes</a> e <a href="GLO_Glossario.html#glo_ANEFRascunho">rascunho</a> do perfil de risco.</li>
+   	                <li>'Novo': Não deve carregar as informações dos percentuais de rascunho dos ANEFs.</li>
+   	             </ul>    
+   	           <li>Botão 'Alterar':</li>
+   	                <ul>
+   	           		<li>Validações ao clicar:</li>
+   	                      <ul>
+   	                           <li>Caso algum campo da coluna 'Novo' não tenha sido preenchida, exibir a mensagem de erro: "O percentual para <i>'&lt;&lt;Nome do componente&gt;&gt;'</i> é de preenchimeno obrigatório.</li>
+   	                           <li>Caso algum campo da coluna 'Novo' tenha valor <=0, exibir a mensagem de erro: "O percentual para <i>'&lt;&lt;Nome do componente&gt;&gt;'</i> deve ser maior que zero.</li>
+   	                           <li>Caso a soma dos percentuais não seja '100%', exibir a mensagem de erro: 'A soma dos percentuais deve ser 100%'.</li>
+   	                           <li>Caso os percentuais sejam os mesmos que a coluna 'Em edição', exibir a mensagem de erro: 'Novos percentuais iguais aos percentuais da coluna 'Em edição''.</li>
+   	                           <li>Caso os percentuais sejam os mesmos que a coluna 'Vigente', exibir a mensagem de erro: 'Novos percentuais iguais aos percentuais da coluna 'Vigente''.</li>
+   	                      </ul>
+   	                <li>Após clicar e passar com sucesso pelas validações:</li>      
+   	               		<ul>
+   	                    	<li>Salvar as informações nos respectivos percentuais de rascunho.</li> 
+   	                    	<li>Limpar em seguida a coluna 'Novo'</li>
+   	                    	<li>Atualizar o 'Novo quadro' e a seção 'Percentuais'.</li>
+   	                    	<li>Validar se o botão 'Confirmar percentual em edição' deve estar habilitado.</li>
+   	               		</ul>
+   	               	</ul>	   
+   	           <li>Botão 'Confirmar percentual em edição'</li>
+   	              <ul>
+   	           		  <li>Validações:</li>
+   	           		      <ul>
+   	                         <li>O botão só deverá estar habilitado caso haja diferença entre os percentuais exibidos nas colunas 'Vigente' e 'Em edição'.</li>
+   	                      </ul>   
+   	                <li>Após clicar:</li>      
+   	               		<ul>
+  	                        <li>Criar novo perfil de risco, recuperando as informações do perfil de risco vigente observando as seguintes regras:</li>
+  	                        <ul>
+  	                             <li>Para cada ANEF do perfil de risco:</li>
+  	                                 <ul>
+  	                                     <li>Utilizar o percentual de rascunho que será o vigente.</li>
+  	                                     <li>Criar novo percentual de rascunho com o mesmo valor do vigente.</li>
+  	                                 </ul>
+  	                        </ul>
+		 	                <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+ 	                    	<li>Atualizar o 'Quadro vigente' e a seção 'Percentuais'.</li>
+   	                    </ul>	 
+   	              </ul>  
+	     </ul>
+
+      <blockquote>
+		  <a href="alterarpercentuais/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+  	   	  
+
+  	<h4>
+  	     <a name="alterarNotaFinal" class="menu">Ajuste de nota final econômico-financeira</a>
+  	</h4>   	       
+  	      <ul>
+  	           <li>Observar o descrito em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.</li>
+  	           <li>Seção 'Ajuste de nota final':</li>
+  	             <ul>
+  	                <li>Campo 'Nota ajustada vigente':</li>
+  	                    <ul>
+   	                        <li>As informações do campo devem ser recuperadas do perfil de risco vigente.</li>
+   	                            <ul>
+   	                                <li>Caso não haja registro e no ciclo anterior exista ajuste feito pelo COREC, deve-se exibir apenas o valor do ajuste com a palavra '(Corec)'.</li>
+   	                            </ul>
+                            <li>Informações adicionais:</li>
+                            <ul>      
+							    <li>Caso não seja exibido o ajuste feito pelo COREC, exibir o usuário e data/hora da atualização.</li>
+							</ul> 
+   	                    </ul>        
+  	                <li>Campo 'Nova nota ajustada':</li>
+  	                    <ul>
+   	                        <li>As informações do campo devem ser recuperadas do rascunho.</li>
+   	                        <li>Valores para seleção e comportamento:</li>
+   	                            <ul>
+                            	    <li>Os valores possíveis de seleção são nulo (Remover ajuste) e a lista de valores do 'Parâmetro nota ANEF' exceto o valor correspondente a 'N/A' da metodologia.</li>
+                                    <li>Ao selecionar 'Remover ajuste', a justificativa deve ser suprimida.</li>
+                                </ul>
+                            <li>Informações adicionais:</li>
+                            <ul>      
+							    <li>Caso a 'Nova nota ajustada' nunca tenha sido salva, deve-se exibir a mensagem 'Sem alterações salvas'; senão</li>
+							    <li>Caso as informações da 'Nova nota ajustada' (nota, justificativa, usuário e data de alteração) de rascunho sejam iguais a vigente, o sistema deverá exibir a a mensagem 'Sem alterações salvas'; senão.</li>
+							    <li>Exibir o usuário e data/hora da última atualização.</li>
+							</ul> 
+                                
+                            <li>Caso o usuário, data/hora e texto sejam iguais</li>     
+   	                    </ul>
+				    <li>Alertas:</li> 
+                        <ul> 
+                            <li>Caso o usuário altere a 'Nova nota ajustada' e enquanto não salvar, exibir a mensagem em vermelho <span style="color:red">'Atenção informações não salvas.'</span> ao lado do botão 'Salvar'.</li>
+                        </ul>       	                            
+   	             </ul>    
+   	           <li>Botão 'Salvar':</li>
+   	                <ul>
+   	                <li>Após clicar e passar com sucesso pelas validações:</li>      
+   	               		<ul>
+   	                    	<li>Salvar a 'Nova nota ajustada de rascunho'.</li>
+   	                    	   <ul>
+   	                    	       <li>Caso a nota ajustada seja 'Remover ajuste', salvar nulo no valor e no campo de justificativa.</li>
+   	                    	   </ul>     
+   	                    	<li>Atualizar as informações adicionais.</li>
+   	                    	<li>Validar se o botão 'Confirmar novo ajuste de nota final e atualizar Perfil de Risco' deve estar habilitado.</li>
+   	               		</ul>
+   	               	</ul>	   
+   	           <li>Botão 'Confirmar novo ajuste de nota final e atualizar Perfil de Risco':</li>
+   	              <ul>
+   	           		  <li>Validações:</li>
+   	           		      <ul>
+   	                         <li>O botão só deverá estar habilitado caso haja diferença entre a 'Nova nota ajustada' e a 'Nota ajustada vigente'.</li>
+						     <li>Caso a 'Nova nota ajustada' tenha uma nota diferente de 'Remover ajuste' e não houver justificativa, exibir a mensagem de erro: 'Campo 'Justificativa' da 'Nova nota ajustada' é de preenchimento obrigatório.'.</li>
+  	  	   	 	        	 <li>Caso a 'Nota calculada' seja '*A', exibir mensagem de erro indicando que não poderá fazer o ajuste da nota, pois não há nota calculada.</li>  
+  	  	   	 	        	 <li>Caso a 'Nova nota ajustada' seja 'Remover ajuste', passa a valer a nota calculada vigente e se despreza o ajuste do COREC feito no ciclo anterior.</li>  
+   	                      </ul>   
+   	                <li>Após clicar:</li>      
+   	               		<ul>
+  	                        <li>Criar novo perfil de risco, recuperando as informações do perfil de risco vigente observando as seguintes regras:</li>
+  	                        <ul>
+                                <li>Utilizar a 'Nova nota ajustada' de rascunho que será o vigente.</li>
+                                <li>Criar novo 'Nova nota ajustada' de rascunho com os mesmos valores do vigente.</li>
+  	                        </ul>
+		 	                <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+  	                        <li>Atualizar o quadro 'Ajuste de nota final' e 'Análise econômico-financeira'.</li>
+   	                    </ul>	 
+   	              </ul>  
+	     </ul>
+
+      <blockquote>
+		  <a href="alterarnotafinal/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+  	   	       
+  	<h4>
+  	     <a name="salvarSintese" class="menu">Salvar informações da síntese</a>
+  	</h4>   	       
+  	      <ul>
+  	           <li>Observar o descrito em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.</li>
+  	           <li>Para cada 'Síntese':</li>
+  	               <ul>
+                      <li>Se já houver síntese de rascunho salva parcialmente, o sistema deve carregar estas informações.</li> 
+   	                  <li>A síntese é de preenchimento obrigatório para 'Salvar'.</li>
+   	                  <li>Alertas:</li>
+   	                     <ul>
+   	                        <li>Caso o usuário altere e enquanto não salvar, exibir a mensagem em vermelho <span style="color:red;">'Atenção informações não salvas.'</span> ao lado do botão 'Salvar'.</li>
+   	                        <li>Caso as informações da síntese (síntese, usuário e data de alteração) de rascunho sejam iguais a vigente, o sistema deverá exibir a a mensagem 'Sem alterações salvas' acima da síntese.</li>
+   	                     </ul>
+   	                  <li>Ao salvar:</li>
+   	                      <ul>
+   	                          <li>Caso haja uma síntese de rascunho, o registro deverá ser atualizado. Caso contrário, uma nova síntese de rascunho deverá ser criada com os dados da edição.</li> 
+   	                          <li>Verificar se o botão 'Concluír síntese e atualizar perfil de risco' deverá estar habilitado (ou não) conforme definido em <a href="#concluirsinteserisco">concluir síntese e atualizar perfil de risco</a>.</li>
+   	                          <li>Exibir mensagem de sucesso: '<span span class="set" name="msgSucessoSalvarSintese">Síntese salva com sucesso.</span>'.</li>
+   	                      </ul> 
+   	               </ul>
+  	   	  </ul>  
+
+      <blockquote>
+		  <a href="salvarsintese/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+        
+    <h4>
+  	     <a name="concluirSintese" class="menu">Concluir síntese e atualizar perfil de risco</a>
+  	</h4>
+  	      <ul>
+   	           <li>Observar o descrito em <a href="#gerenciarAnaliseEconomicoFinanceira">gerenciar análise econômico-financeira</a>.</li>
+   	            <li>Botão 'Concluir nova síntese e atualizar perfil de risco'/'Confirmar síntese sem alteração e publicar ANEF':</li>
+                    <ul>
+                        <li>Nome do botão:</li>
+                            <ul>
+                                <li>Caso exista síntese vigente igual a de rascunho e o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> esteja no estado 'Analisado', o botão deverá se chamar 'Confirmar síntese vigente sem alteração e publicar ANEF'.</li>
+                                <li>Caso contrário, o nome será 'Concluir nova síntese e atualizar perfil de risco'.</li>
+                            </ul>       	                
+                        <li>Quando o botão fica habilitado:</li>
+                            <ul>
+                                <li>O botão só estará habilitado caso haja uma síntese de rascunho preenchida diferente da vigente ou, o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> associado a síntese esteja no estado 'Analisado' desde que haja uma síntese vigente ou uma de rascunho preenchida.</li>
+                            </ul>
+   	                </ul>   
+  	           <li>Ao confirmar cada síntese:</li>
+  	              <ul>
+  	                  <li>As alterações não salvas pelo usuário <b>não</b> devem ser salvas.</li>
+  	                  <li>Criar novo perfil de risco, recuperando as informações do perfil de risco vigente observando as seguintes regras:</li>
+  	                      <ul>
+  	                          <li>Caso a síntese de rascunho seja diferente da síntese vigente (mesmo critério utilizado em <a href="#salvarSintese">salvar síntese</a>):</li>
+  	                              <ul>
+  	                                 <li>Utilizar a síntese de rascunho que será a síntese vigente.</li>
+  	                                 <li>Criar nova síntese de rascunho cujo conteúdo será o mesmo do antigo rascunho, inclusive sobre usuário que alterou e data de alteração.</li>
+  	                              </ul>   
+  	                          <li>Caso o ANEF rascunho associado a síntese esteja no estado 'Análisado': </li>
+  	                              <ul>
+  	                                   <li>Alterar o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> para 'Concluído'.</li>
+  	                                   <li>Armazenar no <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> as informações sobre o usuário e data/hora que concluiu o ANEF. </li>
+  	                                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a>.</li>
+  	                                   <li>Armazenar no <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> a 'Nota ajustada' do comitê do <a href="GLO_Glossario.html#glo_ANEFVigente">ANEF vigente</a>.</li>
+  	                                   <li>Utilizar o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> que será ANEF vigente.</li>
+  	                                   <li>Criar novo <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> com as seguintes informações:</li>
+  	                                       <ul>
+  	                                           <li>Do <a href="GLO_Glossario.html#glo_ANEFVigente">ANEF vigente</a>:</li>
+  	                                               <ul>
+                                                      <li>Justificativas dos itens de elementos dadas pelo inspetor (inclusive, data e hora de alteração).</li>
+                                                      <li>Anexos dos itens de elementos informados pelo inspetor.</li>
+                                                      <li>Anexos do ANEF.</li>
+                                                    </ul>
+                                               <li>Designação:</li>
+                                                   <ul>
+                                                       <li>Caso haja designação para o <a href="GLO_Glossario.html#glo_ANEFVigente">ANEF vigente</a> e o usuário designado faça parte da equipe da ES, copiar a designação.</li>
+                                                   </ul>     
+                                               <li>Status:</li>
+                                                   <ul>
+                                                       <li>Caso haja designação para o novo <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a>, seu estado será 'Designado'.</li>
+                                                       <li>Caso contrário seu estado será 'Previsto'.</li>
+                                                   </ul>    
+  	                                       </ul>
+  	                                   <li>Remover do antigo <a href="GLO_Glossario.html#glo_ANEFVigente">ANEF vigente</a> a 'Nota ajustada' do comitê.</li>    
+  	                               </ul>
+  	                      </ul>
+                	   <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+  	                   <li>Exibir mensagem de sucesso: '<span span class="set" name="msgSucessoConcluirSintese">Síntese concluída com sucesso.</span>'.</li>
+  	                   <li>Permanecer na mesma tela, atualizando suas informações.</li>    
+  	              </ul>
+  	      </ul>     
+
+      <blockquote>
+		  <a href="concluirsintese/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+  	     
+             
+    <h3>
+  	     <a name="detalharAQT" class="menu">Detalhar ANEF</a>
+  	</h3>
+	     <ul>
+  	   	    <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesANEF/detalhes_anef_supervisor_analisado.html">protótipo</a>.</li>
+            <li><a href="GLO_Glossario.html#glo_ANEF">ANEF</a> detalhado:</li>
+                <ul>
+                    <li>Caso o detalhamento esteja sendo feito pelo supervisor ou gerente da ES no perfil vigente, do ciclo atual com estado 'Em andamento', deve-se considerar o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a>.</li>
+                    <li>Caso contrário, considerar o <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+                </ul>
+            <li> <a name="ordemExibicaoANEF">Ordem de exibição de elementos, itens e anexos do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a></a>:</li>
+                <ul>
+   	                  <li>Todos os elementos e itens de elementos devem ser listados de acordo com a ordem definida na metodologia.</li>
+   	                  <li>Todos anexos devem ser listados de acordo com a ordem em que foram inseridos.</li>
+   	            </ul>      
+  	   	    <li>Ao entrar na tela:</li>
+  	   	       <ul>
+  	   	           <li>Deverão ser logados a ES, o perfil de risco e os dados da tela.</li>
+  	   	       </ul>   
+  	   	 </ul>   
+
+    <h4>
+  	     <a name="detalharCabecalhoAnexoAQT" class="menu">Exibir cabeçalho e anexos do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li>
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Grupo "Ciclo":</li>
+   	              <ul>
+   	                 <li>Campo 'Corec previsto'/'Corec':</li>
+   	                    <ul>
+   	                         <li>Caso o estado do ciclo seja 'Corec', 'Pós-corec' ou 'Encerrado', o nome do campo deve ser 'Corec'.</li>
+   	                         <li>Caso contrário, o nome será 'Corec previsto'.</li>
+   	                    </ul>
+   	              </ul>   
+   	           <li><a name="exibicaoAnexos">Anexos</a>:</li>
+  	   	        <ul>
+    	           <li>Caso não haja anexos, a seção deve ser suprimida.</li>   
+  	   	        </ul>
+   	      </ul>     
+
+
+      <blockquote>
+		  <a href="detalharcabecalhoanexoaqt/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+   <h4>
+  	     <a name="detalharResumoInformacoesAQT" class="menu">Exibir informações e resumo do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li>
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Grupo 'Informações do ANEF':</li>
+   	              <ul>
+                     <li>Campos (por ordem de exibição):</li>
+                         <ul>      
+   	                         <li>Campo fixos:</li>
+   	                             <ul>
+   	                                <li>Os campos 'Componente' e 'Estado' sempre devem ser exibidos.</li>
+   	                             </ul>
+   	                         <li>Campos variáveis (exibem usuário e/ou data/hora):</li>
+   	                             <ul>
+                                    <li>'Preenchido por': Exibido nos estados 'Preenchido', 'Em análise', 'Analisado' e 'Concluído' obtem os dados de quando foi <a href="#concluirEdicaoANEF">concluída a edição do ANEF</a>.</li>
+                                    <li>'Analisado por': Exibido nos estados 'Analisado' e 'Concluído' obtem os dados de quando foi <a href="#concluirAnaliseANEF">concluída a análise do ANEF</a>.</li>
+                                    <li>'Concluído por': Exibido no estado 'Concluído' obtem os dados de quando foi <a href="#concluirSintese">concluída a síntese do ANEF</a>.</li>
+                                    <li>'Responsável': Exibido nos estados 'Designado', 'Em edição', 'Análise delegada' ou 'Em análise' exibe o <a href="GLO_Glossario.html#glo_inspetorResponsável">inspetor responsável</a> pelo ANEF.</li>  
+                                    <li>'Última atualização': Exibido nos estados 'Em edição', 'Preenchido', 'Análise delegada' ou 'Em análise' obtem dados de da última atualização no ANEF.</li>  
+                                 </ul>
+   	                      </ul> 
+   	              </ul>   
+   	           <li><a name="grupoResumoAnefDetalhar">Grupo 'Resumo do ANEF'</a>:</li>
+  	   	        <ul>
+  	   	           <li>É uma matriz composta por linhas, colunas e seus respectivos valores conforme descrição abaixo.</li>
+  	   	           <li>Linhas:</li>
+  	   	               <ul>
+   	                       <li>Deverão ser exibidos linhas com os nomes dos elementos do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>, ordenados de acordo com a metodologia, com link para suas respectivas seções.</li>
+   	                       <li>Exibir a linha 'Nota calculada'.</li>
+   	                       <li>Exibir a linha 'Nota ajustada'.</li>
+   	                   </ul>    
+   	               <li>Colunas (por ordem de exibição):</li>
+  	   	               <ul>
+                           <li>Final: Exibida nos estados 'Em análise', 'Analisado' e 'Concluído'.</li>
+                           <li>Supervisor: Exibida nos estados 'Em análise', 'Analisado' e 'Concluído'.</li>
+                           <li>Inspetor: Exibida nos estados 'Em edição', 'Preenchido', 'Análise delegada', 'Em análise', 'Analisado' e 'Concluído'.</li>
+                           <li>Vigente: Exibida em todos os estados exceto 'Concluído'.</li>
+  	   	               </ul>
+   	               <li>Valores:</li>
+  	   	               <ul>
+  	   	                   <li>Notas dos elementos:</li>
+  	   	                       <ul>
+  	   	                          <li>Final: Repete as informações da coluna 'Supervisor' sem destacar cor.</li>
+  	   	                          <li>Supervisor: Utilizar a nota fornecida pelo supervisor na <a href="#analisarANEF">análise do ANEF</a>. Caso não tenha sido fornecida, repetir em <span style="color: gray">cinza</span> a nota do inspetor.</li>
+  	   	                          <li>Inspetor: Utilizar a nota fornecida pelo inspetor na <a href="#editarANEF">edição do ANEF</a>.</li>
+  	   	                          <li>Vigente: Utilizar a nota fornecida pelo supervisor no <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>. Caso não tenha sido fornecida, repetir a nota do inspetor do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+  	   	                       </ul>
+  	   	                   <li><a name="notaCalculadaDetalheAQT">Nota calculada:</a></li>
+  	   	                       <ul>
+  	   	                          <li>Verificar como a metodologia define o cálculo da nota:</li>
+  	   	                              <ul>
+  	   	                                  <li>Por arrasto:</li>
+  	   	                                     <ul>
+  	   	                                          <li>Deve ser considerada o maior valor númerico (menor nota) entre as notas dos elementos da coluna.</li>
+  	   	                                     </ul> 
+  	   	                                  <li>Por média:</li>
+  	   	                                     <ul>
+  	   	                                          <li>Deve ser considerada a medía da notas dos elementos, desconsiderando aqueles que tiveram nota 'N/A'.</li>
+  	   	                                     </ul> 
+  	   	                              </ul>   
+  	   	                              <li>Para a coluna 'Supervisor', exibir em <span style="color: gray">cinza</span> caso o supervisor não tenha feito nenhum ajuste na nota dos elementos.</li>
+  	   	                       </ul>
+  	   	                   <li><a name="notaAjustadaDetalheAQT">Nota ajustada:</a></li>
+  	   	                       <ul>
+  	   	                          <li>Final:</li>
+  	   	                              <ul>
+  	   	                                  <li>Se o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> for 'Concluído' e o estado do ciclo for 'Corec' e o usuário logado não for supervisor ou gerente; ou o estado do ciclo for 'Em andamento':</li>
+  	   	                                      <ul>
+  	   	                                         <li>Utilizar a nota ajustada <b>anterior</b> fornecida pelo comitê exibindo a palavra "(Corec)". Caso não tenha sido fornecida, repetir 'Nota ajustada' da coluna 'Supervisor' sem destacar cor.</li>
+  	   	                                      </ul>   
+  	   	                                  <li>Senão:</li>
+  	   	                                      <ul>
+  	   	                                         <li>Utilizar a nota ajustada <b>atual</b> fornecida pelo comitê exibindo a palavra "(Corec)". Caso não tenha sido fornecida, utilizar a nota ajustada <b>anterior</b> fornecida pelo comitê exibindo a palavra "(Corec)". Caso não tenha sido fornecida, repetir 'Nota ajustada' da coluna 'Supervisor' sem destacar cor.</li>
+  	   	                                      </ul>   
+  	   	                              </ul>
+  	   	                          <li>Supervisor: Utilizar a 'Nota ajustada' fornecida pelo supervisor na <a href="#analisarANEF">análise do ANEF</a>. Caso não tenha sido fornecida e o supervisor não tenha preenchido nenhuma nota para os elementos, repetir em <span style="color: gray">cinza</span> a nota ajustada do inspetor.</li>
+  	   	                          <li>Inspetor: Utilizar a 'Nota ajustada' fornecida pelo inspetor na <a href="#editarANEF">edição do ANEF</a>. Caso ele não tenha fornecido exibir vazio.</li>
+  	   	                          <li>Vigente: Utilizar a nota ajustada <b>anterior</b> fornecida pelo comitê para o <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a> exibindo a palavra "(Corec)". Caso não tenha sido fornecida, utilizar a 'Nota ajustada' fornecida pelo supervisor no <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>. Caso não tenha sido fornecida, repetir a 'Nota ajustada' do inspetor do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+  	   	                       </ul>
+  	   	               </ul>
+  	   	        </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/detalharresumoinformacoesaqt/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+    <h4>
+  	     <a name="exibirAcoesANEF" class="menu">Exibir ações do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li>
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	              </ul>
+   	          <li>O grupo 'Ações' somente deve ser exibido quando pelo menos uma das seguintes ações puder ser executada para o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> exibido.</li>
+   	              <ul>
+   	                  <li><a href="#designarAQT">Designar ANEF</a>;</li>
+   	                  <li><a href="#delegarAnaliseAQT">Delegar ANEF</a>;</li>
+   	                  <li><a href="#retomarAnaliseAQT">Retomar/Reiniciar análise do ANEF</a>; ou</li>
+   	                  <li><a href="#excluirDesignacaoAQT">Excluir designação do ANEF</a>;</li>
+   	              </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="exibiracoesanef/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+
+   <h4>
+  	     <a name="detalharNotasANEF" class="menu">Exibir notas do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li>
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Grupo '<i>&lt;&lt;Nome do ANEF&gt;&gt;</i>':</li>
+   	              <ul>
+   	                 <li>O nome do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> no título do grupo deve seguir o <a href="http://www.bc/padroesWebBC">padrão visual do banco</a>.</li>
+                     <li>Campos variáveis:</li>
+ 	   	                 <ul>
+                           <li>'Nota vigente do ANEF': </li>
+                               <ul>
+                                   <li>Visibilidade:</li>
+                                       <ul>
+                                           <li>Quando é exibida a coluna 'Vigente' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a></li>
+                                       </ul>
+                                   <li>Origem dos dados:</li>
+                                       <ul>
+                                           <li>Da coluna 'Vigente' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> definidas em <a href="#detalharResumoInformacoesAQT">exibir resumo e informações do ANEF</a>, recuperar a 'Nota ajustada'. Caso não exista, recuperar da coluna a 'Nota calculada'.</li>
+                                       </ul>
+                               </ul>   
+                           <li>'Nova nota inspetor' e 'Nova nota supervisor': </li>
+                               <ul>
+                                   <li>Visibilidade:</li>
+                                       <ul>
+                                           <li>Quando é exibida, respectivamente, as colunas 'Inspetor e 'Supervisor' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a></li>
+                                       </ul>
+                                   <li>Origem dos dados:</li>
+                                       <ul>
+                                           <li>Recuperar as informações respectivamente das colunas 'Inspetor' e 'Supervisor' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> definidas em <a href="#detalharResumoInformacoesAQT">exibir resumo e informações do ANEF</a>.</li>
+                                       </ul>
+                           			<li>Quando for exibida a 'Nova nota inspetor' e/ou 'Nova nota supervisor':</li>
+                               			<ul>
+                                  			<li>O campo 'Calculada' sempre deve ser exibido.</li>
+                                  			<li>O 'Ajuste' (nota e justificativa) deve ser suprimido caso não tenha sido preenchido pelos respectivos usuários.</li>
+                               			</ul>
+                            		</ul>   
+                               </ul>   
+                           <li>Nota Corec:</li>
+                               <ul> 
+                                    <li>Condições:</li>
+                                        <ul>
+                                            <li>Se houver nota ajustada <b>atual</b> fornecida pelo comitê e: ou estado do ciclo for 'Corec' e o usuário logado for supervisor; ou o estado for diferente de 'Corec' e 'Em andamento'.</li>
+                                            <li>OU:</li>
+                                            <li>Se houver nota ajustada <b>anterior</b> fornecida pelo comitê.
+                                        </ul>    
+                                    <li>Caso as condições acima não sejam satisfeitas, suprimir o campo.</li> 
+                               </ul>
+                               
+  	   	               </ul>
+  	   	             <li>Valores dos campos variáveis:</li>
+  	   	                 <ul>
+  	   	                     <li>Para os campos 'Nota vigente do ANEF', 'Nova nota inspetor' e 'Nova nota supervisor', deve-se informar as mesmas notas e cores respectivamente das colunas 'Vigente', 'Inspetor' e 'Supervisor' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> definidas em <a href="#detalharResumoInformacoesAQT">exibir resumo e informações do ANEF</a>.</li>
+  	   	                     <li>Nota Corec:</li>
+  	   	                     <ul>
+  	   	                         <li>Se o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> for 'Concluído' e o estado do ciclo for 'Corec' e o usuário logado não for supervisor ou gerente; ou o estado do ciclo for 'Em andamento':</li>
+  	   	                             <ul>
+  	   	                                <li>Utilizar a nota ajustada <b>anterior</b> fornecida pelo comitê.</li>
+  	   	                             </ul>   
+  	   	                         <li>Senão:</li>
+  	   	                             <ul>
+  	   	                                 <li>Utilizar a nota ajustada <b>atual</b> fornecida pelo comitê. Caso não tenha sido fornecida, utilizar a nota ajustada <b>anterior</b> fornecida pelo comitê.</li>
+  	   	                             </ul>   
+  	   	                     </ul>
+  	   	                      Informar a nota (anterior ou atual) fornecida pelo comitê.</li>
+  	   	                 </ul>  
+  	   	        </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/detalharnotasanef/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+ 
+    <h4>
+  	     <a name="detalharElementosANEF" class="menu">Exibir elementos do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li> 
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Para cada elemento do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+   	              <ul>
+   	           		  <li>Criar sub-grupo '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>':</li>
+   	                      <ul>
+   	                         <li>O nome do elemento no título do grupo deve seguir o <a href="http://www.bc/padroesWebBC">padrão visual do banco</a>.</li>
+   	                 		 <li>Campos variáveis:</li>
+   	                             <ul>
+   	                                 <li>A 'Nota vigente', 'Nota supervisor' e 'Nota inspetor': Utilizar a mesma regra para exibir respectivamente as colunas 'Vigente', 'Supervisor' e 'Inspetor' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> definidas em <a href="#detalharResumoInformacoesAQT">exibir resumo e informações do ANEF</a>.</li>
+   	                              </ul>
+   	                          <li>Valores dos campos variáveis:</li>
+   	                             <ul>
+  	   	                               <li>'Nota inspetor' e 'Nota supervisor': Utilizar a nota que foi atribuída ao elemento do <a href="#detalharAQT">ANEF detalhado</a>. Caso não tenha sido atribuída, exibir em branco.</li>
+  	   	                     		   <li>'Nota vigente': Utilizar a 'Nota supervisor' do elemento do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>. Caso não tenha sido preenchida utilizar a 'Nota inspetor' do elemento do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>. Caso não tenha sido atribuída, exibir em branco.</li>
+   	                              </ul>
+                    		  <li>Para cada item do elemento:</li>
+                    		      <ul>
+   	           		  				  <li>Criar sub-grupo '<i>&lt;&lt;Nome do item&gt;&gt;</i>':</li>
+   	                      			  <ul>
+   	                         			  <li>Deve ser exibido o nome do item no título do grupo exatamente como está na definido na metodologia.</li>
+   	                         			  <li>Exibir avaliações:</li>
+   	                         			      <ul>
+   	                         			          <li>Campos variáveis:</li>
+   	                         			             <ul>
+   	                         			                 <li>Nova avaliação: Exibido sempre que for exibida a coluna 'Inspetor' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> e o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja diferente de 'Concluído'.</li>
+   	                         			                 <li>'Avaliação vigente/Avaliação':<li>
+   	                         			                     <ul> 
+   	                         			                         <li>Exibido sempre que for exibida a coluna 'Final' ou 'Vigente' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a>. e; houver avaliação do item do elemento no <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a> salva ou registro de quem concluiu a <a href="#editarANEF">edição do ANEF</a> sem avaliação do item.</li>
+   	                         			                         <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Concluído', o nome do campo deve ser 'Avaliação'. Caso contrário, será 'Avaliação vigente'.</li>
+   	                         			                     </ul>    
+   	                         			                 <li><b>Obs.:</b> Caso sejam exibidos a 'Nova avaliação' e a 'Avaliação vigente', a avaliação vigente deve ser listada como um grupo expansível minimizado.</li>
+   	                         			             </ul>
+   	                         			          <li><a name="informacoesAdicionaisDetalharElementoANEF">Informações adicionais dos campos variáveis:</a></li> 
+   	                         			              <ul>
+   	                         			                  <li>Para 'Nova avaliação':</li>
+   	                         			                      <ul> 
+   	                         			                  		   <li>Se não tiver sido preenchida:</li>
+   	                         			                               <ul> 
+   	                         			                          		  <li>Caso o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> tenha o registro de quem concluiu a <a href="#editarANEF">edição do ANEF</a> sem preencher os dados, exibir a mensagem 'Não avaliado por &lt;&lt;Nome do usuário que concluiu edição do ANEF&gt;&gt em &lt;&lt;data hora em que concluiu&gt;&gt'.</li>
+   	                         			                          		  <li>Senão, caso seja exibido a 'Avaliação vigente' e ela não esteja preenchida, exibir a informação 'Sem alterações'.</li>
+   	                         			                          	   </ul>	  
+   	                         			                  		   <li>Se tiver sido preenchida:</li>
+   	                         			                               <ul> 
+   	                         			                                   <li>Caso seja igual a 'Avaliação vigente' (texto, usuário e data/hora de alteração), o sistema deverá exibir a a mensagem 'Sem alterações' na 'Nova avaliação'.</li>
+   	                         			                                   <li>Senão, caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em edição', exibir a mensagem 'Última alteração por &lt;&lt;Nome do usuário que editou avaliação do elemento&gt;&gt em &lt;&lt;data hora da edição&gt;&gt'.</li>
+   	                         			                          		   <li>Senão, exibir a mensagem 'Preenchido por &lt;&lt;Nome do usuário que concluiu edição do ANEF&gt;&gt em &lt;&lt;data hora em que concluiu edição do ANEF&gt;&gt'.</li>
+   	                         			                               </ul>    
+   	                         			                      </ul> 
+   	                         			                  <li>Para 'Avaliação vigente/Avaliação':</li>
+   	                         			                      <ul> 
+   	                         			                  		   <li>Se não tiver sido preenchida:</li>
+   	                         			                               <ul> 
+   	                         			                          		  <li>Caso o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> tenha o registro de quem concluiu a <a href="#editarANEF">edição do ANEF</a> sem preencher os dados, exibir a mensagem 'Não avaliado por &lt;&lt;Nome do usuário que concluiu edição do ANEF&gt;&gt em &lt;&lt;data hora em que concluiu edição do ANEF&gt;&gt'.</li>
+   	                         			                          	   </ul>	  
+   	                         			                  		   <li>Se tiver sido preenchida:</li>
+   	                         			                               <ul> 
+   	                         			                          		   <li>Exibir a mensagem 'Preenchido por &lt;&lt;Nome do usuário que concluiu edição do ANEF&gt;&gt em &lt;&lt;data hora em que concluiu edição do ANEF&gt;&gt'.</li>
+   	                         			                               </ul>    
+   	                         			                      </ul> 
+   	                         			              </ul>  
+   	                         			           <li>Valores para os campos variáveis:</li>
+   	                             					   <ul>
+  	   	                               					  <li>Para o campo 'Nova avaliação', deve-se informar a avaliação que foi atribuída ao item do <a href="#detalharAQT">ANEF detalhado</a>.</li>
+  	   	                     		   					  <li>Para o campo 'Avaliação vigente/Avaliação', utilizar a avaliação que foi atribuída ao item após o inspetor <a href="#editarANEF">editar</a> o item do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+  	                              						</ul>
+   	                         			      </ul>
+                    		          </ul>
+   	                            </ul>   
+                    		    <li><a name="exibirAnaliseSupervisorDetalharElementosANEF">Exibir análise do supervisor:</a></li>
+                    		        <ul>
+                    		            <li>Sempre que for exibido pelo menos um dos seus campos (definidos abaixo), criar sub-grupo 'Análise do supervisor para o elemento "<i>&lt;&lt;Nome do elemento&gt;&gt;</i>'".</li>
+   	                         			  <li>Exibir avaliações:</li>
+   	                         			      <ul>
+   	                         			          <li>Campos variáveis:</li>
+   	                         			             <ul>
+   	                         			                 <li>Nova análise: Exibido sempre que for exibida a coluna 'Supervisor' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> e o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja diferente de 'Concluído'  e; houver análise do elemento do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> salva.</li>
+   	                         			                 <li>'Análise vigente/Análise':<li>
+   	                         			                     <ul> 
+   	                         			                         <li>Exibido sempre que for exibida a coluna 'Final' ou 'Vigente' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> e; houver análise do elemento do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a> salva.</li>
+   	                         			                         <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Concluído', o nome do campo deve ser 'Análise'. Caso contrário, será 'Análise vigente'.</li>
+   	                         			                     </ul>    
+   	                         			                 <li><b>Obs.:</b> Caso sejam exibidos a 'Nova análise' e a 'Análise vigente', a análise vigente deve ser listada como um grupo expansível minimizado.</li>
+   	                         			             </ul>
+   	                         			          <li>Informações adicionais dos campos variáveis:</li> 
+   	                         			              <ul>
+   	                         			                  <li>Para 'Nova análise':</li>
+   	                         			                      <ul> 
+   	                         			                  		   <li>Se tiver sido preenchida:</li>
+   	                         			                               <ul> 
+   	                         			                                   <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em análise', exibir a mensagem 'Última alteração por &lt;&lt;Nome do usuário que editou a análise do elemento&gt;&gt em &lt;&lt;data hora da edição&gt;&gt'.</li>
+   	                         			                          		   <li>Senão, exibir a mensagem 'Analisado por &lt;&lt;Nome do usuário que concluiu análise do ANEF&gt;&gt em &lt;&lt;data hora em que concluiu análise do ANEF&gt;&gt'.</li>
+   	                         			                               </ul>    
+   	                         			                      </ul> 
+   	                         			                  <li>Para 'Análise vigente/Análise':</li>
+   	                         			                      <ul> 
+   	                         			                  		   <li>Se tiver sido preenchida:</li>
+   	                         			                               <ul> 
+   	                         			                          		   <li>Exibir a mensagem 'Analisado por &lt;&lt;Nome do usuário que concluiu análise do ANEF&gt;&gt em &lt;&lt;data hora em que concluiu análise do ANEF&gt;&gt'.</li>
+   	                         			                               </ul>    
+   	                         			                      </ul> 
+   	                         			              </ul>  
+   	                         			           <li>Valores para os campos variáveis:</li>
+   	                             					   <ul>
+  	   	                               					  <li>Para o campo 'Nova avaliação', deve-se informar a avaliação que foi atribuída ao item do <a href="#detalharAQT">ANEF detalhado</a>.</li>
+  	   	                     		   					  <li>Para o campo 'Avaliação vigente/Avaliação', utilizar a avaliação que foi atribuída ao item após o supervisor <a href="#analisarANEF">analisar</a> o item do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+  	                              						</ul>
+   	                         			      </ul>
+                    		        </ul>      
+  	   	               </ul>
+  	   	        </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/detalharelementosanef/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+    <h4>
+  	     <a name="delegarAnaliseAQT" class="menu">Delegar análise do ANEF</a>
+  	</h4>
+  	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Nova delegação de análise' do protótipo descrito em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	                  <li>A delegação pode ocorrer na tela de <a href="#detalharAQT">detalhar ANEF</a> ou <a href="#analisarANEF">analisar ANEF</a>.</li>
+   	               </ul>
+   	           <li><a href="GLO_Glossario.html#glo_ANEF">ANEFs</a> passivos de delegação:</li>
+   	               <ul>
+   	                   <li>Apenas os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> nos estados 'Preenchido', 'Análise delegada', 'Em análise' ou 'Analisado' podem ser delegados. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá delegar a análise do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Delegação de análise'/'Nova delegação de análise':</li>
+   	               <ul>
+   	                   <li>Caso haja delegação para o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>, o nome do painel será 'Nova delegação de análise'.</li>
+   	                   <li>Caso contrário, o nome do painel será 'Delegação de análise'.</li>
+   	                   <li>Caso o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> não possa ser delegado, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Lista de servidores para delegação:</li>
+   	               <ul>
+   	                   <li>O sistema deverá listar os servidores da equipe da ES em 'Servidores da equipe'.</li>
+   	                   <li>O sistema deverá listar os demais servidores na listagem 'Outros servidores' agrupando a nível de 'Unidade'.</li>
+   	                   <li>Deverá ser excluído das listagens o próprio servidor que já estiver delegado e o supervisor.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Delegar'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Analisado', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF já analisado.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em análise' e haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF com análise em andamento por delegado.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em análise' e não haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF com análise em andamento.'</span>.</li>
+   	              </ul>    
+   	           <li>Validações ao clicar no botão 'Delegar':</li>
+   	              <ul>
+   	                 <li>Caso nenhum servidor tenha sido selecionado, o sistema deverá exibir a mensagem: "'É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.".</li>
+   	                 <li>Caso o usuário selecione servidores nas 2 listagens, o sistema deverá exibir a mensagem: 'Selecione apenas um único servidor para a delegação.'.</li>
+   	              </ul>   
+  	           <li>Ao delegar:</li>
+  	              <ul>
+  	                   <li>Caso exista delegação vigente para outro usuário, atualiza-la para o usuário selecionado.</li>
+  	                   <li>Mudar estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+  	                       <ul>
+  	                          <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Analisado', alterar para 'Em análise'.</li>
+  	                          <li>Senão, caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Preenchido', alterar para 'Análise delegada'.</li>
+  	                       </ul>   
+  	                   <li>Se houver, remover as informações de data/hora e usuário que analisou o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>       
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Caso o usuário esteja na tela de <a href="#analisarANEF">analisar ANEF</a>, deverá ir para a tela de <a href="#detalharAQT">detalhar ANEF</a>.</li>    
+  	                          <li>Caso contrário, deve permanecer na mesma tela, atualizando as informações.</li>    
+  	                       </ul>
+  	                   <li>Na tela de resultado exibir mensagem de sucesso: '<span span class="set" name="msgSucessoDelegar">ANEF delegado com sucesso.</span>'.</li>
+  	              </ul>
+   	      </ul>     
+
+
+      <blockquote>
+		  <a href="delegaraqt/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+	
+             
+    <h4>
+  	     <a name="designarAQT" class="menu">Designar ANEF</a>
+  	</h4>
+  	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Nova designação' do protótipo descrito em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	                  <li>A designação pode ocorrer na tela de <a href="#detalharAQT">detalhar ANEF</a> ou <a href="#analisarANEF">analisar ANEF</a>.</li>
+   	               </ul>
+   	           <li><a href="GLO_Glossario.html#glo_ANEF">ANEFs</a> passivos de designação:</li>
+   	               <ul>
+   	                   <li>Apenas os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> podem ser designados, ou seja sempre que for exibido ou editado um ANEF de rascunho. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá designar <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Designação'/'Nova designação':</li>
+   	               <ul>
+   	                   <li>Caso haja designação para o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>, o nome do painel será 'Nova designação'.</li>
+   	                   <li>Caso contrário, o nome do painel será 'Designação'.</li>
+   	                   <li>Caso o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> não possa ser designado, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Lista de servidores para designação:</li>
+   	               <ul>
+   	                   <li>O sistema deverá listar os servidores da equipe da ES em 'Servidores da equipe'.</li>
+   	                   <li>O sistema deverá listar os demais servidores na listagem 'Outros servidores' agrupando a nível de 'Unidade'.</li>
+   	                   <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Designado' ou 'Em edição', deverá ser excluído das listagens o próprio servidor que já estiver designado.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Designar'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em edição', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF pendente de conclusão pelo inspetor designado.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Preenchido' ou 'Análise delegada', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF já preenchido por inspetor.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em análise' e haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF já preenchido por inspetor e com análise em andamento por delegado.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em análise' e não haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF já preenchido por inspetor e com análise em andamento.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Analisado', exibir a mensagem em vermelho <span style="color: red"> ''Atenção ANEF já analisado.'</span>.</li>
+   	              </ul>    
+   	           <li>Validações ao clicar no botão 'Designar':</li>
+   	              <ul>
+   	                 <li>Caso nenhum servidor tenha sido selecionado, o sistema deverá exibir a mensagem: "'É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.".</li>
+   	                 <li>Caso o usuário selecione servidores nas 2 listagens, o sistema deverá exibir a mensagem: 'Selecione apenas um único servidor para a designação.'.</li>
+   	              </ul>   
+  	           <li>Ao designar:</li>
+  	              <ul>
+  	                   <li>Caso exista delegação vigente, excluí-la.</li>
+  	                   <li>Caso exista designação vigente para outro usuário, atualiza-la para o usuário selecionado.</li>
+  	                   <li>Mudar estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+  	                       <ul>
+  	                          <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Preenchido', 'Análise delegada', 'Em análise' ou 'Analisado', alterar para 'Em edição'.</li>
+  	                          <li>Senão, caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Previsto', alterar para 'Designado'.</li>
+  	                       </ul>
+  	                   <li>Se houver, remover as informações de data/hora e usuário que preencheu e analisou o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>       
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Caso o usuário esteja na tela de <a href="#analisarANEF">analisar ANEF</a>, deverá ir para a tela de <a href="#detalharAQT">detalhar ANEF</a>.</li>    
+  	                          <li>Caso contrário, deve permanecer na mesma tela, atualizando as informações.</li>    
+  	                       </ul>
+  	                   <li>Na tela de resultado exibir mensagem de sucesso: '<span span class="set" name="msgSucessoDelegar">ANEF designado com sucesso.</span>'.</li>
+  	              </ul>
+   	      </ul>     
+
+      <blockquote>
+		  <a href="designaraqt/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+    
+    <h4>
+  	     <a name="retomarAnaliseAQT" class="menu">Retomar/Reiniciar análise do ANEF</a>
+  	</h4>
+   	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Análise' do protótipo descrito em <a href="#detalharAQT">detalhar ANEF</a>.</li>
+   	               </ul>
+   	           <li><a href="GLO_Glossario.html#glo_ANEF">ANEFs</a> passivos de retomar/reiniciar análise:</li>
+   	               <ul>
+   	                   <li>Apenas os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> nos estados 'Análise delegada'; 'Em análise', desde que haja delegação; ou 'Analisado' podem ter a análise retomada/reiniciada. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá executar esta ação.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Análise':</li>
+   	               <ul>
+   	                   <li>Caso o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> não possa ter a análise retomada/reiniciada, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Analisar'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Analisado', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF já analisado.'</span>.</li>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em análise' e haja delegação, exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF com análise em andamento por delegado.'</span>.</li>
+   	              </ul>    
+  	           <li>Ao retomar/reiniciar análise:</li>
+  	              <ul>
+  	                   <li>Caso exista delegação vigente, exclui-la.</li>
+  	                   <li>Mudar estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+  	                       <ul>
+  	                          <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Analisado', alterar para 'Em análise'.</li>
+  	                          <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> seja 'Análise delegada', alterar para 'Preenchido'.</li>
+  	                       </ul>   
+  	                   <li>Se houver, remover as informações de data/hora e usuário que analisou o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>       
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Ir para a tela de <a href="#analisarANEF">analisar ANEF</a>.</li>    
+  	                       </ul>
+  	              </ul>
+   	      </ul>     
+
+
+      <blockquote>
+		  <a href="retomaranaliseaqt/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+          
+     <h4>
+  	     <a name="excluirDesignacaoAQT" class="menu">Excluir designação do ANEF</a>
+  	</h4>
+  	      <ul>
+   	           <li>Regras gerais:</li>
+   	               <ul>
+   	                  <li>Utilizar o painel 'Excluir designação' do <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesARC/detalhes_arc_supervisor_designado.html">protótipo</a> de detalhar ARC.</li>
+   	               </ul>
+   	           <li><a href="GLO_Glossario.html#glo_ANEF">ANEFs</a> passivos de exclusão de designação:</li>
+   	               <ul>
+   	                   <li>Apenas os <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEFs de rascunho</a> nos estados 'Designado' ou 'Em edição' que possuem designação podem ter a designação excluída. Além disso, o estado do ciclo deve ser 'Em andamento'.</li>
+   	                   <li>Apenas o usuário no papel de supervisor da ES poderá excluir a designação de <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+   	               </ul>      
+   	           <li>Exibição do painel 'Excluir designação':</li>
+   	               <ul>
+   	                   <li>Caso o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> não possa ter a designação excluída, a seção deve ser suprimida da tela.</li>
+   	               </ul>    
+   	           <li>Alertas (ao lado do botão 'Excluir designação'):</li>
+   	              <ul>
+   	                 <li>Caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Em edição', exibir a mensagem em vermelho <span style="color: red"> 'Atenção ANEF pendente de conclusão pelo inspetor designado.'</span>.</li>
+   	              </ul>    
+  	           <li>Ao clicar em 'Excluir designação':</li>
+  	              <ul>
+  	                   <li>Excluir a designação vigente.</li>
+  	                   <li>Alterar o estado do <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a> para 'Previsto'.</li>
+  	                   <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	                   <li>Tela de resultado:</li>
+  	                       <ul>
+  	                          <li>Deve permanecer na mesma tela, atualizando as informações e  exibir mensagem de sucesso: '<span span class="set" name="msgSucessoDelegar">Designição de ANEF removida com sucesso.</span>'.</li>
+  	                       </ul>   
+  	              </ul>
+   	      </ul>     
+
+
+      <blockquote>
+		  <a href="excluirdesignacaoaqt/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>     
+      
+    <h3>
+  	     <a name="consultarANEF" class="menu">Consultar ANEF</a>
+  	</h3>
+	     <ul>
+  	   	    <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/ConsultaTudo/ConsultaANEF/anef_consulta_atual_atual.html">protótipo</a>.</li>
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+            	<li><a name="anefConsultado"><a href="GLO_Glossario.html#glo_ANEF">ANEF</a> consultado</a>:</li>
+                	<ul>
+                    	<li>Considerar o <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+                	</ul>
+  	   	        <li>Observar a <a href="#ordemExibicaoANEF">ordem de exibição de elementos, itens e anexos do ANEF</a>.</li>
+  	   	    	<li>Ao entrar na tela:</li>
+  	   	       		<ul>
+  	   	           		<li>Deverão ser logados a ES, o perfil de risco e os dados da tela.</li>
+  	   	       		</ul>
+  	   	    </ul>   
+  	   	    <li>Montagem da tela:</li>      
+              <ul>
+               <li>Combo 'versão':</li>
+                  <ul>
+                      <li>Deverão ser listadas as últimas versões agrupadas por dia para o <a href="#anefConsultado">ANEF consultado</a> em ordem decrescente, excluindo a versão cujo estado do ANEF seja 'Previsto'.</li>
+                      <li>A versão mais recente, consultada inicialmente, deverá ter como texto a palavra 'vigente'.</li>
+                      <li>Ao selecionar uma versão, ela deverá ser consultada alterando as informações da tela, mas sem modificar a trilha.</li>
+                  </ul>
+   	           <li>Grupo "Ciclo":</li>
+   	              <ul>
+                      <li>Exibe as mesmas informações obtidas em <a href="#detalharCabecalhoAnexoAQT">exibir cabeçalho e anexos do ANEF</a>.</li>   	              
+                  </ul>   
+   	           <li>Grupo 'Informações do ANEF':</li>
+   	              <ul>
+                      <li>Os campos 'Componente', 'Preenchido por' e 'Analisado por': Exibem as mesmas informações obtidas em <a href="#detalharResumoInformacoesAQT">exibir informações e resumo do ANEF</a>.</li>
+   	              </ul>   
+   	           <li><a name="grupoResumoAnefConsultar">Grupo 'Resumo do ANEF'</a>:</li>
+  	   	        <ul>
+                    <li>Exibe as mesmas informações da coluna 'Final' obtidas em <a href="#detalharResumoInformacoesAQT">exibir informações e resumo do ANEF</a> com a ressalva de não exibir a palavra (Corec) na 'Nota ajustada', quando houver nota Corec.</li>   	              
+  	   	        </ul>       
+   	           <li>Grupo '<i>&lt;&lt;Nome do ANEF&gt;&gt;</i>':</li>
+   	              <ul>
+   	                 <li>O nome do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> no título do grupo deve seguir o <a href="http://www.bc/padroesWebBC">padrão visual do banco</a>.</li>
+  	   	             <li>Campos 'Nota do ANEF calculada' e 'Nota do ANEF ajustada':</li>
+  	   	                 <ul>
+  	   	                     <li>Deve-se informar as mesmas notas da coluna 'Final' do <a href="#grupoResumoAnefDetalhar">grupo 'Resumo do ANEF'</a> definidas em <a href="#detalharResumoInfomacoesAQT">exibir resumo e informações do ANEF</a> com a seguinte ressalva:</li>
+  	   	                     <ul>
+  	   	                     <li>Nota do ANEF ajustada:</li>
+  	   	                         <ul>
+                                     <li>Caso haja ajuste de COREC, não deve exibir (Corec) na 'Nota do ANEF ajustada' nem deve exibir o "(+)" do campo para que não seja exibida a justificativa.</li>
+                                     <li>Caso não haja valor para o campo, ele deve ser suprimido.</li>
+                                 </ul>
+                             </ul>    
+  	   	                 </ul>  
+   	           <li>Para cada elemento do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+   	              <ul>
+   	           		  <li>Criar sub-grupo '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>':</li>
+   	                      <ul>
+   	                         <li>O nome do elemento no título do grupo deve seguir o <a href="http://www.bc/padroesWebBC">padrão visual do banco</a>.</li>
+                             <li>Para a 'Nota do elemento', deve-se repetir a informação exibida no grupo 'Resumo do ANEF'.</li>
+                   		     <li>Para cada item do elemento:</li>
+                    		      <ul>
+   	           		  				  <li>Criar sub-grupo '<i>&lt;&lt;Nome do item&gt;&gt;</i>':</li>
+   	                      			  <ul>
+   	                         			  <li>Deve ser exibido o nome do item no título do grupo exatamente como está na definido na metodologia.</li>
+                       					  <li>Deve-se informar a avaliação que foi atribuída ao item do <a href="#anefConsultado">ANEF consultado</a>.</li>
+                    		          </ul>
+   	                            </ul>   
+                    		 <li>Exibir análise do supervisor:</li>
+                    		    <ul>
+                    		       <li>Sempre que houver avaliação para o elemento, criar sub-grupo 'Análise do supervisor para o elemento "<i>&lt;&lt;Nome do elemento&gt;&gt;</i>'".</li>
+                   			       <li>Deve-se informar a avaliação que foi atribuída ao item do <a href="#anefConsultado">ANEF consultado</a>.</li>
+                    		    </ul>      
+  	   	               </ul>
+  	   	        </ul>
+  	   	        </ul>
+   	           <li>Anexos:</li>
+  	   	        <ul>
+    	           <li>Caso não haja anexos, a seção deve ser suprimida.</li>   
+  	   	        </ul>
+  	   	       </ul> 
+   	      </ul>     
+
+      <blockquote>
+		  <a href="consultaranef/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/consultaranef/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+  
+    <h4>
+  	     <a name="imprimirANEF" class="menu">Imprimir ANEF</a>
+  	</h4>
+	     <ul>
+  	   	    <li>Utilizar os seguintes protótipos da impressão do ARC:</li>
+  	   	       <ul>
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_01_Imprimir_ARC_layout impressão arcs .pdf">protótipo para o cabeçalho, corpo do arquivo e espaçamento</a>.</li>
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_03_layout%20arc%2020140905%20%20layout%20arc%20-%20rodape.pdf">protótipo para as informações do rodapé (espaçamento no protótipo anterior)</a>.</li>
+  	   	       </ul>    
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+  	   	        <li>O nome do departamento deve ser o mesmo parâmetro utilizado na impressão de ARC.</li>
+  	   	        <li>A exibição de notas, ajustes, justificativas e análise do supervisor deve utilizar as mesmas regras definidas na <a href="#consultarANEF">consultar do ANEF</a>.</li>
+  	   	        <li>Se existirem anexos para os itens, deve-se criar uma quebra de página, imprimir os anexos e em seguida, em uma nova página, retorna-se a impressão do ANEF.</li>
+  	   	    </ul>
+	     </ul>
+
+      <blockquote>
+		  <a href="imprimiranef/indexNegocio.html">Cenários para testes manuais</a><br>
+      </blockquote>
+  
+    <h3>
+  	     <a name="editarANEF" class="menu">Editar ANEF</a>
+  	</h3>
+	     <ul>
+  	   	    <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Inspetor/EdicaoAnef/edicao_anef_inspetor.html">protótipo</a>.</li>
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+  	   	        <li>Observar a <a href="#ordemExibicaoANEF">ordem de exibição de elementos, itens e anexos do ANEF</a>.</li>
+  	   	        <li>Sempre que houver uma alteração nos dados o sistema deve exibir a mensagem <span style="color: white;background-color: red">'Há informações não salvas nesta página'.</span></li>
+  	   	        <li>Ao salvar qualquer alteração na tela, caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja designado deve-se alterá-lo para 'Em edição'.</li>
+  	   	    	<li>Ao entrar na tela:</li>
+  	   	       		<ul>
+  	   	           		<li>Deverão ser logados a ES, o perfil de risco e os dados da tela.</li>
+  	   	       		</ul>
+  	   	    </ul>
+  	   	    <li><a href="GLO_Glossario.html#glo_ANEF">ANEF</a> editado:</li>
+  	   	        <ul>
+  	   	            <li>É sempre o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a>.</li>
+  	   	        </ul>
+  	   	    </li>
+  	   	 </ul>
+  	  
+    <h4>
+  	     <a name="editarAjusteNotasANEF" class="menu">Exibir cabeçalho, informações, resumo e ajustar a nota do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li> 
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#editarANEF">editar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Grupo "Ciclo":</li>
+   	              <ul>
+                      <li>Exibe as mesmas informações obtidas em <a href="#detalharCabecalhoAnexoAQT">exibir cabeçalho e anexos do ANEF</a>.</li>   	              
+                  </ul>   
+   	           <li>Grupo 'Informações do ANEF':</li>
+   	              <ul>
+                      <li>Os campos 'Componente', 'Estado', 'Responsável' e 'Última atualização': Exibem as mesmas informações obtidas em <a href="#detalharResumoInformacoesAQT">exibir informações e resumo do ANEF</a>, considerando o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> como sendo 'Em edição'.</li>
+   	              </ul>   
+   	           <li><a name="grupoResumoAnefConsultar">Grupo 'Resumo do ANEF'</a>:</li>
+  	   	        <ul>
+                    <li>Exibe as mesmas informações obtidas em <a href="#detalharResumoInformacoesAQT">exibir informações e resumo do ANEF</a>, considerando o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> como sendo 'Em edição'.</li>   	              
+  	   	        </ul>       
+   	           <li>Grupo '<i>&lt;&lt;Nome do ANEF&gt;&gt;</i>':</li>
+   	              <ul>
+   	                 <li>O nome do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> no título do grupo deve seguir o <a href="http://www.bc/padroesWebBC">padrão visual do banco</a>.</li>
+  	   	             <li>Campos 'Nota vigente do ANEF' e 'Nova nota inspetor':</li>
+  	   	                 <ul>
+  	   	                     <li>Deve-se informa os mesmos valores definidos em <a href="#detalharNotasANEF">exibir notas do ANEF</a>.</li>
+  	   	             		 <li>Caso não haja ajuste, a justificativa deve ser suprimida.</li>    
+  	   	                 </ul>    
+  	   	                 
+  	   	          </ul>
+  	   	        <li>Edição de 'Ajuste':</li>
+  	   	        <ul>
+  	   	             <li>Sempre houver edição na justificativa ou no valor, deve-se exibir a mensagem <span style="color: red">Atenção informações não salvas.</span> ao lado do botão 'Salvar informações.</li>  
+  	   	             <li>Valores para o combo de 'Ajuste':</li>
+  	   	                 <ul>
+  	   	                     <li>Os valores de seleção apresentados serão vazio ("Selecione") e; todos os 'Parâmetros de Nota' menos o valor referente a 'N/A'<!--  e o valor da 'Nota calculada' -->.</li>
+  	   	                     <!-- <li><b>Exceção:</b> Caso a 'Nota ajustada' já tenha sido salva anteriormente pelo usuário ela deve ser exibida.</li> -->
+  	   	                 </ul>    
+  	   	             <li>Ao selecionar um nota:</li>
+  	   	                 <ul> 
+  	   	                    <li>Caso tenha sido selecionado o valor vazio, a justificativa do ajuste deve ser suprimida.</li>
+  	   	                 </ul>
+     	        </ul>         
+   	          <li>Ao clicar em 'Salvar informações':</li>
+   	             <ul>
+   	                 <li>Caso tenha sido selecionado o valor vazio, a justificativa deve ter o seu valor apagado.</li>
+   	                 <li>Exibir a mensagem 'Nova nota do ANEF (ajustada) salva com sucesso'.</li>
+   	                 <li>Permanecer na tela atualizando a seção de 'Resumo do ANEF' e os alertas da tela.</li>
+   	             </ul>
+   	      </ul>        
+
+      <blockquote>
+		  <a href="editarajustenotasanef/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+  	   	 
+    <h4>
+  	     <a name="editarElementoItemANEF" class="menu">Editar elementos e itens do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li> 
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#editarANEF">editar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Para cada elemento do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+   	              <ul>
+   	           		  <li>Criar sub-grupo '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>' utilizando as regras definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a>.</li>
+                      <li>Exibir Notas:</li>
+                          <ul>
+           					 <li>Para o campo 'Nota inspetor', deve-se informar a nota do inspetor do <a href="#editarANEF">ANEF editado</a>.</li>
+   		   					 <li>Para o campo 'Nota vigente', utilizar a nota fornecida pelo supervisor no <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>. Caso não tenha sido fornecida, repetir a nota do inspetor do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+                          </ul>       	              
+               		  <li>Para cada item do elemento:</li>
+                    	  <ul>
+	  				          <li>Criar sub-grupo '<i>&lt;&lt;Nome do item&gt;&gt;</i>' utilizando as regras definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a></li>
+   	               			  <li>Exibir avaliações:</li>
+   	               			      <ul>
+                                      <li>Valores:</li>
+                                      <ul>
+                   					      <li>Para o campo 'Nova avaliação', deve-se informar a avaliação que foi atribuída ao item do <a href="#editarANEF">ANEF editado</a>.</li>
+           		   					      <li>Para o campo 'Avaliação vigente', utilizar a avaliação que foi atribuída ao item após o inspetor <a href="#editarANEF">editar</a> o item do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+   		   					          </ul>
+   		   					          <li>Informações adicionais:</li>
+   		   					          <ul>
+   		   					              <li>Utilizar a mesma regra para exibir as <a href="#informacoesAdicionaisDetalharElementoANEF">informações adicionais</a> definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a>, mas considerando que nos casos em que a mensagem é 'Sem alterações', deve-se exibir 'Sem alterações salvas'.</li>
+   		   					           </ul>       
+           		   				  </ul>	  
+	  				      </ul>    
+	  				   <li>Análise do supervisor</a>:</li>
+	  				      <ul> 
+	  				      	  <li>Criar sub-grupo para exibir a <a href="#exibirAnaliseSupervisorDetalharElementosANEF">análise do supervisor</a> utilizando as regras definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a>.</li>
+	  				      </ul> 
+                  </ul>   
+  	   	        <li>Edição de 'Nota inspetor':</li>
+  	   	        <ul>
+  	   	             <li>Sempre houver edição deve-se exibir a mensagem <span style="color: red">Atenção informações não salvas.</span> ao lado do botão 'Salvar informações'.</li>  
+  	   	             <li>Valores para o combo de 'Nota inspetor':</li>
+  	   	                 <ul>
+  	   	                     <li>Os valores de seleção apresentados serão vazio ("Selecione") e; todos os 'Parâmetros de Nota'.</li>
+  	   	                 </ul>    
+   	          		 <li>Ao clicar em 'Salvar informações':</li>
+   	                    <ul>
+   	                 	    <li>Exibir a mensagem 'Nota para '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>' salva com sucesso'.</li>
+   	                        <li>Permanecer na tela atualizando a seção de 'Resumo do ANEF' e os alertas da tela.</li>
+   	                    </ul>
+     	        </ul>         
+  	   	        <li>Edição de 'Nova avaliação':</li>
+  	   	        <ul>
+  	   	             <li>Sempre que houver edição deve-se exibir a mensagem <span style="color: red">Atenção informações não salvas.</span> ao lado do botão 'Salvar informações'.</li>
+   	          		 <li>Ao clicar em 'Salvar informações':</li>
+   	                    <ul>
+   	                 	    <li>Exibir a mensagem 'Justificativa para '<i>&lt;&lt;Nome do item&gt;&gt;</i>' salva com sucesso'.</li>
+   	                        <li>Permanecer na tela atualizando as informações adicionais da 'Nova avaliação' e os alertas da tela.</li>
+   	                    </ul>
+  	   	        </ul>       
+   	      </ul>        
+
+      <blockquote>
+		  <a href="editarelementoitemanef/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+ 	   	 
+    <h4>
+  	     <a name="editarAnexosANEF" class="menu">Editar arquivos do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li> 
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#editarANEF">editar ANEF</a>.</li>
+   	                  <li>Os anexos podem ser editados para a os itens dos elementos do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> ou para o próprio <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+   	              </ul>
+   	          <li>Ao exibir a seção e após incluir/excluir anexos:</li> 
+   	              <ul>
+   	                  <li>Anexos do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+   	                      <ul>
+   	                          <li>Caso tenha anexos:</li>
+   	                             <ul>
+   	                                <li>A informação mais recente de alteração (usuário e data/hora) deve ser listada no topo da seção 'Anexos'.</li>
+   	                             </ul>
+   	                          <li>Senão:</li>
+   	                             <ul>
+   	                                <li>Exibir a mensagem 'Nenhum arquivo anexado.'.</li>
+   	                             </ul>       
+   	                      </ul>
+   	              </ul>    
+   	          <li>Validações ao anexar:</li>
+   	             <ul>
+                     <li>Caso o usuário não tenha selecionado o arquivo, exibir mensagem de erro: 'Nenhum arquivo foi selecionado.'</li>
+                     <li>Caso o usuário tente anexar um arquivo com mesmo nome de outro arquivo já existente na mesma seção, exibir mensagem de erro: 'Não é permitido anexar arquivos com o mesmo nome.'</li>
+                     <li>Caso o usuário anexo um arquivo que não seja no formato PDF A4, exibir a seguinte mensagem de erro: 'Não é permitido anexar arquivos com formato diferente de PDF tamanho A4.'</li> 
+   	             </ul>    
+   	          <li>Ao anexar/excluir:</li>
+   	             <ul>
+   	                 <li>Atualizar a seção sem salvar as demais seções da tela.</li>
+   	             </ul>
+   	      </ul>        
+
+      <blockquote>
+		  <a href="editaranexosanef/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+        
+    <h4>
+  	     <a name="concluirEdicaoANEF" class="menu">Concluir a edição do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li> 
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#editarANEF">editar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Validações:</li>
+   	              <ul>
+   	                 <li>Se algum dado da tela foi editado, mas não salvo, exibir a mensagem de erro: 'Todos os dados da tela devem ser salvos antes de concluir a edição.'</li>
+					 <li>Se o usuário selecionou um arquivo para anexar e não clicou em "Anexar", exibir a mensagem de erro: 'Um documento foi selecionado e não anexado.'.</li>
+					 <li>Se a 'Nota ajustada' for preenchida e não houver justificativa, exibir a mensagem de erro: 'Campo 'Justificativa do ajuste' é de preenchimento obrigatório.'.</li>
+					 <li>Se a nota de algum elemento não for preenchida, exibir a mensagem de erro: 'Campo 'Nota inspetor' do elemento '<i>&lt;&lt;Nome do Elemento&gt;&gt;</i>' é de preenchimento obrigatório.'.</li>
+   	                 <li>Se a nota de um elemento for preenchida e diferente de N/A e nenhum item desse elemento tiver avaliação diferente de vazio, exibir a mensagem de erro: 'É necessário informar, ao menos, uma justificativa para os itens de avaliação do elemento '<i>&lt;&lt;Nome do Elemento&gt;&gt;</i>.'.</li>
+					 <li>Se a nota de todos os elementos forem iguais a 'N/A', exibir a mensagem de erro: 'Pelo menos um elemento deve ter nota preenchida diferente de N/A.'.</li>
+     	          </ul>         
+  	   	        <li>Ao concluir:</li>
+  	   	        <ul>
+  	   	             <li>Armazenar as informações sobre o usuário e data/hora da conclusão da edição do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	   	             <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	   	             <li>Alterar o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> para 'Preenchido'.</li>
+              	     <li>Retornar para o painel do inspetor exibindo a mensagem 'ANEF concluído com sucesso.'.</li>
+  	   	        </ul>       
+   	      </ul>        
+
+      <blockquote>
+		  <a href="editarconcluiranef/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+  
+                
+    <h3>
+  	     <a name="analisarANEF" class="menu">Analisar ANEF</a>
+  	</h3>
+	     <ul>
+  	   	    <li>Utilizar <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/AnaliseANEF/analise_anef_supervisor_preenchido.html">este protótipo</a> e <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/AnaliseANEF/analise_anef_supervisor_analise.html">este outro protótipo</a>.</li>
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+  	   	        <li>Observar a <a href="#ordemExibicaoANEF">ordem de exibição de elementos, itens e anexos do ANEF</a> e a <a href="#exibicaoAnexos">exibição da seção anexos</a>.</li>
+  	   	        <li>Ao salvar qualquer alteração na tela, caso o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> seja 'Preenchido' ou 'Análise delegada' deve-se alterá-lo para 'Em análise'.</li>
+  	   	    	<li>Ao entrar na tela:</li>
+  	   	       		<ul>
+  	   	           		<li>Deverão ser logados a ES, o perfil de risco e os dados da tela.</li>
+  	   	       		</ul>
+  	   	    </ul>
+  	   	    <li><a href="GLO_Glossario.html#glo_ANEF">ANEF</a> analisado:</li>
+  	   	        <ul>
+  	   	            <li>É sempre o <a href="GLO_Glossario.html#glo_ANEFRascunho">ANEF de rascunho</a>.</li>
+  	   	        </ul>
+  	   	    </li>
+  	   	 </ul>
+  	   	 
+	<h4>
+  		<a name="analisarAjusteNotasAnef" class="menu">Exibir cabeçalho, informações, resumo, ações e ajustar a nota do ANEF</a>
+  	</h4>
+  	
+  		<ul>
+  			<li>Regras gerais:</li>
+  			<ul>
+  				<li>Ver regras e definições descritas em <a href="#analisarANEF">analisar ANEF</a>.</li>
+  			</ul>
+  			<li>Grupo "Ciclo":</li>
+			<ul>
+				<li>Exibe as mesmas informações obtidas em <a href="#detalharCabecalhoAnexoAQT">exibir cabeçalho e anexos do ANEF</a>.</li>   	              
+			</ul>
+			<li>Grupo 'Informações do ANEF':</li>
+			<ul>
+				<li>Campos:</li>
+				<ul>
+					<li>Campos fixos:</li>
+					<ul>
+						<li>Os campos 'Componente', 'Estado' e 'Última atualização'(dados da última atualização no ANEF, usuário e data/hora) sempre devem ser exibidos.</li>
+					</ul>
+					<li>Campo variável:</li>
+					<ul>
+						<li>'Responsável': Exibido nos estados 'Análise delegada' ou 'Em análise', caso tenha delegação, e exibe o <a href="GLO_Glossario.html#glo_inspetorResponsável">inspetor responsável</a> pelo ANEF.</li>
+					</ul>
+				</ul>
+			</ul>
+			<li>Grupo 'Resumo do ANEF':</li>
+			<ul>
+				<li>Exibe as mesmas informações obtidas em <a href="#detalharResumoInformacoesAQT">exibir informações e resumo do ANEF</a>, 
+				considerando o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> como sendo 'Em análise'.</li>
+			</ul>
+			<li>Grupo 'Ações':</li>
+			    <ul>
+			        <li>Utilizar as mesmas regras definidas em <a href="#exibirAcoesANEF">exibir ações do ANEF</a>, mas considerando o <a href="#analisarANEF">ANEF analisado</a>.</li>
+			    </ul>
+			<li>Grupo '<i>&lt;&lt;Nome do ANEF&gt;&gt;</i>':</li>
+   			<ul>
+				<li>O nome do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> no título do grupo deve seguir o <a href="http://www.bc/padroesWebBC">padrão visual do banco</a>.</li>
+				<li>Campos 'Nota vigente do ANEF', 'Nova nota inspetor' e 'Nova nota supervisor':</li>
+				<ul>
+					<li>Deve-se informa os mesmos valores definidos em <a href="#detalharNotasANEF">exibir notas do ANEF</a>.</li>
+					<li>Caso não haja ajuste, a justificativa deve ser suprimida.</li>	
+				</ul>	
+			</ul>
+			<li>Edição de 'Ajuste' do supervisor:</li>
+ 	   		<ul>
+ 				<li>Sempre houver edição na justificativa ou no valor, deve-se exibir a mensagem <span style="color: red">Atenção informações não salvas.</span> ao lado do botão 'Salvar informações.</li>  
+ 	   			<li>Valores para o combo de 'Ajuste':</li>
+				<ul>
+					<li>Os valores de seleção apresentados serão vazio ("Selecione") e; todos os 'Parâmetros de Nota' menos o valores referentes a 'N/A'<!--  e o valor da <b>nota vigente no momento</b>, que segue a seguinte regra: -->.</li>
+					<!-- <ul>
+						<li>Caso o supervisor tenha feito o ajuste em alguma nota dos elemento, a nota vigente é a <b>nota calculada do supervisor</b>.</li>
+						<li>Senão, caso haja ajuste de nota do inspetor, a nota vigente é a <b>nota ajustada pelo inspetor</b>.</li>
+						<li>Senão, a nota vigente é a <b>nota calculada do inspetor</b>.</li>
+					</ul> -->
+					<!-- <li><b>Exceção:</b> Caso a 'Nota ajustada' já tenha sido salva anteriormente pelo usuário ela deve ser exibida.</li> -->
+				</ul>	
+				<li>Ao selecionar um nota:</li>
+				<ul> 
+					<li>Caso tenha sido selecionado o valor vazio, a justificativa do ajuste deve ser suprimida.</li>
+				</ul>
+ 			</ul>
+ 			<li>Ao clicar em 'Salvar informações':</li>
+			<ul>
+				<li>Caso tenha sido selecionado o valor vazio, a justificativa deve ter o seu valor apagado.</li>
+				<li>Exibir a mensagem 'Nova nota do ANEF (ajustada) salva com sucesso'.</li>
+				<li>Permanecer na tela atualizando a seção de 'Resumo do ANEF' e os alertas da tela.</li>
+			</ul>
+  		</ul>
+  		
+		<blockquote>
+			<a href="analisarajustenotasanef/indexNegocio.html">Cenários de teste de negócio</a>
+		</blockquote>
+	     
+	     
+    <h4>
+  	     <a name="analisarElementoANEF" class="menu">Analisar elementos do ANEF</a>
+  	</h4>
+   	      <ul>
+   	          <li>Regras gerais:</li> 
+   	              <ul>
+   	                  <li>Ver regras e definições descritas em <a href="#analisarANEF">analisar ANEF</a>.</li>
+   	              </ul>
+   	           <li>Para cada elemento do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>:</li>
+   	              <ul>
+   	           		  <li>Criar sub-grupo '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>' utilizando as regras definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a>.</li>
+                      <li>Exibir Notas:</li>
+                          <ul>
+           					 <li>Para o campo 'Nota supervisor', deve-se informar a nota do supervisor do <a href="#analisarANEF">ANEF analisado</a>.</li>
+           					 <li>Para o campo 'Nota inspetor', deve-se informar a nota do inspetor do <a href="#analisarANEF">ANEF analisado</a>.</li>
+   		   					 <li>Para o campo 'Nota vigente', utilizar a nota fornecida pelo supervisor no <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>. Caso não tenha sido fornecida, repetir a nota do inspetor do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+                          </ul>       	              
+               		  <li>Para cada item do elemento:</li>
+                    	  <ul>
+	  				          <li>Criar sub-grupo '<i>&lt;&lt;Nome do item&gt;&gt;</i>' utilizando as regras definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a></li>
+   	               			  <li>Exibir avaliações:</li>
+   	               			      <ul>
+                                      <li>Valores:</li>
+                                      <ul>
+                   					      <li>Para o campo 'Nova avaliação', deve-se informar a avaliação que foi atribuída ao item do <a href="#analisarANEF">ANEF analisado</a>.</li>
+           		   					      <li>Para o campo 'Avaliação vigente', utilizar a avaliação que foi atribuída ao item após o inspetor <a href="#editarANEF">editar</a> o item do <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>.</li>
+   		   					          </ul>
+   		   					          <li>Informações adicionais:</li>
+   		   					          <ul>
+   		   					              <li>Utilizar a mesma regra para exibir as <a href="#informacoesAdicionaisDetalharElementoANEF">informações adicionais</a> definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a>.</li>
+   		   					           </ul>       
+           		   				  </ul>	  
+	  				      </ul>    
+	  				   <li>Análise do supervisor</a>:</li>
+	  				      <ul> 
+	  				      	  <li>Criar sub-grupo para exibir a <a href="#exibirAnaliseSupervisorDetalharElementosANEF">análise do supervisor</a> utilizando as regras definidas em <a href="#detalharElementosANEF">detalhar elementos ANEF</a> com as seguintes ressalvas:</li>
+	  				      	      <ul>
+						      	     <li>Este grupo sempre será exibido.</li>
+		  				      	     <li>Caso a 'Nova análise' nunca tenha sido salva, deve-se exibir a mensagem 'Sem alterações salvas'.</li>
+	  				      	      </ul>
+	  				      </ul> 
+                  </ul>   
+  	   	        <li>Edição de 'Nota supervisor':</li>
+  	   	        <ul>
+  	   	             <li>Sempre houver edição deve-se exibir a mensagem <span style="color: red">Atenção informações não salvas.</span> ao lado do botão 'Salvar informações'.</li>  
+  	   	             <li>Valores para o combo de 'Nota supervisor':</li>
+  	   	                 <ul>
+  	   	                     <li>Os valores de seleção apresentados serão vazio ("Selecione") e; todos os 'Parâmetros de Nota' menos os valores referentes a 'N/A' e a 'Nota inspetor'.</li>
+  	   	                     <li><b>Exceção:</b> Caso a 'Nota supervisor' já tenha sido salva anteriormente pelo usuário ela deve ser exibida. </li>
+  	   	                 </ul>    
+                     <li>A nota do supervisor é editável apenas se a nota informada pelo inspetor é diferente de N/A.</li>
+   	          		 <li>Ao clicar em 'Salvar informações':</li>
+   	                    <ul>
+   	                 	    <li>Exibir a mensagem 'Nota para '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>' salva com sucesso'.</li>
+   	                        <li>Permanecer na tela atualizando a seção de 'Resumo do ANEF' e os alertas da tela.</li>
+   	                    </ul>
+     	        </ul>         
+  	   	        <li>Edição de 'Nova análise':</li>
+  	   	        <ul>
+  	   	             <li>Sempre que houver edição deve-se exibir a mensagem <span style="color: red">Atenção informações não salvas.</span> ao lado do botão 'Salvar informações'.</li>
+   	          		 <li>Ao clicar em 'Salvar informações':</li>
+   	                    <ul>
+   	                 	    <li>Exibir a mensagem 'Análise do supervisor para '<i>&lt;&lt;Nome do elemento &gt;&gt;</i>' salva com sucesso'.</li>
+   	                        <li>Permanecer na tela atualizando as informações adicionais da 'Nova análise' e os alertas da tela.</li>
+   	                    </ul>
+  	   	        </ul>       
+   	      </ul>        
+
+      <blockquote>
+		  <a href="analisarelementoanef/indexNegocio.html">Cenários de teste de negócio</a>
+      </blockquote>
+	     
+ 	<h4>
+  		<a name="concluirAnaliseANEF" class="menu">Concluir a análise do ANEF</a>
+  	</h4>
+  	
+  		<ul>
+  			<li>Regras gerais:</li>
+  			<ul>
+  				<li>Ver regras e definições descritas em <a href="#analisarANEF">analisar ANEF</a>.</li>
+  			</ul>
+   	           <li>Validações:</li>
+   	              <ul>
+                     <li>Se algum dado da tela foi editado, mas não salvo, exibir a mensagem de erro: 'Todos os dados da tela devem ser salvos antes de concluir a análise.'</li>
+					 <li>Se a 'Nota ajustada' do supervisor for preenchida e não houver justificativa, exibir a mensagem de erro: 'Campo 'Justificativa do ajuste' é de preenchimento obrigatório.'.</li>
+   	                 <li>Se a 'Nota supervisor' de um elemento for preenchida e não houver análise para o elemento diferente de vazio, exibir a mensagem de erro: 'A análise para o elemento '<i>&lt;&lt;Nome do Elemento&gt;&gt;</i>' é de preenchimento obrigatório.'.</li>
+   	                 <li>Se a 'Nota supervisor' de um elemento for igual a 'Nota inspetor' do elemento, exibir a mensagem de erro: Para o elemento '<i>&lt;&lt;Nome do Elemento&gt;&gt;</i>', a 'Nota supervisor' deve ser diferente da 'Nota inspetor''.</li>
+      	          </ul>         
+  	   	        <li>Ao concluir:</li>
+  	   	        <ul>
+  	   	             <li>Armazenar as informações sobre o usuário e data/hora da conclusão da análise do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	   	             <li>Não alterar as informações sobre o usuário e data/hora de última atualização do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>.</li>
+  	   	             <li>Salvar a nota final do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> conforme regra abaixo (síntese do que está especificado em <a href="#grupoResumoAnefDetalhar">detalhar 'Resumo do ANEF'</a>):</li>
+  	   	                 <ul>
+							 <li>Caso o supervisor tenha preenchido a 'Nota ajustada', a nota final é a 'Nota ajustada' do supervisor.</li>
+  	   	                     <li>Senão, caso o supervisor tenha feito ajuste em alguma nota dos elementos, a nota final é a 'Nota Calculada' do supervisor.</li> 
+							 <li>Senão, caso haja ajuste de nota do inspetor, a nota final é a 'Nota ajustada' pelo inspetor.</li> 
+							 <li>Senão, a nota final é a 'Nota Calculada' do inspetor.</li> 
+  	   	                 </ul>
+  	   	             <li>Alterar o estado do <a href="GLO_Glossario.html#glo_ANEF">ANEF</a> para 'Analisado'.</li>
+  	   	             <li>Caso haja delegação para o <a href="GLO_Glossario.html#glo_ANEF">ANEF</a>, remove-la.</li>
+              	     <li>Retornar para a tela de detalhamento do ANEF exibindo a mensagem 'Análise do ANEF concluída. ANEF não publicado.'</li>
+              	         <ul>
+              	              <li>Caso o usuário logado seja o supervisor da equipe, adicionar na mensagem o seguinte texto: 'Acesse e revise a <a href="#gerenciarAnaliseEconomicoFinanceira">Síntese do ANEF</a> para publicar este ANEF no Perfil de Risco.'.</li>
+              	         </ul>   
+              	     <ul>
+              	         <li>O link da mensagem deve levar o usuário para a tela de <a href="#gerenciarAnaliseEconomicoFinanceira">gestão da análise econômico-financeira.</a></li>
+              	     </ul>
+  	   	        </ul>       
+  		</ul>	
+
+      <blockquote>
+		  <a href="analisarconcluiranef/indexNegocio.html">Cenários de teste de negócio</a>
+      </blockquote>
+ 	     
+	<h3>
+       <a name="imprimirAnaliseEconomicoFinanceiraDossie" class="menu">Imprimir análise econômico-financeira no dossiê</a>
+    </h3>
+         <ul>
+  	   	    <li>Utilizar os seguintes protótipos para a impressão do resumo da análise econômico-financeira:</li>
+  	   	       <ul>
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequantitativa/imprimirdossieaef/layout_analise_economico_financeira.pdf">protótipo para o cabeçalho, corpo do arquivo</a>.</li>
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_01_Imprimir_ARC_layout impressão arcs .pdf">protótipo para espaçamento</a>.</li>
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_03_layout%20arc%2020140905%20%20layout%20arc%20-%20rodape.pdf">protótipo para as informações do rodapé (espaçamento no protótipo anterior)</a>.</li>
+  	   	       </ul>    
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+  	   	        <li>O nome do departamento deve ser o mesmo parâmetro utilizado na impressão de ARC.</li>
+  	   	        <li>Ordem de impressão:</li>
+  	   	            <ul>
+  	   	                <li>Este relatório deve ser impresso logo após a impressão da <a href="../corec/index.html#impressaoMatrizEARC">'Matriz de riscos e controles' e seus respectivos ARCs</a>.</li>
+  	   	             </ul>   
+  	   	        <li>Conteúdo impresso:</li>
+  	   	            <ul>
+  	   	                <li>Imprimir a análise econômico-financeira (ver protótipos acima), utilizando as regras definidas em <a href="#detalharAnaliseEconomicoFinanceira">detalhar análise econômico-financeira no perfil de risco</a> na seguinte ordem:</li>
+  	   	                    <ul>
+  	   	                        <li>Imprimir o 'Resumo' da análise econômico-financeira.</li>
+  	   	                        <li>Imprimir o resumo de cada <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a> ordenados de acordo com a metologia.</li>
+  	   	                    </ul>
+  	   	                <li>Imprimir os <a href="GLO_Glossario.html#glo_ANEFPerfilRisco">ANEF do perfil de risco</a>, ordenados de acordo com a metologia, utilizando o que foi definido em <a href="#imprimirANEF">imprimir do ANEF</a>.</li>
+  	   	            </ul>         
+  	   	    </ul>
+	     </ul>
+
+      <blockquote>
+		  <a href="imprimirdossieaef/indexNegocio.html">Cenários para testes manuais</a>
+      </blockquote>
+ 	     
+                
+	<h2>
+	    <a name="quadroPosicaoFinanceira" class="menu">Quadro da posição financeira</a>
+	</h2>
+
+	<h3>
+	    <a name="extrairDados" class="menu">Extração de dados</a>
+	</h3>
+		<ul>
+	   	    <li>A extração de dados deve ser feita utilizando da <i>DESIG_D1_CALCULADORA</i> a view <i>vw_DADOS_APS</i> fornecida pelo DESIG. Segue abaixo sua definição:
+	   	      <table class="exemplos">
+	   	          <thead>
+	   	             <tr>
+	   	                <th>Campo</th>
+	   	                <th>Tipo</th>
+	   	                <th>Descrição</th>
+	   	                <th>Comentário para extração</th>
+	   	             </tr>
+	   	             <tr>
+	   	                <td>ENT_CNPJ</td>
+	   	                <td>INT</td>
+	   	                <td>CNPJ da entidade</td>
+	   	                <td>Consultar utilizando o CNPJ da entidade supervisionável</td>
+	   	             </tr>
+	   	             <tr>
+	   	                <td>DAT_ANO_MES</td>
+	   	                <td>CHAR(6)</td>
+	   	                <td>Data em formato AAAAMM</td>
+	   	                <td>É a data-base de referência do registro</td>
+	   	             </tr>
+	   	             <tr>
+	   	                <td>INF_NOME</td>
+	   	                <td>VARCHAR(256)</td>
+	   	                <td>Nome da informação</td>
+	   	                <td>Indica o campo que deve ser consultado</td>
+	   	             </tr>
+	   	             <tr>
+	   	                <td>VI_VALOR</td>
+	   	                <td>FLOAT</td>
+	   	                <td>Saldo</td>
+	   	                <td>Valor do campo</td>
+	   	             </tr>
+	   	          </thead>
+	   	      </table>
+	   	    </li>
+	   	    <br/>
+	   	    <br/>
+	   	    <li>Para cada CNPJ distinto em <i>ENS_ENTIDADE_SUPERVISIONAVEL</i> com campo <i>ENS_IB_PERTENCE_SRC></i> = '1' </li>
+	   	      <ol>
+	   	       <li>Carregar/atualizar as doze data-base (AAAAMM) mais recentes disponíveis na view:</li>
+	   	      <ol>
+  	            <li>Inserir/atualizar registro em <i>DBE_DATA_BASE_ENS</i>.</li>
+	   	        <li>Para cada registro existente em <i>CAQ_CONTA_ANALISE_QUANT</i> com atributo <i>CAQ_IB_DIVERSOS</i> igual a '0', com a data-base carregada (<i>DBE_CD</i>) maior ou igual que a data-base do atributo <i>CAQ_CD_DATABE_INI</i> e, caso não seja nulo, menor ou igual que a data-base do atributo <i>CAQ_CD_DATABE_FIM</i>:</li>
+	   	            <ul>
+	   	                 <li>Utilizando o atributo <i>CAQ_NM_CONTA</i>, consultar a view e inserir/atualizar/setar null (caso não exista mais) o resultado em <i>ECA_ETL_CONTA_ANALISE_QUANT</i>.</li>
+	   	            	 <ul>
+	   	                    <li>Caso a coluna CAQ_NM_CONTA seja 'OpC', deverá ser armazenado em VI_VALOR o valor recuperado mais o valor recuperado para 'INF_NOME' = 'PrOpC', isto é, OpC = OpC + PrOpC. </li>
+	   	                    <li>Caso a coluna CAQ_NM_CONTA seja 'ETDesc', deverá ser armazenado em VI_VALOR o valor recuperado mais o valor recuperado para 'INF_NOME' = '16920002', isto é, ETDesc = ETDesc + 16920002. </li>
+	   	                    <li>Caso a coluna CAQ_NM_CONTA seja 'Financ', deverá ser armazenado em VI_VALOR o valor recuperado mais o valor recuperado para 'INF_NOME' = '16930009', isto é, Financ = Financ + 16930009. </li>
+	   	                    <li>Caso a coluna CAQ_NM_CONTA seja 'FiImob', deverá ser armazenado em VI_VALOR o valor recuperado mais o valor recuperado para 'INF_NOME' = '16950003', isto é, FiImob = FiImob + 16950003. </li>
+	   	                    <li>Caso a coluna CAQ_NM_CONTA seja 'CeOpC', deverá ser armazenado em VI_VALOR o valor recuperado mais o valor recuperado para 'INF_NOME' = '16980004', isto é, CeOpC = CeOpC + 16980004. </li>
+	   	                    <li>Caso a coluna CAQ_NM_CONTA seja 'OuACC', deverá ser armazenado em VI_VALOR o valor recuperado mais o valor recuperado para 'INF_NOME' = 'PrOuC', isto é, OuACC = OuACC + PrOuC. </li>
+	   	            	</ul>
+	   	            </ul>
+	   	        <li>Para cada registro existente em <i>OIA_OUTRA_INFO_ANALISE_QUANT</i> com a data-base carregada (<i>DBE_CD</i>) maior ou igual que a data-base do atributo <i>OIA_CD_DATABE_INI</i> e, caso não seja nulo, menor ou igual que a data-base do atributo <i>OIA_CD_DATABE_FIM</i>:</li>
+	   	            <ul>
+	   	                 <li>Utilizando o atributo <i>OIA_NM</i>, consultar a view e inserir/atualizar/setar null (caso não exista mais) o resultado em <i>EOI_ETL_OUTRA_INFO_ANALISE_QUANT</i>.</li>
+	   	            </ul>
+              </ol>         
+	   	      <li>Para a data-base mais antiga carregada no passo 1:</li>
+	   	      <ul>
+	   	        <li>Repetir os passos de 1.1 a 1.3 para os últimos três semestres anteriores.</li>
+                      <ul>
+                        <li><b>Ex.:</b> Se data-base mais antiga é ago/2014, os três semestres anteriores serão jun/14, dez/13 e jun/13.</li> 
+                      </ul>  
+              </ul>
+	   	    </ol>
+       </ul>
+
+
+	<h3>
+	     <a name="detalharQuadroPosicaoFinanceira" class="menu">Detalhar quadro da posição financeira</a>
+	</h3>
+      <ul>
+  	   	 <li>Utilizar <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">este protótipo</a> quando houver quadro vigente e <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_vazio.html"> este outro</a> quando não houver.</li>
+         <li>Deverá ser exibido o quadro vigente obtido na <a href="#gerenciarQuadroPosicaoFinanceira">gestão do quadro da posição financeira</a>.</li>
+       	 <li>Seção 'Quadro':</li>
+           <ul>
+               <li>Grupos 'Ativo' e 'Passivo'</li>
+                <ul>
+                    <li>Layout:</li>
+                    <ul>
+                       <li>A exibição deverá ser feita respeitando o agrupamento definido no layout do quadro que foi salvo e os ajustes feitos na <a href="#gerenciarQuadroPosicaoFinanceira">gestão do quadro da posição financeira</a>.</li>
+                       <li>As contas de 'Ativo' e 'Passivo' sempre estão dispostas em layout em forma de árvore. O primeiro nó é chamado 'conta pai raiz' (h=1).</li>
+                       <li>Deve haver uma linha em branco antes das contas filhas (h=2).</li>
+                       <li>Deve ser respeitada a definição de contas exibidas em negrito cadastradas no layout do quadro que foi salvo.</li>
+                       <li>Deve ser exibida uma linha em branco entre cada conta filha (h=2) imediatamente abaixo da 'conta pai raiz'.</li>
+                       <li>A coluna 'Ajustado' só deve ser exibida se houver alguma conta com ajuste. Deve-se considerar as colunas 'Ajustado' de 'Ativo' e 'Passivo' como sendo independentes.</li>
+                    </ul>  
+                    <li>Exibição de valores:</li>
+                        <ul>
+                       	   <li>Contas pai raiz para 'Ativo' e 'Passivo'.</li>
+                             <ul> 
+                                <li>Caso os valores ajustados das 'contas pai raiz' não sejam iguais, ambas as contas devem ser exibidas em <span style="color: red; font-weight: bold;">vermelho</span>.</li>
+                             </ul>
+   			               <li>Campo 'Valor':</li>
+            		        <ul> 
+                              <li>Caso seu valor seja nulo (não foi recuperado no ETL) ou 0 deverá ser exibido como '-' e para efeitos de cálculo deve ser considerado '0'.</li>
+                            </ul> 
+	                       <li>Campo 'Ajustado':</li>
+                            <ul> 
+                              <li>Seu valor é calculado da seguinte forma: 'Ajustado' = 'Valor' - 'Ajuste'. Ou seja, se o valor do 'Ajuste' for positivo haverá uma subtração e se for negativo haverá uma soma.</li>
+                              <li>Só deve ser exibido se o valor do campo 'Ajuste' for maior ou igual a zero.</li>
+                            </ul> 
+                            <li>Campo '%':</li>
+                            <ul> 
+                               <li>O percentual é calculado utilizando o valor 'Ajustado' e deve ser considerado a 'conta pai raiz' do layout como sendo o valor total (100%).</li>
+                               <li>O campo sempre deve ser exibido com uma casa decimal, exceto quando o valor for '100%'.</li>
+                            </ul> 
+                      </ul>
+               </ul>
+               <li>Grupo 'Resultados':</li>
+                  <ul>
+                    <li>Layout:</li>
+                    <ul>
+                        <li>A exibição deverá ser feita respeitando o agrupamento definido no layout do quadro que foi salvo e os ajustes feitos na <a href="#gerenciarQuadroPosicaoFinanceira">gestão do quadro da posição financeira</a>.</li>
+                        <li>O layout indica a coluna em que cada conta deve ser exibida.</li>
+                        <li>Os períodos indicarão a linha a ser exibida devendo ser em ordem crescente.</li>
+                        <li>A coluna 'Ajustado' só deve ser exibida se houver alguma conta com ajuste. Deve-se considerar as colunas 'Ajustado' para cada conta como independentes.</li>
+                    </ul>  
+                  </ul>
+               <li>Grupos 'Patrimônio de referência' e 'Índices':</li>
+                  <ul>
+                    <li>Layout:</li>
+                    <ul>
+                       <li>A exibição deverá ser feita respeitando o agrupamento definido no layout do quadro que foi salvo e os ajustes feitos na <a href="#gerenciarQuadroPosicaoFinanceira">gestão do quadro da posição financeira</a>.</li>
+                       <li>O layout indica a linha em que cada conta deve ser exibida.</li>
+                       <li>Deve ser respeitada a definição de uma linha será exibida caso não possua valor.</li>
+                       <li>A coluna 'Ajustado' só deve ser exibida se houver alguma conta com ajuste. Deve-se considerar as colunas 'Ajustado' de 'Índices' e 'Patrimônio de referência' como independentes.</li>
+                    </ul>  
+                 </ul>
+	   	       <li>Grupo 'Anexos':</li>
+		  	      <ul>
+                      <li>Caso não tenha anexos, exibir a mensagem 'Nenhum arquivo anexado.'.</li>
+  	              </ul>    
+           </ul>
+      </ul>
+
+      <blockquote>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/detalharquadroposicaofinanceira/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+
+	<h3>
+       <a name="gerenciarQuadroPosicaoFinanceira" class="menu">Gerenciar quadro da posição financeira</a>
+    </h3>   
+	     <ul>
+  	   	 <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoQuadroPosicaoFinanceira/gestao_quadro_posicao_financeira.html">protótipo</a>.</li>
+  	   	    <li>Permissão:</li>
+  	   	       <ul>
+  	   	           <li>Apenas o supervisor da equipe no perfil de risco vigente, do ciclo atual com estado 'Em andamento' pode acessar esta funcionalidade a partir <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">desta tela</a>.</li>
+  	   	       </ul>
+  	   	    <li>Regras gerais:</li>
+  	   	       <ul>
+  	   	           <li>Para cada informação que o usuário preencher e não estiver salva, o sistema deve exibir um asterisco vermelho <span style="color:red;font-weight: bold;"><sup>(*)</sup></span> ao lado do campo.</li>
+  	   	           <li>Se já houver um novo quadro salvo parcialmente, o sistema deve carregar estas informações.</li>
+  	   	           <li>O botão 'Concluir novo quadro da posição financeira e atualizar Perfil de risco' só ficará habilitado caso o valor das contas pai raiz para 'Ativo' e 'Passivo' sejam iguais.</li>
+  	   	       </ul>   
+	   	    <li>Seção 'Quadro vigente':</li>
+	   	     <ul>
+	   	         <li>A montagem do 'Quadro vigente' deve ser feita conforme o <a href="#detalharQuadroPosicaoFinanceira">detalhamento do quadro da posição financeira</a>.</li>
+	   	         <li>Caso não haja quadro vigente a seção deve ser suprimida.</li>
+	   	     </ul>
+	   	    <li>Seção 'Novo quadro':</li>
+	   	     <ul>
+	   	         <li>A montagem do 'Novo quadro' deve ser feita conforme o <a href="#detalharQuadroPosicaoFinanceira">detalhamento do quadro da posição financeira</a>, sendo que os dados são os obtidos da seguinte forma:</li>
+	   	           <ul> 
+	   	              <li>'Ativo' vem on-line da 'Seleção de contas de ativo';</li>
+	   	              <li>'Passivo' vem on-line da 'Seleção de contas de passivo';</li>
+	   	              <li>'Patrimônio de referência' vem on-line de 'Ajuste de patrimônios de referência';</li>
+	   	              <li>'Resultados' vem on-line de 'Ajustes de resultados';</li>
+	   	              <li>'Índices' vem on-line de 'Ajuste de índices';</li>
+	   	              <li><b>Observação:</b> Os dados obtidos 'on-line' implicam que quaisquer alterações de dados feitas pelo usuário devem ser refletidas imediatamente no novo quadro.</li>
+	   	           </ul>
+	   	     </ul>  
+	   	    <li><a name="secaoselecaodatabaseQPF">Seção 'Seleção de data-base'</a>:</li>
+	   	     <ul>
+	   	           <li>Lista de valores e valor selecionado: </li>
+	   	              <ul> 
+	   	                 <li>Devem ser listadas as últimas 12 datas base disponíveis para a instituição financeira ordenadas da mais recente para a mais antiga.</li>
+	   	                 <li>Se não houver um quadro vigente, a seleção de data-base deve exibir a data-base mais recente e executar os procedimentos descritos na <a href="#selecaodatabaseQPF">seleção da data-base</a>.</li>
+	   	                 <li>Se houver um novo quadro salvo parcialmente, deve listar a data-base do novo quadro sem executar os procedimentos descritos na <a href="#selecaodatabaseQPF">seleção da data-base</a>.</li>
+	   	                 <li>Se houver um quadro vigente e não houver um novo quadro salvo parcialmente, o sistema seleciona automaticamente a data-base do quadro vigente executando os procedimentos descritos na <a href="#selecaodatabaseQPF">seleção da data-base</a>.</li>
+	   	              </ul>
+  	              <li><a name="selecaodatabaseQPF">Seleção da data-base</a>:</li>
+	   	          <ul>
+	   	             <li>Ao selecionar a data-base: </li>
+	   	                 <ul>
+       	                   <li>Os dados preenchidos anteriormente pelo usuário serão descartados, exceto os anexos que serão preservados.</li>
+	        	           <li>O sistema atualizará os quadros de 'Seleção de contas de ativo', 'Seleção de contas de passivo', 'Ajustes de patrimônios de referência', 'Ajustes de resultados' e 'Ajustes de índices' com os dados obtidos na <a href="#extrairDados">extração de dados</a>, exceto para as contas 'Diversos' que devem ser calculadas conforme <a href="#calculadoDiversos">especificação</a>.</li>
+                           <li>Para a seção 'Ajuste de resultados' será recuperado o resultado de 4 períodos da seguinte forma:</li>
+                           <ul>
+                              <li>1 período com a data-base corrente.</li>
+                              <li>3 períodos com os três últimos semestres anteriores. <li>
+                                  <ul>
+                                     <li><b>Ex.:</b> Se data-base escolhida é agosto/2014 os semestres anteriores serão jun/14, dez/13 e jun/13.</li>
+                                  </ul>   
+                           </ul>
+	   	                   <li>Se houver um 'Quadro vigente':</li> 
+	   	                       <ul>
+	   	                           <li>Para a seleção de contas de 'Ativo' e 'Passivo', copiar a definição se o 'checkbox' deve estar  marcado das respectivas contas do quadro vigente.</li>
+	   	                      	   <li>Os valores dos campos preenchidos pelo usuário ('Ajuste' ou 'Ajustado') devem ser copiados do quadro vigente com as seguintes ressalvas:</li>
+	   	                      	   <ul>
+	   	                          	   <li>Os ajustes só poderão ser copiados se a mesma conta for exibida no novo quadro.</li>
+	   	                               <li>Os ajustes da 'Seleção de contas de ativo' e 'Seleção de contas de passivo' só devem ser copiados das contas que podem ter edição de ajustes.</li>
+	   	                               <li>Os ajustes da seção 'Ajuste de Resultados' só poderão ser copiados se o primeiro dos últimos 3 semestres anteriores for o mesmo.</li>
+	   	                      	   </ul>
+	   	                      	   <li>Deve-se calcular o valor dos campos 'Ajuste', 'Ajustado' e '%' das contas pai que não podem ter edição de ajustes conforme <a href="#regraAjustePai">regra</a>.</li>
+	   	                       </ul>
+	   	                    <li>Os dados devem ser persistidos automaticamente.</li>
+	   	                  </ul>  
+	   	           </ul>
+	   	     </ul>
+	   	    <li>Seções 'Seleção de contas de ativo' e 'Seleção de contas de passivo':</li>
+	   	     <ul>
+	   	           <li>Layout: </li>
+	   	             <ul>
+	   	               <li>Deverão ser respeitadas as regras de layout (negrito e espaçamento) definidas no cadastro do layout por data-base</a>.</li>
+	   	               <li>No cadastro de layout é possível que mais de um layout corresponda a uma data-base. Neste caso deve-se utilizar o layout mais recente.</li>
+  	                   <li>As contas filhas de uma conta com indicador de 'Subnível' devem ser apresentadas aninhadas e em <i>itálico</i>. </li>
+  	                   <li>As contas que estão sendo exibidas devem utilizar fonte com cor <span style="color: black; font-weight: bold;">preta</span>. Senão, será <span style="color: gray; font-weight: bold;"> cinza</span>.</li>
+	   	             </ul>  
+    	    		<li>Selecionando contas de ativo e passivo:</li>
+     	      			<ul>
+     	      			  <li>As contas que estão cadastradas como 'Obrigatória' não possuem o checkbox para indicar se devem ou não ser exibidas. Ela sempre serão exibidas.</li>
+     	      			  <li>Ao desmarcar uma conta que possui ajustes estes devem ser descartados, inclusive nas contas pai que estão sendo exibidas.</li> 
+     	               </ul>
+     	            <li>Regras para contas:</li>
+     	            <ul>
+               	   	    <li>Contas pai raiz para 'Ativo' e 'Passivo'.</li>
+                        <ul> 
+                           <li>Caso o valor ajustado das 'contas pai raiz' não sejam iguais, ambas as contas devem ser exibidas em <span style="color: red; font-weight: bold;">vermelho</span> e o botão para conclusão do novo quadro deve se manter desabilitado até que os valores sejam iguais.</li>
+                        </ul>
+                        <li>Contas (e suas filhas) com indicador de 'Subnível':</li>
+                        <ul>
+                           <li>Não é possível selecionar uma conta 'pai' e suas 'filhas' ao mesmo tempo quando a conta pai indicar que possui 'Subnível'. Nestes casos, ao selecionar para exibição a conta pai a seleção de contas filhas deve ser desmarcada, desabilitada e os ajustes devem ser descartados. A seleção de contas filhas só será liberada após desmarcar a conta pai.</li>
+     	                   <li>Esta mesma lógica deve ser utilizada ao selecionar contas 'filhas'.</li>
+                        </ul>
+               	   	    <li><a name="calculadoDiversos">Contas do tipo 'Diversos'</a>.</li>
+                        <ul> 
+                           <li>As contas do tipo 'Diversos' devem ter seu valor calculado da seguinte forma: Se apenas a conta pai do grupo for exibida seu valor é igual ao da conta pai, senão é diferença entre o valor da conta pai e as contas filhas selecionadas para exibição.</li>
+                        </ul>
+     	            </ul>   
+     	            <li><a name="regraAjustePai">Regras para campos:</a></li>
+     	            <ul>
+    	    		    <li>Campo 'Ajuste':</li>
+     	      			<ul>
+     	                  <li>Só é possível preencher o campo 'Ajuste' para as contas definidas no layout e que estão marcadas para exibição (obrigatória ou por check-box).</li>
+     	                  <li>Os ajustes nas contas filhas devem ser refletidos recursivamente nas contas 'pai' que são exibidas até a 'conta pai raíz'. Considere o seguinte exemplo: 'Depósitos de Poupança' é conta filha de 'Depósitos' (Subnível), que é filha de 'Exigibilidades', que é filha de 'Passivo Total Ajustado'. Ajustando 'Depósitos de Poupança' em 230, toda a cadeia descrita anteriormente terá o mesmo ajuste, exceto 'Depósitos'.</li>
+     	               </ul>
+    	    		    <li>Campos 'Ajustado' e '%':</li>
+     	      			<ul>
+     	                  <li>Deve ser calculado conforme o <a href="#detalharQuadroPosicaoFinanceira">detalhamento do quadro da posição financeira</a>.</li>
+   	                    </ul>
+   	                 </ul>    
+	   	     </ul>
+	   	    <li>Seções 'Ajuste de Patrimônios de Referência', 'Ajuste de Resultados' e 'Ajustes de Índices':</li>
+	   	     <ul>
+	   	           <li>Layout: </li>
+	   	             <ul>
+	   	                <li>No cadastro de layout é possível que mais de um layout corresponda a uma data-base. Neste caso deve-se utilizar o layout mais recente.</li>
+	   	                <li>Devem ser observadas as mesmas regras de layout definidas em <a href="#detalharQuadroPosicaoFinanceira">detalhamento do quadro da posição financeira</a>, exceto a definição da coluna 'Ajustado'.</li>
+	   	                <li>Caso o layout informe que a edição é feita diretamente no campo ajustado, não deve ser exibida a coluna 'Ajuste'.</li>
+	   	             </ul>   
+	   	     </ul>
+	   	    <li>Seção 'Anexos':</li>
+  	      	 <ul>
+   	            <li>Validações ao anexar:</li>
+   	               <ul>
+                       <li>Caso o usuário não tenha selecionado o arquivo, exibir mensagem de erro: 'Nenhum arquivo foi selecionado.'</li>
+                       <li>Caso o usuário tente anexar um arquivo com mesmo nome de outro arquivo já existente na mesma seção, exibir mensagem de erro: 'Não é permitido anexar arquivos com o mesmo nome.'</li>
+                       <li>Caso o usuário anexo um arquivo que não seja no formato PDF A4, exibir a seguinte mensagem de erro: 'Não é permitido anexar arquivos com formato diferente de PDF tamanho A4.'</li> 
+   	               </ul>    
+   	             <li>Ao anexar/excluir:</li>
+   	                <ul>
+   	                   <li>Atualizar a seção sem salvar as demais seções da tela.</li>
+     	             </ul>
+     	    </ul>         
+	   	    <li>Ao entrar na tela</a>:</li>
+	   	       <ul>
+	   	          <li>Observer o descrito na seção <a href="#secaoselecaodatabaseQPF">'Seleção de data-base'</a>.</li>
+	   	       </ul>
+	   	    <li>Ao final:</li>
+	   	    <ul> 
+	   	       <li>Caso o usuário apenas salve as informações:</li>
+	   	         <ul>
+   	                <li>Somente as informações do próprio grupo devem ser salvas/atualizadas no novo quadro.</li>    
+	   	         </ul>
+	   	       <li>Caso o usuário conclua novo quadro e atualize o perfil risco:</li>
+	   	         <ul> 
+	   	            <li>Executar as mesmas ações de salvar, mas considerando todos os botões de salvar da tela.</li> 
+ 	                <li>Criar novo perfil de risco, recuperando as informações do perfil de risco atual, exceto o quadro da posição financeira.</li>
+ 	                <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+	   	         </ul>
+	   	      </ul>
+	   	   </ul>
+	     </ul>
+      <blockquote>
+		  <a href="gerenciarquadroposicaofinanceira/indexNegocio.html">Cenários de teste de negócio</a><br>
+		  <a href="../../../../../../../web/src/test/java/crt2/analisequantitativa/gerenciarquadroposicaofinanceira/indexWeb.html">Cenários de teste web</a><br>
+      </blockquote>
+       
+	<h3>
+       <a name="imprimirQuadroPosicaoFinanceiraDossie" class="menu">Imprimir quadro da posição financeira no dossiê</a>
+    </h3>
+         <ul>
+  	   	    <li>Utilizar os seguintes protótipos:</li>
+  	   	       <ul>
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequantitativa/imprimirdossieqpf/layout%20impress%C3%A3o%20an%C3%A1lise%20quantitativa.pdf">protótipo para o cabeçalho, espaçamento e corpo do arquivo</a>.</li>
+  	   	               <ul>
+  	   	                   <li>Ressalvas:</li>
+  	   	                       <ul>
+  	   	                           <li>No título, onde está escrito 'Análise Quantitativa', considerar 'Quadro da posição financeira'.</li>
+ 	   	                           <li>Onde está escrito 'Quadros da posição financeira', considerar 'Quadros'.</li>
+ 	   	                           <li>Ignorar a seção '2. Análise econômico-financeira'.</li>
+  	   	                       </ul>
+  	   	               </ul> 
+  	   	           <li> <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_03_layout%20arc%2020140905%20%20layout%20arc%20-%20rodape.pdf">protótipo para as informações do rodapé (espaçamento no protótipo anterior)</a>.</li>
+  	   	       </ul>    
+  	   	    <li>Regras gerais:</li>
+  	   	    <ul>
+  	   	        <li>O nome do departamento deve ser o mesmo parâmetro utilizado na impressão de ARC.</li>
+                <li>Deve ser impresso:</li>
+                    <ul>
+  	   	                <li>Quadro da posição financeira; </li>
+  	   	                <li>Anexos do quadro na ordem em que foram anexados.</li>
+  	   	            </ul>
+  	   	        <li>Ordem de impressão no dossiê:</li>
+  	   	            <ul>
+  	   	                <li>Este relatório deve ser impresso logo após <a href="#imprimirAnaliseEconomicoFinanceiraDossie">impressão da análise econômico-financeira no dossiê</a>.</li>
+  	   	            </ul>    
+  	             </ul>   
+  	   	    </ul>
+	     </ul>
+
+      <blockquote>
+		  <a href="imprimirdossieqpf/indexNegocio.html">Cenários para testes manuais</a>
+      </blockquote>
+         
+</body>
+</html>

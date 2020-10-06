@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+
+				<tr class="fundoPadraoAClaro3">
+					
+					<td class="nomeCampo" style="width: 15%;">Nota supervisor</td>
+					
+					<td style="width: 25%;">
+						<div wicket:id="wmcExibirNotaEditavel">
+		                        <select wicket:id="idSelectaNotaSupervisorElemento" />
+		                        <input type="submit" class="botao" wicket:id="bttSalvarSupervisorElemento" value="Salvar" /> 
+		                        <label wicket:id="idAlertaDadosNaoSalvosElemento" style="color: red; font-size:7pt; margin:auto; visibility: hidden;">
+		                            Atenção nota não salva.
+		                        </label>
+						</div>
+					</td>
+					
+					
+					<td class="nomeCampo" style="width: 15%;">Nota inspetor</td>
+					<td style="width: 15%;"><label wicket:id="idNotaInspetorElemento" /></td>
+
+					<td class="nomeCampo" style="width: 15%;">Nota vigente</td>
+					<td style="width: 15%;"><label wicket:id="idNotaVigenteElemento"></label></td>
+				</tr>
+
+
+</wicket:panel>

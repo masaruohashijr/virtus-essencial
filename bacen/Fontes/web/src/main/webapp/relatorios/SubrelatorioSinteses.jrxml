@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubrelatorioSinteses" language="groovy" pageWidth="473" pageHeight="802" columnWidth="473" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.610510000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="texto" isDefault="false" fontName="Arial" fontSize="9"/>
+	<style name="texto-negrito" isDefault="false" style="texto" fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<field name="nomeParametroGrupoRisco" class="java.lang.String"/>
+	<field name="descricaoRiscoSintese" class="java.lang.String"/>
+	<field name="descricaoSinteseVigente" class="java.lang.String"/>
+	<field name="campo" class="java.lang.String"/>
+	<detail>
+		<band height="72" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="texto" positionType="Float" x="20" y="13" width="453" height="16"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomeParametroGrupoRisco}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="texto" positionType="Float" x="80" y="36" width="393" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descricaoRiscoSintese}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="texto" positionType="Float" x="0" y="55" width="473" height="16" isPrintWhenDetailOverflows="true"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" pdfFontName="Times New Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descricaoSinteseVigente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="texto" positionType="Float" x="0" y="13" width="20" height="16"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{REPORT_COUNT} + "." + " "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="texto" positionType="Float" x="51" y="36" width="36" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true" pdfFontName="Times-Italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{campo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

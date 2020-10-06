@@ -1,0 +1,30 @@
+<wicket:panel>
+<table id="tDadosArquivoParticipantes" cellspacing="0" cellpadding="3"  style="width: 100%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="3">Gerenciar participantes do comitê</th>
+			</tr>
+		</thead>
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				 <th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Novo arquivo</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<th style="padding: 0 8px; background-color: #93abc5; text-align: right; width: 25%; border: 1px solid #ffffff;">Arquivo</th>
+				<td >
+					<input type="file" wicket:id="idFieldUploadAnexoOficio" />
+					<input type="button" class="botao" style="width: 70px" wicket:id="botaoAnexarAquivoOficio" value="Adicionar">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table id="tListagem" cellspacing="0" cellpadding="0"  style="width: 100%">
+			<tr style="width: 100%; margin: auto;">
+					<td><div align="center" wicket:id="painelListagemArquivo" style="width: 100%; margin: auto;" /></td>
+			</tr>
+	</table>
+</wicket:panel>

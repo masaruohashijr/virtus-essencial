@@ -1,0 +1,1216 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória APSFW0202 - Perfil de
+	risco - Matriz.</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória a APSFW0209 - Navegabilidade
+		a partir da matriz (Gerenciar notas e sínteses)</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>02/09/2014</td>
+			<td>David Nascimento</td>
+			<td>Ajustes para atender: Bugs 44033 e 44034:REQ - Testes da Iteração 21</td>
+		</tr>
+	</table>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras desta estória específica clique <a
+			href="../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/requirement/Navegabilidade_a_partir_da_matriz.xlsx">aqui</a>
+	</blockquote>
+
+
+
+	<h2>Premissas iniciais</h2>
+
+	<blockquote>
+		Lista de servidores: <a
+			href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">aqui</a>
+	</blockquote>
+
+
+
+	<h2>Cenários de teste para a estória a APSFW0209 - Navegabilidade
+		a partir da matriz (Gerenciar notas e sínteses)</h2>
+	<blockquote>Cenários onde devem ser apresentadas as
+		trilhas, códigos e títulos de diversas telas a partir dos links dos
+		ARCs da  matriz vigente  (Gerenciar notas e sínteses)</blockquote>
+
+	<span id="cenarios"></span>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			 <td class='title'><b>C001</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Previsto'</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td><banco /> As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br> <br> 
+                Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br> 
+                Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+				<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_dadoque.html" class="include">aqui</a> <br></td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Designado' para outro usuário</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>2</td>
+		<td>1</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+	<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>14</td>
+					</tr>
+	</table>
+			</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br><br>Sucesso - Clicar sobre uma nota em estado <b>'Designado' para o supervisor</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>2</td>
+		<td>3</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+	<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>96186186</td>
+						<td>14</td>
+					</tr>
+	</table><br><br>
+	
+	<table class="prepare dados">
+		<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+		<tr>
+			<th>Ação</th>
+			<th>RPA_ID</th>
+			<th>RPA_CD_PERFIL</th>
+			<th>RPA_DS_LOCALIZACAO</th>
+			<th>RPA_IB_SUB_LOCALIZACAO</th>
+			<th>RPA_CD_FUNCAO</th>
+			<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+			<th>RPA_CD_SITUACAO</th>
+			<th>RPA_CD_MATRICULA</th>
+			<th>RPA_DH_ATUALZ</th>
+			<th>RPA_CD_OPER_ATUALZ</th>
+			<th>RPA_NU_VERSAO</th>
+		</tr>
+		<tr>
+			<td>I</td>
+			<td>23</td>
+			<td>7</td>
+			<td>DELIQ/GLIQ1/GTBHO</td>
+			<td>1</td>
+			<td></td>
+			<td></td>
+			<td>116</td>
+			<td>96186186</td>
+			<td>17/03/2014 00:00:00</td>
+			<td>deliq.sisliq105</td>
+			<td>0</td>
+		</tr>
+		</tr>
+	</table>
+			</td>
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Em edição' para outro usuário</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>3</td>
+		<td>4</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+	
+	<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>14</td>
+					</tr>
+	</table>
+	</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			 <td class='title'><b>C005</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Em edição' para o supervisor</b>e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>3</td>
+		<td>5</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+	
+	<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>96186186</td>
+						<td>14</td>
+					</tr>
+	</table>
+	</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		   <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Preenchido'</b> e verificar se está sendo direcionado para a tela de Análise do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>4</td>
+		<td>6</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+				
+				<table class="prepare dados">
+	<caption>AVA_AVALIACAO_ARC</caption>
+	<tr>
+	    <th>Ação</th>
+	    <th>AVA_ID</th>
+	    <th>ARC_ID</th>
+	    <th>PNO_ID</th>
+	    <th>AVA_CD_PERFIL</th>
+	    <th>AVA_AN_JUSTIFICATIVA</th>
+	    <th>AVA_DH_ATUALZ</th>
+	    <th>AVA_CD_OPER_ATUALZ</th>
+	    <th>AVA_NU_VERSAO</th>
+	 </tr>
+	 <tr>
+	    <td>I</td>
+	    <td>1</td>
+	    <td>14</td>
+	    <td>2</td>
+	    <td>2</td>
+	    <td>Justificativa para Controle de Risco de Crédito (versão 1 - Inspetor)</td>
+	    <td>28/05/2014 00:00:00</td>
+	    <td>deliq.sisliq101</td>
+	    <td>0</td>
+	 </tr>
+	 </table><br/><br/>
+	 
+	 
+	  <table class="prepare dados">
+	<caption>TEN_TENDENCIA_ARC</caption>
+	<tr>
+	    <th>Ação</th>
+	    <th>TEN_ID</th>
+	    <th>ARC_ID</th>
+	    <th>PTE_ID</th>
+	    <th>TEN_CD_PERFIL</th>
+	    <th>TEN_AN_JUSTIFICATIVA</th>
+	    <th>TEN_DH_ATUALZ</th>
+	    <th>TEN_CD_OPER_ATUALZ</th>
+	    <th>TEN_NU_VERSAO</th>
+	 </tr>
+	 <tr>
+	    <td>I</td>
+	    <td>1</td>
+	    <td>14</td>
+	    <td>2</td>
+	    <td>2</td>
+	    <td>Justificativa para Estabilidade (versão 1)</td>
+	    <td>28/05/2014 00:00:00</td>
+	    <td>deliq.sisliq113</td>
+	    <td>0</td>
+	 </tr>
+	 </table><br/><br/>
+	 
+	 <table class="prepare dados">
+                    <caption>ELE_ELEMENTO_ARC</caption>
+                    <tr>
+                        <th>Ação</th>
+                        <th>ELE_ID</th>
+                        <th>PNO_ID_INSPETOR</th>
+                        <th>PNO_ID_SUPERVISOR</th>
+                        <th>ELE_NU_VERSAO</th>
+                        <th>ELE_AN_JUST_SUPERVISOR</th>
+                        <th>ELE_CD_OPER_ATUALZ</th>
+                        <th>ELE_DH_ATUALZ</th>
+                        <th>PEL_ID</th>
+                        <th>ARC_ID</th>
+                    </tr>
+                    <tr>
+                        <td>I</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td/>
+                        <td>0</td>
+                        <td/>
+                        <td>deliq.sisliq113</td>
+                        <td>28/05/2014 00:00:00</td>
+                        <td>2</td>
+                        <td>14</td>
+                    </tr>
+                    </table><br/><br/>
+                    
+                    
+                     <table class="prepare dados">
+                    <caption>DOC_DOCUMENTO_SRC</caption>
+                    <tr>
+                        <th>Ação</th>
+                        <th>DOC_ID</th>
+                        <th>DOC_AN_JUSTIFICATIVA</th>
+                        <th>DOC_CD_OPER_ATUALZ</th>
+                        <th>DOC_DH_ATUALZ</th>
+                        <th>DOC_NU_VERSAO</th>
+                    </tr>
+                    <tr>
+                        <td>I</td>
+                        <td>1</td>
+                        <td>Justificativa para o item Risco de liquidação</td>
+                        <td>deliq.sisliq113</td>
+                        <td>28/05/2014 00:00:00</td>
+                        <td>0</td>
+                    </tr>
+                  </table><br/><br/>
+                  
+                  
+                  <table class="prepare dados">
+                    <caption>ITE_ITEM_ELEMENTO</caption>
+                    <tr>
+                        <th>Ação</th>
+                        <th>ITE_ID</th>
+                        <th>ITE_NU_VERSAO</th>
+                        <th>ITE_CD_OPER_ATUALZ</th>
+                        <th>ITE_DH_ATUALZ</th>
+                        <th>DOC_ID</th>
+                        <th>ELE_ID</th>
+                        <th>PIE_ID</th>
+                    </tr>
+                    <tr>
+                        <td>I</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>deliq.sisliq101</td>
+                        <td>28/05/2014 00:00:00</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                </table><br><br>
+                </td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Análise do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007</b><br><br>Sucesso - Clicar sobre uma nota em estado <b>'Em análise'</b> e verificar se está sendo direcionado para a tela de Análise do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>6</td>
+		<td>7</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Análise do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Em análise' para outro usuário</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>6</td>
+		<td>8</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+	<table class="prepare dados">
+					<caption>DEL_DELEGACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DEL_ID</th>
+						<th>DEL_NU_VERSAO</th>
+						<th>DEL_CD_OPER_ATUALZ</th>
+						<th>DEL_DH_ATUALZ</th>
+						<th>DEL_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>14</td>
+					</tr>
+	</table>
+	
+			</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C009</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Análise delegada' para outro usuário</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>1</td>
+		<td>9</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	
+	<table class="prepare dados">
+					<caption>DEL_DELEGACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DEL_ID</th>
+						<th>DEL_NU_VERSAO</th>
+						<th>DEL_CD_OPER_ATUALZ</th>
+						<th>DEL_DH_ATUALZ</th>
+						<th>DEL_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>28/05/2014 00:00:00</td>
+						<td>99990830</td>
+						<td>14</td>
+					</tr>
+	</table>
+	</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Analisado'</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>8</td>
+		<td>10</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	</td> 
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+	 
+	 
+	 
+	 <table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C011</b><br> <br>Sucesso - Clicar sobre uma nota em estado <b>'Concluído'</b> e verificar se está sendo direcionado para a tela de Detalhes do ARC</td>
+		</tr>
+		<tr>
+			<th>Dados pré-existentes</th>
+		</tr>
+		<tr>
+		    <td>Mesmo estado anterior<br><br>
+			<table class="prepare dados">
+	<caption>ARC_AVAL_RIS_CON</caption>
+	<tr>
+		<th>Ação</th>
+		<th>ARC_ID</th>
+		<th>ARC_PC_PARTICIPACAO</th>
+		<th>ARC_DS_END_MANUAL</th>
+		<th>ARC_CD_ESTADO</th>
+		<th>ARC_NU_VERSAO</th>
+		<th>ARC_CD_OPER_ATUALZ</th>
+		<th>ARC_DH_ATUALZ</th>
+		<th>PNO_ID_SUPERVISOR</th>
+		<th>PRC_ID</th>
+		<th>PFR_ID</th>
+		<th>PPS_ID</th>
+		<th>VER_ID</th>
+		<th>ARC_ID_ANTERIOR</th>
+	</tr>
+	<tr>
+		<td>U</td>
+		<td>14</td>
+		<td />
+		<td>Controle de Risco de Crédito.htm</td>
+		<td>7</td>
+		<td>11</td>
+		<td>deliq.sisliq101</td>
+		<td>28/05/2014 00:00:00</td>
+		<td></td>
+		<td>1</td>
+		<td>1</td>
+		<td>4</td>
+		<td>6</td>
+		<td>2</td>
+	</tr>
+	</table><br><br>
+	</td>
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">"Gerenciar notas e sínteses"</span></li>
+					<li>Clica na nota da Matriz vigente: <span class="clickon" by="id:linkRisco14" sleep="1000">"1" do ARC "Risco" do grupo "Risco de Crédito" da Atividade de negócio 1</span></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr>
+		    <td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor<input type="image" src="../../crt2/seta.gif" />Perfil de risco<input type="image" src="../../crt2/seta.gif" />Gestão de notas e sínteses<input type="image" src="../../crt2/seta.gif" />Detalhes do ARC</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+	 </table><br><br>
+	 
+</body>
+</html>

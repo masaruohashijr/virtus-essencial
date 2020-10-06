@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Desbloquear ES</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Desbloquear ES'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>10/07/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#desbloquearES">aqui</a></blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul>
+			<li>A lista de servidores foi <a href="../bloqueares/TestR001BloquearES-MockBcPessoa.html" class="include">carregada</a></li>
+
+			<banco/>
+
+			<li>Os dados encontram-se <a href="../bloqueares/TestR001BloquearES-DadoQue.html" class="include">aqui</a></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#validarDesbloquear">para validar se uma ES pode ser desbloqueada</a>.</blockquote>
+
+		<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Verificar se uma ES pode ser desbloqueada.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 60px">Entrada</th>
+									<th style="background-color: green; width: 180px">Saída</th>
+								</tr>
+							</table>
+							<table class="executeRows" name="resultado" value="$THIS.isBloqueavel(es)">
+								<tr>
+									<th style="width: 60px" class="set" name="es" converter="Integer">ID ES</th>
+									<th class="eq" value="resultado" style="background-color: green;  width: 180px">Pode ser desbloqueada?</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>Sim</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Sim</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Não</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Não</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>Não</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	</body>
+</html>

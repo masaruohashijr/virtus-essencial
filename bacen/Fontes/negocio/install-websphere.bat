@@ -1,0 +1,1 @@
+mvn clean compile install -Dfindbugs.skip=true -Dmaven.pmd.skip=true -DskipPmd=true -DskipTests=true -Dpmd.skip=true -Dmaven.test.skip=true

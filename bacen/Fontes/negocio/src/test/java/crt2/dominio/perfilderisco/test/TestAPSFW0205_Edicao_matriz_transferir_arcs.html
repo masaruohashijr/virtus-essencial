@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Edição de matriz (Transferir ARCs)</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		<dataHoraAtual valor="17/03/2014 00:00:00">Data atual: 17/03/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de falha e sucesso para a estória - Edição de matriz (Transferir ARCs)</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens
+		de erro/impedimento para a Edição de matriz (Transferir ARCs)</blockquote>
+	<pessoa>
+	<blockquote>MOCK do componente BCPessoa</blockquote>
+	</pessoa>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br> <br> Falha - Transferir ARC para uma atividade que já possui o mesmo.</td>
+			<td><banco /> 
+				<br> Regras <regra>aqui</regra><br>
+				<br> Os dados da Metodologia se encontram <parametros>aqui</parametros><br>
+				<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0205_Edicao_matriz_transferir_arcs_dadoque.html"
+				class="include">aqui</a><br>
+			</td>
+						
+			
+			<td>
+				<ul>
+					<li><span class="sentence" method="transferir">Transferir ARCs Risco de Crédito da Atividade corporativa ATV="1" para a Atividade de negócio ATV="2", Célula "1"</span></li>
+				</ul>
+		    </td>
+			<td>
+			    <ul class="execute" value="$THIS.verificar($NODE)">
+				   <li>Atividade já associada ao ARC anteriormente.</li>
+				</ul>
+			</td>
+		</tr>
+		
+		
+	</table>
+</body>
+</html>

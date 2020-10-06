@@ -1,0 +1,2098 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Detalhar análise economico-financeira (tela de perfil de risco)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Detalhar análise economico-financeira (tela de perfil de risco)'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>26/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#detalharAnaliseEconomicoFinanceira">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarEstadoInicialComAjusteCorec">verificar o estado inicial da tela com
+			ajuste do corec</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Verificar exibição da seção para o supervisor com
+							ajuste de corec anterior e ajuste do supervisor (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-EmAndamento.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+							</ul> <span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="5" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">4</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT002">[CT002]</a></b> - Verificar exibição da seção para o inspetor com ajuste
+							de corec anterior e ajuste do supervisor (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-EmAndamento.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">4</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT003">[CT003]</a></b> - Verificar exibição da seção para o perfil consulta com
+							ajuste de corec anterior e ajuste do supervisor (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-EmAndamento.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/consulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">4</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT004">[CT004]</a></b> - Verificar exibição da seção para o inspetor com ajuste
+							de corec anterior, atual e ajuste do supervisor (Ciclo 'Corec')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-Corec.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">1,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">2</td>
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">1</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">3</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">1</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT005">[CT005]</a></b> - Verificar exibição da seção para perfil consulta com
+							ajuste de corec anterior, atual e ajuste do supervisor (Ciclo 'Corec')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-Corec.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/consulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">1,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">2</td>
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">1</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">3</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">1</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT006">[CT006]</a></b> - Verificar exibição da seção para o supervisor com
+							ajuste de corec anterior, atual e ajuste do supervisor (Ciclo 'Corec')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-Corec.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">1,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">2</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">4 (Corec)</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">3</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">1</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT007">[CT007]</a></b> - Verificar exibição da seção para o supervisor com
+							ajuste de corec atual e ajuste do supervisor (Ciclo 'Pós-Corec')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-Corec.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Seleciona o ciclo: <span class="select" by="id:idCiclo" waint="5000">01/12/2014</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">3 (Corec)</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table id="tDadosSintesesAQT" cellspacing="0" cellpadding="3" style="width: 100%">
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-top: 0px; border-bottom: 1px;"><label
+												id="idTitulo153">Componentes</label></th>
+										</tr>
+
+									</thead>
+									<tbody id="id017e">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423651_77613530775873">Resultados</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTResultados">30%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor17f" bgcolor="#eebbbb"><a id="link_ANEF4" href="#">4</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr id="linhaResultados" style="display: none"></tr>
+									</tbody>
+									<tbody id="id1180">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle181">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelSolvencia_Patrimonial"><img id="imagem182"
+														src="./resource/br.gov.bcb.sisaps.web.page.componentes.util.ConstantesImagens/res/menos-ver-1429541803200.gif?antiCache=1429786428902"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423671_77613550440086">Solvência Patrimonial</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTSolv?ncia Patrimonial">50%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor183" bgcolor="#bbeebb"><a id="link_ANEF6" href="#">2</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaSolvencia_Patrimonial">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese">Síntese do
+													ANEF Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2184">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423689_77613568683175">Liquidez</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTLiquidez">20%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor185" bgcolor="#eeeebb"><a id="link_ANEF5" href="#">3</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr id="linhaLiquidez" style="display: none"></tr>
+									</tbody>
+
+									<tbody id="idMostrarAAvaliar">
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT008">[CT008]</a></b> - Verificar exibição da seção para o inspetor com ajuste
+							de corec atual e ajuste do supervisor (Ciclo 'Pós-Corec')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-Corec.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Seleciona o ciclo: <span class="select" by="id:idCiclo" sleep="5000">01/12/2014</span></li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">3 (Corec)</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+							<table id="tDadosSintesesAQT" cellspacing="0" cellpadding="3" style="width: 100%">
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-top: 0px; border-bottom: 1px;"><label
+												id="idTitulo153">Componentes</label></th>
+										</tr>
+
+									</thead>
+									<tbody id="id017e">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423651_77613530775873">Resultados</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTResultados">30%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor17f" bgcolor="#eebbbb"><a id="link_ANEF4" href="#">4</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr id="linhaResultados" style="display: none"></tr>
+									</tbody>
+									<tbody id="id1180">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle181">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelSolvencia_Patrimonial"><img id="imagem182"
+														src="./resource/br.gov.bcb.sisaps.web.page.componentes.util.ConstantesImagens/res/menos-ver-1429541803200.gif?antiCache=1429786428902"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423671_77613550440086">Solvência Patrimonial</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTSolv?ncia Patrimonial">50%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor183" bgcolor="#bbeebb"><a id="link_ANEF6" href="#">2</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaSolvencia_Patrimonial">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese">Síntese do
+													ANEF Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2184">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423689_77613568683175">Liquidez</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTLiquidez">20%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor185" bgcolor="#eeeebb"><a id="link_ANEF5" href="#">3</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr id="linhaLiquidez" style="display: none"></tr>
+									</tbody>
+
+									<tbody id="idMostrarAAvaliar">
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT009">[CT009]</a></b> - Verificar exibição da seção para o perfil consulta com
+							ajuste de corec atual e ajuste do supervisor (Ciclo 'Pós-Corec')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-Corec.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/consulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+								<li>Seleciona o ciclo: <span class="select" by="id:idCiclo" sleep="5000">01/12/2014</span></li>
+
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<thead>
+									<tr>
+										<th colspan="5" align="left">Análise econômico-financeira</th>
+									</tr>
+								</thead>
+							</table> </span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d"><label id="notaAjustadaAQT16e">3 (Corec)</label></td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table id="tDadosSintesesAQT" cellspacing="0" cellpadding="3" style="width: 100%">
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-top: 0px; border-bottom: 1px;"><label
+												id="idTitulo153">Componentes</label></th>
+										</tr>
+
+									</thead>
+									<tbody id="id017e">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423651_77613530775873">Resultados</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTResultados">30%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor17f" bgcolor="#eebbbb"><a id="link_ANEF4" href="#">4</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr id="linhaResultados" style="display: none"></tr>
+									</tbody>
+									<tbody id="id1180">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle181">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelSolvencia_Patrimonial"><img id="imagem182"
+														src="./resource/br.gov.bcb.sisaps.web.page.componentes.util.ConstantesImagens/res/menos-ver-1429541803200.gif?antiCache=1429786428902"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423671_77613550440086">Solvência Patrimonial</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTSolv?ncia Patrimonial">50%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor183" bgcolor="#bbeebb"><a id="link_ANEF6" href="#">2</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaSolvencia_Patrimonial">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese">Síntese do
+													ANEF Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2184">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1429786423689_77613568683175">Liquidez</label></td>
+											<td class="nomeCampo"
+												style="width: 3%; text-align: center; font-weight: normal; border-left: thin white solid; border-right: thin white solid">
+												<label id="linkPercAQTLiquidez">20%</label>
+											</td>
+											<td style="width: 4%; text-align: center;" id="cor185" bgcolor="#eeeebb"><a id="link_ANEF5" href="#">3</a>
+											</td>
+											<td class="fundoPadraoAClaro3"></td>
+										</tr>
+
+										<tr id="linhaLiquidez" style="display: none"></tr>
+									</tbody>
+
+									<tbody id="idMostrarAAvaliar">
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+
+								</table>
+						</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT010">[CT010]</a></b> - Verificar exibição da seção para o supervisor com
+							ajuste de corec anterior e sem ajuste do supervisor (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-SemAjusteSupervisor.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td><span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="5" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d">2 (Corec)</td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT011">[CT011]</a></b> - Verificar exibição da seção para o inspetor com ajuste
+							de corec anterior e sem ajuste do supervisor (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-SemAjusteSupervisor.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td><span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="5" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d">2 (Corec)</td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT012">[CT012]</a></b> - Verificar exibição da seção para o perfil consulta com
+							ajuste de corec anterior e sem ajuste do supervisor (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-SemAjusteSupervisor.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/consulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td><span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="5" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+											<td class="nomeCampo" style="width: 10%;" id="colunaNotaAjustada16c">Nota ajustada</td>
+											<td style="width: 20%;" id="colunaNotaAjustadaValor16d">2 (Corec)</td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT013">[CT013]</a></b> - Verificar exibição da seção para o supervisor com
+							ajuste de corec anterior e ajuste do supervisor "nulo" (Ciclo 'Em andamento')</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR001DetalharAnaliseEconomicoFinanceira-DadoQue-AjusteSupervisorNulo.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelResultados">Resultados</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon"
+									by="id:grupo_controle_grupoExpansivelSolvencia_Patrimonial">Solvência Patrimonial</span>
+								</li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelLiquidez">Liquidez</span>
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td><span class="compareTable" by="xpath://table[@id='tAnaliseEconomicoFinanceira']">
+								<table>
+									<thead>
+										<tr>
+											<th colspan="5" align="left">Análise econômico-financeira</th>
+										</tr>
+									</thead>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tResumoSinteseAQTCiclo']">
+								<table width="90%" cellspacing="0" cellpadding="3" id="tResumoSinteseAQTCiclo">
+									<thead id="idTitulo166">
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="7" class="thform" style="text-align: left; border-bottom: 0px;">Resumo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 15%;">Nota calculada</td>
+											<td style="width: 15%;" id="colunaNotaCalculada167">2,80</td>
+											<td class="nomeCampo" style="width: 15%;">Nota refinada</td>
+											<td style="width: 15%;" id="colunaNotarRefinada168">3</td>
+										</tr>
+
+									</tbody>
+								</table>
+						</span> <span class="compareTable" by="xpath://table[@id='tDadosSintesesAQT']">
+								<table>
+									<thead>
+
+										<tr class="fundoPadraoAEscuro3">
+											<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Componentes</th>
+										</tr>
+
+									</thead>
+									<tbody id="id0170">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle171">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-0-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelResultados"><img id="imagem172"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461097_545821656974929">Resultados</label></td>
+											<td>30%</td>
+											<td><a id="linkNotaAQTResultados" href="#">4</a></td>
+											<td></td>
+										</tr>
+										<tr class="fundoPadraoAClaro3" id="linhaResultados">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese186">Síntese do ANEF
+													Resultados</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id1173">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle174">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-1-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelCapital"><img id="imagem175"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461102_545821661946521">Solvência Patrimonial</label></td>
+											<td>50%</td>
+											<td><a id="linkNotaAQTSolvenciaPatrimonial" href="#">2</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaCapital">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese185">Síntese do ANEF
+													Solvência Patrimonial</label></td>
+										</tr>
+									</tbody>
+									<tbody id="id2176">
+										<tr class="fundoPadraoAClaro3">
+											<td class="nomeCampo" style="width: 5%; text-align: left;"><span class="nomeCampo" id="controle177">
+													<a
+													href="./page?4-1.ILinkListener-formulario-grupoDeSintesesAQT-listaSintesesAQT-2-grupoExpansivel-controle-link"
+													id="grupo_controle_grupoExpansivelExigibilidades/Liquidez"><img id="imagem178"
+														src="../../../../../../../web/src/main/java/br/gov/bcb/sisaps/web/page/componentes/util/res/mais.gif"></a>
+											</span></td>
+											<td class="nomeCampo" style="width: 20%;"><label class="nomeCampo"
+												id="grupo_nome_campo_1423003461107_545821666423369">Liquidez</label></td>
+											<td>20%</td>
+											<td><a id="linkNotaAQTLiquidez" href="#">3</a></td>
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3" id="linhaExigibilidades/Liquidez">
+											<td colspan="5" class="campoDescricaoSintese"><label id="idDescricaoSintese187">Síntese do ANEF
+													Liquidez</label></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td colspan="100" align="right">*a avaliar</td>
+										</tr>
+									</tbody>
+								</table>
+						</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

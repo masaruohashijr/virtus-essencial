@@ -1,0 +1,37 @@
+<wicket:panel>
+    <table id="tPainelFitro" cellpadding="0" cellspacing="0" style="width: 100%">
+        <tr style="width: 100%; margin: auto;">
+            <td><div wicket:id="idPainelFitroDesignacaoARCs"></div></td>
+        </tr>
+    </table>
+
+        <table id="tPainelListagemDesignacao" cellpadding="0" cellspacing="0" style="width: 90%">
+                <tr>
+                    <td><div wicket:id="idPainelListagemDesignacao"></div></td>
+                </tr>
+        </table>
+
+    
+    <table id="tPainelServidores" cellspacing="0" cellpadding="3" style="width: 90%" >
+		   
+        <thead>
+	        <tr class="fundoPadraoAEscuro3">
+	            <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Designação</th>
+	        </tr>
+        </thead>
+        <tbody>
+            <tr class="aesquerda">
+                <td class="nomeCampo" style="width: 25%;">Servidores da equipe</td>
+                <td style=""><select id="idServidorEquipe" wicket:id="idServidorEquipe"></select></td>
+            </tr>
+            <tr class="aesquerda">
+                <td class="nomeCampo">Outros servidores</td>
+                <td style="">
+                	<select id="idUnidade" wicket:id="idUnidade"></select>
+                    <select id="idServidorUnidadeSelecionada"  wicket:id="idServidorUnidadeSelecionada"></select>
+                   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>

@@ -1,0 +1,166 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Listar ARCs designados no painel do inspetor</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 'Listar ARCs designados no painel do inspetor'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>22/05/2017</td>
+			<td>David Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a href="../index.html#listarARCDesignadoInspetor">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+        <ul>
+	       <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	       <li>Usuário: <b class="set" name="loginUsuarioLogado">"deliq.sisliq113"</b></span>.</li>  
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários de <a href="indexNegocio.html#listarAQT"> recuperação de registros</a>.</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Validação</th>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><b>[C001] - </b>Inspetor possui ARCs designados (com ARC externo "Designado").</td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001ListarARCDesignadoInspetor-DadoQue-C001.html" class="include">aqui</a>
+			</td>
+    	    <td>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="arc" value="$THIS.consultaPainelInspetor(loginUsuarioLogado)">
+                    			<tr>
+                        			<th class="eq" value="$THIS.getID(arc)">ID ARC</th>
+                        			<th class="eq" value="$THIS.getEs(arc)">ES</th>
+                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+                        			<th class="eq" value="$THIS.getRC(arc)">R/C</th>
+                        			<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+                    			</tr>
+                    			<tr>
+                        			<td>46</td>
+									<td>ABN AMRO</td>
+									<td>Atividade UA</td>
+									<td>Risco de Crédito</td>
+									<td>R</td>
+									<td>Designado</td>
+		    			        </tr>
+                    			<tr>
+		                			<td>47</td>
+									<td>ABN AMRO</td>
+									<td>Atividade UB</td>
+									<td>Gestãodo Risco de Crédito</td>
+									<td>C</td>
+									<td>Em edição</td>
+		            			</tr>
+                    			<tr>
+                        			<td>67</td>
+									<td>ABN AMRO</td>
+									<td></td>
+									<td>Governança corporativa</td>
+									<td></td>
+									<td>Designado</td>
+		            			</tr>
+		        				</table>
+		        		    </td>
+		        		</tr>
+                    </table>	
+		        </td>
+			</tr>
+			
+			<tr class="scenario" >
+			<td class='title'><b>[C002] - </b>Inspetor possui ARCs designados (com ARC externo em "Em edição").</td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001ListarARCDesignadoInspetor-DadoQue-C002.html" class="include">aqui</a>
+			</td>
+    	    <td>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="arc" value="$THIS.consultaPainelInspetor(loginUsuarioLogado)">
+                    			<tr>
+                        			<th class="eq" value="$THIS.getID(arc)">ID ARC</th>
+                        			<th class="eq" value="$THIS.getEs(arc)">ES</th>
+                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+                        			<th class="eq" value="$THIS.getRC(arc)">R/C</th>
+                        			<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+                    			</tr>
+                    			<tr>
+                        			<td>46</td>
+									<td>ABN AMRO</td>
+									<td>Atividade UA</td>
+									<td>Risco de Crédito</td>
+									<td>R</td>
+									<td>Designado</td>
+		    			        </tr>
+                    			<tr>
+		                			<td>47</td>
+									<td>ABN AMRO</td>
+									<td>Atividade UB</td>
+									<td>Gestãodo Risco de Crédito</td>
+									<td>C</td>
+									<td>Em edição</td>
+		            			</tr>
+		            			<tr>
+                        			<td>67</td>
+									<td>ABN AMRO</td>
+									<td></td>
+									<td>Governança corporativa</td>
+									<td></td>
+									<td>Em edição</td>
+		            			</tr>
+		        				</table>
+		        		    </td>
+		        		</tr>
+                    </table>	
+		        </td>
+			</tr>
+	</table>
+</body>
+</html>

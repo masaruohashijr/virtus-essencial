@@ -1,0 +1,518 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Gerenciar quadro da posição financeira</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Gerenciar quadro da posição financeira'</h1>
+
+	<span id="index"></span>
+
+    <h2>Histórico</h2>	
+	<table class="exemplos historico">
+             <tr>
+                    <th>Versão</th>
+                    <th>Data</th>
+                    <th>Responsável</th>
+                    <th>Descrição</th>
+             </tr>
+             <tr>
+                    <td>1.0</td>
+                    <td>06/08/2014</td>
+                    <td>Adjamir Galvão</td>
+                    <td>Versão Inicial</td>
+             </tr>
+             <tr>
+                    <td>2.0</td>
+                    <td>18/06/2015</td>
+                    <td>Adjamir Galvão</td>
+                    <td>Criando cenário <b>CT007</b> para validar casos em que há layouts que cujos periodos de validade se sobrepoem.</td>
+             </tr>
+             <tr>
+                    <td>3.0</td>
+                    <td>03/07/2015</td>
+                    <td>Victor Vasconcelos</td>
+                    <td>Alteração dos cenários CT002, CT003, CT005 e CT006 para validação dos anexos do quadro da posição financeira.</td>
+             </tr>
+             <tr>
+				<td>4.0</td>
+				<td>26/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+			</tr>
+			<tr>
+				<td>5.0</td>
+				<td>26/07/2016</td>
+				<td>David Nascimento</td>
+				<td>Adicionando no "porfim" do cenário CT006 a geração do evento de perfil de risco para que seja refletido no APS.</td>
+			</tr>
+			<tr>
+				<td>6.0</td>
+				<td>07/10/2016</td>
+				<td>Kalina Lígia</td>
+				<td>Disparo de envio de e-mails.</td>
+			</tr>
+			<tr>
+				<td>1.3</td>
+				<td>31/03/2017</td>
+				<td>Cleonides Nascimento</td>
+				<td>Removento o envio de e-mail.</td>
+			</tr>
+	</table>
+
+   <span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#gerenciarQuadroPosicaoFinanceira">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<li>O usuário logado é '<span class="set" name="login">deliq_sisliq101</span>'.</li>
+		<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+	</ul>
+	
+	<h2>Cenários</h2>
+	    <blockquote> 
+	       Cenários para <a href="indexNegocio.html#selecionarDataBase">selecionar uma data-base para o 'novo quadro' e salvar ou concluir</a>.
+	    </blockquote> 
+
+<!-- ##### -->
+<!-- CT001 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT001">[CT001]</a></b> - Selecionar uma data-base sem quadro vigente e sem novo quadro salvo previamente.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		          <li>Os dados encontram-se <a  href="TestR003C001GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>
+           		
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span  class="set" name="perfil" converter="Integer" >2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" name="database" converter="Integer" >201401</span>'; e</li>
+			       <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+			       <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvar">Salvar</span> todos os dados.</li>
+			    </ul>   
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			  <ul>
+			    <li>Receber a mensagem:</li>
+				<ul>
+					<li>A seleção de contas de ativo foi salva com sucesso.</li>
+					<li>A seleção de contas de passivo foi salva com sucesso.</li>
+					<li>Os ajustes de patrimônios de referência foram salvos com sucesso.</li>
+					<li>Os ajustes de resultados foram salvos com sucesso.</li>
+					<li>Os ajustes de índices foram salvos com sucesso.</li>
+				</ul>
+			   <li>O novo quadro foi <a href="TestR003C001GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+			 </ul>	
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br>
+
+<!-- ##### -->
+<!-- CT002 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT002">[CT002]</a></b> - Selecionar uma data-base sem quadro vigente e com quadro parcial.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		          <li>Os dados encontram-se <a  href="TestR003C002GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>  
+           		
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span class="set" name="perfil" converter="Integer">2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" converter="Integer" name="database">201402</span>'; e</li>
+			       <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+			       <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvar">Salvar</span> todos os dados.</li>
+			    </ul>   
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			  <ul>
+			    <li>Receber a mensagem:</li>
+				<ul>
+					<li>A seleção de contas de ativo foi salva com sucesso.</li>
+					<li>A seleção de contas de passivo foi salva com sucesso.</li>
+					<li>Os ajustes de patrimônios de referência foram salvos com sucesso.</li>
+					<li>Os ajustes de resultados foram salvos com sucesso.</li>
+					<li>Os ajustes de índices foram salvos com sucesso.</li>
+				</ul> 
+			   <li>O novo quadro foi <a href="TestR003C002GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+			 </ul>	
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br>
+
+<!-- ##### -->
+<!-- CT003 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT003">[CT003]</a></b> - Selecionar uma data-base com quadro vigente, sem novo quadro, layout compatível e 'Resultados' compatível.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		           <li>Os dados encontram-se <a  href="TestR003C003GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>  
+           		
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span class="set" converter="Integer" name="perfil">2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" converter="Integer" name="database">201402</span>'; e</li>
+			       <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+                   <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvarConclusao">Salvar</span> todos os dados.</li>
+			    </ul>   
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			  <ul>
+			    <li>Receber a mensagem:</li>
+				<ul>
+					<li>A seleção de contas de ativo foi salva com sucesso.</li>
+					<li>A seleção de contas de passivo foi salva com sucesso.</li>
+					<li>Os ajustes de patrimônios de referência foram salvos com sucesso.</li>
+					<li>Os ajustes de resultados foram salvos com sucesso.</li>
+					<li>Os ajustes de índices foram salvos com sucesso.</li>
+				</ul>
+			   <li>O novo quadro foi <a href="TestR003C003GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+			 </ul>	
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br/>
+
+<!-- ##### -->
+<!-- CT004 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT004">[CT004]</a></b> - Selecionar uma data-base com quadro vigente, sem novo quadro, layout compatível e 'Resultados' incompatível.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		           <li>Os dados encontram-se <a  href="TestR003C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>  
+           		
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span class="set" converter="Integer" name="perfil">2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" converter="Integer" name="database">201312</span>'; e</li>
+			       <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+                   <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvar">Salvar</span> todos os dados.</li>
+			    </ul>   
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			  <ul>
+			    <li>Receber a mensagem:</li>
+				<ul>
+					<li>A seleção de contas de ativo foi salva com sucesso.</li>
+					<li>A seleção de contas de passivo foi salva com sucesso.</li>
+					<li>Os ajustes de patrimônios de referência foram salvos com sucesso.</li>
+					<li>Os ajustes de resultados foram salvos com sucesso.</li>
+					<li>Os ajustes de índices foram salvos com sucesso.</li>
+				</ul>
+			   <li>O novo quadro foi <a href="TestR003C004GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+			 </ul>	
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br/>
+
+<!-- ##### -->
+<!-- CT005 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT005">[CT005]</a></b> - Selecionar uma data-base com quadro vigente, sem novo quadro, layout incompatível e 'Resultados' incompatível.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		           <li>Os dados encontram-se <a  href="TestR003C004GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>   
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span class="set" name="perfil" converter="Integer">2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" converter="Integer" name="database">201206</span>'; e</li>
+			        <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+                   <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvar">Salvar</span> todos os dados.</li>
+			    </ul>   
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			  <ul>
+			    <li>Receber a mensagem:</li>
+				<ul>
+					<li>A seleção de contas de ativo foi salva com sucesso.</li>
+					<li>A seleção de contas de passivo foi salva com sucesso.</li>
+					<li>Os ajustes de patrimônios de referência foram salvos com sucesso.</li>
+					<li>Os ajustes de resultados foram salvos com sucesso.</li>
+					<!-- Os índices não serão salvos porque não há informações -->
+				</ul>
+			   <li>O novo quadro foi <a href="TestR003C005GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+			 </ul>	
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br>
+
+<!-- ##### -->
+<!-- CT006 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário</th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT006">[CT006]</a></b> - Selecionar uma data-base com quadro vigente, sem novo quadro, layout compatível, 'Resultados' compatível e clicando em concluir.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		           <li>Os dados encontram-se <a  href="TestR003C003GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>  
+           		
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span class="set" converter="Integer" name="perfil">2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" converter="Integer" name="database">201402</span>'; e</li>
+			       <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+                   <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvarConclusao">Concluir</span> novo quadro.</li>
+			       
+			    </ul>   
+			</td>
+		<tr>
+		
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			 	<ul>
+				    <li>Receber a mensagem:</li>
+					<ul>
+						<li>Novo quadro concluído e perfil de risco atualizado com sucesso.</li>
+					</ul>
+				   <li>O novo quadro foi <a href="TestR003C006GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+				</ul>
+				</td>
+			</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br/>
+
+<!-- ##### -->
+<!-- CT007 -->
+<!-- ##### -->
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b><a name="CT007">[CT007]</a></b> - Selecionar uma data-base com quadro vigente, sem novo quadro, layout compatível sobreposto e 'Resultados' compatível.</td>
+		</tr>
+		<tr>
+		   <th>Dado que</th>
+		</tr>	
+		<tr>
+		    <td>
+           	    <banco />
+           	    <ul>
+  		           <li>Os dados encontram-se <a  href="TestR003C007GerenciarQuadroPosicaoFinanceira-DadoQue.html" class="include">aqui</a>.</li>
+  		        </ul>  
+           		
+		</tr>
+		<tr>
+			<th>Ação pretendida</th>
+		</tr>
+		<tr>
+			<td>
+			    <ul>
+			       <li>Após o usuário logado selecionar o perfil risco '<span class="set" converter="Integer" name="perfil">2</span>'; e</li>
+			       <li>Entrar na tela para gerenciar o quadro da posição financeira selecionando a data-base '<span class="set" converter="Integer" name="database">201402</span>'; e</li>
+			       <span style="display: none;"  class="execute" value="$THIS.setPerfil(perfil)"></span>
+                   <span style="display: none;"  class="execute" value="$THIS.setDatabase(database)"></span>
+			       <li><span class="sentence" method="salvarConclusao">Salvar</span> todos os dados.</li>
+			    </ul>   
+			</td>
+		<tr>
+			<th>Resultado esperado</th>
+		</tr>
+			<td>
+			  <ul>
+			    <li>Receber a mensagem:</li>
+				<ul>
+					<li>A seleção de contas de ativo foi salva com sucesso.</li>
+					<li>A seleção de contas de passivo foi salva com sucesso.</li>
+					<li>Os ajustes de patrimônios de referência foram salvos com sucesso.</li>
+					<li>Os ajustes de resultados foram salvos com sucesso.</li>
+					<li>Os ajustes de índices foram salvos com sucesso.</li>
+				</ul>
+			   <li>O novo quadro foi <a href="TestR003C007GerenciarQuadroPosicaoFinanceira-PorFim.html" class="include">salvo</a>.</li>
+			 </ul>	
+			</td>
+		</tr>
+</tbody>
+</table>
+</td>
+</tr>		
+</table>
+<br/>
+
+
+</body>
+</html>

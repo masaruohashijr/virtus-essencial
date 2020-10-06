@@ -1,0 +1,54 @@
+<wicket:extend>
+    <input type="hidden" wicket:id="loadScriptAlerta"/>
+	<form wicket:id="formulario"  >
+	    <input wicket:id="idFieldUploadAnexo" style="visibility: hidden;" type="file"/>
+	    <div align="center" wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></div>
+	    <br>
+	    	<div align="center" style="width: 90%; margin: auto;"> 
+	    	<table cellpadding="0" cellspacing="0" style="width: 100%">
+				<tbody>
+					<tr class="fundoPadraoAEscuro2">
+						<th colspan="3" class="thform"
+							style="text-align: left; border-bottom: 0px;">Análise econômico-financeira</th>
+					</tr>
+				</tbody>
+				<td>
+					<span wicket:id="painelQuadroVigenteAQT" style="width: 100%; margin: auto;"></span>
+					<span wicket:id="painelNovoQuadroAQT" style="width: 100%; margin: auto;"></span>
+				</td>
+			</table>
+			</div>
+			<br>
+			<table cellpadding="0" cellspacing="0" style="width: 100%">
+				<td wicket:id="idPainelPercentual" style="width: 100%; margin: auto;"></td>
+			</table>
+			<br>
+			<div align="center" wicket:id="gerenciarNotaPanel" style="width: 100%; margin: auto;"></div>
+			<br>
+		<div  align="center" wicket:id="gerenciarSintesesPanel" style="width: 100%; margin: auto;"></div>
+		<br/>
+			<table cellpadding="0" cellspacing="0" style="width: 90%">
+					<tr class="fundoPadraoAEscuro2">
+						<th colspan="3" class="thform"
+							style="text-align: left; border-bottom: 0px;">ANEFs</th>
+					</tr>
+				<tbody>
+					<tr>
+						<td wicket:id="painelAnefsResp" style="width: 100%; margin: auto;"></td>
+					</tr>
+				</tbody>
+			</table>			
+			
+		<br>
+		<div align="center">
+			<input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" style="visibility: visible;" 
+			     title="Voltar para a p&aacute;gina anterior" value="Voltar">
+			<br>
+			<input name="bttVoltarSemSalvar" type="button" class="botao" id="bttVoltarSemSalvar" 
+			     style="visibility: hidden; width: 120px; background-color: red; color: white;"
+			     wicket:id="bttVoltarSemSalvar" title="Voltar para a p&aacute;gina anterior" value="Voltar sem salvar">
+		</div>
+		<br>
+	</form>
+</wicket:extend>
+

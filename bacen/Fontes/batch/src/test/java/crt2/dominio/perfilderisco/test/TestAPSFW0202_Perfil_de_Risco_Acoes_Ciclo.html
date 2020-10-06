@@ -1,0 +1,1353 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Testando a inclusão de entidades</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para  a estória - Perfil de risco (seção: Ações no ciclo)</h1>
+
+		<span id="index"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>Servidores <pessoa>aqui</pessoa></blockquote>
+		<blockquote><dataHoraAtual valor="28/05/2014 00:00:00">Data atual: 28/05/2014 00:00:00</dataHoraAtual></blockquote>
+
+		<h2>Cenários de teste para a estória - Perfil de risco (seção: Ações no ciclo)</h2>
+
+		<blockquote>Cenários onde devem ser apresentadas as mensagens de impedimento para a permissão de acesso ao Perfil de Risco</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C001</b><br><br>Conferir - Não existe dados na tabela do ETL e consequentemente não existem registros na tabela de atividades (estado final da table: ATC_ATIVIDADE_CICLO vazia)</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+				</td>
+
+	            <td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+                    <table class="verify dados" strict="true">
+                        <caption>ATC_ATIVIDADE_CICLO</caption>
+
+                        <tr><th>Ação</th></tr>
+                    </table>
+			    </td>
+		    </tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C005</b><br><br>Conferir - Tentar incluir atividade sem dados atualizados do ETL</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+						<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+	                    <tr>
+	                       	<th>Ação</th>
+	                       	<th>VER_ID</th>
+							<th>VER_CD_TIPO</th>
+	                   	</tr>
+
+	                   	<tr>
+	                       	<td>I</td>
+	                       	<td>41</td>
+	                       	<td>14</td>
+	                  	</tr>
+
+	                  	<tr>
+	                       	<td>I</td>
+	                       	<td>42</td>
+	                       	<td>14</td>
+	                  	</tr>
+
+	                  	<tr>
+	                    	<td>I</td>
+	                       	<td>43</td>
+	                       	<td>14</td>
+	                  	</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>PVE_PER_VER</caption>
+
+	                    <tr>
+							<th>Ação</th>
+	                       	<th>PER_ID</th>
+	                       	<th>VER_ID</th>
+	                   	</tr>
+
+	                   	<tr>
+	                       	<td>I</td>
+	                       	<td>6</td>
+	                       	<td>41</td>
+	                  	</tr>
+
+	                  	<tr>
+	                    	<td>I</td>
+	                       	<td>6</td>
+	                       	<td>42</td>
+	                  	</tr>
+
+	                  	<tr>
+	                       	<td>I</td>
+	                       	<td>6</td>
+	                       	<td>43</td>
+	                  	</tr>
+	            	</table>
+
+	            	<br><br>
+
+					<table class="prepare dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>41</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>00000776</td>
+							<td>37850</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+							<td>cancelada</td>
+							<td>42</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>43</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>EAT_ETL_ATC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>EAT_ID</th>
+							<th>EAT_CD_CNPJ_ES</th>
+							<th>EAT_CD_ATIVIDADE</th>
+							<th>EAT_DT_BASE</th>
+							<th>EAT_AA</th>
+							<th>EAT_DS</th>
+							<th>EAT_CD_SITUACAO</th>
+							<th>EAT_DH_ATUALZ</th>
+							<th>EAT_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>00000776</td>
+							<td>37850</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+							<td>cancelada</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+				</td>
+
+	            <td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+			    	<table class="verify dados" strict="true">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>41</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>00000776</td>
+							<td>37850</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+							<td>cancelada</td>
+							<td>42</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>43</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+				</td>
+		    </tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C006</b><br><br>Sucesso - Inclusão</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>41</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="prepare dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>41</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="prepare dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					    	<td>I</td>
+					     	<td>1</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2011</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>não iniciada</td>
+					     	<td>41</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>EAT_ETL_ATC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>EAT_ID</th>
+							<th>EAT_CD_CNPJ_ES</th>
+							<th>EAT_CD_ATIVIDADE</th>
+							<th>EAT_DT_BASE</th>
+							<th>EAT_AA</th>
+							<th>EAT_DS</th>
+							<th>EAT_CD_SITUACAO</th>
+							<th>EAT_DH_ATUALZ</th>
+							<th>EAT_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					    	 <td>I</td>
+					     	<td>1</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2011</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>não iniciada</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>2</td>
+					     	<td>00000776</td>
+					     	<td>37850</td>
+					     	<td>03/2011</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>não iniciada</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+				</td>
+
+            	<td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+					<table class="verify dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>42</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+		
+					<table class="verify dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>42</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="verify dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>2</td>
+					     	<td>00000776</td>
+					     	<td>37850</td>
+					     	<td>03/2011</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>não iniciada</td>
+					     	<td>42</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deinf.batchsisaps</td>
+						</tr>
+					</table>
+		 		</td>
+		 	</tr>
+
+		 	<tr class="scenario">
+				<td class='title'><b>C007</b><br><br>Sucesso - Alteração (versão vigente)</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>41</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="prepare dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>41</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="prepare dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>1</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2011</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>não iniciada</td>
+					     	<td>41</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>EAT_ETL_ATC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>EAT_ID</th>
+							<th>EAT_CD_CNPJ_ES</th>
+							<th>EAT_CD_ATIVIDADE</th>
+							<th>EAT_DT_BASE</th>
+							<th>EAT_AA</th>
+							<th>EAT_DS</th>
+							<th>EAT_CD_SITUACAO</th>
+							<th>EAT_DH_ATUALZ</th>
+							<th>EAT_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>2</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2010</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>interrompida</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+				</td>
+
+            	<td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+					<table class="verify dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>U</td>
+					     	<td>1</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2010</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>interrompida</td>
+					     	<td>41</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deinf.batchsisaps</td>
+						</tr>
+					</table>
+		 		</td>
+		 	</tr>
+
+		 	<tr class="scenario">
+				<td class='title'><b>C008</b><br><br>Sucesso - Alteração (mesma versão em perfis de risco distintos)</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>41</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="prepare dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>5</td>
+                       		<td>41</td>
+                  		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>41</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="prepare dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>1</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2011</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>não iniciada</td>
+					     	<td>41</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>EAT_ETL_ATC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>EAT_ID</th>
+							<th>EAT_CD_CNPJ_ES</th>
+							<th>EAT_CD_ATIVIDADE</th>
+							<th>EAT_DT_BASE</th>
+							<th>EAT_AA</th>
+							<th>EAT_DS</th>
+							<th>EAT_CD_SITUACAO</th>
+							<th>EAT_DH_ATUALZ</th>
+							<th>EAT_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>2</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2010</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>interrompida</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+				</td>
+
+            	<td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+					<table class="verify dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>42</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="verify dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>D</td>
+                       		<td>6</td>
+                       		<td>41</td>
+                  		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>42</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="verify dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+					     	<td>I</td>
+					     	<td>2</td>
+					     	<td>00000776</td>
+					     	<td>37849</td>
+					     	<td>03/2010</td>
+					     	<td>2014</td>
+					     	<td>Acomp. Específico - Modelo Interno Risco Operacional</td>
+					     	<td>interrompida</td>
+					     	<td>42</td>
+					     	<td>28/05/2014 00:00:00</td>
+					     	<td>deinf.batchsisaps</td>
+						</tr>
+					</table>
+		 		</td>
+		 	</tr>
+
+		 	<tr class="scenario">
+				<td class='title'><b>C009</b><br><br>Sucesso - Deleção (versão vigente)</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>41</td>
+                       		<td>14</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>42</td>
+                       		<td>14</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>43</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="prepare dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                   		<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>41</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>42</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>43</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="prepare dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>41</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>00000776</td>
+							<td>37850</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+							<td>cancelada</td>
+							<td>42</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>43</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>EAT_ETL_ATC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>EAT_ID</th>
+							<th>EAT_CD_CNPJ_ES</th>
+							<th>EAT_CD_ATIVIDADE</th>
+							<th>EAT_DT_BASE</th>
+							<th>EAT_AA</th>
+							<th>EAT_DS</th>
+							<th>EAT_CD_SITUACAO</th>
+							<th>EAT_DH_ATUALZ</th>
+							<th>EAT_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+				</td>
+
+            	<td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+					<table class="verify dados">
+
+                 	<caption>VER_VERSAO_PERFIL_RISCO</caption>
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>D</td>
+                       		<td>42</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="verify dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>D</td>
+                       		<td>6</td>
+                       		<td>42</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="verify dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>D</td>
+							<td>2</td>
+							<td>00000776</td>
+							<td>37850</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+							<td>cancelada</td>
+							<td>42</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deinf.batchsisaps</td>
+						</tr>
+					</table>
+            	</td>
+		 	</tr>
+
+		 	<tr class="scenario">
+				<td class='title'><b>C010</b><br><br>Sucesso - Deleção (mesma versão em perfis de risco distintos) </td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <parametros>aqui</parametros><br><br>
+					Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_1.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_2.html" class="include">aqui</a><br><br>
+					<a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_Acoes_Ciclo_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+                 		<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>VER_ID</th>
+                       		<th>VER_CD_TIPO</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>41</td>
+                       		<td>14</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>42</td>
+                       		<td>14</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>43</td>
+                       		<td>14</td>
+                  		</tr>
+             		</table>
+
+             		<br><br>
+
+					<table class="prepare dados">
+                 		<caption>PVE_PER_VER</caption>
+
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>I</td>
+                       		<td>4</td>
+                       		<td>41</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>5</td>
+                       		<td>41</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>41</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>4</td>
+                       		<td>42</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>5</td>
+                       		<td>42</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>42</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>4</td>
+                       		<td>43</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>5</td>
+                       		<td>43</td>
+                  		</tr>
+
+                  		<tr>
+                       		<td>I</td>
+                       		<td>6</td>
+                       		<td>43</td>
+                  		</tr>
+            		</table>
+
+            		<br><br>
+
+					<table class="prepare dados">
+						<caption>ATC_ATIVIDADE_CICLO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>ATC_ID</th>
+							<th>ATC_CD_CNPJ_ES</th>
+							<th>ATC_CD_ATIVIDADE</th>
+							<th>ATC_DT_BASE</th>
+							<th>ATC_AA</th>
+							<th>ATC_DS</th>
+							<th>ATC_CD_SITUACAO</th>
+							<th>VER_ID</th>
+							<th>ATC_DH_ATUALZ</th>
+							<th>ATC_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>41</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>00000776</td>
+							<td>37850</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - Projetos Estratégicos Corporativos</td>
+							<td>cancelada</td>
+							<td>42</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>43</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>EAT_ETL_ATC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>EAT_ID</th>
+							<th>EAT_CD_CNPJ_ES</th>
+							<th>EAT_CD_ATIVIDADE</th>
+							<th>EAT_DT_BASE</th>
+							<th>EAT_AA</th>
+							<th>EAT_DS</th>
+							<th>EAT_CD_SITUACAO</th>
+							<th>EAT_DH_ATUALZ</th>
+							<th>EAT_CD_OPER_ATUALZ</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>37849</td>
+							<td>03/2010</td>
+							<td>2014</td>
+							<td>Acomp. Específico - IRB Risco de Crédito</td>
+							<td>suspensa</td>
+							<td>17/03/2010 00:00:00</td>
+							<td>deliq.sisliq105</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000776</td>
+							<td>37851</td>
+							<td>02/2011</td>
+							<td>2014</td>
+							<td>VE Unidades no Exterior - Banco Patagonia</td>
+							<td>concluída</td>
+							<td>17/03/2011 00:00:00</td>
+							<td>deinf.batchsisaps</td>
+						</tr>
+					</table>
+				</td>
+
+            	<td><span class="sentence" method="executarBatch">Executar batch.</span></td>
+
+				<td>
+					<table class="verify dados">
+
+                 	<caption>PVE_PER_VER</caption>
+                    	<tr>
+                       		<th>Ação</th>
+                       		<th>PER_ID</th>
+                       		<th>VER_ID</th>
+                   		</tr>
+
+                   		<tr>
+                       		<td>D</td>
+                       		<td>6</td>
+                       		<td>42</td>
+                  		</tr>
+            		</table>
+				</td>
+        	</tr>
+		</table>
+	</body>
+</html>

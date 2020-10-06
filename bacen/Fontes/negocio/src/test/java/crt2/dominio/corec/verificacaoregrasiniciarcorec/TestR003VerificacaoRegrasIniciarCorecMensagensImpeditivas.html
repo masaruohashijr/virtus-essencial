@@ -1,0 +1,417 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R003 - Verificar pendências para iniciar fase Corec </title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Verificar pendências para iniciar fase Corec'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>11/08/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+			</tr>
+			
+			<tr>
+				<td>1.1</td>
+				<td>11/09/2017</td>
+				<td>David Nascimento</td>
+				<td>Adicionando o cenário CT006 para testar caso em que não há nota final publicada na nova metodologia, mas irá validar a pendencia porque há nota calculada.</td>
+			</tr>
+
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#verificacaoRegrasIniciarCorec">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+	    <ul><li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li></ul>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#validarMensagensErroNovoCalculo">validar as mensagens de erro e informativas ao clicar no botão 'Verificar pendências para Corec'</a></blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Validar quando matriz, perfil de atuação, conclusão, nota final, perpectiva e situação e o ANEF vigente não possuem dados.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR003VerificacaoRegrasIniciarCorec-DadoQueC001.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th >Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td>
+											<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendencias(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">Deve haver uma matriz vigente cadastrada.</td></tr>
+							                	<tr><td style="color: red">Perfil de atuação deve conter texto.</td></tr>
+					                    		<tr><td style="color: red">Conclusão deve conter texto.</td></tr>
+					                    		<tr><td style="color: red">Nota final da ES deve ter atributo diferente de vazio.</td></tr>
+					                    		<tr><td style="color: red">Perspectiva deve ter atributo diferente de vazio e diferente de 'Não Aplicável'.</td></tr>
+					                    		<tr><td style="color: red">Situação deve ter atributo diferente de vazio.</td></tr>
+					                    		<tr><td style="color: red">Todos os ANEFs vigentes precisam ter nota. Não podem ter ANEFs '*A'.</td></tr>
+					                    		<tr><td style="color: red">Deve haver um quadro da posição financeira cadastrado.</td></tr>
+						            		</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Validar quando os ANEFs e ARCs não possuem notas e os rascunhos delas estão com estado diferente de Previsto ou Designado. A perspectiva está com atributo &quot;Não aplicável&quot; e as sínteses obrigatórias não possuem textos.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR003VerificacaoRegrasIniciarCorec-DadoQueC002.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th class="set" name="idCiclo">Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td>
+											<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendencias(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">Todos os ARCs rascunho devem estar em estado 'Previsto' ou 'Designado'.</td></tr>
+							                	<tr><td style="color: red">Sínteses obrigatórias (mesmo sem ARCs correspondentes na matriz) devem conter texto.</td></tr>
+					                    		<tr><td style="color: red">Todos os ARCs vigentes precisam ter nota. Não podem ter ARCs '*A'.</td></tr>
+					                    		<tr><td style="color: red">Perspectiva deve ter atributo diferente de vazio e diferente de 'Não Aplicável'.</td></tr>
+					                    		<tr><td style="color: red">Todos os ANEFs vigentes precisam ter nota. Não podem ter ANEFs '*A'.</td></tr>
+					                    		<tr><td style="color: red">Todos os ANEFs rascunho devem estar em estado 'Previsto' ou 'Designado'.</td></tr>
+					                    		<tr><td style="color: red">Deve haver um quadro da posição financeira cadastrado.</td></tr>
+						            		</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario"> 
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr>
+							<td class='title'>
+								<b>[CT003]</b> - Validar quando existem ARCs vigentes que tiveram ajustes no COREC anterior e não foram avaliados. 
+								Existem ANEFs sem atualização no ciclo corrente e a data-base do quadro da posição financeira não é posterior à 
+								data-base do quadro da posição financeira do Corec anterior. Validar se o supervisor confirmou os ajustes do 
+								COREC anterior. Validar se há pendências para o gerente.
+							</td>
+						</tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR003VerificacaoRegrasIniciarCorec-DadoQueC003.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th class="set" name="idCiclo">Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+
+										<td>
+											<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendencias(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">Todos os ARCs vigentes que tiveram ajuste no COREC anterior precisam ser avaliados novamente.</td></tr>
+							                	<tr><td style="color: red">Todos os ANEFs devem ter atualização no ciclo corrente. O ANEF vigente não pode ser o mesmo ANEF do Corec anterior.</td></tr>
+					                    		<tr><td style="color: red">Data-base do quadro da posição financeira deve ser posterior à data do Corec anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' da ES deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Perspectiva' da ES deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' qualitativa deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' da análise econômico-financeira deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Nota final' da ES deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração no 'Perfil de atuação' deve ser confirmado pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Conclusão' deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Perspectiva' deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Situação' deve ser confirmada pelo gerente.</td></tr>
+						            		</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT004]</b> - Validar quando os ANEFs e ARCs Externos não possuem notas e os rascunhos delas estão com estado diferente de Previsto ou Designado. A perspectiva está com atributo &quot;Não aplicável&quot; e as sínteses obrigatórias não possuem textos.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC018.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th class="set" name="idCiclo">Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td>
+											<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendencias(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">Todos os ARCs rascunho devem estar em estado 'Previsto' ou 'Designado'.</td></tr>
+							                	<tr><td style="color: red">Sínteses obrigatórias (mesmo sem ARCs correspondentes na matriz) devem conter texto.</td></tr>
+					                    		<tr><td style="color: red">Todos os ARCs vigentes precisam ter nota. Não podem ter ARCs '*A'.</td></tr>
+					                    		<tr><td style="color: red">Perspectiva deve ter atributo diferente de vazio e diferente de 'Não Aplicável'.</td></tr>
+					                    		<tr><td style="color: red">Todos os ANEFs vigentes precisam ter nota. Não podem ter ANEFs '*A'.</td></tr>
+					                    		<tr><td style="color: red">Todos os ANEFs rascunho devem estar em estado 'Previsto' ou 'Designado'.</td></tr>
+					                    		<tr><td style="color: red">Deve haver um quadro da posição financeira cadastrado.</td></tr>
+						            		</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		<table class="scenario"> 
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr>
+							<td class='title'>
+								<b>[CT005]</b> - Validar quando existem ARCs Externos vigentes que tiveram ajustes no COREC anterior e não foram avaliados. 
+								Existem ANEFs sem atualização no ciclo corrente e a data-base do quadro da posição financeira não é posterior à 
+								data-base do quadro da posição financeira do Corec anterior. Validar se o supervisor confirmou os ajustes do 
+								COREC anterior. Validar se há pendências para o gerente.
+							</td>
+						</tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001VerificacaoRegrasIniciarCorec-DadoQueC019.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th class="set" name="idCiclo">Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+
+										<td>
+											<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendencias(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">Todos os ARCs vigentes que tiveram ajuste no COREC anterior precisam ser avaliados novamente.</td></tr>
+							                	<tr><td style="color: red">Todos os ANEFs devem ter atualização no ciclo corrente. O ANEF vigente não pode ser o mesmo ANEF do Corec anterior.</td></tr>
+					                    		<tr><td style="color: red">Data-base do quadro da posição financeira deve ser posterior à data do Corec anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' da ES deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Perspectiva' da ES deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' qualitativa deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' da análise econômico-financeira deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Nota final' da ES deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração no 'Perfil de atuação' deve ser confirmado pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Conclusão' deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Perspectiva' deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Situação' deve ser confirmada pelo gerente.</td></tr>
+						            		</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		
+		<table class="scenario"> 
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr>
+							<td class='title'>
+								<b>[CT006]</b> - Validar quando existem ARCs vigentes que tiveram ajustes no COREC anterior e não foram avaliados. 
+								Existem ANEFs sem atualização no ciclo corrente e a data-base do quadro da posição financeira não é posterior à 
+								data-base do quadro da posição financeira do Corec anterior. Validar se o supervisor confirmou os ajustes do 
+								COREC anterior. Validar se há pendências para o gerente. (Não possui dados para nota final da ES)</td>
+						</tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR003VerificacaoRegrasIniciarCorec-DadoQueC006.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th class="set" name="idCiclo">Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">2</td>
+
+										<td>
+											<table class="verifyRows" name="mensagemErro" value="$THIS.verificarPendencias(idCiclo)" >
+							                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+							                	<tr><td style="color: red">Todos os ARCs vigentes que tiveram ajuste no COREC anterior precisam ser avaliados novamente.</td></tr>
+							                	<tr><td style="color: red">Todos os ANEFs devem ter atualização no ciclo corrente. O ANEF vigente não pode ser o mesmo ANEF do Corec anterior.</td></tr>
+					                    		<tr><td style="color: red">Data-base do quadro da posição financeira deve ser posterior à data do Corec anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' da ES deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Perspectiva' da ES deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' qualitativa deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A 'Nota final' da análise econômico-financeira deve ser avaliada, pois houve ajuste no COREC anterior.</td></tr>
+					                    		<tr><td style="color: red">A alteração no 'Perfil de atuação' deve ser confirmado pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Conclusão' deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Perspectiva' deve ser confirmada pelo gerente.</td></tr>
+					                    		<tr><td style="color: red">A alteração na 'Situação' deve ser confirmada pelo gerente.</td></tr>
+						            		</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

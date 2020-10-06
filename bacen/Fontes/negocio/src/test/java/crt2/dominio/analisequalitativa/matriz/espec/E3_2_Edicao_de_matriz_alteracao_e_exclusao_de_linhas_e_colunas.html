@@ -1,0 +1,401 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.2 Edição de matriz (alteração e exclusão de linhas e colunas)</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css"	media="screen" />
+</head>
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+    <h2>Histórico</h2>	
+		<table class="exemplos historico">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>09/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>14/04/2014</td>
+				<td>1.1</td>
+				<td>Código de tela seguem o padrão [APSTTNNNN], onde TT - Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório); NNNN - Numérico.<br>
+				Os estados da matriz são: 1-Esboçada e 2-Vigente.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>16/04/2014</td>
+				<td>1.2</td>
+				<td>Esclarecimentos nos testes.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_2">E3.1 Edição de matriz (alteração e exclusão  de linhas e colunas) - Iteração 04</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC da ES no estado em andamento cadastrado no sistema de acordo com a metodologia da ES e uma versão da matriz no estado 1-Esboçada.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor.</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Ciclo SRC -- Consulta: Acionar o comando Edição de matriz de riscos e controles para ES</p>
+			<p>Perfil de risco -- Análise qualitativa -- Matriz de risco e controle: Selecionando uma ES</p>
+			<p>Administração -- Ciclo -- Inclusão</p>
+		</blockquote>
+
+		<h3>Telas - (<a href="E3_2_A1_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_e_colunas.html#E3_2_A1">ver alterações após a iteração 02</a>)</h3>
+
+		<blockquote>
+			<p><b>Título: Confirmação de inclusão de ciclo SRC.</b></p>
+			<p>Trilha: Administração -- Ciclo SRC -- Inclusão -- Confirmação de inclusão de ciclo.</p>
+			<p>Código de tela: [APSFW0107] </p>
+			<p>Comandos: Visualizar impressão e Voltar.</p>
+
+			<input type="image" src="Tela01_E3_1.png"/>
+
+			<p><b>Título: Edição de matriz de riscos e controles.</b></p>
+			<p>Trilha:</p>
+
+			<ul>
+				<li>Ciclo SRC -- Consulta: Acionar o comando Edição de matriz de riscos e controles para ES</li>
+				<li>Perfil de risco -- Análise qualitativa -- Matriz de risco e controle: Selecionando uma ES</li>
+			</ul>
+
+			<p>Código de tela: [APSFW0304]</p>
+
+			<p>Comandos para alteração de linhas da matriz:</p>
+
+			<ul>
+				<li>Alterar unidade corporativa</li>
+				<li>Alterar atividade corporativa</li>
+				<li>Alterar unidade de negócio</li>
+				<li>Alterar atividade de negócio</li>
+			</ul>
+
+			<p>Comandos para exclusão de linhas da matriz:</p>
+
+			<ul>
+				<li>Excluir atividade corporativa</li>
+				<li>Excluir unidade de negócio</li>
+				<li>Excluir atividade de negócio</li>
+			</ul>
+
+			<p>Comandos para matriz: Visualizar impressão e Voltar.</p>
+			<p><b>Título: Edição de linha com colunas (ARC) da matriz de riscos e controles.</b></p>	
+			<p>Trilha: Não se aplica</p>
+			<p>Código de tela: Não se aplica</p>
+			<p>Comandos para alteração de colunas na matriz de riscos e controles:</p>
+
+			<ul>
+				<li>Incluir grupo par (risco, controle)</li>
+				<li>Alterar grupo par (risco, controle)</li>
+				<li>Excluir grupo de par (risco, controle)</li>
+			</ul>
+
+			<p>Outros comandos:Concluir e Voltar</p>
+
+			<h3>Alteração de atividade corporativa e atividade de negócio</h3>
+
+			<input type="image" src="Tela02_E3_1.png"/>
+
+			<h3>Alteração de unidade corporativa</h3>
+
+			<input type="image" src="Tela01_E3_2.png"/>
+
+			<h3>Alteração de unidade de negócio</h3>
+
+			<input type="image" src="Tela02_E3_2.png"/>	
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade básica de Edição de matriz de riscos e controles. Alteração e exclusão de linhas e colunas.</p>
+			<p>Funcionalidades disponíveis apenas para o perfil <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento para alteração na tela Edição de matriz de riscos e controles :
+
+		<ul>
+			<li>Há um comando exclusivo para alteração de unidade corporativa na matriz.</li>
+			<li>Há um comando exclusivo para alteração de unidade de negócio na matriz, se houver unidade de negócio cadastrada.</li>
+			<li>Há um comando exclusivo para alteração de atividade corporativa na matriz.</li>
+			<li>Há um comando exclusivo para alteração de atividade de negócio na matriz, se houver atividade de negócio cadastrada.</li>
+		</ul>
+
+		Detalhamento para exclusão na tela Edição de matriz de riscos e controles:
+
+		<ul>
+			<li>Não há  comando para exclusão de unidade corporativa na matriz.</li>
+			<li>Há um comando exclusivo para exclusão de unidade de negócio na matriz, se houver unidade de negócio cadastrada. As atividades de negócio associadas passam a ser atividades independentes.</li>
+			<li>Há um comando exclusivo para exclusão de atividade corporativa na matriz.</li>
+			<li>Há um comando exclusivo para exclusão de atividade de negócio na matriz, se houver atividade de negócio cadastrada.</li>
+		</ul>
+
+		Detalhamento para alteração na tela Edição de linha com colunas (ARC) da matriz de riscos e controles:
+
+		<ul>
+			<li>Há um comando exclusivo para alteração do par (risco e controle) da atividade corporativa ou de negócio.</li>
+			<li>É permitido alterar apenas o peso do par (risco, controle).</li>
+		</ul>
+
+		Detalhamento para exclusão na tela Edição de linha com colunas (ARC) da matriz de riscos e controles:
+
+		<ul>
+			<li>Há um comando exclusivo para exclusão do par (risco e controle) da atividade corporativa ou de negócio.</li>
+		</ul>
+
+		<h3>Dados básicos de uma Unidade corporativa:</h3>
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Nome da unidade corporativa</td>
+				<td>Nome da unidade corporativa</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Não editável</td>
+			</tr>
+
+			<tr>
+				<td>Peso da unidade corporativa</td>
+				<td>Peso da unidade corporativa</td>
+				<td>Combo box com todos os pesos (parâmetro peso) disponíveis na metodologia do ciclo.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Fator de relevância da unidade corporativa</td>
+				<td>Fator de relevânciada unidade corporativa</td>
+				<td>Fator de relevância com valor inicial de 0.50.<br> Editável.<br>Valores válidos: maior que 0 e menor ou igual a 1.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>
+
+		<h3>Dados básicos de uma Atividade corporativa:</h3>
+
+		<ul>
+			<li>Os mesmos dados informados na inclusão de atividade corporativa.</li>
+			<li>Pode ser alterado livremente respeitando as regras de negócio da inclusão.</li>
+		</ul>
+
+		<h3>Dados básicos de uma Unidade de negócio:</h3>
+
+		<ul>
+			<li>Os mesmos dados informados na inclusão de unidade de negócio.</li>
+			<li>Pode ser alterado livremente respeitando as regras de negócio da inclusão.</li>
+		</ul>
+
+		<h3>Dados básicos de uma Atividade de negócio:</h3>
+
+		<ul>
+			<li>Os mesmos dados informados na inclusão de atividade de negócio.</li>
+			<li>Pode ser alterado livremente respeitando as regras de negócio da inclusão.</li>
+		</ul>
+
+		<h2>Cenários de teste para <a href="TestE3_2.html">E3.2 Edição de matriz (alteracao e exclusao de linhas e colunas)</a>.</h2>
+
+		Observação: agrupar a maior quantidade de itens de teste no mesmo teste.<br><br>
+
+		Negócio:
+
+		<ul>
+			<li>Falha - Alterar unidade corporativa em matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+			</li>
+
+			<li>Falha - Alterar atividade corporativa em matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade de negócio em matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+			</li>
+
+			<li>Falha - Alterar atividade de negócio em matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade corporativa sem informar peso da unidade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade corporativa sem informar o fator de relevância da unidade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade corporativa informar o fator de relevância da unidade igual a zero. Mensagem: 
+				<ul><li>"Campo Fator de relevância deve ser maior do que zero (0) e menor ou igual a um (1)"</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade corporativa informar o fator de relevância da unidade maior que um. Mensagem: 
+				<ul><li>"Campo Fator de relevância deve ser maior do que zero (0) e menor ou igual a um (1)"</li></ul>
+			</li>
+
+			<li>Falha - Alterar atividade corporativa sem informar peso da atividade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar atividade corporativa informando um nome de atividade corporativa já cadastrado. Mensagem: 
+				<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+			</li>
+
+			<li>Falha - Alterar atividade corporativa informando um nome de atividade de negócio já cadastrado. Mensagem: 
+				<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+			</li>		
+
+			<li>Falha - Alterar uma atividade corporativa usando parâmetro Tipo de atividade de negócio. Mensagem: 
+				<ul><li>"Uma <b>atividade corporativa</b> não pode ser do <b>tipo de atividade de negócio</b>."</li></ul>
+			</li>
+
+			<li>Falha - Alterar uma atividade corporativa sem grupo RC associado. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade de negócio sem informar nome da unidade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade de negócio sem informar peso da unidade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar atividade de negócio sem informar peso da atividade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>		
+
+			<li>Falha - Alterar atividade de negócio sem informar tipo da atividade. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar unidade de negócio informando um nome de unidade já cadastrado. Mensagem: 
+				<ul><li>"Não pode existir mais de uma unidade com o mesmo nome na matriz."</li></ul>
+			</li>
+
+			<li>Falha - Alterar uma atividade de negócio informando um nome de atividade corporativa já cadastrado. Mensagem: 
+				<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+			</li>
+
+			<li>Falha - Alterar uma atividade de negócio informando um nome de atividade de negócio já cadastrado. Mensagem: 
+				<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+			</li>
+
+			<li>Falha - Alterar uma atividade de negócio usando parâmetro Tipo de atividade corporativo. Mensagem: 
+				<ul><li>"Uma <b>atividade de negócio</b> não pode ser do <b>tipo de atividade corporativo</b>."</li></ul>
+			</li>
+
+			<li>Falha - Alterar a atividade de negócio sem informar um grupo RC. Corresponde ao botão Concluir. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Sucesso - Alterar atividade de negócio associada a uma unidade sem informar unidade. Resultado 
+				<ul><li>atividade de negócio passa a ser independente</li></ul>
+			</li>
+
+			<li>Sucesso - Alterar atividade de negócio independente informando unidade. Resultado 
+				<ul><li>atividade de negócio passa a ser associada a unidade informada</li></ul>
+			</li>
+
+			<li>Sucesso - Alterar atividade de negócio que possui um nome de atividade distinto do nome do tipo de atividade de negócio sem informar nome da atividade. Resultado 
+				<ul><li>Usar como nome da atividade o nome do tipo da atividade de negócio</li></ul>
+			</li>
+
+			<li>Sucesso - Alterar atividade corporativa sem informar nome da atividade. Resultado 
+				<ul><li>Usar como nome da atividade o nome do tipo da atividade igual à Atividade corporativa</li></ul>
+			</li>
+
+			<li>Falha - Alterar par (risco controle) da atividade corporativa sem grupo RC associado. Corresponde ao comando Concluir. Excluir todos os pares. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar par (risco controle) da atividade de negócio um grupo RC sem informar o nome do grupo RC. Corresponde ao comando Alterar grupo e peso. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar par (risco controle) da atividade corporativa um grupo RC sem informar o peso do grupo RC. Corresponde ao comando Alterar grupo e peso. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar par (risco controle) da atividade de negócio sem grupo RC associado. Corresponde ao comando Concluir. Excluir todos os pares. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar par (risco controle) da atividade de negócio um grupo RC sem informar o nome do grupo RC. Corresponde ao comando Alterar grupo e peso. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Falha - Alterar par (risco controle) da atividade de negócio um grupo RC sem informar o peso do grupo RC. Corresponde ao comando Alterar grupo e peso. Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+			</li>
+
+			<li>Sucesso - Alterar uma unidade corporativa.</li>
+			<li>Sucesso - Alterar uma atividade corporativa.</li>
+			<li>Sucesso - Alterar uma atividade de negócio independente.</li>
+			<li>Sucesso - Alterar uma unidade de negócio.</li>
+			<li>Sucesso - Alterar uma atividade de negócio associada a unidade de negócio.</li>
+
+			<li>Falha - Excluir a única unidade corporativa. Mensagem: 
+				<ul><li>"Não é permitido excluir a <b>Unidade corporativa</b> na matriz."</li></ul>
+			</li>
+
+			<li>Sucesso - Excluir uma unidade de negócio com atividades de negócio associadas. Resultado: 
+				<ul><li> As atividades de negócio associadas passam a ser atividades independentes.</li></ul>
+			</li>
+
+			<li>Sucesso - Excluir uma atividade corporativa. Resultado: 
+				<ul><li> Os pares (risco e controle) associados são excluídos.</li></ul>
+			</li>
+
+			<li>Sucesso - Excluir uma atividade de negócio. Resultado: 
+				<ul><li> Os pares (risco e controle) associados são excluídos.</li></ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste para <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_e_colunas.html">E3.2 Edição de matriz (alteracao e exclusao de linhas e colunas)</a>.</h2>	
+
+		Web:
+
+		<ul>
+			<li>Conferir - se a combobox peso, nas telas em que se tem esse campo, exibe os pesos disponíveis na metodologia da ES.</li>
+			<li>Conferir - se a combobox tipo de atividade, nas telas em que se tem esse campo, exibe os tipos disponíveis na metodologia da ES.</li>
+			<li>Conferir - se a combobox grupo, nas telas em que se tem esse campo, exibe somente os riscos disponíveis na metodologia da ES.</li>
+			<li>Conferir - A alteração de grupo (risco, controle) permite alterar somente o peso.</li>		
+
+			<li>Falha - Alterar sem informar dados obrigatórios (todos os casos previstos em todas as telas). Mensagem: 
+				<ul><li>"Campo campo_da_tela é de preenchimento obrigatório".</li></ul>
+			</li>
+
+			<li>Sucesso - Testar a navegabilidade entre as telas de edição da matriz e a tela de edição de linhas da matriz.</li>
+		</ul>
+	</body>
+</html>

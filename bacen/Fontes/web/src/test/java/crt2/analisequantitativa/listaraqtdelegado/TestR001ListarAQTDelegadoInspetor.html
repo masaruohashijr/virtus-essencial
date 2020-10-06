@@ -1,0 +1,227 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Listar ANEFs delegados no painel do inspetor</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória 'Listar ANEFs delegados no painel do inspetor'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>19/01/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#listarAQTDelegadoInspetor">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<blockquote>
+		A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+	</blockquote>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarEstadoInicial">verificar estado inicial da tela</a>.
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001]</b> - Inspetor não possui ANEFs delegados</td>
+
+			<td><banco /> Os dados encontram-se <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/listaraqtdelegado/TestR001ListarAQTDelegadoInspetor_dadoque_c001.html"
+				class="include">aqui</a></td>
+
+			<td>
+				<li>O usuário logado <sisliq113>é "deliq.sisliq113"</sisliq113></li>
+				<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+			</td>
+
+			<td><span class="compareTable dados" by="xpath://table[@id='tPainelAQTsDelegados']">
+					<table id="tPainelAQTsDelegados" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr>
+								<td>
+									<div align="left" style="width: 100%; margin: auto;" id="idAQTsDelegados9d">
+										<table id="tArcs" cellpadding="0" cellspacing="0" style="width: 100%">
+											<tbody>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="10" class="thform" style="text-align: left" id="idAQTsDelegadosidTitulo">ANEFs delegados
+														para análise</th>
+												</tr>
+												<tr>
+													<td><span id="tabela9e">
+															<div align="center">
+																<table id="idAQTsDelegadosidDados" class="tabela" style="width: 100%;">
+																	<tbody>
+																		<tr id="linhaa0" class="fundoPadraoAClaro3">
+																			<td id="mensagema1" style="padding: 4px">Nenhum registro que satisfaça os critérios de pesquisa
+																				foi encontrado.</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+													</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C002]</b> - Inspetor possui ANEFs delegados</td>
+
+			<td><banco /> Os dados encontram-se <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/listaraqtdelegado/TestR001ListarAQTDelegadoInspetor_dadoque_c002.html"
+				class="include">aqui</a></td>
+
+			<td>
+				<li>O usuário logado <sisliq113>é "deliq.sisliq113"</sisliq113></li>
+				<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+			</td>
+
+			<td><span class="compareTable dados" by="xpath://table[@id='tPainelAQTsDelegados']">
+					<table id="tPainelAQTsDelegados" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr>
+								<td>
+									<div align="left" style="width: 100%; margin: auto;" id="idAQTsDelegadosb5">
+										<table id="tArcs" cellpadding="0" cellspacing="0" style="width: 100%">
+											<tbody>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="10" class="thform" style="text-align: left" id="idAQTsDelegadosidTitulo">ANEFs delegados
+														para análise</th>
+												</tr>
+												<tr>
+													<td><span id="tabelab6">
+															<div align="center">
+																<table id="idAQTsDelegadosidDados" class="tabela" style="width: 100%;">
+																	<thead>
+																		<tr>
+																			<th nowrap="" id="ordenar_ciclo.entidadeSupervisionavel.nome" class="wicket_orderUp crescente"
+																				style="width: 45%">
+																				<table href="#" id="idOrdenarCicloentidadeSupervisionavelnome"
+																					onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./inspetor?3-1.ILinkListener-formulario-idAQTsDelegados-tabela-tabelaDados-dados-cabecalhos-0-celula-orderByLink'; } ;return false">
+																					<tbody>
+																						<tr>
+																							<th width="100%">
+																								<div>
+																									<span id="valorba"> ES </span>
+																								</div>
+																							</th>
+																							<th><img id="ordenarbb" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																							</th>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</th>
+																			<th nowrap="" id="ordenar_parametroAQT.descricao" class="wicket_orderNone fundoPadraoAEscuro4"
+																				style="width: 35%">
+																				<table href="#" id="idOrdenarParametroAQTdescricao"
+																					onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./inspetor?3-1.ILinkListener-formulario-idAQTsDelegados-tabela-tabelaDados-dados-cabecalhos-1-celula-orderByLink'; } ;return false">
+																					<tbody>
+																						<tr>
+																							<th width="100%">
+																								<div>
+																									<span id="valorbe"> Componente </span>
+																								</div>
+																							</th>
+																							<th><img id="ordenarbf" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																							</th>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</th>
+																			<th nowrap="" id="ordenar_estado.descricao" class="wicket_orderNone fundoPadraoAEscuro4"
+																				style="width: 10%">
+																				<table href="#" id="idOrdenarEstadodescricao"
+																					onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./inspetor?3-1.ILinkListener-formulario-idAQTsDelegados-tabela-tabelaDados-dados-cabecalhos-2-celula-orderByLink'; } ;return false">
+																					<tbody>
+																						<tr>
+																							<th width="100%">
+																								<div>
+																									<span id="valorc2"> Estado </span>
+																								</div>
+																							</th>
+																							<th><img id="ordenarc3" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																							</th>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr class="fundoPadraoAClaro2" id="id1c4">
+																			<td id="id1c5"><span id="cellc6"> ABN AMRO </span></td>
+																			<td id="id2c7"><span id="cellc8"> Resultados </span></td>
+																			<td id="id3c9"><span id="cellca"> <a
+																					href="./inspetor?3-1.ILinkListener-formulario-idAQTsDelegados-tabela-tabelaDados-dados-linhas-1-cells-3-cell-link"
+																					align="center" id="link_AQT2"> Análise delegada </a>
+																			</span></td>
+																		</tr>
+																		<tr class="fundoPadraoAClaro3" id="id2cb">
+																			<td id="id1cc"><span id="cellcd"> ABN AMRO </span></td>
+																			<td id="id2ce"><span id="cellcf"> Exigibilidades/Liquidez </span></td>
+																			<td id="id3d0"><span id="celld1"> <a
+																					href="./inspetor?3-1.ILinkListener-formulario-idAQTsDelegados-tabela-tabelaDados-dados-linhas-2-cells-3-cell-link"
+																					align="center" id="link_AQT4"> Em análise </a>
+																			</span></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+													</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span></td>
+		</tr>
+	</table>
+</body>
+</html>

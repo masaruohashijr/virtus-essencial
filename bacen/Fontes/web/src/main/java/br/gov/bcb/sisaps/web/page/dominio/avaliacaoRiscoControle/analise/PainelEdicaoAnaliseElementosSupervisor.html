@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+
+	<table wicket:id="tDadosAnaliseElementoSupervisor" cellspacing="0" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th colspan="6" class="thform" style="text-align: left; border-bottom: 0px;" wicket:id="idTituloElementoSupervisor" />
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td width="5%"></td>
+				<td width="90%">
+					<div style="text-align: left;">
+						<strong>Nova análise</strong>
+					</div>
+					<div style="text-align: right; right: auto;" >
+						<label style="font-size: 7pt;" wicket:id="idUltimaAlteracao">Última alteração salva </label>
+					</div>
+				</td>
+
+				<td width="5%"></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td></td>
+				<td>
+					<div>
+						<textarea style="width: 100%;" wicket:id="idTextAreaNovaAvaliacao" contentEditable="true"></textarea>
+					</div> <br />
+					<div style="width: 100%; padding-top: 5px;" class="adireita">
+						<span style="color: red; font-size: 7pt; margin: auto; text-align: right; visibility: hidden;"
+							wicket:id="idAlertaDadosNaoSalvosAvaliacaoElemento"> Alerta </span> <input type="submit" class="botao"
+							wicket:id="bttSalvarAvaliacaoARC" value="Salvar" />
+					</div>
+				</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+		
+			<table id="tDadosAnaliseElementoSupervisor" cellspacing="0" cellpadding="3" style="width: 90%">
+					<div class="fundoPadraoAClaro3">
+						<tr>
+							<td width="5%" class="fundoPadraoAClaro3"></td>
+							<td width="90%" class="fundoPadraoAClaro3">
+									<div wicket:id="GrupoEspansivelAvaliacao"></div>
+									<div wicket:id="idPainelJustificativaVigente"></div>
+							</td>
+							<td width="5%" class="fundoPadraoAClaro3"></td>
+						</tr>
+					</div>
+				</table>
+
+
+
+</wicket:panel>

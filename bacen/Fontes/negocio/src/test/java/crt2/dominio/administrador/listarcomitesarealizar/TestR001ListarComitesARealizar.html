@@ -1,0 +1,181 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Perfil 'Administrador' - Listar comitês a realizar</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Perfil 'Administrador' - Listar comitês a realizar'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>15/07/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+			<tr>
+			<td>2.0</td>
+			<td>17/07/2015</td>
+			<td>Marília Vasconcelos</td>
+			<td>Exclusão @</td>
+		</tr>
+			<tr>
+			<td>3.0</td>
+			<td>06/08/2015</td>
+			<td>Marília Vasconcelos</td>
+			<td>Alteração de Comitês a Realizar</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#listarComitesARealizar">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<li><dataHoraAtual valor="28/05/2015 00:00:00">Data/hora atual do sistema: 28/05/2015 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#listarComites">validar a listagem de comitês a realizar</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar a lista de comitês a realizar.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<banco />
+								<li>Os dados encontram-se <a href="TestR001ListarComitesARealizar-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+
+							<table>
+								<tr>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th style="background-color: green">Recuperação de registros</th>
+								</tr>
+								<tr>
+									<td>
+										<table class="verifyRows" name="resultado" value="$THIS.getComitesARealizar()">
+											<tr>
+												<th class="eq" value="$THIS.getInicioCorec(resultado)">Início do ciclo</th>
+												<th class="eq" value="$THIS.getCorecPrevisto(resultado)">Corec previsto</th>
+												<th class="eq" value="$THIS.getNomeES(resultado)">ES</th>
+												<th class="eq" value="$THIS.getEquipe(resultado)">Equipe</th>
+												<th class="eq" value="$THIS.getSupervisor(resultado)">Supervisor titular</th>
+												<th class="eq" value="$THIS.getPrioridade(resultado)">Prioridade</th>
+												<th class="eq" value="$THIS.isPossivelEditar(resultado)">Pode editar?</th>
+											</tr>
+											<tr>
+												<td>15/05/2014</td>
+												<td>27/05/2015</td>
+												<td>BB</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>Média</td>
+												<td>Sim</td>
+											</tr>
+											<tr>
+												<td>28/05/2014</td>
+												<td>28/05/2015</td>
+												<td>GOLDMAN SACHS</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>Muito alta</td>
+												<td>Sim</td>
+											</tr>
+											<tr>
+												<td>15/05/2014</td>
+												<td>29/05/2015</td>
+												<td>NATIXIS BRASIL S/A</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>SIFI</td>
+												<td>Sim</td>
+											</tr>
+											<tr>
+												<td>16/03/2014</td>
+												<td>16/03/2016</td>
+												<td>BANCO FIBRA S.A.</td>
+												<td>DESUP/GBPM1/GTSP4</td>
+												<td>CHRISTIANO ATHAÍDE DROGBA</td>
+												<td>Baixa</td>
+												<td>Sim</td>
+											</tr>
+											<tr>
+												<td>17/03/2014</td>
+												<td>17/03/2016</td>
+												<td>ABN AMRO</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>Alta</td>
+												<td>Sim</td>
+											</tr>
+											<tr>
+												<td>18/03/2014</td>
+												<td>18/03/2016</td>
+												<td>ITAU</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>Baixa</td>
+												<td>Sim</td>
+											</tr>
+										
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

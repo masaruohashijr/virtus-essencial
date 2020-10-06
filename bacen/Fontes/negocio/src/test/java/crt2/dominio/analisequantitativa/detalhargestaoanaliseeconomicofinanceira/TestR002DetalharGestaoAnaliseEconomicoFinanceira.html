@@ -1,0 +1,198 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Detalhar gestão da análise econômico-financeira</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Detalhar gestão da análise econômico-financeira</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>22/01/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>12/02/2015</td>
+			<td>David Nascimento</td>
+			<td>Alteraçao no teste conforme issue 48555 (ajuste no valor dos pesos)</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a href="../index.html#detalharGestaoAnaliseEconomicoFinanceira">aqui</a>.
+	</blockquote>
+    
+   <h2>Premissas iniciais</h2>
+        <ul>
+	       <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	       <li>Usuário: <b class="set" name="loginUsuarioLogado">"deliq.sisliq101"</b></span>.</li>  
+	        <div style="visibility: hidden"> <span  class="set" name="ciclo" converter="Integer"/>1</div>
+	    </ul>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para validar os cálculos dos campos <a href="indexNegocio.html#validarNotaCalculadaRefinada"> 'Nota calculada' e 'Nota Refinada' do 'Novo Quadro'</a>.</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001] - </b>Cálculo das notas 'Calculada' e 'Refinada' considerando ANEFs com estado 'Analisado'</td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-1.html" class="include">aqui</a>
+			</td>
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<ul>
+		    		<li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(loginUsuarioLogado, ciclo)">3,02</span></strong></li>
+		    		<li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(loginUsuarioLogado, ciclo)">3</span></strong></li>
+		    	</ul>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[C002] - </b>Cálculo das notas 'Calculada' e 'Refinada' considerando quando não há ANEFs analisados</td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-2.html" class="include">aqui</a>
+			</td> 
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<ul>
+		    		                 <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(loginUsuarioLogado, ciclo)">1,03</span></strong></li>
+		    		                 <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(loginUsuarioLogado, ciclo)">1</span></strong></li>
+		    	                </ul>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[C003] - </b>Cálculo das notas 'Calculada' e 'Refinada' considerando ANEFs vigentes e analisados</td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-3.html" class="include">aqui</a>
+			</td> 
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<ul>
+		    		                <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(loginUsuarioLogado, ciclo)">3,52</span></strong></li>
+		    		                <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(loginUsuarioLogado, ciclo)">4</span></strong></li>
+		    	                </ul>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[C004] - </b>Cálculo das notas 'Calculada' e 'Refinada' considerando ANEFs vigente, com nota do corec anterior e analisado. </td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-4.html" class="include">aqui</a>
+			</td> 
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<ul>
+		    		                <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(loginUsuarioLogado, ciclo)">2,40</span></strong></li>
+		    		                <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(loginUsuarioLogado, ciclo)">2</span></strong></li>
+		    	                </ul>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[C005] - </b>Cálculo das notas 'Calculada' e 'Refinada' considerando ANEFs *A, com nota do corec anterior e analisado. </td>
+			<td>
+			<banco /> Os dados encontram-se <a
+				href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-5.html" class="include">aqui</a>
+			</td> 
+			    <td>
+				<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Notas</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<ul>
+		    		                <li>Nota calculada: <strong><span class="eq" value="$THIS.getNotaCalculada(loginUsuarioLogado, ciclo)">3,44</span></strong></li>
+		    		                <li>Nota refinada: <strong><span class="eq" value="$THIS.getNotaRefinada(loginUsuarioLogado, ciclo)">3</span></strong></li>
+		    	                </ul>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+		</tr>
+	</table>
+</body>
+</html>

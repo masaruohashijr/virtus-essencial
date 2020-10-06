@@ -1,0 +1,320 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 3.1 - Edição de matriz (inclusão de linhas e colunas)</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		<dataHoraAtual valor="25/04/2014 00:00:00">Data atual: 25/04/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de sucesso e falha para a estória 3.1 - Edição de matriz (inclusão de linhas e colunas)</h2>
+	<blockquote>Cenários onde a inclusão de linhas e colunas na Matriz devem ser apresentadas mensagens de
+		sucesso e interrompida por mensagens de erro/impedimento.</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr class="scenario">
+			<td class='title'>Incluir atividade corporativa em matriz no estado Vigente.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> <br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividade">Incluir a Atividade Corporativa <arg value="2" /> <arg
+						value="true" /> <arg value="1" /> <arg value="scenario 1" />
+			</span><br> <br>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+			
+					<li>Não é possível a edição de uma matriz no estado vigente.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir unidade de negócio em matriz no estado vigente.</td>
+			<td></td>
+			<td><span class="sentence" method="salvarUnidade">Incluir a Unidade de negocio<arg value="2" /> <arg
+						value="false" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a edição de uma matriz no estado vigente.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade de negócio em matriz no estado vigente</td>
+			<td></td>
+			<td><span class="sentence" method="salvarAtividade">Incluir atividade de negócio <arg value="2" /> <arg
+						value="false" /> <arg value="1" /> <arg value="scenario 2" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+			
+					<li>Não é possível a edição de uma matriz no estado vigente.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir uma segunda unidade corporativa</td>
+			<td></td>
+			<td><span class="sentence" method="salvarUnidade">Incluir a Unidade corporativa <arg value="1" /> <arg
+						value="true" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Deve existir uma única unidade corporativa na matriz.</li>
+					<li>Campo "Fatorderelevância" é de preenchimento obrigatório.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade corporativa sem dados obrigatórios ou inválidos.</td>
+			<td></td>
+			<td><span class="sentence" method="salvar">Incluir a Atividade Corporativa</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo "Peso da atividade" é de preenchimento obrigatório.</li>
+					<li>Campo "Tipo de atividade" é depreenchimento obrigatório.</li>
+					<li>Campo "Nome da atividade" é de preenchimento obrigatório.</li>
+					<li>Campo "Grupo de risco e controle" é de preenchimento obrigatório.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir duas atividades corporativas com o mesmo nome.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> <br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a>
+				<br> Os dados da atividade se encontram <a href="dadoque/carga_atividade_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividade">Incluir a Atividade Corporativa <arg value="1" /> <arg
+						value="true" /> <arg value="1" /> <arg value="Atividade 1" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+				
+					<li>Não pode existir mais de uma atividade com o mesmo nome na matriz.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir na associação da atividade corporativa um grupo RC sem informar o nome do grupo RC sem
+				informar o peso do grupo RC</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> <br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a>
+				<br /></td>
+			<td><span class="sentence" method="salvarAtividadeGrupoIncorreto">Incluir a Atividade Corporativa <arg
+						value="true" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo "Peso do grupo de risco e controle" é de preenchimento obrigatório.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade de negócio sem dados obrigatórios ou inválidos.</td>
+			<td></td>
+			<td><span class="sentence" method="salvarAtividadeNegocio">Incluir a Atividade Corporativa </span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo "Peso da atividade" é de preenchimento obrigatório.</li>
+					<li>Campo "Tipo de atividade" é de preenchimento obrigatório.</li>
+					<li>Campo "Nome da atividade" é de preenchimento obrigatório.</li>
+					<li>Campo "Grupo de risco e controle" é de preenchimento obrigatório.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir duas unidades de negócio com o mesmo nome</td>
+			<td></td>
+			<td><span class="sentence" method="salvarUnidade">Incluir a Unidade de Negócio <arg value="3" /> <arg
+						value="false" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não pode existir mais de uma unidade com o mesmo nome na matriz.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'>Incluir na associação da atividade de negócio um grupo RC sem informar o nome e o peso do
+				grupo RC</td>
+			<td></td>
+			<td><span class="sentence" method="salvarAtividadeGrupoIncorreto">Incluir a Atividade de Negócio <arg
+						value="false" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo "Peso do grupo de risco e controle" é de preenchimento obrigatório.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade de negócio sem informar unidade.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de Negócio <arg
+						value="null" /> <arg value="Atividade 1" /> <arg value="false" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a
+				href="porfim/TestE3_1_Edicao_de_matriz_inclusao_de_linhas_e_coluna_atv_sem_und.html" class="include">aqui</a>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade de negócio informando unidade</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de Negócio <arg
+						value="1" /> <arg value="Atividade 1" /> <arg value="false" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a
+				href="porfim/TestE3_1_Edicao_de_matriz_inclusao_de_linhas_e_coluna_atv_com_und.html" class="include">aqui</a>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade de negócio sem informar nome da atividade</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de Negócio <arg
+						value="2" /> <arg value="null" /> <arg value="false" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a href="porfim/TestE3_1InclusaoAtvNegoSemNome_porfim.html"
+				class="include">aqui</a>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir atividade corporativa sem informar nome da atividade</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade Corporativa <arg
+						value="1" /> <arg value="null" /> <arg value="true" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a href="porfim/TestE3_1InclusaoAtvCorpSemNome_porfim.html"
+				class="include">aqui</a>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Dado que existe uma atividade de negócio que foi incluída sem informar o nome da atividade.
+				Incluir uma segunda atividades de negócio sem informar o nome da atividade</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a> <br>
+				Os dados da atividade se encontram <a href="dadoque/carga_atividade_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de Negócio <arg
+						value="null" /> <arg value="null" /> <arg value="false" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não pode existir mais de uma atividade com o mesmo nome na matriz.</li>
+				</ul>
+			</td>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Dado que existe uma atividade corporativa que foi incluída sem informar o nome da atividade.
+				Incluir uma segunda atividades corporativa sem informar o nome da atividade.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a> <br>
+				Os dados da atividade se encontram <a href="dadoque/carga_atividade_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de Negócio <arg
+						value="1" /> <arg value="null" /> <arg value="true" />
+			</span><br> <br></td>
+			<td>As mensagens impeditivas serão:
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não pode existir mais de uma atividade com o mesmo nome na matriz.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir mais de uma atividade corporativa</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade Corporativa 1 <arg
+						value="1" /> <arg value="Atividade Corporativa 1" /> <arg value="true" />
+			</span> <br /> <br /> <span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade Corporativa
+					2 <arg value="1" /> <arg value="Atividade Corporativa 2" /> <arg value="true" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a
+				href="porfim/TestE3_1_Edicao_de_matriz_inclusao_de_linhas_e_coluna_atv_corp.html" class="include">aqui</a></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir mais de uma atividade de negócio independente.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de negócio 1 <arg
+						value="null" /> <arg value="Atividade negócio 1" /> <arg value="false" />
+			</span> <br /> <br /> <span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de negócio
+					2 <arg value="null" /> <arg value="Atividade negócio 2" /> <arg value="false" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a
+				href="porfim/TestE3_1_Edicao_de_matriz_inclusao_de_linhas_e_coluna_atv_sem_und_2.html" class="include">aqui</a></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir mais de uma unidade de negócio.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarUnidadeNegocioSuccess">Incluir a Unidade de negócio 1 <arg
+						value="Unidade 1" />
+			</span> <br /> <br /> <span class="sentence" method="salvarUnidadeNegocioSuccess">Incluir a Unidade de negócio 2 <arg
+						value="Unidade 2" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a
+				href="porfim/TestE3_1_Edicao_de_matriz_inclusao_de_linhas_e_coluna_und.html" class="include">aqui</a></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'>Incluir mais de uma atividade de negócio associada a mesma unidade de negócio.</td>
+			<td><banco />As regras de acesso encontram-se <regra>aqui</regra><br> <br> Os dados da Metodologia
+				encontram-se <parametros>aqui</parametros><br> <br> Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br>
+				<br> Os dados do Ciclo se encontram <a href="dadoque/carga_ciclo_dadoque.html" class="include">aqui</a></td>
+			<td><span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de negócio 1 <arg
+						value="1" /> <arg value="Atividade 1" /> <arg value="false" />
+			</span> <br /> <br /> <span class="sentence" method="salvarAtividadeNegocioSuccess">Incluir a Atividade de negócio
+					2 <arg value="1" /> <arg value="Atividade 2" /> <arg value="false" />
+			</span><br> <br></td>
+			<td>Os dados finais correlacionadas se encontram <a
+				href="porfim/TestE3_1InclusaoAtvNegoDuasEmUmaUnidade_porfim.html" class="include">aqui</a></td>
+		</tr>
+
+	</table>
+</body>
+</html>

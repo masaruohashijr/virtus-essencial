@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+  <!-- JTA -->
+  <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+    <property name="allowCustomIsolationLevels" value="true" />
+  </bean>
+
+  <!-- HSQLDB -->
+  <bean id="mainDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:comp/env/jdbc/sisaps" />
+  </bean>
+
+  <!-- Hibernate -->
+  <bean id="hbnSessionFactory" parent="abstractHbnSessionFactory">
+    <property name="hibernateProperties">
+      <props merge="true">
+        <!-- HSQLDB -->
+        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+        <prop key="hibernate.hbm2ddl.auto">update</prop>
+        <prop key="hibernate.connection.shutdown">true</prop>
+        <prop key="hibernate.show_sql">true</prop>
+
+        <!-- TODO - DB2 - necessario configurar defaul schema -->
+        <!-- DB2
+        <prop key="hibernate.hbm2ddl.auto">update</prop>
+        <prop key="hibernate.dialect">br.gov.bcb.app.stuff.hibernate.BcDB2Dialect</prop>
+        <prop key="hibernate.default_schema">XXX</prop>
+        -->
+
+        <!-- Configuracoes do JBoss -->
+        <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
+        <prop key="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</prop>
+        <prop key="jta.UserTransaction">java:comp/UserTransaction</prop>
+      </props>
+    </property>
+  </bean>
+</beans>

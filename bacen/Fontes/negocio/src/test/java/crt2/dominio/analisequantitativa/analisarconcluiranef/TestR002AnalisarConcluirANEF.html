@@ -1,0 +1,358 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Concluir a análise do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória: 'Concluir a análise do ANEF'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>21/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>09/04/2015</td>
+			<td>Adjamir Galvão</td>
+			<td>Ajustando para salvar a nota final do ANEF</td>
+		</tr>
+		<tr>
+			<td>3.0</td>
+			<td>12/06/2015</td>
+			<td>Cleonides Macriny</td>
+			<td>Ajuste de atualização de estado para ANEF</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#concluirAnaliseANEF">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		     <li><dataHoraAtual valor="19/03/2015 00:00:00">Data/hora atual do sistema: 19/03/2015 00:00:00</dataHoraAtual></li>
+		</ul>
+		     
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#concluirAnaliseANEF">validar a conclusão da análise do ANEF com sucesso</a>.<br/>
+	</blockquote>
+	
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Concluir ANEF sem delegação e a nota final deve ser a nota calculada do supervisor.</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <ul>
+							<banco/> 
+		     				  <li>Os dados encontram-se <a href="TestR001AnalisarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+					          <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq114"</span>'</strong>.</li> 
+		                   </ul>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table >
+				                <tr>
+			                        <th colspan="1">Entradas</th>
+			                        <th style="background-color: green" colspan="1">Saída</th>
+			                    </tr>
+				                <tr>
+				                    <th >ANEF</th>
+				                    <th  colspan="1" style="background-color: green">Mensagem</th>
+				                </tr>
+				                <tr>
+				                    <td class="set" name="idAnef" converter="Integer">29</td>
+				                    <td> 
+					                    <span class="execute" name="mensagemSucesso" value="$THIS.concluirEdicaoAnef(idAnef)"></span>
+					                    <span class="eq" value="mensagemSucesso"> Análise do ANEF concluída. ANEF não publicado. Acesse e revise a < Síntese do ANEF > para publicar este ANEF no Perfil de Risco.</span>
+				                    </td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+					        <ul>
+					            <li>Os dados alterados estão <a href="TestR002AnalisarConcluirANEF-PorFim-C001.html" class="include">aqui</a>.</li>
+					        </ul>    
+					    </td>
+					</tr>
+		      </table>
+</table><br/><br/>
+				
+				
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT002]</b> - Concluir ANEF com delegação e a nota final deve ser a nota ajustada do supervisor.
+						</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <ul>
+							<banco/> 
+		     				  <li>Os dados encontram-se <a href="TestR001AnalisarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+					          <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq112"</span>'</strong>.</li> 
+		                   </ul>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+				                <tr>
+			                        <th colspan="1">Entradas</th>
+			                        <th style="background-color: green" colspan="1">Saída</th>
+			                    </tr>
+				                <tr>
+				                    <th  >ANEF</th>
+				                    <th   colspan="1" style="background-color: green">Mensagem</th>
+				                </tr>
+				                <tr>
+				                  	<td class="set" name="idAnef" converter="Integer">36</td>
+				                    <td> 
+				                    	<span class="execute" name="mensagemSucesso" value="$THIS.concluirEdicaoAnef(idAnef)"></span>
+					                    <span class="eq" value="mensagemSucesso">Análise do ANEF concluída. ANEF não publicado.</span>
+					                </td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+					        <ul>
+					            <li>Os dados alterados estão <a href="TestR002AnalisarConcluirANEF-PorFim-C002.html" class="include">aqui</a>.</li>
+					        </ul>    
+					    </td>
+					</tr>
+		   </table>
+</table><br/><br/>
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Concluir ANEF sem delegação e a nota final deve ser a nota calculada do inspetor.</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <ul>
+							<banco/> 
+		     				  <li>Os dados encontram-se <a href="TestR002CT003AnalisarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+					          <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq114"</span>'</strong>.</li> 
+		                   </ul>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table >
+				                <tr>
+			                        <th colspan="1">Entradas</th>
+			                        <th style="background-color: green" colspan="1">Saída</th>
+			                    </tr>
+				                <tr>
+				                    <th >ANEF</th>
+				                    <th  colspan="1" style="background-color: green">Mensagem</th>
+				                </tr>
+				                <tr>
+				                    <td class="set" name="idAnef" converter="Integer">29</td>
+				                    <td> 
+				                    	<span class="execute" name="mensagemSucesso" value="$THIS.concluirEdicaoAnef(idAnef)"></span>
+					                    <span class="eq" value="mensagemSucesso">Análise do ANEF concluída. ANEF não publicado. Acesse e revise a < Síntese do ANEF > para publicar este ANEF no Perfil de Risco.</span>
+				                    </td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+					        <ul>
+					            <li>Os dados alterados estão <a href="TestR002AnalisarConcluirANEF-PorFim-C003.html" class="include">aqui</a>.</li>
+					        </ul>    
+					    </td>
+					</tr>
+		      </table>
+</table><br/><br/>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004]</b> - Concluir ANEF sem delegação e a nota final deve ser a nota ajustada do inspetor (não há nota ajustada do supervisor para elementos e ANEF).</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <ul>
+							<banco/> 
+		     				  <li>Os dados encontram-se <a href="TestR002CT004AnalisarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+					          <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq114"</span>'</strong>.</li> 
+		                   </ul>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table >
+				                <tr>
+			                        <th colspan="1">Entradas</th>
+			                        <th style="background-color: green" colspan="1">Saída</th>
+			                    </tr>
+				                <tr>
+				                    <th >ANEF</th>
+				                    <th  colspan="1" style="background-color: green">Mensagem</th>
+				                </tr>
+				                <tr>
+				                    <td class="set" name="idAnef" converter="Integer">29</td>
+				                    <td> 
+				                    	<span class="execute" name="mensagemSucesso" value="$THIS.concluirEdicaoAnef(idAnef)"></span>
+					                    <span class="eq" value="mensagemSucesso">Análise do ANEF concluída. ANEF não publicado. Acesse e revise a < Síntese do ANEF > para publicar este ANEF no Perfil de Risco.</span>
+				                    </td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+					        <ul>
+					            <li>Os dados alterados estão <a href="TestR002AnalisarConcluirANEF-PorFim-C004.html" class="include">aqui</a>.</li>
+					        </ul>    
+					    </td>
+					</tr>
+		      </table>
+</table><br/><br/>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT005]</b> - Concluir ANEF sem delegação e a nota final é a nota calculada do supervisor, mas esta é igual a nota calculada do inspetor.</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <ul>
+							<banco/> 
+		     				  <li>Os dados encontram-se <a href="TestR002CT005AnalisarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+					          <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq114"</span>'</strong>.</li> 
+		                   </ul>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table >
+				                <tr>
+			                        <th colspan="1">Entradas</th>
+			                        <th style="background-color: green" colspan="1">Saída</th>
+			                    </tr>
+				                <tr>
+				                    <th >ANEF</th>
+				                    <th  colspan="1" style="background-color: green">Mensagem</th>
+				                </tr>
+				                <tr>
+				                    <td class="set" name="idAnef" converter="Integer">29</td>
+				                    <td> 
+				                    	<span class="execute" name="mensagemSucesso" value="$THIS.concluirEdicaoAnef(idAnef)"></span>
+					                    <span class="eq" value="mensagemSucesso">Análise do ANEF concluída. ANEF não publicado. Acesse e revise a < Síntese do ANEF > para publicar este ANEF no Perfil de Risco.</span>
+				                    </td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+					        <ul>
+					            <li>Os dados alterados estão <a href="TestR002AnalisarConcluirANEF-PorFim-C005.html" class="include">aqui</a>.</li>
+					        </ul>    
+					    </td>
+					</tr>
+		      </table>
+</table><br>
+
+</body>
+</html>

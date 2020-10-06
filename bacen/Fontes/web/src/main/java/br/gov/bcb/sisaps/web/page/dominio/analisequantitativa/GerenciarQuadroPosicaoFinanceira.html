@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+			<table id="tPainelResumoCicloPanel" cellpadding="0" cellspacing="0" style="width: 100%">
+				<tr>
+					<td wicket:id="resumoCicloPanel"></td>
+				</tr>
+			</table>
+         
+			<div wicket:id="quadroPosicaoFinanceira" style="width: 100%; margin: auto;"></div>
+		  
+		  
+		  <br/>
+			<div style="width: 100%; margin: auto;">
+					<table id="tDadosSelecaoDataBase" cellspacing="0" cellpadding="0"  style="width: 90%">
+						<thead>
+							<tr class="fundoPadraoAEscuro2">
+								<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Seleção de data-base</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="fundoPadraoAClaro3">
+								<td class="nomeCampo" style="width: 25%;">Data-base</td>
+								<td><select wicket:id="selecaoDataBase"></select></td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+		  <br/> 
+		  
+		  <br/>
+			<div wicket:id="selecaoContaAtivo" style="width: 100%; margin: auto;"></div>
+		  <br/> 
+		  
+		  <br/>
+			<div wicket:id="selecaoContaPassivo" style="width: 100%; margin: auto;"></div>
+		  <br/> 
+		  
+		  <br/>
+			<div wicket:id="ajustePatrimonioReferenciaNovo" style="width: 100%; margin: auto;"></div>
+		  <br/>
+		  
+		  <br/>
+			<div wicket:id="ajusteResultadoNovo" style="width: 100%; margin: auto;"></div>
+		  <br/>
+		  
+		  <br/>
+			<div wicket:id="ajusteIndicesNovo" style="width: 100%; margin: auto"></div>
+		  <br/>
+          
+          <br> 
+            <div wicket:id="painelAnexos" style="width: 90%; margin: auto;"  class="centralizado"></div>
+             <br> 
+		  
+		  <div class="centralizado"  style="width: 90%; margin: auto;">
+				<input name="bttConcluir" type="button" class="botao" id="bttConcluir" wicket:id="bttConcluir" style="visibility: visible; width: 425px" 
+	                 title="Concluir novo quadro da posição financeira e atualizar Perfil de Risco" value="Concluir novo quadro da posição financeira e atualizar Perfil de Risco">
+			<input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" style="visibility: visible;" 
+			     title="Voltar para a p&aacute;gina anterior" value="Voltar">
+			<input name="bttVoltarSemSalvar" type="button" class="botao" id="bttVoltarSemSalvar" 
+			     style="visibility: hidden; width: 120px; display: none; "
+			     wicket:id="bttVoltarSemSalvar" title="Voltar para a p&aacute;gina anterior" value="Voltar sem salvar">
+		  </div>
+		<br />
+		</form>
+	</wicket:extend>
+</body>
+</html>
+

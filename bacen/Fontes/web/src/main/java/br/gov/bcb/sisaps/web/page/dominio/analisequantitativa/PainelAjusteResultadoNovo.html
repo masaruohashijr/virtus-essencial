@@ -1,0 +1,31 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosAjusteResultados" cellspacing="0" cellpadding="1"
+		style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;"
+					colspan="2">Ajuste de resultados</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr valign="top">
+				<td>
+					<table class="tabela fundoPadraoAEscuro3" style="width: 100%">
+						<tr>
+		                    <th>Resultados</th>
+		                </tr>
+			        </table>
+					<div wicket:id="ajustesResultados"></div>
+				</td>
+			</tr>
+			<tr valign="top">
+            	<td align="right" >
+            	<font style="color: red"><span
+						wicket:id="labelInfoNaoSalvasResultados">*Atenção informações não salvas.</span></font>
+	            	<input type="submit" class="botao" wicket:id="bttSalvarInformacoes" value="Salvar informações" style="width: 150px" />
+            	</td>
+            </tr>
+		</tbody>
+	</table>
+	
+</wicket:panel>

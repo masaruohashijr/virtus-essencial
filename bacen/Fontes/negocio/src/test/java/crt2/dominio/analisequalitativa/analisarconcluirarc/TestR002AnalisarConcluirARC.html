@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Concluir a análise do ARC</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória: 'Concluir a análise do ARC'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>05/07/2017</td>
+			<td>David Nascimento</td>
+			<td>Alteração da lógica de cálculo das notas dos ARCs.</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#concluirAnaliseARC">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		     <li><dataHoraAtual valor="14/04/2015 00:00:00">Data/hora atual do sistema: 14/04/2015 00:00:00</dataHoraAtual></li>
+		</ul>
+		     
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#concluirAnaliseARCNovoCalculo">validar a conclusão da análise do ARC com sucesso</a>.<br/>
+	</blockquote>
+				
+								
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Concluir ARC (com a nota ajustada do supervisor).
+						</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <ul>
+							<banco/> 
+		     				  <li>Os dados encontram-se <a href="TestR002AnalisarConcluirARC-DadoQue.html" class="include">aqui</a>.</li>
+					          <li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li> 
+		                   </ul>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+				                <tr>
+			                        <th colspan="1">Entradas</th>
+			                        <th style="background-color: green" colspan="1">Saída</th>
+			                    </tr>
+				                <tr>
+				                    <th>ARC</th>
+				                    <th  colspan="1" style="background-color: green">Mensagem</th>
+				                </tr>
+				                <tr>
+				                    <td class="set" name="idArc" converter="Integer">38</td>
+				                    <td>
+				                    	<span class="execute" name="mensagemSucesso" value="$THIS.concluirAnaliseArc(idArc)"></span>
+				                    	<span class="eq" value="$THIS.getMensagem()">Análise do ARC concluída. ARC não publicado. Acesse e revise a Síntese do Risco para publicar este ARC no Perfil de Risco.</span>
+			                    	</td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+					        <ul>
+					            <li>Os dados alterados estão <a href="TestR002AnalisarConcluirARC-PorFim.html" class="include">aqui</a>.</li>
+					        </ul>    
+					    </td>
+					</tr>
+		   </table>
+</body>
+</html>

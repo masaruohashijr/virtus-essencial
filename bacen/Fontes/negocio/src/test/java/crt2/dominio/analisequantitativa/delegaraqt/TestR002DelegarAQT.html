@@ -1,0 +1,484 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Delegar análise do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Delegar análise do ANEF'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>27/01/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#delegarAnaliseAQT">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<banco/> 
+		     <li>Os dados encontram-se <a href="TestR001DelegarAQT-DadoQue.html" class="include">aqui</a>.</li>
+		     <li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarListaServidores">validar listas de servidores</a>.<br/>
+	</blockquote>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar a lista 'Servidores da equipe' para um ANEF, sem delegação.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							Verificar a lista de servidores da Equipe para os seguintes dados:
+							<br>ANEF de ID <strong><span class="set" name="aqt" converter="Integer">10</span></strong>, 
+							da ES de ID <strong><span class="set" name="es" converter="Integer">3</span> 'ITAU'</strong>
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							Os servidores a serem listados são:
+							<br><br>
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											<table class="verifyRows" name="servidor" value="$THIS.listarServidoresEquipe(aqt)">
+								                <tr>
+								                    <th  class="eq" value="$THIS.getNomeServidor(servidor)">Nome</th>
+								                </tr>
+								                <tr>
+								                    <td>ANFRISIO RODRIGUES VIEIRA</td>
+								                </tr>
+								                <tr>
+								                    <td>Administrador 105</td>
+								                </tr>
+								                <tr>
+								                    <td>Administrador 107</td>
+								                </tr>
+								                <tr>
+								                    <td>CAIO DUARTE CINTRA</td>
+								                </tr>
+								                <tr>
+								                    <td>CARLOS GOMES</td>
+								                </tr>
+								                <tr>
+								                    <td>Comitê 104</td>
+								                </tr>
+								                <tr>
+								                    <td>Consulta SNB 108</td>
+								                </tr>
+								                <tr>
+								                    <td>Gerente 102</td>
+								                </tr>
+								                <tr>
+								                    <td>ROBERTO SANTO SALENCAR</td>
+								                </tr>
+								                <tr>
+								                    <td>Supervidor114</td>
+								                </tr>
+								                <tr>
+								                	<td>TESTESLQB13 MASSA DE TESTE</td>
+								                </tr>
+							                </table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+	</td>
+	</tr>
+	</table><br/>			
+
+	<table class=scenario>
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT002]</b> - Validar a lista 'Servidores da equipe' para um ANEF, com delegação.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							Verificar a lista de servidores da Equipe para os seguintes dados:
+							<br>ANEF de ID <strong><span class="set" name="aqt" converter="Integer">18</span></strong>, da ES de ID <strong>
+							<span class="set" name="es" converter="Integer">9</span> 'NATIXIS BRASIL S/A'</strong>
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							Os servidores a serem listados são:
+							<br><br>
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											<table class="verifyRows" name="servidor" value="$THIS.listarServidoresEquipe(aqt)">
+								                <tr>
+								                    <th class="eq" value="$THIS.getNomeServidor(servidor)">Servidores</th>
+								                </tr>
+								                <tr>
+								                    <td>ANFRISIO RODRIGUES VIEIRA</td>
+								                </tr>
+								                <tr>
+								                    <td>Administrador 105</td>
+								                </tr>
+								                <tr>
+								                    <td>Administrador 107</td>
+								                </tr>
+								                <tr>
+								                    <td>CAIO DUARTE CINTRA</td>
+								                </tr>
+								                <tr>
+								                    <td>CARLOS GOMES</td>
+								                </tr>
+								                <tr>
+								                    <td>Comitê 104</td>
+								                </tr>
+								                <tr>
+								                    <td>Consulta SNB 108</td>
+								                </tr>
+								                <tr>
+								                    <td>Gerente 102</td>
+								                </tr>
+								                <tr>
+								                    <td>ROBERTO SANTO SALENCAR</td>
+								                </tr>
+								                <tr>
+								                    <td>Supervidor114</td>
+								                </tr>
+								                <tr>
+								                	<td>TESTESLQB13 MASSA DE TESTE</td>
+								                </tr>
+							                </table>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+	</td>
+	</tr>
+	</table><br/>			
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT003]</b> - Validar a lista 'Outros servidores' para um ANEF, sem delegação.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							Verificar a lista de servidores da Equipe para os seguintes dados:
+							<br>ANEF de ID <strong><span class="set" name="aqt" converter="Integer">10</span></strong>
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							Os servidores a serem listados são:
+							<br><br>
+							<table>
+								<tr>
+									<td>Para a unidade selecionada <strong><span class="set" name="unidadeDeinf">DEINF</span></strong></td>
+									<td>Para a unidade selecionada <strong><span class="set" name="unidadeDesup">DESUP</span></strong></td>
+									<td>Para a unidade selecionada <strong><span class="set" name="unidadeDeliq">DELIQ</span></strong></td>
+								</tr>
+								<tr>
+									<td>
+										<table>
+											<tbody>
+												<tr>
+													<td>
+														<table style="width: 100%" class="verifyRows" name="servidor" value="$THIS.listarServidoresEquipe(aqt, unidadeDeinf)">
+											                <tr>
+											                    <th class="eq" value="$THIS.getNomeServidor(servidor)">Servidores</th>
+											                </tr>
+											                <tr>
+											                    <td>Consulta 106</td>
+											                </tr>
+											                <tr>
+											                    <td>Gustavo Silva</td>
+											                </tr>
+											                <tr>
+											                    <td>Silvio Cavalcanti</td>
+											                </tr>
+											                <tr>
+											                    <td>Tiago Gomes</td>
+											                </tr>
+											                <tr>
+											                    <td>Usuário chefe</td>
+											                </tr>
+											                <tr>
+											                    <td>Usuário substituto eventual</td>
+											                </tr>
+											                <tr>
+											                    <td>Usuário substituto prazo certo</td>
+											                </tr>
+										                </table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+									<td>
+										<table>
+											 
+											<tbody>
+												<tr>
+													<td>
+														<table style="width: 100%" class="verifyRows" name="servidor" value="$THIS.listarServidoresEquipe(aqt, unidadeDesup)">
+											                <tr>
+											                    <th  class="eq" value="$THIS.getNomeServidor(servidor)">Servidores</th>
+											                </tr>
+											                <tr>
+											                    <td>CHRISTIANO ATHAÍDE DROGBA</td>
+											                </tr>
+											                <tr>
+											                    <td>Consulta SRPNB 109</td>
+											                </tr>
+											                <tr>
+											                    <td>Consulta SRPNB 110</td>
+											                </tr>
+										                </table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+									<td>
+										<table>
+											 
+											<tbody>
+												<tr>
+													<td>
+														<table style="width: 100%" class="verifyRows" name="servidor" value="$THIS.listarServidoresEquipe(aqt, unidadeDeliq)">
+											                <tr>
+											                    <th  class="eq" value="$THIS.getNomeServidor(servidor)">Servidores</th>
+											                </tr>
+											                <tr>
+											                    <td>ANFRISIO RODRIGUES VIEIRA</td>
+											                </tr>
+											                <tr>
+											                    <td>Administrador 105</td>
+											                </tr>
+											                <tr>
+											                    <td>Administrador 107</td>
+											                </tr>
+											                <tr>
+											                    <td>CAIO DUARTE CINTRA</td>
+											                </tr>
+											                <tr>
+											                    <td>CARLOS GOMES</td>
+											                </tr>
+											                <tr>
+											                    <td>CHEFE COSUP-01</td>
+											                </tr>
+											                <tr>
+											                    <td>CHEFE GLIQ1</td>
+											                </tr>
+											                <tr>
+											                    <td>Comitê 104</td>
+											                </tr>
+											                <tr>
+											                    <td>Consulta SNB 108</td>
+											                </tr>
+											                <tr>
+											                    <td>Gerente 102</td>
+											                </tr>
+											                 <tr>
+											                    <td>ROBERTO SANTO SALENCAR</td>
+											                </tr>
+											                <tr>
+											                    <td>Substituto eventual COSUP-01</td>
+											                </tr>
+											                <tr>
+											                    <td>Substituto eventual GLIQ1</td>
+											                </tr>
+											                <tr>
+											                    <td>Supervidor 114</td>
+											                </tr>
+											                <tr>
+											                    <td>TESTESLQB13 MASSA DE TESTE</td>
+											                </tr>
+										                </table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+	</td>
+	</tr>
+	</table><br/>			
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT004]</b> - Validar a lista 'Outros servidores' para um ANEF, com delegação.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							Verificar a lista de servidores da Equipe para os seguintes dados:
+							<br>ANEF de ID <strong><span class="set" name="aqt" converter="Integer">18</span></strong>
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							Os servidores a serem listados são:
+							<br><br>
+							<table>
+								<tr>
+									<td>Para a unidade selecionada <strong><span class="set" name="unidadeDeliq">DELIQ</span></strong></td>
+								</tr>
+								<tr>
+									<td>
+										<table>
+											 
+											<tbody>
+												<tr>
+													<td>
+														<table style="width: 100%" class="verifyRows" name="servidor" value="$THIS.listarServidoresEquipe(aqt, unidadeDeliq)">
+											                <tr>
+											                    <th  class="eq" value="$THIS.getNomeServidor(servidor)">Servidores</th>
+											                </tr>
+											                <tr>
+											                    <td>ANFRISIO RODRIGUES VIEIRA</td>
+											                </tr>
+											                <tr>
+											                    <td>Administrador 105</td>
+											                </tr>
+											                <tr>
+											                    <td>Administrador 107</td>
+											                </tr>
+											                <tr>
+											                    <td>CAIO DUARTE CINTRA</td>
+											                </tr>
+											                <tr>
+											                    <td>CARLOS GOMES</td>
+											                </tr>
+											                <tr>
+											                    <td>CHEFE COSUP-01</td>
+											                </tr>
+											                <tr>
+											                    <td>CHEFE GLIQ1</td>
+											                </tr>
+											                <tr>
+											                    <td>Comitê 104</td>
+											                </tr>
+											                <tr>
+											                    <td>Consulta SNB 108</td>
+											                </tr>
+											                <tr>
+											                    <td>Gerente 102</td>
+											                </tr>
+											                 <tr>
+											                    <td>ROBERTO SANTO SALENCAR</td>
+											                </tr>	
+											                <tr>
+											                    <td>Substituto eventual COSUP-01</td>
+											                </tr>
+											                <tr>
+											                    <td>Substituto eventual GLIQ1</td>
+											                </tr>
+											                <tr>
+											                    <td>Supervidor 114</td>
+											                </tr>
+											                <tr>
+											                	<td>TESTESLQB13 MASSA DE TESTE</td>
+											                </tr>
+										                </table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

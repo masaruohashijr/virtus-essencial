@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application-bnd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://websphere.ibm.com/xml/ns/javaee"
+  xsi:schemaLocation="http://websphere.ibm.com/xml/ns/javaee http://websphere.ibm.com/xml/ns/javaee/ibm-application-bnd_1_0.xsd"
+  version="1.0">
+
+  <security-role name="FUNCI">
+  <group name="FUNCI" />
+</security-role>
+
+<security-role name="SRAT001">
+  <group name="SRAT001" />
+</security-role>
+
+<security-role name="SRAT002">
+  <group name="SRAT002" />
+</security-role>
+
+<security-role name="SRAT003">
+  <group name="SRAT003" />
+</security-role>
+
+<security-role name="SRAT004">
+  <group name="SRAT004" />
+</security-role>
+
+<security-role name="SRAT005">
+  <group name="SRAT005" />
+</security-role>
+
+<security-role name="SRAT006">
+  <group name="SRAT006" />
+</security-role>
+
+<security-role name="SRAT007">
+  <group name="SRAT007" />
+</security-role>
+
+<security-role name="SRAT008">
+  <group name="SRAT008" />
+</security-role>
+
+<security-role name="SRAT009">
+  <group name="SRAT009" />
+</security-role>
+
+<security-role name="SRAT010">
+  <group name="SRAT010" />
+</security-role>
+
+<security-role name="SRAT011">
+  <group name="SRAT011" />
+</security-role>
+
+<security-role name="SRAT012">
+  <group name="SRAT012" />
+</security-role>
+
+<security-role name="SRAT013">
+  <group name="SRAT013" />
+</security-role>
+
+
+</application-bnd>

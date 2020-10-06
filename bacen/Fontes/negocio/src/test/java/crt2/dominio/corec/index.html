@@ -1,0 +1,922 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ciclos do SRC - COREC</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Ciclos do SRC - COREC</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="corec" class="menu">Ciclos do SRC - COREC</a>
+ </h2>
+
+ 	<h3>
+ 	    <a name="concluirCicloEmAndamento" class="menu">Concluir "Em andamento" (entrada "Corec")</a>
+ 	</h3>
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">protótipo</a>.</li>
+		</ul>
+ 	
+	
+	<h4>    
+	    <a name="verificacaoRegrasIniciarCorec" class="menu">Verificar pendências para iniciar fase Corec</a>
+    </h4>
+    
+    	<ul>
+			<li>Observar o descrito em '<a href="#concluirCicloEmAndamento">concluir "Em andamento" (entrada "Corec")</a>'.</li>
+			<li>Botão 'Verificar pendências para Corec':</li>
+			<ul>
+				<li>Validações ao clicar no botão:</li>
+				<ul>
+					<li>Validações que bloqueam o início da fase Corec:</li>
+					<ul>
+						<li>Caso não exista uma matriz no perfil de risco vigente, exibir a seguinte mensagem de erro: 'Deve haver uma matriz vigente cadastrada.'.</li>
+						<li>Caso algum ARC do perfil de risco vigente não esteja no estado 'Previsto' ou 'Designado', exibir a seguinte mensagem de erro: 'Todos os ARCs rascunho devem estar em estado 'Previsto' ou 'Designado'.'.</li>
+						<li>Caso alguma síntese obrigatória da matriz não esteja no perfil de risco vigente, exibir a seguinte mensagem de erro: 'Sínteses obrigatórias (mesmo sem ARCs correspondentes na matriz) devem conter texto.'.</li>
+						<li>Caso algum ARC do perfil de risco vigente não tenha ARC anterior, exibir a seguinte mensagem de erro: 'Todos os ARCs vigentes precisam ter nota. Não podem ter ARCs '*A'.'.</li>
+						<li>Caso algum ARC do perfil de risco vigente que tenha ajuste de COREC no seu ARC concluído anterior, exibir a seguinte mensagem de erro: 'Todos os ARCs vigentes que tiveram ajuste no COREC anterior precisam ser avaliados novamente.'.</li>
+						<li>Caso não exista um Perfil de Atuação no perfil de risco vigente, exibir a seguinte mensagem de erro: 'Perfil de atuação deve conter texto.'.</li>
+						<li>Caso não exista um Conclusão no perfil de risco vigente, exibir a seguinte mensagem de erro: 'Conclusão deve conter texto.'.</li>
+						<li>Caso não exista uma Nota final no perfil de risco vigente, exibir a seguinte mensagem de erro: 'Nota final deve ter atributo diferente de vazio.'.</li>
+						<li>Caso exista ciclo anterior ao ciclo corrente e tenha sido feito ajuste do 'Nota final' da ES  pelo comitê e no ciclo vigente o supervisor não tenha avaliado a 'Nota final', exibir a seguinte mensagem de erro:
+							'A 'Nota final' da ES deve ser avaliada, pois houve ajuste no COREC anterior.'</li>
+						<li>Caso não exista uma Perspectiva no perfil de risco vigente ou caso exista a Perspectiva preenchida com o Parâmetro Perspectiva "Não Aplicável", exibir a seguinte mensagem de erro: 'Perspectiva deve ter atributo diferente de vazio e diferente de "Não Aplicável".'.</li>
+						<li>Caso exista ciclo anterior ao ciclo corrente e tenha sido feito ajuste na 'Perspectiva' da ES  pelo comitê e no ciclo vigente o supervisor não tenha avaliado a 'Perspectiva', exibir a seguinte mensagem de erro:
+							'A 'Perspectiva' da ES deve ser avaliada, pois houve ajuste no COREC anterior.'</li>
+						<li>Caso não exista uma Situação no perfil de risco vigente, exibir a seguinte mensagem de erro: 'Situação deve ter atributo diferente de vazio.'.</li>
+						<li>Caso algum ANEF vigente não tenha nota, exibir a seguinte mensagem de erro: 'Todos os ANEFs vigentes precisam ter nota. Não podem ter ANEFs '*A'.'.</li>
+						<li>Caso algum ANEF de rascunho não esteja no estado 'Previsto' ou 'Designado', exibir a seguinte mensagem de erro: 'Todos os ANEFs rascunho devem estar em estado 'Previsto' ou 'Designado'.'</li>
+						<li>Caso exista ciclo anterior ao ciclo corrente e para algum Parâmetro ANEF não exista pelo menos duas versões concluídas, exibir a seguinte mensagem de erro: 
+							'Todos os ANEFs devem ter atualização no ciclo corrente. O ANEF vigente não pode ser o mesmo ANEF do Corec anterior.'.</li>
+						<li>Caso não exista um quadro da posição financeira vigente, exibir a seguinte mensagem de erro: 'Deve haver um quadro da posição financeira cadastrado.'.</li>
+						<li>Caso exista ciclo anterior ao ciclo corrente e a data-base do quadro da posição financeira vigente não seja posterior a data do Corec anterior, exibir a seguinte mensagem de erro:
+							'Data-base do quadro da posição financeira deve ser posterior à data do Corec anterior.'</li>
+						<li>Caso exista ciclo anterior ao ciclo corrente e tenha sido feito ajuste da 'Nota final' qualitativa (análise de riscos e controle) pelo comitê e no ciclo vigente o supervisor não tenha avaliado a nota, exibir a seguinte mensagem de erro:
+							'A 'Nota final' qualitativa deve ser avaliada, pois houve ajuste no COREC anterior.'</li>
+						<li>Caso exista ciclo anterior ao ciclo corrente e tenha sido feito ajuste da 'Nota final' da análise econômico-financeira pelo comitê e no ciclo vigente o supervisor não tenha avaliado a nota, exibir a seguinte mensagem de erro:
+							'A 'Nota final' da análise econômico-financeira deve ser avaliada, pois houve ajuste no COREC anterior.'</li>
+						<li>Caso exista alguma alteração na 'Nota final', 'Perfil de atuação', 'Conclusão', 'Perspectiva' ou 'Situação' da ES encaminhada pelo supervisor, mas sem a confirmação do gerente, exibir a seguinte mensagem de erro: A alteração 'no/na' 'XXXX' deve ser 'confirmado/confirmada' pelo gerente.</li>	
+					</ul>
+					<li>Validações que não bloqueam o início da fase Corec:</li>
+					<ul>
+						<li>Caso exista uma matriz esboçada e ela esteja diferente da matriz vigente, exibir a seguinte mensagem informativa: 
+							'As alterações da matriz esboçada serão perdidas no encerramento do ciclo.'.</li>
+						<li>Caso os percentuais do bloco de 'Atividade x Governança' de rascunho estiverem diferentes dos percentuais vigentes, exibir a seguinte mensagem informativa: 
+							'As alterações dos percentuais do bloco 'Atividade x Governança' de rascunho serão perdidas no encerramento do ciclo.'.</li>
+						<li>Caso os percentuais da análise econômico-financeira de rascunho estiverem diferentes dos percentuais vigentes, exibir a seguinte mensagem informativa: 
+							'As alterações dos percentuais da análise econômico-financeira de rascunho serão perdidas no encerramento do ciclo.'.</li>
+						<li>Caso exista alguma alteração no 'Nota final', 'Perfil de atuação', 'Conclusão', 'Perspectiva' ou 'Situação' da ES ainda não encaminhada pelo 
+							supervisor para o gerente, exibir a seguinte mensagem informativa: 'A alteração 'no/na' 'XXXX' de rascunho será perdida no encerramento do ciclo.'</li>
+					</ul>
+				</ul>
+				<li>Caso nenhuma mensagem de erro seja exibida, o botão de '<a href="#botaoIniciarCorec">Iniciar fase Corec</a>' será habilitado.</li>
+				<br/>
+				<li><b>Observação:</b> As validações de ARC englobam todos os tipos de ARC.</li>
+			</ul>
+        </ul>
+        
+        <blockquote>
+			<a href="verificacaoregrasiniciarcorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+    
+ 	<h4>    
+	    <a name="botaoIniciarCorec" class="menu">Iniciar fase Corec</a>
+    </h4>	  
+		<ul>
+			<li>Observar o descrito em '<a href="#concluirCicloEmAndamento">concluir "Em andamento" (entrada "Corec")</a>'.</li>
+			<li>Seção 'Corec'</li>
+			<ul>
+				<li>Só está disponível no perfil de risco vigente, do ciclo atual, com estado 'Em andamento', para o perfil de 'Supervisor'.</li>
+			</ul>
+			<li>Botão 'Iniciar fase Corec':</li>
+			<ul>
+				<li>Só está disponível no perfil de risco vigente para o perfil de 'Supervisor'.</li>
+				<li>Só está habilitado ao clicar no botão 'Verificar pendências para Corec' e a <a href="#verificacaoRegrasIniciarCorec">verificação de pendências para iniciar fase Corec</a> esteja sem nenhuma pendência.</li>
+				<li>Caso o perfil de risco seja alterado, o botão volta a ficar desabilitado, aguardando novo clique no botão 'Verificar pendências para Corec' para identificar se ficará ou não habilitado.</li>
+				<li>Ao clicar no botão:</li>
+				<ul>
+					<li>Mudar o estado do ciclo para 'Corec'.</li>
+					<li>Guardar ou substituir(caso o ciclo já tenha passado pelo Corec anteriormente) a data em que o Ciclo entrou em Corec.</li>
+					<li>Permanecer na mesma tela, atualizando as informações.</li>
+				</ul>
+			</ul>
+        </ul>
+         
+		<blockquote>
+			<a href="botaoiniciarcorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+    
+    <h4>    
+	    <a name="bloquearEdicaoInspetorSupervisor" class="menu">Bloquear edição para inspetor e supervisor</a>
+    </h4>	  
+		<ul>
+			<li>Utilizar os protótipos:</li>
+			<ul>
+				<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Inspetor/Painel/painel_inspetor.html">Painel do inspetor</a></li>
+				<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">Perfil de risco</a></li>
+				<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesARC/detalhes_arc_supervisor_previsto.html">Detalhes de ARC</a></li>
+			</ul>
+			<li>Caso o ciclo esteja no estado corec, pós-corec ou encerrado:</li>
+			<ul>
+				<li>Na tela 'Painel do inspetor':</li>
+				<ul>
+					<li>Na seção 'ARCs designados', não mostrar os ARCs no estado 'Designado' dos ciclos em estado corec, pós-corec ou encerrados.</li>
+				</ul>
+				<li>Na tela 'Perfil de risco':</li>
+				<ul>
+					<li>Não exibir nenhum botão de ação, exceto o 'Voltar'.</li>
+					<li>Na seção 'Análise de riscos e controles', ao clicar em qualquer ARC, deverá seguir as seguintes regras:</li>
+					<ul>
+						<li>Para o ciclo no estado corec:</li>
+						<ul>
+							<li>Para o perfil supervisor, ir para a tela de 'Detalhes de ARC' e detalhar o ARC concluído com os ajustes feitos no Corec, se existir.</li>
+							<li>Para o perfil inspetor, ir para a tela de 'Detalhes de ARC' e detalhar o ARC concluído sem os ajustes feitos no Corec.</li>
+							<li>Para o perfil consulta, ir para a tela de 'Consulta de ARC' e detalhar o ARC concluído sem os ajustes feitos no Corec.</li>
+						</ul>
+						<li>Para o ciclo no estado pós-corec ou encerrado:</li>
+						<ul>
+							<li>Para o perfil supervisor, ir para a tela de 'Detalhes de ARC' e detalhar o ARC concluído com os ajustes feitos no Corec, se existir.</li>
+							<li>Para o perfil inspetor, ir para a tela de 'Detalhes de ARC' e detalhar o ARC concluído com os ajustes feitos no Corec, se existir.</li>
+							<li>Para o perfil consulta, ir para a tela de 'Consulta de ARC' e detalhar o ARC concluído com os ajustes feitos no Corec, se existir.</li>
+						</ul>
+					</ul>
+				</ul>
+				<li>Na tela 'Detalhes de ARC':</li>
+				<ul>
+					<li>Não exibir a seção de 'Ações'</li>
+				</ul>
+			</ul>
+        </ul>
+         
+		<blockquote>
+			<a href="bloquearedicaoinspetorsupervisor/indexNegocio.html">Cenários de teste de negócio</a><br>
+			<a href="../../../../../../../web/src/test/java/crt2/corec/bloquearedicaoinspetorsupervisor/indexWeb.html">Cenários de teste web</a>
+		</blockquote>
+
+	<h3>
+ 	    <a name="listarcorecsativos" class="menu">Listagem de Corecs ativos</a>
+ 	</h3>
+ 	
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Comite/Painel/painel_comite.html">protótipo</a>.</li>
+			<li>As regras de acesso e substituição para o perfil Comitê definas na 'Gestão de perfil de acesso' devem ser consideradas.</li>
+			<li>Deverão ser listados as ESs que tem ciclo no estado 'Corec'.</li>
+			<li>A coluna 'Entrada Corec' deverá ser a data que ocorreu o <a href="#botaoIniciarCorec">início do Corec</a>.</li>
+			<li>A coluna 'Corec' deverá ser a data prevista para o Corec do ciclo.</li>
+			<li>A ordenação default da listagem deve ser a coluna 'Corec'.</li>
+			<li>Se nenhum registro for encontrado será exibida a mensagem 'Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.'.</li>
+			<li>Ao clicar no link da coluna 'ES', deverá ir para a tela '<a href="#gestaoCorec">Gestão Corec</a>'.</li>
+		</ul>
+		
+		<blockquote>
+			<a href="listarcorecsativos/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+	<h3>
+ 	    <a name="gestaoCorec" class="menu">Gestão Corec</a>
+ 	</h3>
+ 	
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Comite/GestaoCorec/gestao_corec_comite.html">protótipo</a>.</li>
+			<li>Permissão:</li>
+			<ul>
+				<li>Apenas o usuário com perfil comitê pode acessar esta funcionalidade a partir da <a href="#listarcorecsativos">listagem de corec ativos</a>.</li>
+			</ul>
+		</ul>
+	
+	<h4>
+ 	    <a name="reverterEstadoCorec" class="menu">Reverter estado "Corec" para "Em andamento"</a>
+ 	</h4>
+ 	
+ 	<h5>    
+	    <a name="alteracaoStatusCiclo" class="menu">Alteração do status do ciclo</a>
+    </h5>
+    
+    	<ul>
+			<li>Permissão:</li>
+			<ul>
+				<li>Apenas o usuário com perfil de comitê pode realizar esta funcionalidade a partir da tela de 'Gestão Corec'.</li>
+			</ul>
+			<li>Ao clicar no botão 'Retornar ciclo para estado "Em andamento"':</li>
+			<ul>
+				<li>Mudar o estado do ciclo para 'Em andamento'.</li>
+				<li>Limpar a data de entrada no corec do ciclo.</li>
+				<li>Tela de resultado:</li>
+				<ul>
+					<li>O sistema deve voltar para a tela 'Painel do comitê'.</li>
+				</ul>
+			</ul>
+		</ul>
+		
+		<blockquote>
+			<a href="alterarstatusciclo/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+    
+    <h5>    
+	    <a name="impactoNotaCorecVersionamentoARC" class="menu">Impacto da nota corec no versionamento do ARC no perfil de risco</a>
+    </h5>
+    
+    	<ul>
+    		<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoSinteses/gestao_sinteses_supervisor.html">protótipo</a>.</li>
+    		<li>Ao clicar no botão 'Confirmar síntese e publicar ARCs deste risco', a duplicação dos dados do ARC se dará pela seguinte regra:</li>
+    		<ul>
+    			<li>Duplicar:</li>
+    			<ul>
+    				<li>Justificativas dos itens a avaliar dadas pelo inspetor</li>
+    				<li>Anexos dos itens a avaliar informados pelo inspetor</li>
+    				<li>Justificativa da tendência vigente (pode ter sido informada pelo inspetor ou pelo supervisor)</li>
+    				<li>Anexos do ARC</li>
+    				<li>Nota ajustada pelo Corec</li>
+    			</ul>
+    			<li>Não duplicar:</li>
+    			<ul>
+    				<li>Nota ajustada dada pelo inspetor</li>
+    				<li>Justificativa da Nota ajustada dada pelo inspetor</li>
+    				<li>Nota ajustada dada pelo supervisor</li>
+    				<li>Justificativa da Nota ajustada dada pelo supervisor</li>
+    				<li>Nota do elemento dada pelo inspetor</li>
+    				<li>Nota do elemento dada pelo supervisor</li>
+    				<li>Análise do elemento dada pelo supervisor</li>
+    				<li>Conceito da tendência</li>
+    			</ul>
+    		</ul>
+    		<li>Excluir a 'Nota ajustada pelo Corec' do ARC anterior, para que ela fique apenas no novo ARC.</li>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="impactonotacorecversionamentoarc/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h4>
+ 	    <a name="alterarDadosCicloCorec" class="menu">Alterar dados do SRC no ciclo em estado "Corec"</a>
+ 	</h4>
+ 	
+ 		<ul>
+ 			<li>Observar o descrito em <a href="#gestaoCorec">Gestão Corec</a>.</li>
+ 			<li>Regras gerais:</li>
+ 			<ul>
+ 				<li><a name="valorDefaultAjusteComite">Quando houver um ajuste do comitê, esse ajuste sempre deve vir preenchido como valor padrão nas colunas 
+ 				'Avaliação comitê' ou 'Nota comitê', independente se o valor for o mesmo que o da coluna do supervisor.</a></li>
+ 				<li>Os botões 'Salvar informações' ao entrar na tela deverão estar desabilitados.</li>
+ 				<li>Ao selecionar um novo valor de ajuste do comitê e enquanto não salvar:</li>
+ 				<ul>
+ 					<li>Exibir um <span style="color:red;">'*'</span> ao lado do combo onde foi selecionado o novo valor.</li>
+ 					<li>Exibir o alerta <span style="color:red;">'*Atenção informações não salvas.'</span> ao lado do botão 'Salvar informações' da respectiva seção 
+ 					que se encontra.</li>
+ 					<li>Habilitar o botão 'Salvar informações' da respectiva seção que se encontra.</li>
+ 				</ul>
+ 				<li>Caso haja alguma informação não salva na tela o botão 'Voltar' deverá mudar o nome para 'Voltar sem salvar' e sua cor deve ser vermelha.</li>
+ 				<li>Ao clicar nos botões 'Salvar informações':
+ 				<ul>
+ 					<li>Exibir as seguintes mensagens de sucesso, de acordo com a respectiva seção:</li>
+	 				<ul>
+	 					<li>Seção 'Ajustes': 'Ajustes salvos com sucesso.'</li>
+	 					<li>Seção 'Ajustes - ARCs': 'Ajustes nos ARCs salvos com sucesso.'</li>
+	 					<li>Seção 'Ajustes - ANEFs': 'Ajustes nos ANEFs salvos com sucesso.'</li>
+	 					<li>Seção 'Outras deliberações': 'Campo 'Outras deliberações' salvo com sucesso.'</li>
+	 				</ul>
+	 				<li>Desabilitar o botão.</li>
+ 				</ul>
+ 			</ul>
+ 		</ul>
+ 	
+	<h5>    
+	    <a name="ajusteGrauPreocupacaoComite" class="menu">Ajuste da nota final pelo comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>A coluna 'Avaliação supervisor' deve seguir a seguinte regra:</li>
+    		<ul>
+    			<li>Preencher com a nota ajustada pelo supervisor da 'Nota final' da ES.</li>
+    			<li>Caso não exista, preencher com a nota refinada da 'Nota final' da ES.</li>
+    		</ul>
+    		<li>Para a coluna 'Avaliação comitê':</li>
+    		<ul>
+    			<li>Os valores de seleção apresentados serão todos os Parâmetros de Nota menos o 
+    			parâmetro de nota da coluna 'Avaliação supervisor', a não ser que entre na <a href="#valorDefaultAjusteComite">regra geral</a>.</li>
+    		</ul>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Caso exista o registro de ajustes do comitê para o ciclo, atualizar o registro com o ajuste da nota final.</li>
+    			<li>Senão, criar um novo registro de ajustes do comitê e salvar o ajuste da nota final.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="ajustegraupreocupacaocomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+ 	<h5>    
+	    <a name="ajusteNotaAnaliseQualitativaComite" class="menu">Ajuste da nota da análise qualitativa pelo comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>A coluna 'Avaliação supervisor' deve seguir a seguinte regra:</li>
+    		<ul>
+    			<li>Preencher com a nota ajustada pelo supervisor da 'Análise de riscos e controles'.</li>
+    			<li>Caso não exista, preencher com a nota refinada da 'Análise de riscos e controles'.</li>
+    		</ul>
+    		<li>Para a coluna 'Avaliação comitê':</li>
+    		<ul>
+    			<li>Os valores de seleção apresentados serão todos os Parâmetros de Nota menos o parâmetro de nota da coluna 'Avaliação supervisor', a não ser que entre na <a href="#valorDefaultAjusteComite">regra geral</a>.</li>
+    		</ul>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Caso exista o registro de ajustes do comitê para o ciclo, atualizar o registro com o ajuste da análise qualitativa.</li>
+    			<li>Senão, criar um novo registro de ajustes do comitê e salvar o ajuste da análise qualitativa.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="ajustenotaanalisequalitativacomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h5>    
+	    <a name="ajusteNotaAnaliseQuantitativaComite" class="menu">Ajuste da nota final da análise econômico-financeira pelo comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>A coluna 'Avaliação supervisor' deve seguir a seguinte regra:</li>
+    		<ul>
+    			<li>Preencher com a nota ajustada pelo supervisor da 'Análise econômico-financeira'.</li>
+    			<li>Caso não exista, preencher com a nota refinada da 'Análise econômico-financeira'.</li>
+    		</ul>
+    		<li>Para a coluna 'Avaliação comitê':</li>
+    		<ul>
+    			<li>Os valores de seleção apresentados serão todos os Parâmetros de Nota menos o 
+    			parâmetro de nota da coluna 'Avaliação supervisor', a não ser que entre na <a href="#valorDefaultAjusteComite">regra geral</a>.</li>
+    		</ul>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Caso exista o registro de ajustes do comitê para o ciclo, atualizar o registro com o ajuste da análise quantitativa.</li>
+    			<li>Senão, criar um novo registro de ajustes do comitê e salvar o ajuste da análise quantitativa.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="ajustenotaanalisequantitativacomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h5>    
+	    <a name="ajustePerspectivaComite" class="menu">Ajuste da nota da perspectiva pelo comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>A coluna 'Avaliação supervisor' será preenchida com o nome da Perspectiva do perfil de risco vigente.</li>
+    		<li>Para a coluna 'Avaliação comitê':</li>
+    		<ul>
+    			<li>Os valores de seleção apresentados serão todos os Parâmetros de Perspectiva menos o 
+    			parâmetro de perspectiva "Não Aplicável" e o parâmetro da coluna 'Avaliação supervisor', a não ser que entre na 
+    			<a href="#valorDefaultAjusteComite">regra geral</a>.</li>
+    		</ul>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Caso exista o registro de ajustes do comitê para o ciclo, atualizar o registro com o ajuste da perspectiva.</li>
+    			<li>Senão, criar um novo registro de ajustes do comitê e salvar o ajuste da perspectiva.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="ajusteperspectivacomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h5>    
+	    <a name="ajusteNotasARCsComite" class="menu">Ajuste notas de ARCs pelo comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>Na seção 'Ajustes - ARCs', deverá ser listado todos os ARCs da 'Análise de riscos e controles' (Matriz de riscos e controles e ARC externo) que estão no perfil de risco vigente.</li>
+    		<li>A ordenação default deve seguir a seguinte regra:</li>
+    		<ul>
+    		    <li>Para ARC do tipo 'Externo':</li>
+    		        <ul>
+    		            <li>Sempre será o último a ser exibido, preenchendo em branco as colunas 'Atividade' e 'R/C'.</li>
+    		        </ul>
+    		    <li>Para os demais:</li>
+    		        <ul>
+    				   <li>Ordem alfabética dos nomes dos parâmetros de tipo de atividade de negócio, com a atividade corporativa por último;</li>
+    			       <li>Ordem definida na metodologia para os parâmetros de grupo de risco e controle;</li>
+    			       <li>Ordem do tipo do ARC (Risco, depois Controle).</li>
+    			    </ul>   
+    		</ul>
+    		<li>A coluna 'Nota final' será preenchida com a nota do supervisor do ARC concluído, anterior ao ARC do perfil de risco vigente.</li>
+    		<li>Para a coluna 'Nota comitê':</li>
+    		<ul>
+    			<li>Os valores de seleção apresentados serão todos os Parâmetros de Nota menos o 
+    			parâmetro de nota da coluna 'Nota final', a não ser que entre na <a href="#valorDefaultAjusteComite">regra geral</a>.</li>
+    		</ul>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Salvar o ajuste do comitê no respectivo ARC do perfil de risco vigente.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="ajustenotasarcscomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h5>    
+	    <a name="ajusteNotasANEFsComite" class="menu">Ajuste notas de ANEFs pelo comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>Na seção 'Ajustes - ANEFs', deverá ser listado todos os ANEFs que estão no perfil de risco vigente.</li>
+    		<li>A ordenação default deve seguir a ordem definida na metodologia para o parâmetro de ANEF.</li>
+    		<li>A coluna 'Nota final' será preenchida com a nota do supervisor do ANEF.</li>
+    		<li>Para a coluna 'Nota comitê':</li>
+    		<ul>
+    			<li>Os valores de seleção apresentados serão todos os Parâmetros de Nota menos o 
+    			parâmetro de nota da coluna 'Nota final', a não ser que entre na <a href="#valorDefaultAjusteComite">regra geral</a>.</li>
+    		</ul>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Salvar o ajuste do comitê no respectivo ANEF do perfil de risco vigente.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="ajustenotasanefscomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h5>    
+	    <a name="outrasDeliberacoes" class="menu">Alterar outras deliberações do comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Observar o descrito em '<a href="#alterarDadosCicloCorec">alterar dados do SRC no ciclo em estado "Corec"</a>'.</li>
+    		<li>Ao clicar em 'Salvar informações':</li>
+    		<ul>
+    			<li>Caso exista o registro de ajustes do comitê para o ciclo, atualizar o registro com as outras deliberações.</li>
+    			<li>Senão, criar um novo registro de ajustes do comitê e salvar as outras deliberações.</li>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="outrasdeliberacoescomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	
+
+	<h5>
+ 	    <a name="participantesCorec" class="menu">Alterar participantes do comitê</a>
+ 	</h5>
+ 		<ul>
+			<li>Observar o descrito em '<a href="#gestaoCorec">Gestão Corec</a>'.</li>
+			<li>Regras gerais</li>
+			<ul>
+				<li>As alterações feitas nas seções 'Lista de possíveis participantes' e 'Participantes efetivos do comitê' só irão refletir no banco de dados após o clique no botão 'Salvar participantes'.</li>
+			</ul>
+			<li>Seção 'Lista de possíveis participantes'</li>
+			<ul>
+				<li>Serão listados os <a href="../administrador/index.html#rng_possiveisparticipantes">possíveis participantes</a> da agenda do comitê do ciclo.</li>
+				<li>A listagem será paginada em 10 registros por página.</li>
+				<li>Ao selecionar:</li>
+				<ul>
+					<li>O sistema vai marcar o registro como participante efetivo e ele será retirando da lista, passando a compor a lista de 'Participantes efetivos do comitê'.</li>
+				</ul>
+			</ul>
+			<li>Seção 'Participantes efetivos do comitê'</li>
+			<ul>
+				<li>Serão listados todos os participantes efetivos da agenda do comitê do ciclo.</li>
+				<li>Ao excluir:</li>
+				<ul>
+					<li>O participante será retirando da lista, passando a compor a lista de 'Lista de possíveis participantes'.</li>
+				</ul>
+			</ul>
+			<li>Botão 'Salvar participantes':</li>
+			<ul>
+				<li>O sistema irá confirmar e persistir no banco de dados os 'Participantes efetivos do comitê'.</li>
+			</ul>
+		</ul>
+		
+		<blockquote>
+			<a href="participantescomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>	
+	<h5>    
+	    <a name="alteracaoCalculoNotasAjusteComite" class="menu">Alteração do cálculo da notas considerando os ajustes do perfil comitê</a>
+    </h5>
+    
+    	<ul>
+    		<li>Utilizar os protótipos:</li>
+    		<ul>
+    			<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">Perfil de risco</a>.</li>
+    			<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoSinteses/gestao_sinteses_supervisor.html">Gestão de notas e sínteses</a>.</li>
+    			<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoARCs/gestao_arcs_supervisor.html">Gestão de ARCs</a>.</li>
+    			<li><a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/EdicaoMatriz/edicao_matriz_supervisor.html">Edição de matriz de riscos e controles</a>.</li>
+    		</ul>
+    		<li>Seguir orientações descritas em <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0202_Perfil_de_risco_Matriz_Vigente_Notas.xlsx">APSFW0202_Perfil_de_risco_Matriz_Vigente_Notas.xlsx</a> para a fórmula do cálculo das Notas Residuais e a Nota da Matriz.</li>
+    		<li>Caso o estado do ciclo seja 'Em andamento':</li>
+    		<ul>
+    			<li>Para todos os perfis:</li>
+    			<ul>
+	    			<li>Caso exista ciclo anterior e algum dos ARCs possua ajuste de nota no Corec anterior, a análise de riscos e controles (matriz e ARC externo) deverá levar em consideração as notas que foram ajustadas no Corec anterior e refazer o cálculo das notas residuais e notas calculadas da matriz da análise de riscos e controles.</li>
+	    			<li>Para cada ARC que possua ajuste de nota no Corec anterior, deverá ser exibido na análise de riscos e controles a nota ajustada do Corec anterior ao invés da nota do supervisor.</li>
+    			</ul>
+    		</ul>
+    		<li>Caso o estado do ciclo seja 'Corec':</li>
+    		<ul>
+    			<li>Para o inspetor e o perfil consulta:</li>
+    			<ul>
+    				<li>Caso algum dos ARCs possua ajuste de nota no Corec atual, a análise de riscos e controles não deve considerar essa nota ajustada e as notas residuais, a calculada da matriz e da análise de riscos e controles devem permanecer inalteradas.</li>
+    			</ul>
+    			<li>Para o supervisor:</li>
+    			<ul>
+	    			<li>Caso algum dos ARCs possua ajuste de nota no Corec atual, a análise de riscos e controles deverá levar em consideração as notas que foram ajustadas no Corec e refazer o cálculo das notas residuais, da matriz e da análise de riscos e controles com essas notas.</li>
+	    			<li>Para cada ARC que possua ajuste de nota no Corec atual, deverá ser exibido na análise de riscos e controless a nota do Corec ao invés da nota do supervisor.</li>
+	    		</ul>
+    		</ul>
+    		<li>Caso o estado do ciclo seja 'Pós-Corec' ou 'Encerrado':</li>
+    		<ul>
+    			<li>Para todos os perfis:</li>
+    			<ul>
+    				<li>Caso algum dos ARCs possua ajuste de nota no Corec atual, a análise de riscos e controles deverá levar em consideração as notas que foram ajustadas no Corec e refazer o cálculo das notas residuais, da matriz e da análise de riscos e controles com essas notas.</li>
+	    			<li>Para cada ARC que possua ajuste de nota no Corec atual, deverá ser exibido na análise de riscos e controles a nota do Corec ao invés da nota do supervisor.</li>
+    			</ul>
+    		</ul>
+    	</ul>
+    	
+    	<blockquote>
+			<a href="../../../../../../../web/src/test/java/crt2/corec/alteracaocalculonotasajustecomite/indexWeb.html">Cenários de teste web</a>
+		</blockquote>
+	
+	<h5>    
+	    <a name="ajustesPerfilRiscoAvaliacoesCorec" class="menu">Ajustes no perfil de risco para destacar avaliações Corec</a>
+    </h5>
+    
+    	<ul>
+    		<li>Para a tela de Perfil de Risco:</li>
+    		<ul>
+    			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/ConsultaTudo/PerfilRisco/perfil_risco_consulta_anterior_corec_ajustes.html">protótipo</a>.</li>
+               	<li>Para a seção 'Detalhes da ES'</li>
+               	<ul>
+               		<li>Caso o estado do ciclo seja 'Corec' e o usuário logado não for supervisor; ou o estado do ciclo for 'Em andamento'</li>
+       		        <ul>
+       		            <li>Caso exista ciclo anterior e a Nota final/Perspectiva tenha sido ajustado(a) no comitê anterior:</li>
+       		            <ul>
+       		            	<li>Caso a Nota final/Perspectiva anterior do perfil de risco não for do mesmo ciclo, utilizar a Nota final/Perspectiva fornecido(a) pelo comitê no ciclo <b>anterior</b>.</li>
+       		            </ul>
+       		            <li>Senão:</li>
+       		            <ul>
+       		            	<li>Utilizar a Nota final/Perspectiva do perfil de risco.</li>
+       		            </ul>
+       		        </ul>
+	       		    <li>Senão:</li>
+	       		    <ul>
+       		            <li>Utilizar a Nota final/Perspectiva fornecido(a) pelo comitê no ciclo <b>atual</b>. Caso não tenha sido fornecido(a), utilizar a Nota final/Perspectiva do perfil de risco.</li>
+       		        </ul>
+       		        <li>Caso seja utilizado a Nota final/Perspectiva do comitê (anterior ou atual) deve-se exibir a palavra "(Corec)" e no caso da Perspectiva, suprimir a justificativa e o botão "(+)".</li>
+               	</ul>
+              	<li>Para a seção 'Análise de riscos e controles'</li>
+               	<ul>
+	                <li>Caso o estado do ciclo seja 'Corec' e o usuário logado não for supervisor; ou o estado do ciclo for 'Em andamento'</li>
+	       		        <ul>
+	       		            <li>Utilizar a 'Nota ajustada' do supervisor. Caso não tenha sido fornecida, utilizar a nota ajustada fornecida pelo comitê no ciclo <b>anterior</b>.</li>
+	       		        </ul>
+	       		    <li>Senão:</li>
+	       		        <ul>
+	       		            <li>Utilizar a nota ajustada fornecida pelo comitê no ciclo <b>atual</b>. Caso não tenha sido fornecida, utilizar a 'Nota ajustada' do supervisor. Caso não tenha sido fornecida, utilizar a nota ajustada fornecida pelo comitê no <b>anterior</b>.</li>
+	       		        </ul> 
+					<li>Caso não haja 'Nota ajustada' ou ela seja nula todo o campo deve ser omitido, inclusive o nome da coluna.</li>
+					<li>Caso seja utilizado a 'Nota ajustada' do comitê (anterior ou atual) deve-se exibir a palavra "(Corec)" suprimindo a justificativa, inclusive o botão "(+)"</li>
+               	</ul>
+    		</ul>
+    		<li>Para a tela de Detalhes de ARC:</li>
+    		<ul>
+    			<li>Utilizar 
+    				<a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesARC/detalhes_arc_supervisor_concluido_ajustes.html">este protótipo</a> 
+    				e <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/DetalhesARC/detalhes_arc_supervisor_previsto_ajustes.html">este outro protótipo</a>.</li>
+    			
+    			<li>Caso o estado do ciclo seja 'Em andamento':</li>
+    			<ul>
+    				<li>Para todos os perfis:</li>
+    				<ul>
+    					<li>Se existir ajuste da nota do ARC pelo comitê no Corec anterior, exibir esse ajuste da seguinte forma:</li>
+		    			<ul>
+		    				<li>Caso o estado do ARC seja 'Concluído':</li>
+		    				<ul>
+		    					<li>Exibir e indicar o ajuste do comitê na seção 'Resumo do ARC' na coluna 'Final' e na linha 'Nota ajustada'.</li>
+		    					<li>Na seção das notas do ARC, incluir nova linha com a 'Nota Corec' e exibir a nota do Corec anterior.</li>
+		    				</ul>
+		    				<li>Senão:</li>
+		    				<ul>
+		    					<li>Exibir e indicar o ajuste do comitê na seção 'Resumo do ARC' na coluna 'Vigente' e na linha 'Nota ajustada'.</li>
+		    					<li>Na seção das notas do ARC, exibir a nota do Corec anterior com a indicação que é ajuste do Corec.</li>
+		    				</ul>
+		    			</ul>
+    				</ul>
+    			</ul>
+    			<li>Caso o estado do ciclo seja 'Corec':</li>
+    			<ul>
+   					<li>Para o inspetor e o perfis de consulta:</li>
+	    			<ul>
+	    				<li>Se existir ajuste da nota do ARC pelo comitê no Corec atual, não exibir esse ajuste.</li>
+	    			</ul>
+	    			<li>Para o supervisor e gerente:</li>
+	    			<ul>
+		    			<li>Se existir ajuste da nota do ARC pelo comitê no Corec atual, exibir esse ajuste.</li>
+		    		</ul>
+		    		<li><b>Obs.:</b> Em ambos os casos o ARC exibido é o vigente.</li>
+    			</ul>
+    			<li>Caso o estado do ciclo seja 'Pós-Corec' ou 'Encerrado':</li>
+    			<ul>
+    				<li>Para todos os perfis:</li>
+	    			<ul>
+		    			<li>Se existir ajuste da nota do ARC pelo comitê no Corec atual, exibir esse ajuste da seguinte forma:</li>
+		    			<ul>
+	    					<li>Exibir e indicar o ajuste do comitê na seção 'Resumo do ARC' na coluna 'Final' e na linha 'Nota ajustada'.</li>
+	    					<li>Na seção das notas do ARC, incluir nova linha com a 'Nota Corec' e exibir a nota do Corec atual.</li>
+		    			</ul>
+		    		</ul>
+    			</ul>
+    		</ul>
+    		<li>Para a tela de Consulta  de ARC:</li>
+    		<ul>
+    			<li>Utilizar a mesma regra para exibição da nota do COREC definida na tela de 'Detalhes do ARC' com a seguinte ressalva:</li>
+    			     <ul>
+    			         <li>Caso exista, a 'Nota Corec' deve ser exibida no campo 'Nota ajustada', mas  não deve exibir '(Corec)' nem deve exibir o "(+)" do campo para que não seja exibida a justificativa.</li> 
+    			     </ul>
+    		</ul>		 
+    		<li>Para as tela de Edição de ARC e de Análise de ARC:</li>
+    		<ul>
+    			<li>Caso o estado do ciclo seja 'Em andamento':</li>
+    			<ul>
+	    			<li>Se existir ajuste da nota do ARC pelo comitê no Corec anterior, exibir esse ajuste da seguinte forma:</li>
+	    			<ul>
+	   					<li>Exibir e indicar o ajuste do comitê na seção 'Resumo do ARC' na coluna 'Vigente' e na linha 'Nota ajustada'.</li>
+	   					<li>Na seção das notas do ARC, exibir a nota do Corec anterior com a indicação que é ajuste do Corec.</li>
+	    			</ul>
+    			</ul>
+    			<li>Caso o estado do ciclo seja 'Corec', 'Pós-Corec' ou 'Encerrado', os ARCs não poderão ser editados ou analisados.</li>
+    		</ul>
+    		<li>Para a tela de Gestão de Detalhes da ES:</li>
+    		<ul>
+    			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoDetalhesES/gestao_detalhes_es_supervisor_ajustes_corec.html">protótipo</a>.</li>
+    			<li>Para as seções 'Nota final' e 'Perspectiva', vigentes:</li>
+    			<ul>
+	    			<li>Caso exista ciclo anterior e a Nota final/Perspectiva tenha sido ajustado(a) no comitê anterior:</li>
+		            <ul>
+		            	<li>Caso a Nota final/Perspectiva anterior do perfil de risco não for do mesmo ciclo, utilizar a Nota final/Perspectiva fornecido(a) pelo comitê no ciclo <b>anterior</b>.</li>
+		            </ul>
+		            <li>Senão:</li>
+		            <ul>
+		            	<li>Utilizar a Nota final/Perspectiva do perfil de risco.</li>
+		            </ul>
+		            <li>Caso seja utilizado a Nota final/Perspectiva do comitê anterior deve-se exibir a palavra "(Corec)" e no caso da Perspectiva, suprimir a justificativa. Além disso, a data/hora de atualização será o usuário que fez a última alteração dos ajustes do corec anterior.</li>
+    			</ul>
+    		</ul>
+    	</ul>
+
+		<blockquote><a href="../../../../../../../web/src/test/java/crt2/corec/ajustesperfilriscoavaliacoescorec/indexWeb.html">Cenários de teste web</a></blockquote>
+
+	<h4>
+ 	    <a name="botaoConcluirCorec" class="menu">Botão 'Encerrar Corec e iniciar novo ciclo'</a>
+ 	</h4>
+ 	
+ 		<ul>
+ 			<li>Observar o descrito em <a href="#gestaoCorec">Gestão Corec</a>.</li>
+ 			<li>O botão 'Encerrar Corec e iniciar novo ciclo' estará habilitado ao entrar na tela.</li>
+ 			<li>Caso exista informações não salvas de algum ajuste do Corec, o botão ficará desabilitado até que todas as informações sejam salvas.</li>
+ 			<li>Ao clicar no botão:</li>
+ 			<ul>
+ 				<li>Exibir um pop-up com a seguinte mensagem: 'Deseja realmente concluir o Corec?'; e com as opções 'Sim' e 'Não'.</li>
+				<li>Caso não exista nenhum participante efetivo do comitê cadastrado, exibir a seguinte mensagem de erro: 'É necessário selecionar pelo menos um participante efetivo do comitê.'</li>
+				<li>Caso já exista um processo de encerramento agendado ou em andamento para o ciclo, exibir a seguinte mensagem de erro: 'Já existe um processo de encerramento de Corec agendado ou em andamento.'</li>
+				<li>Caso já exista um processo de encerramento concluído com sucesso, exibir a seguinte mensagem de erro: 'O Corec já foi encerrado e um novo ciclo criado.'</li>
+ 				<li>Ao clicar na opção 'Sim':</li>
+	 			<ul>
+	 				<li>Agendar a execução do processamento batch para executar o <a href="#encerrarCorec">encerramento do Corec</a> e criar um registro de controle com estado 'Agendado'.</li>
+	 				<li>Tela de resultado:</li>
+	 				<ul>
+	 					<li>O sistema deve voltar para a tela 'Painel do comitê'.</li>
+	 				</ul>
+	 				<li>Na tela de resultado exibir mensagem de sucesso: 'O processo de encerramento de Corec e início de novo ciclo foi disparado. Consulte o status da operação no menu 'Transações''.</li>
+	 			</ul>
+ 				<li>Ao clicar na opção 'Não':</li>
+ 				<ul>
+ 					<li>Fechar o pop-up e não realizar nenhuma ação.</li>
+ 				</ul>
+ 			</ul>
+ 		</ul>
+ 		
+ 		<blockquote>
+			<a href="botaoconcluircorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+ 	<h4>
+ 	    <a name="encerrarCorec" class="menu">Encerrar Corec (entrada "Pós-corec") e iniciar novo ciclo</a>
+ 	</h4>
+ 	
+ 		<ul>
+ 			<li>Atualizar o registro de controle do processamento batch para o estado 'Em andamento'.</li>
+            <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+ 			<li>Criação do novo ciclo:</li>
+ 			<ul>
+	 			<li>A criação do novo ciclo se dará ao clicar no botão '<a href="#encerrarCorec">Encerrar Corec e iniciar novo ciclo</a>'.</li>
+	 			<li>Para os dados do ciclo:</li>
+	 			<ul>
+	 				<li>Criar um registro com os seguintes dados do ciclo Corec:</li>
+	 				<ul>
+	 					<li>Metodologia.</li>
+	 				</ul>
+	 				<li>Novo estado 'Em andamento'.</li>
+	 				<li>Data de início do ciclo será a data do Corec anterior mais 1 dia (dia seguinte ao Corec).</li>
+	 				<li>Data prevista para o Corec será a data de início do ciclo mais o período previsto de anos cadastrado na ES do ciclo Corec.</li>
+	 			</ul>
+	 			<li>Para os detalhes da ES:</li>
+	 			<ul>
+	 				<li>Criar um registro com os seguintes dados do perfil de risco vigente do ciclo Corec e colocar no perfil vigente do novo ciclo:</li>
+	 				<ul>
+	 					<li>Nota final, incluindo pesos e ajuste do supervisor.</li>
+	 					<li>Perfil de atuação e seus anexos.</li>
+	 					<li>Conclusão e seus anexos.</li>
+	 					<li>Perspectiva.</li>
+	 					<li>Situação.</li>
+	 				</ul>
+	 			</ul>
+	 			<li>Para a análise de riscos e controles:</li>
+	 			<ul>
+	 			<li>Para a matriz de riscos e controles:</li>
+	 			<ul>
+	 				<li>Criar um registro com os seguintes dados do perfil de risco vigente do ciclo Corec e colocar no perfil vigente do novo ciclo:</li>
+	 				<ul>
+	 					<li>A matriz vigente, suas unidades e atividades.</li>
+	 					<li>As células de risco e controle.</li>
+	 					<ul>
+			 				<li>Para cada ARC das células de risco e controle do perfil de risco vigente do ciclo Corec:</li>
+			 				<ul>
+			 					<li>Copiar os seguintes dados(inclusive usuário que alterou pela última vez e data de alteração) do ARC concluído anterior para o ARC do perfil de risco vigente:</li>
+			 					<ul>
+			 						<li>Tipo do ARC.</li>
+			 						<li>Nota final do supervisor.</li>
+			 						<li>Designação do ARC.</li>
+			 						<li>Delegação do ARC, se existir.</li>
+			 						<li>Ajustes de notas do inspetor e do supervisor, assim como suas justificativas, se existir.</li>
+			 						<li>Notas dos elementos do inspetor e do supervisor, se existir.</li>
+			 						<li>Análises do supervisor dos elementos, se existir.</li>
+			 						<li>Justificativas dos itens dos elementos e seus anexos, se existir.</li>
+			 						<li>As tendências do inspetor e do supervisor, assim como suas justificativas, se existir.</li>
+			 						<li>Os anexos do ARC, se existir.</li>
+			 					</ul>
+			 					<li>Criar novo ARC com os seguintes dados do respectivo ARC do perfil de risco vigente:</li>
+			 					<ul>
+			 						<li>Justificativas dos itens a avaliar dadas pelo inspetor</li>
+									<li>Anexos dos itens a avaliar informados pelo inspetor</li>
+									<li>Justificativa da tendência vigente (pode ter sido informada pelo inspetor ou pelo supervisor)</li>
+									<li>Anexos do ARC</li>
+									<li>Estado:</li>
+									<ul>
+										<li>Caso o estado do respectivo ARC do perfil de risco vigente for Designado, o estado do novo ARC será também Designado e copiar a Designação do ARC do perfil de risco vigente.</li>
+										<li>Senão, o estado do novo ARC será Previsto, e não será copiado a Designação do ARC do perfil de risco vigente.</li>
+									</ul>
+			 					</ul>
+			 					<li>Alterar o estado do ARC do perfil de risco vigente para Concluído.</li>
+			 				</ul>
+	 					</ul>
+	 				</ul>
+	 			</ul>
+	 			    <li>Utilizando os seguintes dados do perfil de risco vigente do ciclo Corec:</li>
+	 			      <ul>
+ 							<li>Caso o comitê não tenha feito ajuste de nota da análise de riscos e controles, copiar a nota ajustada pelo supervisor, assim como sua justificativa, se existir.</li>
+ 							<li>Copiar as 'Sínteses de risco e governança corporativa' da análise de riscos e controles vigente.</li>
+ 							<li>Caso o % da seção de 'Blocos' tenha valor > 0 para o ARC externo:</li>
+ 					   		<ul>
+ 					       		<li>Copiar o ARC externo utilizando as mesmas regras descritas acimas para copiar o ARC da matriz de riscos e controles.</li>
+ 					   		</ul>
+ 					   </ul>
+	 			</ul>
+	 			<li>Para a análise econômico-financeira:</li>
+	 			<ul>
+	 				<li>Para os percentuais dos ANEFs:</li>
+	 				<ul>
+		 				<li>Criar percentuais vigentes e de rascunho com os mesmos dados dos percentuais vigentes do ciclo Corec.</li>
+		 			</ul>
+		 			<li>Para as sínteses dos ANEFs:</li>
+		 			<ul>
+		 				<li>Criar sínteses vigentes e de rascunho com os mesmos dados das sínteses vigentes do ciclo Corec.</li>
+		 			</ul>
+		 			<li>Para os ANEFs:</li>
+		 			<ul>
+		 				<li>Criar ANEFs vigentes com os mesmos dados dos ANEFs vigentes do ciclo Corec.</li>
+		 				<ul>
+		 					<li>Caso exista nota de ajuste do COREC no ANEF vigente do ciclo Corec, 
+		 					no ANEF vigente do novo ciclo o ajuste do Corec deve ser movido para 'ajuste de Corec anterior'.</li>
+		 				</ul>
+		 				<li>Criar ANEFs de rascunho com os mesmos dados dos ANEFs de rascunho do ciclo Corec.</li>
+		 			</ul>
+		 			<li>Caso o comitê não tenha feito ajuste de nota da análise econômico-financeira, Copiar a nota ajustada da análise econômico-financeira pelo supervisor, assim como sua justificativa, 
+		 			se existir do perfil de risco vigente do ciclo Corec e colocar no perfil vigente do novo ciclo.</li>
+	 			</ul>
+	 			<li>Para o quadro da posição financeira:</li>
+	 			<ul>
+	 				<li>Criar um registro com os seguintes dados do perfil de risco vigente do ciclo Corec e colocar no perfil vigente do novo ciclo:</li>
+	 				<ul>
+	 					<li>Quadro da posição financeira (contas de ativo e passivo, resultados, patrimônio de referência, índices e os anexos).</li>
+	 				</ul>
+	 				<li>Criar um registro do quadro da posição financeira (contas de ativo e passivo, resultados, patrimônio de referência, índices e os anexos) de rascunho no novo ciclo com os dados do rascunho do ciclo Corec.</li>
+	 			</ul>
+	 			<li>Para as atividades do ciclo:</li>
+	 			<ul>
+	 				<li>Para cada atividade do ciclo no perfil de risco vigente do ciclo Corec, 
+	 				criar um novo registro com os mesmos dados e incluir no perfil de risco vigente do novo ciclo.</li>
+	 			</ul>
+	 		</ul>
+	 		<li>Solicitar assinatura da ata:</li>
+ 			<ul>
+         		<li>Utilizando o <a href="../administrador/index.html#editarParametroEmail">parâmetros de e-mail</a> 'solicitação assinatura', enviar e-mail para o participantes efetivos do comitê que ainda não receberam o e-mail.</li>
+             	<li>Inserir registro para aqueles que foram enviado e-mail com a data corrente, indicando envio do e-mail de solicitação de assinatura.</li>
+ 			</ul>
+ 			<li>Caso tenha ocorrido algum erro no processamento do encerramento do Corec, criação do novo ciclo e no envio dos e-mails de solicitação de assinatura:</li>
+ 			<ul>
+ 				<li>Atualizar o registro de controle do processamento batch para o estado 'Falha'.</li>
+ 			</ul>
+ 			<li>Senão:</li>
+ 			<ul>
+ 				<li>Atualizar o registro de controle do processamento batch para o estado 'Concluído'.</li>
+ 			</ul>
+ 		</ul>
+ 	
+ 		<blockquote>
+			<a href="encerrarcorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+	<h3>
+ 	    <a name="listarprocessosencerramentocorec" class="menu">Listagem de processos de encerramento de Corec</a>
+ 	</h3>
+ 	
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Comite/Painel/painel_comite.html">protótipo</a>.</li>
+			<li>As regras de acesso e substituição para o perfil Comitê definas na 'Gestão de perfil de acesso' devem ser consideradas.</li>
+			<li>Deverão ser listados todos os processos de encerramento de Corec que foram cadastrados no último ano.</li>
+			<li>A ordenação default da listagem deve ser a coluna 'Data de última atualização', em ordem decrescente.</li>
+			<li>Se nenhum registro for encontrado será exibida a mensagem 'Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.'.</li>
+		</ul>
+		
+		<blockquote>
+			<a href="listarprocessosencerramentocorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+	<h3>
+ 	    <a name="impressaoMatrizEARC" class="menu">Imprimir análise de riscos e controles e ARC considerando a nota do COREC</a>
+ 	</h3>
+ 	
+ 		<ul>
+ 		    <li>Protótipos:</li>
+ 		      <ul>
+ 		          <li>Para a impressão do ARC:</li>
+ 		             <ul>
+ 		                 <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_01_Imprimir_ARC_layout impressão arcs .pdf">protótipo para as informações de espaçamento</a>.</li>	
+  	   	                 <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/VERSAO_03_layout%20arc%2020140905%20%20layout%20arc%20-%20rodape.pdf">protótipo para as informações do rodapé (espaçamento no protótipo anterior)</a>.</li>
+ 		             </ul>
+ 		          <li>Para a análise de riscos e controles:</li>
+ 		             <ul>
+ 		                 <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/layout%20impressão%20matriz.pdf">protótipo para as informações de espaçamento</a>.</li>
+  	   	                   <li>Ressalvas:</li>
+  	   	                       <ul>
+  	   	                           <li>A impressão deverá gerar uma planilha xls, mas no dossiê será um arquivo pdf.</li>
+  	   	                           <li>O protótipo foi feito quando existia apenas a matriz de riscos e controles. Sendo assim, é preciso adaptá-lo</li>
+  	   	                       </ul>
+ 		             </ul>
+ 		      </ul>
+			<li>Regras:</li>
+			<ul>
+				<li>O nome do departamento deve ser o mesmo parâmetro utilizado na impressão de ARC.</li>
+				<li>Exibir na impressão os mesmos ajustes feitos na tela de consulta de ARC e na tela de perfil de risco definidos em <a href="#ajustesPerfilRiscoAvaliacoesCorec">ajustes no perfil de risco para destacar avaliações Corec</a>.</li>
+  	   	        <li>Ordem de impressão:</li>
+  	   	            <ul>
+  	   	                <li>Os ARCs devem ser impressos após os detalhes da ES.</li>
+  	   	             </ul>   
+			</ul>
+		</ul>
+      <blockquote>
+		  <a href="../analisequalitativa/imprimirdossiearc/indexNegocio.html">Cenários para testes manuais</a>
+      </blockquote>
+	
+		
+</body>
+</html>

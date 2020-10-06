@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Concluir a edição do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Concluir a edição do ANEF'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>16/03/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>12/06/2015</td>
+			<td>Cleonides Macriny</td>
+			<td>Ajuste de atualização de estado para ANEF</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#concluirEdicaoANEF">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<banco/><li>Os dados encontram-se <a href="TestR002EditarConcluirANEF-DadoQue.html" class="include">aqui</a>.</li>
+			<li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq112"</span>'</strong>.</li>
+			<li><dataHoraAtual valor="28/01/2015 00:00:00">Data/hora atual do sistema: 28/01/2015 00:00:00</dataHoraAtual></li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#concluirEdicaoANEF">validar a conclusão da edição do ANEF com sucesso</a>.<br/>
+	</blockquote>
+	
+	<table class="exemplos">
+		<tr>
+			<td>
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar a conclusão da edição do ANEF.
+						</td>
+					</tr>
+					<tr>
+					    <th>Ação pretendida</th>
+					<tr>
+					    <td>
+							<p>Realizar a conclusão do ANEF conforme tabela abaixo:</p>
+							<table>
+								<tr>
+									<th>Entradas</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+								</tr>
+								<tr>
+									<td class="set" name="idAnef" converter="Integer">4</td>
+								</tr>
+								
+							</table>
+					    </td>
+					</tr>    
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:
+									<span class="execute" value="$THIS.concluirEdicaoAnef(idAnef)"></span>
+									<span class="eq" value="$THIS.getMensagem()">ANEF concluído com sucesso.</span>
+								</li>
+								<li>Os dados alterados estão <a href="TestR002EditarConcluirANEF-PorFim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

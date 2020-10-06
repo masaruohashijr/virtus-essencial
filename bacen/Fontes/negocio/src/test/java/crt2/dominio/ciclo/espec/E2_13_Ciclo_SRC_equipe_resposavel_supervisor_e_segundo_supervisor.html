@@ -1,0 +1,336 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>E2.13. Ciclo SRC - Equipe responsável (supervisor e segundo substituto)</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"
+	media="screen" />
+</head>
+<body>
+	<table class="exemplos">
+		<tr>
+			<th>Data</th>
+			<th>Versão</th>
+			<th>Descrição</th>
+			<th>Autor</th>	
+		</tr>
+		<tr>
+			<td>09/04/2014</td>
+			<td>1.0</td>
+			<td><a href="#E2_13">Alterações após a iteração 02</a><br>
+				Adicionar segundo substituto do supervisor na equipe responsável do ciclo.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+		<tr>
+			<td>14/04/2014</td>
+			<td>1.1</td>
+			<td>Código de tela seguem o padrão [APSTTNNNN], onde TT - Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório); NNNN - Numérico.<br>
+				Cenários de teste para perfil da aplicação.<br>
+				Cenários de teste para acesso exclusivo ao supervisor responsável pela ES.</td>
+			<td>Eliane/DIREC</td>
+		</tr>	
+		<tr>
+			<td>15/04/2014</td>
+			<td>1.2</td>
+			<td>O supervisor responsável da ES deixa de ser obtido via sigas e passa a ser obtido via siarh.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+	</table>
+	<h2><a id="E2_13">E2.13. Ciclo SRC - Equipe responsável (supervisor e segundo substituto)</a></h2>
+	
+	<h3>Pré-requisitos</h3>
+	<blockquote>
+	<p>Sem alteração.</p>
+	</blockquote>
+	<h3>Perfil de usuário</h3>
+	<blockquote>
+	<p>Perfil SUPERVISOR.</p>
+	<p>Além disso, o supervisor deve ser o supervisor responsável pela ES.</p>
+	</blockquote>	
+	<h3>Item de menu</h3>
+	<blockquote>
+	<p>Sem alteração.</p>
+	</blockquote>
+	<h3>Telas</h3>
+	<blockquote>
+	<p><b>Título: Inclusão de ciclo SRC.</b></p>
+	<input type="image" src="Tela01_E2_1.png"/>
+	</blockquote>		
+	<h3>Descrição</h3>
+	<blockquote>
+	<p>A equipe do ciclo possui segundo substituto do supervisor. Editável e sem valor default.</p>
+	</blockquote>
+	<h3>Regras específicas</h3>
+	<h3>Dados da equipe do ciclo SRC:</h3>
+	A equipe do ciclo SRC é composta por 3 usuários. Cada usuário exerce uma das seguintes funções:
+	<ul>
+		<li>Gerente do supervisor.</li>
+		<li>Supervisor.</li>
+		<li>Substituto do supervisor.</li>
+		<li>Segundo substituto do supervisor.</li>
+	</ul>
+	<p><b>Supervisor responsável pela ES.</b></p>
+	<p>Foi verificado que o sigas não atualiza corretamente os dados do supervisor responsável a partir do siarh. Portanto:</p>
+	<ul>
+		<li>O supervisor responsável da ES deve ser consultado diretamente no siarh e corresponde ao coordenador em exercício da equipe responsável.</li>
+		<li>Esta informação não será mais obtida via sigas.</li>
+		<li>Os demais dados da ES e a equipe responsável da ES continuarão sendo obtidas no sigas.</li>
+	</ul> 
+	Cada membro da equipe é identificado por:
+	<ul>
+		<li>Função.</li>
+		<li>Unidade.</li>
+		<li>Nome.</li>
+	</ul> 
+	<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Função</td>
+				<td>Função de cada membro da equipe do ciclo SRC.</td>
+				<td>Domínio:<ul>
+					<li>Gerente do supervisor. </li>
+					<li>Supervisor. </li>
+					<li>Substituto do supervisor.</li>
+					<li>Segundo substituto do supervisor.</li>
+					</ul>
+				</td>
+				<td>Sim</td>
+				<td>Não editável.</td>
+			</tr>			
+			<tr>
+				<td>Unidade e nome do segundo substituto do supervisor</td>
+				<td>Unidade e nome do segundo substituto do supervisor.</td>
+				<td> <ul>
+					<li>Combobox para unidade. Valor default = DESUP.</li>
+					<li>Combobox para nome.</li>
+					</ul> 
+				</td>
+				<td>Não</td>
+				<td>O usuário poderá selecionar qualquer servidor de qualquer unidade do BC.</td>
+			</tr>
+		</table>
+	<h3>Dados da matriz:</h3>
+	<ul>
+		<li>Título da seção alterado para: Matriz de riscos e controles.</li>
+		<li>Não deve ser exibido o estado da matriz</li>
+	</ul>
+	<h3>Outras alterações:</h3>
+	<ul>
+		<li>Exibir o comando Liberar.</li>
+		<li>O sigas não </li>
+	</ul>
+	<h2>Cenários de teste - <a href="TestE2_13_inclusao_de_ciclo_SRC.html">Alteração 1 - Negócio</a>.</h2>
+	Observação: agrupar a maior quantidade de itens de teste no mesmo teste.<br>
+	Negócio:
+	<ul>
+		<li><b id="C001">C001</b> Sucesso - Testar um caso de sucesso informando o segundo substituto. Mensagens:
+			<ul>
+				<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+				<li>A matriz de riscos e controles está disponível para edição.</li>
+			</ul>
+		</li>
+		<li><b id="C002">C002</b> Sucesso - Testar um caso de sucesso não informando o segundo substituto. Mensagens:
+			<ul>
+				<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+				<li>A matriz de riscos e controles está disponível para edição.</li>
+			</ul>
+		</li>
+		<li><b>Teste de acesso a funcionalidade para cada perfil da aplicação</b></li>
+		<li><b id="C003">C003</b> Falha - Incluir ciclo, com todos os dados obrigatórios. Usuário logado possui perfil SUPERVISOR, mão não é supervisor responsável pela ES. Mensagem
+			<ul>
+				<li>Servidor não é supervisor responsável pela ES. Inclusão não é permitida.</li>
+			</ul>
+		</li>
+		<li>Falha - Incluir ciclo, com todos os dados obrigatórios. Usuário logado é supervisor responsável pela ES mas não possui perfil SUPERVISOR. Perfis que devem ser utilizados:
+			<ul>
+				<li><b id="C004">C004</b> GERENTE.</li>
+				<li><b id="C005">C005</b> INSPETOR.</li>
+				<li><b id="C006">C006</b> ADMINISTRADOR.</li>
+				<li><b id="C007">C007</b> COMITÊ.</li>
+				<li><b id="C008">C008</b> CONSULTA PERFIL DE RISCO.</li>
+				<li><b id="C009">C009</b> CONSULTA RESUMO.</li>
+			</ul>Mensagem:
+			"Usuário com perfil <b>perfil_do_usuário</b> não possui permissão para a funcionalidade Inclusão de ciclo."
+		</li>
+	</ul>
+<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/ciclo/tela/TestE2_13_inclusao_novo_ciclo.html">Alteração 1 - Web</a>.</h2>	
+	<ul>
+		<li>Conferir - se a combobox unidade exibe todas as unidades do BC.</li>
+		<li>Conferir - se a combobox nome exibe todos os nomes dos servidores da unidade BC selecionada.</li>
+		<li>Sucesso - Testar um caso de sucesso informando o segundo substituto. Mensagens:
+			<ul>
+				<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+				<li>A matriz de riscos e controles está disponível para edição.</li>
+			</ul>
+		</li>
+		<li>Sucesso - Testar um caso de sucesso não informando o segundo substituto. Mensagens:
+			<ul>
+				<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+				<li>A matriz de riscos e controles está disponível para edição.</li>
+			</ul>
+		</li>		
+	</ul>
+	
+	<h3>Dados da equipe do ciclo SRC:</h3>
+	<p>Acrescentar o segundo substituto do supervisor na equipe responsável do ciclo.</p>
+	<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Unidade e nome do segundo substituto do supervisor</td>
+				<td>Unidade e nome do segundo substituto do supervisor.</td>
+				<td><ul>
+					<li>Combobox para unidade - qualquer unidade BC.</li>
+					<li>Combobox para nome - servidores da unidade selecionada.</li>
+					</ul> 
+				</td>
+				<td>Não</td>
+				<td>Unidades do siarh.<br>
+					Editável.<br>
+					Unidade default: DESUP.</td>
+			</tr>
+		</table>
+
+<h2><a id="modelo_de_dados"></a>Modelo de dados - Alteração 1.</h2>
+DROP TABLE SUP.CIC_CICLO	
+<br><br>	
+CREATE TABLE SUP.CIC_CICLO
+(
+   CIC_ID integer not null generated by default as identity (start with 1) primary key,
+   CIC_CD_PT_PE char(12) not null,
+   CIC_DT_INICIO date,
+   CIC_DT_PREV_COREC date,
+   CIC_NU_FT_RELEV_UC decimal(5,2) NOT NULL,
+   CIC_CD_MT_SEG_SUB_SUP_RESP char(8),
+   CIC_NU_VERSAO int not null,
+   CIC_CD_OPER_ATUALZ char(20) not null,
+   CIC_DH_ATUALZ timestamp not null,
+   ENS_ID integer not null,
+   MET_ID integer not null,
+   ECI_ID integer not null,   
+   MAT_ID integer not null
+)
+<br>
+comment on table SUP.CIC_CICLO is
+'/NOME: Ciclo SRC (CIC)
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_CD_PT_PE is 
+'/NOME: Número do PT ou PE.
+/DOMÍNIO:
+/FONTE: Dados informados pelo usuário.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_DT_INICIO is 
+'/NOME: Data de início do ciclo.
+/DOMÍNIO: 
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_DT_PREV_COREC is 
+'/NOME: Data prevista do corec.
+/DOMÍNIO:
+/FONTE: Dados informados pelo usuário e gerados pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_NU_FT_RELEV_UC is 
+'/NOME: Fator de relevância da unidade corporativa do ciclo SCR.
+/DOMÍNIO: .
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.CIC_CICLO.ENS_CD_MAT_SUB_SUP_RESP is 
+'/NOME: Matrícula do segundo substituto supervisor responsável do ciclo.
+/FONTE: Sistema Sigas.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_NU_VERSAO is 
+'/NOME: Número de versão para controle de concorrência.
+/FUNÇÃO: Identificar o número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.CIC_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.ECI_ID is 
+'/NOME: Identificador do estado do ciclo.
+/FUNÇÃO: Referenciar o estado do ciclo atual associado ao ciclo SRC.
+/DOMÍNIO:
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.ENS_ID is 
+'/NOME: Identificador da entidade supervisionável.
+/FUNÇÃO: Referenciar a entidade supervisionável associada ao ciclo SRC.
+/DOMÍNIO:
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.MET_ID is 
+'/NOME: Identificador da metodologia.
+/FUNÇÃO: Referenciar a metodologia associada ao ciclo SRC.
+/DOMÍNIO:
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.CIC_CICLO.MAT_ID is 
+'/NOME: Identificador da matriz de riscos e controles.
+/FUNÇÃO: Referenciar a matriz de riscos e controles associada ao ciclo SRC.
+/DOMÍNIO:
+/FONTE: Gerados pelo sistema.';
+<br><br>
+ALTER TABLE SUP.CIC_CICLO ADD FOREIGN KEY
+(
+   ENS_ID
+)
+REFERENCES SUP.ENS_ENTIDADE_SUPERVISIONAVEL
+(
+   ENS_ID
+)
+<br><br>
+ALTER TABLE SUP.CIC_CICLO ADD FOREIGN KEY
+(
+   MET_ID
+)
+REFERENCES SUP.MET_METODOLOGIA
+(
+   MET_ID
+)
+<br><br>
+ALTER TABLE SUP.CIC_CICLO ADD FOREIGN KEY
+(
+   ECI_ID
+)
+REFERENCES SUP.ECI_ESTADO_CICLO
+(
+   MET_ID
+)
+<br><br>
+ALTER TABLE SUP.CIC_CICLO ADD FOREIGN KEY
+(
+   MAT_ID
+)
+REFERENCES SUP.MAT_MATRIZ
+(
+   MAT_ID
+)
+</body>
+</html>

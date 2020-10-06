@@ -1,0 +1,452 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória - Análise de ARC.</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+
+    <h1>Cenários de teste para a estória - Análise de ARC.</h1>
+
+    <span id="index"></span>
+
+    <h2>Histórico</h2>
+    <table class="exemplos historico">
+        <tr>
+            <th>Versão</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+        </tr>
+        <tr>
+            <td>1.0</td>
+            <td>28/08/2014</td>
+            <td>Wilkie Martins</td>
+            <td>Alteração na funcionalidade Concluir análise do ARC - Concluir análise do ARC muda o estado do ARC
+                de Em análise/Preenchido/Análise Delegada para Analisado, portanto não torna o ARC vigente.</td>
+        </tr>
+        <tr>
+            <td>1.1</td>
+            <td>23/09/2014</td>
+            <td>Wilkie Martins</td>
+            <td>Perfis de acesso vs responsabilidade de ESs para supervisor substituto.</td>
+        </tr>
+        <tr>
+            <td>1.2</td>
+            <td>26/09/2014</td>
+            <td>Wilkie Martins</td>
+            <td>Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas).</td>
+        </tr>
+        <tr>
+            <td>1.3</td>
+            <td>07/10/2014</td>
+            <td>Denilson Roberto</td>
+            <td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+        </tr>
+        <tr>
+            <td>1.3</td>
+            <td>08/10/2014</td>
+            <td>Cleonides Macriny</td>
+            <td>Estória - Adicionando log de consulta</td>
+        </tr>
+        <tr>
+            <td>1.4</td>
+            <td>14/10/2014</td>
+            <td>Denilson Roberto</td>
+            <td>Estória - 44622:Ajustes na telas de Análise e Edição (parte do Detalhes de ARC)</td>
+        </tr>
+        <tr>
+            <td>1.5</td>
+            <td>20/11/2014</td>
+            <td>Victor Vasconcelos</td>
+            <td>Ajustes nos cenários C020, C021 e C022 para contemplar a estória "User Story 46286: Ordem de
+                Elementos e Itens de elementos nas telas do sistema"</td>
+        </tr>
+        <tr>
+            <td>1.6</td>
+            <td>21/11/2014</td>
+            <td>David Nascimento</td>
+            <td>Adaptação nos testes para a estória: "ajuste no tratatamento da tendência de arcs (iteração 27)."</td>
+        </tr>
+        <tr>
+            <td>1.7</td>
+            <td>23/06/2015</td>
+            <td>Cleonides Macriny</td>
+            <td>Ajuste de atualização de estado para ARC</td>
+        </tr>
+    </table>
+
+    <span id="cenarios"></span>
+
+    <h2>Regras aplicáveis</h2>
+    <blockquote>
+        Para as regras da história clique <a
+            href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/APSFW0203_Analise_do_ARC_Concluir_Analise_do_ARC.xlsx">aqui</a>.
+    </blockquote>
+
+    <h2>Premissas iniciais</h2>
+    <blockquote>
+        Lista de servidores: <a
+            href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+            class="include">aqui</a>
+    </blockquote>
+    <blockquote>
+        <dataHoraAtual valor="17/03/2014 00:00:00">Data atual: 17/03/2014 00:00:00</dataHoraAtual>
+    </blockquote>
+    <jetty />
+    <br>
+    <br>
+    <table class="exemplos">
+        <tr>
+            <th width="10%">Cenário</th>
+            <th width="30%">Dados pré-existentes</th>
+            <th width="10%">Ação pretendida</th>
+            <th width="50%">Resultado esperado</th>
+        </tr>
+
+
+
+        <tr class="scenario">
+            <td class='title'><b>C001</b><br> <br>Sucesso ao concluir- Sem preencher nenhum campo,
+                concordando com o preenchimento do inspetor - Estado do ARC "Preenchido".</td>
+            <td><banco />As regras para os perfis de acesso se encontram <a
+                href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+                class="include">aqui</a><br> <br> Os dados da Metodologia se encontram <a
+                href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+                class="include">aqui</a><br> <br> Os dados das ESs se encontram <a
+                href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+                class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus
+                estados se encontram <a href="../comum/TestE3_32_Analise_ARC_dadoque.html" class="include">aqui</a><br></td>
+            <td>
+                <ul>
+                    <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    <li>Seleciona o ARC: Atividade corporativa - Risco de Crédito <span class="clickon"
+                        by="id:link_Arc2">ABN AMRO</span>
+                    </li>
+                    <li>Clica no botão <span class="clickon" by="id:bttConcluir" sleep="6000">Concluir
+                            análise</span></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li><span class="contains">Análise do ARC concluída. ARC não publicado. Acesse e revise
+                            a Síntese do Risco para publicar este ARC no Perfil de Risco.</span></li>
+
+
+
+                    <li><span class="compareTable dados" by="xpath://table[@id='tDadosCicloResumido']" sleep="1000">
+                            <table>
+                                <thead>
+                                    <tr class="fundoPadraoAEscuro2">
+                                        <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2"><span
+                                            id="idNomeConglomerado159">ABN AMRO (00000191) </span></th>
+
+                                    </tr>
+                                    <tr class="fundoPadraoAEscuro3">
+                                        <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Ciclo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;" id="idTituloEstado15a">Estado</td>
+                                        <td style=""><b><label id="idEstadoCiclo15b">Em andamento</label></b></td>
+                                    </tr>
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;">Início</td>
+                                        <td style=""><label id="idDataInicioCiclo15d">17/03/2014</label></td>
+                                    </tr>
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;"><label id="idCorec15e">Corec
+                                                previsto</label></td>
+                                        <td style=""><label id="idDataPrevistaCorec15f">17/03/2014</label></td>
+                                    </tr>
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;"><label id="idSupervisor160">Supervisor
+                                                titular</label></td>
+                                        <td style=""><label id="idNomeSupervisor161">ROBERTO SANTOS ALENCAR</label></td>
+                                    </tr>
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;"><label id="idGerente162">Gerente
+                                                titular</label></td>
+                                        <td style=""><label id="idNomeGerente163">ANFRISIO RODRIGUES VIEIRA</label></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                    </span></li>
+
+
+                    <li><span class="compareTable dados" by="xpath://table[@id='tDadosArcInformacoes']"
+                        sleep="1000">
+                            <table>
+                                <thead>
+                                    <tr class="fundoPadraoAEscuro3">
+                                        <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Informações
+                                            do ARC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;">Atividade</td>
+                                        <td style=""><label id="idAtividadeArc165">Atividade corporativa</label></td>
+                                    </tr>
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;">Grupo</td>
+                                        <td style=""><label id="idGrupoArc166">Crédito</label></td>
+                                    </tr>
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td class="nomeCampo" style="width: 25%;">Risco/Controle</td>
+                                        <td style=""><label id="idTipoArc167">Controle</label></td>
+                                    </tr>
+                                    <tr class="fundoPadraoAClaro3" id="wmcExibirEstado168">
+                                        <td class="nomeCampo" style="width: 25%;">Estado</td>
+                                        <td style=""><b><label id="idEstadoArc169">Analisado</label></b></td>
+                                    </tr>
+                                    <tr class="fundoPadraoAClaro3" id="idMostrarResponsavel">
+                                        <td class="nomeCampo" style="width: 25%;" id="idResponsavel16a">Preenchido
+                                            por</td>
+                                        <td style=""><label id="idResponsavelArc16b">TESTESLQB13 MASSA DE
+                                                TESTE em 10/03/2014 00:00h</label></td>
+                                    </tr>
+                                    <tr class="fundoPadraoAClaro3" id="idMostrarResponsavel">
+                                        <td class="nomeCampo" style="width: 25%;" id="idUltimaAtualizacao16c">Analisado
+                                            por</td>
+                                        <td style=""><label id="idUltimaAtualizacaoArc16d">ROBERTO SANTOS
+                                                ALENCAR em 17/03/2014 00:00h</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </span></li>
+
+
+                    <li><span class="compareTable dados" by="xpath://table[@id='tARCResumido']">
+                            <table>
+                                <thead>
+                                    <tr class="fundoPadraoAEscuro3">
+                                        <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo
+                                            do ARC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fundoPadraoAClaro3">
+                                        <th class="nomeCampo" style="width: 25%;"></th>
+                                        <th class="nomeCampoEsquerdo" style="width: 160px;">Final</th>
+                                        <th class="nomeCampoEsquerdo" style="width: 160px;">Supervisor</th>
+                                        <th class="nomeCampoEsquerdo" style="width: 160px;">Inspetor</th>
+                                        <th class="nomeCampoEsquerdo" style="width: 160px;">Vigente</th>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="nomeCampo"><a href="#idTituloElemento2" id="linkElemento170">
+                                                Ambiente de controle</a></td>
+                                        <td id="notaFinal172">3</td>
+                                        <td><font color="#999999" id="notaSupervisor173">3</font></td>
+                                        <td id="parametroNotaInspetor_descricaoValor174">3</td>
+                                        <td id="parametroNotaVigente"></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="nomeCampo">Nota calculada</td>
+                                        <td id="notaCalculadaArrastoFinal175">3</td>
+                                        <td><font color="#999999" id="notaCalculadaArrastoSupervisor176">3</font></td>
+                                        <td id="notaCalculadaArrastoInspetor177">3</td>
+                                        <td id="notaCalculadaArrastoVigente178"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="nomeCampo">Nota ajustada</td>
+                                        <td id="notaAjustadaFinal179">3</td>
+                                        <td><font color="#999999" id="notaAjustadaSupervisor17a">3</font></td>
+                                        <td id="notaAjustadaInspetor17b">3</td>
+                                        <td id="notaAjustadaVigente17c"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="nomeCampo"><a href="#tDadosTendenciaRiscoMercado">Tendência</a></td>
+                                        <td id="tendenciaFinal17d">Estabilidade</td>
+                                        <td><font color="#999999" id="tendenciaSupervisor17e">Estabilidade</font></td>
+                                        <td id="tendenciaInspetor17f">Estabilidade</td>
+                                        <td id="tendenciaVigente180"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </span></li>
+
+                    <li><span class="compareTable dados" by="xpath://table[@id='tDadosElementosArc_2']">
+                            <table >
+                                <thead>
+                                    <tr class="fundoPadraoAEscuro2">
+                                        <th colspan="8" class="thform" style="text-align: left; border-bottom: 0px;"
+                                            id="idTituloElemento2">Ambiente de controle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fundoPadraoAClaro3">
+
+                                        <td class="nomeCampo" style="width: 25%;">Nota supervisor</td>
+                                        <td><label id="idNotaSupervisorElemento2"></label></td>
+
+
+
+                                        <td class="nomeCampo" style="width: 25%;">Nota inspetor</td>
+                                        <td><label id="idNotaInspetorElemento2">3</label></td>
+
+
+
+                                        <td class="nomeCampo" style="width: 25%;">Nota vigente</td>
+                                        <td><label id="idNotaVigenteElemento"></label></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </span></li>
+
+
+                    <li><span class="compareTable dados" by="xpath://table[@id='tabelaDadosItem2']">
+
+                            <table>
+                                <thead>
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;"
+                                            id="idTituloItem1c6">Qualidade da carteira de crédito</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="idPainelDocumentoUploadAnexo1c7">
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td></td>
+                                        <td style="text-align: right;"><label style="font-size: 7pt;"
+                                            id="idDataItemElemento1c9">Preenchido por TESTESLQB13 MASSA DE TESTE
+                                                em 10/03/2014 00:00h.</label></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td width="5%"></td>
+                                        <td width="90%"><strong id="tituloNovaJustificativa1ca">Nova
+                                                avaliação</strong></td>
+                                        <td width="5%"></td>
+                                    </tr>
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td></td>
+                                        <td><label id="idNovaJustificativa1cb">justificativa inspetor</label></td>
+                                        <td></td>
+                                    </tr>
+
+
+                                    <tr class="fundoPadraoAClaro3">
+                                        <td></td>
+                                        <td><div id="idTabelaAnexoDocumento" style="display: none"></div></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </span></li>
+
+
+
+
+
+
+                    <li><span class="compareTable dados" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+
+                            <table>
+                                <thead>
+                                    <tr class="fundoPadraoAEscuro2">
+                                        <th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;">
+                                            <span id="idNomeGrupoRiscoControle1ab">Tendência - Gestão do Risco de
+                                                Crédito</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="fundoPadraoAClaro3" id="exibirTendenciaVigente1ac">
+                                        <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Tendência
+                                            vigente</td>
+                                        <td>
+                                            <table style="width: 100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="text-align: right;"><label
+                                                            style="font-size: 7pt;" id="idDataVigente1ad"></label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b> <label id="idTipoTendenciaVigente1ae"></label>
+                                                        </b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><div style="width: 100%" id="idTendenciaVigente"></div></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td style="width: 25%;"></td>
+                                    </tr>
+
+                                    <tr class="fundoPadraoAClaro3" id="exibirTendenciaInspetor1af">
+                                        <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Tendência
+                                            inspetor</td>
+                                        <td>
+                                            <table style="width: 100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="text-align: right;"><label
+                                                            style="font-size: 7pt;" id="idDataInspetor1b0">Atualizado
+                                                                por ROBERTO SANTOS ALENCAR em 17/03/2014 00:00h.</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><b> <label id="idTipoTendenciaInspetor1b1">Estabilidade</label>
+                                                        </b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><div style="width: 100%" id="idTendenciaInspetor">justificativa
+                                                                tendência</div></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td style="width: 25%;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </span></li>
+
+                </ul> <br>
+                <table class="verify dados">
+                    <caption>ARC_AVAL_RIS_CON</caption>
+                    <tr>
+                        <th>Ação</th>
+                        <th>ARC_ID</th>
+                        <th>ARC_CD_ESTADO</th>
+                        <th>ARC_NU_VERSAO</th>
+                        <th>ARC_CD_OPER_ATUALZ</th>
+                        <th>ARC_DH_ATUALZ</th>
+                    </tr>
+
+                    <tr>
+                        <td>U</td>
+                        <td>2</td>
+                        <td>8</td>
+                        <td>1</td>
+                        <td>deliq.sisliq101</td>
+                        <td>25/04/2014 00:00:00</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+    </table>
+    <br>
+</body>
+</html>

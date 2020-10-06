@@ -1,0 +1,614 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E2.1. Inclusão de ciclo SRC</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css"	media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>28/03/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>01/04/2014</td>
+				<td>1.1</td>
+				<td>Correções no modelo de dados e apresentação dos detalhes de interface.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>02/04/2014</td>
+				<td>1.2</td>
+				<td>Remover segundo substituto do supervisor.<br>
+				Dados do supervisor são obtidos via sigas.<br>
+				Dados dos membros da equipe são obtidos no siarh.<br>
+				Alteração na tela.<br>
+				Cenários de teste.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>07/04/2014</td>
+				<td>1.3</td>
+				<td>A matriz inicial do ciclo possui uma Unidade corporativa (UC) pré-definda.<br>
+				O Fator de relevância da UC fixo em código igual a 0.5 e seu peso é o maior valor de peso cadastrado como parâmetro da metodologia.<br>
+				Cenários de teste.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>08/04/2014</td>
+				<td>1.4</td>
+				<td>O Fator de relevância é um atributo do ciclo.<br>
+				Incluir número de versão para controle de concorrência e outras alterações (<b>ver modelo de dados</b>)</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>09/04/2014</td>
+				<td>1.5</td>
+				<td><a href="#E2_1_1">Alterações após a iteração 02</a><br>
+				Adicionar segundo substituto do supervisor na equipe responsável do ciclo.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>14/04/2014</td>
+				<td>1.6</td>
+				<td>Código de tela seguem o padrão [APSTTNNNN], onde TT - Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório); NNNN - Numérico.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>30/04/2014</td>
+				<td>1.7</td>
+				<td>Incluídos testes de negócio e web para tentativa de inclusão do campo Número do PT/PE com mais de 10 caracteres.</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E2_1">E2.1 Inclusão de ciclo SRC - Iteração 02</a></h2>
+	
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir uma metodologia default do SRC no estado Concluída cadastrada no sistema.</p>
+			<p>Deve existir cadastrada no sistema uma ES com prioridade e metodologia definidas e que pertença ao SRC.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor.</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<!-- <p>(Remover) Análise qualitativa -- Matriz de risco e controle -- Inclusão</p>
+			<p>(Remover) Análise qualitativa -- Matriz de risco e controle -- Consulta</p>
+			<p>Ciclos SRC -- Consulta</p>
+			<p>Perfil de risco -- Consulta -- Análise qualitativa -- Matriz de risco e controle</p> -->
+			<p>Administração -- Ciclo SRC -- Inclusão</p>
+			<!-- <p>Administração -- Ciclo SRC -- Consulta</p> -->
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Inclusão de ciclo SRC.</b></p>
+			<p>Trilha: Administração -- Ciclo SRC -- Inclusão.</p>
+			<p>Código de tela: [APSFW0106] </p>
+			<p>Comandos: Incluir e Voltar.</p>
+			<p><b>Título: Confirmação de inclusão de ciclo SRC.</b></p>
+			<p>Trilha: Administração -- Ciclo SRC -- Inclusão -- Confirmação de inclusão de ciclo.</p>
+			<p>Código de tela: [APSFW0107]</p>
+			<p>Comandos: Visualizar impressão e Voltar.</p>
+
+			<input type="image" src="Tela01_E2_1.png"/>
+
+			<p>Observe que a edição de matriz faz parte das estórias</p>
+			<p><a href="../../analisequalitativa/E3_1_Edicao_de_matriz_inclusao_de_linhas_e_colunas.html">E3.1 Edição de matriz (inclusão de linhas e colunas)</a></p>
+			<p><a href="../../analisequalitativa/E3_2_Edicao_de_matriz_alteracao_e_exclusao_de_linhas_e_colunas.html">E3.2 Edição de matriz (alteração e exclusão de linhas e colunas)</a></p>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade básica de Inclusão de novo ciclo (entrada 'Em andamento') pelo usuário através do menu.</p>
+			<p>Funcionalidades disponíveis apenas para o perfil <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Trata-se da inclusão de um ciclo SRC para uma ES que pertença ao SRC.</li>
+			<li>A inclusão é feita pelo usuário supervisor através do menu Administração -- Ciclo SRC -- Inclusão.</li>
+
+			<li>Na inclusão de um ciclo SRC para uma ES através do menu, a aplicação inclui um registro inicial de:
+				<ul>
+					<li>matriz de riscos em controles para a análise qualitativa.</li>
+					<li>análise quantitativa.</li>
+					<li>estado do ciclo com data de início igual a data corrente.</li>
+				</ul>
+			</li>
+
+			<li>Estado inicial do ciclo SRC: Em andamento.</li>
+			<li>A matriz inicial de riscos e controles não possui linhas e colunas de negócio. Possui uma Unidade corporativa (UC) por default. </li>
+			<li>Esta UC será incluída com o fator de relevância igual à 0.50. </li>
+			<li>Esta UC será incluída com o peso igual ao maior valor do parâmetro Peso da metodologia associada. </li>
+			<li>Estado inicial da matriz: 1-Esboçada.</li>
+			<li>O ciclo SRC deve registrar a metodologia da ES na inclusão.</li>
+
+			<li>Após acionar o comando Incluir, exibir tela de Confirmação de inclusão do ciclo com mensagens de sucesso: 
+				<ul>
+					<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+					<li>A matriz de riscos e controles está disponível para edição.</li>
+				</ul>
+			</li>
+		</ul>
+
+		Um ciclo SRC é composto por:
+
+		<ul>
+			<li>Dados básicos do ciclo SRC.</li>
+			<li>Dados da equipe do ciclo SRC.</li>
+			<li>Dados do estado do ciclo SRC.</li>
+			<li>Análise quantitativa.</li>
+			<li>Análise qualitativa - Matriz de riscos e controles.</li>
+		</ul>
+
+		<h3>Dados básicos do ciclo SRC:</h3>
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Número do processo</td>
+				<td>Número do processo (PT ou PE) associado ao ciclo SRC.</td>
+				<td>Texto com tamanho máximo 12 caracteres.</td>
+				<td>Não</td>
+				<td>Sua validação é necessária em outra estória.<br>
+				Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Entidade supervisionável</td>
+				<td>Entidade supervisionável associado ao ciclo SRC.</td>
+				<td>Combo box com todas as ESs que pertencem ao SRC que não possuem ciclos SRC cadastrados nos estados 1 - Em andamento; 2- Corec; 3 - Pós corec; 4 - Encerrado e que estão sob a responsabilidade do supervisor logado no sistema.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Metodologia do ciclo SRC</td>
+				<td>Metodologia</td>
+				<td>Metodologia associada a ES selecionada.</td>
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>Campo não editável.</li>
+						<li>Preenchido automaticamente pela aplicação após selecionar a ES.</li>
+						<li>Preservado do rating</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Data de início do ciclo</td>
+				<td>Data de início do ciclo SRC.</td>
+				<td>Data no formato (dd/mm/aaaa)</td>
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>Editável. </li>
+						<li>Valor inicial: data corrente. </li>
+						<li>Valores válidos: data menor ou igual à data corrente. </li>
+						<li>Substitui os conceitos de Data base original e Data base atual.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Data prevista do corec</td>
+				<td>Data prevista do corec.</td>
+				<td>Data no formato (dd/mm/aaaa)</td>
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>Editável. </li>
+						<li>Valor inicial: data corrente + 1 ou 2 anos (de acordo com a prioridade). </li>
+						<li>1 ano (para ES com prioridade SIFI, muito alta e alta)</li>
+						<li>2 anos (para ES com prioridade média e baixa)</li>
+						<li>Valores válidos: data maior ou igual à data corrente. </li>
+						<li>Substitui os conceitos de Data base original e Data base atual.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Estado do ciclo SRC</td>
+				<td>Estado do ciclo SRC.</td>
+				<td>Domínio
+					<ul>
+						<li>1 - Em andamento.</li>
+						<li>2 - corec.</li>
+						<li>3 - pós-corec.</li>
+						<li>4 - encerrado.</li>
+						<li>5 - excluído.</li>
+					</ul>
+				</td>
+
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>Não editável.</li>
+						<li>Valor inicial: Em andamento.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Fator de relevância da unidade corporativa.</td>
+				<td>Fator de relevância da unidade corporativa.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Na inclusão do ciclo, a aplicação associa o valor 0,50 para unidade corporativa.<br>
+				Portanto, o conjunto de unidades de negócio e atividades de negócio tem fator de relevância igual a 1 - 0,50 (complemento para 1).</td>
+			</tr>	
+
+			<tr>
+				<td>Análise qualitativa do ciclo SRC</td>
+				<td>Representada pela matriz de riscos e controles.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Na inclusão do ciclo, a aplicação associa ao ciclo uma matriz no estado Esboçada, sem linhas e sem colunas para a análise qualitativa.</td>
+			</tr>
+
+			<tr>
+				<td>Análise quantitativa do ciclo SRC</td>
+				<td>Análise quantitativa do ciclo SRC.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Na inclusão do ciclo, a aplicação associa ao ciclo uma análise quantitativa.</td>
+			</tr>
+
+			<tr>
+				<td>Data e hora da alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>
+
+		<h3>Dados da equipe do ciclo SRC:</h3>
+
+		A equipe do ciclo SRC é composta por 3 usuários. Cada usuário exerce uma das seguintes funções:
+
+		<ul>
+			<li>Gerente do supervisor.</li>
+			<li>Supervisor.</li>
+			<li>Substituto do supervisor.</li>
+		</ul>
+
+		<p><b>Requisito não definido completamente: Supervisor será obtido no sigas ou no siarh.</b></p> 
+
+		Cada membro da equipe é identificado por:
+
+		<ul>
+			<li>Função.</li>
+			<li>Unidade.</li>
+			<li>Nome.</li>
+		</ul> 
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Função</td>
+				<td>Função de cada membro da equipe do ciclo SRC.</td>
+
+				<td>Domínio:
+					<ul>
+						<li>Gerente do supervisor.</li>
+						<li>Supervisor. </li>
+						<li>Substituto do supervisor.</li>
+					</ul>
+				</td>
+
+				<td>Sim</td>
+				<td>Não editável.</td>
+			</tr>			
+
+			<tr>
+				<td>Unidade e nome do gerente do supervisor</td>
+				<td>Unidade e nome do gerente do supervisor.</td>
+
+				<td><!-- <ul>
+					<li>Combobox para unidade.</li>
+					<li>Combobox para nome.</li>
+					</ul> -->Não editável
+				</td>
+
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>O gerente do supervisor corresponde ao chefe de subunidade em exercísio do supervisor (via siarh).</li>
+						<li>O supervisor corresponde ao coordenador em exercício da localização da equipe (via sigas).</li>
+						<li>Obter unidade e nome do gerente do supervisor da ES via SIARH.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Unidade e nome do supervisor</td>
+				<td>Unidade e nome do supervisor.</td>
+
+				<td><!-- <ul>
+					<li>Combobox para unidade.</li>
+					<li>Combobox para nome.</li>
+					</ul> -->Não editável
+				</td>
+
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>A matrícula do supervisor é obtida via Sigas em <a href="../entidadesupervisionavel/E10_1_carga_inicial_de_ES_via_Sigas.html#E10_1">E10.1. Carga inicial de ES via Sigas</a>.</li>
+						<li>O supervisor corresponde ao coordenador em exercício da localização da equipe.</li>
+						<li>Obter unidade e nome do supervisor da ES via SIARH.</li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Unidade e nome do substituto do supervisor</td>
+				<td>Unidade e nome do substituto do supervisor.</td>
+
+				<td><!-- <ul>
+					<li>Combobox para unidade.</li>
+					<li>Combobox para nome.</li>
+					</ul> -->Não editável
+				</td>
+
+				<td>Não</td>
+				<td>Obter unidade e nome do gerente do substituto do supervisor da ES via SIARH.</td>
+			</tr>
+		</table>
+
+		<h3>Dados do estado do ciclo SRC:</h3>
+
+		A aplicação deve registrar o período (data de início e término) de permanência do ciclo em cada estado. 
+
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+
+			<tr>
+				<td>Estado do ciclo SRC.</td>
+				<td>Estado do ciclo SRC.</td>
+
+				<td>Domínio
+					<ul>
+						<li>1 - Em andamento.</li>
+						<li>2 - corec.</li>
+						<li>3 - pós-corec.</li>
+						<li>4 - encerrado.</li>
+						<li>5 - excluído.</li>
+					</ul>
+				</td>
+
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>			
+
+			<tr>
+				<td>Data de início do estado do ciclo SRC.</td>
+				<td>Data de início do estado do ciclo SRC.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+
+				<td>
+					<ul>
+						<li>Valor inicial na inclusão do ciclo SRC: igual a data do início do ciclo.</li>
+						<li>Gerado pela aplicação quando ocorre mudança de estado no ciclo SRC.</li>
+					</ul>
+				</td>
+			</tr>			
+
+			<tr>
+				<td>Data de término do estado do ciclo SRC.</td>
+				<td>Data de término do estado do ciclo SRC.</td>
+				<td>&nbsp;</td>
+				<td>Não</td>
+				<td>Gerado pela aplicação quando ocorre mudança de estado no ciclo SRC.</td>
+			</tr>	
+
+			<tr>
+				<td>Data e hora da alteração</td>
+				<td>Data e hora da última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td>Usuário responsável pela última alteração</td>
+				<td>Unidade e login do usuário responsável pela última alteração.</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>&nbsp;</td>
+			</tr>			
+		</table>	
+
+		<h2>Cenários de teste para <a href="../test/TestE2_1InclusaoCicloSRC.html">E2.1. Inclusão de ciclo SRC - Negócio</a>.</h2>
+
+		Observação: agrupar a maior quantidade de itens de teste no mesmo teste.<br>
+
+		Negócio:
+
+		<ul>
+			<li>Falha - Supervisor titular em exercício informar ES que não está sob a responsabilidade do supervisor. Mensagem: 
+				<ul>
+					<li>"ES não está sob responsabilidade do usuário."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Supervisor titular fora de exercício informar ES que está sob a responsabilidade do supervisor substituto em exercício. Mensagem: 
+				<ul>
+					<li>"ES não está sob responsabilidade do usuário."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Supervisor titular em exercício informar ES que está sob sua responsabilidade mas que possui ciclo vigente (atual) cadastrado no sistema em estado diferente de excluído <b>consultar</b>. Mensagem:
+				<ul>
+					<li>"Não pode haver mais de um ciclo SRC da mesma ES em estado ativo."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Não informar dados obrigatórios (todos os casos previstos). Mensagem: 
+				<ul>
+					<li>"Campo campo_da_tela é de preenchimento obrigatório".</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar data de início do ciclo maior que a data corrente. 
+				<ul>
+					<li>Mensagem: "A data de início de ciclo deve ser menor ou igual à data corrente."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar data prevista do corec menor que a data de início do ciclo. Mensagem: 
+				<ul>
+					<li>"A data prevista do corec deve ser maior ou igual à data corrente."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar data prevista do corec maior que a data do início do ciclo e menor que a data corrente. Mensagem: 
+				<ul>
+					<li>"A data prevista do corec deve ser maior ou igual à data corrente."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar metodologia não default e distinta daquela associada à ES. Mensagem: 
+				<ul>
+					<li>Não é possível usar a metodologia selecionada para esta ES.</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar metodologia default e distinta daquela associada à ES. Mensagem: 
+				<ul>
+					<li>"Não é possível usar a metodologia selecionada para esta ES.</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar número do PT/PE com mais de 10 caracteres. Mensagem: 
+				<ul>
+					<li>"Campo Número do PT/PE é de no máximo 10 caracteres.</li>
+				</ul>
+			</li>
+
+			<li>Conferir - Se a UC foi criada com o peso e fator de relevância corretos.</li>		
+
+			<li>Sucesso - Testar um caso de sucesso informando o PT ou PE. Mensagens:
+				<ul>
+					<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+					<li>A matriz de riscos e controles está disponível para edição.</li>
+				</ul>
+			</li>
+
+			<li>Sucesso - Testar um caso de sucesso não informando o PT ou PE</li>
+		</ul>
+
+		<h2>Cenários de teste para <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/ciclo/tela/TestE2_1_inclusao_novo_ciclo.html">E2.1. Inclusão de ciclo SRC - Web</a>.</h2>	
+
+		Web:
+
+		<ul>
+			<li>Conferir - se são exibidas na combobox apenas as ESs sob a responsabilidade do supervisor que não possuem ciclos vigentes (ativos).</li>
+			<li>Conferir - Na existência de uma metodologia default distinta daquela associada à ES. Verificar se a aplicação associa a metodologia da ES corretamente.</li>
+			<li>Conferir - Caso o chefe de subunidade titular da equipe reponsável pela ES esteja sendo substituído. Verificar se a aplicação carrega corretamente os dados do Gerente do supervisor.</li>
+			<li>Conferir - Caso o coordenar titular da equipe reponsável pela ES esteja sendo substituído. Verificar se a aplicação carrega corretamente os dados do Supervisor.</li>
+
+			<li>Falha - Não informar dados obrigatórios (todos os casos previstos). Com mensagem: 
+				<ul>
+					<li>"Campo campo_da_tela é de preenchimento obrigatório".</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar data de início do ciclo inválida (todos os casos previstos). Mensagens: 
+				<ul>
+					<li>"Campo data de início de ciclo inválido."</li>
+					<li>"A data de início de ciclo deve ser menor ou igual à data corrente."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar data prevista do corec inválida (todos os casos previstos). Mensagens: 
+				<ul>
+					<li>"Campo data prevista do corec inválido.</li>
+					<li>"A data prevista do corec deve ser maior ou igual à data corrente."</li>
+				</ul>
+			</li>
+
+			<li>Falha - Informar número do PT/PE com mais de 10 caracteres. Mensagem: 
+				<ul>
+					<li>"Campo Número do PT/PE é de no máximo 10 caracteres.</li>
+				</ul>
+			</li>
+
+			<li>Sucesso - Testar um caso de sucesso informando o PT ou PE. Mensagens:
+				<ul>
+					<li>O ciclo foi incluído com sucesso, bem como o registro para análise quantitaviva.</li>
+					<li>A matriz de riscos e controles está disponível para edição.</li>
+				</ul>
+			</li>
+
+			<li>Sucesso - Testar os comandos incluir e voltar.</li>
+		</ul>
+	</body>
+</html>

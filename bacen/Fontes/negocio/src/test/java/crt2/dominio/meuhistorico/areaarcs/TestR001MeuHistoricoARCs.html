@@ -1,0 +1,251 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Meu histórico - Área de ARCs</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 1.1 - Área de ARCs</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>08/06/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>31/05/2017</td>
+				<td>Itanauã Franklin</td>
+				<td>Adição do ARC Corporativo Externo</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#areaARCs">aqui</a>.</blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+
+			<banco/>
+
+			<li>Os dados encontram-se <a href="TestR001MeuHistoricoARCs_DadoQue.html" class="include">aqui</a>.
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote><a href="indexNegocio.html#listarARCs">Cenários para validar a recuperação de registros</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C001 - </b>Listagem sem ARCs para o usuário logado</td>
+
+				<td>
+					<li>Usuário: <b class="set" name="loginUsuarioLogado">"deliq.sisliq106"</b></span>.</li>
+					<li>Sem qualquer filtro, verificar a listagem inicial de ARCs para o usuário logado</li>
+				</td>
+
+    	    	<td>
+					<table>
+                    	<tr><th style="background-color: green;">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="arc" value="$THIS.consultaHistoricoArc(loginUsuarioLogado)">
+	                    			<tr>
+	                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+	                        			<th class="eq" value="$THIS.getES(arc)">ES</th>
+	                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+	                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+	                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+	                        			<th class="eq" value="$THIS.getAcao(arc)">Ação</th>
+	                        			<th class="eq" value="$THIS.getVersao(arc)">Versão</th>
+	                    			</tr>
+								</table>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C002 - </b>Listagem inicial, sem aplicação de filtros</td>
+
+				<td>
+					<li>Usuário: <b class="set" name="loginUsuarioLogado">"deliq.sisliq113"</b></span>.</li>
+					<li>Sem qualquer filtro, verificar a listagem inicial de ARCs para o usuário logado</li>
+				</td>
+
+    	    	<td>
+					<table>
+                    	<tr><th style="background-color: green;">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="arc" value="$THIS.consultaHistoricoArc(loginUsuarioLogado)">
+	                    			<tr>
+	                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+	                        			<th class="eq" value="$THIS.getES(arc)">ES</th>
+	                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+	                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+	                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+	                        			<th class="eq" value="$THIS.getAcao(arc)">Ação</th>
+	                        			<th class="eq" value="$THIS.getVersao(arc)">Versão</th>
+	                    			</tr>
+
+	                    			<tr>
+	                        			<td>1</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade corporativa</td>
+	                        			<td>Contágio</td>
+	                        			<td>C</td>
+	                        			<td>Preenchido</td>
+	                        			<td>Preenchido</td>
+	                    			</tr>
+	                    			<tr>
+	                        			<td>8</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade de negócio</td>
+	                        			<td>Contágio</td>
+	                        			<td>R</td>
+	                        			<td>Preenchido</td>
+	                        			<td>Em análise</td>
+	                    			</tr>
+
+	                    			<tr>
+	                        			<td>3</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade de negócio</td>
+	                        			<td>Contágio</td>
+	                        			<td>C</td>
+	                        			<td>Analisado</td>
+	                        			<td>Análise delegada</td>
+	                    			</tr>
+	                    			
+	                    			<tr>
+	                        			<td>7</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade de negócio</td>
+	                        			<td>Contágio</td>
+	                        			<td>C</td>
+	                        			<td>Analisado</td>
+	                        			<td>Analisado</td>
+	                    			</tr>
+
+	                    			<tr>
+	                        			<td>7</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade de negócio</td>
+	                        			<td>Contágio</td>
+	                        			<td>C</td>
+	                        			<td>Preenchido</td>
+	                        			<td>Analisado</td>
+	                    			</tr>
+	                    			<tr>
+	                        			<td>10</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade de negócio</td>
+	                        			<td>Contágio</td>
+	                        			<td>R</td>
+	                        			<td>Preenchido</td>
+	                        			<td>08/06/2015</td>
+	                    			</tr>
+	                    			<tr>
+	                        			<td>11</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td></td>
+	                        			<td>Governança corporativa</td>
+	                        			<td></td>
+	                        			<td>Preenchido</td>
+	                        			<td>08/06/2015</td>
+	                    			</tr>
+	                    			<tr>
+	                        			<td>12</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td></td>
+	                        			<td>Governança corporativa</td>
+	                        			<td></td>
+	                        			<td>Preenchido</td>
+	                        			<td>Preenchido</td>
+	                    			</tr>			
+								</table>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C003 - </b>Listagem com aplicação de filtros</td>
+
+				<td>
+					<li>Usuário: <b class="set" name="loginUsuarioLogado">"deliq.sisliq101"</b></span>.</li>
+					<li>Com filtro para <b>'Parte do nome da ES'</b> igual a <b><span class="set" name="nomeES" >abn</b></li>
+					<li>Com filtro para <b>'Parte da atividade'</b> igual a <b><span class="set" name="nomeAtividade" >Atividade</b></li>
+					<li>Com filtro para <b>'Grupo'</b> igual a <b><span class="set" name="nomeGrupo" >Contágio</b></li>
+					<li>Com filtro para <b>'Risco/Controle'</b> igual a <b><span class="set" name="tipo" >Risco</b></li>
+					<li>Com filtro para <b>'Ação'</b> igual a <b><span class="set" name="estado">Analisado</b></li>
+				</td>
+
+    	    	<td>
+					<table>
+                    	<tr><th style="background-color: green;">Saída</th></tr>
+                    	<tr><th style="background-color: green;">Registros recuperados</th></tr>
+
+                    	<tr>
+                    	    <td><table class="execute" value="$THIS.preencherConsulta(nomeES, nomeAtividade, nomeGrupo, tipo, estado)">
+								<table class="verifyRows" name="arc" value="$THIS.consultaHistoricoArc(loginUsuarioLogado)">
+	                    			<tr>
+	                        			<th class="eq" value="$THIS.getID(arc)">ID</th>
+	                        			<th class="eq" value="$THIS.getES(arc)">ES</th>
+	                        			<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+	                        			<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+	                        			<th class="eq" value="$THIS.getRiscoControle(arc)">R/C</th>
+	                        			<th class="eq" value="$THIS.getAcao(arc)">Ação</th>
+	                        			<th class="eq" value="$THIS.getVersao(arc)">Versão</th>
+	                    			</tr>
+
+	                    			<tr>
+	                        			<td>10</td>
+	                        			<td>ABN AMRO</td>
+	                        			<td>Atividade de negócio</td>
+	                        			<td>Contágio</td>
+	                        			<td>R</td>
+	                        			<td>Analisado</td>
+	                        			<td>08/06/2015</td>
+	                    			</tr>
+								</table>
+		        		    </td>
+		        		</tr>
+                    </table>
+			    </td>
+			</tr>
+      	</table>
+	</body>
+</html>

@@ -1,0 +1,427 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para  a estória 3.21 - Painel do supervisor</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Servidores <pessoa>aqui</pessoa>
+	</blockquote>
+
+	<h2>Cenários de teste para a estória 3.21 - Painel do supervisor</h2>
+	<blockquote>Cenários onde devem ser apresentadas os elementos de tela conforme protótipo para o Painel do supervisor, bem como as mensagens de erro/impedimento.</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		
+		
+        <tr class="scenario" >
+			<td class='title'><b>C001</b><br><br>Falha- Clicar no botão Detalhar sem selecionar um ARC.</td>
+			<td><banco />
+			Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+			Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+			Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="dadoque/TestE3_21_Consulta_ARC_pendente_de_analise_perfil_supervisor_dadoque.html" class="include">aqui</a><br><br>
+			
+			
+			
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+					    <th>Ação</th>
+					    <th>DES_ID</th>
+					    <th>DES_NU_VERSAO</th>
+					    <th>DES_CD_OPER_ATUALZ</th>
+					    <th>DES_DH_ATUALZ</th>
+					    <th>DES_CD_MATRICULA</th>
+					    <th>ARC_ID</th>
+				    </tr>
+					<tr>
+					    <td>I</td>
+					    <td>1</td>
+					    <td>1</td>
+					    <td>deliq.sisliq101</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>96186186</td>
+					    <td>1</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>2</td>
+					    <td>1</td>
+					    <td>deliq.sisliq101</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>96186186</td>
+					    <td>2</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>3</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>3</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>4</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>4</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>5</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>5</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>6</td>
+					    <td>1</td>
+					    <td>deliq.sisliq101</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>96186186</td>
+					    <td>6</td>
+				    </tr>
+				     <tr>
+					    <td>I</td>
+					    <td>7</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>7</td>
+				    </tr>
+				     <tr>
+					    <td>I</td>
+					    <td>8</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>8</td>
+				    </tr>
+				     <tr>
+					    <td>I</td>
+					    <td>9</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>9</td>
+				    </tr>
+				</table>
+	        </td>
+
+            <td>
+	            <ul>
+				    <li><span class="sentence" method="detalharARC">Detalhar ARC "" com usuário logado como deliq.sisliq101</span></li>
+				</ul>
+            </td>
+			
+			<td>
+			<ul>
+			<li><span class="contains">Seleção de ARC é obrigatória.</span></li>
+			</ul>
+			</td>
+			
+			
+		
+			<tr class="scenario" >
+			<td class='title'><b>C002</b><br><br>Falha - Consulta não retorna dados (lista de ARCs vazia)</td>
+			<td><banco />
+			Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+			Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+			Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="dadoque/TestE3_21_Consulta_ARC_pendente_de_analise_perfil_supervisor_dadoque.html" class="include">aqui</a><br><br>
+			
+			
+	        <table class="prepare dados">
+				<caption>DES_DESIGNACAO_ARC</caption>
+				<tr>
+				    <th>Ação</th>
+				    <th>DES_ID</th>
+				    <th>DES_NU_VERSAO</th>
+				    <th>DES_CD_OPER_ATUALZ</th>
+				    <th>DES_DH_ATUALZ</th>
+				    <th>DES_CD_MATRICULA</th>
+				    <th>ARC_ID</th>
+			    </tr>
+				<tr>
+				    <td>I</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>deliq.sisliq110</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>65214892</td>
+				    <td>1</td>
+			    </tr>
+			    <tr>
+				    <td>I</td>
+				    <td>2</td>
+				    <td>1</td>
+				    <td>deliq.sisliq110</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>65214892</td>
+				    <td>2</td>
+			    </tr>
+			    <tr>
+				    <td>I</td>
+				    <td>3</td>
+				    <td>1</td>
+				    <td>deliq.sisliq101</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>96186186</td>
+				    <td>3</td>
+			    </tr>
+			    <tr>
+				    <td>I</td>
+				    <td>4</td>
+				    <td>1</td>
+				    <td>deliq.sisliq101</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>96186186</td>
+				    <td>4</td>
+			    </tr>
+			    <tr>
+				    <td>I</td>
+				    <td>5</td>
+				    <td>1</td>
+				    <td>deliq.sisliq110</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>65214892</td>
+				    <td>5</td>
+			    </tr>
+			    <tr>
+				    <td>I</td>
+				    <td>6</td>
+				    <td>1</td>
+				    <td>deliq.sisliq110</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>65214892</td>
+				    <td>6</td>
+			    </tr>
+			     <tr>
+				    <td>I</td>
+				    <td>7</td>
+				    <td>1</td>
+				    <td>deliq.sisliq110</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>65214892</td>
+				    <td>7</td>
+			    </tr>
+			     <tr>
+				    <td>I</td>
+				    <td>8</td>
+				    <td>1</td>
+				    <td>deliq.sisliq110</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>65214892</td>
+				    <td>8</td>
+			    </tr>
+			     <tr>
+				    <td>I</td>
+				    <td>9</td>
+				    <td>1</td>
+				    <td>deliq.sisliq101</td>
+				    <td>17/03/2014 00:00:00</td>
+				    <td>96186186</td>
+				    <td>9</td>
+			    </tr>
+			</table>
+			</td>
+		    <td>
+                <p>
+                    Consultar com o usuário logado na aplicação:<br>
+                    <br> Login: <b class="set" name="loginUsuarioLogado">deliq.sisliq114</b>
+                    <br> Matricula: <b class="set" name="matriculaUsuarioLogado">13579024</b>
+                       <br> Localização: <b class="set" name="localizacaoUsuarioLogado">"DELIQ/GLIQ1/GTBH1"</b>
+                </p>
+            </td>
+            <td>
+                <table class="verifyRows" name="arc"
+                    value="$THIS.consultaPainelSupervisor(loginUsuarioLogado, matriculaUsuarioLogado, localizacaoUsuarioLogado)">
+                    <tr>
+                        <th class="eq" value="$THIS.getES(arc)">ES</th>
+                        <th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+                        <th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+                        <th class="eq" value="$THIS.getRC(arc)">R/C</th>
+                        <th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+                    </tr>
+                </table>
+            </td>
+        </tr>		    
+		<tr class="scenario" >
+			<td class='title'><b>C003</b><br><br>Sucesso -Consulta retorna dados de acordo com tabelas "dadoque"</td>
+			<td><banco />
+			Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+			Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+			Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="dadoque/TestE3_21_Consulta_ARC_pendente_de_analise_perfil_supervisor_dadoque.html" class="include">aqui</a><br><br>
+			
+			
+			
+				<table class="prepare dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+					    <th>Ação</th>
+					    <th>DES_ID</th>
+					    <th>DES_NU_VERSAO</th>
+					    <th>DES_CD_OPER_ATUALZ</th>
+					    <th>DES_DH_ATUALZ</th>
+					    <th>DES_CD_MATRICULA</th>
+					    <th>ARC_ID</th>
+				    </tr>
+					<tr>
+					    <td>I</td>
+					    <td>1</td>
+					    <td>1</td>
+					    <td>deliq.sisliq101</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>96186186</td>
+					    <td>1</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>2</td>
+					    <td>1</td>
+					    <td>deliq.sisliq101</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>96186186</td>
+					    <td>2</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>3</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>3</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>4</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>4</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>5</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>5</td>
+				    </tr>
+				    <tr>
+					    <td>I</td>
+					    <td>6</td>
+					    <td>1</td>
+					    <td>deliq.sisliq101</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>96186186</td>
+					    <td>6</td>
+				    </tr>
+				     <tr>
+					    <td>I</td>
+					    <td>7</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>7</td>
+				    </tr>
+				     <tr>
+					    <td>I</td>
+					    <td>8</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>8</td>
+				    </tr>
+				     <tr>
+					    <td>I</td>
+					    <td>9</td>
+					    <td>1</td>
+					    <td>deliq.sisliq110</td>
+					    <td>17/03/2014 00:00:00</td>
+					    <td>65214892</td>
+					    <td>9</td>
+				    </tr>
+				</table>
+		</td>
+
+			<td>
+                <p>
+                    Consultar com o usuário logado na aplicação:<br>
+                    <br> Login: <b class="set" name="loginUsuarioLogado">deliq.sisliq101</b>
+                    <br> Matricula: <b class="set" name="matriculaUsuarioLogado">96186186</b>
+                </p>
+            </td>
+			<td>
+				<table class="verifyRows" name="arc"
+					value="$THIS.consultaPainelSupervisor(loginUsuarioLogado, matriculaUsuarioLogado)">
+					<tr>
+						<th class="eq" value="$THIS.getES(arc)">ES</th>
+						<th class="eq" value="$THIS.getAtividade(arc)">Atividade</th>
+						<th class="eq" value="$THIS.getGrupo(arc)">Grupo</th>
+						<th class="eq" value="$THIS.getRC(arc)">R/C</th>
+						<th class="eq" value="$THIS.getEstado(arc)">Estado</th>
+					</tr>
+					<tr>
+						<td>ABN AMRO</td>
+						<td>Atividade corporativa</td>
+						<td>Gestão do Risco de Contágio</td>
+						<td>C</td>
+						<td>Preenchido</td>
+		            </tr>
+					<tr>
+						<td>ABN AMRO</td>
+						<td>Atividade corporativa</td>
+						<td>Gestão do Risco de Crédito</td>
+						<td>C</td>
+						<td>Preenchido</td>
+		            </tr>
+		            <tr>
+						<td>ABN AMRO</td>
+						<td>Atividade corporativa</td>
+						<td>Risco de Contágio</td>
+						<td>R</td>
+						<td>Análise delegada</td>
+		            </tr>
+		            <tr>
+						<td>VOLKSWAGEN</td>
+						<td>Atividade de negócio</td>
+						<td>Risco de Contágio</td>
+						<td>R</td>
+						<td>Em análise</td>
+		            </tr>
+				</table>
+			    
+
+      
+      </table>
+	</body>
+</html>

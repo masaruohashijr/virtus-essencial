@@ -1,0 +1,32 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosAjusteIndices" cellspacing="0" cellpadding="1"
+		style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;"
+					colspan="2">Ajuste de índices</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr valign="top">
+				<td><span wicket:id="ajustesIndices"></span></td>
+			</tr>
+			<tr style="padding-left: " valign="top">
+				<td align="right">
+				<font style="color: red"><span
+						wicket:id="labelInfoNaoSalvasIndices">*Atenção informações não salvas.</span></font>
+				<input type="submit" class="botao"
+					value="Salvar informações" wicket:id="bttSalvarInformacoes"
+					style="width: 150px" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<wicket:fragment wicket:id="fragmentInput">
+		<input type="text" size="10" wicket:id="input" />
+		<span  wicket:id="label" ></span>
+		<font style="font-weight: bold; color: red"><span
+			wicket:id="asteriscoEdicao">*</span></font>
+	</wicket:fragment>
+
+
+</wicket:panel>

@@ -1,0 +1,157 @@
+<wicket:panel>
+
+    <table wicket:id="tDados" cellspacing="1" cellpadding="3" style="width: 90%">
+  		<!-- <thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Nova avaliação</th>
+			</tr>
+		</thead> -->
+		
+        <tbody wicket:id="paineilSupervisor">
+        
+        	<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Nova avaliação</th>
+			</tr>
+            
+           <tr class="fundoPadraoAClaro3">
+				<td class="nomeCampoEsquerdo" style="width: 25%;"></td>
+				<td class="nomeCampoEsquerdo">Nota</td>
+				<td class="nomeCampoEsquerdo">Em edição</td>
+				<td class="nomeCampoEsquerdo" colspan="2">Novo</td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Análise econômica-financeira</td>
+				<td><label wicket:id="idNotaAnefNova"></label></td>
+				<td><label wicket:id="idPesoAnefAtual"></label></td>
+				<td style="text-align: left;"><label wicket:id="idNovoPercentualAnef" /></td>
+				<td style="text-align: center;" rowspan="2"><input type="submit" title="Alterar"
+					wicket:id="bttAlterarPercentual" value="Alterar">&nbsp;</input></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Análise de riscos e controles</td>
+				<td><label wicket:id="idNotaMatrizNova"></label></td>
+				<td><label wicket:id="idPesoMatrizAtual"></label></td>
+				<td style="text-align: left;"><input type="text" maxlength="2" wicket:id="idNovoPercentualMatriz"
+					 onkeypress="return Onlynumbers(event)"  onkeyup="handleChange(this)" size="4"/> %</td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota final calculada</td>
+				<td colspan="4"><label wicket:id="idNotaFinalCalculadaNova"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota final refinada</td>
+				<td colspan="4"><label wicket:id="idNotaFinalRefinadaNova"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Nota final ajustada</td>
+                <td style="" colspan="4">
+                    <table style="width: 100%;">
+                    	<tr class="fundoPadraoAClaro3">
+                            <td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataRascunho">Última
+                                    alteração salva USUARIO em dd/MM/yyyy mm:ssh </label></td>
+                        </tr>
+                        <tr>
+				             <td><select wicket:id="idNovoGrauPreocupacao"></select>
+				             <a href="#" wicket:id="linkAjuda"><img wicket:id="ajuda"/></a>
+				             </td>
+				         </tr>
+                        <tr class="fundoPadraoAClaro3" wicket:id="wmcJustificativa">
+                            <td>
+                                <div>
+                                    <textarea wicket:id="idJustificativaNovaNota" contentEditable="true"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="fundoPadraoAClaro3">
+                            <td>
+                                <div align="right">
+                                    <label
+                                        style="color: red; font-size: 7pt; margin: auto; text-align: right; visibility: hidden;"
+                                        wicket:id="idAlertaDadosNaoSalvos"> Atenção texto não salvo. </label> <input
+                                        style="width: 130px;" type="submit" class="botao" value="Salvar informações"
+                                        wicket:id="bttSalvar" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%;"></td>
+                <td colspan="4"><input name="bttConfirmar" type="button" class="botao" id="bttConfirmar"
+                    wicket:id="bttConfirmar"
+                    value="Confirmar nova nota final e encaminhar para o gerente" style="width: 340px">
+                </td>
+            </tr>
+        </tbody>
+        
+        
+        <tbody wicket:id="painelGerente">
+        	<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Nova avaliação</th>
+			</tr>
+			
+            <tr class="fundoPadraoAClaro3">
+                <td style="text-align: right;" colspan="3"><label style="font-size: 7pt;" wicket:id="idDataEncaminhamento">Encaminhado por </label></td>
+            </tr>
+            
+           <tr class="fundoPadraoAClaro3">
+				<td class="nomeCampoEsquerdo" style="width: 25%;"></td>
+				<td class="nomeCampoEsquerdo">Nota</td>
+				<td class="nomeCampoEsquerdo">Peso</td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Análise econômica-financeira</td>
+				<td><label wicket:id="idNotaAnef"></label></td>
+				<td><label wicket:id="idPesoAnef"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Análise de riscos e controles</td>
+				<td><label wicket:id="idNotaMatriz"></label></td>
+				<td><label wicket:id="idPesoMatriz"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota final calculada</td>
+				<td colspan="2"><label wicket:id="idNotaFinalCalculada"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota final refinada</td>
+				<td colspan="2"><label wicket:id="idNotaFinalRefinada"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3" wicket:id="linhaNotaAjustada">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Nota final ajustada</td>
+                <td style="" colspan="2">
+                    <table style="width: 100%;" id="tPainelGrauPreocupacaoVigente">
+                        <tr>
+                            <td><label style="font-weight: bold;" wicket:id="idNotaFinalAjustada"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label wicket:id="idJustificativaNotaFinalAjustada"></label></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" style="width: 25%;"></td>
+                <td colspan="4"><input name="bttConfirmarGerente" type="button" class="botao" id="bttConfirmarGerente"
+                    wicket:id="bttConfirmarGerente"
+                    value="Confirmar nova nota final e atualizar Perfil de Risco" style="width: 340px">
+                </td>
+            </tr>
+	</tbody>
+	</table>
+	    
+    <div wicket:id="modalAjuda"/>
+    
+</wicket:panel>

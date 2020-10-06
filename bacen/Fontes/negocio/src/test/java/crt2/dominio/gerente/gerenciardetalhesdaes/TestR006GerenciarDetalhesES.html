@@ -1,0 +1,702 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>R006 - Gerenciar detalhes da ES pelo gerente</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+		</head>
+
+	<body>
+		<h1>Cenários da estória 'Gerenciar detalhes da ES pelo gerente'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>16/08/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+			</tr>
+			
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			As regras da estória encontram-se <a href="../index.html#gerenciarDetalhesES">aqui</a>.
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		     <li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq102"</span></strong>.</li>
+		     <li>Data/hora atual do sistema: <strong><dataHoraAtual valor="12/06/2015 00:01:00">12/06/2015 00:01:00</dataHoraAtual></strong></li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#confirmarGrauPreocupacaoNovoCalculo">validar a confirmação do novo Grau de preocupação</a>.</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT001]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: não há registro de evento).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C001GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C001GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT002]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: há registro de evento com data anterior).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C002GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C002GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT003]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: há registro de evento com data atual e subevento diferente do  que está sendo publicado).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C003GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C003GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT004]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: há registro de evento com data de hoje e subtipo igual ao  que está sendo publicado).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C004GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C004GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT005]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: ES 'default' do consolidado junto a ES's sem perfil de risco).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C005GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C005GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT006]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: ES 'default' do consolidado junto a ES's com perfil de risco).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C006GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo Grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C006GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT007]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: ES 'não default' do consolidado junto a ES 'default' com perfil de risco).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C007GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo Grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C007GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT008]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: ES 'não default' do consolidado junto a ES 'não default' com perfil de risco).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C008GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C007GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT009]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: ES 'não default', onde somente ela possui perfil de risco dentro do consolidado).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C009GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C009GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT010]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (no APS: ES  sem consolidado).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C010GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C010GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT011]</a></b> - Confirmar novo Grau de preocupação e atualizar o perfil de risco (ES não faz parte do APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C011GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C011GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b><a name="CT001">[CT012]</a></b> - Confirmar remoção de ajuste e atualizar o perfil de risco (ES não faz parte do APS).</td>
+					</tr>
+					<tr>
+						<th>Dadoque</th>
+					</tr>
+					<tr>
+					    <td><ul><li><banco/>Os dados encontram-se <a href="TestR006C012GerenciarDetalhesES-DadoQue.html" class="include">aqui</a>.</li></ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<p>Confirmar novo grau de preocupação conforme tabela abaixo:</p>
+							<table>
+									<tr>
+										<th>Entradas</th>
+									</tr>
+								<tr>
+									<th>Ciclo</th>
+								</tr>
+								<tr>
+									<td><span class="set" name="ciclo" converter="Integer">2</span></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:<br>
+								<span class="execute" value="$THIS.confirmar(ciclo)"></span>
+								<span class="eq" value="$THIS.getMensagem()">Atualização da Nota final da ES no perfil de risco realizada com sucesso.</span></li>
+								<li>Os dados alterados estão <a href="TestR006C012GerenciarDetalhesES-Porfim.html" class="include">aqui</a>.</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

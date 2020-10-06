@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosNotaANEF" cellspacing="0" cellpadding="3" style="width: 90%" class="fundoPadraoAClaro3">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5"><label
+					wicket:id="idNomeParamentroANEF"></label></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" colspan="2" style="width: 25%;">Nota vigente do ANEF</td>
+				<td colspan="3"><label wicket:id="idNotaVigenteANEF"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" rowspan="2" style="vertical-align: middle; text-align: right;">Nova nota inspetor</td>
+				<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+				<td wicket:id="idNotaCalculadaANEFInspetor" colspan="3"></td>
+			</tr>
+			<wicket:enclosure child="idNotaANEFAjustadaInspetor">
+				<tr class="fundoPadraoAClaro3">
+					<td style="border-left: 1px solid white;" class="nomeCampo">Ajuste</td>
+					<td colspan="3"><label wicket:id="idNotaANEFAjustadaInspetor"></label> <br> <label
+						wicket:id="idJustificativaInspetorANEF"></label></td>
+				</tr>
+			</wicket:enclosure>
+			<tr></tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" rowspan="2" style="vertical-align: middle; text-align: right;">Nova nota supervisor</td>
+				<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+				<td colspan="3" wicket:id="idNotaCalculadaANEFSupervisor" style=""></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="border-left: 1px solid white; vertical-align: middle; text-align: right;">Ajuste</td>
+				<td>
+					<table style="width: 100%;">
+						<tr>
+							<td><select wicket:id="idNovaNotaANEFAjustadaSupervisor"></select></td>
+						</tr>
+						<tbody wicket:id="wmcJustificativaAnef">
+							<tr>
+								<td>
+									<div>
+										<textarea wicket:id="idJustificativaSupervisorANEF" id="idJustificativaSupervisorANEF" contentEditable="true"></textarea>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tr>
+							<td>
+								<div align="right">
+									<label style="color: red; font-size: 7pt; margin: auto; text-align: right; visibility: hidden;"
+										wicket:id="idAlertaDadosNaoSalvosAvaliacaoANEF"> Atenção informações não salvas. </label> <input type="submit"
+										class="botao" wicket:id="bttSalvarNovaNotaAjusteANEF" value="Salvar" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+
+				<td style="width: 25%;"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</wicket:panel>

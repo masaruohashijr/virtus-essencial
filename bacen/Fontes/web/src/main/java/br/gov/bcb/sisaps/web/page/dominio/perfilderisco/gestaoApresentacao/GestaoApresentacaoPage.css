@@ -1,0 +1,29 @@
+div.main table th {
+    width: 250px;
+}
+
+div.main table input[type="button"] {
+    margin: 3px 0;
+}
+
+div.main table p.log {
+    text-align: right;
+    font-size: 9px;
+    margin: 5px 0;
+    width: 670px;
+}
+
+div.main table div.editor {
+    margin: inherit;
+    width: 650px;
+}
+
+div.main table div.right {
+    text-align: right;
+    width: 671px;
+}
+
+    div.main table div.right span.alert {
+        color: #ff0000;
+        font-size: 10px;
+    }

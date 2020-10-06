@@ -1,0 +1,366 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Gestão da Apresentação e Apresentação Corec</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+<h1>Gestão da Apresentação e Apresentação Corec</h1>
+<blockquote>
+	O módulo da apresentação corec prevê a funcionalidade Gestão da Apresentação e o gerador de apresentação em html.
+</blockquote>	
+<h2>Sumário</h2>
+<BLOCKQUOTE>
+<DIV id=sumario></DIV>
+</BLOCKQUOTE>
+
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+
+<h2><a name="gestaoApresentacao" class=menu >Gerenciar apresentação</a></h2>
+  <ul>
+    <li>Regras gerais:</li>
+	<ul>
+  		<li>Funcionalidade acessada através da tela Perfil de Risco do Supervisor - Seção Outras informações - Comando <b>Gerenciar apresentação</b></li>
+  		<LI>Utilizar o protótipo, telas 
+			<A href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/PerfilRisco/perfil_risco_supervisor_atual_atual.html">Perfil de risco atual</A> e
+			<A href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/GestaoApresentacao/gestao_apresentacao.html">Gestão da Apresentação</A>. 
+  		</LI>
+  		<li>Disponível apenas para usuários com perfil de Supervisor</li>
+  		<li>Disponível apenas para o ciclo em andamento</li>
+  		<li>O versionamento dos dados da apresentação por ciclo ocorre quando o ciclo muda do estado corec para o estado pós-corec.</li>
+  	</ul>
+  	<ul>	
+  		<li>Na Gestão da Apresentação, além da Seção Dados do ciclo, há três tipos de seções
+  			<ul>
+  				<li>Seções para anexar arquivos de imagens - Tipo Anexo</li>
+  				<li>Seções para inserir campos de texto - Tipo Texto</li>
+  				<li>Seções para inserir campos de texto e anexar arquivos de imagens - Tipo Texto/Anexo</li>
+  			</ul>
+  		</li>
+  	</ul>	
+  		<li>Dispoção das seções na ordem apresentada no protótipo:</li>
+  			<ul>
+  				<li><b>Dados do ciclo</b></li>
+  					<ul>
+  					  <li>Padrão apresentado no perfil de risco.</li>
+  					</ul>
+  				
+  				<li><b>Evolução das avaliações</b> - Tipo Anexo</li>
+  				<li><b>Perfil</b> - Tipo Texto com os campos:</li>
+  					<ul>
+  					    <li>Segmento</li>
+						<li>Ranking</li>
+						<li>Autorizações</li>
+						<li>Dealer</li>
+						<li>Rating - Tipo Anexo</li>
+					</ul>
+  				<li><b>Estrutura Jurídica, Societária e Organizacional</b> - Tipo Anexo</li>
+  				<li><b>Grupo Econômico</b> - Tipo Anexo</li>
+  				<li><b>Organograma Funcional</b> - Tipo Anexo</li>
+  				<li><b>Informações de Outros Departamentos</b> - Tipo Texto com os campos:</li>
+  					<ul>
+  					    <li>Desig</li>
+  						<li>Deban</li>
+  						<li>Decon</li>
+  						<li>Deati</li>
+  						<li>Deorf</li>
+  						<li>Desuc</li>
+  						<li>Outros</li>
+  					</ul>
+  				<li><b>Informações de Outros Órgãos</b> - Tipo Texto com os campos:</li>
+  					<ul>
+  					     <li>CVM</li>
+  						<li>Receita Federal</li>
+  						<li>Outros</li>
+  					</ul>
+  				
+  				<li><b>Estratégias</b> - Tipo Texto/Anexo</li>
+  				<li><b>Análise econômico-financeira</b> - Tipo Anexo</li>
+  				<li><b>Evolução da análise econômico-financeira</b> - Tipo Anexo</li>
+  				<li><b>Características das Unidades/Atividades</b> - Tipo Texto/Anexo</li>
+  				<li><b>Evolução da análise qualitativa</b> - Tipo Anexo</li>
+  				<li><b>Outras proposições</b> - Tipo Texto/Anexo</li>
+  				<li><b>Equipe</b> - Tipo Texto com campo único</li>
+  			</ul>
+<li>Regras para os tipos de seções:</li>
+<ul> 			
+<li>Seções com Anexo:</li>
+	<ul>
+		<li>Campo <b>Anexo</b> com caixa de texto e comando <b>Procurar</b> de acordo com o padrão usado na aplicação:</li>
+			<ul>
+			<li>Permite incluir um mais anexos</li>
+			<li>Permite remover um mais anexos</li>
+			<li>Formato: apenas imagem</li>
+			<li>Não é obrigatório</li>
+			<li>Usar mensagem padrão da aplicação para alertar o usuário sobre a alterações de dados</li>
+			<li>Exibir mensagem com Usuário data e hora da última alteração para os campos <br>
+				Exemplo: Última alteração salva ADRIANO GAVE DA SILVA em 01/04/2014 08:30h.</li>
+			</ul>
+		</li>
+		<li>Comandos:</li>
+		<ul>
+		    <li><b>Anexar:</b> Anexa o arquivo informado na versão atual do perfil de risco do ciclo em andamento. Atualiza usuário, data e hora da alteração.</li>
+			<li><b>Comando Excluir:</b> Exclui o arquivo informados na versão atual do perfil de risco do ciclo em andamento. Atualiza usuário, data e hora da alteração.</li>
+		</ul>
+	</ul>
+<li>Seções do tipo Texto:</li>
+    <ul>
+		<li>Campos:</li>
+		<ul>
+			<li>Usar mensagem padrão da aplicação para alertar o usuário sobre a alterações de dados.</li>
+			<li>Exibir mensagem com Usuário data e hora da última alteração para os campos. <br>
+				Exemplo: Última alteração salva ADRIANO GAVE DA SILVA em 01/04/2014 08:30h.</li>
+			<li>Os campos admitem valor nulo ou texto com formatação padrão da aplicação.</li>
+		</ul>
+      <li>Comando:</li>
+	<ul>
+		<li>Salvar informações:</li>
+			<ul>	
+			<li>Salva os valores informados no perfil de risco do ciclo em andamento. Atualiza usuário, data e hora da alteração.</li>
+			<li>Quando o respectivo campo tiver texto editado e não salvo, exibir mensagem em destaque na cor vermelhor:<br>
+				Atenção informações não salvas</li>
+			</ul>
+	</ul>
+</ul> 
+</ul>
+</ul>
+	<blockquote>
+		 <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/apresentacao/dadoQueTeste/TestApresentacao.html">Cenários de testes manuais</a>
+	</blockquote>
+ 
+ <h2><a name="apresentacaoCorecHTML"  class=menu name=corec>Apresentação Corec em html</A> </h2>
+	<ul>
+  		<li>Utilizar o 
+			<A href="Modelo_Apresentação_COREC_sistema.pptx">Modelo da Apresentação ao COREC</A> e o 
+			<A href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/Apresentacao/slide0.html">Protótipo em html</A>. 
+  		</li>  		
+    	<li>Regras gerais:</li>
+  			<ul>
+  				<li>Apresentação gerada em html, sendo um arquivo por slide, podendo ter rolagem vertical.</li>
+  				<li>Há slides que não são obrigatórios.</li>
+  				<li>Não exibir o campo quando não houver dados informados pelo usuário para o mesmo.</li>
+  				<li>Não exibir o slides quando não houver dados informados pelo usuário para o mesmo.</li>
+		<li>Funcionalidade acessada através das telas:</li>
+			<ul>
+			    <li>Perfil de Risco - Seção Outras informações - Comando <b>Apresentação</b> (link)</li>
+				<li>Gestão Corec - Seção Apresentação - Comando <b>Apresentação</b> (link)</li>
+			</ul>
+		</li>
+  		<li>Disponível para usuários com perfil de Supervisor, perfil Consulta ou perfil Comitê, de modo que:
+  			<ul>
+  				<li>perfil Consulta: acessa a apresentação 
+  					<ul>
+  					   <li>na versão corec do perfil de risco (pelo Perfil de risco de Consulta), ciclo no estado pós-corec ou encerrado.</li>
+  					</ul>
+  				</li>
+  				<li>perfil Supervisor: acessa a apresentação 
+  					<ul>
+  					    <li>na versão corec do perfil de risco (pelo Perfil de risco do Supervisor), ciclo no estado pós-corec ou encerrado.</li>
+  						<li>na versão atual do perfil de risco (pelo Perfil de risco de Supervisor), ciclo no estado em andamento ou corec.</li>
+  					</ul>
+  				</li>
+  				<li>perfil Comitê: acessa a apresentação 
+  					<ul>
+  					   <li>na versão atual do perfil de risco (pela Gestão Corec) com o ciclo no estado corec.</li>
+  					</ul>
+  				</li>
+  			</ul>
+  		</li>
+  			</ul>
+  		<li>Layout:</li>
+  		<ul>	
+  		<li>Layout com cabeçalho e rodapé 
+  			(ver <A href="Modelo_Apresentação_COREC_sistema.pptx">Modelo da Apresentação ao COREC</A> e  
+  			<A href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Supervisor/Apresentacao/slide0.html">Protótipo em html</A>).</li>
+  		<ul>
+  			<li>Rodapé com links para:</li>
+  				<ul><li>Índice</li>
+  					<li>Avançar slide</li>
+  					<li>Voltar slide</li>
+  				</ul>
+  			</li>
+  		</ul>	
+  		 <li>Há três tipos de slides:</li>
+  			<ul>
+  				<li>Slides que exibem arquivos de imagens - Tipo Anexo</li>
+  				<li>Slides que exibem dados campos de texto - Tipo Texto</li>
+  				<li>Slides que exibem textos contantes - Tipo Fixo</li>
+  			</ul>
+  		<li>Dispor os slides na ordem apresentada no modelo:</li>
+  			<ul>
+  				<li>Slide inicial com instruções para a apresentação</li>
+  				<li>Índice com links para os slides da apresentação</li>
+  			</ul>
+  			<ol>
+  				<li><b>Dados do ciclo e dados da ES</b> - Tipo Texto (Origem Perfil de risco - Seção Ciclo e Perfil de risco - Seção Detalhes da ES)
+  					<ul><li>Slide obrigatório</li>
+  						<li>Neste slide, o nome do supervisor é sempre o supervisor titular.</li>
+  						</ul>
+  				</li>
+  				<li><b>Evolução das avaliações</b> - Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Trabalhos realizados no ciclo</b> - Tipo Texto (Origem Perfil de risco - Seção Ações no ciclo)
+  					<ul><li>Não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Perfil</b> - Tipo Anexo e Tipo Texto com os campos (Origem Gestão da Apresentação - Seção com mesmo nome):
+  					<ul>
+  						<li>Campos:
+  							<ul><li>Segmento</li>
+								<li>Ranking</li>
+								<li>Autorizações</li>
+								<li>Dealer</li>
+								<li>Rating - Tipo Anexo</li>
+							</ul>
+						</li>
+						<li>Slide não é obrigatório</li>
+						<li>Campos não são exibidos quando não forem informados pelo usuário.</li>
+						<li>Os slides dos anexos do 'Rating' serão exibidos após o slide dos campos de texto.</li>
+					</ul>
+  				</li>
+  				<li><b>Estrutura Jurídica, Societária e Organizacional</b> - Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Grupo Econômico</b> - Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Organograma Funcional</b> - Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Informações de Outros Departamentos</b> - Tipo Texto com os campos (Origem Gestão da Apresentação - Seção com mesmo nome):
+  					<ul>
+  						<li>Campos:
+  							<ul><li>Desig</li>
+  								<li>Deban</li>
+  								<li>Decon</li>
+  								<li>Deati</li>
+  								<li>Deorf</li>
+  								<li>Desuc</li>
+  								<li>Outros</li>
+  							</ul>  
+  						</li>
+  						<li>Slide não é obrigatório</li>
+						<li>Campos não são exibidos quando não forem informados pelo usuário.</li>
+					</ul>
+  				</li>
+  				<li><b>Informações de Outros Órgãos</b> - Tipo Texto com os campos (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul>
+  						<li>Campos:  				
+	  					<ul><li>CVM</li>
+	  						<li>Receita Federal</li>
+	  						<li>Outros</li>
+	  					</ul>
+	  					</li>
+  						<li>Slide não é obrigatório</li>
+						<li>Campos não são exibidos quando não forem informados pelo usuário.</li>
+					</ul>
+  				</li>
+  				<li><b>Estratégias</b> - Tipo Texto com campo único e Tipo Anexo(Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul>
+  						<li>Exibe primeiro o slide do Tipo Texto e depois os slides com os anexos (1 slide para cada anexo)</li>
+  						<li>Slide não é obrigatório</li>
+  					</ul>
+  				</li>
+  				<li><b>Situação "Em Acompanhamento Especial" / "Em Atenção"</b> (Origem Perfil de Risco - Seção Detalhes da ES - Campo Situação)
+  					<ul>
+  						<li>Não é obrigatório</li>
+  						<li>ver regra  no modelo</li>
+  						<li>Essa informação está contida no "Perfil de Risco" e deverá constar da apresentação (Situação e justificativa) apenas se no campo "Situação" 
+  						do Perfil de Risco tiver sido assinalada alguma opção diferente de "Normal"
+  						</li>
+  					</ul>
+  				</li>
+  				<li><b>Análise Econômico-Financeira</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Posição financeira e resultados</b> - Tipo Texto (Origem Perfil de Risco - Seção Quadro da posição financeira - Seção Quadro)
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Síntese da análise econômico-financeira</b> - Tipo Texto (Origem Perfil de Risco - Seção Análise econômico-financeira)
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Análise econômico-financeira</b> - Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Evolução da análise econômico-financeira</b> - Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Votação da Nota da Análise Econômico-Financeira</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Análise de Riscos e Controles</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Identificação das unidades/atividades</b> - Tipo Texto (Origem Perfil de Risco - Edição de Matriz de Riscos e Controles - Seções Blocos e Atividades)
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Características das unidades/atividades</b> - Tipo Texto com campo único e Tipo Anexo(Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul>
+  						<li>Exibe primeiro o slide do Tipo Texto e depois os slides com os anexos (1 slide para cada anexo)</li>
+  						<li>Slide não é obrigatório</li>
+  					</ul>
+  				</li>
+  				<li><b>Síntese da Análise de Riscos e Controles</b> - Tipo Texto (Origem Perfil de Risco - Seção Síntese de Risco)
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Notas dos ARCs</b> - Tipo Texto (Origem Perfil de Risco - Seção Análise de Riscos e Controles)
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Evolução da análise qualitativa</b> - Tipo Anexo
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  				<li><b>Votação da Nota da Análise de Riscos e Controles</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Conclusão</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>  	
+  				<li><b>Conclusão sobre a Instituição</b> - Tipo Texto (Origem Perfil de Risco - Seção Detalhes da ES, Seção Matriz de riscos e controle, Seção Análise econômico financeira )
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Votação da Nota Final</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Perspectiva Sobre a Instituição</b> - Tipo Texto (Origem Perfil de Risco - Seção Detalhes da ES )
+  					<ul><li>Slide obrigatório</li>
+  						<li>No primeiro ciclo de supervisão, exibe a perspectiva no SRC anterior em branco.</li>
+  						<li>A partir do segundo ciclo de supervisão, a perspectiva no SRC anterior é aquela da versão corec anterior (ciclo em pós-corec ou encerrado).</li>
+  					</ul>
+  				</li>
+  				<li><b>Votação da Perspectiva</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Outras proposições</b> - Tipo Texto com campo único e Tipo Anexo (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul>
+  						<li>Exibe primeiro o slide do Tipo Texto e depois os slides com os anexos (1 slide para cada anexo)</li>
+  						<li>Slide não é obrigatório</li>
+  					</ul>
+  				</li>
+  				<li><b>Votação de Outras Proposições</b> - Tipo Fixo
+  					<ul><li>Slide obrigatório</li></ul>
+  				</li>
+  				<li><b>Equipe</b> - Tipo Texto com campo único (Origem Gestão da Apresentação - Seção com mesmo nome)
+  					<ul><li>Slide não é obrigatório</li></ul>
+  				</li>
+  			</ol>
+  			</ul>
+  			</ul>
+	<blockquote>
+		 <a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/apresentacao/dadoQueTeste/TestApresentacao.html">Cenários de testes manuais</a>
+	</blockquote>
+ 
+</BODY>
+</HTML>

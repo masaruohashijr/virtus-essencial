@@ -1,0 +1,41 @@
+<wicket:extend>
+    <form wicket:id="form">
+      
+			<table  cellspacing="0" cellspading="3" style="width: 100%"  id="idTabela">
+			<thead>
+				  <tr class="fundoPadraoAEscuro2" >
+                        <th colspan="4" style="text-align: left"><span wicket:id="idTitulo"></span></th>
+                    </tr>
+			</thead>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 35%;">Equipe</td>
+				<td style=""><label wicket:id="idEquipe"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 35%;">Supervisor titular</td>
+				<td style=""><label wicket:id="idSupervisorTitular"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 35%;">Prioridade</td>
+				<td style=""><select wicket:id="idPrioridade"></select></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 35%;">Corec previsto</td>
+				<td style=""><Label wicket:id="idCorecPrevisto">ES não possui ciclo</Label></td>
+			</tr>
+             
+             
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 35%;">Ciclo</td>
+				<td style=""><select wicket:id="idCiclo"></select></td>
+			</tr>
+			</table>
+		
+		<br/>
+			<div class="centralizado">
+					<input type="button" class="botao" wicket:id="bttSalvar" title=" " style=" " value=" "/>
+					<input type="button" class="botao" wicket:id="bttVoltar" title="Voltar para a p&aacute;gina anterior" value="Voltar">
+			</div>
+	</form>
+</wicket:extend>

@@ -1,0 +1,62 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<wicket:panel>
+
+    <table id="tPainelGrauPreocupacao" cellspacing="1" cellpadding="3" style="width: 100%">
+  		<thead wicket:id="wmcMostrarCabecalho">
+  			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="3">Nota final</th>
+			</tr>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="3">Avaliação vigente</th>
+			</tr>
+		</thead>
+        <tbody>
+        	<tr class="fundoPadraoAClaro3" wicket:id="wmcMostrarAtualizacao">
+                <td style="text-align: right;" colspan="3"><label style="font-size: 7pt;" wicket:id="idDataAtualizacao">Atualizado em dd/MM/yyyy </label></td>
+            </tr>
+            
+           <tr class="fundoPadraoAClaro3">
+				<td class="nomeCampoEsquerdo" style="width: 25%;"></td>
+				<td class="nomeCampoEsquerdo">Nota</td>
+				<td class="nomeCampoEsquerdo">Peso</td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Análise econômica-financeira</td>
+				<td><label wicket:id="idNotaAnef"></label></td>
+				<td><label wicket:id="idPesoAnef"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Análise de riscos e controles</td>
+				<td><label wicket:id="idNotaMatriz"></label></td>
+				<td><label wicket:id="idPesoMatriz"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota final calculada</td>
+				<td colspan="2"><label wicket:id="idNotaFinalCalculada"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota final refinada</td>
+				<td colspan="2"><label wicket:id="idNotaFinalRefinada"></label></td>
+			</tr>
+			
+			<tr class="fundoPadraoAClaro3" wicket:id="linhaNotaAjustada">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Nota final ajustada</td>
+                <td style="" colspan="2">
+                    <table style="width: 100%;" id="tPainelGrauPreocupacaoVigente">
+                        <tr>
+                            <td><label style="font-weight: bold;" wicket:id="idNotaFinalAjustada"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label wicket:id="idJustificativaNotaFinalAjustada"></label></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>
+</html>

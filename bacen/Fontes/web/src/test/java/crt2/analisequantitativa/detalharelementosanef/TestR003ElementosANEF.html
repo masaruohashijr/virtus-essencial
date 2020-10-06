@@ -1,0 +1,1135 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Verificar que campos exibir para o sub-grupo 'Análise do supervisor para o elemento '<<Nome do
+        elemento>>'</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+    <h1>Cenários de teste para a estória Exibir elementos do ANEF</h1>
+
+    <span id="index"></span>
+
+    <h2>Histórico</h2>
+
+    <table class="exemplos historico">
+        <tr>
+            <th>Versão</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+        </tr>
+        <tr>
+            <td>1.0</td>
+            <td>05/03/2015</td>
+            <td>Christiano Nogueira Ferreira</td>
+            <td>Especificação dos testes automatizados</td>
+        </tr>
+        <tr>
+            <td>2.0</td>
+            <td>15/06/2015</td>
+            <td>David Nascimento</td>
+            <td>Adicionando caso de teste (C010) para contemplar a tela de detalhes do ANEF (Estado: 'Preenchido';
+                Perfil: 'Gerente').</td>
+        </tr>
+    </table>
+
+    <span id="cenarios"></span>
+
+    <h2>Regras aplicáveis</h2>
+
+    <blockquote>
+        Para as regras da estória clique <a
+            href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#detalharElementosANEF">aqui</a>.
+    </blockquote>
+
+    <h2>Premissas iniciais</h2>
+
+    <ul>
+        <li>A lista de servidores foi <a
+            href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+            class="include">carregada</a>.
+        </li>
+    </ul>
+
+    <h2>Cenários</h2>
+
+    <blockquote>
+        <a href="indexWeb.html#verificarCamposAnaliseSupervisorElementosANEF">Cenários para validar que campos
+            exibir para o sub-grupo 'Análise do supervisor para o elemento '<i>&lt;&lt;Nome do elemento&gt;&gt;</i>'
+        </a>.
+    </blockquote>
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C001] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no
+                            status: 'Previsto'.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES10">GOLDMAN SACHS</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF41" sleep="3000"><b>Solvência
+                                            Patrimonial<b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>O código da tela deve ser: <span class="contains"><b>[APSFW0212]</b></span></li>
+                                <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                            elemento "Suficiência"</b></span> não é exibida
+                                </li>
+                                <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                            elemento "Qualidade"</b></span> não é exibida
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C002] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no
+                            status: 'Designado'.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF35"><b>Resultados</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                        elemento "Qualidade"</b></span> não é exibida
+                        </li> <span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor75']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform"
+                                                style="text-align: left; border-bottom: 0px; width: 437px"
+                                                id="idTituloElementoSupervisor75">Análise do supervisor para o
+                                                elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente75']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente2ba">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente2bb">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo2bc">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise
+                                                                vigente</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="idPainelJustificativaAnalise2bd"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente2be">Análise do supervisor
+                                                    sobre o elemento 'Suficiência'</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C003] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no
+                            status: 'Em edição'.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES7">SAFRA</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF20"><b>Resultados</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                        elemento "Qualidade"</b></span> não é exibida
+                        </li> <span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor45']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th>Análise do supervisor para o elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente45']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente2df">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente2e0">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo2e1">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise
+                                                                vigente</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="idPainelJustificativaAnalise2e2"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente2e3">Análise do supervisor
+                                                    sobre o elemento 'Suficiência'</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C004] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no
+                            status: 'Em análise' (com delegação).</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES8">PORTO SEGURO</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF30"><b>Solvência
+                                            Patrimonial</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td><span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor61']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"
+                                                id="idTituloElementoSupervisor61">Análise do supervisor para o
+                                                elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacao2bb">Última alteração por ROBERTO SANTOS
+                                                    ALENCAR em 11/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%"></td>
+                                            <td width="90%"><div style="text-align: left;">
+                                                    <strong id="idNovaAnalise2bc">Nova análise</strong>
+                                                </div></td>
+                                            <td width="5%"></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td><div></div></td>
+                                            <td><label id="idNovaAvaliacao2bd">Análise do supervisor sobre
+                                                    o elemento 'Suficiência'</label></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente61']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente2be">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div id="idGrupoExpansivelAnaliseVigente2bf">
+                                                    <div align="center">
+                                                        <div class="thform">
+                                                            <span id="controle2c1"><a
+                                                                href="./page?5-1.ILinkListener-formulario-idPainelElementosAnefs-elementos-0-tDadosElementos-idPainelAnaliseSupervisorItem-idAvaliacaoElementoSupervisorVigente-idGrupoExpansivelAnaliseVigente-divGrupo-controle-link"
+                                                                id="idGrupoAnaliseVigente_Suficiência"><img
+                                                                    id="imagem2c2"
+                                                                    src="srunnerw1777961311031621581/mais-ver-1427986883206_1.gif"></a></span>
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise
+                                                                vigente</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="idGrupoExpansivelAnaliseVigente61" style="display: none"></div>
+                                            </td>
+
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C005] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no
+                            status: 'Análise delegada'.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF33"><b>Liquidez</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                        elemento "Suficiência"</b></span> não é exibida
+                        </li>
+                            <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                        elemento "Qualidade"</b></span> não é exibida
+                        </li>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C006] - </b>Verificar a seção para ANEF cujo rascunho encontra-se no
+                            status: 'Analisado'.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES9">NATIXIS BRASIL S/A</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF34"><b>Solvência
+                                            Patrimonial</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td><span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor73']">
+                                <table cellspacing="0" cellpadding="3" style="width: 90%">
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"
+                                                id="idTituloElementoSupervisor73">Análise do supervisor para o
+                                                elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3" colspan="6">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacao2b3">Analisado por ROBERTO SANTOS ALENCAR em
+                                                    16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%"></td>
+                                            <td width="90%"><div style="text-align: left;">
+                                                    <strong id="idNovaAnalise2b4">Nova análise</strong>
+                                                </div></td>
+                                            <td width="5%"></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td><div></div></td>
+                                            <td><label id="idNovaAvaliacao2b5">Análise do supervisor sobre
+                                                    o elemento 'Suficiência'</label></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C007] - </b>Verificar a seção para ANEF no status: 'Concluído' (ciclo
+                            em "Corec") para perfil supervisor.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF5"><b>Liquidez</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td><span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor9']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform"
+                                                style="text-align: left; border-bottom: 0px; width: 574px"
+                                                id="idTituloElementoSupervisor9">Análise do supervisor para o
+                                                elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente9']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente2b4">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente2b5">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo2b6">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="idPainelJustificativaAnalise2b7"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente2b8">Análise do supervisor
+                                                    sobre o elemento 'Suficiência'</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C008] - </b>Verificar a seção para ANEF no status: 'Concluído' (ciclo
+                            em "Corec") e perfil inspetor.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/inspetor/painelinspetor">inicio/painelinspetor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF5"><b>Liquidez</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td><span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor9']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform"
+                                                style="text-align: left; border-bottom: 0px; width: 542px"
+                                                id="idTituloElementoSupervisor9">Análise do supervisor para o
+                                                elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente9']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente270">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente271">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo272">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="idPainelJustificativaAnalise273"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente274">Análise do supervisor
+                                                    sobre o elemento 'Suficiência'</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+    <table class="scenario">
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C009] - </b>Verificar a seção para ANEF de perfil de risco anterior.</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue-C009.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/inspetor/painelinspetor">inicio/painelinspetor</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                                <li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">03/12/2014</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF3"><b>Solvência
+                                            Patrimonial</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td><span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor5']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform"
+                                                style="text-align: left; border-bottom: 0px; width: 436px"
+                                                id="idTituloElementoSupervisor5">Análise do supervisor para o
+                                                elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente5']">
+                               <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente1ae">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente1af">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo1b0">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="idPainelJustificativaAnalise1b1"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente1b2">justificativa do
+                                                    supervisor; elemento suficiência</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor6']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"
+                                                id="idTituloElementoSupervisor6">Análise do supervisor para o
+                                                elemento "Qualidade"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <span class="compareTable" by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente6']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                                id="idDataAvaliacaoVigente1c3">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente1c4">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo1c5">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="idPainelJustificativaAnalise1c6"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente1c7">justificativa do
+                                                    supervisor; elemento qualidade</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+
+
+    <table class="scenario" >
+        <tr>
+            <td>
+                <table class="exemplos">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C010] - </b>Verificar as seções para ANEF cujo rascunho encontra-se
+                            no status: 'Preenchido' (perfil: gerente).</td>
+                    </tr>
+
+                    <tr>
+                        <th>Dado que</th>
+                    </tr>
+
+                    <tr>
+                        <td><banco />
+
+                            <ul>
+                                <li>Os dados para este cenário encontram-se <a
+                                    href="../detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+                                    class="include">aqui</a>.
+                                </li>
+                            </ul></td>
+                    </tr>
+
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+                                <li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+                                <li>Clicar na ES: <span class="clickon" by="id:link_ES7">SAFRA</span></li>
+                                <li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF22" sleep="2000"><b>Solvência
+                                            Patrimonial</b></span></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+
+                    <tr>
+                        <td><span class="compareTable" by="xpath://table[@id='tDadosAnaliseElementoSupervisor47']">
+                                <table>
+                                    <thead>
+                                        <tr class="fundoPadraoAEscuro3">
+                                            <th>Análise do supervisor para o elemento "Suficiência"</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </span> <br> <span class="compareTable"
+                            by="xpath://table[@id='idAvaliacaoElementoSupervisorVigente47']">
+                                <table>
+                                    <tbody>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td style="text-align: right;"><label style="font-size: 7pt;"
+                                               id="idDataAvaliacaoVigente1bf">Analisado por ROBERTO SANTOS
+                                                    ALENCAR em 16/01/2015 00:00h.</label></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                            <td width="90%" class="fundoPadraoAClaro3">
+                                                <div style="border-left: 16px solid white"
+                                                    id="idGrupoExpansivelAnaliseVigente1c0">
+                                                    <div align="center">
+                                                        <div class="thform"
+                                                            style=" font-weight: bold; text-align: left; border-width: 0px; border-bottom: none; padding: 0.5%; vertical-align: middle;"
+                                                            id="divGrupo1c1">
+                                                            <span id="bttExpandirGrupoAnaliseVigente">Análise
+                                                                vigente</span>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div id="idPainelJustificativaAnalise1c2"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fundoPadraoAClaro3">
+                                            <td></td>
+                                            <td><label id="idAvaliacaoVigente1c3">Análise do supervisor
+                                                    sobre o elemento 'Suficiência'</label> <br> <br></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <td width="5%" class="fundoPadraoAClaro3"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </span><br>
+
+                            <li>A seção <span class="notContains"><b>Análise do supervisor para o
+                                        elemento "Qualidade"</b></span> não é exibida
+                        </li></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Detalhar gestão da análise econômico-financeira</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Detalhar gestão da análise econômico-financeira</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>21/01/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>12/02/2015</td>
+			<td>David Nascimento</td>
+			<td>Ajustando teste conforme issue 48555 (incremento da coluna de percentual de ponderação)</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a href="../index.html#detalharGestaoAnaliseEconomicoFinanceira">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	<ul>
+	    <li>A lista de servidores foi <a
+			href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	   <li>Usuário: <b class="set" name="loginUsuarioLogado">deliq.sisliq101</b></span>.</li>
+	   <div style="visibility: hidden"> <span  class="set" name="ciclo" converter="Integer"/>1</div>
+    </ul>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para validar os <a href="indexNegocio.html#validarAQTNovoQuadro"> ANEFs do 'Novo Quadro'</a>.</blockquote>
+
+
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b>[C001] - </b>Listar ANEFs com Nota 'Analisado' no novo quadro.</td>
+		</tr>
+		<tr>
+			<th>Dado que</th>
+		</tr>
+		<tr>
+		   <td> <banco />
+		     <ul>
+		        <li>Os dados encontram-se <a  href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-1.html" class="include">aqui</a>.</li>
+		     </ul>   
+		   </td>
+		</tr>
+		<tr>
+			<th>Ação/Validação</th>
+		</tr>
+		<tr> 
+		  <td>
+		      <ul>
+		        <li>O usuário vai enxergar:</li>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+				<table class="verifyRows" name="anef" value="$THIS.listarAnefNovoQuadro(loginUsuarioLogado, ciclo)">
+                    <tr>
+                        <th class="eq" value="$THIS.getID(anef)">ID ANEF</th>
+                        <th class="eq" value="$THIS.getDescricao(anef)">Descrição</th>
+                        <th class="eq" value="$THIS.getNota(anef)">Nota</th>
+                        <th class="eq" value="$THIS.getDestaque(anef)">Destaque</th>
+                        <th class="eq" value="$THIS.getPercentual(anef)">Percentual</th>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+						<td>Resultados</td>
+						<td>4</td>
+						<td>Sim</td>
+						<td>8</td>
+		            </tr>
+                    <tr>
+                        <td>9</td>
+						<td>Capital</td>
+						<td>2</td>
+						<td>Sim</td>
+						<td>49</td>
+		            </tr>
+		            <tr>
+		                <td>8</td>
+						<td>Exigibilidades/Liquidez</td>
+						<td>4</td>
+						<td>Sim</td>
+						<td>43</td>
+		            </tr>
+		        </table>
+		        			</td>
+		        		</tr>
+		        	</table>
+		       </ul>
+		     
+		     
+		   </td>
+		</tr>
+	</table>
+  </td>
+</tr>
+</table><br/>
+
+
+
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos" >
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b>[C002] - </b>Listar ANEFs vigentes no novo quadro.</td>
+		</tr>
+		<tr>
+			<th>Dado que</th>
+		</tr>
+		<tr>
+		   <td> <banco />
+		     <ul>
+		        <li>Os dados encontram-se <a  href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-2.html" class="include">aqui</a>.</li>
+		     </ul>   
+		   </td>
+		</tr>
+		<tr>
+			<th>Ação/Validação</th>
+		</tr>
+		<tr> 
+		  <td>
+		      <ul>
+		        <li>O usuário vai enxergar:</li>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="anef" value="$THIS.listarAnefNovoQuadro(loginUsuarioLogado, ciclo)">
+                    <tr>
+                        <th class="eq" value="$THIS.getID(anef)">ID ANEF</th>
+                        <th class="eq" value="$THIS.getDescricao(anef)">Descrição</th>
+                        <th class="eq" value="$THIS.getNota(anef)">Nota</th>
+                        <th class="eq" value="$THIS.getDestaque(anef)">Destaque</th>
+                        <th class="eq" value="$THIS.getPercentual(anef)">Percentual</th>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+						<td>Resultados</td>
+						<td>2</td>
+						<td>Não</td>
+						<td>1</td>
+		            </tr>
+                    <tr>
+                        <td>6</td>
+						<td>Capital</td>
+						<td>1</td>
+						<td>Não</td>
+						<td>98</td>
+		            </tr>
+		            <tr>
+		                <td>5</td>
+						<td>Exigibilidades/Liquidez</td>
+						<td>3</td>
+						<td>Não</td>
+						<td>1</td>
+		            </tr>
+		        </table>
+		        			</td>
+		        		</tr>
+		        	</table>
+		       </ul>
+		     
+		     
+		   </td>
+		</tr>
+	</table>
+  </td>
+</tr>
+</table><br/>
+
+
+
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b>[C003] - </b>Listar ANEFs vigentes e analisados no novo quadro.</td>
+		</tr>
+		<tr>
+			<th>Dado que</th>
+		</tr>
+		<tr>
+		   <td> <banco />
+		     <ul>
+		        <li>Os dados encontram-se <a  href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-3.html" class="include">aqui</a>.</li>
+		     </ul>   
+		   </td>
+		</tr>
+		<tr>
+			<th>Ação/Validação</th>
+		</tr>
+		<tr> 
+		  <td>
+		     <ul>
+		        <li>O usuário vai enxergar:</li>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="anef"  value="$THIS.listarAnefNovoQuadro(loginUsuarioLogado, ciclo)">
+                    <tr>
+                        <th class="eq" value="$THIS.getID(anef)">ID ANEF</th>
+                        <th class="eq" value="$THIS.getDescricao(anef)">Descrição</th>
+                        <th class="eq" value="$THIS.getNota(anef)">Nota</th>
+                        <th class="eq" value="$THIS.getDestaque(anef)">Destaque</th>
+                        <th class="eq" value="$THIS.getPercentual(anef)">Percentual</th>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+						<td>Resultados</td>
+						<td>2</td>
+						<td>Não</td>
+						<td>18</td>
+		            </tr>
+                    <tr>
+                        <td>6</td>
+						<td>Capital</td>
+						<td>1</td>
+						<td>Não</td>
+						<td>4</td>
+		            </tr>
+		            <tr>
+		                <td>8</td>
+						<td>Exigibilidades/Liquidez</td>
+						<td>4</td>
+						<td>Sim</td>
+						<td>78</td>
+		            </tr>
+		        </table>
+		        			</td>
+		        		</tr>
+		        	</table>
+		       </ul>
+		     
+		     
+		   </td>
+		</tr>
+	</table>
+  </td>
+</tr>
+</table><BR>
+
+
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b>[C004] - </b>Listar ANEFs: vigente, com nota do corec anterior e analisado no novo quadro.</td>
+		</tr>
+		<tr>
+			<th>Dado que</th>
+		</tr>
+		<tr>
+		   <td> <banco />
+		     <ul>
+		        <li>Os dados encontram-se <a  href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-4.html" class="include">aqui</a>.</li>
+		     </ul>   
+		   </td>
+		</tr>
+		<tr>
+			<th>Ação/Validação</th>
+		</tr>
+		<tr> 
+		  <td>
+		     <ul>
+		        <li>O usuário vai enxergar:</li>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="anef" value="$THIS.listarAnefNovoQuadro(loginUsuarioLogado, ciclo)">
+                    <tr>
+                        <th class="eq" value="$THIS.getID(anef)">ID ANEF</th>
+                        <th class="eq" value="$THIS.getDescricao(anef)">Descrição</th>
+                        <th class="eq" value="$THIS.getNota(anef)">Nota</th>
+                        <th class="eq" value="$THIS.getDestaque(anef)">Destaque</th>
+                        <th class="eq" value="$THIS.getPercentual(anef)">Percentual</th>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+						<td>Resultados</td>
+						<td>2</td>
+						<td>Não</td>
+						<td>72</td>
+		            </tr>
+                    <tr>
+                        <td>6</td>
+						<td>Capital</td>
+						<td>3</td>
+						<td>Não</td>
+						<td>16</td>
+		            </tr>
+		            <tr>
+		                <td>8</td>
+						<td>Exigibilidades/Liquidez</td>
+						<td>4</td>
+						<td>Sim</td>
+						<td>12</td>
+		            </tr>
+		        </table>
+		        			</td>
+		        		</tr>
+		        	</table>
+		       </ul>
+		     
+		     
+		   </td>
+		</tr>
+	</table>
+  </td>
+</tr>
+</table><br>
+
+
+<table class="scenario">
+<tr>
+<td>
+<table class="exemplos">
+    <tbody>
+		<tr>
+			<th>Cenário </th>
+		</tr>
+		<tr>
+			<td class='title'><b>[C005] - </b>Listar ANEFs: *A, com nota do corec anterior e analisado no novo quadro.</td>
+		</tr>
+		<tr>
+			<th>Dado que</th>
+		</tr>
+		<tr>
+		   <td> <banco />
+		     <ul>
+		        <li>Os dados encontram-se <a  href="TestR001DetalharGestaoAnaliseEconomicoFinanceira-DadoQue-5.html" class="include">aqui</a>.</li>
+		     </ul>   
+		   </td>
+		</tr>
+		<tr>
+			<th>Ação/Validação</th>
+		</tr>
+		<tr> 
+		  <td>
+		     <ul>
+		        <li>O usuário vai enxergar:</li>
+					<table>
+                    	<tr>
+                           <th style="background-color: green;">Saída</th>
+                    	</tr>
+                    	<tr>
+                           <th style="background-color: green;">Registros recuperados</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>
+								<table class="verifyRows" name="anef" value="$THIS.listarAnefNovoQuadro(loginUsuarioLogado, ciclo)">
+                    <tr>
+                       <th class="eq" value="$THIS.getID(anef)">ID ANEF</th>
+                        <th class="eq" value="$THIS.getDescricao(anef)">Descrição</th>
+                        <th class="eq" value="$THIS.getNota(anef)">Nota</th>
+                        <th class="eq" value="$THIS.getDestaque(anef)">Destaque</th>
+                        <th class="eq" value="$THIS.getPercentual(anef)">Percentual</th>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+						<td>Resultados</td>
+						<td>*A</td>
+						<td>Não</td>
+						<td>73</td>
+		            </tr>
+                    <tr>
+                        <td>6</td>
+						<td>Capital</td>
+						<td>3</td>
+						<td>Não</td>
+						<td>15</td>
+		            </tr>
+		            <tr>
+		                <td>8</td>
+						<td>Exigibilidades/Liquidez</td>
+						<td>4</td>
+						<td>Sim</td>
+						<td>12</td>
+		            </tr>
+		        </table>
+		        			</td>
+		        		</tr>
+		        	</table>
+		       </ul>
+		     
+		     
+		   </td>
+		</tr>
+	</table>
+  </td>
+</tr>
+</table>
+
+
+</body>
+</html>

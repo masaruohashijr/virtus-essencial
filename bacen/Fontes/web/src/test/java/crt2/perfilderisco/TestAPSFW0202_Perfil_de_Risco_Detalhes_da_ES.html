@@ -1,0 +1,1495 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Cenários de teste para a estória - Perfil de Risco (detalhes da ES)</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória - Perfil de Risco (detalhes da ES)</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+    	<table class="exemplos historico">
+	        <tr>
+	            <th>Versão</th>
+	            <th>Data</th>
+	            <th>Responsável</th>
+	            <th>Descrição</th>
+	        </tr>
+
+	        <tr>
+	            <td>1.0</td>
+	            <td></td>
+	            <td>Christiano Nogueira</td>
+	            <td>Versão Inicial</td>
+	        </tr>
+
+        	<tr>
+	            <td>1.1</td>
+	            <td>10/09/2014</td>
+	            <td>Christiano Nogueira</td>
+	            <td>Adequação a estória Perfil de risco - Detalhes da ES com anexos e nova estrutura do modelo</td>
+	        </tr>
+	        <tr>
+	            <td>1.2</td>
+	            <td>08/10/2014</td>
+	            <td>Cleonides Macriny</td>
+	            <td>Estória - Adicionando log de consulta</td>
+	        </tr>
+		
+	</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+    	<blockquote>
+        	Para as regras da estória:
+
+        	<ul>
+            	<li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0202_Perfil_de_risco_Detalhes_da_ES.xlsx">APSFW0202_Perfil_de_risco_Detalhes_da_ES.xlsx</a>.</li>
+        	</ul>
+    	</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+    	<ul>
+        	<li>A lista de servidores foi <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+        	<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+    	</ul>
+
+		<h2>Cenários onde devem ser apresentadas as telas, trilhas, seções, títulos, mensagens e demais informações pertinentes ao Perfil de Risco (detalhes da ES)</h2>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+	   <tr class="scenario">
+				<td class='title' style="width: 20%"><b>C001 </b><br><br>Acessar o Perfil de risco vazio (versão vigente). Ciclo em andamento, ES da equipe do supervisor. Não há dados de Nota final; Porte; Segmento; Perfil de atuação; Conclusão; Perspectiva; Situação.</td>
+
+				<td style="width: 20%">
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td style="width: 20%">
+            		<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES1">BANCO DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td style="width: 40%">
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+                            </thead>
+
+                            <tbody>
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Alta</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3"></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3"></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3"></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+				           		<tr>
+									<td colspan="5">
+										<table>
+											<tbody>
+												<tr><td colspan="3"><label></label></td></tr>
+												<tr><td></td><td><div style="display:none"></div></td><td></td></tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+				           		<tr>
+									<td colspan="5">
+										<table>
+											<tbody>
+												<tr><td colspan="3"><label></label></td></tr>
+												<tr><td></td><td><div style="display:none"></div></td><td></td></tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perspectiva</b></label></td>
+									<td colspan="2">
+										<label></label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5"><label></label></td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Situação</b></label></td>
+									<td colspan="2">
+										<label></label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5"><label></label></td></tr>
+				           	</tbody>
+                    	</table>
+		      		</span>
+		      		<ul>
+						<li>O botão de 'Gerenciar detalhes da ES':<br><input class="present" by="conter:" type="button" value="Gerenciar detalhes da ES"/></li>
+			      		<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C001_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+		      		</ul>
+				</td>
+            </tr> 
+		    <tr class="scenario">
+				<td class='title'><b>C002 </b><br><br>Acessar o Perfil de risco vigente. Ciclo em andamento, ES da equipe do supervisor. Há dados de Nota final; Porte; Segmento; Perfil de atuação sem anexos; Conclusão com 2 anexos; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES2">CONGLOMERADO DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Média</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3">media</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3">Grande</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3">Varejo</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+												    <tr><td colspan="3">Texto de justificativa para o perfil de atuação - CONGLOMERADO DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+												    <tr><td colspan="3">Texto de justificativa para a conclusão - CONGLOMERADO DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span>Anexo</span></td>
+														<td><a>Documento anexo 1.pdf</a></td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span>Anexo</span></td>
+														<td><a>Documento anexo 2.pdf</a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Estabilidade</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a perspectiva - CONGLOMERADO DE TESTE DO APS</td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Normal</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a situação - CONGLOMERADO DE TESTE DO APS</td></tr>
+				           	</thead>
+                    	</table>
+		      		</span>
+					<br>
+					<li>O botão de 'Gerenciar detalhes da ES':<br><input class="present" by="conter:" type="button" value="Gerenciar detalhes da ES"/></li>
+					<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C002_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr> 
+
+		    <tr class="scenario">
+				<td class='title'><b>C003 </b><br><br>Acessar o Perfil de risco vigente. Selecionar uma versão anterior do perfil de risco do ciclo em andamento. Ciclo atual: em andamento, Ciclo anterior: pós-corec, ES da equipe do supervisor. Há dados distintos entre versões para Nota final; Porte; Segmento; Perfil de atuação; Conclusão; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES4">ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Seleciona o ciclo: <span class="select" by="id:idCiclo" sleep="3000">14/04/2014</span></li>
+						<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">corec</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="3" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Baixa</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3">alta</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3">Médio</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3">Crédito</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para o perfil de atuação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para a conclusão - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Indefinida</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a perspectiva - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Acompanhamento especial</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a situação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+				           	</thead>
+                    	</table>
+		      		</span>
+					<br>
+					<li>O botão de 'Gerenciar detalhes da ES':<br><input class="present" by="conter:" type="button" value="Gerenciar detalhes da ES"/></li>
+					<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C003_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr>
+		    <tr class="scenario">
+				<td class='title'><b>C004 </b><br><br>Acessar o Perfil de risco vigente. Selecionar uma versão anterior do perfil de risco do ciclo em andamento. Ciclo atual: em andamento, Ciclo anterior: pós-corec, ES da equipe do supervisor. Há dados distintos entre versões para Nota final; Porte; Segmento; Perfil de atuação; Conclusão; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES4">ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Seleciona o ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+						<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">vigente</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="3" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Média</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3">muito baixa</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3">Grande</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3">Varejo</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="3">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para o perfil de atuação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para a conclusão - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Melhora</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a perspectiva - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Em atenção</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a situação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+				           	</thead>
+                    	</table>
+		      		</span>
+
+					<br>
+					<li>O botão de 'Gerenciar detalhes da ES':<br><input class="present" by="conter:" type="button" value="Gerenciar detalhes da ES"/></li>
+					<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C004_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C005 </b><br><br>Acessar o Perfil de risco vazio (versão vigente). Ciclo em andamento, ES da equipe do supervisor. Não há dados de Nota final; Porte; Segmento; Perfil de atuação; Conclusão; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">BANCO DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="3" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+                            </thead>
+
+                            <tbody>
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Alta</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3"></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3"></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3"></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+				           		<tr>
+									<td colspan="5">
+										<table>
+											<tbody>
+												<tr><td colspan="3"><label></label></td></tr>
+												<tr><td></td><td><div style="display:none"></div></td><td></td></tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+				           		<tr>
+									<td colspan="5">
+										<table>
+											<tbody>
+												<tr><td colspan="3"><label></label></td></tr>
+												<tr><td></td><td><div style="display:none"></div></td><td></td></tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label></label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5"></td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label></label>
+									</td>
+						        	<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5"></td></tr>
+				           	</tbody>
+                    	</table>
+		      		</span>
+		      		<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C005_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C006 </b><br><br>Acessar o Perfil de risco vigente. Ciclo em andamento, ES da equipe do supervisor. Há dados de Nota final; Porte; Segmento; Perfil de atuação sem anexos; Conclusão com 2 anexos; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil2">CONGLOMERADO DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Média</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3">media</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3">Grande</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3">Varejo</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="3">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para o perfil de atuação - CONGLOMERADO DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="3">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para a conclusão - CONGLOMERADO DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span>Anexo</span></td>
+														<td><a>Documento anexo 1.pdf</a></td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span>Anexo</span></td>
+														<td><a>Documento anexo 2.pdf</a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Estabilidade</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a perspectiva - CONGLOMERADO DE TESTE DO APS</td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Normal</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a situação - CONGLOMERADO DE TESTE DO APS</td></tr>
+				           	</thead>
+                    	</table>
+		      		</span>
+		      		<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C006_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C007 </b><br><br>Acessar o Perfil de risco vigente. Selecionar uma versão anterior do perfil de risco do ciclo em andamento. Ciclo atual: em andamento, Ciclo anterior: pós-corec, ES da equipe do supervisor. Há dados distintos entre versões para Nota final; Porte; Segmento; Perfil de atuação; Conclusão; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil4">ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Seleciona o ciclo: <span class="select" by="id:idCiclo" sleep="3000">14/04/2014</span></li>
+						<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">corec</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Baixa</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3">alta</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3">Médio</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3">Crédito</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para o perfil de atuação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para a conclusão - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Indefinida</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a perspectiva - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Acompanhamento especial</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a situação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</td></tr>
+				           	</thead>
+                    	</table>
+		      		</span>
+		      		<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C007_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C008 </b><br><br>Acessar o Perfil de risco vigente. Selecionar uma versão anterior do perfil de risco do ciclo em andamento. Ciclo atual: em andamento, Ciclo anterior: pós-corec, ES da equipe do supervisor. Há dados distintos entre versões para Nota final; Porte; Segmento; Perfil de atuação; Conclusão; Perspectiva; Situação.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+                    Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                    Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<pause>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil4">ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Seleciona o ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+						<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">vigente</span></li>
+		    		</ul>
+
+            		<ul>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+						<li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosES']">
+						<table>
+							<thead>
+						   		<tr><th colspan="5" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+						        	<td colspan="3"><b>Média</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+						        	<td colspan="3">muito baixa</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+						        	<td colspan="3">Grande</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+						        	<td colspan="3">Varejo</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para o perfil de atuação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+								<tr>
+									<td colspan="5">
+										<span type="table">
+											<table>
+												<tbody>
+													<tr><td colspan="3">Texto de justificativa para a conclusão - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+													<tr>
+														<td></td>
+														<td style="background-color: #4a73a2; color: black;"><span></span></td>
+														<td><a></a></td>
+													</tr>
+												</tbody>
+											</table>
+										</span>
+									</td>
+								</tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Melhora</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a perspectiva - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+
+								<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Em atenção</label>
+									</td>
+									<td></td>
+				           		</tr>
+
+				           		<tr><td colspan="5">Texto de justificativa para a situação - ENTIDADE SUPERVISIONÁVEL DE TESTE DO APS - versão nova</td></tr>
+				           	</thead>
+                    	</table>
+		      		</span>
+		      		<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C008_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+				</td>
+			</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C009 </b><br>
+			<br>Acessar o Perfil de risco anterior ao vigente. Ciclo em andamento, ES da
+				equipe do supervisor. Há dados de Nota final; Porte;
+				Segmento; Perfil de atuação sem anexos; Conclusão com 2 anexos;
+				Perspectiva; Situação.</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html"
+				class="include">aqui</a> <br> e <a
+				href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque_2.html"
+				class="include">aqui</a></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES2">CONGLOMERADO
+							DE TESTE DO APS</span></li>
+				</ul>
+
+				<ul>
+					<li>Seleciona a versão: <span class="select"
+						by="id:idPerfilRisco" sleep="1000">11/07/2014</span></li>
+				</ul>
+
+				<ul>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil
+							de atuação</span></li>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosES']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+								<td colspan="3"><b>Média</b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+								<td colspan="3">media</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+								<td colspan="3">Grande</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+								<td colspan="3">Varejo</td>
+							</tr>
+
+							<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+							<tr>
+								<td colspan="5"><span type="table">
+										<table>
+											<tbody>
+												<tr><td colspan="3">Texto de justificativa para o perfil de atuação - CONGLOMERADO DE TESTE DO APS</td></tr>
+												<tr>
+													<td></td>
+                                                    <td style="background-color: #4a73a2; color: black;"><span></span></td>
+                                                    <td><a></a></td>
+												</tr>
+											</tbody>
+										</table>
+								</span></td>
+							</tr>
+
+							<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+							<tr>
+								<td colspan="5"><span type="table">
+										<table>
+											<tbody>
+												<tr><td colspan="3">Texto de justificativa para a conclusão - CONGLOMERADO DE TESTE DO APS</td></tr>
+												<tr>
+													<td></td>
+													<td style="background-color: #4a73a2; color: black;"><span>Anexo</span></td>
+													<td><a>Documento anexo 1.pdf</a></td>
+												</tr>
+
+												<tr>
+													<td></td>
+													<td style="background-color: #4a73a2; color: black;"><span>Anexo</span></td>
+													<td><a>Documento anexo 2.pdf</a></td>
+												</tr>
+											</tbody>
+										</table>
+								</span></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2"><span><a><img style="cursor: pointer;" src="../../crt2/menos-p.gif" /></a></span></td>
+								<td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Estabilidade</label>
+									</td>
+									<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="5">Texto de justificativa para a perspectiva - CONGLOMERADO DE TESTE DO APS</td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2"><span><a><img style="cursor: pointer;" src="../../crt2/menos-p.gif" /></a></span></td>
+								<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Normal</label>
+									</td>
+									<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="5">Texto de justificativa para a situação - CONGLOMERADO DE TESTE DO APS</td>
+							</tr>
+						</thead>
+					</table>
+			</span> <br>
+			<br>
+
+				<li>O botão de 'Gerenciar detalhes da ES':<br>
+				<input class="present" by="conter:" type="button"
+					value="Gerenciar detalhes da ES" /></li>
+				<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C009_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C010 </b><br>
+			<br>Acessar o Perfil de risco vigente para o mesmo Ciclo do cenário anterior, com diferença de dados.</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Os dados da Metodologia se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque.html"
+				class="include">aqui</a> <br> e <a
+				href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_dadoque_2.html"
+				class="include">aqui</a></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<pause>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES2">CONGLOMERADO
+							DE TESTE DO APS</span></li>
+				</ul>
+
+				<ul>
+					<li>Seleciona a versão: <span class="select"
+						by="id:idPerfilRisco">vigente</span></li>
+				</ul>
+
+				<ul>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil
+							de atuação</span></li>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+					<li>Expandir grupo expansível: <span class="clickon"
+						by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> <span class="compareTable" by="xpath://table[@id='tDadosES']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="5" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Detalhes
+										da ES</b></th>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+								<td colspan="3"><b>Média</b></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Grau
+										de preocupação</b></td>
+								<td colspan="3">media</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+								<td colspan="3">Grande</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+								<td colspan="3">Varejo</td>
+							</tr>
+
+							<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                    <td><label><b>Perfil de atuação</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+							<tr>
+								<td colspan="5"><span type="table">
+										<table>
+											<tbody>
+												<tr><td colspan="3">Texto de justificativa para o perfil de atuação - CONGLOMERADO DE TESTE DO APS - NOVA VERSÃO</td></tr>
+												<tr>
+													<td></td>
+                                                    <td style="background-color: #4a73a2; color: black;"><span></span></td>
+                                                    <td><a></a></td>
+												</tr>
+											</tbody>
+										</table>
+								</span></td>
+							</tr>
+
+							<tr>
+					            	<td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+					            	<td><label><b>Conclusão</b></label></td>
+						        	<td colspan="2"><a>ver detalhes</a></td>
+									<td></td>
+				           		</tr>
+
+							<tr>
+								<td colspan="5"><span type="table">
+										<table>
+											<tbody>
+												<tr><td colspan="3">Texto de justificativa para a conclusão - CONGLOMERADO DE TESTE DO APS - NOVA VERSÃO</td></tr>
+												<tr>
+													<td></td>
+                                                    <td style="background-color: #4a73a2; color: black;"><span></span></td>
+                                                    <td><a></a></td>
+												</tr>
+											</tbody>
+										</table>
+								</span></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2"><span><a><img style="cursor: pointer;" src="../../crt2/menos-p.gif" /></a></span></td>
+								<td><span><b>Perspectiva</b></span></td>
+									<td colspan="2">
+										<label>Estabilidade</label>
+									</td>
+									<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="5">Texto de justificativa para a perspectiva - CONGLOMERADO DE TESTE DO APS - NOVA VERSÃO</td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2"><span><a><img
+											style="cursor: pointer;" src="../../crt2/menos-p.gif" /></a></span></td>
+								<td><span><b>Situação</b></span></td>
+									<td colspan="2">
+										<label>Normal</label>
+									</td>
+									<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="5">Texto de justificativa para a situação - CONGLOMERADO DE TESTE DO APS - NOVA VERSÃO</td>
+							</tr>
+						</thead>
+					</table>
+			</span> <br>
+			<br>
+
+				<li>O botão de 'Gerenciar detalhes da ES':<br>
+				<input class="present" by="conter:" type="button"
+					value="Gerenciar detalhes da ES" /></li>
+				<li><a href="porfim/TestAPSFW0202_Perfil_de_Risco_Detalhes_da_ES_C010_porfim.html" class="include">As tabelas populadas se encontram aqui</a></li>
+			</td>
+		  </tr>
+		</table>  
+	</body>
+</html>

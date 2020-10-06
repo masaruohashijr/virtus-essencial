@@ -1,0 +1,109 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+		<br />
+		<table id="tDadosQuadroPosicaoFinanceira" cellspacing="0"
+			cellpadding="1" style="width: 90%">
+			<thead>
+				<tr class="fundoPadraoAEscuro2">
+					<th class="thform" style="text-align: left; border-bottom: 0px;"
+						colspan="2">Quadro da posição financeira</th>
+				</tr>
+			</thead>
+			<tbody>
+				<wicket:enclosure child="quadroVigente">
+					<tr>
+						<td colspan="2">
+							<table id="tDadosQuadroVigente" cellspacing="0" cellpadding="1"
+								style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro3">
+										<th class="thform"
+											style="text-align: left; border-bottom: 0px;" colspan="2">Quadro vigente</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="2"><span wicket:id="quadroVigente"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</wicket:enclosure>
+				
+					<tr>
+						<td colspan="2">
+							<table id="tDadosNovoQuadro" cellspacing="0" cellpadding="1"
+								style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro3">
+										<th class="thform"
+											style="text-align: left; border-bottom: 0px;" colspan="2">Novo
+											quadro</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr valign="top">
+										<td style="width: 50%"><span wicket:id="novoQuadroAtivo"></span></td>
+										<td style="width: 50%"><span
+											wicket:id="novoQuadroPassivo"></span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				
+				<tr valign="top" >
+					<td colspan="2">
+					    <wicket:enclosure child="wmcResultados">
+							<div  style="float:left; margin-left: auto; width: 50%"  wicket:id="wmcResultados">
+								 <table  id="tDadosResultadosNovoQuadro" cellspacing="1" cellpadding="5"
+							        style="width: 100%">
+							        <thead>
+							            <tr class="fundoPadraoAClaro3">
+							                <th class="nomeCampo" style="text-align: right; border-bottom: 0px;"
+							                    colspan="2"><a href="" wicket:id="resultadosLinkScroll" >Resultados</a></th>
+							            </tr>
+							        </thead>
+							     </table>   
+								<span wicket:id="resultadosNovoQuadro"></span> 
+							</div>
+						</wicket:enclosure>
+					
+						<wicket:enclosure child="wmcPatrimonioReferencia">
+							<div style="float:left; margin-left: auto; width: 50%" wicket:id="wmcPatrimonioReferencia">
+							 	<table  id="tDadosPatrimôniosNovoQuadro" cellspacing="1" cellpadding="5"
+							        style="width: 100%">
+							        <thead>
+							            <tr class="fundoPadraoAClaro3">
+							                <th class="nomeCampo" style="text-align: right; border-bottom: 0px;"
+							                    colspan="2"><a href="" wicket:id="patrimoniosLinkScroll" >Patrimônios de referência</a></th>
+							            </tr>
+							        </thead>
+							     </table>   
+								<span  wicket:id="patrimoniosNovoQuadro"></span>
+							</div>
+						</wicket:enclosure>
+						
+						<wicket:enclosure child="wmcIndices">
+							<div style="float:left; margin-left: auto; width: 50%" wicket:id="wmcIndices" >
+								<table  id="tDadosÍndicesNovoQuadro" cellspacing="1" cellpadding="5"
+							        style="width: 100%">
+							        <thead>
+							            <tr class="fundoPadraoAClaro3">
+							                <th class="nomeCampo" style="text-align: right; border-bottom: 0px;"
+							                    colspan="2"><a href="" wicket:id="indicesLinkScroll" >Índices</a></th>
+							            </tr>
+							        </thead>
+							     </table>  
+								<span wicket:id="indicesNovoQuadro"></span></div>
+						</wicket:enclosure>	
+					</td>
+				</tr>
+            <tr>
+                <td colspan="2"><span wicket:id="anexo"></span></td>
+            </tr>
+        </tbody>
+		</table>
+		<br />
+</wicket:panel>

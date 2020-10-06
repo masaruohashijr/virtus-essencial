@@ -1,0 +1,149 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Encerrar Corec (entrada "Pós-corec") e iniciar novo ciclo</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Encerrar Corec (entrada "Pós-corec") e iniciar novo ciclo'</h1>
+		<span id="index"></span>
+
+    	<span id="cenarios"></span>
+    
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#encerrarCorec">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+    	<ul>
+			<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+
+			<banco/>
+
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq104"</span></strong>.</li>
+			<li>Data/hora atual do sistema: <strong><dataHoraAtual valor="28/01/2015 00:00:00">28/01/2015 00:00:00</dataHoraAtual></strong></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote><a href="indexNegocio.html#validarCriacaoCiclo">Cenário para validar a criação do novo ciclo 'Em andamento' ao concluir o Corec</a>.<br/></blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+		</tr>
+
+		<tr class="scenario" execute="true">
+			<td class='title'><b>[C001] - </b>Encerrar Corec quando não há
+				ajuste de comitê para nota ajustada da matriz de riscos e da análise
+				econômico financeira.</td>
+
+			<td><ul>
+					<li>Os dados encontram-se <a
+						href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/encerrarcorec/TestR002EncerrarCorec-DadoQue-C001.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set" name="ciclo" converter="Integer">1</b>"
+			</span>.</td>
+			
+			<span class="execute" name="mensagem" value="$THIS.concluirCorec(ciclo)"></span>
+			<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+		</tr>
+		
+		<tr class="scenario" execute="true">
+			<td class='title'><b>[C002] - </b>Encerrar Corec quando há
+				ajuste de comitê para nota ajustada da matriz de riscos e da análise
+				econômico financeira.</td>
+			</banco>
+			<td><ul>
+					<li>Os dados encontram-se <a
+						href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/encerrarcorec/TestR002EncerrarCorec-DadoQue-C002.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set" name="ciclo" converter="Integer">1</b>"
+			</span>.</td>
+			
+			<span class="execute" name="mensagem" value="$THIS.concluirCorec(ciclo)"></span>
+			<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C003] - </b>Gerar notas quando ciclo só possui ES no perfil de risco.</td>
+			</banco>
+			<td><ul>
+					<li>Os dados encontram-se <a
+						href="TestR001BotaoIniciarCorec-C001-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set" name="ciclo" converter="Integer">1</b>"
+			</span>.</td>
+			
+			<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C004] - </b>Gerar notas quando existe ARC do tipo externo.</td>
+
+			<td>
+			</banco>
+			<ul>
+					<li>Os dados encontram-se <a
+						href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/analisarconcluirarc/TestR002AnalisarConcluirARC-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set" name="ciclo" converter="Integer">1</b>"</span>.
+			</td>
+			
+			<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>[C005] - </b>Verificar a nota calculada e a nota refinada quando não há notas na Matriz (com ARC externo concluído).</td>
+
+			<td>
+			</banco>
+			<ul>
+					<li>Os dados encontram-se <a
+						href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/notacalculada/TestR002C004NotaCalculadaQualitativa-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set" name="ciclo" converter="Integer">1</b>"</span>.
+			</td>
+			
+			<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C006] - </b> Verificar a nota calculada e a nota refinada quando há notas na Matriz (com percentual do ARC externo zerado).</td>
+
+			<td>
+			</banco>
+			<ul>
+					<li>Os dados encontram-se <a
+						href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/notacalculada/TestR002C006NotaCalculadaQualitativa-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set" name="ciclo" converter="Integer">1</b>"</span>.
+			</td>
+			
+			<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+		</tr>
+	</table>
+
+</body>
+</html>							
+				
+									
+			
+

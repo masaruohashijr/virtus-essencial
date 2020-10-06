@@ -1,0 +1,555 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 3.1 - Liberação e versionamento da Matriz</h1>
+
+	<span id="index"></span>
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>22/04/2014</td>
+			<td>David Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>29/12/2014</td>
+			<td>David Nascimento</td>
+			<td>Organização do teste para adequação na nova estrutura do CRT 2 (SpecRunner)</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória:
+		<ul>
+		     <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/analisequalitativa/matriz/espec/E3_18_Liberacao_e_versionamento_de_matriz.html">E3_18_Liberacao_e_versionamento_de_matriz.html</a></li>
+			<li><a
+				href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0205_Edicao_de_matriz.xlsx">APSFW0205_Edicao_de_matriz.xlsx</a>.</li>
+				
+		</ul>
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">carregada.</a></li>
+		<li><dataHoraAtual valor="17/03/2014 00:00:00">Data/hora
+			atual do sistema: 17/03/2014 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Cenários de teste para a estória 3.1 - liberação e versionamento de matriz</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens
+		de sucesso/erro/impedimento para a funcionalide de liberação e versionamento da matriz</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+
+   		<tr class="scenario">
+			<td class='title'><b>C001</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES:<span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Digite na área de Bloco Corporativo: <span class="type" by="id:idNovoPercentualCorporativo">70</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+
+			<td>
+			             <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</span></li>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</span></li>
+		       	         </ul>
+		   </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C002.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</span></li>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</span></li>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz com unidade de negócio sem atividade de negócio associada cadastrada.</span></li>
+		       			</ul>
+		   </td>
+			
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C003.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</span></li>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz com unidade de negócio sem atividade de negócio associada cadastrada.</span></li>
+		       			</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C004.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C005.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C006.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade corporativa cadastrada com peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C007</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C007.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz sem atividade de negócio cadastrada com peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C008</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C008.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz, a unidade corporativa deve ter peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		
+		<tr class="scenario" pending="true"><!-- TESTE PENDENTE POR QUESTÕES DE TRAVAMENTO OCASIONADOS PELA FERRAMENTA CRT2 -->
+			<td class='title'><b>C009</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C009.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz, pelo menos uma unidade de negócio deve ter peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C010.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz, em cada unidade de negócio pelo menos uma atividade de negócio deve ter peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C011</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C011.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz, em cada atividade corporativa pelo menos um grupo de risco e controle deve ter peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C012</b><br><br>Falha -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C012.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">Não é possível a liberação de uma matriz, em cada atividade de negócio pelo menos um grupo de risco e controle deve ter peso máximo.</span></li>
+		           		</ul>
+		   </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario" pending="true"> <!-- TESTE PENDENTE POR QUESTÕES DE TRAVAMENTO OCASIONADOS PELA FERRAMENTA CRT2 -->
+			<td class='title'><b>C013</b><br><br>Sucesso -
+				</td>
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br><br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br><br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br><br> 
+				Os dados do Ciclo se encontram <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque.html"
+				class="include">aqui</a><br><br>
+				Os dados complementares desse CT se encontram: <a href="../comum/TestE3_1_Liberacao_e_versionamento_de_matriz_dadoque_C013.html"
+				class="include">aqui</a><br><br>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">"ITAU"</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttEditarMatriz">Editar estrutura da matriz</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttLiberar">Liberar nova matriz</span></li>
+				</ul>
+			</td>
+			<td>
+			            <ul>
+		           			<li><span class="contains">A matriz de risco e controle foi liberada com sucesso.</span></li>
+		           			<li>O título da tela deve ser: <span class="contains">Perfil de risco</span></li>
+		           			<li>O código da tela deve ser: <span class="contains">[APSFW0202]</span></li><br><br>
+		           			<li>Confere o botão: <input class="present" by="id:bttEditarMatriz" type="button" value="Editar estrutura da matriz"></li><br>
+		           			<li>O "porfim" com os dados populados se encontram <a href="porfim/TestE3_1_Liberacao_e_versionamento_de_matriz_porfim_c013.html">aqui</a></li>
+		           		</ul>
+		   </td>
+		</tr>
+
+		
+	</table>
+</body>
+</html>

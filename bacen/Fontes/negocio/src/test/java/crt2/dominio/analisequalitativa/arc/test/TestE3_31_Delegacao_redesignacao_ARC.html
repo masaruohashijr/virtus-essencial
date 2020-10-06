@@ -1,0 +1,239 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória 3.31 - Delegação e redesignação de ARCs</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Vide as
+		<!-- <a href="Regras_Gerais_Ciclo.html" class="include"> -->
+		regras do tema
+		<!-- </a> -->
+		.
+		<dataHoraAtual valor="06/05/2014 00:00:00">Data atual: 06/05/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de falha para a estória 3.31 - Delegação e redesignação de ARCs</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens de erro/impedimento para a designação de ARCs.</blockquote>
+	<pessoa>
+	<blockquote>MOCK do componente BCPessoa</blockquote>
+	</pessoa>
+
+	<table class="exemplos">
+		<jetty />
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br> <br> Falha - Clicar no botão delegar sem selecionar um servidor.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+				href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br>
+				Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se
+				encontram <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a><br> <br></td>
+			<td>
+				<ul>
+					<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186" </span></li>
+					<li><span class="sentence" method="delegarArc">Delegar ARC "1" para SER_CD_MATRICULA "" e
+							SER_CD_MATRICULA ""</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br> <br>Falha - Clicar no botão delegar tendo selecionado os campos
+				'Servidores da equipe' e 'Outros servidores' simultaneamente.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+				href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br>
+				Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se
+				encontram <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a><br> <br></td>
+			<td>
+				<ul>
+					<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186" </span></li>
+					<li><span class="sentence" method="delegarArc">Delegar ARC_ID "1" para SER_CD_MATRICULA "96186186",
+							SER_CD_MATRICULA "65214892"</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Selecione apenas um único servidor para a delegação.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br> <br>Falha - Clicar no botão designar sem selecionar um servidor.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+				href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br>
+				Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se
+				encontram <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a><br> <br></td>
+			<td><span class="sentence" method="designarArc">Designar ARC "1" para SER_CD_MATRICULA "" e
+					SER_CD_MATRICULA ""</span></td>
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br> <br>Falha - Clicar no botão designar tendo selecionado os campos
+				'Servidores da equipe' e 'Outros servidores' simultaneamente.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+				href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br>
+				Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se
+				encontram <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a><br> <br></td>
+			<td><span class="sentence" method="designarArc">Designar ARC_ID "1" para SER_CD_MATRICULA "96186186",
+					SER_CD_MATRICULA "65214892"</span></td>
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Selecione apenas um único servidor para a designação.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br> <br>Sucesso - Delegar ARC.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+				href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br>
+				Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se
+				encontram <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a><br> <br></td>
+			<td>
+			<ul>
+					<li><span class="sentence" method="logar">login "deliq.sisliq101" matricula "96186186" </span></li>
+					<li>
+			<span class="sentence" method="delegarArc">Delegar ARC_ID "1" para SER_CD_MATRICULA "65214892" e
+					SER_CD_MATRICULA ""</span></li></ul></td>
+			<td>
+				<ul class="execute">
+					<li>ARC delegado com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>DEL_DELEGACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DEL_ID</th>
+						<th>DEL_NU_VERSAO</th>
+						<th>DEL_CD_OPER_ATUALZ</th>
+						<th>DEL_DH_ATUALZ</th>
+						<th>DEL_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>06/05/2014 00:00:00</td>
+						<td>65214892</td>
+						<td>1</td>
+					</tr>
+				</table> <br> <br>
+				<table class="verify dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq114</td>
+						<td>25/04/2014 00:00:00</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br> <br>Sucesso - Designar ARC.</td>
+			<td><banco /> Os dados da Metodologia se encontram <a
+				href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br> <br>
+				Os dados das ESs se encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se
+				encontram <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque.html" class="include">aqui</a><br> <br>
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>5</td>
+					</tr>
+				</table></td>
+			<td><span class="sentence" method="designarArc">Designar ARC_ID "1" para SER_CD_MATRICULA "65214892" e
+					SER_CD_MATRICULA ""</span></td>
+			<td>
+				<ul class="execute">
+					<li>ARC designado com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>DES_DESIGNACAO_ARC</caption>
+					<tr>
+						<th>Ação</th>
+						<th>DES_ID</th>
+						<th>DES_NU_VERSAO</th>
+						<th>DES_CD_OPER_ATUALZ</th>
+						<th>DES_DH_ATUALZ</th>
+						<th>DES_CD_MATRICULA</th>
+						<th>ARC_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>06/05/2014 00:00:00</td>
+						<td>65214892</td>
+						<td>1</td>
+					</tr>
+				</table> <br> <br>
+				<table class="verify dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+					</tr>
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>2</td>
+						<td>deliq.sisliq114</td>
+						<td>25/04/2014 00:00:00</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</body>
+</html>

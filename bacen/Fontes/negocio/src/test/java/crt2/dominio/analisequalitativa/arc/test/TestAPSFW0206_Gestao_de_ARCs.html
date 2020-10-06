@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória APSFW0206 - Gestão de ARCs</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Servidores
+		<pessoa>aqui</pessoa>
+		</br>
+		<dataHoraAtual valor="28/05/2014 00:00:00">Data atual: 28/05/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de falha e sucesso para a estória APSFW0206 - Gestão de ARCs</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens
+		de erro/impedimento para a gestão de perfil de acesso</blockquote>
+	<pessoa>
+	<blockquote>MOCK do componente BCPessoa</blockquote>
+	</pessoa>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br><br>Falha - Acessar a funcionalidade Gerenciar ARCs. Equipe do usuário não é a responsável pela ES. Perfil de risco vigente - 1º ciclo - Usar a versão vigente da matriz de riscos e controles do ciclo em andamento</td>
+			<td>
+			<banco />As regras de acesso encontram-se <regra>aqui</regra><br><br>
+				Os dados da Metodologia encontram-se <parametros>aqui</parametros><br><br>
+				Os dados da ES encontram-se <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+				Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+				<a href="dadoque/TestAPSFW0206_Gestao_de_ARCs_dadoque.html" class="include">aqui</a><br>
+				</td>
+			    <td>Acessar a funcionalidade Gerenciar ARCs.<br><br> 
+			    <span class="sentence" method="salvar">Usuário logado: "deliq.sisliq101", Matrícula do usuário: "51850257", ES: BANCO FIBRA S.A. "13", Ciclo "1", Matriz "1"</span> 
+				</td>
+			    <td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Equipe do usuário não é a responsável pela ES.</li>
+				</ul>
+			    </td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br><br>Falha - Acessar a funcionalidade Gerenciar ARCs. ES da equipe do supervisor, com ciclo em andamento, mas sem ARCs, sem matriz vigente. Perfil de risco vazio - 1ª versão</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			    <td>Acessar a funcionalidade Gerenciar ARCs.<br><br> 
+			    <span class="sentence" method="salvar">Usuário logado: "deliq.sisliq101", Matrícula do usuário: "96186186", ES: ABN AMRO "1", Ciclo "2", Matriz "2"</span> 
+				</td>
+			    <td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Funcionalidade Gerenciar ARCs disponível apenas para matriz de risco e controles vigente.</li>
+				</ul>
+			    </td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br><br>Falha - A funcionalidade Gerenciar ARCs só pode ser executada nos ARCs da matriz vigente do ciclo em andamento. Acessar a funcionalidade Gerenciar ARCs. ES da equipe do supervisor, ciclo em <b>"Corec"</b> com ARCs, com matriz vigente.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			    <td>Acessar a funcionalidade Gerenciar ARCs.<br><br> 
+			    <span class="sentence" method="salvar">Usuário logado: "deliq.sisliq101", Matrícula do usuário: "96186186", ES: ITAU "3", Ciclo "3", Matriz "3"</span> 
+				</td>
+			    <td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Funcionalidade Gerenciar ARCs disponível apenas para ciclo no estado em andamento.</li>
+				</ul>
+			    </td>
+		</tr>
+		
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br><br>Falha - A funcionalidade Gerenciar ARCs só pode ser executada nos ARCs da matriz vigente do ciclo em andamento. Acessar a funcionalidade Gerenciar ARCs. ES da equipe do supervisor, ciclo em <b>"Pós-Corec"</b> com ARCs, com matriz vigente.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			    <td>Acessar a funcionalidade Gerenciar ARCs.<br><br> 
+			    <span class="sentence" method="salvar">Usuário logado: "deliq.sisliq101", Matrícula do usuário: "96186186", ES: BB "6", Ciclo "4", Matriz "4"</span> 
+				</td>
+			    <td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Funcionalidade Gerenciar ARCs disponível apenas para ciclo no estado em andamento.</li>
+				</ul>
+			    </td>
+		</tr>
+		
+		
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br><br>Falha - A funcionalidade Gerenciar ARCs só pode ser executada nos ARCs da matriz vigente do ciclo em andamento. Acessar a funcionalidade Gerenciar ARCs. ES da equipe do supervisor, ciclo em <b>"Encerrado"</b> com ARCs, com matriz vigente.</td>
+			<td>Mesmo "dadoque" do cenário anterior</td>
+			    <td>Acessar a funcionalidade Gerenciar ARCs.<br><br> 
+			    <span class="sentence" method="salvar">Usuário logado: "deliq.sisliq101", Matrícula do usuário: "96186186", ES: NATIXIS BRASIL S/A "9", Ciclo "6", Matriz "6"</span> 
+				</td>
+			    <td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Funcionalidade Gerenciar ARCs disponível apenas para ciclo no estado em andamento.</li>
+				</ul>
+			    </td>
+		</tr>
+
+		
+
+	</table>
+</body>
+</html>

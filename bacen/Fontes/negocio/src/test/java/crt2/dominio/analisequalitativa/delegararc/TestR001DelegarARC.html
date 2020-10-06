@@ -1,0 +1,141 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Delegar análise do ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Delegar análise do ARC'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>30/06/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>Para as regras da estória clique <a href="../index.html#delegarARC">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+	    	<ul>
+		    	<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+
+				<banco/> 
+		     	<li>Os dados encontram-se <a href="TestR001DelegarARC-DadoQue.html" class="include">aqui</a>.</li>
+		     	<li>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq114"</span></strong>.</li>
+		     	<li><dataHoraAtual valor="28/06/2015 00:00:00">Data/hora atual do sistema: 28/06/2015 00:00:00</dataHoraAtual></li>
+			</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#validarDesignacao">validar cenários ao efetuar a delegação</a>.</blockquote>
+	
+		<table >
+			<tr>
+				<td>
+					<table class="exemplos" >
+						<tr>
+						    <th>Cenário</th>
+						    <th>Ação pretendida</th>
+						    <th>Resultado esperado</th>
+						</tr>
+
+						<tr class="scenario">
+						<td class='title'> <b>[CT001]</b> - Delegar um ARC com estado 'Preenchido'.</td>
+						<td>
+							Delegar o ARC de ID <strong><span class="set" name="arc" converter="Integer">48</span></strong>,  para o servidor de matricula <strong>'<span class="set" name="matriculaServidorEquipe" converter="String">99990830</span>'</strong>
+						</td>
+						<td>
+							<ul>
+								<li>
+									<span class="execute" value="$THIS.delegarARC(arc, matriculaServidorEquipe)"></span>
+									<span class="eq" value="$THIS.getMensagem()">ARC delegado com sucesso.</span>
+								</li>
+								<li>Os dados alterados estão <a href="TestR001C001DelegarARC-PorFim.html" class="include">aqui</a></li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="scenario">
+						<td class='title'> <b>[CT002]</b> - Delegar um ARC com estado 'Em análise' e com delegação.</td>
+						<td>
+							Delegar o ARC de ID <strong><span class="set" name="arc" converter="Integer">52</span></strong>,  para o servidor de matricula <strong>'<span class="set" name="matriculaOutroServidor" converter="String">65214892</span>'</strong>
+						</td>
+						<td>
+							<ul>
+								<li>
+									<span class="execute" value="$THIS.delegarARC(arc, matriculaOutroServidor)"></span>
+									<span class="eq" value="$THIS.getMensagem()">ARC delegado com sucesso.</span>
+								</li>
+								<li>Os dados alterados estão <a href="TestR001C002DelegarARC-PorFim.html" class="include">aqui</a></li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="scenario">
+						<td class='title'> <b>[CT003]</b> - Delegar um ARC com estado 'Em análise' e sem delegação.</td>
+						<td>
+							Delegar o ARC de ID <strong><span class="set" name="arc" converter="Integer">49</span></strong>,  para o servidor de matricula <strong>'<span class="set" name="matriculaOutroServidor" converter="String">65214892</span>'</strong>
+						</td>
+						<td>
+							<ul>
+								<li>
+									<span class="execute" value="$THIS.delegarARC(arc, matriculaOutroServidor)"></span>
+									<span class="eq" value="$THIS.getMensagem()">ARC delegado com sucesso.</span>
+								</li>
+								<li>Os dados alterados estão <a href="TestR001C003DelegarARC-PorFim.html" class="include">aqui</a></li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="scenario">
+						<td class='title'><b>[CT004]</b> - Delegar um ARC com estado 'Análise delegada'.</td>
+						<td>
+							Delegar o ARC de ID <strong><span class="set" name="arc" converter="Integer">50</span></strong>,  para o servidor de matricula <strong>'<span class="set" name="matriculaServidorEquipe" converter="String">13579024</span>'</strong>
+						</td>
+						<td>
+							<ul>
+								<li>
+									<span class="execute" value="$THIS.delegarARC(arc, matriculaServidorEquipe)"></span>
+									<span class="eq" value="$THIS.getMensagem()">ARC delegado com sucesso.</span>
+								</li>
+								<li>Os dados alterados estão <a href="TestR001C004DelegarARC-PorFim.html" class="include">aqui</a></li>
+							</ul>
+						</td>
+					</tr>
+						<tr class="scenario">
+						    <td class='title'><b>[CT005]</b> - Delegar um ARC com estado 'Analisado'.</td>
+							<td>Delegar o ARC de ID <strong><span class="set" name="arc" converter="Integer">51</span></strong>, para o servidor de matricula <strong>'<span class="set" name="matriculaServidorEquipe" converter="String">65214892</span>'</strong></td>
+
+							<td>
+								<ul>
+									<li>
+										<span class="execute"  value="$THIS.delegarARC(arc, matriculaServidorEquipe)"></span>
+										<span class="eq" value="$THIS.getMensagem()">ARC delegado com sucesso.</span>
+									</li>
+									<li>Os dados alterados estão <a href="TestR001C005DelegarARC-PorFim.html" class="include">aqui</a></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

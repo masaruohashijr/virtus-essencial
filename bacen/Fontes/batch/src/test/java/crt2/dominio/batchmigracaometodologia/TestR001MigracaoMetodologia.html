@@ -1,0 +1,191 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Migração dos ciclos que estão 'Em andamento' e em 'COREC' para o novo modelo de dados</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../../batch/src/test/java/crt2/estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../../../../../batch/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../../batch/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Migração da nova metodologia'</h1>
+		<span id="index"></span>
+
+    	<span id="cenarios"></span>
+    
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#encerrarCorec">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+    	<ul>
+			<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+
+			<banco/>
+
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong>.</li>
+			<li>Data/hora atual do sistema: <strong><dataHoraAtual valor="28/01/2015 00:00:00">28/01/2015 00:00:00</dataHoraAtual></strong></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote><a href="indexNegocio.html#validarCriacaoCiclo">Cenário para validar a criação do novo ciclo 'Em andamento' ao concluir o Corec</a>.<br/></blockquote>
+
+	<table class="exemplos">
+
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001] - </b>Migração da nova metodologia
+				para ciclos em andamento (Ciclo com 3 anos ou mais).</td>
+
+			<td><ul>
+					<banco />
+					<li>Os dados encontram-se <a
+						href="TestR001ConcluirSinteseARC-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+			<td>Migrar dados nova metodologia. <span class="execute"
+				name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC001-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C002] - </b>Migração da nova metodologia para ciclos em corec (16 ESs, Anefs e Arcs pela média).</td>
+
+			<td><ul>
+			<banco/>
+					<li>Os dados encontram-se <a
+						href="TestR001ImprimirDossie-DadoQue-CT002.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+				<td>Migrar dados nova metodologia. 
+					<span class="execute" name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC002-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+			
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C003] - </b>Migração da nova metodologia para ciclos em corec (7 ESs, Anefs e Arcs pelo arrasto).</td>
+
+			<td><ul>
+			<banco/>
+					<li>Os dados encontram-se <a
+						href="TestR001ImprimirDossie-DadoQue-CT003.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+			
+			<td>Migrar dados nova metodologia. <span class="execute"
+				name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC003-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C004] - </b>Migração da nova metodologia para ciclos em corec (4 ESs, Anefs pela média e Arcs pelo arrasto).</td>
+
+			<td><ul>
+			<banco/>
+					<li>Os dados encontram-se <a
+						href="TestR001ImprimirDossie-DadoQue-CT004.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+			
+			<td>Migrar dados nova metodologia. <span class="execute"
+				name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC004-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C005] - </b>Migração da nova metodologia para primeiro ANEF do ciclo (2º Ciclo - Não migra a nota).</td>
+
+			<td><ul>
+			<banco/>
+					<li>Os dados encontram-se <a
+						href="TestR004ResumoInformacoesAQT-DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+			
+			<td>Migrar dados nova metodologia. <span class="execute"
+				name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC005-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C006] - </b>Migração da nova metodologia para primeiro ANEF do ciclo (1º Ciclo - Migra a nota).</td>
+
+			<td><ul>
+			<banco/>
+					<li>Os dados encontram-se <a
+						href="TestR004ResumoInformacoesAQT-DadoQue006.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+			
+			<td>Migrar dados nova metodologia. <span class="execute"
+				name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC006-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>[C007] - </b>Migração da nova metodologia para ciclos em andamento para ES que já foi migrada.</td>
+
+			<td><ul>
+					<banco />
+					<li>Os dados encontram-se <a
+						href="TestR008Gerenciar_detalhes_da_ES_C006_DadoQue.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+			<td>Migrar dados nova metodologia. <span class="execute"
+				name="mensagem" value="$THIS.executarBatch()"></span>
+			</td>
+			<td>
+				<ul>
+					<li>Os dados alterados estão <a
+						href="TestR001MigracaoMetodologiaC007-PorFim.html" class="include">aqui</a></li>
+				</ul>
+			</td>
+		</tr>
+
+	</table>
+</body>
+</html>									
+

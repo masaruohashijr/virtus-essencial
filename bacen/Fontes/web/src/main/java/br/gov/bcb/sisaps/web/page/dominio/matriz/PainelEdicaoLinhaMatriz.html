@@ -1,0 +1,41 @@
+<wicket:extend>
+	<form wicket:id="form">
+		<div>
+			<table id="tDadosAtividade" width="100%" cellspacing="0" cellpadding="3">
+				<thead>
+					<tr>
+						<th class="fundoPadraoAEscuro3" style="text-align: left; border-bottom: 0px;" colspan="3">Atividade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 25%;">Atividade</td>
+						<td style=""><input type="text" size="70" maxlength="100" wicket:id="nomeAtividade" /></td>
+					</tr>
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 25%;">Tipo</td>
+						<td style=""><select wicket:id="idTipoAtividade"></select></td>
+					</tr>
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 25%;">Peso</td>
+						<td style=""><select wicket:id="idParametroPeso"></select></td>
+					</tr>
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 25%;">Unidade associada</td>
+						<td style=""><select wicket:id="idUnidade"></select></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div align="center">
+								<div wicket:id="idPainelCelulas" />
+								<br>
+								<input type="button" class="botao centralizado" wicket:id="bttConcluir" value=" ">
+								<input type="button" class="botao centralizado" wicket:id="bttVoltarEdicaoLinhasMatriz" value="Voltar">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+</wicket:extend>

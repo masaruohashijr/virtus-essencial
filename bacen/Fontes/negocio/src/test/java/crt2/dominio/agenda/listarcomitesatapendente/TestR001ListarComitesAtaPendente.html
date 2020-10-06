@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Listar comitês com assinatura de ata pendente</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória 'Listar Comitês com assinaturas de ata pendente'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>12/08/2015</td>
+			<td>Marília Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#listarComitesAtaPendente">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<li><dataHoraAtual valor="28/05/2015 00:00:00">Data/hora atual do sistema: 28/05/2015 00:00:00</dataHoraAtual></li>
+		 <li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+	</ul>
+	
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#listarComitesAtaPendente">Validar comitês com assinatura de ata pendente.</a>.
+	</blockquote>
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar comitês com assinatura de ata pendente.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<banco />
+								<li>Os dados encontram-se <a href="TestR001ListarComitesAtaPendente-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+
+					<tr>
+						<td>
+
+							<table>
+								<tr>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th style="background-color: green">Recuperação de registros</th>
+								</tr>
+								<tr>
+									<td>
+										<table class="verifyRows" name="resultado" value="$THIS.getComitesAssinaturaAtaPendente()">
+											<tr>
+												<th class="eq" value="$THIS.getInicioCorec(resultado)">Início do ciclo</th>
+												<th class="eq" value="$THIS.getCorecPrevisto(resultado)">Corec </th>
+												<th class="eq" value="$THIS.getNomeES(resultado)">ES</th>
+												<th class="eq" value="$THIS.getEquipe(resultado)">Equipe</th>
+												<th class="eq" value="$THIS.getSupervisor(resultado)">Supervisor titular</th>
+												<th class="eq" value="$THIS.getPrioridade(resultado)">Prioridade</th>
+												</tr>
+									
+											<tr>
+												<td>18/03/2014</td>
+												<td>18/03/2016</td>
+												<td>ITAU</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>Baixa</td>
+											</tr>
+
+<tr>
+												<td>18/12/2013</td>
+												<td>18/12/2014</td>
+												<td>NATIXIS BRASIL S/A</td>
+												<td>DELIQ/GLIQ1/GTBHO</td>
+												<td>ROBERTO SANTOS ALENCAR</td>
+												<td>SIFI</td>
+												
+											</tr>
+
+
+
+										
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

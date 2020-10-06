@@ -1,0 +1,4714 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória 3.18 - Liberação e versionamento de Matriz</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		<dataHoraAtual valor="25/04/2014 00:00:00">Data atual: 25/04/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de sucesso e falha para a estória 3.18 - Liberação e versionamento de Matriz</h2>
+	<blockquote>Cenários onde devem ser apresentadas mensagens de sucesso e erro/impedimento para a liberação
+		e versionamento de Matriz.</blockquote>
+
+	<table class="exemplos"> 
+		<jetty />
+
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario"> 
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C001"><center>
+						<b>C001</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br></td>
+
+			<td><span class="sentence" method="liberarMatriz">Liberar matriz no estado 2-Vigente. <arg value="2" /></span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz vigente.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C002"><center>
+						<b>C002</b>
+					</center></a></td>
+
+			<td></td>
+
+			<td><span class="sentence" method="liberarMatriz">Liberar matriz no estado 1-Esboçada sem unidades (de
+					negócio, corporativa) e atividades (de negócio, corporativa). <arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem unidade corporativa cadastrada.</li>
+					<li>Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</li>
+					<li>Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C003"><center>
+						<b>C003</b>
+					</center></a></td>
+
+			<td>
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table>
+			</td>
+
+			<td><span class="sentence" method="liberarMatriz">Liberar matriz no estado 1-Esboçada com unidade
+					corporativa, sem unidade de negócio, sem atividades (de negócio, corporativa).<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</li>
+					<li>Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C004"><center>
+						<b>C004</b>
+					</center></a></td>
+
+			<td>
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table>
+			</td>
+
+			<td><span class="sentence" method="liberarMatriz">Liberar matriz no estado 1-Esboçada com unidade
+					corporativa, com unidade de negócio com peso igual ao maior peso da metodologia, sem atividades (de negócio,
+					corporativa).<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</li>
+					<li>Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</li>
+					<li>Não é possível a liberação de uma matriz com unidade de negócio sem atividade de negócio associada
+						cadastrada.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C005"><center>
+						<b>C005</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>8</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+				</table></td>
+
+
+			<td><span class="sentence" method="liberarMatriz">Liberar matriz no estado 1-Esboçada com unidade
+					corporativa, com unidade de negócio com peso igual ao maior peso da metodologia, sem atividade corporativa, com
+					atividade de negócio independente com peso igual ao maior peso da metodologia.<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</li>
+					<li>Não é possível a liberação de uma matriz com unidade de negócio sem atividade de negócio associada
+						cadastrada.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C006"><center>
+						<b>C006</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>8</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Liberar matriz no estado 1-Esboçada com unidade
+					corporativa com peso igual ao maior peso da metodologia, sem unidade de negócio, com atividade corporativa e grupo
+					(risco, controle) com peso igual ao maior peso da metodologia, sem atividade de negócio.<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade de negócio cadastrada.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C007"><center>
+						<b>C007</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+				</table> <br> <br>
+
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>8</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade corporativa cadastrada.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C008"><center>
+						<b>C008</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>3</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade corporativa cadastrada com peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C009"><center>
+						<b>C009</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>3</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz sem atividade de negócio cadastrada com peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C010"><center>
+						<b>C010</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz, a unidade corporativa deve ter peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C011"><center>
+						<b>C011</b>
+					</center></a>
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+			<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz, pelo menos uma unidade de negócio deve ter peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C012"><center>
+						<b>C012</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio 2</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>Atividade de negócio 2</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>3</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+<!-- 						<th>PRC_ID</th> -->
+<!-- 						<th>PFR_ID</th> -->
+<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				
+				<br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>16</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+					
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>16</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>3</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>16</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table>
+				
+				
+				
+				</td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz, em cada unidade de negócio pelo menos uma atividade de negócio
+						deve ter peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C013"><center>
+						<b>C013</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio 2</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>Atividade de negócio 2</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+					<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+<!-- 						<th>PRC_ID</th> -->
+<!-- 						<th>PFR_ID</th> -->
+<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				
+				<br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>16</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+					
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>16</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>3</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>3</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>16</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table>
+				
+				
+				
+				</td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz, em cada atividade corporativa pelo menos um grupo de risco e
+						controle deve ter peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C014"><center>
+						<b>C014</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio 2</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>Atividade de negócio 2</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+					<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+<!-- 						<th>PRC_ID</th> -->
+<!-- 						<th>PFR_ID</th> -->
+<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				
+				<br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>16</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+					
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>16</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>3</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>3</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>16</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table>
+				
+				
+				
+				</td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz, em cada atividade de negócio pelo menos um grupo de risco e
+						controle deve ter peso máximo.</li>
+				</ul>
+			</td>
+		</tr>
+
+		
+
+	
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C017"><center>
+						<b>C017</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>2</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>2</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>2</td>
+						<td>4</td>
+						<td>1</td>
+						<td></td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+						<!-- 						<th>PRC_ID</th> -->
+						<!-- 						<th>PFR_ID</th> -->
+						<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>3</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<!-- 						<td>4</td> -->
+						<!-- 						<td>1</td> -->
+						<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>8</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "2" do Ciclo
+					ECI_ID "2" para MAT_CD_ESTADO "2"<arg value="3" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a liberação de uma matriz para ciclo no estado corec.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario" >
+		
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C018"><center>
+						<b>C018</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					Os dados da Metodologia se encontram
+					<parametros>aqui</parametros>
+					<br>
+					<br>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio 2</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>Atividade de negócio 2</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>1</td>
+						<td>4</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+	<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+<!-- 						<th>PRC_ID</th> -->
+<!-- 						<th>PFR_ID</th> -->
+<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				
+				<br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>16</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+					
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>16</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>3</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>16</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table>
+				
+				
+				
+				</td>
+
+			<td><span class="sentence" method="liberarMatriz">Alterar estado da matriz: Matriz MAT_ID "1" do Ciclo
+					ECI_ID "1" para MAT_CD_ESTADO "2"<arg value="1" />
+			</span></td>
+
+			<td>
+				<ul class="execute">
+					<li>A Matriz de risco e controle foi liberada com sucesso.</li>
+				</ul> <br> <br>
+
+				<table class="verify dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>17</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>18</td>
+						<td>17</td>
+					</tr>
+
+				
+
+					<tr>
+						<td>I</td>
+						<td>19</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>20</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>21</td>
+						<td>17</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>22</td>
+						<td>2</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>23</td>
+						<td>2</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>24</td>
+						<td>17</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>25</td>
+						<td>2</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>26</td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="verify dados">
+					<caption>PVE_PER_VER</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>17</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>18</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>19</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>20</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>21</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>22</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>23</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>24</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>26</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="verify dados">
+					<caption>MAT_MATRIZ_SRC</caption>
+
+					<thead>
+						<tr>
+							<th>Ação</th>
+							<th>MAT_ID</th>
+							<th>MAT_CD_ESTADO</th>
+							<th>CIC_ID</th>
+							<th>VER_ID</th>
+							<th>MAT_DH_ATUALZ</th>
+							<th>MAT_CD_OPER_ATUALZ</th>
+							<th>MAT_NU_VERSAO</th>
+						</tr>
+					</thead>
+
+					<tr>
+						<td class="acao">U</td>
+						<td>1</td>
+						<td>2</td>
+						<td>1</td>
+						<td>17</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>1</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="verify dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<thead>
+						<tr>
+							<th>Ação</th>
+							<th>ARC_ID</th>
+							<th>ARC_PC_PARTICIPACAO</th>
+							<th>ARC_DS_END_MANUAL</th>
+							<th>ARC_CD_ESTADO</th>
+							<th>ARC_NU_VERSAO</th>
+							<th>ARC_CD_OPER_ATUALZ</th>
+							<th>ARC_DH_ATUALZ</th>
+<!-- 							<th>PRC_ID</th> -->
+<!-- 							<th>PFR_ID</th> -->
+<!-- 							<th>PPS_ID</th> -->
+							<th>PNO_ID_SUPERVISOR</th>
+							<th>VER_ID</th>
+						</tr>
+					</thead>
+
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>1</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>19</td>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>2</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>20</td>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>1</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>22</td>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>2</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>23</td>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>5</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>1</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>25</td>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>6</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>2</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>26</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="verify dados">
+					<caption>ELE_ELEMENTO_ARC</caption>
+
+					<thead>
+						<tr>
+							<th>Ação</th>
+							<th>ELE_ID</th>
+							<th>PEL_ID</th>
+							<th>ARC_ID</th>
+							<th>PNO_ID_INSPETOR</th>
+							<th>PNO_ID_SUPERVISOR</th>
+							<th>ELE_AN_JUST_SUPERVISOR</th>
+							<th>ELE_DH_ATUALZ</th>
+							<th>ELE_CD_OPER_ATUALZ</th>
+							<th>ELE_NU_VERSAO</th>
+						</tr>
+					</thead>
+
+					<tr>
+						<td class="acao">I</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2</td>
+						<td></td>
+						<td></td>
+						<td converter="null"></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td class="acao">I</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td></td>
+						<td></td>
+						<td converter="null"></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td class="acao">I</td>
+						<td>3</td>
+						<td>3</td>
+						<td>6</td>
+						<td></td>
+						<td></td>
+						<td converter="null"></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+				
+				</table> <br> <br>
+
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C019"><center>
+						<b>C019</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br></td>
+
+			<td><span class="sentence" method="editarMatriz">Alterar estado da matriz para versionamento: Matriz
+					MAT_ID "1" do Ciclo ECI_ID "1" para MAT_CD_ESTADO "1"<arg value="3" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a edição de uma matriz vigente para ciclo no estado corec.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C019"><center>
+						<b>C020</b>
+					</center></a></td>
+
+			<td></td>
+
+			<td><span class="sentence" method="editarMatriz">Alterar estado da matriz para versionamento: Matriz
+					MAT_ID "1" do Ciclo ECI_ID "1" para MAT_CD_ESTADO "1"<arg value="4" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a edição de uma matriz vigente para ciclo no estado pós-corec.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C019"><center>
+						<b>C021</b>
+					</center></a></td>
+
+			<td></td>
+
+			<td><span class="sentence" method="editarMatriz">Alterar estado da matriz para versionamento: Matriz
+					MAT_ID "1" do Ciclo ECI_ID "1" para MAT_CD_ESTADO "1"<arg value="5" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a edição de uma matriz vigente para ciclo no estado encerrado.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C019"><center>
+						<b>C022</b>
+					</center></a></td>
+
+			<td></td>
+
+			<td><span class="sentence" method="editarMatriz">Alterar estado da matriz para versionamento: Matriz
+					MAT_ID "1" do Ciclo ECI_ID "1" para MAT_CD_ESTADO "1"<arg value="6" />
+			</span></td>
+
+			<td>
+				<ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Não é possível a edição de uma matriz vigente para ciclo no estado excluído.</li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><a href="../espec/E3_18_Liberacao_e_versionamento_de_matriz.html#C019"><center>
+						<b>C023</b>
+					</center></a></td>
+
+			<td><banco />
+				<ul>
+					<li><parametros> Os dados da Metodologia se encontram aqui </parametros> <br> <br></li>
+					<li><entidadeSupervisionavel> Os dados das ESs se encontram aqui</entidadeSupervisionavel><br> <br>
+					</li>
+
+					<br> Os dados do Ciclo e seus estados se encontram
+					<a href="dadoque/carga_ciclo_dadoque_liberacao_versionamento.html" class="include">aqui</a>
+					<br>
+				</ul> <br>
+
+				<table class="prepare dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>2</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio 2</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>2</td>
+						<td>4</td>
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>2</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>Atividade de negócio 2</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>2</td>
+						<td>4</td>
+						<td>1</td>
+						<td>3</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_PC_PARTICIPACAO</th>
+						<th>ARC_DS_END_MANUAL</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>ARC_NU_VERSAO</th>
+						<th>ARC_CD_OPER_ATUALZ</th>
+						<th>ARC_DH_ATUALZ</th>
+<!-- 						<th>PRC_ID</th> -->
+<!-- 						<th>PFR_ID</th> -->
+<!-- 						<th>PPS_ID</th> -->
+						<th>PNO_ID_SUPERVISOR</th>
+						<th>ARC_CD_TIPO</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>3</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td></td>
+						<td>1-60-30-20 - Gestão do Risco de Crédito.htm</td>
+						<td>1</td>
+						<td>0</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+<!-- 						<td>4</td> -->
+<!-- 						<td>1</td> -->
+<!-- 						<td>4</td> -->
+						<td></td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				
+				<br> <br>
+				<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>14</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>15</td>
+						<td>17</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>16</td>
+						<td>17</td>
+					</tr>
+				</table> <br></br>
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>15</td>
+					</tr>
+					
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>16</td>
+					</tr>
+				</table> <br></br>
+
+				<table class="prepare dados">
+					<caption>CRC_CELULA_RISCO_CONTROLE</caption>
+					<tr>
+						<th>Ação</th>
+						<th>CRC_ID</th>
+						<th>ATV_ID</th>
+						<th>PRC_ID</th>
+						<th>PPS_ID</th>
+						<th>ARC_ID_RISCO</th>
+						<th>ARC_ID_CONTROLE</th>
+						<th>VER_ID</th>
+						<th>CRC_CD_OPER_ATUALZ</th>
+						<th>CRC_DH_ATUALZ</th>
+						<th>CRC_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>4</td>
+						<td>1</td>
+						<td>2</td>
+						<td>14</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>3</td>
+						<td>4</td>
+						<td>15</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+						<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>3</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>16</td>
+						<td>deliq.sisliq101</td>
+						<td>25/05/2013 00:00:00</td>
+						<td>0</td>
+					</tr>
+				</table>
+				
+				 <br> <br>
+
+				<table class="prepare dados">
+					<caption>ELE_ELEMENTO_ARC</caption>
+
+					<thead>
+						<tr>
+							<th>Ação</th>
+							<th>ELE_ID</th>
+							<th>PEL_ID</th>
+							<th>ARC_ID</th>
+							<th>PNO_ID_INSPETOR</th>
+							<th>PNO_ID_SUPERVISOR</th>
+							<th>ELE_AN_JUST_SUPERVISOR</th>
+							<th>ELE_DH_ATUALZ</th>
+							<th>ELE_CD_OPER_ATUALZ</th>
+							<th>ELE_NU_VERSAO</th>
+						</tr>
+					</thead>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>2</td>
+						<td>2</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>1</td>
+						<td>3</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td>2</td>
+						<td>4</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>1</td>
+						<td>5</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td>2</td>
+						<td>6</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>ITE_ITEM_ELEMENTO</caption>
+
+					<thead>
+						<tr>
+							<th>Ação</th>
+							<th>ITE_ID</th>
+							<th>ITE_CD_OPER_ATUALZ</th>
+							<th>ITE_DH_ATUALZ</th>
+							<th>ITE_NU_VERSAO</th>
+							<th>DOC_ID</th>
+							<th>DOC_ID_VIGENTE</th>
+							<th>ELE_ID</th>
+							<th>PIE_ID</th>
+						</tr>
+					</thead>
+
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>0</td>
+						<td></td>
+						<td></td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>0</td>
+						<td></td>
+						<td></td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>0</td>
+						<td></td>
+						<td></td>
+						<td>3</td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>0</td>
+						<td></td>
+						<td></td>
+						<td>4</td>
+						<td>2</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>0</td>
+						<td></td>
+						<td></td>
+						<td>5</td>
+						<td>1</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>0</td>
+						<td></td>
+						<td></td>
+						<td>6</td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>MAT_MATRIZ_SRC</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>MAT_ID</th>
+						<th>CIC_ID</th>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>1</td>
+					</tr>
+				</table></td>
+
+			<td><span class="sentence" method="editarMatriz">Editar (criar versão) matriz no estado 2-Vigente<arg
+						value="2" /></span></td>
+
+			<td>
+				<ul class="execute">
+					<li>Versionamento da matriz vigente e seus ARCs incluindo notas.</li>
+					<li>A tela deve exibir a matriz vigente, com ARCs e notas (se houver) e a nova versão da matriz com ARCs e
+						notas (se houver).</li>
+				</ul>
+
+				<table class="verify dados">
+					<caption>MAT_MATRIZ_SRC</caption>
+
+					<thead>
+						<tr>
+							<th>Ação</th>
+							<th>MAT_ID</th>
+							<th>MAT_DH_ATUALZ</th>
+							<th>MAT_CD_OPER_ATUALZ</th>
+							<th>MAT_NU_VERSAO</th>
+							<th>MAT_CD_ESTADO</th>
+							<th>CIC_ID</th>
+							<th>MAT_NU_FT_RELEV_UC</th>
+						</tr>
+					</thead>
+
+					<tr>
+						<td>I</td>
+						<td>7</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>1</td>
+						<td>1</td>
+						<td>0.50</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="verify dados">
+					<caption>UND_UNIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>UND_ID</th>
+						<th>UND_DH_ATUALZ</th>
+						<th>UND_CD_OPER_ATUALZ</th>
+						<th>UND_NU_VERSAO</th>
+						<th>UND_NM</th>
+						<th>UND_CD_TIPO</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade Corporativa</td>
+						<td>1</td>
+						<td>7</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio</td>
+						<td>2</td>
+						<td>7</td>
+						<td>4</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+						<td>Unidade de negócio 2</td>
+						<td>2</td>
+						<td>7</td>
+						<td>4</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="verify dados">
+					<caption>ATV_ATIVIDADE_MAT</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ATV_ID</th>
+						<th>ATV_NM</th>
+						<th>ATV_PC_PARTICIPACAO</th>
+						<th>ATV_NU_VERSAO</th>
+						<th>ATV_CD_TIPO</th>
+						<th>ATV_CD_OPER_ATUALZ</th>
+						<th>ATV_DH_ATUALZ</th>
+						<th>MAT_ID</th>
+						<th>PPS_ID</th>
+						<th>PTA_ID</th>
+						<th>UND_ID</th>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td>Atividade de negócio</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>7</td>
+						<td>4</td>
+						<td>1</td>
+						<td>5</td>
+					</tr>
+
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>Atividade corporativa</td>
+						<td></td>
+						<td>0</td>
+						<td>1</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>7</td>
+						<td>4</td>
+						<td></td>
+						<td>4</td>
+					</tr>
+
+				
+
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td>Atividade de negócio 2</td>
+						<td></td>
+						<td>0</td>
+						<td>2</td>
+						<td>deliq.sisliq101</td>
+						<td>25/04/2014 00:00:00</td>
+						<td>7</td>
+						<td>4</td>
+						<td>1</td>
+						<td>6</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

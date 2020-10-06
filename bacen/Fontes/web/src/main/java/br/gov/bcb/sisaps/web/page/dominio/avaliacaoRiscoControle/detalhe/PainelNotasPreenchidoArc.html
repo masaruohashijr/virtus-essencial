@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosNotaArc" cellspacing="0" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="4"><label wicket:id="idNomeDoGrupo"></label></th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirNotaVigente">
+				<td class="nomeCampo"  style="width: 25%" colspan="2">Nota vigente do ARC</td>
+				<td><label wicket:id="idNotaVigenteArc"></label></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" rowspan="" wicket:id="tituloNovaNotaInspetor">Nova nota inspetor</td>
+				<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+				<td style="width: 80%" wicket:id="idNotaArrastoArcInspetor"></td>
+			</tr>
+
+			<wicket:enclosure child="idNotaArcAjustadaInspetor">
+				<tr class="fundoPadraoAClaro3">
+					<td style="border-left: 1px solid white;" class="nomeCampo">Ajuste</td>
+					<td><label wicket:id="idNotaArcAjustadaInspetor"></label><br>
+					 <label wicket:id="idJustificativaInspetor"></label></td>
+				</tr>
+			</wicket:enclosure>
+
+			<div wicket:id="wmcExibirNotaSupervisor">
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" rowspan="" wicket:id="tituloNovaNotaSupervisor">Nova nota supervisor</td>
+					<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+					<td><font wicket:id="idNotaArrastoArcSupervisor" color=""></font></td>
+				</tr>
+				<wicket:enclosure child="idNovaNotaArcAjustadaSupervisor">
+					<tr class="fundoPadraoAClaro3">
+						<td style="border-left: 1px solid white;" class="nomeCampo">Ajuste</td>
+						<td><label wicket:id="idNovaNotaArcAjustadaSupervisor"></label><br> 
+						<label wicket:id="idJustificativaSupervisor"></label></td>
+					</tr>
+				</wicket:enclosure>
+			</div>
+
+			<div class="fundoPadraoAClaro3" wicket:id="wmcExibirNotaCorec">
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" rowspan="2">Nota Corec</td>
+					<td class="nomeCampo" style="border-left: 1px solid white;">Ajuste</td>
+					<td wicket:id="idNotaAjusteArcCorec"></td>
+				</tr>
+			</div>
+		</tbody>
+	</table>
+</wicket:panel>

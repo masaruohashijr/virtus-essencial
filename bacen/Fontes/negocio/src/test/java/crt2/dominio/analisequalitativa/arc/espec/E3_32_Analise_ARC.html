@@ -1,0 +1,265 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.3.2. Análise de ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>12/05/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_3_2">E3.3.2. Análise de ARC</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC no estado em andamento cadastrado no sistema de acordo com a metodologia da ES</p>
+			<p>Uma matriz no estado 2 - Vigente</p>
+			<p>ARCs nos estados Preenchido, Análise delegada e Em análise</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Inspetor</p>
+			<p>Supervisor</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela de análise de ARC</p>
+			<p>Início -- Painel do inspetor -- Detalhes de ARC -- Análise de ARC</p>
+			<p>Início -- Painel do supervisor -- Detalhes de ARC -- Análise de ARC</p>
+		</blockquote>
+
+		<h3>Tela</h3>
+
+		<blockquote>
+			<p><b>Título: Análise de ARC</b></p>
+			<p>Início -- Painel do inspetor -- Detalhes de ARC -- Análise de ARC</p>
+			<p>Início -- Painel do supervisor -- Detalhes de ARC -- Análise de ARC</p>
+			<p>Código de tela: [APSFW0000]</p>
+			<p>Comandos: Salvar, Concluir e Voltar</p>
+
+			<input type="image" src="Tela01_E3_32.png"/>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade de análise de ARCs.</p>
+			<p>Funcionalidade disponível para os perfis <b>Inspetor</b> e <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Os usuários com perfis inspetor e supervisor que estejam atuando na análise do ARC selecionado serão denominados 'usuário analisador'.</li>
+			<li>Quando o usuário analisador não alterar uma determinada nota está deverá ser apresentada, na coluna Supervisor da sessão Resumo do ARC, como na imagem acima.</li>
+			<li>A coluna Final conterá dados informados pelo usuário analisador, na sua ausência será mostrado o que foi informado pelo inspetor quando do preenchimento do ARC.</li>
+			<li>O dado vigente (nota, tendência, avaliação ou análise) será preenchido com os respectivos dados de análise concluída imediatamente anterior do ARC em questão.</li>
+			<li>Ao salvar a nota de cada elemento, o campo Nota calculada (arrasto), da sessão Resumo do ARC, deve ser 'recalculado' sendo atribuido a ele a menor das notas dadas aos elementos do ARC.</li>
+
+			<li>A aplicação deve gerar alertas indicando a existência de informações que foram editadas, mas que não foram salvas pelo usuário analisador.
+				<ul>
+					<li>Atenção informações não salvas - Trata-se de um alerta específico para um conjunto de informações e deve ser exibido como na imagem acima.</li>
+					<li>Atenção nota não salva - Trata-se de um alerta específico para um campo nota e deve ser exibido como na imagem acima.</li>
+					<li>Atenção texto não salvo - Trata-se de um alerta específico para um campo texto e deve ser exibido como na imagem acima.</li>
+				</ul>
+			</li>
+
+			<li>Delegação de análise do ARC:
+				<ul>
+					<li>Uma nova delegação de ARC só será permitida quando o usuário analizador tiver perfil de supervisor. Se o perfil for de inspetor não exibir a sessão Ações.</li>
+					<li>Para ARCs com estado Em análise o sistema deve exibir a mensagem 'Atenção ARC com análise em andamento por delegado.' ao lado do botão Delegar.</li>
+					<li>Quando de uma nova delegação os dados já salvos da análise, se for o caso, devem estar disponíveis para o novo usuário analisador.</li>
+				</ul>
+			</li>
+
+			<li>Designação do ARC:
+				<ul>
+					<li>Uma nova designação de ARC só será permitida quando o usuário analizador tiver perfil de supervisor. Se o perfil for de inspetor não exibir a sessão Ações.</li>
+					<li>Para ARCs com estado Preenchido ou Análise delegada o sistema deve exibir a mensagem 'Atenção ARC já preenchido por inspetor.' ao lado do botão Designar.</li>
+					<li>Para ARCs com estado Em análise o sistema deve exibir a mensagem 'Atenção ARC já preenchido por inspetor e com análise em andamento por delegado.' ao lado do botão Designar. O novo estado do ARC passa a ser Análise delegada.</li>
+					<li>Quando de uma nova designação os dados já preenchidos na avaliação anterior devem estar disponíveis para o novo inspetor designado. O novo estado do ARC passa a ser Designado.</li>
+				</ul>
+			</li>
+
+			<li>Concluir análise e atualizar Perfil de Risco:
+				<ul>
+					<li>Deverá ser criada uma cópia do ARC que está sofrendo a ação de conclusão. Está cópia terá o seu estado definido pela seguinte regra:</li>
+						<ul>
+							<li>Previsto. Se e somente se o usuário atualmente <b>designado</b> não for membro da equipe da ES.</li>
+							<li>Designado. Se e somente se o usuário atualmente <b>designado</b> for membro da equipe da ES.</li>
+						</ul>
+					</li>
+
+					<li>Todas as linhas da coluna Final da sessão Resumo do ARC passam a ter os valores que o usuário analisador alterou com relação a avaliação do inspetor.</li>
+					<li>O ARC que teve a sua análise concluída passará a ter o estado Concluído.</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="TestE3_32_Analise_ARC.html">Negócio</a>.</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Usuário analisador atualiza ou conclui análise de ARC não delegada para ele. Mensagem:
+				<ul><li>"Operação permitida apenas para usuário delegado ou supervisor titular do ciclo."</li></ul>
+			</li>
+
+			<li>
+				<b id="C002">C002</b> Falha - Usuário analisador atualiza ou conclui análise de ARC com estado diferente dos previstos. Mensagem:
+				<ul><li>"Operação não permitida para ARC no estado estado_do_ARC."</li></ul>
+			</li>
+
+			<li>
+				<b id="C003">C003</b> Falha - Ciclo e matriz em estados que não permitem análise de ARC. Mensagem:
+
+				<ul>
+					<li>Operação não permitida para ARC em ciclo no estado diferente de <b>Em andamento</b>.</li>
+					<li>Operação não permitida para ARC em matriz no estado diferente de <b>Vigente</b>.</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C004">C004</b> Falha - Clicar no botão delegar sem selecionar um servidor. Mensagem:
+				<ul><li>"É obrigatória a seleção do campo Servidores da equipe ou Outros servidores."</li></ul>
+			</li>
+
+			<li>
+				<b id="C005">C005</b> Falha - Clicar no botão delegar tendo selecionado os campos 'Servidores da equipe' e 'Outros servidores' simultaneamente. Mensagem:
+				<ul><li>"Selecione apenas um único servidor para delegação."</li></ul>
+			</li>
+
+			<li>
+				<b id="C006">C006</b> Falha - Clicar no botão designar sem selecionar um servidor. Mensagem:
+				<ul><li>"É obrigatória a seleção do campo Servidores da equipe ou Outros servidores."</li></ul>
+			</li>
+
+			<li>
+				<b id="C007">C007</b> Falha - Clicar no botão designar tendo selecionado os campos 'Servidores da equipe' e 'Outros servidores' simultaneamente. Mensagem:
+				<ul><li>"Selecione apenas um único servidor para designação."</li></ul>
+			</li>
+
+			<li>
+				<b id="C008">C008</b> Falha - Usuário analisador com perfil inspetor delega ARC. Mensagem:
+				<ul><li>"Operação não permitida para analisador com perfil inspetor."</li></ul>
+			</li>
+
+			<li>
+				<b id="C009">C009</b> Falha - Usuário analisador com perfil inspetor designa ARC. Mensagem:
+				<ul><li>"Operação não permitida para analisador com perfil inspetor."</li></ul>
+			</li>
+
+			<li>
+				<b id="C010">C010</b> Falha - Selecionar uma tendência sem preencher a respectiva justificatica e salvar. Mensagem:
+				<ul><li>A justificativa para tendência é de preenchimento obrigatório.</li></ul>
+			</li>
+
+			<li>
+				<b id="C011">C011</b> Falha - Clicar em Concluir análise e atualizar Perfil de Risco informando justificativa para qualquer nota quando o valor desta for igual a N/A. Mensagem:
+				<ul><li>Não é permitida a justificativa quando a nota é igual a N/A.</li></ul>
+			</li>
+
+			<li>
+				<b id="C012">C012</b> Falha - Clicar em Concluir análise e atualizar Perfil de Risco não informando justificativa para qualquer nota quando o valor desta for diferente de N/A. Mensagem:
+				<ul><li>A justificativa para nota_informada é de preenchimento obrigatório.</li></ul>
+			</li>
+
+			<li>
+				<b id="C013">C013</b> Sucesso - Clicar no comando Salvar para Nova nota supervisor (ajuste) informando nota e justificativa. Mensagem:
+				<ul><li>Nota ajustada salva com sucesso.</li></ul>
+			</li>
+
+			<li>
+				<b id="C014">C014</b> Sucesso - Clicar no comando Salvar para Nota supervisor, de qualquer elemento, informando nota. Mensagem:
+				<ul><li>Nota do nome_do_elemento salva com sucesso.</li></ul>
+			</li>
+
+			<li>
+				<b id="C015">C015</b> Sucesso - Clicar no comando Salvar texto da análise do supervisor para qualquer elemento informando uma justificativa. Mensagem:
+				<ul><li>Análise do supervisor para o nome_do_elemento salva com sucesso.</li></ul>
+			</li>
+
+			<li>
+				<b id="C016">C016</b> Sucesso - Delegar ARC.
+				<ul><li>Mensagem: "ARC delegado com sucesso."</li></ul>
+				<ul><li>Novo estado do ARC: Análise delegada</li></ul>
+				<ul><li>Dados já informados na análise, se for o caso: Preservados e disponíveis para o novo usuário analisador</li></ul>
+			</li>
+
+			<li>
+				<b id="C017">C017</b> Sucesso - Designar ARC.
+				<ul><li>Mensagem: "ARC designado com sucesso."</li></ul>
+				<ul><li>Novo estado do ARC: Designado</li></ul>
+				<ul><li>Dados já informados na avaliação: Preservados e disponíveis para o novo inspetor</li></ul>
+				<ul><li>Novo inspetor designado</li></ul>
+			</li>
+
+			<li><b id="C018">C018</b> Sucesso - Ao se salvar pela primeira vez qualquer seção da tela o estado do ARC deve sair de Preenchido ou Análise delegada para Em análise.</li>
+
+			<li>
+				<b id="C019">C019</b> Sucesso - Concluir análise e atualizar Perfil de Risco:
+				<ul><li>Mensagem: ""Análise concluída com sucesso."</li></ul>
+
+				<ul>
+					<li>Conferir, para ARC copiado, seu estado:
+						<ul><li>Previsto, conforme regra</li></ul>
+						<ul><li>Designado, conforme regra</li></ul>
+					</li>
+				</ul>
+
+				<ul><li>Conferir, para ARC original, o estado Concluído</li></ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_32_Analise_ARC.html">Web</a>.</h2>	
+
+		<ul>
+			<li>Teste web equivalente - <b><a href="#C001">C001</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C002">C002</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C003">C003</a></b> - Conferir apenas as mesangens.</li>
+			<li>Teste web equivalente - <b><a href="#C004">C004</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C005">C005</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C006">C006</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C007">C007</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C008">C008</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C009">C009</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C010">C010</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C011">C011</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C012">C012</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C013">C013</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C014">C014</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C015">C015</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C018">C016</a></b> - Conferir a mensagem, o novo estado do ARC e se os dados estão preservados e disponíveis.</li>
+			<li>Teste web equivalente - <b><a href="#C019">C017</a></b> - Conferir a mensagem, o novo estado do ARC, se os dados estão preservados e disponíveis e o novo inspetor designado.</li>
+			<li>Teste web equivalente - <b><a href="#C020">C018</a></b> - Conferir o novo estado do ARC.</li>
+			<li>Teste web equivalente - <b><a href="#C021">C019</a></b> - Conferir a mensagem, o novo estado do ARC copiado e o estado do ARC original.</li>
+			<li>Conferir - salvando a nota dos elementos as linhas que representam as notas na sessão Resumo do ARC devem ser igual a menor das notas dadas aos respectivos elementos do ARC na coluna Supervisor.</li>
+			<li>Conferir - salvando a tendência a linha que a representa na sessão Resumo do ARC deve ter o mesmo valor na coluna Supervisor.</li>
+			<li>Conferir - as mensagens ao lado dos botões conforme descrito no detalhamento das regras específicas.</li>
+			<li>Conferir - os demais elementos de tela e dados exibidos conforme protótipo e tabelas no dado_que e por_fim.</li>
+			<li>Sucesso - Testar a navegabilidade do comando Voltar.</li>
+		</ul>
+	</body>
+</html>

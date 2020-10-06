@@ -1,0 +1,253 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Validar a navegação dos ARC no Perfil de risco</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 'Bloquear edição para inspetor e supervisor'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>24/02/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>23/05/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Adicionando testes para ARC Externo</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>As regras da estória encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/index.html#bloquearEdicaoInspetorSupervisor">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+		<ul><li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li></ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote><a href="indexWeb.html#validarNavegacao">Cenários para validar a navegação dos ARCs no perfil de risco</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C001]</b> - Para o perfil <b>supervisor</b>, ir para a tela de 'Detalhes do ARC'; em ciclo com estado 'Corec'.</td>
+
+				<td>
+					<banco/>
+
+					<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/bloquearedicaoinspetorsupervisor/TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>.</li>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+						<li>Clica na Nota <span class="clickon" by="id:linkControle12" sleep="2000"><b>2</b></span> do ARC "Controle" do grupo "Estratégia" da atividade "Tesouraria"</li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+						<li>O estado do ARC deve ser: <span class="contains"><b>Concluído</b></span></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C002]</b> - Para o perfil <b>inspetor</b>, ir para a tela de 'Detalhes do ARC'; em ciclo com estado 'Corec'.</td>
+
+				<td>
+					<banco/>
+
+					<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/bloquearedicaoinspetorsupervisor/TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>.</li>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+						<li>Acessar o menu: <span class="open" url="sisaps/inspetor/painelinspetor">inicio/painelinspetor</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+						<li>Clica na Nota <span class="clickon" by="id:linkControle12" sleep="2000"><b>2</b></span> do ARC "Controle" do grupo "Estratégia" da atividade "Tesouraria"</li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+						<li>O estado do ARC deve ser: <span class="contains"><b>Concluído</b></span></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario"   >
+				<td class='title'><b>[C003]</b> - Para o perfil <b>consulta</b>, ir para a tela de 'Consulta de ARC'; em ciclo com estado 'Corec'.</td>
+
+				<td>
+					<banco/>
+
+					<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/bloquearedicaoinspetorsupervisor/TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>.</li>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/painelconsulta</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+						<li>Clica na Nota <span class="clickon" by="id:linkControle12" sleep="2000"><b>2</b></span> do ARC "Controle" do grupo "Estratégia" da atividade "Tesouraria"</li>
+					</ul>
+				</td>
+
+				<td><ul><li>O título da tela deve ser: <span class="contains"><b>Consulta de ARC</b></span></li></ul></td>
+			</tr>
+		</table>
+		
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C004]</b> - Para o perfil <b>supervisor</b>, ir para a tela de 'Detalhes do ARC'; em ciclo com estado 'Corec', para ARC Externo.</td>
+
+				<td>
+					<banco/>
+
+					<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/bloquearedicaoinspetorsupervisor/TestR001BloquearEdicaoInspetorSupervisor-C004-DadoQue.html" class="include">aqui</a>.</li>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Acessar o menu: <span class="open" url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+						<li>Clica na Nota <span class="clickon" by="id:linkControle12" sleep="2000"><b>1</b></span> do ARC "Governança Corporativa"</li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+						<li>O estado do ARC deve ser: <span class="contains"><b>Concluído</b></span></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>[C005]</b> - Para o perfil <b>inspetor</b>, ir para a tela de 'Detalhes do ARC'; em ciclo com estado 'Corec', para ARC Externo.</td>
+
+				<td>
+					<banco/>
+
+					<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/bloquearedicaoinspetorsupervisor/TestR001BloquearEdicaoInspetorSupervisor-C005-DadoQue.html" class="include">aqui</a>.</li>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+						<li>Acessar o menu: <span class="open" url="sisaps/inspetor/painelinspetor">inicio/painelinspetor</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+						<li>Clica na Nota <span class="clickon" by="id:linkControle12" sleep="2000"><b>1</b></span> do ARC "Governança Corporativa"</li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>O título da tela deve ser: <span class="contains"><b>Detalhes do ARC</b></span></li>
+						<li>O estado do ARC deve ser: <span class="contains"><b>Concluído</b></span></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario"   >
+				<td class='title'><b>[C006]</b> - Para o perfil <b>consulta</b>, ir para a tela de 'Consulta de ARC'; em ciclo com estado 'Corec',  para ARC Externo.</td>
+
+				<td>
+					<banco/>
+
+					<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/bloquearedicaoinspetorsupervisor/TestR001BloquearEdicaoInspetorSupervisor-C006-DadoQue.html" class="include">aqui</a>.</li>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/painelconsulta</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+						<li>Clica na Nota <span class="clickon" by="id:linkControle12" sleep="2000"><b>1</b></span> do ARC "Governança Corporativa"</li>
+					</ul>
+				</td>
+
+				<td><ul><li>O título da tela deve ser: <span class="contains"><b>Consulta de ARC</b></span></li></ul></td>
+			</tr>
+		</table>
+	</body>
+</html>

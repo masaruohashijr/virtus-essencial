@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.3.1. Delegação e nova designação de ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>07/05/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_3_1">E3.3.1. Delegação e nova designação de ARC</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC no estado em andamento cadastrado no sistema de acordo com a metodologia da ES</p>
+			<p>Uma matriz no estado 2 - Vigente</p>
+			<p>ARCs nos estados Previsto, Designado, Em edição, Preenchido, Análise delegada e Em análise do ciclo que o supervisor seja titular</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela de detalhamento de ARCS para o perfil supervisor</p>
+			<p>Início -- Painel do supervisor -- Detalhes de ARC</p>
+		</blockquote>
+
+		<h3>Tela</h3>
+
+		<blockquote>
+			<p><b>Título: Detalhes de ARC</b></p>
+			<p>Início -- Painel do supervisor -- Detalhes de ARC</p>
+			<p>Código de tela: [APSFW0000]</p>
+			<p>Comandos: Analisar, Delegar, Designar e Voltar</p>
+
+			<input type="image" src="Tela01_E3_3.png"/>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade de delegação e nova designação de ARCs.</p>
+			<p>Funcionalidade disponível apenas para o perfil <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>A funcionalidade do botão Analisar será discutida na especificação que for tratar do assunto.</li>
+			<li>Para ARCS com estado Previsto, Designado e Em edição somente estará visível, na seção de AÇÕES, a funcionalidade de Designação.</li>
+			<li>Para ARCS com estado Preenchido estarão visíveis, na seção de AÇÕES, as funcionalidades de Delegação e Designação.</li>
+			<li>Para ARCS com estado Análise delegada e Em análise estarão visíveis, na seção de AÇÕES, as funcionalidades de Delegação e Designação.</li>
+
+			<li>Delegação de análise do ARC:
+				<ul>
+					<li>A delegação de ARC só será permitida para ARCs no estado Preenchido, Análise delegada e Em análise.</li>
+					<li>Só será possível a delegação para um único servidor por vez.</li>
+					<li>Para ARCs com estado Em análise o sistema deve exibir a mensagem 'Atenção ARC com análise em andamento por delegado.' ao lado do botão Delegar.</li>
+				</ul>
+			</li>
+
+			<li>Designação do ARC:
+				<ul>
+					<li>A designação de ARC só será permitida para ARCs no estado Previsto, Designado, Em edição, Preenchido e Em análise.</li>
+					<li>Só será possível a designação para um único servidor por vez.</li>
+					<li>Para ARCs com estado Em edição o sistema deve exibir a mensagem 'Atenção ARC pendente de conclusão pelo inspetor designado.' ao lado do botão Designar.</li>
+					<li>Para ARCs com estado Preenchido ou Análise delegada o sistema deve exibir a mensagem 'Atenção ARC já preenchido por inspetor.' ao lado do botão Designar.</li>
+					<li>Para ARCs com estado Em análise o sistema deve exibir a mensagem 'Atenção ARC já preenchido por inspetor e com análise em andamento por delegado.' ao lado do botão Designar.</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="TestE3_31_Delegacao_redesignacao_ARCs.html">Negócio</a>.</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Clicar no botão delegar sem selecionar um servidor. Mensagem:
+				<ul><li>"É obrigatória a seleção do campo Servidores da equipe ou Outros servidores."</li></ul>
+			</li>
+
+			<li>
+				<b id="C002">C002</b> Falha - Clicar no botão delegar tendo selecionado os campos 'Servidores da equipe' e 'Outros servidores' simultaneamente. Mensagem:
+				<ul><li>"Selecione apenas um único servidor para delegação."</li></ul>
+			</li>
+
+			<li>
+				<b id="C003">C003</b> Falha - Clicar no botão designar sem selecionar um servidor. Mensagem:
+				<ul><li>"É obrigatória a seleção do campo Servidores da equipe ou Outros servidores."</li></ul>
+			</li>
+
+			<li>
+				<b id="C004">C004</b> Falha - Clicar no botão designar tendo selecionado os campos 'Servidores da equipe' e 'Outros servidores' simultaneamente. Mensagem:
+				<ul><li>"Selecione apenas um único servidor para designação."</li></ul>
+			</li>
+
+			<li>
+				<b id="C005">C005</b> Sucesso - Delegar ARC. Mensagem:
+				<ul><li>"ARC delegado com sucesso."</li></ul>
+			</li>
+
+			<li>
+				<b id="C006">C006</b> Sucesso - Designar ARC. Mensagem:
+				<ul><li>"ARC designado com sucesso."</li></ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_31_Delegacao_redesignacao_ARCs.html">Web</a>.</h2>	
+
+		<ul>
+			<li>Teste web equivalente - <b><a href="#C001">C001</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C002">C002</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C003">C003</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C004">C004</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C005">C005</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C006">C006</a></b> - Conferir apenas a mesangem.</li>
+			<li>Conferir - as mensagens ao lado dos botões conforme descrito no detalhamento das regras específicas.</li>
+			<li>Conferir - os demais elementos de tela e dados exibidos conforme protótipo e tabelas no dado_que.</li>
+			<li>Sucesso - Testar a navegabilidade do comando Voltar.</li>
+		</ul>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<wicket:panel>
+<table id="tAnexosArc" width="90%" cellspacing="0" cellpadding="0" style="margin: auto;">
+		 <thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th colspan="5" class="thform" style="text-align: left; border-bottom: 0px;">Anexos</th>
+			</tr>
+		</thead>
+		<tr class="fundoPadraoAClaro3">
+			<td></td>
+			<td colspan="2" style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataAnexo"></label></td>
+		</tr>
+		<tr class="fundoPadraoAClaro3">
+			<td width="20%"></td>
+        	<td><div class="centralizado" style="width: 100%;" wicket:id="idTabelaAnexoArc" ></div></td>
+		    <td width="20%"></td>
+		</tr>
+		
+		<tr class="fundoPadraoAClaro3" wicket:id="idEdicao">
+			<td width="5%"></td>
+			<td>
+				<div class="centralizado">
+					<br />
+					<br /> <label for="arquivo"><acronym title="Arquivo que será anexado.">&nbsp;Arquivo</acronym></label> <input
+						wicket:id="idFieldUploadAnexo" type="file" size="65" /> <br />
+					<br /> <input type="submit" wicket:id="botaoAnexarAquivo" style="width: 150px;" class="botao"
+						value="Anexar arquivo novo" />
+				</div>
+				<br />
+			</td>
+			<td width="5%"></td>
+		</tr>
+	</table>
+</wicket:panel>

@@ -1,0 +1,672 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a estória - Issue - ETL de ES - versão do perfil de risco</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para  a estória - Issue - ETL de ES - versão do perfil de risco</h1>
+
+    <span id="index"></span>
+
+    <h2>Histórico</h2>
+    <table class="exemplos historico">
+        <tr>
+            <th>Versão</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+        </tr>
+        <tr>
+            <td>1.0</td>
+            <td>13/10/2014</td>
+            <td>Victor Vasconcelos</td>
+            <td>Versão inicial.</td>
+        </tr>
+    </table>
+
+    <h2>Regras aplicáveis</h2>
+    <blockquote>
+        Para as regras desta estória se encontram no arquivo <br><br> <a href="../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/requirement/Issue_ETL_de_ES_versao_do_perfil_de_risco.xlsx">Issue_ETL_de_ES_versao_do_perfil_de_risco.xlsx</a><br><br>
+    </blockquote>
+
+
+
+    <h2>Premissas iniciais</h2>
+
+    <blockquote>
+        Lista de servidores: <a
+            href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+            class="include">aqui</a>
+    </blockquote>
+    <blockquote>
+        <dataHoraAtual valor="28/06/2014 00:00:00">Data atual: 28/06/2014 00:00:00</dataHoraAtual>
+    </blockquote>
+
+
+    <h2>Cenários de teste para a estória - Issue - ETL de ES - versão do perfil de risco</h2>
+    <blockquote>Cenários onde devem ser apresentados os resultados da execução do batch responsável por tratar as informações vindas do SIGAS pelo ETL.</blockquote>
+
+    <span id="cenarios"></span>
+
+	<table class="exemplos">
+	    <tr>
+            <td>
+                <table class="scenario">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C001]</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL não existe na tabela de Entidade Supervisionável 
+                        (ENS_ENTIDADE_SUPERVISIONAVEL). Após a execução do batch, houve a inclusão de uma nova ES com os dados do ETL, com a prioridade e o indicador 
+                        que percente a um SRC nulos, associado à metodologia default. Verificar se a nova ES não se encontra no painel do Supervisor.
+                        </td>
+                    <tr>
+                        <th>Dados pré-existentes</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <banco />
+			                   As regras para os perfis de acesso se encontram 
+			                   <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br> <br>
+			                   Os dados da Metodologia se encontram 
+			                   <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+			                   <br> Os dados das ESs se encontram 
+			                   <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+			                   <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+			                   <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+			                   Os dados das ESs e dos ciclos migrados se encontram <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+			                   Os dados do ETL e os dados alterados pela execução do batch se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C001.html" class="include">aqui</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+			                    <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor
+			                    </span></li>
+			                    <li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b /></span></li>
+			                    <li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+			                </ul>
+			                
+			                <span class="compareTable dados"  by="xpath://table[@id='idLocalizacao']">
+                                <table style="width: 482px;">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="8" class="aesquerda"
+                                                style="background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </span>
+                  
+                            <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+		                        <table style="width: 482px;">
+		                            <thead>
+		                                <tr>
+		                                    <td colspan="8" class="aesquerda"
+		                                        style="background-color: #4a73a2"><b>Ciclos da Equipe</b></td>
+		                                </tr>
+		                            </thead>
+		                        </table>
+		                    </span> 
+		                    <span class="compareTable dados" by="xpath://table[@id='idDados']">
+		                        <table style="width: 482px;">
+		                            <tbody>
+		                                 <tr>
+		                                <th colspan="2" style="color: black; background-color: #4a73a2"><b>ES
+		                                        <input type="image"
+		                                        src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+		                                </b></th>
+		                                <td colspan="2" style="color: black; background-color: #4a73a2"><b>Início
+		                                        <input type="image"
+		                                        src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+		                                </b></td>
+		                                <td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec
+		                                        <input type="image"
+		                                        src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+		                                </b></td>
+		                                <td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado
+		                                        <input type="image"
+		                                        src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+		                                </b></td>
+		                            </tr>
+		                            
+		                            <tr>
+		                                <td colspan="2"><a
+		                                    href="inicio/painelsupervisor/perfilderisco"
+		                                    title="Link para o perfil de risco">ABN AMRO</a></td>
+		                                <td colspan="2">17/03/2014</td>
+		                                <td colspan="2">17/03/2015</td>
+		                                <td colspan="2">Em andamento</td>
+		                            </tr>
+		                             <tr>
+		                                <td colspan="2"><a
+		                                    href="inicio/painelsupervisor/perfilderisco"
+		                                    title="Link para o perfil de risco">ITAU</a></td>
+		                                <td colspan="2">17/03/2014</td>
+		                                <td colspan="2">17/03/2015</td>
+		                                <td colspan="2">Em andamento</td>
+		                            </tr>
+		                            </tbody>
+		                        </table>
+                            </span>
+			                <br> <br> 
+			                <span class="compareTable dados" by="xpath://table[@id='idTituloNovaES']">
+			                    <table style="width: 482px;">
+			                        <thead>
+			                            <tr>
+			                                <td colspan="8" class="aesquerda"
+			                                    style="background-color: #4a73a2"><b>Novas ESs</b></td>
+			                            </tr>
+			                        </thead>
+			                    </table>
+			                </span>
+			                <span class="compareTable" by="xpath://table[@id='idDadosNovaES']">
+			                    <table style="width: 482px;">
+			                        <thead>
+			                            <tr>
+			                                <th colspan="1" class="aesquerda"
+			                                    style="color: black; background-color: #4a73a2"><b>ES
+			                                        <input type="image"
+			                                        src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+			                                </b></th>
+			                                <th colspan="1" class="aesquerda"
+			                                    style="color: black; color: black; background-color: #4a73a2"><b>Ação
+			                                        <input type="image"
+			                                        src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+			                                </b></th>
+			                            </tr>
+			                            <tr>
+			                                <td colspan="1">BB</td>
+			                                <td colspan="1"><a href="iniciar/ciclo"
+			                                    title="Link para a inclusão de ciclo">Iniciar ciclo</a></td>
+			                            </tr>
+			                            <tr>
+                                            <td colspan="1">GOLDMAN SACHS</td>
+                                            <td colspan="1"><a href="iniciar/ciclo"
+                                                title="Link para a inclusão de ciclo">Iniciar ciclo</a></td>
+                                        </tr>
+			                            <tr>
+			                                <td colspan="1">NATIXIS BRASIL S/A</td>
+			                                <td colspan="1"><a href="iniciar/ciclo"
+			                                    title="Link para a inclusão de ciclo">Iniciar ciclo</a></td>
+			                            </tr>
+			
+			                        </thead>
+			                    </table>
+		                    </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+	    </tr>
+        <tr>
+            <td>
+                <table class="scenario">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C002]</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável 
+                        (ENS_ENTIDADE_SUPERVISIONAVEL), CNPJ não mudou, mas seus dados (Nome, Localização, Segmento e Porte) foram alterados, e a ES possui Ciclo. 
+                        No ciclo, a ES está em apenas uma versão do perfil de risco. O batch sobrepôs os dados da ES do APS pelos dados vindos do ETL dessa versão 
+                        do perfil de risco. Verificar que a ES não aparece mais no painel do supervisor da localização anterior.
+                        </td>
+                    <tr>
+                        <th>Dados pré-existentes</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <banco />
+                               As regras para os perfis de acesso se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br> <br>
+                               Os dados da Metodologia se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                               <br> Os dados das ESs se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                               <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                               <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                               Os dados das ESs e dos ciclos migrados se encontram <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                               Os dados do ETL e os dados alterados pela execução do batch se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C002.html" class="include">aqui</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do supervisor
+                                </span></li>
+                                <li>O título da tela deve ser: <span class="contains"><b>Painel do supervisor<b /></span></li>
+                                <li>O código da tela deve ser: <span class="contains"><b>[APSFW0201]</b></span></li>
+                            </ul>
+                            
+                            <span class="compareTable dados"  by="xpath://table[@id='idLocalizacao']">
+                                <table style="width: 482px;">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="8" class="aesquerda"
+                                                style="background-color: #4a73a2"><b>DELIQ/GLIQ1/GTBHO</b></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </span>
+                  
+                            <span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+                                <table style="width: 482px;">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="8" class="aesquerda"
+                                                style="background-color: #4a73a2"><b>Ciclos da Equipe</b></td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </span> 
+                            <span class="compareTable dados" by="xpath://table[@id='idDados']">
+                                <table style="width: 482px;">
+                                    <tbody>
+                                         <tr>
+                                        <th colspan="2" style="color: black; background-color: #4a73a2"><b>ES
+                                                <input type="image"
+                                                src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+                                        </b></th>
+                                        <td colspan="2" style="color: black; background-color: #4a73a2"><b>Início
+                                                <input type="image"
+                                                src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+                                        </b></td>
+                                        <td colspan="2" style="color: black; background-color: #4a73a2"><b>Corec
+                                                <input type="image"
+                                                src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+                                        </b></td>
+                                        <td colspan="2" style="color: black; background-color: #4a73a2"><b>Estado
+                                                <input type="image"
+                                                src="http://www.bcb.gov.br/img/ordenacao/ativarA.png">
+                                        </b></td>
+                                    </tr>
+                                     <tr>
+                                        <td colspan="2"><a
+                                            href="inicio/painelsupervisor/perfilderisco"
+                                            title="Link para o perfil de risco">ITAU</a></td>
+                                        <td colspan="2">17/03/2014</td>
+                                        <td colspan="2">17/03/2015</td>
+                                        <td colspan="2">Em andamento</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </span>
+                            <br> <br> 
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="scenario">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C003]</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável 
+                        (ENS_ENTIDADE_SUPERVISIONAVEL), CNPJ não mudou, nem a sua localização, mas seus dados (Nome, Segmento e Porte) foram alterados, e a ES 
+                        possui Ciclo. No ciclo, a ES está em mais de uma versão do perfil de risco. Houve a criação de um novo registro da ES com os dados vindos 
+                        do ETL (Nome, Localização, Segmento e Porte) e com a prioridade e o indicador que percente a um SRC da ES do APS. Verificar que os dados 
+                        foram alterados apenas no perfil de risco vigente.
+                        </td>
+                    <tr>
+                        <th>Dados pré-existentes</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <banco />
+                               As regras para os perfis de acesso se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br> <br>
+                               Os dados da Metodologia se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                               <br> Os dados das ESs se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                               <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                               <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                               Os dados das ESs e dos ciclos migrados se encontram <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                               Os dados do ETL e os dados alterados pela execução do batch se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C003.html" class="include">aqui</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Clica na ES: <span class="clickon" by="id:link_ES14">NOVO ITAU</span></li>
+                                <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+		                        <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+		                        <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+		                        <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+		                        <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+		                        <li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+		                        <li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+		                    </ul>
+                            <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+		                        <table>
+		                            <thead>
+		                                <tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>NOVO ITAU (00000776)</b></th></tr>
+		                                <tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+		                                    <td colspan="6"><b>Em andamento</b></td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Início</b></td>
+		                                    <td colspan="6">17/03/2014</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Corec previsto</b></td>
+		                                    <td colspan="6">17/03/2015</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+		                                    <td colspan="6">ROBERTO SANTOS ALENCAR</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Gerente titular</b></td>
+		                                    <td colspan="6">ANFRISIO RODRIGUES VIEIRA</td>
+		                                </tr>
+		                            </tbody>
+		                           
+		                        </table>
+		                    </span>
+                            <span class="compareTable" by="xpath://table[@id='tDadosES']">
+		                        <table>
+		                            <thead>
+		                                <tr><th colspan="3" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+		                                    <td><b>Baixa</b></td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+		                                    <td>2 - Médio</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+		                                    <td>Grande</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+		                                    <td>Complexo</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+		                                    <td><span><b>Perfil de atuação</b></span></td>
+		                                    <td>ver detalhes</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="3">
+		                                        <span type="table">
+		                                            <table style="width: 100%">
+		                                                <tbody>
+		                                                    <tr><td colspan="3">Justificativa vigente do perfil de atuação da ES</td></tr>
+		                                                    <tr>
+		                                                        <td></td>
+		                                                        <td style="background-color: #4a73a2; color: black;"><span>Nenhum arquivo anexado.</span></td>
+		                                                        <td><a></a></td>
+		                                                    </tr>
+		                                                </tbody>
+		                                            </table>
+		                                        </span>
+		                                    </td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+		                                    <td><span><b>Conclusão</b></span></td>
+		                                    <td>ver detalhes</td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td colspan="3">
+		                                        <span type="table">
+		                                            <table style="width: 100%">
+		                                                <tbody>
+		                                                    <tr><td colspan="3">Justificativa vigente da conclusão da ES</td></tr>
+		                                                    <tr>
+                                                                <td></td>
+                                                                <td style="background-color: #4a73a2; color: black;"><span>Nenhum arquivo anexado.</span></td>
+                                                                <td><a></a></td>
+                                                            </tr>
+		                                                </tbody>
+		                                            </table>
+		                                        </span>
+		                                    </td>
+		                                </tr>
+		
+		                                <tr>
+		                                    <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+		                                    <td><span><b>Perspectiva</b></span></td>
+		                                    <td>Indefinida</td>
+		                                </tr>
+		
+		                                <tr><td colspan="3">Justificativa da perspectiva da ES</td></tr>
+		
+		                                <tr>
+		                                    <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+		                                    <td><span><b>Situação</b></span></td>
+		                                    <td>Em Atenção</td>
+		                                </tr>
+		
+		                                <tr><td colspan="3">Justificativa da situação da ES</td></tr>
+		                            </thead>
+		                        </table>
+		                    </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="scenario">
+                    <tr>
+                        <th>Cenário</th>
+                    </tr>
+                    <tr>
+                        <td class='title'><b>[C004]</b> - Existe dados na tabela do ETL (EET_ETL_ENS). ES do ETL existe na tabela de Entidade Supervisionável 
+                        (ENS_ENTIDADE_SUPERVISIONAVEL), CNPJ não mudou, nem a sua localização, mas seus dados (Nome, Segmento e Porte) foram alterados, e a ES 
+                        possui Ciclo. No ciclo, a ES está em mais de uma versão do perfil de risco. Houve a criação de um novo registro da ES com os dados vindos 
+                        do ETL (Nome, Localização, Segmento e Porte) e com a prioridade e o indicador que percente a um SRC da ES do APS. Verificar que os dados 
+                        do perfil de risco anterior não foi alterado.
+                        </td>
+                    <tr>
+                        <th>Dados pré-existentes</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <banco />
+                               As regras para os perfis de acesso se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br> <br>
+                               Os dados da Metodologia se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+                               <br> Os dados das ESs se encontram 
+                               <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+                               <br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram 
+                               <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque.html" class="include">aqui</a><br><br>
+                               Os dados das ESs e dos ciclos migrados se encontram <a href="../../../../../../batch/src/test/java/crt2/dominio/perfilderisco/test/dadoque/Test_Issue_ETL_ES_dadoque_2.html" class="include">aqui</a><br><br>
+                               Os dados do ETL e os dados alterados pela execução do batch se encontram <a href="dadoque/Test_Issue_ETL_ES_dadoque_C003.html" class="include">aqui</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ação pretendida</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                                <li>Clica na ES: <span class="clickon" by="id:link_ES14">NOVO ITAU</span></li>
+                                <li>Seleciona a versão: <span class="select" by="id:idPerfilRisco">17/03/2014</span></li>
+                                <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerfilAtuacao">Perfil de atuação</span></li>
+                                <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelConclusao">Conclusão</span></li>
+                                <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelPerspectiva">Perspectiva</span></li>
+                                <li>Expandir grupo expansível: <span class="clickon" by="id:grupo_controle_grupoExpansivelSituacao">Situação</span></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Resultado esperado</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+                                <li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+                                <li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+                            </ul>
+                            <span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+                                <table>
+                                    <thead>
+                                        <tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th></tr>
+                                        <tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                            <td colspan="6"><b>Em andamento</b></td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Início</b></td>
+                                            <td colspan="6">17/03/2014</td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Corec previsto</b></td>
+                                            <td colspan="6">17/03/2015</td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+                                            <td colspan="6">ROBERTO SANTOS ALENCAR</td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Gerente titular</b></td>
+                                            <td colspan="6">ANFRISIO RODRIGUES VIEIRA</td>
+                                        </tr>
+                                    </tbody>
+                                   
+                                </table>
+                            </span>
+                            <span class="compareTable" by="xpath://table[@id='tDadosES']">
+                                <table>
+                                    <thead>
+                                        <tr><th colspan="3" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Detalhes da ES</b></th></tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+                                            <td><b>Baixa</b></td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Nota final</b></td>
+                                            <td></td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Porte</b></td>
+                                            <td>teste</td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td colspan="2" style="background-color: #4a73a2"><b>Segmento</b></td>
+                                            <td>teste</td>
+                                        </tr>
+        
+                                        <tr>
+                                            <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                            <td><span><b>Perfil de atuação</b></span></td>
+                                            <td>ver detalhes</td>
+                                        </tr>
+        
+                                        <tr><td colspan="3"></td></tr>
+        
+                                        <tr>
+                                            <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                            <td><span><b>Conclusão</b></span></td>
+                                            <td>ver detalhes</td>
+                                        </tr>
+        
+                                        <tr><td colspan="3"></td></tr>
+        
+                                        <tr>
+                                            <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                            <td><span><b>Perspectiva</b></span></td>
+                                            <td></td>
+                                        </tr>
+        
+                                        <tr><td colspan="3"></td></tr>
+        
+                                        <tr>
+                                            <td style="background-color: #4a73a2"><span><a><img style="cursor:pointer;" src="../../crt2/menos-p.gif"/></a></span></td>
+                                            <td><span><b>Situação</b></span></td>
+                                            <td></td>
+                                        </tr>
+        
+                                        <tr><td colspan="3"></td></tr>
+                                    </thead>
+                                </table>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+   </body>
+</html>

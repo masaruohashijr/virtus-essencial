@@ -1,0 +1,1004 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>APSFW0502 - Gestão de perfil
+		de acesso</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória APSFW0502 - Gestão de perfil
+		de acesso</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td></td>
+			<td>Wilkie Martins</td>
+			<td>Versão incial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>31/07/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Estória - Substituto prazo certo no gerenciamento de perfis ***</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da história clique 
+		<a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0502_Gestao_de_perfil_de_acesso.xlsx">aqui</a> e <br>
+		<a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0502_Gestao_de_perfil_de_acesso_Substituto_Prazo_Certo.xlsx">aqui</a>.	
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		Lista de servidores: <a
+			href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">aqui</a>
+	</blockquote>
+
+	<blockquote>
+		<dataHoraAtual valor="17/03/2014 00:00:00">Data atual: 17/03/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários de falha e sucesso para a estória APSFW0502 - Gestão
+		de perfil de acesso</h2>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+ 		<tr class="scenario">
+			<td class='title'><b>C004</b><br> <br> Sucesso -
+				"Acessar funcionalidade gestão de perfil de acesso para o perfil
+				Consulta tudo. Não há regras registradas para o perfil."</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>DELIQ/GLIQ1/GTSPA/COREP-01</td>
+						<td>0</td>
+						<td>FDT-1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq101</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td>Verificar permissão para gestão de perfil do usuário "<b class="set" name="loginUsuarioLogado">deliq.sisliq105</b>", 
+					matrícula "<b class="set" name="matriculaUsuarioLogado">65264155</b>" 
+					para o perfil "<b class="set" name="perfilAcesso">5</b>" (Consulta tudo)</td>
+			<td>
+				<table class="verifyRows" name="regra" value="$THIS.consultarRegras(loginUsuarioLogado, matriculaUsuarioLogado, perfilAcesso)">
+                    <tr>
+                        <th class="eq" value="$THIS.getLocalizacao(regra)">Localização</th>
+                        <th class="eq" value="$THIS.getLocalizacoesSubordinadas(regra)">Localizações Subordinadas</th>
+                        <th class="eq" value="$THIS.getFuncao(regra)">Função</th>
+                        <th class="eq" value="$THIS.getSubstitutoEventual(regra)">Substituto Eventual</th>
+                        <th class="eq" value="$THIS.getSubstitutoPrazoCerto(regra)">Substituto Prazo Certo</th>
+                        <th class="eq" value="$THIS.getSituacao(regra)">Situação</th>
+                        <th class="eq" value="$THIS.getMatricula(regra)">Matrícula</th>
+                    </tr>
+                </table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br> <br> Sucesso -
+				Acessar funcionalidade gestão de perfil de acesso para cada opção de
+				perfil existente no Painel do administrador. Considerando que há
+				regras registradas para o perfil.</td>
+			<td><banco /> As regras de acesso encontram-se <regra>aqui</regra></td>
+			<td>Verificar permissão para gestão de perfil do usuário "<b class="set" name="loginUsuarioLogado">deliq.sisliq105</b>", 
+					matrícula "<b class="set" name="matriculaUsuarioLogado">65264155</b>" 
+					para o perfil "<b class="set" name="perfilAcesso">5</b>" (Consulta tudo)</td>
+			<td>
+				<table class="verifyRows" name="regra" value="$THIS.consultarRegras(loginUsuarioLogado, matriculaUsuarioLogado, perfilAcesso)">
+                    <tr>
+                        <th class="eq" value="$THIS.getLocalizacao(regra)">Localização</th>
+                        <th class="eq" value="$THIS.getLocalizacoesSubordinadas(regra)">Localizações Subordinadas</th>
+                        <th class="eq" value="$THIS.getFuncao(regra)">Função</th>
+                        <th class="eq" value="$THIS.getSubstitutoEventual(regra)">Substituto Eventual</th>
+                        <th class="eq" value="$THIS.getSubstitutoPrazoCerto(regra)">Substituto Prazo Certo</th>
+                        <th class="eq" value="$THIS.getSituacao(regra)">Situação</th>
+                        <th class="eq" value="$THIS.getMatricula(regra)">Matrícula</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>FDO-1</td>
+                        <td>Quando em exercício</td>
+                        <td></td>
+                        <td>116</td>
+                        <td>11283766</td>
+                    </tr>
+                    <tr>
+                        <td>DELIQ/GLIQ1/GTBHO</td>
+                        <td>Não incluir</td>
+                        <td>FDT-1</td>
+                        <td>Sempre</td>
+                        <td></td>
+                        <td>116</td>
+                        <td>66666666</td>
+                    </tr>
+                    <tr>
+                        <td>DESUP/GBPM1/GTSP4</td>
+                        <td>Não incluir</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>116</td>
+                        <td>05050505</td>
+                    </tr>
+                </table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006_1</b><br> <br> Sucesso -
+				"Excluir uma regra existente para o perfil Administrador."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="excluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Excluir regra "1"</span></td>
+			<td>
+				<ul>
+					<li>Regra de perfil de acesso excluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006_2</b><br> <br> Sucesso -
+				"Excluir uma regra existente para o perfil Comitê".</td>
+			<td><banco /> As regras de acesso encontram-se <regra>aqui</regra></td>
+			<td><span class="sentence" method="excluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Excluir regra "4"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso excluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>4</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006_3</b><br> <br> Sucesso -
+				"Excluir uma regra existente para o perfil Consulta tudo."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="excluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Excluir regra "10"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso excluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>10</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006_4</b><br> <br> Sucesso -
+				"Excluir uma regra existente para o perfil Gerente."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="excluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Excluir regra "13"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso excluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>13</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006_5</b><br> <br> Sucesso -
+				"Excluir uma regra existente para o perfil Inspetor."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="excluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Excluir regra "16"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso excluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>16</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006_6</b><br> <br> Sucesso -
+				"Excluir uma regra existente para o perfil Supervisor."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="excluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Excluir regra "19"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso excluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+					</tr>
+					<tr>
+						<td>D</td>
+						<td>19</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_1</b><br> <br>
+				Sucesso -"Incluir regra. Informar apenas: Função para o perfil
+				Administrador."</td>
+			<td><banco />
+				<table class="prepare dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>1</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>1</td>
+						<td>FDT-1</td>
+						<td>2</td>
+						<td>2</td>
+						<td>116</td>
+						<td>65264155</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table></td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1", com substituto eventual "1", com substituto prazo certo "2", com o Perfil
+					"1"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>2</td>
+						<td>1</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_2</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas: Função para o perfil Comitê."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1", com substituto eventual "1", com substituto prazo certo "2", com o Perfil
+					"2"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>3</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_3</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas: Função para o perfil Consulta
+				tudo."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1", com substituto eventual "1", com substituto prazo certo "2", com o Perfil
+					"5"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>4</td>
+						<td>5</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_4</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas: Função para o perfil Gerente."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1", com substituto eventual "1", com substituto prazo certo "2", com o Perfil
+					"6"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>5</td>
+						<td>6</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_5</b><br> <br>
+				Sucesso -"Incluir regra. Informar apenas: Função para o perfil
+				Inspetor."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1", com substituto eventual "1", com substituto prazo certo "2", com o Perfil
+					"7"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>6</td>
+						<td>7</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007_6</b><br> <br>
+				Sucesso -"Incluir regra. Informar apenas: Função para o perfil
+				Supervisor."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1", com substituto eventual "1", com substituto prazo certo "2", com o Perfil
+					"8"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>7</td>
+						<td>8</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td converter="null"></td>
+						<td converter="null"></td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+
+		<tr class="scenario">
+			<td class='title'><b>C008_1</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas localização, função, situação,
+				substituto eventual, matrícula para o perfil Administrador."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "1", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "78921321"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>8</td>
+						<td>1</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>0</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>78921321</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_2</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas localização, função, situação,
+				substituto eventual, matrícula para o perfil Comitê."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "2", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "25698733"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>9</td>
+						<td>2</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>0</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>25698733</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_3</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas localização, função, situação,
+				substituto eventual, matrícula para o perfil Consulta tudo."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "5", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "11283766"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>10</td>
+						<td>5</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>0</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>11283766</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_4</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas localização, função, situação,
+				substituto eventual, matrícula para o perfil Gerente."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "6", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "25694577"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>11</td>
+						<td>6</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>0</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>25694577</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_5</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas localização, função, situação,
+				substituto eventual, matrícula para o perfil Inspetor."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "7", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "99990830"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>12</td>
+						<td>7</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>0</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>99990830</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008_6</b><br> <br> Sucesso
+				-"Incluir regra. Informar apenas localização, função, situação,
+				substituto eventual, matrícula para o perfil Supervisor."</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "8", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "96186186"</span></td>
+			<td>
+				<ul class="execute">
+					<li>Regra de perfil de acesso incluída com sucesso.</li>
+				</ul>
+				<table class="verify dados">
+					<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+					<tr>
+						<th>Ação</th>
+						<th>RPA_ID</th>
+						<th>RPA_CD_PERFIL</th>
+						<th>RPA_DS_LOCALIZACAO</th>
+						<th>RPA_IB_SUB_LOCALIZACAO</th>
+						<th>RPA_CD_FUNCAO</th>
+						<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+						<th>RPA_CD_SUBST_PRAZO_CERTO</th>
+						<th>RPA_CD_SITUACAO</th>
+						<th>RPA_CD_MATRICULA</th>
+						<th>RPA_DH_ATUALZ</th>
+						<th>RPA_CD_OPER_ATUALZ</th>
+						<th>RPA_NU_VERSAO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>13</td>
+						<td>8</td>
+						<td>DELIQ/GLIQ1/GTBHO</td>
+						<td>0</td>
+						<td>FDO-1     </td>
+						<td>1</td>
+						<td>2</td>
+						<td>116</td>
+						<td>96186186</td>
+						<td>17/03/2014 00:00:00</td>
+						<td>deliq.sisliq105</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C009</b><br> <br> Falha - Incluir regra. 
+			Informar apenas localização e não informar o campo Localizações subordinadas.</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegraLocalizacao">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a localização "DELIQ/GLIQ1/GTBHO" com o Perfil "1"</span></td>
+			<td><ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo "Localizações subordinadas" é de preenchimento obrigatório.</li>
+				</ul></td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br> <br> Falha - Incluir regra. 
+			Informar apenas funçao e não informar o campo substituto eventual.</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegraFuncao">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para a função "FDO-1" com o Perfil "1"</span></td>
+			<td><ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo "Substituto eventual" é de preenchimento obrigatório.</li>
+					<li>Campo "Substituto prazo certo" é de preenchimento obrigatório.</li>
+				</ul></td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C011</b><br> <br> Falha - Incluir regra. Não informar valores para os campos.</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegraSemValores">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra, sem informar valores, para o Perfil "1"</span></td>
+			<td><ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Pelo menos um campo é de preenchimento obrigatório.</li>
+				</ul></td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C012</b><br> <br> Falha - Incluir regra. Informar valores inválidos para o campo Localização.</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "8", localização
+					"DEGEF/GEPLA/DISUP", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "96186186"</span></td>
+			<td><ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo localização inválido.</li>
+				</ul></td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C013</b><br> <br> Falha - Incluir regra. Informar valores inválidos para o campo Matrícula.</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "8", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "1111111111"</span></td>
+			<td><ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo matrícula inválido.</li>
+				</ul></td>
+		</tr>
+			
+		<tr class="scenario">
+			<td class='title'><b>C014</b><br> <br> Falha - Incluir regra. Informar valores inválidos para o campo Matrícula.</td>
+			<td>Mesmo estado do útimo teste.</td>
+			<td><span class="sentence" method="incluirRegra">Usuário
+					"deliq.sisliq105", matrícula "65264155", Incluir regra para o perfil "8", localização
+					"DELIQ/GLIQ1/GTBHO", localizações subordinadas "0" (Não), função "FDO-1", situação "116",
+					substituto eventual "1", com substituto prazo certo "2" e matrícula "xxx"</span></td>
+			<td><ul class="execute" value="$THIS.verificar($NODE)">
+					<li>Campo matrícula inválido.</li>
+				</ul></td>
+		</tr>
+		
+		
+	</table>
+</body>
+</html>

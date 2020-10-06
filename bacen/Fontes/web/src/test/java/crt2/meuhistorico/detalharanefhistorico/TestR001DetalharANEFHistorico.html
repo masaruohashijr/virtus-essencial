@@ -1,0 +1,456 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Meu histórico - Detalhes ANEF histórico</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Meu histórico - Detalhes ANEF histórico"</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>10/06/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/meuhistorico/index.html#detalharANEFHistorico">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a>
+		</li>
+		<banco/>
+		<li>Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/meuhistorico/areaanefs/TestR001MeuHistoricoANEFs-DadoQue-C006.html" class="include">aqui</a>.</li>
+	</blockquote>
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para <a href="indexWeb.html#verificarLink">validar o click no link da coluna 'Versão'</a>.</blockquote>
+
+
+
+
+<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C001] - </b>Verificar a tela de detalhes para ANEF no estado "Análise delegada".
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_ANEF45" sleep="2000"><b>Análise delegada<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0212]</b></span></li>
+                            </ul>
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>GOLDMAN SACHS (59820367)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>28/01/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>28/01/2016</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tInformacoesANEF']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ANEF</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Componente</b></td>
+                                <td colspan="6">Resultados</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Análise delegada</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Responsável</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Última atualização</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR em 17/02/2015 00:00h</td>
+                            </tr>
+                            </thead>
+                            </table>
+						
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C002] - </b>Verificar a tela de detalhes para ANEF no estado "Analisado".
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li><li>Clicar na versão: <span class="clickon" by="id:link_ANEF47" sleep="2000"><b>Analisado<b></b></b></span></li>
+					            
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0212]</b></span></li>
+                                 <li><span class="notPresent" by="xpath://table[@id='idAçoes']">A tabela de ações não está presente.</span></li>
+                            </ul>
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>GOLDMAN SACHS (59820367)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>28/01/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>28/01/2016</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tInformacoesANEF']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ANEF</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Componente</b></td>
+                                <td colspan="6">Liquidez</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Analisado</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR em 15/01/2015 00:00h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE em 16/01/2015 00:00h</td>
+                            </tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C003] - </b>Verificar a tela de detalhes para ANEF no estado "Concluído".
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_ANEF46" sleep="2000"><b>31/01/2015<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0212]</b></span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>GOLDMAN SACHS (59820367)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>28/01/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>28/01/2016</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tInformacoesANEF']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ANEF</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Componente</b></td>
+                                <td colspan="6">Liquidez</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Concluído</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+                                <td colspan="6">CHRISTIANO ATHAÍDE DROGBA em 15/01/2015 00:00h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+                                <td colspan="6">TESTESLQB13 MASSA DE TESTE em 16/01/2015 00:00h</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Concluído por</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR em 31/01/2015 00:00h</td>
+                            </tr>
+                            </thead>
+                            </table><br>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[C004] - </b>Verificar a tela de detalhes para ANEF no estado "Preenchido".
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+					            <li>Logar como: <sisliq101>deliq.sisliq101</sisliq113></li>
+					            <li>Acessar o menu: <span class="open"
+						         url="sisaps/historico">inicio/meuhistorico</span></li>
+					            <li>Clicar na versão: <span class="clickon" by="id:link_ANEF24" sleep="2000"><b>Preenchido<b></span></li>
+                            </ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+                            <ul>
+                                 <li>O código da tela deve ser: <span class="contains"><b>[APSFW0212]</b></span></li>
+                                 <li><span class="notPresent" by="xpath://table[@id='idAçoes']">A tabela de ações não está presente.</span></li>
+                            </ul>
+							
+							<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+										<table>
+											<thead>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>SAFRA (3017677)</b></th></tr>
+												<tr><th colspan="2" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+											</thead>
+
+											<tbody>
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+													<td><b>Em andamento</b></td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+													<td>25/01/2015</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec previsto</b></td>
+													<td>25/01/2016</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor titular</b></td>
+													<td>ROBERTO SANTOS ALENCAR</td>
+												</tr>
+
+												<tr>
+													<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente titular</b></td>
+													<td>ANFRISIO RODRIGUES VIEIRA</td>
+												</tr>
+											</tbody>
+										</table>
+									</span><br>
+							
+							<table class="compareTable" by="xpath://table[@id='tInformacoesANEF']" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do ANEF</b></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Componente</b></td>
+                                <td colspan="6">Solvência Patrimonial</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+                                <td colspan="6"><b>Preenchido</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: #4a73a2"><b>Última atualização</b></td>
+                                <td colspan="6">ROBERTO SANTOS ALENCAR em 15/02/2015 00:00h</td>
+                            </tr>
+                            </thead>
+                            </table>
+                        </td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+</table><br>
+
+</body>
+</html>

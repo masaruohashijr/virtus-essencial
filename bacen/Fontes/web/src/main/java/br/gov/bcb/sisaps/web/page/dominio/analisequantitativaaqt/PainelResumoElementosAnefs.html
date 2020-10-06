@@ -1,0 +1,47 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tANEFResumido" cellspacing="1" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo do ANEF</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tbody wicket:id="wmcExibirTitulos">
+				<tr class="fundoPadraoAClaro3">
+					<th class="nomeCampo" style="width: 25%;"></th>
+					<th wicket:id="wmcExibirTituloFinal" class="nomeCampoEsquerdo" style="width: 160px;">Final</th>
+					<th wicket:id="wmcExibirTituloSupervisor" class="nomeCampoEsquerdo" style="width: 160px;">Supervisor</th>
+					<th wicket:id="wmcExibirTituloInspetor" class="nomeCampoEsquerdo" style="width: 160px;">Inspetor</th>
+					<th wicket:id="wmcExibirTituloVigente" class="nomeCampoEsquerdo" style="width: 160px;">Vigente</th>
+				</tr>
+			</tbody>
+
+			<wicket:container wicket:id="lista">
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" style="width: 25%;"><a href="" wicket:id="linkElemento"> <wicket:container
+								wicket:id="parametroElemento.descricao"></wicket:container></a></td>
+					<td wicket:id="notaFinal"></td>
+					<td wicket:id="notaSupervisor" style=""></td>
+					<td wicket:id="notaInspetor"></td>
+					<td wicket:id="notaVigente"></td>
+				</tr>
+			</wicket:container>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota calculada</td>
+				<td wicket:id="notaCalculadaArrastoFinal"></td>
+				<td wicket:id="notaCalculadaArrastoSupervisor" style=""></td>
+				<td wicket:id="notaCalculadaArrastoInspetor"></td>
+				<td wicket:id="notaCalculadaArrastoVigente"></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota ajustada</td>
+				<td wicket:id="notaAjustadaFinal"></td>
+				<td wicket:id="notaAjustadaSupervisor" style=""></td>
+				<td wicket:id="notaAjustadaInspetor"></td>
+				<td wicket:id="notaAjustadaVigente"></td>
+			</tr>
+		</tbody>
+	</table>
+</wicket:panel>

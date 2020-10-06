@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>R004 - Alterar percentuais do ANEF</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+		</head>
+
+	<body>
+		<h1>Cenários da estória 'Alterar percentuais do ANEF'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+			   <td>1.0</td>
+			   <td>23/02/2015</td>
+			   <td>Kalina Lígia</td>
+			   <td>Versão Inicial</td>
+		    </tr>
+		    <tr>
+			   <td>1.1</td>
+			   <td>26/07/2016</td>
+			   <td>David Nascimento</td>
+			   <td>Adicionando no "porfim" a geração do evento de perfil de risco para que seja refletido no APS.</td>
+		    </tr>
+		    <tr>
+				<td>1.2</td>
+				<td>07/10/2016</td>
+				<td>Kalina Lígia</td>
+				<td>Disparo de envio de e-mails.</td>
+			</tr>
+			<tr>
+				<td>1.3</td>
+				<td>31/03/2017</td>
+				<td>Cleonides Nascimento</td>
+				<td>Removento o envio de e-mail.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			As regras da estória encontram-se <a href="../index.html#alterarPercentuais">aqui</a>.
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<banco/> 
+		     <li>Os dados encontram-se <a href="TestR004AlterarPercentuaisANEF-DadoQue.html" class="include">aqui</a>.</li>
+		     <li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+		     <li><dataHoraAtual valor="27/01/2015 00:00:00">Data/hora atual do sistema: 27/01/2015 00:00:00</dataHoraAtual> </li>
+		</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenário para <a href="indexNegocio.html#validarAlteracaoSucesso">confirmar percentual em edição com sucesso</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+			</tr>
+			<tr class="scenario">
+				<td class='title'><b>[C001] - </b>Confirmar percentual em edição.</td>
+			</tr>
+			<tr>
+				<th>Ação pretendida</th>
+			</tr>
+			<tr>
+				<td>
+					<span>Confirmar percentual em edição - ciclo <b><span  class="set" name="ciclo" converter="Integer">1</b></span>
+					<span class="execute" value="$THIS.confirmarPercentual(ciclo)"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>Resultado esperado</th>
+			</tr>
+			<tr>
+				<td>Os dados alterados estão <a href="TestR004AlterarPercentuaisANEF-Porfim.html" class="include">aqui</a></td>
+			</tr>
+			</table>
+	</body>
+</html>

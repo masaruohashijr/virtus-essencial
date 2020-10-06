@@ -1,0 +1,242 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Navegar análise economico-financeira (perfil supervisor)</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Navegar análise economico-financeira (perfil gerente)'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>09/06/2015</td>
+			<td>Cleonides Macriny</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#navegarAnaliseEconomicoFinanceiraGerente">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+				<ul>
+					<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+					<li><banco/> Os dados encontram-se <a href="TestR001NavegarAQTGerente-DadoQue.html" class="include">aqui</a></li>
+						 	<li><td>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq102"</span></strong></td></li>
+				</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenário para <a href="indexNegocio.html#navegarAnaliseEconomicoFinanceiraGerente">Verificar tela de navegação</a>.<br/>
+		<span style="color:red"> Observação: Se a coluna "Tela destino" estiver vazia é porque não deve haver link ao exibir o ANEF.</span>
+	</blockquote>
+               
+	<table class="scenario">
+		<tr>
+			<td>
+				 <table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b><a name="CT001">[CT001]</a></b> - Verificar qual a tela de destino para perfil vigente.
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 172px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+							<table class="column">
+				                <tr>
+				                    <th feature="aqt1">ANEF</th>
+				                    <th>Estado<span style="visibility: hidden">?</span></th>
+				                    <th style="background-color: green">Qual a tela de destino?</th>
+				                </tr>
+
+				                <tr>
+				                    <td>1</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td>4</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>2</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td title="Designado">5</td>
+				                    <td>Designado</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>3</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td title="Em edição">6</td>
+				                    <td>Em edição</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>7</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td title="Preenchido">10</td>
+				                    <td>Preenchido</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>8</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td>11</td>
+				                    <td title="Em análise sem delegação">Em análise</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>9</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td>12</td>
+				                    <td title="Análise delegada para outro usuário">Análise delegada</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>14</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td>17</td>
+				                    <td title="Em análise com delegação para outro usuário">Em análise</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>15</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                 <tr>
+				                    <td>18</td>
+				                    <td title="Análise delegada para o próprio usuário">Análise delegada</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+
+				                <tr>
+				                    <td>21</td>
+				                    <td title="Previsto">Previsto</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				                <tr>
+				                    <td>24</td>
+				                    <td title="Analisado">Analisado</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+				               
+			                </table>
+						</td>
+					</tr>
+				</table>  
+				
+				
+				
+			</td>
+		</tr>
+	</table>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b><a name="CT002">[CT002]</a></b> - Verificar qual a tela de destino para perfis anteriores.
+						</td>
+					</tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th style="width: 356px">Entradas</th>
+									<th style="width: 170px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+							<table class="column">
+				                <tr>
+				                    <th>Perfil de Risco</th>
+				                    <th feature="aqt1">ANEF</th>
+				                    <th>Estado<span style="visibility: hidden">?</span></th>
+				                    <th>Nota do ANEF<span style="visibility: hidden">?</span></th>
+				                    <th style="background-color: green" feature="acao">Qual a tela de destino ?</th>
+				                </tr>
+				                <tr>
+				                    <td>4</td>
+				                    <td title="Previsto">19</td>
+				                    <td>Previsto</td>
+				                    <td>*A</td>
+				                    <td></td>
+				                </tr>
+				                <tr>
+				                    <td>5</td>
+				                    <td title="Concluído">22</td>
+				                    <td>Concluído</td>
+				                    <td>2</td>
+				                    <td>Detalhar ANEF</td>
+				                </tr>
+			                </table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

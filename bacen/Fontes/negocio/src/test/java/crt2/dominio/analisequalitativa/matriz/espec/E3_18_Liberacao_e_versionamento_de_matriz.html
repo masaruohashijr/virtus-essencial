@@ -1,0 +1,453 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.18 Liberação e versionamento de matriz</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css"	media="screen" />
+</head>
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+    <h2>Histórico</h2>	
+		<table class="exemplos historico">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>14/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_18">E3.18 Liberação e versionamento de matriz - Iteração xx</a></h2>
+	
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo SRC da ES no estado em andamento cadastrado no sistema de acordo com a metodologia da ES.</p>
+			<p>Uma matriz Esboçada: poderá ser liberada de acordo com as regras de negócio que serão descritas abaixo, tornando-se vigente no ciclo.</p>
+			<p>Uma matriz Vigente: poderá ser versionada de acordo com as regras de negócio que serão descritas abaixo.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor.</p>
+		</blockquote>
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Ciclo SRC -- Consulta: Acionar o comando Edição de matriz de riscos e controles para ES</p>
+			<p>Ciclo SRC -- Consulta: Acionar o comando Perfil de risco para ES</p>
+			<p>Perfil de risco -- Análise qualitativa -- Matriz de risco e controle: Selecionando uma ES</p>
+			<p>Perfil de risco -- Consulta</p>
+			<p>Administração -- Ciclo -- Inclusão</p>
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Confirmação de inclusão de ciclo SRC.</b></p>
+			<p>Trilha: Administração -- Ciclo SRC -- Inclusão -- Confirmação de inclusão de ciclo.</p>
+			<p>Código de tela: [APSFW0107]</p>
+			<p>Comandos: Liberar, Visualizar impressão e Voltar.</p>
+
+			<input type="image" src="Tela01_E3_1.png"/>
+
+			<p><b>Título: Edição de matriz de riscos e controles.</b></p>
+			<p>Trilha:</p>
+
+			<ul>
+				<li>Ciclo SRC -- Consulta: Acionar o comando Edição de matriz de riscos e controles para ES</li>
+				<li>Perfil de risco -- Análise qualitativa -- Matriz de risco e controle: Selecionando uma ES</li>
+			</ul>
+
+			<p>Código de tela: [APSFW0304]</p>
+			<p>Comandos para matriz: Liberar, Editar, Visualizar impressão e Voltar.</p>
+			<p><b>Edição de uma nova matriz criada a partir do ciclo inicial da ES (sem versão vigente anterior) - Permite a liberação.</b></p>
+
+			<input type="image" src="Tela03_E3_1.png"/>
+
+			<p><b>Edição de uma nova matriz versionada a partir de uma matriz vigente - Permite a liberação.</b></p>
+
+			<input type="image" src="Tela04_E3_1.png"/>	
+
+			<p><b>Edição de uma nova matriz versionada a partir de uma matriz vigente - Permite a criação de versão.</b></p>
+
+			<input type="image" src="Tela01_E3_18.png"/>
+
+			<p><b>Título: Perfil de risco.</b></p>
+			<p>Trilha:</p>
+
+			<ul>
+				<li>Ciclo SRC -- Consulta: Acionar o comando Perfil de risco para ES; Acionar o comando Gerenciamento de análise qualitativa</li>
+				<li>Perfil de risco -- Consulta: Acionar o comando Gerenciamento de análise qualitativa</li>
+			</ul>
+	
+			<p>Código de tela: [APSFW0304]</p>
+		</blockquote>
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidades básicas de Liberação de matriz de riscos e controles e Versionamento de matriz de riscos e controles.</p>
+			<p>Funcionalidades disponíveis apenas para o perfil <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas para a Liberação</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Há um comando exclusivo para a liberação da matriz de riscos e controles.</li>
+			<li>Somente é possível liberar uma nova matriz no estado 1-Esboçada e ciclo no estado 1-Em andamento.</li>
+
+			<li>Uma nova versão da matriz no estado 1-Esboçada pode é gerada:
+				<ul>
+					<li>na inclusão um ciclo inicial da ES. Neste caso, não há matriz vigente anterior a ela.</li>
+					<li>na edição de uma matriz vigente que resulta em um versionamento da matriz vigente.</li>
+				</ul>
+			</li>
+
+			<li>Se houver uma nova matriz no estado 1-Esboçada ela é única por ciclo e ES.</li>
+	
+			<li>Após a liberação a nova matriz passa para o estado 2-Vigente e torna-se a matriz vigente no ciclo, sendo exibida no perfil de risco.
+				<ul>
+					<li>Se a nova matriz não possui matriz vigente anterior, ocorre apenas a mudança de estado.</li>
+					<li>Se a nova matriz foi obtida a partir de matriz vigente anterior, os ARCs que foram mantidos devem ser preservados, incluíndo as notas que já foram incluídas.</li>
+				</ul>
+			</li>
+	
+			<li>Para a liberação da matriz as seguintes regras de negócio devem ser respeitadas:
+				<ul>
+					<li>Deve haver pelo menos uma atividade de negócio e uma atividade corporativa;</li>
+					<li>Se houver mais de uma Unidade de Negócio, deve haver no mínimo uma Unidade com peso o maior peso cadastrado na metodologia (pore exemplo: alto);</li>
+					<li>Quando houver uma única unidade de negócio, o peso deve ser obrigatoriamente o maior peso cadastrado na metodologia (por exemplo: alto);</li>
+					<li>Em cada Unidade de negócio e Unidade corporativa, esta deve ter pelo menos uma atividade associada.</li>
+					<li>Em cada Unidade deve haver no mínimo uma Atividade com o maior peso cadastrada na metodologia(por exemplo: alto);</li>
+
+					<li>Em cada Atividade deve haver, no mínimo, um par (risco, controle) com o maior peso cadastrada na metodologia(por exemplo: alto);
+						<ul>
+							<li>A metodologia determina que um determinado risco e seu controle devem ter o mesmo peso.</li>
+						</ul>
+					</li>
+
+					<li>No bloco de negócio, se for estruturado com unidade(s) (com as respectivas atividades) e atividades isoladas (sem associação com unidade), deve haver pelo menos uma unidade ou atividade isolada com maior peso cadastrada na metodologia(por exemplo: alto);</li>
+					<li>Quando houver uma única atividade de negócio (não associado à unidade), o peso deve ser obrigatoriamente  o maior peso cadastrada na metodologia(por exemplo: alto)</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h3>Regras específicas para o Versionamento</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Há um comando exclusivo para o versionamento da matriz.</li>
+			<li>Somente é possível versionar uma matriz vigente no estado 2-Liberada e ciclo no estado 1-Em andamento.</li>
+			<li>Se o ciclo estiver no estado 2-Corec, o ciclo deve ser versionado no estado 1-Em andamento para proceder com o versionamento da matriz.</li>
+			<li>O versionamento da matriz versiona matriz e seus ARCs, incluíndo as notas dos ARCS que já foram incluídas.</li>
+		</ul>
+
+		<h3><a id="E5_11_1">Edição da matriz de riscos e controles</a></h3>
+
+		<input type="image" src="Tela03_E3_1.png"/>
+	
+		<h3><a id="E5_11_1">Edição da matriz de riscos e controles</a></h3>
+
+		<p>Edição de uma matriz versionada a partir de uma matriz vigente.</p>
+		<p>Detalhamento:</p>
+	
+		<ul>
+			<li>A nova versão da matriz exibirá uma cópia idêntica da matriz vigente.</li>
+			<li>A inclusão de novas linhas e suas colunas poderá ser realizada livremente.</li>
+		</ul>
+
+		<input type="image" src="Tela04_E3_1.png"/>	
+	
+		<h2>Cenários de teste - <a href="TestE3_18LiberacaoVersionamentoMatriz.html">Negócio</a>.</h2>
+	
+		Observação: agrupar a maior quantidade de itens de teste no mesmo teste.<br>
+		Negócio:
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a liberação de uma matriz vigente."</li></ul>
+			</li>	
+
+			<li>
+				<b id="C002">C002</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada sem unidades (de negócio, corporativa) e atividades (de negócio, corporativa). Mensagem: 
+
+				<ul>
+					<li>"Não é possível a liberação de uma matriz sem unidade corporativa cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz sem atividade de negócio cadastrada."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C003">C003</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa, sem unidade de negócio, sem atividades (de negócio, corporativa). Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz sem atividade de negócio cadastrada."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C004">C004</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa, 
+				com unidade de negócio com peso igual ao maior peso da metodologia, sem atividades (de negócio, corporativa). Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz sem atividade de negócio cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz com unidade de negócio sem atividade de negócio associada cadastrada."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C005">C005</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa, 
+				com unidade de negócio com peso igual ao maior peso da metodologia, sem atividade corporativa, 
+				com atividade de negócio independente com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz com unidade de negócio sem atividade de negócio associada cadastrada."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C006">C006</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				sem unidade de negócio, com atividade corporativa e grupo (risco, controle) com peso igual ao maior peso da metodologia, sem atividade de negócio. Mensagem:
+
+				<ul>
+					<li>"Não é possível a liberação de uma matriz sem atividade de negócio cadastrada."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C007">C007</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				sem unidade de negócio, sem atividade corporativa, com atividade de negócio e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada."</li>
+				</ul>
+			</li>		
+
+			<li>
+				<b id="C008">C008</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, sem unidade de negócio, 
+				com atividade corporativa com peso diferente do maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia, 
+				com atividade de negócio com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada com peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C009">C009</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, sem unidade de negócio, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com atividade de negócio com peso diferente do maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade de negócio cadastrada com peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C010">C010</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso diferente do maior peso da metodologia, sem unidade de negócio, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com atividade de negócio com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, a unidade corporativa deve ter peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C011">C011</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com uma unidade de negócio com peso diferente do maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com atividade de negócio (assoicada à unidade de negócio) com peso igual ao maior peso da metodologia 
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, pelo menos uma unidade de negócio deve ter peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C012">C012</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com duas unidades de negócio com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma primeira atividade de negócio (associada à primeira unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma segunda atividade de negócio (associada à segunda unidade de negócio) com peso diferente do maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, em cada unidade de negócio pelo menos uma atividade de negócio deve ter peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C013">C013</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com duas unidades de negócio com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso diferente do maior peso da metodologia,
+				com uma primeira atividade de negócio (associada à primeira unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma segunda atividade de negócio (associada à segunda unidade de negócio) com peso  igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, em cada atividade corporativa pelo menos um grupo de risco e controle deve ter peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C014">C014</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com duas unidades de negócio com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma primeira atividade de negócio (associada à primeira unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso diferente do maior peso da metodologia,
+				com uma segunda atividade de negócio (associada à segunda unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, em cada atividade de negócio pelo menos um grupo de risco e controle deve ter peso máximo."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C015">C015</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com duas unidades de negócio com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma primeira atividade de negócio (associada à primeira unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia, porém com pesos distintos para o risco e para o controle,
+				com uma segunda atividade de negócio (associada à segunda unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, em cada atividade de negócio um grupo de risco e seu controle devem ter o mesmo peso."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C016">C016</b> Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com duas unidades de negócio com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia 
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia, porém com pesos distintos para o risco e para o controle,
+				com uma primeira atividade de negócio (associada à primeira unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma segunda atividade de negócio (associada à segunda unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz, em cada atividade corporativa um grupo de risco e seu controle devem ter o mesmo peso."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C017">C017</b> Falha - Ciclo no estado 2-Corec com versão de matriz no estado 1-Esboçada. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com  atividade de negócio independente com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz para ciclo no estado corec."</li>
+				</ul>
+			</li>
+
+			<li>
+				<b id="C018">C018</b> Sucesso - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa com peso igual ao maior peso da metodologia, 
+				com duas unidades de negócio com peso igual ao maior peso da metodologia, 
+				com atividade corporativa com peso igual ao maior peso da metodologia e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma primeira atividade de negócio (associada à primeira unidade de negócio) com peso igual ao maior peso da metodologia
+				e grupo (risco, controle) com peso igual ao maior peso da metodologia,
+				com uma segunda atividade de negócio (associada à segunda unidade de negócio) com peso diferente do maior peso da metodologia
+				e grupo (risco, controle) com peso diferente do maior peso da metodologia. Mensagem:
+
+				<ul> 
+					<li>"A matriz de risco e controle foi liberada com sucesso".</li>
+					<li>A tela deve exibir apenas a matriz vigente, com ARCs e notas (se houver)</li>
+				</ul>
+			</li>				
+
+			<li>
+				<b id="C019">C019</b> Falha - Ciclo no estado 2-corec. Editar (criar versão) matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz vigente para ciclo no estado corec."</li></ul>
+			</li>
+
+			<li>
+				<b id="C020">C020</b> Falha - Ciclo no estado 3-pós-corec. Editar (criar versão)  matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz vigente para ciclo no estado pós-corec."</li></ul>
+			</li>
+
+			<li>
+				<b id="C021">C021</b> Falha - Ciclo no estado 4-Encerrado. Editar (criar versão)  matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz vigente para ciclo no estado encerrado."</li></ul>
+			</li>
+
+			<li>
+				<b id="C022">C022</b> Falha - Ciclo no estado 5-Excluído. Editar (criar versão)  matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Não é possível a edição de uma matriz vigente para ciclo no estado excluído."</li></ul>
+			</li>
+
+			<li>
+				<b id="C023">C023</b> Sucesso - Ciclo no estado 1-em andamento. Editar (criar versão) matriz no estado 2-Vigente. Mensagem: 
+				<ul><li>"Uma versão da matriz vigente está disponível para edição."</li></ul>
+
+				Resultado:
+
+				<ul><li>Versionamento da matriz vigente e seus ARCs incluindo notas.</li>
+					<li>A tela deve exibir a matriz vigente, com ARCs e notas (se houver) e a nova versão da matriz com ARCs e notas (se houver).</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/analisequalitativa/tela/TestE3_18_Liberacao_e_versionamento_de_matriz.html">Web</a>.</h2>	
+
+		<ul>
+			<li>Conferir - se na tela de edição de matriz no estado 1-Esboçado o comando Liberar é exibido e o comando Editar não é exibido.</li>
+			<li>Conferir - se na tela de edição de matriz no estado 2-Vigente o comando Editar é exibido e o comando Liberar não é exibido.</li>
+			<li>Conferir - se na tela de edição de matriz no estado 1-Esboçado, não houver matriz vigente anterior, a tela exibe apenas a nova versão da matriz.</li>
+			<li>Conferir - se na tela de edição de matriz no estado 1-Esboçado, se houver matriz no estado 2-Vigente, a tela exibe a matriz vigente e a nova versão corretamente.</li>
+			<li>Conferir - se na tela de edição de matriz no estado 2-Vigente, se não houver versão de nova matriz , a tela exibe apenas a versão vigente.</li>
+			<li>Conferir - se na tela de perfil de risco, a tela exibe apenas a versão vigente e o comando Gerenciamento de análise qualitativa.</li>
+		
+			<li>Falha - Ciclo no estado 1-Em andamento. Liberar matriz no estado 1-Esboçada com unidade corporativa, sem unidade de negócio, sem atividades (de negócio, corporativa). Mensagem:
+				<ul> 
+					<li>"Não é possível a liberação de uma matriz sem atividade corporativa cadastrada."</li>
+					<li>"Não é possível a liberação de uma matriz sem atividade de negócio cadastrada."</li>
+				</ul>
+			</li>
+
+			<li>Teste web equivalente - <b><a href="#C004">C004</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C005">C005</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C008">C008</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C009">C009</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C010">C010</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C011">C011</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C012">C012</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C013">C013</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C014">C014</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C015">C015</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C016">C016</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C018">C018</a></b> - Conferir todos os campos.</li>
+
+			<li>Teste web equivalente - <b><a href="#C023">C023</a></b> - Conferir todos os campos. Conferir:
+				<ul><li>A tela deve permitir a edição da matriz livremente considerando as regras de negócio definidas na estória de edição de matriz.</li></ul>
+			</li>
+
+			<li>Sucesso - Testar a navegabilidade dos comandos Editar, Liberar e Voltar.</li>
+			<li>Sucesso - Testar a navegabilidade do comando Gerenciamento de análise qualitativa.</li>
+		</ul>
+	</body>
+</html>

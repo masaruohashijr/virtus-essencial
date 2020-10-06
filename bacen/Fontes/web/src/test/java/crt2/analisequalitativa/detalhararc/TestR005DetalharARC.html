@@ -1,0 +1,761 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R005 - Detalhar ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória: "Detalhar ARC"</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+			    <td>1.0</td>
+			    <td>18/06/2015</td>
+			    <td>David Nascimento</td>
+			    <td>Versão inicial</td>
+		    </tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2> 
+
+		<blockquote>Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/index.html#detalharARC">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+    	<blockquote>
+		   <li>A lista de servidores foi <a
+			href="TestR001DetalharARC-DadoQue-MOCK_BCPESSOA.html"
+			class="include">carregada.</a></li>
+		   <banco/>
+		   <li>Os dados encontram-se <a href="TestR001DetalharARC-DadoQue.html" class="include">aqui</a>.</li>
+	   </blockquote>
+
+		<h2>Cenários</h2>
+		
+		<blockquote>Cenários para <a href="indexWeb.html#verificarCamposItensElementosARC">validar que campos exibir para o sub-grupo 'Nome do item'</a>.</blockquote>
+ 
+        
+        <table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C001] - </b>Verificar as sub-seções para ARC cujo rascunho encontra-se no status: 'Preenchido' (perfil: gerente).</td></tr>
+						
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+					                <li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+					                <li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+					                <li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="10000">ABN AMRO</span></li>
+					                <li>Clicar no ARC de 'Risco': <span class="clickon" by="id:linkRisco52" sleep="15000"><b>Crédito</b></span> pertencente a 'Atividade B'</li>
+                                </ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+								    <li>Os itens do elemento '<b>Risco de Inadimplência</b>' devem ser:</li>
+								</ul>    
+
+								<span class="compareTable" by="xpath://table[@id='tDadosElementos_Risco de Inadimplência']">
+									<table cellspacing="0" cellpadding="3" style="width: 90%">
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td colspan="6">
+												
+												
+												<table width="100%" cellspacing="0" cellpadding="3"
+															style="margin: auto;" id="tabelaDadosItem145">
+															<thead>
+																<tr class="fundoPadraoAClaro3">
+																	<td colspan="4" class="nomeCampo"
+																		style="text-align: left; border-bottom: 0px;"
+																		id="idTituloItem298">Apetite para o risco</td>
+																</tr>
+															</thead>
+															<tbody id="idPainelDocumentoUploadAnexo299">
+
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td style="text-align: right;"><label
+																		style="font-size: 7pt;" id="idDataItemElemento29b">
+																			Preenchido por TESTESLQB13 MASSA DE TESTE em
+																			17/06/2015 00:00h.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td width="5%"></td>
+																	<td width="90%"><strong
+																		id="tituloNovaJustificativa29c"> Nova
+																			avaliação </strong></td>
+																	<td width="5%"></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td>Justificativa item elemento.</td>
+																	<td></td>
+																</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;" id="idDataItemElemento1c5">Preenchido por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr>
+																		<td class="fundoPadraoAClaro3"></td>
+																		<td  class="fundoPadraoAClaro3">
+																			<div style="" id="grupoExpansivelAvaliacao27f">
+																			<div align="left">
+																				<div class="thform" id="divGrupo280">
+																					<span id="controle281"  >
+																					<a href=""><img  id="imagem282" src=""></a>
+																					</span><span  id="bttExpandir">Avaliação vigente</span>
+																				</div>
+																			</div>
+																		</div>
+																			<div id="idPainelJustificativaVigente564" style="display:none"></div>
+																		</td>
+																		<td   class="fundoPadraoAClaro3"></td>
+																	</tr>
+															</tbody>
+														</table>
+														
+														
+														<div id="idPainelItem1bb">
+														<div id="id01bc">
+															<div id="exibirNovaJustificativa1bf"></div>
+
+															<table width="100%" cellspacing="0" cellpadding="3" style="margin: auto;" id="tabelaDadosItem150">
+																<thead>
+																	<tr class="fundoPadraoAClaro3">
+																		<td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;" id="idTituloItem1bd">Qualidade da carteira de Crédito</td>
+																	</tr>
+																</thead>
+
+																<tbody id="idPainelDocumentoUploadAnexo1be">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong>Nova avaliação</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+																	
+																	<tr class="fundoPadraoAClaro3">
+																	   <td></td>
+																	   <td><label id="idNovaJustificativa2b0"> </label></td>
+																	   <td></td>
+																    </tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td width="90%">
+																			<p><strong>Avaliação vigente</strong></p>
+																		</td>
+																		<td></td>
+																		
+																		<tr class="fundoPadraoAClaro3">
+																	       <td></td>
+																	       <td><label id="idNovaJustificativa2b0"> </label></td>
+																	       <td></td>
+																        </tr>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+
+										<tbody id="idPainelAnaliseSupervisorItem1d4"></tbody>
+									</table>
+								</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<ul><li>Os itens do elemento '<b>Risco de Concentração</b>' devem ser:</li></ul>
+
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementos_Risco de Concentração']">
+									<table cellspacing="0" cellpadding="3" style="width: 90%">
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td colspan="6">
+												
+												
+												<table width="100%" cellspacing="0" cellpadding="3"
+															style="margin: auto;" id="tabelaDadosItem145">
+															<thead>
+																<tr class="fundoPadraoAClaro3">
+																	<td colspan="4" class="nomeCampo"
+																		style="text-align: left; border-bottom: 0px;"
+																		id="idTituloItem298">Fatores externos</td>
+																</tr>
+															</thead>
+															<tbody id="idPainelDocumentoUploadAnexo299">
+
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td style="text-align: right;"><label
+																		style="font-size: 7pt;" id="idDataItemElemento29b">
+																			Preenchido por TESTESLQB13 MASSA DE TESTE em
+																			17/06/2015 00:00h.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td width="5%"></td>
+																	<td width="90%"><strong
+																		id="tituloNovaJustificativa29c"> Nova
+																			avaliação </strong></td>
+																	<td width="5%"></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td><label id="idNovaJustificativa29d">
+																			Justificativa item elemento.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;" id="idDataItemElemento1c5">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong id="tituloNovaJustificativa1c6">Avaliação vigente</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td><label id="idNovaJustificativa1c7"> </label></td>
+																		<td></td>
+																	</tr>
+																</tr>
+															</tbody>
+														</table>
+														
+														
+														<div id="idPainelItem1bb">
+														<div id="id01bc">
+															<div id="exibirNovaJustificativa1bf"></div>
+
+															<table width="100%" cellspacing="0" cellpadding="3" style="margin: auto;" id="tabelaDadosItem150">
+																<thead>
+																	<tr class="fundoPadraoAClaro3">
+																		<td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;" id="idTituloItem1bd">Tolerância ao risco</td>
+																	</tr>
+																</thead>
+
+																<tbody id="idPainelDocumentoUploadAnexo1be">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong>Nova avaliação</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+																	
+																	<tr class="fundoPadraoAClaro3">
+																	   <td></td>
+																	   <td><label id="idNovaJustificativa2b0"> </label></td>
+																	   <td></td>
+																    </tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td width="90%">
+																			<p><strong>Avaliação vigente</strong></p>
+																		</td>
+																		<td></td>
+																		
+																		<tr class="fundoPadraoAClaro3">
+																	       <td></td>
+																	       <td><label id="idNovaJustificativa2b0"> </label></td>
+																	       <td></td>
+																        </tr>
+																	</tr>
+																</tbody>
+															</table>
+															
+															<div id="idPainelItem1bb">
+														    <div id="id01bc">
+															<div id="exibirNovaJustificativa1bf"></div>
+															
+															<table width="100%" cellspacing="0" cellpadding="3" style="margin: auto;" id="tabelaDadosItem150">
+																<thead>
+																	<tr class="fundoPadraoAClaro3">
+																		<td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;" id="idTituloItem1bd">ConcentrAção da carteira</td>
+																	</tr>
+																</thead>
+
+																<tbody id="idPainelDocumentoUploadAnexo1be">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong>Nova avaliação</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+																	
+																	<tr class="fundoPadraoAClaro3">
+																	   <td></td>
+																	   <td><label id="idNovaJustificativa2b0"> </label></td>
+																	   <td></td>
+																    </tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td width="90%">
+																			<p><strong>Avaliação vigente</strong></p>
+																		</td>
+																		<td></td>
+																		
+																		<tr class="fundoPadraoAClaro3">
+																	       <td></td>
+																	       <td><label id="idNovaJustificativa2b0"> </label></td>
+																	       <td></td>
+																        </tr>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+										<tbody id="idPainelAnaliseSupervisorItem1d4"></tbody>
+									</table>
+								</span>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td>
+								<ul><li>Os itens do elemento '<b>Risco de Ineficácia de Mitigadores</b>' devem ser:</li></ul>
+
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementos_Risco de Ineficácia de Mitigadores']">
+									<table cellspacing="0" cellpadding="3" style="width: 90%">
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td colspan="6">
+												
+												
+												<table width="100%" cellspacing="0" cellpadding="3"
+															style="margin: auto;" id="tabelaDadosItem145">
+															<thead>
+																<tr class="fundoPadraoAClaro3">
+																	<td colspan="4" class="nomeCampo"
+																		style="text-align: left; border-bottom: 0px;"
+																		id="idTituloItem298">Critérios para mitigadores de risco</td>
+																</tr>
+															</thead>
+															<tbody id="idPainelDocumentoUploadAnexo299">
+
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td style="text-align: right;"><label
+																		style="font-size: 7pt;" id="idDataItemElemento29b">
+																			Preenchido por TESTESLQB13 MASSA DE TESTE em
+																			17/06/2015 00:00h.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td width="5%"></td>
+																	<td width="90%"><strong
+																		id="tituloNovaJustificativa29c"> Nova
+																			avaliação </strong></td>
+																	<td width="5%"></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td><label id="idNovaJustificativa29d">
+																			Justificativa item elemento.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;" id="idDataItemElemento1c5">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong id="tituloNovaJustificativa1c6">Avaliação vigente</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td><label id="idNovaJustificativa1c7"> </label></td>
+																		<td></td>
+																	</tr>
+																</tr>
+															</tbody>
+														</table>
+														
+														
+														<div id="idPainelItem1bb">
+														<div id="id01bc">
+															<div id="exibirNovaJustificativa1bf"></div>
+
+															<table width="100%" cellspacing="0" cellpadding="3" style="margin: auto;" id="tabelaDadosItem150">
+																<thead>
+																	<tr class="fundoPadraoAClaro3">
+																		<td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;" id="idTituloItem1bd">Proporção de Créditos com mitigadores de risco versus sem mitigadores de risco</td>
+																	</tr>
+																</thead>
+
+																<tbody id="idPainelDocumentoUploadAnexo1be">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong>Nova avaliação</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+																	
+																	<tr class="fundoPadraoAClaro3">
+																	   <td></td>
+																	   <td><label id="idNovaJustificativa2b0"> </label></td>
+																	   <td></td>
+																    </tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td width="90%">
+																			<p><strong>Avaliação vigente</strong></p>
+																		</td>
+																		<td></td>
+																		
+																		<tr class="fundoPadraoAClaro3">
+																	       <td></td>
+																	       <td><label id="idNovaJustificativa2b0"> </label></td>
+																	       <td></td>
+																        </tr>
+																	</tr>
+																</tbody>
+															</table>
+															
+															<div id="idPainelItem1bb">
+														    <div id="id01bc">
+															<div id="exibirNovaJustificativa1bf"></div>
+															
+															<table width="100%" cellspacing="0" cellpadding="3" style="margin: auto;" id="tabelaDadosItem150">
+																<thead>
+																	<tr class="fundoPadraoAClaro3">
+																		<td colspan="4" class="nomeCampo" style="text-align: left; border-bottom: 0px;" id="idTituloItem1bd">Dados históricos e recuperação dado o inadimplemento</td>
+																	</tr>
+																</thead>
+
+																<tbody id="idPainelDocumentoUploadAnexo1be">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong>Nova avaliação</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+																	
+																	<tr class="fundoPadraoAClaro3">
+																	   <td></td>
+																	   <td><label id="idNovaJustificativa2b0"> </label></td>
+																	   <td></td>
+																    </tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td width="90%">
+																			<p><strong>Avaliação vigente</strong></p>
+																		</td>
+																		<td></td>
+																		
+																		<tr class="fundoPadraoAClaro3">
+																	       <td></td>
+																	       <td><label id="idNovaJustificativa2b0"> </label></td>
+																	       <td></td>
+																        </tr>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+										<tbody id="idPainelAnaliseSupervisorItem1d4"></tbody>
+									</table>
+								</span>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td>
+								<ul><li>Os itens do elemento '<b>Risco de Liquidação'</b> devem ser:</li></ul>
+
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementos_Risco de Liquidação']">
+									<table cellspacing="0" cellpadding="3" style="width: 90%">
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td colspan="6">
+												
+												
+												<table width="100%" cellspacing="0" cellpadding="3"
+															style="margin: auto;" id="tabelaDadosItem145">
+															<thead>
+																<tr class="fundoPadraoAClaro3">
+																	<td colspan="4" class="nomeCampo"
+																		style="text-align: left; border-bottom: 0px;"
+																		id="idTituloItem298">Risco de liquidação</td>
+																</tr>
+															</thead>
+															<tbody id="idPainelDocumentoUploadAnexo299">
+
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td style="text-align: right;"><label
+																		style="font-size: 7pt;" id="idDataItemElemento29b">
+																			Preenchido por TESTESLQB13 MASSA DE TESTE em
+																			17/06/2015 00:00h.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td width="5%"></td>
+																	<td width="90%"><strong
+																		id="tituloNovaJustificativa29c"> Nova
+																			avaliação </strong></td>
+																	<td width="5%"></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td><label id="idNovaJustificativa29d">
+																			Justificativa item elemento.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;" id="idDataItemElemento1c5">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong id="tituloNovaJustificativa1c6">Avaliação vigente</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td><label id="idNovaJustificativa1c7"> </label></td>
+																		<td></td>
+																	</tr>
+																</tr>
+															</tbody>
+														</table>
+												</td>
+											</tr>
+										</tbody>
+										<tbody id="idPainelAnaliseSupervisorItem1d4"></tbody>
+									</table>
+								</span>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td>
+								<ul><li>Os itens do elemento '<b>Risco de Crédito de Contraparte - RCC</b>' devem ser:</li></ul>
+
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementos_Risco de Crédito de Contraparte - RCC']">
+									<table cellspacing="0" cellpadding="3" style="width: 90%">
+										<tbody>
+											<tr class="fundoPadraoAClaro3">
+												<td colspan="6">
+												
+												
+												<table width="100%" cellspacing="0" cellpadding="3"
+															style="margin: auto;" id="tabelaDadosItem145">
+															<thead>
+																<tr class="fundoPadraoAClaro3">
+																	<td colspan="4" class="nomeCampo"
+																		style="text-align: left; border-bottom: 0px;"
+																		id="idTituloItem298">Concessão de Operações sujeitas a RCC</td>
+																</tr>
+															</thead>
+															<tbody id="idPainelDocumentoUploadAnexo299">
+
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td style="text-align: right;"><label
+																		style="font-size: 7pt;" id="idDataItemElemento29b">
+																			Preenchido por TESTESLQB13 MASSA DE TESTE em
+																			17/06/2015 00:00h.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td width="5%"></td>
+																	<td width="90%"><strong
+																		id="tituloNovaJustificativa29c"> Nova
+																			avaliação </strong></td>
+																	<td width="5%"></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<td></td>
+																	<td><label id="idNovaJustificativa29d">
+																			Justificativa item elemento.</label></td>
+																	<td></td>
+																</tr>
+																<tr class="fundoPadraoAClaro3">
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td style="text-align: right;"><label style="font-size: 7pt;" id="idDataItemElemento1c5">Não avaliado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+																		<td></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td width="5%"></td>
+
+																		<td width="90%">
+																			<p><strong id="tituloNovaJustificativa1c6">Avaliação vigente</strong></p>
+																		</td>
+
+																		<td width="5%"></td>
+																	</tr>
+
+																	<tr class="fundoPadraoAClaro3">
+																		<td></td>
+																		<td><label id="idNovaJustificativa1c7"> </label></td>
+																		<td></td>
+																	</tr>
+																</tr>
+															</tbody>
+														</table>
+												</td>
+											</tr>
+										</tbody>
+										<tbody id="idPainelAnaliseSupervisorItem1d4"></tbody>
+									</table>
+								</span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

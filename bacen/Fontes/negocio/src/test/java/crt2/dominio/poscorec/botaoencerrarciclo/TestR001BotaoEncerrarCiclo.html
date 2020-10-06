@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Botao Encerrar Ciclo </title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Botao Encerrar Ciclo'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>11/03/2015</td>
+			<td>Kalina Lígia</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>2.0</td>
+			<td>03/08/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Incluindo regras dos participantes efetivos do comitê.</td>
+		</tr>
+		<tr>
+			<td>3.0</td>
+			<td>19/08/2015</td>
+			<td>Marília Vasconcelos</td>
+			<td>Excluindo mensagem de verificação da existência da ata.</td>
+		</tr>
+		<tr>
+			<td>4.0</td>
+			<td>24/09/2015</td>
+			<td>Marília Vasconcelos</td>
+			<td>Removendo verificação da ata.</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#botaoEncerrarCiclo">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarMensagens">validar as mensagens de erro ao clicar no botão 'Encerrar ciclo'</a>.<br/>
+	</blockquote>
+	
+	<table class="exemplos">
+		<tr>
+			<td>
+				
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar mensagem de erro ao clicar no botão 'Encerrar ciclo' sem possuir anexo do Ofício e data COREC é maior que a data limite. 
+						</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <banco/> 
+							Os dados encontram-se <a href="TestR001BotaoEncerrarCiclo-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+					    <th>Ação/Validação</th>
+					<tr>
+					    <td>
+					    	<table>
+								<tr>
+									<th>Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>Ciclo</th>
+									<th style="background-color: green">Mensagem de alerta?</th>
+								</tr>
+								<tr>
+									<td class="set" converter="Integer" name="idCiclo">1</td>
+									<td>
+										<table class="verifyRows" name="mensagemErro" value="$THIS.encerrarCiclo(idCiclo)" >
+						                	<tr style="display:none"><th class="eq" value="$THIS.getErro(mensagemErro)"></th></tr>
+						                  	<tr><td style="color: red">O anexo do Ofício é obrigatório.</td></tr>
+						                	<tr><td style="color: red">Todos os participantes efetivos do comitê devem assinar a Ata.</td></tr>
+					            		</table>
+									</td>
+								</tr>
+							</table>
+					    </td>
+					</tr>    
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="exemplos">
+		<tr>
+			<td>
+				
+			</td>
+		</tr>
+	</table>
+	
+		
+</body>
+</html>

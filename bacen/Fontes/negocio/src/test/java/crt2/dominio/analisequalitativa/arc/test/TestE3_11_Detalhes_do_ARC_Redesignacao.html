@@ -1,0 +1,492 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Testando a designação de ARCs</title>
+		<link rel="stylesheet" type="text/css" href="../../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 3.11 - Designação de ARCs</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+    	<table class="exemplos historico">
+	        <tr>
+	            <th>Versão</th>
+	            <th>Data</th>
+	            <th>Responsável</th>
+	            <th>Descrição</th>
+	        </tr>
+
+        	<tr>
+	            <td>1.0</td>
+	            <td>04/09/2014</td>
+	            <td>Christiano Nogueira</td>
+	            <td>Estória - AQL (Governança de ARCs) - Adequar designação de ARCs à mudança de estado do ciclo (designação permanente)</td>
+	        </tr>
+    	</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			Vide as <!-- <a href="Regras_Gerais_Ciclo.html" class="include"> -->regras do tema<!-- </a> -->.
+			<dataHoraAtual valor="06/05/2014 00:00:00">Data atual: 06/05/2014 00:00:00</dataHoraAtual>
+		</blockquote>
+
+		<h2>Cenários de falha para a estória 3.11 - Designação de ARCs</h2>
+		<blockquote>Cenários onde devem ser apresentadas mensagens de erro/impedimento para a designação de ARCs.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C001 </b><br><br>
+					Designar ARC no estado 7 - Concluído
+				</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+				
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include" class="include">aqui</a><br><br>
+
+					os dados adicionais <a href ="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_01.html">aqui</a>
+				</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul class="execute" value="$THIS.verificar($NODE)"><li>Não é possivel designação de ARC no estado 'Concluído'.</li></ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C002 </b><br><br>
+					Designar ARC com sucesso com estado 5 - Previsto
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+										Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include">aqui</a><br><br>
+
+				os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_02.html">aqui</a>
+
+
+			</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C003 </b><br><br>
+					Designar ARC com sucesso com estado 2 - Designado
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+									Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include">aqui</a><br><br>
+					os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_03.html">aqui</a>
+
+					
+				</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C004 </b><br><br>
+					Designar ARC no estado 3 - Em edição
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+								Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include" class="include">aqui</a><br><br>
+
+os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_04.html">aqui</a>
+
+					
+            	</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C005 </b><br><br>
+					Designar ARC no estado 4 - Preenchido
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+									Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include">aqui</a><br><br>
+
+os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_05.html">aqui</a>
+					
+				</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C006 </b><br><br>
+					Designar ARC no estado 1 - Análise delegada
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+										Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include">aqui</a><br><br>
+	os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_06.html">aqui</a>
+					
+				</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C007 </b><br><br>
+					Designar ARC no estado 6 - Em análise
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+								Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include">aqui</a><br><br>
+					os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_07.html">aqui</a>
+					
+				</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'>
+					<b>C008 </b><br><br>
+					Designar ARC no estado 8 - Analisado
+				</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <regra>aqui</regra><br><br>
+					Os dados da Metodologia se encontram <a href="../../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"class="include">aqui</a> <br> <br> 
+					Os dados das ESs se	encontram <a href="../../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"	class="include">aqui</a> <br> <br> 
+					Os dados do Ciclo, Matriz, Unidades, Atividades e seus estados se encontram <a href="dadoque/TestE3_11_Designacao_ARC_dadoque.html" class="include">aqui</a><br><br>
+					O Mock BC Pessoa (outros servidores) se encontra <a href="../../../../dados_basicos/MOCK_BCPESSOA_OUTROS_SERVIDORES_dadoque.html" class="include">aqui</a><br><br>
+os dados adicionais <a href="dadoque/TestE3_31_Delegacao_redesignacao_ARC_dadoque_08.html">aqui</a>
+					
+				</td>
+
+				<td><span class="sentence" method="salvar">Designar ARC_ID "1", ARC_ID "2", da Matriz "2" para SER_CD_MATRICULA "65214892"</span></td>
+
+				<td>
+					<ul><li>ARC designado com sucesso.</li></ul>
+
+					<table class="verify dados">
+						<caption>DES_DESIGNACAO_ARC</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>DES_ID</th>
+							<th>DES_NU_VERSAO</th>
+							<th>DES_CD_OPER_ATUALZ</th>
+							<th>DES_DH_ATUALZ</th>
+							<th>DES_CD_MATRICULA</th>
+							<th>ARC_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>1</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>0</td>
+							<td>deliq.sisliq101</td>
+							<td>06/05/2014 00:00:00</td>
+							<td>65214892</td>
+							<td>2</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

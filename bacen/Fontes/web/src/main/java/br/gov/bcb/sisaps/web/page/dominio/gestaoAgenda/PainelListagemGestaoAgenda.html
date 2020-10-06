@@ -1,0 +1,34 @@
+<script>
+function hint( sMessage ) {
+	  document.getElementById("display_hint").innerHTML = sMessage;
+	}
+</script>
+
+<wicket:panel>
+	<div wicket:id="tabela"></div>
+	<div wicket:id="modalAlteracao" />
+	<div wicket:id="modalDetalhar" />
+	<wicket:fragment wicket:id="frangmentLink">
+		<div align="center">
+			<a href="#" wicket:id="linkDetalhar" > <img wicket:id="detalhar" title="Detalhar"></img>
+			</a> <a href="#" wicket:id="linkAlterar"  > <img wicket:id="alterar"  title="Alterar"></img>
+			</a>
+		</div>
+
+	</wicket:fragment>
+
+	<div align="center" style="width: 100%; text-align: right;">
+		<span > <a wicket:id="linkExportarComitesRealizados" target="_blank">Exportar lista de comitês realizados
+				para excel</a> <a wicket:id="linkExportarComitesARealizar" target="_blank">Exportar lista de comitês a realizar para
+				excel</a>
+		</span>
+	</div>
+
+	<wicket:enclosure>
+		<br />
+		<div class="centralizado">
+			<td><div align="center" wicket:id="painelArquivo" style="width: 100%; margin: auto;" /></td>
+		</div>
+	</wicket:enclosure>
+
+</wicket:panel>

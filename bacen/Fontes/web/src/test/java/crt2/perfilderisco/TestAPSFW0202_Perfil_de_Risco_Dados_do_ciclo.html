@@ -1,0 +1,288 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Cenários de teste para a estória - Perfil de Risco (dados do ciclo)</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória - Perfil de Risco (dados do ciclo)</h1>
+
+		<span id="index"></span>
+		<h2>Histórico</h2>
+	    <table class="exemplos historico">
+	        <tr>
+	            <th>Versão</th>
+	            <th>Data</th>
+	            <th>Responsável</th>
+	            <th>Descrição</th>
+	        </tr>
+	        <tr>
+	            <td>1.0</td>
+	            <td>11/07/2014</td>
+	            <td>Christiano Nogueira</td>
+	            <td>Versão Inicial</td>
+	        </tr>
+	        <tr>
+	            <td>1.1</td>
+	            <td>27/08/2014</td>
+	            <td>Victor Vasconcelos</td>
+	            <td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas)</td>
+	        </tr>
+	        <tr>
+	            <td>1.2</td>
+	            <td>08/10/2014</td>
+	            <td>Cleonides Macriny</td>
+	            <td>História - Logs de operações no sistema</td>
+	        </tr>
+	    </table>
+	    <span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+	    <blockquote>
+	        Para as regras da estória:
+	        <ul>
+	            <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0202_Perfil_de_risco_Dados_do_ciclo.xlsx">APSFW0202_Perfil_de_risco_Dados_do_ciclo.xlsx</a>.</li>
+	            <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+	        </ul>
+	    </blockquote>
+	    <h2>Premissas iniciais</h2>
+	    <ul>
+	        <li>A lista de servidores foi <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	    </ul>
+
+
+		<h2>Cenários onde devem ser apresentadas as telas, trilhas, seções, títulos, mensagens e demais informações pertinentes ao Perfil de Risco (dados do ciclo)</h2>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C001</b><br><br>Falha - Acionar Perfil de risco de ES sem ciclo iniciado. Perfil Supervisor</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+					<br> Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+					<br> Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+		    	</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					</ul>
+            	</td>
+
+				<td>
+					<span class="compareTable dados" by="xpath://table[@id='idTitulo']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclos da equipe</b></td>
+								</tr>
+							</thead>
+						</table>
+					</span>
+
+					<span class="compareTable dados" by="xpath://table[@id='idDados']">
+						<table>
+							<tbody>
+								<tr>
+									<td colspan="8">Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+		    	</td>
+			</tr>
+
+		    <tr class="scenario">
+				<td class='title'><b>C002</b><br><br>Sucesso - Acessar o Perfil de risco vazio (versão vigente). Ciclo em andamento. ES da equipe do supervisor, com ciclo em andamento, mas sem ARCs, sem matriz vigente. Perfil de risco vazio - 1ª versão</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+					<br> Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+					<br> Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Dados_do_ciclo_dadoque.html" class="include">aqui</a><br><br>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES8">PORTO SEGURO</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+						<table>
+							<thead>
+						   		<tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>PORTO SEGURO (01394199)</b></th></tr>
+						   		<tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+                            </thead>
+                            <tbody>
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+						        	<td colspan="6"><b>Em andamento</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Início</b></td>
+						        	<td colspan="6">14/04/2014</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Corec previsto</b></td>
+						        	<td colspan="6">23/04/2016</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+						        	<td colspan="6">ROBERTO SANTOS ALENCAR</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Gerente titular</b></td>
+						        	<td colspan="6">ANFRISIO RODRIGUES VIEIRA</td>
+				           		</tr>
+				           	</tbody>
+				           
+                    	</table>
+                    	<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>01394199</td>
+												<td>PORTO SEGURO</td>
+												<td>1</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>data hora atual</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		      		</span>
+				</td>
+				<br/>
+				</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C003</b><br><br>Sucesso - Acessar o Perfil de risco vazio (versão vigente). Ciclo em andamento. ES não pertence a equipe do usuário, com ciclo em andamento, mas sem ARCs, sem matriz vigente. Perfil de risco vazio - 1ª versão</td>
+
+				<td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br>
+					<br> Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br>
+					<br> Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_Risco_Dados_do_ciclo_dadoque.html" class="include">aqui</a><br><br>
+				</td>
+
+            	<td>
+            		<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">PORTO SEGURO</span></li>
+		    		</ul>
+            	</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='tDadosCicloResumido']">
+						<table>
+							<thead>
+						   		<tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>PORTO SEGURO (01394199)</b></th></tr>
+						   		<tr><th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th></tr>
+                            </thead>
+                            <tbody>
+                           		<tr>
+                           			<td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+						        	<td colspan="6"><b>Em andamento</b></td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Início</b></td>
+						        	<td colspan="6">14/04/2014</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Corec previsto</b></td>
+						        	<td colspan="6">23/04/2016</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+						        	<td colspan="6">ROBERTO SANTOS ALENCAR</td>
+				           		</tr>
+
+				           		<tr>
+					            	<td colspan="2" style="background-color: #4a73a2"><b>Gerente titular</b></td>
+						        	<td colspan="6">ANFRISIO RODRIGUES VIEIRA</td>
+				           		</tr>
+				           	</tbody>
+                    	</table>
+		      		</span>
+				</td>
+				<tr>
+				  <table class="verify dados">
+				    <caption>LOP_LOG_OPERACOES</caption>
+				    <tr>
+				        <th>Ação</th>
+				        <th>LOP_CD_CNPJ</th>
+				        <th>LOP_DS_NOME_ES</th>
+				        <th>PER_ID</th>
+				        <th>LOP_DS_TRILHA</th>
+				        <th>LOP_DS_TITULO_TELA</th>
+				        <th>LOP_CD_CODIGO_TELA</th>
+				        <th>LOP_DH_OPERACAO</th>
+				        <th>LOP_CD_RESP_OPERACAO</th>
+				     </tr>
+				    <tr>
+				        <td>I</td>
+				        <td>01394199</td>
+				        <td>PORTO SEGURO</td>
+				        <td>1</td>
+				        <td>Início-Painel de consulta-Perfil de risco</td>
+				        <td>Perfil de risco</td>
+				        <td>APSFW0202</td>
+				        <td>data hora atual</td>
+				        <td>deliq.sisliq106</td>
+				    </tr>
+					</table>
+				</tr>
+		</table>
+	</body>
+</html>

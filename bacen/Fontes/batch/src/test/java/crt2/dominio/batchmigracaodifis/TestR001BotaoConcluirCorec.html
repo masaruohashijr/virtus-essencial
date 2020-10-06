@@ -1,0 +1,245 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Botão 'Encerrar Corec e iniciar novo ciclo'</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Botão 'Encerrar Corec e iniciar novo ciclo''</h1>
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>11/03/2015</td>
+				<td>Kalina Lígia</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>16/03/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Evolução para a nova estória: 4.4.1.1 Botão concluir corec e criar novo ciclo</td>
+			</tr>
+			<tr>
+				<td>3.0</td>
+				<td>06/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração do roteiro para validar apenas as mensagens de erro. A validação da alteração do estado do ciclo de Corec para Pós-corec movido para o <a href="TestR002BotaoConcluirCorec.html">R002</a></td>
+			</tr>
+			<tr>
+				<td>4.0</td>
+				<td>26/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração no modelo de dados para os itens Patrimônios, Resultados e Índices.</td>
+			</tr>
+			<tr>
+				<td>5.0</td>
+				<td>26/08/2015</td>
+				<td>Victor Vasconcelos</td>
+				<td>Alteração para validar as mensagens de erro do agendamento do processo de encerramento do Corec.</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+    
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#encerrarCorec">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+    	<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+
+			<banco/> 
+
+			<li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq104"</span>'</strong>.</li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#validarMsgErro">validar mensagens de erro</a>.<br/></blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Validar quando não há participantes efetivos do corec cadastrados.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001BotaoConcluirCorec-DadoQue.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th >Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td style="color: red" class="eq" value="$THIS.encerrarCorec(idCiclo)">É necessário selecionar pelo menos um participante efetivo do comitê.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Validar quando já existe um processo de encerramento de Corec agendado.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001BotaoConcluirCorec-DadoQue-C002.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th >Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td style="color: red" class="eq" value="$THIS.encerrarCorec(idCiclo)">Já existe um processo de encerramento de Corec agendado ou em andamento.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> -Validar quando já existe um processo de encerramento de Corec em andamento.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001BotaoConcluirCorec-DadoQue-C003.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th >Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td style="color: red" class="eq" value="$THIS.encerrarCorec(idCiclo)">Já existe um processo de encerramento de Corec agendado ou em andamento.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT004]</b> -Validar quando já existe um processo de encerramento de Corec concluído.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001BotaoConcluirCorec-DadoQue-C004.html" class="include">aqui</a>.
+							</td>
+						</tr>
+
+						<tr><th>Ação/Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th colspan="1">Entradas</th>
+										<th style="background-color: green">Saída</th>
+									</tr>
+
+									<tr>
+										<th >Ciclo</th>
+										<th style="background-color: green">Mensagem de alerta</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+
+										<td style="color: red" class="eq" value="$THIS.encerrarCorec(idCiclo)">O Corec já foi encerrado e um novo ciclo criado.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

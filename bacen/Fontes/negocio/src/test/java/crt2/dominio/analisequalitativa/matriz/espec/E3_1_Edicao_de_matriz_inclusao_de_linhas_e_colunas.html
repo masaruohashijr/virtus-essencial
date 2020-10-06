@@ -1,0 +1,628 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>E3.1 Edição de matriz (inclusão de linhas e colunas)</title>
+<link rel="stylesheet" type="text/css" href="../../../../estilos.css"	media="screen" />
+</head>
+<script type="text/javascript" src="../../../../jquery.js"></script>
+<script type="text/javascript" src="../../../../estilo.js"></script>
+</head>
+<body>
+    <h2>Histórico</h2>	
+	<table class="exemplos historico">
+		<tr>
+			<th>Data</th>
+			<th>Versão</th>
+			<th>Descrição</th>
+			<th>Autor</th>	
+		</tr>
+		<tr>
+			<td>07/04/2014</td>
+			<td>1.0</td>
+			<td>Versão inicial - Criação do documento e especificação.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+		<tr>
+			<td>09/03/2014</td>
+			<td>1.1</td>
+			<td>Inclusão dos cenários de teste<br>
+				Estados da matriz passa a ser: 1- Esboçada; 2 - Vigente<br>
+				<a href="E3_1_A1_Edicao_de_matriz_inclusao_de_linhas_e_colunas.html">Alterações após a iteração 03</a><br>
+				Edição de nova versão de MRC.</td>
+			<td>Eliane/DIREC</td>
+		</tr>		
+		<tr>
+			<td>10/03/2014</td>
+			<td>1.2</td>
+			<td>Correção dos cenários de teste<br>
+				Modelo de dados.</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+		<tr>
+			<td>11/03/2014</td>
+			<td>1.3</td>
+			<td>Separação entre os requisitos da iteração 03 e as alterações que serão implementadas depois na <a href="E3_1_A1_Edicao_de_matriz_inclusao_de_linhas_e_colunas.html">E3_1_A1</a>.<br>
+				Esclarecimentos
+			</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+		<tr>
+			<td>14/04/2014</td>
+			<td>1.4</td>
+			<td>Código de tela seguem o padrão [APSTTNNNN], onde TT - Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório); NNNN - Numérico.<br>
+				Os estados da matriz são: 1-Esboçada e 2-Vigente.</td>
+			<td>Eliane/DIREC</td>
+		</tr>	
+		<tr>
+			<td>16/04/2014</td>
+			<td>1.5</td>
+			<td>Exemplo de linha de atividade corporativas com seus ARCs no estado previsto.<br>
+				Incluir em ATV_ATIVIDADE_MAT  a coluna ATV_CD_TIPO</td>
+			<td>Eliane/DIREC</td>
+		</tr>
+	</table>
+	<h2><a id="E3_1">E3.1 Edição de matriz (inclusão de linhas e colunas) - Iteração 04 - Replanejada para Iteração 03</a></h2>
+	
+	<h3>Pré-requisitos</h3>
+	<blockquote>
+	<p>Deve existir um ciclo SRC da ES no estado em andamento cadastrado no sistema de acordo com a metodologia da ES e uma versão da matriz no estado 1-Esboçada..</p>
+	<p>Uma matriz Esboçada: representa uma nova matriz. Poderá ser editada livremente.</p>
+	<p>Uma matriz Vigente: representa a matriz vigente do ciclo. Permite a edição dos ARCs apenas quando o estado ciclo é Em andamento. A edição da matriz requer uma nova versão Esboçada para ser editada livremente.</p>
+	</blockquote>
+	<h3>Perfil de usuário</h3>
+	<blockquote>
+	<p>Supervisor.</p>
+	</blockquote>	
+	<h3>Item de menu</h3>
+	<blockquote>
+	<p>Ciclo SRC -- Consulta: Acionar o comando Edição de matriz de riscos e controles para ES</p>
+	<p>Perfil de risco -- Análise qualitativa -- Matriz de risco e controle: Selecionando uma ES</p>
+	<p>Administração -- Ciclo -- Inclusão</p>
+	</blockquote>
+	<h3>Telas - (<a href="E3_1_A1_Edicao_de_matriz_inclusao_de_linhas_e_colunas.html">ver alterações após a iteração 02</a>)</h3>
+	<blockquote>
+	<p><b>Título: Confirmação de inclusão de ciclo SRC.</b></p>
+	<p>Trilha: Administração -- Ciclo SRC -- Inclusão -- Confirmação de inclusão de ciclo.</p>
+	<p>Código de tela: [APSFW0107] </p>
+	<p>Comandos: Visualizar impressão e Voltar.</p>
+	<input type="image" src="Tela01_E3_1.png"/>
+	<p><b>Título: Edição de matriz de riscos e controles.</b></p>
+	<p>Trilha:</p>
+	<ul>
+		<li>Ciclo SRC -- Consulta: Acionar o comando Edição de matriz de riscos e controles para ES</li>
+		<li>Perfil de risco -- Análise qualitativa -- Matriz de risco e controle: Selecionando uma ES</li>
+	</ul>
+	<p>Código de tela: [APSFW0304]</p>
+	<p>Comandos para inclusão de linhas na matriz de riscos e controles:</p>
+	<ul>
+		<li>Incluir atividade corporativa</li>
+		<li>Incluir unidade de negócio </li>
+		<li>Incluir atividade de negócio</li>
+	</ul>
+	<p>Comandos para matriz: Visualizar impressão e Voltar.</p>
+
+	<p><b>Título: Edição de linha com colunas (ARC) da matriz de riscos e controles.</b></p>	
+	<p>Trilha: Não se aplica</p>
+	<p>Código de tela: Não se aplica</p>
+	<p>Comandos para inclusão de colunas na matriz de riscos e controles:</p>
+	<ul>
+		<li>Incluir grupo par (risco, controle)</li>
+	</ul>	
+	<p>Outros comandos:Concluir e Voltar</p>
+	<input type="image" src="Tela02_E3_1.png"/>
+	<p><b>Tela com duas atividades corporativas e diversas colunas (ARC no estado previsto)</b></p>
+	<input type="image" src="Tela05_E3_1.png"/>
+	</blockquote>		
+	<h3>Descrição</h3>
+	<blockquote>
+	<p>Funcionalidade básica de Edição de matriz de riscos e controles. Apenas inclusão de linhas e colunas.</p>
+	<p>Funcionalidades disponíveis apenas para o perfil <b>Supervisor</b>.</p>
+	</blockquote>
+	<h3>Regras específicas para</h3>
+	Detalhamento:
+	<ul>
+		<li>Há um comando exclusivo para inclusão de unidade de negócio na matriz.</li>
+		<li>Não há a funcionalidade de inclusão de unidade corporativa na matriz. A unidade corporativa é única para a matriz.</li>
+		<li>Ao acionar o comando para incluir linha na seção de atividade corporativas o sistema incluirá uma atividade corporativa.</li>
+		<li>Atividades corporativas são sempre incluídas na unidade corporativa da matriz.</li>
+		<li>Atividades corporativas são sempre do Tipo de atividade corporativa "Atividade corporativa" .</li>
+		<li>Analogamente, na seção de atividade de negócio o sistema incluirá uma atividade de negócio.</li>
+		<li>Atividades de negócio são sempre de um Tipo de atividade de negócio qualquer.</li>
+		<li>Atividades de negócio podem ser independentes ou incluídas em uma unidade de negócio da matriz.</li>
+		<li>Podem haver diversas atividades com o mesmo Tipo de atividade de negócio.</li>
+		<li>Deixa de existir o conceito de subunidade de negócio.</li>
+		<li>Ao incluir uma linha de atividade, seja de negócio ou corporativa, será possível associar à linha diversas colunas que correspondem aos grupos de risco ou controle.</li>
+		<li>Grupo de risco e controle são incluídos, alterados e excluídos aos pares (risco, controle).</li>
+		<li>Cada par (risco, controle) corresponde a duas colunas na matriz</li>
+		<li>Cada par (risco, controle) corresponde a duas colunas na matriz</li>
+		<li>Cada par (risco, controle) está associado a um fator de relevância da metodologia</li>
+		<li>Um item da matriz corresponde a um ARC que é incluído no estado 1- Previsto.</li>
+	</ul>
+	<h3>Dados básicos de uma atividade corporativa:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Nome da atividade corporativa</td>
+				<td>Nome da unidade corporativa</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Peso da atividade corporativa</td>
+				<td>Peso da atividade corporativa</td>
+				<td>Combo box com os pesos (Parâmetro peso) disponíveis na metodologia do ciclo.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Tipo de atividade corporativo</td>
+				<td>Tipo de atividade corporativo</td>
+				<td>Não tem relação com o parâmetro tipo de atividade de negócio. Tipo de atividade corporativo é um tipo único usado para todas as atividades corporativas.</td>
+				<td>Sim do ponto de vista de negócio<br>
+					Não do ponto de vista de modelo de dasdos</td>
+				<td>Será representado pelo tipo de atividade nulo.</td>
+			</tr>
+			<tr>
+				<td>Unidade corporativa</td>
+				<td>Unidade corporativa associada</td>
+				<td>Unidade corporativa da matriz.<br>
+					Não editável.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+	</table>
+	<h3>Dados básicos de uma Unidade de negócio:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Nome da unidade de negócio</td>
+				<td>Nome da unidade de negócio</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Peso da unidade de negócio</td>
+				<td>Peso da unidade de negócio</td>
+				<td>Combo box com todos os pesos (parâmetro peso) disponíveis na metodologia do ciclo.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+		</table>
+	<h3>Dados básicos de uma atividade de negócio:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Nome da atividade de negócio</td>
+				<td>Nome da unidade de negócio</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Peso da atividade de negócio</td>
+				<td>Peso da atividade de negócio</td>
+				<td>Combo box com os pesos (Parâmetro peso) disponíveis na metodologia do ciclo.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Tipo de atividade de negócio</td>
+				<td>Tipo de atividade de negócio</td>
+				<td>Combo box com os tipos de atividade (Parâmetro tipo de atividade) disponíveis na metodologia do ciclo.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Unidade de negócio</td>
+				<td>Unidade de negócio associada</td>
+				<td>Unidade de negócio da matriz.<br>
+					Editável.</td>
+				<td>Não</td>
+				<td>Preservado do rating</td>
+			</tr>			
+		</table>
+		<h3>Dados básicos do ARC:</h3>
+		<table class="exemplos">
+			<tr>
+				<th>Nome</th>
+				<th>Objetivo</th>
+				<th>Domínio</th>
+				<th>Obrigatório?</th>
+				<th>Observações</th>
+			</tr>
+			<tr>
+				<td>Atividade</td>
+				<td>Atividade</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>
+			<tr>
+				<td>Grupo</td>
+				<td>Grupo</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Fator de relevância</td>
+				<td>Fator de relevância</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Obtido no parâmetro fator de relevância da metodologia.</td>
+			</tr>		
+			<tr>
+				<td>Peso</td>
+				<td>Peso</td>
+				<td>&nbsp;</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>			
+			<tr>
+				<td>Estado</td>
+				<td>Estado</td>
+				<td>1-Previsto;2-Designado;3-Esboçado;4-Preenchido;5-Analisado.</td>
+				<td>Sim</td>
+				<td>Preservado do rating</td>
+			</tr>		
+		</table>	
+
+	<h2>Cenários de teste - <a href="TestE3_1_Edicao_de_matriz_inclusao_de_linhas_e_colunas.html">Negócio</a>.</h2>
+	Observação: agrupar a maior quantidade de itens de teste no mesmo teste.<br>
+	<h3>Dado que:</h3>
+	<ul>
+		<li>registro de metodologia(2 ou mais) e seus parametros para cada ES</li>
+		<li>registro de peso(4 ou mais) com valores diferentes</li>
+		<li>registro de pares de grupo (risco, controle)(4 ou mais) com valores diferentes</li>
+		<li>registro de tipo de atividade de negócio (4 ou mais) com valores diferentes</li>
+		<li>registro de ES(2 ou mais)</li>
+		<li>registro de ciclo(2 ou mais) no estado 1-Em andamento para 2 ESs</li>
+		<li>cada ciclo com matriz(2 ou mais) no estado 1-Esboçada e 2-Vigente</li>
+	</ul>		
+	<ul>
+		<li>Falha - Incluir atividade corporativa em matriz no estado 2-Vigente. Mensagem: 
+			<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+		</li>
+		<li>Falha - Incluir unidade de negócio em matriz no estado 2-Vigente. Mensagem: 
+			<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+		</li>	
+		<li>Falha - Incluir atividade de negócio em matriz no estado 2-Vigente. Mensagem: 
+			<ul><li>"Não é possível a edição de uma matriz no estado vigente."</li></ul>
+		</li>
+		<li>Falha - Incluir uma segunda unidade corporativa . Mensagem: 
+			<ul><li>"Deve existir uma única <b>unidade corporativa</b> na matriz."</li></ul>
+		</li>
+		<li>Falha - Incluir atividade corporativa sem informar peso da atividade. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir duas atividades corporativas com o mesmo nome. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>
+		<li><b>Eliminado</b>Falha - Incluir uma atividade corporativa usando parâmetro Tipo de atividade de negócio. Mensagem: 
+			<ul><li>"Uma <b>atividade corporativa</b> não pode ser do <b>tipo de atividade de negócio</b>."</li></ul>
+		</li>
+		<li>Falha - Incluir uma atividade corporativa sem grupo RC associado. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir na associação da atividade corporativa um grupo RC sem informar o nome do grupo RC. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir na associação da atividade corporativa um grupo RC sem informar o peso do grupo RC. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>			
+		<li>Falha - Incluir unidade de negócio sem informar nome da unidade. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>	
+		<li>Falha - Incluir unidade de negócio sem informar peso da unidade. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir atividade de negócio sem informar peso da atividade. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>		
+		<li>Falha - Incluir atividade de negócio sem informar tipo da atividade. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>	
+		<li>Falha - Incluir duas unidades de negócio com o mesmo nome. Mensagem: 
+			<ul><li>"Não pode existir mais de uma unidade com o mesmo nome na matriz."</li></ul>
+		</li>
+		<li>Falha - Incluir duas atividades de negócio com o mesmo nome na mesma unidade de negócio. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>
+		<li>Falha - Incluir duas atividades de negócio com o mesmo nome em unidades de negócio distintas. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>
+		<li><b>Eliminado</b>Falha - Incluir uma atividade de negócio usando parâmetro Tipo de atividade corporativo. Mensagem: 
+			<ul><li>"Uma <b>atividade de negócio</b> não pode ser do <b>tipo de atividade corporativo</b>."</li></ul>
+		</li>
+		<li>Falha - Incluir uma atividade de negócio sem grupo RC associado. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir na associação da atividade de negócio um grupo RC sem informar o nome do grupo RC. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir na associação da atividade de negócio um grupo RC sem informar o peso do grupo RC. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir uma atividade de negócio sem informar um grupo RC. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Sucesso - Incluir atividade de negócio sem informar unidade. Resultado 
+			<ul><li>atividade de negócio independente</li></ul>
+		</li>
+		<li>Sucesso - Incluir atividade de negócio informando unidade. Resultado 
+			<ul><li>atividade de negócio associada a unidade informada</li></ul>
+		</li>
+		<li>Sucesso - Incluir atividade de negócio sem informar nome da atividade. Resultado 
+			<ul><li>Usar como nome da atividade o nome do tipo da atividade de negócio.</li></ul>
+		</li>
+		<li>Sucesso - Incluir atividade corporativa sem informar nome da atividade. Resultado 
+			<ul><li>Usar como nome da atividade o nome do tipo da atividade igual à Atividade corporativa</li></ul>
+		</li>
+		<li>Falha - Dado que existe uma atividade de negócio que foi incluída sem informar o nome da atividade. <br>
+					Incluir uma segunda atividades de negócio sem informar o nome da atividade. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>						
+		<li>Falha - Dado que existe uma atividade corporativa que foi incluída sem informar o nome da atividade. <br>
+					Incluir uma segunda atividades corporativa sem informar o nome da atividade. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>
+		<li>Sucesso - Incluir mais de uma atividade corporativa.</li>
+		<li>Sucesso - Incluir mais de uma atividade de negócio independente.</li>
+		<li>Sucesso - Incluir mais de uma unidade de negócio.</li>
+		<li>Sucesso - Incluir mais de uma atividade de negócio associada a mesma unidade de negócio.</li>
+	</ul>
+<h2>Cenários de teste - <a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/ciclo/tela/TestE2_1_inclusao_novo_ciclo.html">Web</a>.</h2>	
+	<ul>
+		<li>Conferir - se a combobox peso da unidade de negócio exibe os pesos disponíveis na na metodologia da ES.</li>
+		<li>Conferir - se a combobox peso da atividade corporativa exibe os pesos disponíveis na na metodologia da ES.</li>
+		<li>Conferir - se a combobox peso da atividade de negócio exibe os pesos disponíveis na na metodologia da ES.</li>
+		<li>Conferir - se a combobox peso do grupo de RC exibe os pesos disponíveis na na metodologia da ES.</li>
+		<li>Conferir - se a combobox tipo de atividade de negócio exibe os tipos de atividade de negócio disponíveis na metodologia da ES.</li>
+		<li>Conferir - se a combobox tipo de atividade de negócio está ordenada.</li>		
+		<li>Conferir - se a combobox tipo de atividade de negócio vem com um valor de tipo de atividade de negócio preenchido, o primeiro da lista de parâmetros.</li>
+		<li>Conferir - se a combobox unidade de negócio da atividade de negócio exibe as unidades de negócio disponíveis na matriz.</li>
+		<li>Conferir - se a combobox tipo de atividade de negócio não vem com um unidade de negócio preenchida (selecione), permitindo selecionar ou não a unidade.</li>
+		<li>Conferir - se a combobox unidade de negócio está ordenda.</li>
+		<li>Conferir - se a combobox grupo de RC exibe os grupos de RC disponíveis na na metodologia da ES.</li>
+		<li>Conferir - se a matriz exibe apenas o nome da atividade de negócio independente.</li>
+		<li>Conferir - se a matriz exibe apenas o nome da atividade de negócio associada a unidade de negócio.</li>
+		
+		<li>Falha - Não informar dados obrigatórios (todos os casos previstos em todas as telas). Com mensagem: 
+			<ul>
+				<li>"Campo campo_da_tela é de preenchimento obrigatório".</li>
+			</ul>
+		</li>
+		<li>Falha - Incluir uma atividade corporativa sem grupo RC associado. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir uma atividade de negócio sem grupo RC associado. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Incluir atividade de negócio sem informar tipo da atividade. Mensagem: 
+			<ul><li>"Campo campo_da_tela é de preenchimento obrigatório."</li></ul>
+		</li>
+		<li>Falha - Dado que existe uma atividade de negócio que foi incluída sem informar o nome da atividade. <br>
+					Incluir uma segunda atividades de negócio sem informar o nome da atividade. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>						
+		<li>Falha - Dado que existe uma atividade corporativa que foi incluída sem informar o nome da atividade. <br>
+					Incluir uma segunda atividades corporativa sem informar o nome da atividade. Mensagem: 
+			<ul><li>"Não pode existir mais de uma atividade com o mesmo nome na matriz."</li></ul>
+		</li>
+		<li>Sucesso - Testar a navegabilidade entre as telas de edição da matriz e a tela de edição de linhas da matriz.</li>
+	</ul>
+	<h2><a id="modelo_de_dados"></a>Modelo de dados.</h2>
+<br><br>
+DROP TABLE SUP.ATV_ATIVIDADE_MAT_SUP	
+<br><br>
+DROP TABLE SUP.CIF_CLAS_INST_FINAN
+<br><br>		
+CREATE TABLE SUP.ATV_ATIVIDADE_MAT
+(
+   ATV_ID integer not null generated by default as identity (start with 1) primary key,
+   ATV_NM varchar(100),
+   ATV_PC_PARTICIPACAO decimal(5,2),
+   ATV_CD_TIPO smallint,   
+   ATV_NU_VERSAO int NOT NULL,
+   ATV_CD_OPER_ATUALZ char(30) NOT NULL,
+   ATV_DH_ATUALZ timestamp NOT NULL,
+   MAT_ID int NOT NULL,
+   PPS_ID int NOT NULL,
+   PTA_ID int,
+   UND_ID int
+)
+<br><br>
+comment on table SUP.ATV_ATIVIDADE_MAT is
+'/NOME: Atividade corporativa ou de negócio (ATV)
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.ATV_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.ATV_NM is 
+'/NOME: Nome da unidade.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.ATV_PC_PARTICIPACAO is 
+'/NOME: Percentual de participação.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP. ATV_ATIVIDADE_MAT.ATV_CD_TIPO is
+'/NOME: Tipo de atividade.
+/FUNÇÃO: Identificar o tipo da atividade.
+/DOMÍNIO: 1 - Atividade corporativa; 2 - Atividade de negócio.
+/FONTE: Dado informado pelo usuário.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.ATV_NU_VERSAO is 
+'/NOME: Numero de versão.
+/FUNÇÃO: Número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.ATV_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.ATV_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.MAT_ID is
+'/NOME: Identificador da matriz.
+/FUNÇÃO: Referenciar a matriz associada a atividade.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';	
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.PPS_ID is
+'/NOME: Identificador do peso.
+/FUNÇÃO: Referenciar o peso associado a atividade.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.PTA_ID is
+'/NOME: Identificador do tipo de atividade de negócio.
+/FUNÇÃO: Referenciar o tipo de atividade de negócio associado a atividade.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';	
+<br><br>
+comment on column SUP.ATV_ATIVIDADE_MAT.UND_ID is
+'/NOME: Identificador da unidade.
+/FUNÇÃO: Referenciar a unidade associada a atividade.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+ALTER TABLE SUP.ATV_ATIVIDADE_MAT ADD FOREIGN KEY (MAT_ID)
+REFERENCES SUP.MAT_MATRIZ (MAT_ID);
+<br><br>
+ALTER TABLE SUP.ATV_ATIVIDADE_MAT ADD FOREIGN KEY (PPS_ID)
+REFERENCES SUP.PPS_PAR_PESO (PPS_ID);
+<br><br>
+ALTER TABLE SUP.ATV_ATIVIDADE_MAT ADD FOREIGN KEY (PTA_ID)
+REFERENCES SUP.PTA_PAR_TIPO_ATIVIDADE_NEGOCIO (PTA_ID);
+<br><br>
+ALTER TABLE SUP.ATV_ATIVIDADE_MAT ADD FOREIGN KEY (UND_ID)
+REFERENCES SUP.UND_UNIDADE (UND_ID);
+<br><br>
+CREATE TABLE SUP.ARC_AVAL_RIS_CON
+(
+   ARC_ID integer not null generated by default as identity (start with 1) primary key,
+   ARC_PC_PARTICIPACAO decimal(5,2),
+   ARC_DS_END_MANUAL varchar(100),
+   ARC_CD_ESTADO smallint NOT NULL,
+   ARC_NU_VERSAO int NOT NULL,
+   ARC_CD_OPER_ATUALZ char(20) NOT NULL,
+   ARC_DH_ATUALZ timestamp NOT NULL,
+   ATV_ID int NOT NULL,
+   PRC_ID int NOT NULL,
+   PFR_ID int not null,
+   PPS_ID int NOT NULL
+)
+<br><br>
+comment on table SUP.ARC_AVAL_RIS_CON is
+'/NOME: Avaliação de risco e controle (ARC)
+/FONTE: Dados informados pelo usuário e gerados pelo sistema.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_ID is 
+'/NOME: Identificador de registro.
+/FUNÇÃO: Identificar unicamente o registro na tabela.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_PC_PARTICIPACAO is 
+'/NOME: Percentual de participação.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_DS_END_MANUAL is 
+'/NOME: Endereço do manual.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_CD_ESTADO is 
+'/NOME: Estado do SRC.
+/DOMÍNIO: 1-Previsto;
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_NU_VERSAO is 
+'/NOME: Numero de versão.
+/FUNÇÃO: Número de versão para controle de concorrência.
+/FONTE: Gerado pelo sistema de acordo com regra de negócio.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_CD_OPER_ATUALZ is 
+'/NOME: Código do operador responsável pela última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o código do operador responsável pela última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ARC_DH_ATUALZ is 
+'/NOME: Momento da última operação realizada sobre esta versão do registro.
+/FUNÇÃO: Registrar, para fins de histórico e auditoria, o momento exato da última operação (inclusão ou aleração) realizada sobre esta versão do registro.
+/DOMÍNIO:
+/FONTE: Gerado pelo sistema.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.ATV_ID is
+'/NOME: Identificador da atividade.
+/FUNÇÃO: Referenciar a atividade associada ao ARC.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';	
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.PRC_ID is
+'/NOME: Identificador do grupo de risco e controle.
+/FUNÇÃO: Referenciar o grupo de risco e controle associado ao ARC.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.PFR_ID is
+'/NOME: Identificador do fator de relevância de risco e controle.
+/FUNÇÃO: Referenciar o fator de relevância de risco e controle associado ao ARC.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';	
+<br><br>
+comment on column SUP.ARC_AVAL_RIS_CON.PPS_ID is
+'/NOME: Identificador do peso.
+/FUNÇÃO: Referenciar o peso associado ao ARC.
+/DOMÍNIO:
+/FONTE: Gerado automaticamente pelo sistema.';
+<br><br>
+ALTER TABLE SUP.ARC_AVAL_RIS_CON ADD FOREIGN KEY (ATV_ID)
+REFERENCES SUP.ATV_ATIVIDADE_MAT (ATV_ID);
+<br><br>
+ALTER TABLE SUP.ARC_AVAL_RIS_CON ADD FOREIGN KEY (PRC_ID)
+REFERENCES SUP.PRC_PAR_GRP_RIS_CON (PRC_ID);
+<br><br>
+ALTER TABLE SUP.ARC_AVAL_RIS_CON ADD FOREIGN KEY (PFR_ID)
+REFERENCES SUP.PFR_PAR_FATOR_RELEV_RIS_CON (PFR_ID);
+<br><br>
+ALTER TABLE SUP.ARC_AVAL_RIS_CON ADD FOREIGN KEY (PPS_ID)
+REFERENCES SUP.PPS_PAR_PESO (PPS_ID);
+<br><br>	
+</body>
+</html>

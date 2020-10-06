@@ -1,0 +1,1979 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a inclusão de entidades</title>
+<link rel="stylesheet" type="text/css" href="../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Perfil de Risco - Filtro
+		(Ciclo e Versão)</h1>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Servidores
+		<pessoa>aqui</pessoa>
+	</blockquote>
+	<blockquote>
+		<dataHoraAtual valor="28/05/2014 00:00:00">Data atual:
+		28/05/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+	<h2>Histórico</h2>
+	    <table class="exemplos historico">
+	        <tr>
+	            <th>Versão</th>
+	            <th>Data</th>
+	            <th>Responsável</th>
+	            <th>Descrição</th>
+	        </tr>
+	        <tr>
+	            <td>1.0</td>
+	            <td>08/10/2014</td>
+	            <td>Cleonides Macriny</td>
+	            <td>História - Logs de operações no sistema</td>
+	        </tr>
+	    </table>
+	<h2>Cenários de teste para a estória - Perfil de Risco - Filtro
+		(Ciclo e Versão)</h2>
+	<blockquote>
+		Cenários onde devem ser apresentadas os filtros de 'Ciclo' e 'Versão'
+		e as devidas validações para suas respectivas exibições (<b>Perfil:
+			"Supervisor"</b>)
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+
+        <tr class="scenario">
+			<td class='title'><b>C002</b><br>
+			<br>Cenário 002 - Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, com ciclo em andamento mas sem ARCs, sem matriz vigente.
+				Perfil de risco vazio - 1ª versão</td>
+			 <td><banco /> As regras para os perfis de acesso se encontram:
+				<regra>Aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>Aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+			    Os dados e estados do Ciclo, Matriz, Unidades, Atividades
+				se encontram <a
+				href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_risco_Filtro_ciclo_versao_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início
+					<img src="../../crt2/seta.gif" /> Painel do supervisor
+					<img src="../../crt2/seta.gif" />Perfil de risco </span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="notPresent" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+						<table cellspacing="0" cellpadding="0">
+						    <tbody>
+						        <tr class="aesquerda">
+						            <td style="width: 25%; text-align: right;">ciclo</td>
+						            <td style="width: 25%;">
+                                        <ul></ul>
+						            </td>
+						            <td style="width: 25%; text-align: right;">versão</td>
+						            <td style="width: 25%;">
+                                        <ul></ul>
+						            </td>
+						        </tr>
+						    </tbody>
+						</table>
+					</span>
+					</li>
+				</ul>
+		
+			</td>
+			
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>CENÁRIO EXTRA</b> - 
+			<br>Gerar log quando entrar na tela de perfil de risco. 
+			E versionar perfil para gerar o logo com o perfil de risco atual.
+			</td>
+
+			<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					<li>Clica na nota: <span class="clickon" by="id:linkRisco7" sleep="2000">"3" do ARC</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início
+					<img src="../../crt2/seta.gif" /> Painel do supervisor
+					<img src="../../crt2/seta.gif" />Perfil de risco </span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<br/>
+					<br/>
+								 <table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											 <tr>
+												<td>I</td>
+												<td>2</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+									<br/>
+									<br/>
+									<label>Versionando o perfil de risco</label>
+									<br/>
+									<br/>
+									 <table class="prepare dados">
+										<caption>PER_PERFIL_RISCO</caption>
+										<tr>
+											<th>Ação</th>
+											<th>PER_ID</th>
+											<th>CIC_ID</th>
+											<th>PER_DH_CRIACAO</th>
+										</tr>
+										<tr>
+											<td>I</td>
+											<td>30</td>
+											<td>15</td>
+											<td>30/05/2014</td>
+										</tr>
+									</table>
+									<br/>
+								<table class="prepare dados">
+									<caption>VER_VERSAO_PERFIL_RISCO</caption>
+									<tr>
+										<th>Ação</th>
+										<th>VER_ID</th>
+										<th>VER_CD_TIPO</th>
+									</tr>
+									<tr>
+										<td>I</td>
+										<td>172</td>
+										<td>8</td>
+									</tr>
+								</table> 
+								
+								<br/>
+								
+								<table class="prepare dados">
+									<caption>NMA_NOTA_MATRIZ</caption>
+									<tr>
+										<th>Ação</th>
+										<th>NMA_ID</th>
+										<th>PNO_ID</th>
+										<th>NMA_DS_NOTA_MAT</th>
+										<th>VER_ID</th>
+										<th>MAT_ID</th>
+										<th>NMA_ID_ANTERIOR</th>
+										<th>NMA_DH_ATUALZ</th>
+										<th>NMA_CD_OPER_ATUALZ</th>
+										<th>NMA_NU_VERSAO</th>
+									</tr>
+									<tr>
+										<td>I</td>
+										<td>1</td>
+										<td>2</td>
+										<td>Justificativa nova nota ajustada</td>
+										<td converter="null"></td>
+										<td>1</td>
+										<td converter="null"></td>
+										<td>28/05/2014 00:00:00</td>
+										<td>deliq.sisliq101</td>
+										<td>0</td>
+									</tr>
+								</table>
+									
+									<br/>
+									
+								<table class="prepare dados">
+									<caption>NMA_NOTA_MATRIZ</caption>
+									<tr>
+										<th>Ação</th>
+										<th>NMA_ID</th>
+										<th>VER_ID</th>
+										<th>NMA_DH_ATUALZ</th>
+										<th>NMA_CD_OPER_ATUALZ</th>
+										<th>NMA_NU_VERSAO</th>
+									</tr>
+									<tr>
+										<td>U</td>
+										<td>1</td>
+										<td>172</td>
+										<td>28/05/2014 00:00:00</td>
+										<td>deliq.sisliq101</td>
+										<td>1</td>
+									</tr>
+								</table> 
+								
+								<br/>
+								
+								<table class="prepare dados">
+									<caption>PVE_PER_VER</caption>
+									<tr>
+										<th>Ação</th>
+										<th>PER_ID</th>
+										<th>VER_ID</th>
+									</tr>
+									  <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>138</td>
+								    </tr>
+								     <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>139</td>
+								    </tr>
+								     <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>140</td>
+								    </tr>
+								     <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>141</td>
+								    </tr>
+								     <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>142</td>
+								    </tr>
+								     <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>171</td>
+								    </tr>
+								     <tr>
+								        <td>I</td>
+									    <td>30</td>
+									    <td>172</td>
+								    </tr>
+								</table>
+								<br/>
+								<br/>
+										<li>Clica no botão voltar <span class="clickon" by="id:bttVoltar">"Voltar"</span></li>
+								<br/>
+								<br/>
+								
+								
+								<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>4</td>
+												<td>00000776</td>
+												<td>ABN AMRO</td>
+												<td>30</td>
+												<td>Início-Painel de consulta-Perfil de risco-Consulta de ARCs-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>17/03/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br>
+			<br>Cenário 003 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em andamento com ARCs, com matriz vigente. ARCs
+				todos no estado previsto sem notas. Perfil de risco vigente - 1º
+				ciclo</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+						                <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+	                                        <li>vigente</li>
+	                                        <li>19/05/2014</li>
+	                                    </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000191</td>
+												<td>ABN AMRO</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		  </tr>	
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br>
+			<br>Cenário 004 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em andamento, com ARCs, com matriz vigente e corec
+				anteriores. ARCs previsto com notas. ARCs previsto sem notas. Perfil
+				de risco vigente - 1ª versão do ciclo após corec</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES6">BB</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>13/05/2014</li>
+                                            <li>13/05/2012</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>01394199</td>
+												<td>BB </td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr> 
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br>
+			<br>Cenário 005 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em andamento, com ARCs, com matriz vigente e corec
+				anteriores ARCs previsto com notas. ARCs previsto sem notas. Perfil
+				de risco vigente - Demais versões do ciclo após corec</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES9">NATIXIS
+							BRASIL S/A</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>08/05/2013</li>
+                                            <li>08/05/2011</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                            <li>08/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>58963214</td>
+												<td>NATIXIS BRASIL S/A</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr> 
+		 </tr>
+			
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br>
+			<br>Cenário 006 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores Perfil de risco vigente - em corec Selecionar o ciclo
+				atual. Situação 05 - Cenário A</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">GOLDMAN
+							SACHS</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>24/05/2013</li>
+                                            <li>24/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>24/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<th>1</th>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS </td>
+												<td>12</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr> 
+		  </tr>
+		  
+		<tr class="scenario">
+			<td class='title'><b>C007</b><br>
+			<br>Cenário 007 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores Perfil de risco vigente - em corec Selecionar o ciclo
+				imediatamente anterior que se encontra no estado pós-corec. Situação
+				05 - Cenário B</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">GOLDMAN
+							SACHS</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">24/05/2013</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li><span class="selected" by="id:idCiclo">24/05/2013</span></li>
+                                            <li>24/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>24/05/2012</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS</td>
+												<td>10</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C008</b><br>
+			<br>Cenário 008 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores Perfil de risco vigente - em corec Selecionar o ciclo
+				anterior que se encontra no estado encerrado. Situação 05 - Cenário
+				C</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES10">GOLDMAN
+							SACHS</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">24/05/2010</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>24/05/2013</li>
+                                            <li><span class="selected" by="id:idCiclo">24/05/2010</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>24/05/2009</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS</td>
+												<td>8</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C009</b><br>
+			<br>Cenário 009 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores. O ciclo passou pelo corec mais de uma vez no mesmo
+				ciclo. Situação 06 - Cenário B</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES13">BANCO
+							FIBRA S.A.</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>01/05/2013</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                            <li>01/05/2014</li>
+                                            <li>01/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>02695489</td>
+												<td>BANCO FIBRA S.A.</td>
+												<td>17</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br>
+			<br>Cenário 010 -Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores. O ciclo passou pelo corec mais de uma vez no mesmo
+				ciclo. Situação 06 - Cenário C</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES14">BANCO
+							FORD S.A.</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>10/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>11/05/2012</li>
+                                            <li>10/05/2012</li>
+                                            <li>10/05/2010</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>45692233</td>
+												<td>BANCO FORD S.A.</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		  </tr>
+	</table>
+
+
+
+	<blockquote>
+		Cenários onde devem ser apresentadas os filtros de 'Ciclo' e 'Versão'
+		e as devidas validações para suas respectivas exibições (<b>Perfil: "Consulta Tudo"</b>)
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		
+		  
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, com ciclo em andamento mas sem ARCs, sem matriz vigente.
+
+				Perfil de risco vazio - 1ª versão</td>
+			 <td><banco /> As regras para os perfis de acesso se encontram:
+				<regra>Aqui</regra><br>
+			<br> Os dados da Metodologia se encontram <parametros>Aqui</parametros><br>
+			<br> Os dados das ESs se encontram <entidadeSupervisionavel>aqui</entidadeSupervisionavel><br><br>
+			    Os dados e estados do Ciclo, Matriz, Unidades, Atividades
+				se encontram <a
+				href="../perfilderisco/dadoque/TestAPSFW0202_Perfil_de_risco_Filtro_ciclo_versao_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">ITAU</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início
+					<img src="../../crt2/seta.gif" /> Painel do supervisor
+					<img src="../../crt2/seta.gif" />Perfil de risco </span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="notPresent" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+						<table cellspacing="0" cellpadding="0">
+						    <tbody>
+						        <tr class="aesquerda">
+						            <td style="width: 25%; text-align: right;">ciclo</td>
+						            <td style="width: 25%;">
+                                        <ul></ul>
+						            </td>
+						            <td style="width: 25%; text-align: right;">versão</td>
+						            <td style="width: 25%;">
+                                        <ul></ul>
+						            </td>
+						        </tr>
+						    </tbody>
+						</table>
+					</span>
+					</li>
+				</ul>
+<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000776</td>
+												<td>ITAU</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+			</td>
+		</tr>
+		
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em andamento com ARCs, com matriz vigente. ARCs
+				todos no estado previsto sem notas. Perfil de risco vigente - 1º
+				ciclo</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil2">ABN
+							AMRO</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+						                <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+	                                        <li>vigente</li>
+	                                        <li>19/05/2014</li>
+	                                    </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000191</td>
+												<td>ABN AMRO</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		  </tr>	
+		  
+		<tr class="scenario">
+			<td class='title'><b>C004</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em andamento, com ARCs, com matriz vigente e corec
+				anteriores. ARCs previsto com notas. ARCs previsto sem notas. Perfil
+				de risco vigente - 1ª versão do ciclo após corec</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil5">BB</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>13/05/2014</li>
+                                            <li>13/05/2012</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>00000000</td>
+												<td>BB</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em andamento, com ARCs, com matriz vigente e corec
+				anteriores ARCs previsto com notas. ARCs previsto sem notas. Perfil
+				de risco vigente - Demais versões do ciclo após corec</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil15">NATIXIS
+							BRASIL S/A</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>08/05/2013</li>
+                                            <li>08/05/2011</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                            <li>08/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>58963214</td>
+												<td>NATIXIS BRASIL S/A</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+			
+		<tr class="scenario">
+			<td class='title'><b>C006</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores Perfil de risco vigente - em corec Selecionar o ciclo
+				atual. Situação 05 - Cenário A</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil8">GOLDMAN
+							SACHS</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>24/05/2013</li>
+                                            <li>24/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>24/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>45692233</td>
+												<td>BANCO FORD S.A.</td>
+												<td>1</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		  </tr>
+		  
+		<tr class="scenario">
+			<td class='title'><b>C007</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores Perfil de risco vigente - em corec Selecionar o ciclo
+				imediatamente anterior que se encontra no estado pós-corec. Situação
+				05 - Cenário B</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil8">GOLDMAN
+							SACHS</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">24/05/2013</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li><span class="selected" by="id:idCiclo">24/05/2013</span></li>
+                                            <li>24/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>24/05/2012</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS</td>
+												<td>10</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C008</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores Perfil de risco vigente - em corec Selecionar o ciclo
+				anterior que se encontra no estado encerrado. Situação 05 - Cenário
+				C</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil8">GOLDMAN
+							SACHS</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">24/05/2010</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>24/05/2013</li>
+                                            <li><span class="selected" by="id:idCiclo">24/05/2010</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>24/05/2009</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>59820367</td>
+												<td>GOLDMAN SACHS </td>
+												<td>7</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C009</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores. O ciclo passou pelo corec mais de uma vez no mesmo
+				ciclo. Situação 06 - Cenário B</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil10">BANCO
+							FIBRA S.A.</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>01/05/2013</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                            <li>01/05/2014</li>
+                                            <li>01/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>02695489</td>
+												<td>BANCO FIBRA S.A.</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq101</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		 </tr>
+		 
+		<tr class="scenario">
+			<td class='title'><b>C010</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor, ciclo em corec, com ARCs, com matriz vigente e corec
+				anteriores. O ciclo passou pelo corec mais de uma vez no mesmo
+				ciclo. Situação 06 - Cenário C</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil12">BANCO
+							FORD S.A.</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">atual</span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>10/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>11/05/2012</li>
+                                            <li>10/05/2012</li>
+                                            <li>10/05/2010</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>45692233</td>
+												<td>BANCO FORD S.A.</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq106</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		  </tr>
+		  
+		  
+		  <tr class="scenario">
+			<td class='title'><b>C011</b><br>
+			<br>Sucesso - Acessar o Perfil de risco. ES da equipe do
+				supervisor e testando o log após um versionamento do perfil de risco</td>
+			<td> Mesmo "dadoque" do cenário anterior</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+					<li>Acesse o menu: <span class="open"
+						url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil12">BANCO FORD S.A.</span></li>
+					<li>Clica na Nota: <span class="clickon" sleep="3000" by="id:linkRisco8"><b>2</b></span></li>
+					<li>Clica no botão voltar: <span class="clickon" by="id:bttVoltar"></span></li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de Risco</b></span></li>
+					<li>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>10/05/2010</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>corec</li>
+                                            <li>11/05/2012</li>
+                                            <li>10/05/2012</li>
+                                            <li>10/05/2010</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+					</li>
+				</ul>
+			</td>
+			<tr>
+	                    	<td colspan="4">
+		                    	<table class="verify dados">
+									<caption>LOP_LOG_OPERACOES</caption>
+											<tr>
+												<th>Ação</th>
+												<th>LOP_ID</th>
+												<th>LOP_CD_CNPJ</th>
+												<th>LOP_DS_NOME_ES</th>
+												<th>PER_ID</th>
+												<th>LOP_DS_TRILHA</th>
+												<th>LOP_DS_TITULO_TELA</th>
+												<th>LOP_CD_CODIGO_TELA</th>
+												<th>LOP_DH_OPERACAO</th>
+												<th>LOP_CD_RESP_OPERACAO</th>
+											 </tr>
+											<tr>
+												<td>I</td>
+												<td>1</td>
+												<td>45692233</td>
+												<td>BANCO FORD S.A.</td>
+												<td>29</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq106</td>
+											</tr>
+											<tr>
+												<td>I</td>
+												<td>2</td>
+												<td>45692233</td>
+												<td>BANCO FORD S.A.</td>
+												<td>30</td>
+												<td>Início-Painel do supervisor-Perfil de risco</td>
+												<td>Perfil de risco</td>
+												<td>APSFW0202</td>
+												<td>28/05/2014 00:00:00</td>
+												<td>deliq.sisliq106</td>
+											</tr>
+									</table>
+							</td>
+                    	</tr>
+		  </tr>
+	</table> -->
+</body>
+</html>

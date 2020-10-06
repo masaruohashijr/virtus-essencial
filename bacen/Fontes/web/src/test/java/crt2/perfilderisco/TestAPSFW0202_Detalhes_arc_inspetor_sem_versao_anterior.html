@@ -1,0 +1,843 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Cenários de teste para a estória APSFW0202 - Perfil de risco - Matriz.</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória a APSFW0202 - Navegação para os detalhes de ARCs (Perfil de risco - inspetor)</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>05/09/2014</td>
+				<td>David Nascimento</td>
+				<td>Especificação dos testes automatizados</td>
+			</tr>
+
+			<tr>
+				<td>1.1</td>
+				<td>25/09/2014</td>
+				<td>David Nascimento</td>
+				<td>Adição de 7 cenários para contemplar os casos em que um supervisor não responsável pelo ARC pode visualizar os diferentes estados (ARCs sem versão anterior [sem informações vigentes])</td>
+			</tr>
+
+			<tr>
+				<td>1.2</td>
+				<td>15/10/2014</td>
+				<td>Wilkie Martins</td>
+				<td>Ajustes na telas de Análise e Edição (parte do Detalhes de ARC)</td>
+			</tr>
+
+			<tr>
+				<td>1.3</td>
+				<td>19/11/2014</td>
+				<td>Christiano Nogueira</td>
+				<td>Iteração 27; Estória 45846; Alteração da navegação do perfil Inspetor</td>
+			</tr>
+		</table>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+			Regras desta estória:<br><br>
+			<a href="../../../../../../negocio/src/test/java/crt2/dominio/paineldoinspetor/requirement/Navegabilidade_ARC_Inspetor.xlsx">Navegabilidade ARC Inspetor</a>
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<blockquote>Lista de servidores: <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">aqui</a></blockquote>
+
+		<h2>Cenários de teste para a estória a APSFW0202 - Navegação para os detalhes de ARCs (Perfil de risco - inspetor)</h2>
+
+		<blockquote>Cenários onde devem ser apresentadas as trilhas, códigos e títulos de diversas telas a partir dos links dos ARCs da matriz vigente (Perfil de risco)</blockquote>
+
+ 		<span id="cenarios"></span>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C001]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado previsto; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C001.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle181" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C002]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado designado; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C002.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle17e" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C003]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado em edição; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C003.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle17e" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C004]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado preenchido; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C004.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle19b" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C005]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado análise delegada; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C005.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle17e" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C006]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado em análise; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C006.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle17e" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C007]</b> - Inspetor logado não é responsável pelo ARC; ARC no estado analisado; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C007.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle18f" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C008]</b> - Inspetor logado é responsável pelo ARC; ARC no estado previsto; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C008.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle17e" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif" />Painel do inspetor<input type="image" src="../../crt2/seta.gif" />Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C009]</b> - Inspetor logado é responsável pelo ARC; ARC no estado preenchido; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C009.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle19b" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C010]</b> - Inspetor logado é responsável pelo ARC; ARC no estado analisado; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C010.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font><br>
+								<!-- <font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font> -->
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<!-- <li>Clica na nota <span class="clickon" by="id:dadosControle18f" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li> -->
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>Matriz não contém o link <span class="notpresent" by="id:linkControle9">[Link do ARC 9]</span></li>
+
+									<!-- <li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li> -->
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C011]</b> - Inspetor logado é responsável pelo ARC; ARC no estado designado; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C011.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font>
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<li>Clica na nota <span class="clickon" by="id:linkControle9" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Edição do ARC</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Edição do ARC</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0302]</b></span></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C012]</b> - Inspetor logado é responsável pelo ARC; ARC no estado em edição; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C012.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font>
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<li>Clica na nota <span class="clickon" by="id:linkControle9" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Edição do ARC</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Edição do ARC</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0302]</b></span></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C013]</b> - Inspetor logado é responsável pelo ARC; ARC no estado análise delegada; ARC sem versão anterior concluída</td></tr>
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+								<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+								<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C013.html" class="include">Dados complementares para este cenário</a>
+							</td>
+						</tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+								<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font>
+
+								<ul>
+									<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+									<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+									<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+									<li>Clica na nota <span class="clickon" by="id:linkControle9" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Análise do ARC</span></li>
+									<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC</b></span></li>
+									<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<br><br>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tbody>
+							<tr><th>Cenário</th></tr>
+							<tr><td class='title'><b>[C014]</b> - Inspetor logado é responsável pelo ARC; ARC no estado em análise; ARC sem versão anterior concluída</td></tr>
+							<tr><th>Dados pré-existentes</th></tr>
+
+							<tr>
+								<td>
+									<banco/>
+
+									<a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">Regras para os perfis de acesso</a><br><br>
+									<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">Dados da Metodologia e parâmetros</a><br><br>
+									<a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">Dados das ESs</a><br><br>
+									<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque.html" class="include">Dados do ciclo, matriz, unidades, atividades, arcs etc</a><br><br>
+									<a href="dadoque/TestAPSFW0202_Detalhes_arc_inspetor_sem_versao_anterior_dadoque_C014.html" class="include">Dados complementares para este cenário</a>
+								</td>
+							</tr>
+
+							<tr><th>Ação pretendida</th></tr>
+
+							<tr>
+								<td>
+									<font color="blue">O usuário acessa o sistema, clica sobre determinada ES da lista de ciclos no seu painel e é direcionado à respectiva tela do Perfil de risco.</font>
+
+									<ul>
+										<li>O usuário logado <sisliq114>deliq.sisliq114</sisliq114></li>
+										<li>Acesse o menu: <span class="open" url="sisaps/inspetor">inicio/painelinspetor</span></li>
+										<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+										<li>Clica na nota <span class="clickon" by="id:linkControle9" sleep="5000">'*A' do ARC 'Controle' do grupo 'Contágio' da 'Atividade de negócio isolada 1'</span></li>
+									</ul>
+								</td>
+							</tr>
+
+							<tr><th>Resultado esperado</th></tr>
+
+							<tr>
+								<td>
+									<ul>
+										<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do inspetor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Análise do ARC</span></li>
+										<li>O título da tela deve ser: <span class="contains"><b>Análise do ARC</b></span></li>
+										<li>O código da tela deve ser: <span class="contains"><b>[APSFW0203]</b></span></li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

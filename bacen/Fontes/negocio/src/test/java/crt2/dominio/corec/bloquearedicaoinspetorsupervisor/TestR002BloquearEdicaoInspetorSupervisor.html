@@ -1,0 +1,666 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R002 - Validar a exibição dos botões de ação no Perfil de risco</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória 'Bloquear edição para inspetor e supervisor'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>24/02/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>As regras da estória encontram-se <a href="../index.html#bloquearEdicaoInspetorSupervisor">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+		<ul><li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li></ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote><a href="indexNegocio.html#validarBotoesPerfilRisco">Cenários para validar a exibição dos botões de ação no perfil de risco</a>.</blockquote>
+
+		<table class="scenario"  >
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C001]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>supervisor</b>; para ciclo no estado 'Corec'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong></li>
+								<banco/>
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column">
+				                	<tr>
+				                    	<th colspan="2">Ciclo</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C002]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>inspetor</b>; para ciclo no estado 'Corec'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li>O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq113"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C003]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>consulta</b>; para ciclo no estado 'Corec'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq123"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C001-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C004]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>supervisor</b>; para ciclo no estado 'Pós-corec'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C002-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C005]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>inspetor</b>; para ciclo no estado 'Pós-corec'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq113"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C002-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C006]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>consulta</b>; para ciclo no estado 'Pós-corec'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq123"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C002-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C007]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>supervisor</b>; para ciclo no estado 'Encerrado'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq101"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C003-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C008]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>inspetor</b>; para ciclo no estado 'Encerrado'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq113"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C003-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C009]</b> - Não exibir nenhum botão de ação, exceto o 'Voltar', no 'Perfil de risco' para o perfil <b>consulta</b>; para ciclo no estado 'Encerrado'</td></tr>
+
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+							<td>
+								<li> O usuário da consulta é <strong><span class="sentence" method="logar">"deliq.sisliq123"</span></strong> </li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BloquearEdicaoInspetorSupervisor-C003-DadoQue.html" class="include">aqui</a>.</li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+				                	<tr>
+			                        	<th colspan="1">Entrada</th>
+			                        	<th colspan="12" style="background-color: green">Saída</th>
+			                    	</tr>
+								</table>
+								<table class="column" >
+				                	<tr>
+				                    	<th colspan="2" class="set" name="aqt">Ciclo</th>
+
+				                    	<th  style="background-color: green">Exibir Gerenciar detalhes da ES?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar sínteses?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar ARCs?</th>
+				                    	<th  style="background-color: green">Exibir Editar estrutura da matriz?</th>
+				                    	<th  style="background-color: green">Exibir Ajustar nota final?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar análise econômico-financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar quadro da posição financeira?</th>
+				                    	<th  style="background-color: green">Exibir Gerenciar outras informações?</th>
+				                    	<th  style="background-color: green">Exibir Verificar pendências para Corec?</th>
+				                    	<th  style="background-color: green">Exibir iniciar fase Corec?</th>
+				                    	<th  style="background-color: green">Exibir Voltar?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td colspan="2">1</td>
+
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Não</td>
+				                    	<td>Sim</td>
+				                	</tr>
+			                	</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

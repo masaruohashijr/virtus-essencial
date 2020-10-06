@@ -1,0 +1,1822 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória - Perfil de Risco
+	(Gestão de notas e sínteses); Sínteses</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória - Perfil de Risco (Gestão de
+		notas e sínteses); Sínteses</h1>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>15/07/2014</td>
+			<td>Christiano Nogueira</td>
+			<td>Versão Inicial</td>
+		</tr>
+
+		<tr>
+			<td>1.1</td>
+			<td>08/08/2014</td>
+			<td>David Nascimento</td>
+			<td>Adicionando mais três casos de teste (C012, C013 e C014)
+				para contemplar a alteração no tocante a estória: "Gestão de notas e
+				sínteses - atributos novos devem ter valor default igual aos
+				valores."</td>
+		</tr>
+
+		<tr>
+			<td>1.2</td>
+			<td>05/09/2014</td>
+			<td>Christiano Nogueira</td>
+			<td>Estória - AQL (Governança de ARCs) - Adequar designação de
+				ARCs à mudança de estado do ciclo (designação permanente)</td>
+		</tr>
+
+		<tr>
+			<td>1.3</td>
+			<td>23/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Perfis de acesso vs responsabilidade de ESs para supervisor
+				substituto.</td>
+		</tr>
+		
+		<tr>
+			<td>1.4</td>
+			<td>26/09/2014</td>
+			<td>Wilkie Martins</td>
+			<td>Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas).</td>
+		</tr>
+			<tr>
+			<td>1.5</td>
+			<td>07/10/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+		</tr>
+		<tr>
+			<td>1.6</td>
+			<td>10/12/2014</td>
+			<td>David Nascimento</td>
+			<td>Ajuste nos testes C016 e C017 para a estória: "Alterar publicar arc." (Iteração 27)</td>
+		</tr>
+	</table>
+
+	<span id="index"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		Para as regras da história clique <a
+			href="../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/requirement/APSFW0209_Gerenciar_notas_e_sintese.xlsx">aqui</a>
+	</blockquote>
+
+	<h2>Premissas Iniciais</h2>
+
+	<blockquote>
+		Mock de servidores <a
+			href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">aqui</a>
+	</blockquote>
+	<blockquote>
+		<dataHoraAtual valor="28/05/2014 00:00:00">Data atual:
+		28/05/2014 00:00:00</dataHoraAtual>
+	</blockquote>
+
+	<h2>Cenários onde devem ser apresentadas as telas, trilhas,
+		seções, títulos, mensagens e demais informações pertinentes ao Perfil
+		de Risco (Gestão de notas e sínteses)</h2>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese sem dados
+				vigentes, testando apenas o salvar</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Digite para nova síntese: <span class="type" by="id:idDescricaoNovaSintese_Risco_de_Credito">Texto da sintese para Risco de Credito</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Credito">Salvar</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese salva com sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Risco</b></td>
+								<td colspan="6">Baixo
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+								<td colspan="6"></td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Nova
+										síntese</b></td>
+
+								<td colspan="6">
+									<div>
+										<label>Última alteração salva ROBERTO SANTOS ALENCAR
+											em 28/05/2014 00:00h</label>
+									</div> <br /> <br />
+
+									<div>
+										<textarea style="width: 100%" id=idJustificativaSupervisor
+											class=alert rows=4>Texto da sintese para Risco de Credito</textarea>
+									</div>
+
+									<div align="right">
+										<label></label> <input class=botao value="Salvar" type=button />
+									</div>
+								<td></td>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c001_porfim.html" class="include">aqui</a><br>
+				
+
+                   
+			</td>
+		</tr>
+
+		 <tr class="scenario">
+			<td class='title'><b>C002 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese com dados
+				salvos não vigentes, testando apenas o concluir síntese</td>
+			<td>*** Banco não reinicializado. Dados iniciais complementares
+				aproveitados do 'porfim' do cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttConcluirNovaSintese_Risco_de_Credito">Concluir nova síntese e atualizar Perfil de Risco</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese concluída com
+							sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td colspan="6">Baixo
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td colspan="6"><span
+									style="float: right; font-size: xx-small;">Atualizado em
+										28/05/2014.</span> <br> Texto da sintese para Risco de Credito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table>
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea>Texto da sintese para Risco de Credito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><label></label><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+
+				
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c002_porfim.html" class="include">aqui</a><br>
+                  
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C003 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese com dados
+				vigentes, testando apenas o salvar</td>
+
+			<td>*** Banco não reinicializado. Dados iniciais complementares
+				aproveitados do 'porfim' do cenário anterior *** <br>
+			<br>
+
+				<table class="prepare dados">
+					<caption>SIR_SINTESE_RISCO</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>SIR_ID</th>
+						<th>SIR_DH_ATUALZ</th>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>1</td>
+						<td>25/05/2014 00:00:00</td>
+					</tr>
+				</table>
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Digite para nova síntese: <span class="type" by="id:idDescricaoNovaSintese_Risco_de_Credito">Novo texto da sintese para Risco de Credito</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Credito">Salvar texto</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Credito">Salvar texto</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese salva com sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td colspan="6">Baixo
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td colspan="6"><span
+									style="float: right; font-size: xx-small;">Atualizado em
+										25/05/2014.</span> <br> Texto da sintese para Risco de Credito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table>
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">
+														Última alteração salva ROBERTO SANTOS ALENCAR em
+														28/05/2014 00:00h </label></td>
+											</tr>
+
+											<tr>
+												<td><textarea>Novo texto da sintese para Risco de Credito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c003_porfim.html" class="include">aqui</a><br>
+
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C004 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese com dados
+				salvos e vigentes, testando apenas o concluir síntese</td>
+			<td>*** Banco não reinicializado. Dados iniciais complementares
+				aproveitados do 'porfim' do cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttConcluirNovaSintese_Risco_de_Credito">Concluir nova síntese e atualizar Perfil de Risco</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese concluída com
+							sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Risco</b></td>
+								<td colspan="6">Baixo
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td colspan="6"><span
+									style="float: right; font-size: xx-small;">Atualizado em
+										28/05/2014.</span> <br> Novo texto da sintese para Risco de
+									Credito</td>
+
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table>
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea>Novo texto da sintese para Risco de Credito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c004_porfim.html" class="include">aqui</a><br>
+
+				
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C005</b><br>
+			<br>Sucesso - Salvar texto de síntese obrigatória de grupo
+				pertencente a matriz, porém sem preenchimento</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Credito">Salvar texto da síntese do Risco de Crédito</span></li>
+				</ul>
+			</td>
+
+			<td>
+					<ul>
+						<li><span class="contains">Síntese salva com sucesso.</span></li>
+					</ul>
+			<span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Risco</b></td>
+								<td colspan="6">Baixo
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+								<td colspan="6"></td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Nova
+										síntese</b></td>
+
+								<td colspan="6">
+									<div>
+										<label>Última alteração salva ROBERTO SANTOS ALENCAR
+											em 28/05/2014 00:00h</label>
+									</div> <br /> <br />
+
+									<div>
+										<textarea style="width: 100%" id=idJustificativaSupervisor
+											class=alert rows=4> </textarea>
+									</div>
+
+									<div align="right">
+										<label></label> <input class=botao value="Salvar" type=button />
+									</div>
+								<td></td>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                   	<td colspan="6"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c005_porfim.html" class="include">aqui</a><br>
+
+				</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C006 </b><br>
+			<br>Falha - Concluir síntese sem que haja texto válido no campo
+				'Síntese vigente'.</td>
+			<td>*** Banco não reinicializado. Dados iniciais complementares
+				aproveitados do 'porfim' do cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttConcluirNovaSintese_Risco_de_Credito">Concluir nova síntese e atualizar Perfil de Risco da síntese do Risco de Crédito</span></li>
+				</ul>
+			</td>
+
+			<td><span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<ul>
+						<li><span class="contains">Campo "Síntese vigente" é
+								de preenchimento obrigatório.</span></li>
+					</ul>
+
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Risco</b></td>
+								<td colspan="6">Baixo
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+								<td colspan="6"></td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Nova
+										síntese</b></td>
+
+								<td colspan="6">
+									<div>
+										<label>Última alteração salva ROBERTO SANTOS ALENCAR
+											em 28/05/2014 00:00h</label>
+									</div> <br /> <br />
+
+									<div>
+										<textarea style="width: 100%" id=idJustificativaSupervisor
+											class=alert rows=4> </textarea>
+									</div>
+
+									<div align="right">
+										<label></label> <input class=botao value="Salvar" type=button />
+									</div>
+								<td></td>
+								</td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+
+				
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c006_porfim.html" class="include">aqui</a><br>
+
+
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C007 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese
+				obrigatória, mas sem que esta faça parte da matriz, testando o
+				salvar</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Seleciona como conceito do risco associado à síntese: <span class="select" by="id:idRiscoSinteseCombo_Risco_de_Mercado">Médio</span></li>
+                        <li>Digite para nova síntese: <span class="type" by="id:idDescricaoNovaSintese_Risco_de_Mercado">Texto da sintese para Risco de Mercado</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Mercado">Salvar texto</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese salva com sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Mercado']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>MERCADO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+
+								<td colspan="6">
+                                        <ul class="options" by="id:idRiscoSinteseCombo_Risco_de_Mercado">
+										<li>Selecione</li>
+										<li>Baixo</li>
+                                            <li><span class="selected" by="id:idRiscoSinteseCombo_Risco_de_Mercado">Médio</span></li>
+										<li>Alto</li>
+										<li>Muito Alto</li>
+									</ul>
+								</td>
+
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+								<td colspan="6"><span
+									style="float: right; font-size: xx-small;"></span><br></td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table>
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">
+														Última alteração salva ROBERTO SANTOS ALENCAR em
+														28/05/2014 00:00h </label></td>
+											</tr>
+
+											<tr>
+												<td><textarea>Texto da sintese para Risco de Mercado</textarea></td>
+											</tr>
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Mercado" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+				
+				
+                      
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c007_porfim.html" class="include">aqui</a><br>
+
+                   
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C008 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese
+				obrigatória, mas sem que esta faça parte da matriz, testando o
+				salvar sem a seleção do ComboBox de Risco.</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Digite para nova síntese: <span class="type" by="id:idDescricaoNovaSintese_Risco_de_Mercado">Texto da sintese para Risco de Mercado</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Mercado">Salvar texto</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese salva com sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Mercado']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>MERCADO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+
+								<td colspan="6">
+                                        <ul class="options" by="id:idRiscoSinteseCombo_Risco_de_Mercado">
+                                            <li><span class="selected" by="id:idRiscoSinteseCombo_Risco_de_Mercado">Selecione</span></li>
+										<li>Baixo</li>
+										<li>Médio</li>
+										<li>Alto</li>
+										<li>Muito Alto</li>
+									</ul>
+								</td>
+
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+								<td colspan="6"><span
+									style="float: right; font-size: xx-small;"></span><br></td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table>
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">
+														Última alteração salva ROBERTO SANTOS ALENCAR em
+														28/05/2014 00:00h </label></td>
+											</tr>
+
+											<tr>
+												<td><textarea>Texto da sintese para Risco de Mercado</textarea></td>
+											</tr>
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Mercado" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+				
+				
+                  
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c008_porfim.html" class="include">aqui</a><br>
+
+                    
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C009 </b><br>
+			<br>Sucesso - Verificar a seção da respectiva síntese não
+				obrigatória.</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttGerenciarNotasSinteses">Gerenciar notas e
+							sínteses</span></li>
+				</ul>
+			</td>
+
+			<td><span class="compareTable"
+				by="xpath://table[@id='tSintese_Contagio']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CONTÁGIO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td colspan="6">Médio
+								</td>
+								<td colspan="6"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+								<td colspan="6"><span
+									style="float: right; font-size: xx-small;"></span><br></td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table>
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea> </textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="6"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Contagio" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span></td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C010 </b><br>
+			<br>Sucesso - Verificar o botão Voltar sem o preenchimento de
+				qualquer seção</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttGerenciarNotasSinteses">Gerenciar notas e
+							sínteses</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<div style="padding-right: 10%; padding-top: 3px" align="center">
+					<input id=bttVoltar class=botao
+						name=painelRiscoMercado:bttSalvarAvaliacaoARCSupervisor
+						value="Voltar" type=submit>
+				</div>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C011 </b><br>
+			<br>Sucesso - Verificar a navegação do botão Voltar sem o
+				preenchimento de qualquer seção</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttGerenciarNotasSinteses">Gerenciar notas e
+							sínteses</span></li>
+					<li>Clica no botão: <span class="clickon" by="id:bttVoltar">Voltar</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input
+							type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+							type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil
+								de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul>
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C012 </b><br>
+			<br>Sucesso - Verificar que os atributos novos devem ter valor
+				default igual aos valores vigentes.</td>
+
+                <td>*** Banco não reinicializado. Dados iniciais complementares aproveitados do 'porfim' do cenário anterior ***
+
+                <br><br>
+                os dados complementares se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_c011_dadoque.html" class="include">aqui</a><br><br>
+
+</td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttGerenciarNotasSinteses">Gerenciar notas e
+							sínteses</span></li>
+				</ul>
+			</td>
+
+			<td><span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td>Baixo
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td><span style="float: right; font-size: xx-small;">Atualizado
+										em 27/05/2014.</span> <br> Texto da síntese para Risco de
+									Crédito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table style="width: 100%">
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea style="width: 100%">Texto da síntese para Risco de Crédito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="2"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> </td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C013 </b><br>
+			<br>Sucesso - Verificar que os atributos novos devem ter valor
+				default igual aos valores vigentes (Clicar no botão 'Salvar')</td>
+			<td>*** Banco não reinicializado. Dados iniciais complementares
+				aproveitados do 'porfim' do cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Credito">Salvar</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese salva com sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td>Baixo
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td><span style="float: right; font-size: xx-small;">Atualizado
+										em 27/05/2014.</span> <br> Texto da síntese para Risco de
+									Crédito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table style="width: 100%">
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Última
+														alteração salva ROBERTO SANTOS ALENCAR em 28/05/2014
+														00:00h</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea style="width: 100%">Texto da síntese para Risco de Crédito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+									<td colspan="2"><input class="present enabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+				
+				
+				  
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c013_porfim.html" class="include">aqui</a><br>
+
+
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C014 </b><br>
+			<br>Sucesso - Verificar que os atributos novos devem ter valor
+				default igual aos valores vigentes (Clicar no botão 'Salvar' e sem
+				seguida 'Concluir nova síntese e atualizar Perfil de Risco')</td>
+			<td>*** Banco não reinicializado. Dados iniciais complementares
+				aproveitados do 'porfim' do cenário anterior ***</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                       	<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                       	<li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                       	<li>Clica no botão: <span class="clickon" by="id:bttSalvarNovaSintese_Risco_de_Credito">Salvar</span></li>
+                       	<li>Clica no botão: <span class="clickon" by="id:bttConcluirNovaSintese_Risco_de_Credito">Concluir nova síntese e atualizar Perfil de risco</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese concluída com
+							sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td>Baixo
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td><span style="float: right; font-size: xx-small;">Atualizado
+										em 28/05/2014.</span> <br> Texto da síntese para Risco de
+									Crédito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table style="width: 100%">
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea style="width: 100%">Texto da síntese para Risco de Crédito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="2"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+	
+				
+					
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c014_porfim.html" class="include">aqui</a><br>
+
+					
+			</td>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C015 </b><br>
+			<br>Dado que há ARC pendente de publicação associado ao grupo de
+				risco e controle da sintese, verificar o texto do botão de
+				confirmação</td>
+
+			<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br>
+			<br> Carga dos dados de metodologia e parâmetros se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados das ESs se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br>
+			<br> Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e
+				seus estados se encontram <a
+				href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html"
+				class="include">aqui</a><br>
+			<br>
+
+				<table class="prepare dados">
+					<caption>ARC_AVAL_RIS_CON</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>ARC_ID</th>
+						<th>ARC_CD_ESTADO</th>
+						<th>PNO_ID_SUPERVISOR</th>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>30</td>
+						<td>8</td>
+						<td>1001</td>
+					</tr>
+				</table><br><br>
+				
+				<table class="prepare dados">
+	<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+	<tr>
+		<th>Ação</th>
+		<th>VER_ID</th>
+		<th>VER_CD_TIPO</th>
+	</tr>
+	<tr>
+		<td>I</td>
+		<td>55</td>
+		<td>4</td>
+	</tr>
+</table><br><br>
+					
+					<table class="prepare dados">
+	<caption>MAT_MATRIZ_SRC</caption>
+
+	<tr>
+		<th>Ação</th>
+		<th>MAT_ID</th>
+		<th>VER_ID</th>
+		<th>MAT_CD_ESTADO</th>
+	</tr>
+
+	<tr>
+		<td>U</td>
+		<td>2</td>
+		<td>55</td>
+		<td>2</td>
+	</tr>
+</table>
+
+<br>
+<br>
+
+<table class="prepare dados">
+	<caption>PVE_PER_VER</caption>
+
+	<tr>
+		<th>Ação</th>
+		<th>PER_ID</th>
+		<th>VER_ID</th>
+	</tr>
+	<tr> 
+	    <td>I</td>
+	    <td>1</td>
+	    <td>55</td>
+	</tr> 
+</table>
+				</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttGerenciarNotasSinteses">Gerenciar notas e
+							sínteses</span></li>
+				</ul>
+			</td>
+
+			<td><span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td>Médio <img> Médio
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td><span style="float: right; font-size: xx-small;"></span>
+									<br></td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table style="width: 100%">
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea style="width: 100%"> </textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="2"><input class="present disabled" by="id:bttConcluirSintesePublicarARCs_Risco_de_Credito" type="button" value="Confirmar síntese e publicar ARCs deste risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span></td>
+		</tr>
+
+		<tr class="scenario" pending="true"> <!-- Pendente de evolução do CRT -->
+			<td class='title'><b>C016 </b><br>
+			<br>Dado que há ARC pendente de publicação associado ao grupo de
+				risco e controle da sintese, clicar no botão 'Confirmar síntese e
+				publicar ARCs deste risco'. Usuário atualmente designado não é
+				membro da equipe da ES</td>
+
+                <td>
+					<banco/>As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Carga dos dados de metodologia e parâmetros se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html" class="include">aqui</a><br><br>
+					Os dados de avaliação do ARC, elemento, item de avaliação do elemento e tendência do ARC se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque_complementar.html" class="include">aqui</a><br><br>
+					Os dados complementares se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_c015_dadoque.html" class="include">aqui</a><br><br>
+					
+					
+					<table class="prepare dados">
+					<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>VER_ID</th>
+						<th>VER_CD_TIPO</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>55</td>
+						<td>4</td>
+					</tr>
+				</table>
+				<br>
+			<br>
+
+				<table class="prepare dados">
+					<caption>MAT_MATRIZ_SRC</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>MAT_ID</th>
+						<th>VER_ID</th>
+						<th>MAT_CD_ESTADO</th>
+					</tr>
+
+					<tr>
+						<td>U</td>
+						<td>2</td>
+						<td>55</td>
+						<td>2</td>
+					</tr>
+				</table> <br> <br>
+
+				<table class="prepare dados">
+					<caption>PVE_PER_VER</caption>
+
+					<tr>
+						<th>Ação</th>
+						<th>PER_ID</th>
+						<th>VER_ID</th>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>1</td>
+						<td>55</td>
+					</tr>
+				</table>
+
+			</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN
+							AMRO</span></li>
+					<li>Clica no botão: <span class="clickon"
+						by="id:bttGerenciarNotasSinteses">Gerenciar notas e
+							sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttConcluirSintesePublicarARCs_Risco_de_Credito">Confirmar síntese e publicar ARCs deste risco</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese concluída com
+							sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td>Médio <img> Médio
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td><span style="float: right; font-size: xx-small;">Atualizado
+										em 28/05/2014.</span> <br> Texto da síntese para Risco de
+									Crédito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table style="width: 100%">
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea style="width: 100%">Texto da síntese para Risco de Crédito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="2"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+
+Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c016_porfim.html" class="include">aqui</a><br><br>
+	
+
+
+
+					<li><a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_porfim.html" class="include">porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_porfim.html</a></li>
+			</td>
+		</tr>
+		
+            <tr class="scenario" pending="true"> <!-- Pendente de evolução do CRT -->
+                <td class='title'><b>C017 </b><br><br>Dado que há ARC pendente de publicação associado ao grupo de risco e controle da sintese, clicar no botão 'Confirmar síntese e publicar ARCs deste risco'. Usuário atualmente designado é membro da equipe da ES</td>
+
+                <td>
+					<banco/>
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Carga dos dados de metodologia e parâmetros se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque.html" class="include">aqui</a><br><br>
+					Os dados de avaliação do ARC, elemento, item de avaliação do elemento e tendência do ARC se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_dadoque_complementar.html" class="include">aqui</a><br><br>
+
+	Os dados complementares se encontram <a href="dadoque/TestAPSFW0209_Gerenciar_notas_e_sintese_c016_dadoque.html" class="include">aqui</a><br><br>
+	
+	<table class="prepare dados">
+	<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+	<tr>
+		<th>Ação</th>
+		<th>VER_ID</th>
+		<th>VER_CD_TIPO</th>
+	</tr>
+	<tr>
+		<td>I</td>
+		<td>55</td>
+		<td>4</td>
+	</tr>
+</table><br><br>
+					
+					<table class="prepare dados">
+	<caption>MAT_MATRIZ_SRC</caption>
+
+	<tr>
+		<th>Ação</th>
+		<th>MAT_ID</th>
+		<th>VER_ID</th>
+		<th>MAT_CD_ESTADO</th>
+	</tr>
+
+	<tr>
+		<td>U</td>
+		<td>2</td>
+		<td>55</td>
+		<td>2</td>
+	</tr>
+</table>
+
+<br>
+<br>
+
+<table class="prepare dados">
+	<caption>PVE_PER_VER</caption>
+
+	<tr>
+		<th>Ação</th>
+		<th>PER_ID</th>
+		<th>VER_ID</th>
+	</tr>
+	<tr> 
+	    <td>I</td>
+	    <td>1</td>
+	    <td>55</td>
+	</tr> 
+</table>
+
+                   
+				</td>
+
+			<td>
+				<ul>
+                        <li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                        <li>Clica na ES: <span class="clickon" by="id:link_ES1">ABN AMRO</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttGerenciarNotasSinteses">Gerenciar notas e sínteses</span></li>
+                        <li>Clica no botão: <span class="clickon" by="id:bttConcluirSintesePublicarARCs_Risco_de_Credito">Confirmar síntese e publicar ARCs deste risco</span></li>
+				</ul>
+			</td>
+
+			<td>
+				<ul>
+					<li><span class="contains">Síntese concluída com
+							sucesso.</span></li>
+				</ul> <span class="compareTable"
+				by="xpath://table[@id='tSintese_Credito']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="8" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>CRÉDITO</b></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Risco</b></td>
+								<td>Médio <img> Médio
+								</td>
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b>Síntese
+										vigente</b></td>
+
+								<td><span style="float: right; font-size: xx-small;">Atualizado
+										em 28/05/2014.</span> <br> Texto da síntese para Risco de
+									Crédito</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td style="background-color: #4a73a2" colspan="2"><b>Nova
+										síntese</b></td>
+
+								<td type="table">
+									<table style="width: 100%">
+										<tbody>
+											<tr>
+												<td><label style="float: right; font-size: xx-small;">Sem
+														alterações.</label></td>
+											</tr>
+
+											<tr>
+												<td><textarea style="width: 100%">Texto da síntese para Risco de Crédito</textarea></td>
+											</tr>
+
+											<tr>
+												<td><span></span><input type="button" value="Salvar" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" style="background-color: #4a73a2"><b></b></td>
+                                    <td colspan="2"><input class="present disabled" by="id:bttConcluirNovaSintese_Risco_de_Credito" type="button" value="Confirmar síntese e atualizar perfil de risco"/></td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br>
+
+			Alteração na base se encontram <a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_c017_porfim.html" class="include">aqui</a><br><br>
+			
+			<li><a href="porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_porfim.html" class="include">porfim/TestAPSFW0209_Gerenciar_notas_e_sintese_sinteses_porfim.html</a></li>
+				
+
+		
+			<td>
+				<ul>
+					<li><span class="contains">Erro de acesso concorrente.</span></li>
+				</ul> 
+			</td>
+		</tr>
+		
+	</table>
+</body>
+</html>

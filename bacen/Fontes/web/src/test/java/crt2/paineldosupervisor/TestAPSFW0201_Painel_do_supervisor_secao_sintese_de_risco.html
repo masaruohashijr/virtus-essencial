@@ -1,0 +1,227 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória - Perfil de Risco (Gestão de notas e sínteses); Sínteses</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória - Painel do supervisor - Seção Síntese de risco para revisão</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>27/08/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>07/10/2014</td>
+			<td>Denilson Roberto</td>
+			<td>Estória - Nome abreviado do par Risco/Controle e seus desdobramentos</td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>18/12/2014</td>
+			<td>David Nascimento</td>
+			<td>Ajuste do dadoque para contemplar o novo modelo da matriz e readaptação dos testes</td>
+		</tr>
+
+	</table>
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Vide as <a
+			href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/paineldosupervisor/requirement/APSFW0201_Painel_do_supervisor_Secao_Sinteses_de_risco_para_revisao.xlsx">regras do tema</a>.
+	</blockquote>
+
+	<h2>Premissas Iniciais</h2>
+	<blockquote>
+		  <li>A lista de servidores foi <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+	</blockquote>
+
+
+	<h2>Cenários onde devem ser apresento o painel de sintese de risco.</h2>
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>C001</b><br> <br>Sucesso - Verificar a seção da síntese sem dados</td>
+
+			<td><banco />
+				<ul>
+					<li>As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br></li>
+					<li>Os dados da Metodologia se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+						class="include">aqui</a> <br></li>
+					<li>Os dados das ESs se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+						class="include">aqui</a><br></li>
+					<li>Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+						href="dadoque/TestAPSFW0201_Painel_do_supervisor_secao_sintese_de_risco_1_dadoque.html" class="include"> ABN
+							AMRO aqui</a></li>
+				</ul></td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td><pausa> <span class="compareTable" by="xpath://table[@id='idTituloSintesesRiscoRevisao']">
+					<table>
+						<thead>
+							<tr>
+								<th>Sínteses de risco para revisão</th>
+							</tr>
+						</thead>
+					</table>
+				</span> <span class="compareTable" by="xpath://table[@id='idDadosSintesesRiscoRevisao']">
+					<table>
+
+						<tbody>
+							<tr>
+								<td>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.</td>
+							</tr>
+						</tbody>
+					</table>
+				</span></td>
+		</tr>
+
+
+
+
+
+
+		<tr class="scenario">
+			<td class='title'><b>C002</b><br> <br>Sucesso - Verificar a seção da síntese com dados para varias ES</td>
+
+			<td><banco />
+				<ul>
+					<li>As regras para os perfis de acesso se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br></li>
+					<li>Os dados da Metodologia se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html"
+						class="include">aqui</a> <br></li>
+					<li>Os dados das ESs se encontram <a
+						href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+						class="include">aqui</a><br></li>
+					<li>Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+						href="dadoque/TestAPSFW0201_Painel_do_supervisor_secao_sintese_de_risco_3_dadoque.html" class="include"> ABN
+							AMRO aqui</a> <a href="dadoque/TestAPSFW0201_Painel_do_supervisor_secao_sintese_de_risco_2_dadoque.html"
+						class="include">ITAU aqui</a>
+
+					</li>
+
+
+				</ul></td>
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+
+			<td><span class="compareTable" by="xpath://table[@id='idTituloSintesesRiscoRevisao']">
+					<table>
+						<thead>
+							<tr>
+								<th>Sínteses de risco para revisão</th>
+							</tr>
+						</thead>
+					</table>
+			</span> <br> <span class="compareTable" by="xpath://table[@id='idDadosSintesesRiscoRevisao']">
+					<table>
+						<thead>
+							<tr>
+								<th>ES</th>
+								<th>Síntese</th>
+								<th>ARCs pendentes de publicação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>ABN AMRO</td>
+								<td><a>Crédito</a></td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td>ABN AMRO</td>
+								<td><a>TI</a></td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td>ABN AMRO</td>
+								<td><a>Liquidez</a></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>ABN AMRO</td>
+								<td><a>Mercado</a></td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td>ITAU</td>
+								<td><a>Crédito</a></td>
+								<td>1</td>
+							</tr>
+						</tbody>
+					</table>
+			</span></td>
+		</tr>
+
+
+		<tr class="scenario">
+			<td class='title'><b>C003</b><br> <br>Sucesso - Verificar a seção da síntese, click em cima do link
+				das sínteses</td>
+
+			<td>O mesmo</td>
+
+			<td>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+					<li>Clica no grupo da ES ITAU: <span class="clickon" by="id:linkSintese_Grupo2_ES3">Crédito</span></li>
+				</ul>
+			</td>
+
+			<td>
+			<!-- <span class="compareTable" by="xpath://table[@id='tPainelSintenseTitulo']">
+					<table>
+						<thead>
+							<tr>
+								<th>Sínteses de risco para revisão</th>
+							</tr>
+						</thead>
+					</table>
+			</span> -->
+
+				<ul>
+					<li>O título da tela deve ser: <span class="contains"><b>Gestão de notas e sínteses<b /></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0209]</b></span></li>
+				</ul></td>
+		</tr>
+
+
+	</table>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Participantes do comitê</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Participantes do comitê'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>04/08/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#participantesCorec">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="TestR001ParticipantesComite-MockBcPessoa.html" class="include">carregada</a>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#exibirParticipantes">validar a exibição inicial dos participantes</a>.<br/>
+	</blockquote>
+	
+	<table class="exemplos">
+		<tr>
+			<td>
+				
+				<table class="scenario" execute="true">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar a exibição inicial dos participantes quando há possíveis participantes e participantes efetivos.
+						</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <banco/> 
+							Os dados encontram-se <a href="TestR001C001ParticipantesComite-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+					    <th>Ação pretendida</th>
+					<tr>
+					    <td>
+					    	<ul>
+					    		<li>Verificar a lista de participantes do ciclo:</li>
+					    	</ul>
+					    	<table>
+					    		<tr>
+					    			<th>Entradas</th>
+					    		</tr>
+					    		<tr>
+					    			<th>Ciclo</th>
+					    		</tr>
+					    		<tr>
+					    			<td class="set" name="idCiclo" converter="Integer">1</td>
+					    		</tr>
+					    	</table>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							
+							<table>
+								<tr>
+									<th style="background-color: green;">Saída</th>
+								</tr>
+								<tr>
+		                           <th style="background-color: green;">Registros recuperados</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<td>
+										<table>
+											<tr>
+												<th>Lista de possíveis participantes</th>
+												<th>Participantes efetivos do comitê</th>
+											</tr>
+											<tr>
+												<td>
+													<div align="center">
+														<table class="verifyRows" name="retorno" value="$THIS.buscarPossiveisParticipantes(idCiclo)">
+											                <tr>
+											                    <th class="eq" value="$THIS.getNome(retorno)">Nome</th>
+											                </tr>
+											                <tr><td>CARLOS AHMAR</td></tr>
+															<tr><td>CARLOS ROBERTO CREDIDIO CORDEIRO</td></tr>
+															<tr><td>JOSE ROMUALDO COSTA JUNIOR</td></tr>
+															<tr><td>LARISSA VENTURINI AKAMINE</td></tr>
+															<tr><td>MARCELO COLLI INGLEZ</td></tr>
+															<tr><td>MARCO ANTONIO DE CAMARGO</td></tr>
+															<tr><td>NELSON MARINHO DE CARVALHO</td></tr>
+															<tr><td>SAULO BOTELHO DE ALMEIDA</td></tr>
+															<tr><td>SERGIO ALVES PERILO</td></tr>
+										                </table>
+													</div>
+												</td>
+												<td>
+													<table class="verifyRows" name="retorno" value="$THIS.buscarParticipantesEfetivos(idCiclo)">
+										                <tr>
+										                    <th class="eq" value="$THIS.getNome(retorno)">Nome</th>
+										                </tr>
+														<tr>
+										                    <td>ANFRISIO RODRIGUES VIEIRA</td>
+										                </tr>
+										                <tr>
+										                	<td>MARCELO DAVI XAVIER DA SILVEIRA DATZ</td>
+									                	</tr>
+										                <tr>
+										                    <td>ROBERTO SANTOS ALENCAR</td>
+										                </tr>
+														<tr>
+										                    <td>TESTESLQB13 MASSA DE TESTE</td>
+										                </tr>
+									                </table>
+												</td>
+											</tr>
+										</table>
+		                    		</td>
+		                    	</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="exemplos">
+		<tr>
+			<td>
+				
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT002]</b> - Validar a exibição inicial dos participantes quando não há possíveis participantes e participantes efetivos.
+						</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <banco/> 
+							Os dados encontram-se <a href="TestR001C002ParticipantesComite-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+					    <th>Ação pretendida</th>
+					<tr>
+					    <td>
+					    	<ul>
+					    		<li>Verificar a lista de participantes do ciclo:</li>
+					    	</ul>
+					    	<table>
+					    		<tr>
+					    			<th>Entradas</th>
+					    		</tr>
+					    		<tr>
+					    			<th>Ciclo</th>
+					    		</tr>
+					    		<tr>
+					    			<td class="set" name="idCiclo" converter="Integer">1</td>
+					    		</tr>
+					    	</table>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							
+							<table>
+								<tr>
+									<th style="background-color: green;">Saída</th>
+								</tr>
+								<tr>
+		                           <th style="background-color: green;">Registros recuperados</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<td>
+										<table>
+											<tr>
+												<th>Lista de possíveis participantes</th>
+												<th>Participantes efetivos do comitê</th>
+											</tr>
+											<tr>
+												<td>
+													<div align="center">
+														<table class="verifyRows" name="retorno" value="$THIS.buscarPossiveisParticipantes(idCiclo)">
+											                <tr>
+											                    <th class="eq" value="$THIS.getNome(retorno)">Nome</th>
+											                </tr>
+										                </table>
+													</div>
+												</td>
+												<td>
+													<table class="verifyRows" name="retorno" value="$THIS.buscarParticipantesEfetivos(idCiclo)">
+										                <tr>
+										                    <th class="eq" value="$THIS.getNome(retorno)">Nome</th>
+										                </tr>
+									                </table>
+												</td>
+											</tr>
+										</table>
+		                    		</td>
+		                    	</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="exemplos">
+		<tr>
+			<td>
+				
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT003]</b> - Validar a exibição inicial dos participantes quando há possíveis participantes, mas não há registro de agenda.
+						</td>
+					</tr>
+					<tr>
+					    <th>Dado que</th>
+					<tr>
+					    <td>
+					       <banco/> 
+							Os dados encontram-se <a href="TestR001C003ParticipantesComite-DadoQue.html" class="include">aqui</a>.
+						</td>
+					</tr>
+					<tr>
+					    <th>Ação pretendida</th>
+					<tr>
+					    <td>
+					    	<ul>
+					    		<li>Verificar a lista de participantes do ciclo:</li>
+					    	</ul>
+					    	<table>
+					    		<tr>
+					    			<th>Entradas</th>
+					    		</tr>
+					    		<tr>
+					    			<th>Ciclo</th>
+					    		</tr>
+					    		<tr>
+					    			<td class="set" name="idCiclo" converter="Integer">1</td>
+					    		</tr>
+					    	</table>
+					    </td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+							
+							<table>
+								<tr>
+									<th style="background-color: green;">Saída</th>
+								</tr>
+								<tr>
+		                           <th style="background-color: green;">Registros recuperados</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<td>
+										<table>
+											<tr>
+												<th>Lista de possíveis participantes</th>
+												<th>Participantes efetivos do comitê</th>
+											</tr>
+											<tr>
+												<td>
+													<div align="center">
+														<table class="verifyRows" name="retorno" value="$THIS.buscarPossiveisParticipantes(idCiclo)">
+											                <tr>
+											                    <th class="eq" value="$THIS.getNome(retorno)">Nome</th>
+											                </tr>
+											                <tr><td>CARLOS AHMAR</td></tr>
+															<tr><td>CARLOS ROBERTO CREDIDIO CORDEIRO</td></tr>
+															<tr><td>JOSE ROMUALDO COSTA JUNIOR</td></tr>
+															<tr><td>LARISSA VENTURINI AKAMINE</td></tr>
+															<tr><td>MARCELO COLLI INGLEZ</td></tr>
+															<tr><td>MARCELO DAVI XAVIER DA SILVEIRA DATZ</td></tr>
+															<tr><td>MARCO ANTONIO DE CAMARGO</td></tr>
+															<tr><td>NELSON MARINHO DE CARVALHO</td></tr>
+															<tr><td>SAULO BOTELHO DE ALMEIDA</td></tr>
+															<tr><td>SERGIO ALVES PERILO</td></tr>
+										                </table>
+													</div>
+												</td>
+												<td>
+													<table class="verifyRows" name="retorno" value="$THIS.buscarParticipantesEfetivos(idCiclo)">
+										                <tr>
+										                    <th class="eq" value="$THIS.getNome(retorno)">Nome</th>
+										                </tr>
+									                </table>
+												</td>
+											</tr>
+										</table>
+		                    		</td>
+		                    	</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

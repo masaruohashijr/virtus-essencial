@@ -1,0 +1,17 @@
+<assembly>
+  <id>sisaps</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>  
+  <fileSets>
+    <fileSet>
+        <directory>src/main/scripts</directory>
+        <outputDirectory>/bin</outputDirectory>   
+        <filtered>true</filtered>     
+        <includes>
+            <include>run.sh</include>            
+        </includes>
+    </fileSet>     
+  </fileSets>
+</assembly>

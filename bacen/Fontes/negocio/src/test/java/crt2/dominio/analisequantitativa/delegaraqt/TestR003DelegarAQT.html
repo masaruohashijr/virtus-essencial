@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R003 - Delegar análise do ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Delegar análise do ANEF'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>27/01/2015</td>
+			<td>Victor Vasconcelos</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#delegarAnaliseAQT">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+		     <li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+		<banco/> 
+		     <li>Os dados encontram-se <a href="TestR001DelegarAQT-DadoQue.html" class="include">aqui</a>.</li>
+		     <li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#validarCamposObrigatorios">validar campos obrigatórios</a>.<br/>
+	</blockquote>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'>
+							<b>[CT001]</b> - Validar mensagens de erro ao tentar delegar um ANEF.
+						</td>
+					</tr>
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+					<tr>
+						<td>
+							<table>
+								<tr>
+									<th colspan="4">Entradas</th>
+									<th style="background-color: green">Saída</th>
+								</tr>
+								<tr>
+									<th>ANEF</th>
+									<th>Estado</th>
+									<th>Matrícula servidor equipe</th>
+									<th>Matrícula outro servidor</th>
+									<th style="background-color: green">Mensagem esperada ao delegar?</th>
+								</tr>
+								<tr>
+									<td rowspan="2" style="vertical-align: middle" class="set" name="aqt" converter="Integer">10</td>
+									<td rowspan="2" class="set" style="vertical-align: middle"> <span  value="$THIS.estado(aqt)"></span>Preenchido</td>
+									<td class="set" name="matriculaServidorEquipe">&lt;vazio&gt;</td>
+									<td class="set" name="matriculaServidor">&lt;vazio&gt;</td>
+									<td style="color: red" class="eq"   value="$THIS.delegarAQT(aqt, matriculaServidorEquipe, matriculaServidor)">[É obrigatória a seleção do campo 'Servidores da equipe' ou 'Outros servidores'.]</td>
+								</tr>
+								
+								<tr>
+									<td class="set" name="matriculaServidorEquipe" converter="String">99990830</td>
+									<td class="set" name="matriculaServidor" converter="String">13579024</td>
+									<td style="color: red" class="eq"   value="$THIS.delegarAQT(aqt, matriculaServidorEquipe, matriculaServidor)">[Selecione apenas  um único servidor para a delegação.]</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

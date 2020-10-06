@@ -1,0 +1,192 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Editar parâmetros - Editar parâmetro do tipo 'e-mail'</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+    	<h1>Cenários de teste para a estória - Editar parâmetro do tipo 'e-mail'</h1>
+
+    	<span id="index"></span>
+
+    	<h2>Histórico</h2>
+    	<table class="exemplos historico">
+        	<tr>
+            	<th>Versão</th>
+            	<th>Data</th>
+            	<th>Responsável</th>
+            	<th>Descrição</th>
+        	</tr>
+
+        	<tr>
+            	<td>1.0</td>
+            	<td>05/08/2015</td>
+            	<td>Christiano Nogueira Ferreira</td>
+            	<td>Versão Inicial</td>
+        	</tr>
+    	</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+    	<blockquote>Para as regras da estória clique <a href="../index.html#editarParametroEmail">aqui</a></blockquote>
+
+    	<h2>Premissas iniciais</h2>
+    	<ul>
+        	<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq105"</span></strong></li>
+
+			<banco/>
+
+			<li>Os dados encontram-se <a href="TestR001EditarEmailApresentacao-DadoQue.html" class="include">aqui</a></li>
+    	</ul>
+
+    	<h2>Validar o remetente</h2>
+    	<blockquote><a href="indexNegocio.html#validarPrazo">Cenários para validar o prazo do e-mail</a></blockquote>
+
+    	<table class="scenario">
+        	<tr>
+            	<td>
+                	<table class="exemplos">
+                    	<tr><th style="width: 10%">Cenário</th></tr>
+                    	<tr><td class='title'><b>C001 - </b>Validar apresentação do campo prazo</td></tr>
+                    	<tr><th style="width: 30%">Ação pretendida / Validação</th></tr>
+
+                    	<tr>
+                        	<td>
+                            	<li>Dado o parâmetro tipo e-mail, verificar a exibição e obrigatoriedade do campo prazo</li><br><br>
+
+                            	<table>
+                                	<tr>
+                                    	<th colspan="1">Entradas</th>
+                                    	<th style="background-color: green" colspan="2">Saídas</th>
+                                	</tr>
+
+                                	<tr>
+                                    	<th>ID</th>
+                                    	<th style="background-color: green">Exibir prazo?</th>
+                                    	<th style="background-color: green">Prazo obrigatório?</th>
+                                	</tr>
+
+                                	<tr>
+                                    	<td class="set" name="idParametro" converter="Integer">1000</td>
+                                    	<td class="eq" value="$THIS.isExibirPrazo(idParametro)">Sim</td>
+                                    	<td class="eq" value="$THIS.isPrazoObrigatorio(idParametro)">Sim</td>
+                                	</tr>
+
+                                	<tr>
+                                    	<td class="set" name="idParametro" converter="Integer">1001</td>
+                                    	<td class="eq" value="$THIS.isExibirPrazo(idParametro)">Sim</td>
+                                    	<td class="eq" value="$THIS.isPrazoObrigatorio(idParametro)">Sim</td>
+                                	</tr>
+
+                                	<tr>
+                                    	<td class="set" name="idParametro" converter="Integer">1002</td>
+                                    	<td class="eq" value="$THIS.isExibirPrazo(idParametro)">Não</td>
+                                    	<td class="eq" value="$THIS.isPrazoObrigatorio(idParametro)">Não</td>
+                                	</tr>
+                            	</table>
+                        	</td>
+                    	</tr>
+                	</table>
+            	</td>
+        	</tr>
+    	</table>
+
+    	<table class="scenario">
+        	<tr>
+            	<td>
+                	<table class="exemplos">
+                    	<tr><th style="width: 10%">Cenário</th></tr>
+                    	<tr><td class='title'><b>C002 - </b>Salvar parâmetro sem prazo, quando o mesmo é obrigatório</td></tr>
+                    	<tr><th style="width: 30%">Ação pretendida / Validação</th></tr>
+
+                    	<tr>
+                        	<td>
+                            	<li>Salvar parâmetro</li><br><br>
+
+                            	<table>
+                                	<tr>
+                                    	<th colspan="5">Entradas</th>
+                                    	<th style="background-color: green" colspan="1">Saídas</th>
+                                	</tr>
+
+                                	<tr>
+                                    	<th>Tipo</th>
+                                    	<th>Remetente</th>
+                                    	<th>Título</th>
+                                    	<th>Corpo</th>
+                                    	<th>Prazo</th>
+                                    	<th style="background-color: green">Mensagem?</th>
+                                	</tr>
+
+                                	<tr>
+                                    	<td class="set" name="tipoEmail">Disponibilidade</td>
+                                    	<td class="set" name="remetente">xx@bcb.gov.br</td>
+                                    	<td class="set" name="titulo">Título da mensagem</td>
+                                    	<td class="set" name="corpo">Texto da mensagem sem variáveis</td>
+                                    	<td class="set" name="prazo"></td>
+                                    	<td class="eq" value="$THIS.salvarParametroEmail(tipoEmail, remetente, titulo, corpo, prazo)">Campo 'Prazo' é de preenchimento obrigatório.</td>
+                                	</tr>
+                            	</table>
+                        	</td>
+                    	</tr>
+                	</table>
+            	</td>
+        	</tr>
+    	</table>
+
+    	<table class="scenario">
+        	<tr>
+            	<td>
+                	<table class="exemplos">
+                    	<tr><th style="width: 10%">Cenário</th></tr>
+                    	<tr><td class='title'><b>C003 - </b>Salvar parâmetro com prazo menor ou igual a zero, quando o mesmo é obrigatório</td></tr>
+                    	<tr><th style="width: 30%">Ação pretendida / Validação</th></tr>
+
+                    	<tr>
+                        	<td>
+                            	<li>Salvar parâmetro</li><br><br>
+
+                            	<table>
+                                	<tr>
+                                    	<th colspan="5">Entradas</th>
+                                    	<th style="background-color: green" colspan="1">Saídas</th>
+                                	</tr>
+
+                                	<tr>
+                                    	<th>Tipo</th>
+                                    	<th>Remetente</th>
+                                    	<th>Título</th>
+                                    	<th>Corpo</th>
+                                    	<th>Prazo</th>
+                                    	<th style="background-color: green">Mensagem?</th>
+                                	</tr>
+                                	<tr>
+                                    	<td class="set" name="tipoEmail">Disponibilidade</td>
+                                    	<td class="set" name="remetente">xx@bcb.gov.br</td>
+                                    	<td class="set" name="titulo">Título da mensagem</td>
+                                    	<td class="set" name="corpo">Texto da mensagem sem variáveis</td>
+                                    	<td class="set" name="prazo" converter="Integer">0</td>
+                                    	<td class="eq" value="$THIS.salvarParametroEmail(tipoEmail, remetente, titulo, corpo, prazo)">Campo 'Prazo' tem que ser maior que zero.</td>
+                                	</tr>
+                                	<tr>
+                                    	<td class="set" name="tipoEmail">Disponibilidade</td>
+                                    	<td class="set" name="remetente">xx@bcb.gov.br</td>
+                                    	<td class="set" name="titulo">Título da mensagem</td>
+                                    	<td class="set" name="corpo">Texto da mensagem sem variáveis</td>
+                                    	<td class="set" name="prazo" converter="Integer">-1</td>
+                                    	<td class="eq" value="$THIS.salvarParametroEmail(tipoEmail, remetente, titulo, corpo, prazo)">Campo 'Prazo' tem que ser maior que zero.</td>
+                                	</tr>
+                            	</table>
+                        	</td>
+                    	</tr>
+                	</table>
+            	</td>
+        	</tr>
+    	</table>
+	</body>
+</html>

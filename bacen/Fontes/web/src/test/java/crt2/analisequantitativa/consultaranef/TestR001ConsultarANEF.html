@@ -1,0 +1,572 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Consultar ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Consultar ANEF"</h1>
+	<span id="index"></span>
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>05/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#consultarANEF">aqui</a>.
+	</blockquote>
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a>
+		</li>
+		<li>O usuário da consulta é: '<b class="set" name="loginUsuarioLogado">deliq.sisliq106</b>'</span>.
+		</li>
+	</blockquote>
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarEstadoInicial">validar que campos exibir e seus valores para o grupo
+			'Informações do ANEF'</a>.
+	</blockquote>
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[C001] - </b>Verificar a tela de consulta de ANEF sem ajuste de corec.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/detalharresumoinformacoesaqt/TestR001ResumoInformacoesAQT-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq108>deliq.sisliq108</sisliq108></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil8">PORTO SEGURO</span></li>
+								<li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF30" sleep="3000"><b>Solvência
+											Patrimonial</b></span></li>
+								<li>Expandir grupo expansível: <span class="clickon" by="id:bttExpandirNotaAjustada">Solvência
+										Patrimonial</span>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0403]</b></span></li>
+							</ul>
+							<table class="compareTable" by="xpath://table[@id='tDadosCicloResumido']" style="width: 100%">
+								<thead>
+									<tr>
+										<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>PORTO SEGURO
+												(1394199)</b></th>
+									</tr>
+									<tr>
+										<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Ciclo</b></th>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Estado</b></td>
+										<td colspan="6"><b>Em andamento</b></td>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Início</b></td>
+										<td colspan="6">28/01/2015</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Corec previsto</b></td>
+										<td colspan="6">28/01/2016</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+										<td colspan="6">ROBERTO SANTOS ALENCAR</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Gerente titular</b></td>
+										<td colspan="6">ANFRISIO RODRIGUES VIEIRA</td>
+									</tr>
+								</thead>
+							</table> <br>
+							<table class="compareTable" by="xpath://table[@id='tInformacoesANEF']" style="width: 100%">
+								<thead>
+									<tr>
+										<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Informações do
+												ANEF</b></th>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Componente</b></td>
+										<td colspan="6">Solvência Patrimonial</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Preenchido por</b></td>
+										<td colspan="6">TESTESLQB13 MASSA DE TESTE em 14/01/2015 00:00h</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="background-color: #4a73a2"><b>Analisado por</b></td>
+										<td colspan="6">ROBERTO SANTOS ALENCAR em 16/01/2015 00:00h</td>
+									</tr>
+								</thead>
+							</table> <br>
+							<table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+								<thead>
+									<tr>
+										<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do ANEF</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+										<td>2</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2">Nota calculada</td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2">Nota ajustada</td>
+										<td>1</td>
+									</tr>
+									<tr>
+									</tr>
+								</tbody>
+							</table> <br>
+							<table class="compareTable" by="xpath://table[@id='tDadosAnefGrupo']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro2">
+										<th colspan="4" class="aesquerda" style="width: 459px; background-color: #4a73a2"><label
+											id="idNomeDoGrupo1ad">Solvência Patrimonial</label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="color: black; background-color: #4a73a2" style="width: 25%;">Nota do ANEF calculada</td>
+										<td class="fundoPadraoAClaro3"><label id="idNovaNotaAnef1ae">3</label></td>
+									</tr>
+									<tr>
+										<td style="color: black; background-color: #4a73a2" id="GrupoEspansivelNota16630">
+											<table width="100%" style="" cellspacing="0" cellpadding="0" id="divGrupo1b0">
+												<tbody>
+													<tr>
+														<td style="width: 5%; text-align: left;"><span id="controle1b1"> <a
+																href="./page?5-1.ILinkListener-formulario-idPainelDetalhesAQT-GrupoEspansivelNota-divGrupo-controle-link"
+																id="bttExpandirNotaAjustada"><img id="imagem1b2" src="../../../crt2/menos-p.gif"></a>
+														</span></td>
+														<td style="width: 95%; text-align: right; font-weight: bold;"><label id="bttExpandir">Nota do
+																ANEF ajustada</label></td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+										<td class="fundoPadraoAClaro3"><label style="width: 10%;" id="idNovaNotaAnefAjustada1b3">1</label> <br></td>
+									</tr>
+								</tbody>
+							</table> <br>
+							<table class="compareTable" by="xpath://table[@id='tInformacoesElementoItensANEF59']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro2">
+										<th colspan="4" class="aesquerda" style="width: 482px; background-color: #4a73a2">Suficiência</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td style="background-color: #4a73a2" style="width: 25%;">Nota do elemento</td>
+										<td><label id="idNovaNotaElementoAQT143">2</label></td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="compareTable" by="xpath://table[@id='tabelaDadosItem117']">
+								<thead>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="4" style="width: 482px; background-color: #4a73a2">Rentabilidade sobre o PL</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="3" style="color: #F2F4F6;">|</td>
+									</tr>
+									<tr class="fundoPadraoAClaro3">
+										<td width="5%"></td>
+										<td align="left" style="text-align: left;"><label id="idJustificativa149">Justificativa para o
+												item de elemento 'Rentabilidade sobre o PL'; ID documento 34.</label> <br> <br></td>
+										<td width="5%"></td>
+									</tr>
+									<tr class="fundoPadraoAClaro3">
+										<td width="5%"></td>
+										<td align="center" style="text-align: center;">
+											<div class="centralizado" id="idTabelaAnexoDocumento117">
+												<table align="center" id="tListaARCs" width="100%" cellspacing="0" cellpadding="3" class="tabela">
+													<tbody>
+														<tr style="width: 90%; margin: auto;">
+															<td><span id="tabela14b">
+																	<div align="center">
+																		<table id="idDados" class="tabela" style="width: 100%;" cellspacing="1">
+																			<thead>
+																				<tr>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr class="fundoPadraoAClaro2" id="id114d">
+																					<td id="id114e" style="background-color: #4a73a2" style="width: 20%"><span id="cell14f">Anexo</span></td>
+																					<td id="id2150"><span id="cell151"> <a
+																							href="./page?2-1.ILinkListener-formulario-idPainelElementosConsulta-listaElementoAQTs-0-tDadosElementoANEFs-idPainelItem-listaItens-0-tabelaDadosItem-idTabelaAnexoDocumento-tabela-tabelaDados-dados-linhas-1-cells-2-cell-link"
+																							align="center" id="linkanexo33">Anexo1.pdf</a>
+																					</span></td>
+																				</tr>
+																				<tr class="fundoPadraoAClaro3" id="id2152">
+																					<td id="id1153" style="background-color: #4a73a2" style="width: 20%"><span id="cell154">Anexo</span></td>
+																					<td id="id2155"><span id="cell156"> <a
+																							href="./page?2-1.ILinkListener-formulario-idPainelElementosConsulta-listaElementoAQTs-0-tDadosElementoANEFs-idPainelItem-listaItens-0-tabelaDadosItem-idTabelaAnexoDocumento-tabela-tabelaDados-dados-linhas-2-cells-2-cell-link"
+																							align="center" id="linkanexo34">Anexo2.pdf</a>
+																					</span></td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</div>
+															</span></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</td>
+										<td width="5%"></td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="compareTable" by="xpath://table[@id='tabelaDadosItem118']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="4" style="background-color: #4a73a2" style="width: 482px; background-color: #4a73a2">Rentabilidade
+											sobre ativos</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="3" style="color: #F2F4F6;">|</td>
+									</tr>
+								</tbody>
+							</table> <br>
+							<table class="compareTable" by="xpath://table[@id='tabelaAnaliseDados59']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro3">
+										<th colspan="6" style="width: 482px; background-color: #4a73a2">Análise do supervisor para o elemento
+											"Suficiência"</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="3" style="color: #F2F4F6;">TESTE</td>
+									</tr>
+									<tr class="fundoPadraoAClaro3">
+										<td width="5%"></td>
+										<td align="left" style="text-align: left;"><label id="idAvaliacaoVigente1cf">Análise do
+												supervisor sobre o elemento 'Suficiência'; ID ELEMENTO 59</label> <br> <br></td>
+										<td width="5%"></td>
+									</tr>
+								</tbody>
+							</table> <br>
+							<table class="compareTable" by="xpath://table[@id='tInformacoesElementoItensANEF60']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro2">
+										<th colspan="4" class="aesquerda" style="width: 482px; background-color: #4a73a2">Qualidade</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td style="background-color: #4a73a2" style="width: 25%;">Nota do elemento</td>
+										<td><label id="idNovaNotaElementoAQT1d0">3</label></td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="compareTable" by="xpath://table[@id='tabelaDadosItem119']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="4" style="width: 482px; background-color: #4a73a2">Origem</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="3" style="color: #F2F4F6;">|</td>
+									</tr>
+									<tr class="fundoPadraoAClaro3">
+										<td width="5%"></td>
+										<td align="left" style="text-align: left;"><label id="idJustificativa243">Justificativa para o
+												item de elemento 'Origem'; ID documento 35.</label> <br> <br></td>
+										<td width="5%"></td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="compareTable" by="xpath://table[@id='tabelaDadosItem120']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="4" style="background-color: #4a73a2">Diversificação</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="fundoPadraoAClaro3">
+										<td colspan="3" style="color: #F2F4F6;">|</td>
+									</tr>
+								</tbody>
+							</table> <br>
+							<table style="width: 100%;">
+								<thead>
+									<tr class="fundoPadraoAEscuro3">
+										<th colspan="6" style="width: 482px; background-color: #4a73a2">
+											<div>Anexos</div>
+										</th>
+									</tr>
+								</thead>
+							</table>
+							<table class="compareTable" by="xpath://table[@id='tListaARCs']" style="width: 100%">
+								<tbody>
+									<tr style="width: 90%; margin: auto;">
+										<td><span id="tabela1dc">
+												<div align="center">
+													<table id="idDados" class="tabela" style="width: 100%;" cellspacing="1">
+														<thead>
+															<tr>
+															</tr>
+														</thead>
+														<tbody>
+															<tr class="fundoPadraoAClaro2" id="id11de">
+																<td id="id11df" style="background-color: #4a73a2" style="width: 20%"><span id="cell1e0">Anexo</span></td>
+																<td id="id21e1"><span id="cell1e2"> <a
+																		href="./page?5-1.ILinkListener-formulario-idPainelAnexoAnef-idTabelaAnexoArc-tabela-tabelaDados-dados-linhas-1-cells-2-cell-link"
+																		align="center" id="linkanexo13">AnexoARC1.pdf</a>
+																</span></td>
+															</tr>
+															<tr class="fundoPadraoAClaro3" id="id21e3">
+																<td id="id11e4" style="background-color: #4a73a2" style="width: 20%"><span id="cell1e5">Anexo</span></td>
+																<td id="id21e6"><span id="cell1e7"> <a
+																		href="./page?5-1.ILinkListener-formulario-idPainelAnexoAnef-idTabelaAnexoArc-tabela-tabelaDados-dados-linhas-2-cells-2-cell-link"
+																		align="center" id="linkanexo14">AnexoARC2.pdf</a>
+																</span></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+										</span></td>
+									</tr>
+								</tbody>
+							</table> <br>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[C002] - </b>Verificar a tela de consulta de ANEF com ajuste de corec atual.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestR001ConsultarANEF-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq108>deliq.sisliq108</sisliq108></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+								<li>Seleciona o ciclo: <span class="select" by="id:idCiclo" sleep="5000">01/12/2014</span></li>
+								<li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF4"><b>Resultados</b></span></li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+								<thead>
+									<tr>
+										<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do ANEF</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Qualidade</b></a></td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Suficiência</b></a></td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2">Nota calculada</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2">Nota ajustada</td>
+										<td>4</td>
+									</tr>
+									<tr>
+									</tr>
+								</tbody>
+							</table> <br>
+							
+							<table class="compareTable" by="xpath://table[@id='tDadosAnefGrupo']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro2">
+										<th colspan="4" cclass="aesquerda" style="width: 482px; background-color: #4a73a2"><label id="idNomeDoGrupo358">Resultados</label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="background-color: #4a73a2" style="width: 25%;">Nota do ANEF calculada</td>
+										<td class="fundoPadraoAClaro3"><label id="idNovaNotaAnef359">1</label></td>
+									</tr>
+									<tr>
+										<td style="background-color: #4a73a2"style="width: 25%;">Nota do ANEF ajustada</td>
+										<td class="fundoPadraoAClaro3"><label id="idNotaCorec35b">4</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[C003] - </b>Verificar a tela de consulta de ANEF com ajuste de corec anterior.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td><banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestR001ConsultarANEF-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq108>deliq.sisliq108</sisliq108></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/painelconsulta">inicio/painelconsulta</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:linkPerfil1">ABN AMRO</span></li>
+								<li>Clicar no ANEF: <span class="clickon" by="id:link_ANEF12"><b>Solvência Patrimonial</b></span></li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="compareTable" by="xpath://table[@id='tANEFResumido']">
+								<thead>
+									<tr>
+										<th colspan="2" class="aesquerda" style="width: 459px; background-color: #4a73a2">Resumo do ANEF</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkEstrategiadenegocio" href="#"><b>Suficiência</b></a></td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkAdequacaodecapital" href="#"><b>Qualidade</b></a></td>
+										<td>2</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2">Nota calculada</td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td colspan="1" style="color: black; background-color: #4a73a2">Nota ajustada</td>
+										<td>2</td>
+									</tr>
+									<tr>
+									</tr>
+								</tbody>
+							</table> <br>
+								<table class="compareTable" by="xpath://table[@id='tDadosAnefGrupo']" style="width: 100%">
+								<thead>
+									<tr class="fundoPadraoAEscuro2">
+										<th colspan="4" cclass="aesquerda" style="width: 482px; background-color: #4a73a2"><label id="idNomeDoGrupo358">Solvência Patrimonial</label></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="background-color: #4a73a2" style="width: 25%;">Nota do ANEF calculada</td>
+										<td class="fundoPadraoAClaro3"><label id="idNovaNotaAnef359">3</label></td>
+									</tr>
+									<tr>
+										<td style="background-color: #4a73a2"style="width: 25%;">Nota do ANEF ajustada</td>
+										<td class="fundoPadraoAClaro3"><label id="idNotaCorec35b">2</label></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

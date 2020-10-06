@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Consultar ANEF</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Consultar ANEF'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>03/03/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#consultarANEF">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<banco />
+		<li>Os dados encontram-se <a href="TestR001ConsultaANEF-DadoQue.html" class="include">aqui</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#verificarListaComboVersao">validar a lista de valores para o combo
+			'versão' da tela de 'Consulta de ANEF'</a>.<br />
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<td>
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar a lista de versões do ANEF.</td>
+					</tr>
+					<tr>
+						<th>Validação</th>
+					</tr>
+					<tr>
+						<td>
+
+
+							<table>
+
+								<tr>
+									<th colspan="2">Entradas</th>
+									<th style="background-color: green">Registros recuperados</th>
+								</tr>
+								<tr>
+									<th>ES</th>
+									<th>ANEF</th>
+									<th style="background-color: green">Lista</th>
+								</tr>
+								<tr>
+
+									<td class="set" name="es" converter="Integer">1</td>
+									<td class="set" name="anef" converter="Integer">11</td>
+
+									<td>
+
+
+										<table title="teste" class="verifyRows" name="aqt" value="$THIS.isConsultaVersao(anef)">
+											<tr>
+												<th class="eq" value="$THIS.getPK(aqt)">ANEF</th>
+												<th class="eq" value="$THIS.getData(aqt)">versão</th>
+											</tr>
+											<tr>
+												<td>11</td>
+												<td>vigente</td>
+											</tr>
+											<tr>
+												<td>8</td>
+												<td>19/12/2014</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>16/12/2014</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+	</table>
+
+</body>
+</html>

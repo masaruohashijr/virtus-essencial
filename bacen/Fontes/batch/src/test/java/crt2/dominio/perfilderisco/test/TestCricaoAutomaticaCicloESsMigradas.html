@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Testando a estória - Batch para criação automática de ciclos das ES's migradas</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para  a estória - Batch para criação automática de ciclos das ES's migradas</h1>
+
+    <span id="index"></span>
+
+    <h2>Histórico</h2>
+    <table class="exemplos historico">
+        <tr>
+            <th>Versão</th>
+            <th>Data</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+        </tr>
+        <tr>
+            <td>1.0</td>
+            <td>19/11/2014</td>
+            <td>Victor Vasconcelos</td>
+            <td>Versão inicial.</td>
+        </tr>
+    </table>
+
+    <h2>Regras aplicáveis</h2>
+    <blockquote>
+        Para as regras desta estória se encontram no arquivo <br><br> <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/requirement/ETL_Migração_ETL_ES_Sigas_Unicad.xlsx">ETL_Migração_ETL_ES_Sigas_Unicad.xlsx</a><br><br>
+    </blockquote>
+
+
+
+    <h2>Premissas iniciais</h2>
+
+    <blockquote>
+        Lista de servidores: <a
+            href="../../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+            class="include">aqui</a>
+    </blockquote>
+    <blockquote>
+        <dataHoraAtual valor="28/06/2014 00:00:00">Data atual: 28/06/2014 00:00:00</dataHoraAtual>
+    </blockquote>
+
+
+    <h2>Cenários de teste para a estória - Batch para criação automática de ciclos das ES's migradas</h2>
+    <blockquote>Cenários onde devem ser apresentados os resultados da execução do batch responsável pela criação inicial dos ciclos das ES's migradas do SIGAS.</blockquote>
+
+    <span id="cenarios"></span>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+		    
+		    
+		    
+	    <tr class="scenario">
+			<td class='title' style="width: 35%">
+                <b>C001</b> - Existe dados na tabela do ETL (EET_ETL_ENS). As ES's do ETL não pertencem a um SRC.
+            </td>
+			<td style="width: 35%">
+			    <banco />
+			    Os dados da Metodologia se encontram 
+				<a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+				Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/TestCricaoAutomaticaCicloESsMigradas_dadoque.html" class="include">aqui</a><br><br>
+				Os dados do ETL se encontram <a href="dadoque/TestCricaoAutomaticaCicloESsMigradas_dadoque_C001.html" class="include">aqui</a>
+			</td>
+            <td style="width: 15%">
+			    <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+			    Verificar se a tabela de ES (ENS_ENTIDADE_SUPERVISIONAVEL) se encontra no mesmo estado que no DadoQue.
+            </td>
+			<td style="width: 15%">
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/TestCricaoAutomaticaCicloESsMigradas_porfim_C001.html" class="include">aqui</a></li>
+                </ul> 
+		    </td>
+	    </tr>
+	    <tr class="scenario">
+			<td class='title'><b>C002</b> - Existe dados na tabela do ETL (EET_ETL_ENS). As ES's do ETL pertencem a um SRC e não possuem prioridade definida.</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/TestCricaoAutomaticaCicloESsMigradas_dadoque.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/TestCricaoAutomaticaCicloESsMigradas_dadoque_C002.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se na tabela de ES (ENS_ENTIDADE_SUPERVISIONAVEL) as ES's foram incluídas, mas seus ciclos não foram iniciados.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/TestCricaoAutomaticaCicloESsMigradas_porfim_C002.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+	    </tr>
+		    
+	    <tr class="scenario" pending="true">
+			<td class='title'>
+                <b>C003</b> - Existe dados na tabela do ETL (EET_ETL_ENS). As ES's do ETL pertencem a um SRC e possuem prioridade definida.
+			</td>
+			<td>
+                <banco />
+                Os dados da Metodologia se encontram 
+                <a href="../../../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+                Os dados das ESs e dos ciclos migrados se encontram <a href="dadoque/TestCricaoAutomaticaCicloESsMigradas_dadoque.html" class="include">aqui</a><br><br>
+                Os dados do ETL se encontram <a href="dadoque/TestCricaoAutomaticaCicloESsMigradas_dadoque_C003.html" class="include">aqui</a>
+            </td>
+
+            <td>
+                <span class="sentence" method="executarBatch">Executar batch.</span><br><br>
+                Verificar se na tabela de ES (ENS_ENTIDADE_SUPERVISIONAVEL) as ES's foram incluídas e seus ciclos foram iniciados.
+            </td>
+			<td>
+                <ul>
+                    <li>Os dados das ESs se encontram <a href="porfim/TestCricaoAutomaticaCicloESsMigradas_porfim_C003.html" class="include">aqui</a></li>
+                </ul> 
+            </td>
+		 </tr>
+   </table>
+</html>

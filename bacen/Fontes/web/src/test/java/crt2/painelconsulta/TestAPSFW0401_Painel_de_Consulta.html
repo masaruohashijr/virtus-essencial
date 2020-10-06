@@ -1,0 +1,1529 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Testando a inclusão de entidades</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória - Painel de consulta</h1>
+
+		<h2>Histórico</h2>
+    
+    	<table class="exemplos historico">
+        	<tr>
+            	<th>Versão</th>
+            	<th>Data</th>
+            	<th>Responsável</th>
+            	<th>Descrição</th>
+        	</tr>
+
+        	<tr>
+            	<td>1.0</td>
+            	<td>09/06/2014</td>
+            	<td>David Moura</td>
+            	<td>Versão Inicial</td>
+        	</tr>
+
+        	<tr>
+            	<td>1.1</td>
+            	<td>28/08/2014</td>
+            	<td>Victor Vasconcelos</td>
+            	<td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (Painel de consulta - cache de informações)</td>
+        	</tr>
+
+        	<tr>
+            	<td>1.2</td>
+            	<td>09/09/2014</td>
+            	<td>Victor Vasconcelos</td>
+            	<td>Issue 44181 - Ajustes no painel de consulta</td>
+        	</tr>
+    	</table>
+
+    	<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>
+        	Para as regras da estória:
+
+        	<ul>
+	        	<li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/APSFW0401_Painel_de_consulta.xlsx">APSFW0401_Painel_de_consulta.xlsx</a>.</li>
+	        	<li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/entidadesupervisionavel/requirement/Associacao_de_ESs_com_localizacao.xlsx">Associacao_de_ESs_com_localizacao.xlsx</a>.</li>
+	    	</ul>
+    	</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+
+    	<ul>
+        	<li>A lista de servidores foi <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+        	<li><dataHoraAtual valor="28/05/2014 00:00:00">Data/hora atual do sistema: 28/05/2014 00:00:00</dataHoraAtual></li>
+    	</ul>
+
+		<h2>Cenários de teste para a estória - Painel de consulta</h2>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C001 </b><br><br>Acessar a funcionalidade Painel de consulta com perfil Administrador</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq105>deliq.sisliq105</sisliq105></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					</ul>
+				</td>
+
+				<td><ul><li><span class="contains">Acesso não autorizado</span></li></ul></td>
+			</tr>
+
+	 		<tr class="scenario">
+	 			<td class='title'><b>C002 </b><br><br>Acessar a funcionalidade Painel de consulta com perfil Comitê</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq104>deliq.sisliq104</sisliq104></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					</ul>
+				</td>
+
+				<td><ul><li><span class="contains">Acesso não autorizado</span></li></ul></td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C003 </b><br><br>Acessar a funcionalidade Painel de consulta com perfil Gerente</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					</ul>
+				</td>
+
+				<td><ul><li><span class="contains">Acesso não autorizado</span></li></ul></td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C004 </b><br><br>Acessar a funcionalidade Painel de consulta com perfil Inspetor</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					</ul>
+				</td>
+
+				<td><ul><li><span class="contains">Acesso não autorizado</span></li></ul></td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C005 </b><br><br>Acessar a funcionalidade Painel de consulta com perfil Supervisor</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					</ul>
+				</td>
+
+				<td><ul><li><span class="contains">Acesso não autorizado</span></li></ul></td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C006 </b><br><br>Acessar a funcionalidade Painel de consulta. Equipe do usuário não possui ESs sob sua responsabilidade.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+									    	<li>Todos</li>
+											<li>DELIQ</li>
+											<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade">
+											<li><span class="selected" by="id:idSubUnidade">Todos</span></li>
+											<li>GBPM1</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade2"><li><span class="selected" by="id:idSubUnidade2">Todos</span></li></ul>
+
+										<ul class="options" by="id:idSubUnidade3"><li><span class="selected" by="id:idSubUnidade3">Todos</span></li></ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+											<li><span class="selected" by="id:idSupervisor">Todos</span></li>
+											<li>CHEFE COSUP-01</li>
+											<li>CHEFE GLIQ1</li>
+											<li>CHRISTIANO ATHAÍDE DROGBA</li>
+											<li>ROBERTO SANTOS ALENCAR</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li><span class="selected" by="id:idPrioridade">Todos</span></li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li>Baixa</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO/COSUP-01</td>
+									<td colspan="4">CHEFE COSUP-01</td>
+									<td colspan="2">Alta</td>
+								</tr>
+
+								<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BANCO FIBRA S.A.</a></td>
+                                	<td colspan="2">DESUP/GBPM1/GTSP4</td>
+                                	<td colspan="4">CHRISTIANO ATHAÍDE DROGBA</td>
+                                	<td colspan="2">Baixa</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2">BANCO FORD S.A.</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Média</td>
+								</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">GOLDMAN SACHS</a></td>
+									<td colspan="2">DELIQ/GLIQ1</td>
+									<td colspan="4">CHEFE GLIQ1</td>
+									<td colspan="2">Muito alta</td>
+								</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Baixa</td>
+								</tr>
+
+								<tr>
+                                	<td colspan="2">NATIXIS BRASIL S/A</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">SIFI</td>
+                            	</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br> <br> <input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+            	<td class='title'><b>C007 </b><br><br>Acessar a funcionalidade Painel de consulta. Usuário possui ESs sob sua responsabilidade.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+            	<td>
+                	<ul>
+                    	<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    	<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+                	</ul>
+            	</td>
+
+            	<td>
+                	<ul>
+                    	<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+                    	<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta</b></span></li>
+                    	<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+                	</ul>
+
+                	<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+                    	<table>
+                        	<thead>
+                        		<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+                            	<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+                        	</thead>
+
+                        	<tbody>
+                            	<tr>
+                                	<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+                                	<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+                                	<td colspan="8">
+                                    	<ul class="options" by="id:idUnidade">
+                                        	<li>Todos</li>
+                                        	<li>DELIQ</li>
+                                        	<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+                                    	</ul>
+
+                                    	<ul class="options" by="id:idSubUnidade">
+                                        	<li><span class="selected" by="id:idSubUnidade">Todos</span></li>
+                                        	<li>GBPM1</li>
+                                    	</ul>
+
+                                    	<ul class="options" by="id:idSubUnidade2"><li><span class="selected" by="id:idSubUnidade2">Todos</span></li></ul>
+                                    	<ul class="options" by="id:idSubUnidade3"><li><span class="selected" by="id:idSubUnidade3">Todos</span></li></ul>
+                                	</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+                                	<td colspan="8">
+                                    	<ul class="options" by="id:idSupervisor">
+                                        	<li><span class="selected" by="id:idSupervisor">Todos</span></li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li>ROBERTO SANTOS ALENCAR</li>
+                                    	</ul>
+                                	</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+                                	<td colspan="8">
+                                    	<ul class="options" by="id:idPrioridade">
+                                        	<li><span class="selected" by="id:idPrioridade">Todos</span></li>
+                                        	<li>SIFI</li>
+                                        	<li>Muito alta</li>
+                                        	<li>Alta</li>
+                                        	<li>Média</li>
+                                        	<li>Baixa</li>
+                                    	</ul>
+                                	</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2" style="background-color: #4a73a2"></td>
+
+                                	<td>
+                                		<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+                                    	<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+                                    </td>
+                            	</tr>
+                        	</tbody>
+                    	</table>
+            		</span>
+
+            		<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+                    	<table>
+                        	<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+                    	</table>
+            		</span>
+
+            		<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+                    	<table>
+                        	<thead>
+                            	<tr>
+                            		<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                                	<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                                	<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                                	<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                            	</tr>
+                        	</thead>
+
+                        	<tbody>
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO/COSUP-01</td>
+                                	<td colspan="4">CHEFE COSUP-01</td>
+                                	<td colspan="2">Alta</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BANCO FIBRA S.A.</a></td>
+                                	<td colspan="2">DESUP/GBPM1/GTSP4</td>
+                                	<td colspan="4">CHRISTIANO ATHAÍDE DROGBA</td>
+                                	<td colspan="2">Baixa</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2">BANCO FORD S.A.</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">GOLDMAN SACHS</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1</td>
+                                	<td colspan="4">CHEFE GLIQ1</td>
+                                	<td colspan="2">Muito alta</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Baixa</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2">NATIXIS BRASIL S/A</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">SIFI</td>
+                            	</tr>
+                        	</tbody>
+                    	</table>
+            		</span>
+
+                	<br><br>
+
+                	<ul>
+                    	<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+                    	<li>O botão de 'Limpar Filtro':<br> <br> <input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+                	</ul>
+            	</td>
+         	</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C008 </b><br><br>Acessar a funcionalidade Filtrar. Informar substring do nome de uma ES</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Digite parte do nome da ES: <span class="type" by="id:idParteNomeES">ABN</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idUnidade">DELIQ</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta<b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idUnidade">DELIQ</span></li>
+											<li>DESUP</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade">
+											<li><span class="selected" by="id:idSubUnidade">Todos</span></li>
+											<li>GLIQ1</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade2"><li>Todos</li></ul>
+										<ul class="options" by="id:idSubUnidade3"><li>Todos</li></ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+                                        	<li>Todos</li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li>ROBERTO SANTOS ALENCAR</li>
+                                    	</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li>Todos</li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li>Baixa</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO/COSUP-01</td>
+									<td colspan="4">CHEFE COSUP-01</td>
+									<td colspan="2">Alta</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br> <br> <input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br> <br> <input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+		 	<tr class="scenario">
+				<td class='title'><b>C009 </b><br><br>Acessar a funcionalidade Filtrar. Informar Equipe não composta.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idUnidade">DELIQ</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta<b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idUnidade">DELIQ</span></li>
+											<li>DESUP</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade">
+											<li><span class="selected" by="id:idSubUnidade">Todos</span></li>
+											<li>GLIQ1</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade2"><li>Todos</li></ul>
+										<ul class="options" by="id:idSubUnidade3"><li>Todos</li></ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+                                        	<li>Todos</li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li>ROBERTO SANTOS ALENCAR</li>
+                                    	</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li>Todos</li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li>Baixa</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO/COSUP-01</td>
+									<td colspan="4">CHEFE COSUP-01</td>
+									<td colspan="2">Alta</td>
+								</tr>
+
+								<tr>
+                                	<td colspan="2">BANCO FORD S.A.</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Média</td>
+								</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">GOLDMAN SACHS</a></td>
+									<td colspan="2">DELIQ/GLIQ1</td>
+									<td colspan="4">CHEFE GLIQ1</td>
+									<td colspan="2">Muito alta</td>
+								</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Baixa</td>
+								</tr>
+
+								<tr>
+                                	<td colspan="2">NATIXIS BRASIL S/A</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">SIFI</td>
+                            	</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br><br><input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C010 </b><br><br>Acessar a funcionalidade Filtrar. Informar Equipe composta</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idUnidade">DELIQ</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idSubUnidade">GLIQ1</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idSubUnidade2">GTBHO</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idSubUnidade3">COSUP-01</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta<b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idUnidade">DELIQ</span></li>
+											<li>DESUP</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idSubUnidade">GLIQ1</span></li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade2">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idSubUnidade2">GTBHO</span></li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade3">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idSubUnidade3">COSUP-01</span></li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+                                        	<li>Todos</li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li>ROBERTO SANTOS ALENCAR</li>
+                                    	</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li>Todos</li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li>Baixa</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO/COSUP-01</td>
+									<td colspan="4">CHEFE COSUP-01</td>
+									<td colspan="2">Alta</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br> <br> <input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C011 </b><br><br>Acessar a funcionalidade Filtrar. Informar Supervisor titular</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Seleciona o Supervisor titular: <span class="select" by="id:idSupervisor">ROBERTO SANTOS ALENCAR</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta<b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+											<li><span class="selected" by="id:idUnidade">Todos</span></li>
+											<li>DELIQ</li>
+											<li>DESUP</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade"><li>Todos</li></ul>
+										<ul class="options" by="id:idSubUnidade2"><li>Todos</li></ul>
+										<ul class="options" by="id:idSubUnidade3"><li>Todos</li></ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+                                        	<li>Todos</li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li><span class="selected" by="id:idSupervisor">ROBERTO SANTOS ALENCAR</span></li>
+                                    	</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li>Todos</li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li>Baixa</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+                                	<td colspan="2">BANCO FORD S.A.</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Média</td>
+								</tr>
+
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Baixa</td>
+								</tr>
+
+								<tr>
+                                	<td colspan="2">NATIXIS BRASIL S/A</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">SIFI</td>
+                            	</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br><br><input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C012 </b><br><br>Acessar a funcionalidade Filtrar. Informar Prioridade</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idUnidade">DELIQ</span></li>
+						<li>Seleciona a prioridade: <span class="select" by="id:idPrioridade">Baixa</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta<b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+											<li>Todos</li>
+											<li><span class="selected" by="id:idUnidade">DELIQ</span></li>
+											<li>DESUP</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade">
+											<li><span class="selected" by="id:idSubUnidade">Todos</span></li>
+											<li>GLIQ1</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade2"><li>Todos</li></ul>
+										<ul class="options" by="id:idSubUnidade3"><li>Todos</li></ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+                                        	<li>Todos</li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li>ROBERTO SANTOS ALENCAR</li>
+                                    	</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li>Todos</li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li><span class="selected" by="id:idPrioridade">Baixa</span></li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+						<table>
+							<thead>
+								<tr>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+									<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+									<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+									<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+									<td colspan="2">Baixa</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br><br><input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C013 </b><br><br>Acessar a funcionalidade 'Limpar Filtro'</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Digite parte do nome da ES: <span class="type" by="id:idParteNomeES">ABN</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idUnidade">DELIQ</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idSubUnidade">GLIQ1</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idSubUnidade2">GTBHO</span></li>
+						<li>Seleciona o Supervisor titular: <span class="select" by="id:idSupervisor">ROBERTO SANTOS ALENCAR</span></li>
+						<li>Seleciona a prioridade: <span class="select" by="id:idPrioridade">Baixa</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttLimparFiltro">Limpar Filtro</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Painel de consulta<b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0401]</b></span></li>
+					</ul>
+
+					<span class="compareTable" by="xpath://table[@id='TabelaParametroConsulta']">
+						<table>
+							<thead>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Universo supervisionável</b></th></tr>
+								<tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Filtro</b></th></tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Parte do nome da ES</b></td>
+									<td colspan="8"><input type="text" style="width: 180px; height: 27px" value=""/></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Equipe</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idUnidade">
+											<li>Todos</li>
+											<li>DELIQ</li>
+											<li><span class="selected" by="id:idUnidade">DESUP</span></li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade">
+											<li><span class="selected" by="id:idSubUnidade">Todos</span></li>
+											<li>GBPM1</li>
+										</ul>
+
+										<ul class="options" by="id:idSubUnidade2"><li><span class="selected" by="id:idSubUnidade2">Todos</span></li></ul>
+										<ul class="options" by="id:idSubUnidade3"><li><span class="selected" by="id:idSubUnidade3">Todos</span></li></ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Supervisor titular</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idSupervisor">
+                                        	<li><span class="selected" by="id:idSupervisor">Todos</span></li>
+                                        	<li>CHEFE COSUP-01</li>
+                                        	<li>CHEFE GLIQ1</li>
+                                        	<li>CHRISTIANO ATHAÍDE DROGBA</li>
+                                        	<li>ROBERTO SANTOS ALENCAR</li>
+                                    	</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"><b>Prioridade</b></td>
+
+									<td colspan="8">
+										<ul class="options" by="id:idPrioridade">
+											<li><span class="selected" by="id:idPrioridade">Todos</span></li>
+											<li>SIFI</li>
+											<li>Muito alta</li>
+											<li>Alta</li>
+											<li>Média</li>
+											<li>Baixa</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="2" style="background-color: #4a73a2"></td>
+
+									<td>
+										<input type="submit" title="Filtrar" value="Filtrar" name="painelParametros:bttFiltrar" id="bttFiltrar">
+										<input name="painelParametros:bttLimparFiltro" type="button" id="bttLimparFiltro" title="Limpar filtros" value="Limpar filtros">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idTituloEsAtivas']">
+						<table>
+							<thead><tr><th colspan="10" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>ESs ativas</b></th></tr></thead>
+						</table>
+					</span>
+
+					<span class="compareTable" by="xpath://table[@id='idDadosEsAtivas']">
+                    	<table>
+                        	<thead>
+                            	<tr>
+                                	<td colspan="2" style="color: black; background-color: #4a73a2"><b>ES <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                                	<td colspan="2" style="color: black; background-color: #4a73a2"><b>Equipe <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                                	<td colspan="4" style="color: black; background-color: #4a73a2"><b>Supervisor titular <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                                	<td colspan="2" style="color: black; background-color: #4a73a2"><b>Prioridade <input type="image" src="http://www.bcb.gov.br/img/ordenacao/ativarA.png"></b></td>
+                            	</tr>
+                        	</thead>
+
+                        	<tbody>
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ABN AMRO</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO/COSUP-01</td>
+                                	<td colspan="4">CHEFE COSUP-01</td>
+                                	<td colspan="2">Alta</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BANCO FIBRA S.A.</a></td>
+                                	<td colspan="2">DESUP/GBPM1/GTSP4</td>
+                                	<td colspan="4">CHRISTIANO ATHAÍDE DROGBA</td>
+                                	<td colspan="2">Baixa</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2">BANCO FORD S.A.</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">BB</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Média</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">GOLDMAN SACHS</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1</td>
+                                	<td colspan="4">CHEFE GLIQ1</td>
+                                	<td colspan="2">Muito alta</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2"><a href="sisaps/painelsupervisor/perfilderisco" title="Link para o perfil de risco">ITAU</a></td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">Baixa</td>
+                            	</tr>
+
+                            	<tr>
+                                	<td colspan="2">NATIXIS BRASIL S/A</td>
+                                	<td colspan="2">DELIQ/GLIQ1/GTBHO</td>
+                                	<td colspan="4">ROBERTO SANTOS ALENCAR</td>
+                                	<td colspan="2">SIFI</td>
+                            	</tr>
+                        	</tbody>
+                    	</table>
+            		</span>
+
+					<br><br>
+
+					<ul>
+						<li>O botão de 'Filtrar':<br><br><input class="present" by="conter:" type="button" value="Filtrar"/></li><br><br>
+						<li>O botão de 'Limpar Filtro':<br><br><input class="present" by="conter:" type="button" value="Limpar filtro"/></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C014 </b><br><br>Acessar Link de ciclo da ES ativa</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados daS ESs se encontram<a href="../painelconsulta/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque.html" class="include">aqui</a><br><br>
+                	Regra de perfil de acesso para usuário que possui ES sob sua responsabilidade <a href="../painelconsulta/dadoque/TestAPSFW0401_Painel_de_Consulta_dadoque2.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>Logar como: <sisliq106>deliq.sisliq106</sisliq106></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+						<li>Seleciona a localização da equipe: <span class="select" by="id:idUnidade">DELIQ</span></li>
+						<li>Clica no botão: <span class="clickon" by="id:bttFiltrar">Filtrar</span></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil6">BB</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

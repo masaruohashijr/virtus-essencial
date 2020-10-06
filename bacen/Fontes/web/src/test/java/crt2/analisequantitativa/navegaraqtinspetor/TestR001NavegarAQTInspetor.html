@@ -1,0 +1,717 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Navegar análise economico-financeira; para o perfil de risco vigente, do ciclo atual com estado 'Em andamento'</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória Navegar análise economico-financeira (perfil inspetor)</h1>
+
+		<span id="index"></span>
+	
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>20/01/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+    
+    	<h2>Regras aplicáveis</h2> 
+
+		<blockquote>Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#navegarAnaliseEconomicoFinanceiraInspetor">aqui</a>.</blockquote>
+    
+    	<h2>Premissas iniciais</h2>
+
+		<ul>
+			<li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			 	<li><td>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq113"</span></strong></td></li>
+			
+        </ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenário para <a href="indexNegocio.html#navegarAQTEmAndamento">verificar tela de navegação para ciclo no estado 'Em andamento'</a>.</blockquote>
+
+		<table class="scenario" >
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Designado' e 'Em edição', com designação para o usuário logado.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C001-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+			    				<table>
+									<tr>
+										<th style="width: 283px">Entradas</th>
+										<th style="width: 166px; background-color: green">Saída</th>
+									</tr>
+			                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>1</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td>Editar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Designado</td>
+				                    	<td>*A</td>
+				                    	<td>Editar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>2</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td>Editar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Em edição</td>
+				                    	<td>*A</td>
+				                    	<td>Editar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Análise delegada' e 'Em análise', com delegação para o usuário logado.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C002-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+			    				<table>
+									<tr>
+										<th style="width: 326px">Entradas</th>
+										<th style="width: 166px; background-color: green">Saída</th>
+									</tr>
+			                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>1</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td>Análise de ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Análise delegada</td>
+				                    	<td>*A</td>
+				                    	<td>Análise de ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>2</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td>Análise de ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Em análise</td>
+				                    	<td>*A</td>
+				                    	<td>Análise de ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Designado' e 'Em edição', sem nota vigente e com designação para o outro usuário.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C003-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 283px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>1</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Designado</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>2</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Em edição</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT004]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Análise delegada' e 'Em análise', sem nota vigente e com delegação para o outro usuário.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C004-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 326px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>1</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Análise delegada</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>2</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Em análise</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT005]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Preenchido' e 'Analisado', sem nota vigente.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C005-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 289px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>1</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Preenchido</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>2</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Analisado</td>
+				                    	<td>1</td>
+				                    	<td></td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos" >
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT006]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Designado' e 'Em edição', com nota vigente e com designação para outro usuário.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C006-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 283px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>1</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>7</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Designado</td>
+				                    	<td>*A</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>2</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>8</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Em edição</td>
+				                    	<td>*A</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT007]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Análise delegada' e 'Em análise', com nota vigente e com delegação para outro usuário.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C007-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 326px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>1</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>7</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Análise delegada</td>
+				                    	<td>*A</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>2</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>8</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Em análise</td>
+				                    	<td>*A</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT008]</b> - Verificar qual a tela de destino para ANEFs cujos rascunhos estejam nos estados 'Preenchido' e 'Analisado' com nota vigente.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C008-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 288px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>1</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>7</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Preenchido</td>
+				                    	<td>*A</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>5</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Concluído</td>
+				                    	<td>2</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>8</td>
+				                    	<td>Sim</td>
+				                    	<td title="Perfil vigente que não tem nota">Analisado</td>
+				                    	<td>2</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="scenario" >
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT009]</b> - Verificar qual a tela de destino para ANEFs que estejam nos estados 'Previsto' e 'Concluído' de perfil anterior.</td></tr>
+
+						<tr><th>Dados pré-existentes</th></tr>
+
+						<tr>
+							<td>
+								<banco/>
+
+								Os dados encontram-se <a href="TestR001NavegarAQTInspetor-C009-DadoQue.html" class="include">aqui</a>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+		    				<td>
+							<table>
+								<tr>
+									<th style="width: 279px">Entradas</th>
+									<th style="width: 166px; background-color: green">Saída</th>
+								</tr>
+		                	</table>
+		    					<table class="column">
+				                	<tr>
+				                    	<th>ANEF</th>
+				                    	<th>Perfil vigente</th>
+				                    	<th>Estado <span style="visibility: hidden">?</span></th>
+				                    	<th>Nota <span style="visibility: hidden">?</span></th>
+				                    	<th style="background-color: green">Qual a tela de destino?</th>
+				                	</tr>
+
+				                	<tr>
+				                    	<td>1</td>
+				                    	<td>Não</td>
+				                    	<td title="Perfil vigente que não tem nota">Previsto</td>
+				                    	<td>*A</td>
+				                    	<td></td>
+				                	</tr>
+				                	<tr>
+				                    	<td>4</td>
+				                    	<td>Não</td>
+				                    	<td title="Perfil vigente que tem nota">Concluído</td>
+				                    	<td>1</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+				                	<tr>
+				                    	<td>7</td>
+				                    	<td>Não</td>
+				                    	<td title="Perfil vigente que tem nota">Concluído</td>
+				                    	<td>3</td>
+				                    	<td>Detalhar ANEF</td>
+				                	</tr>
+			                	</table>
+		    				</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

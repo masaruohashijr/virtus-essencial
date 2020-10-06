@@ -1,0 +1,268 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R007 - Detalhar ARC</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória: "Detalhar ARC"</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>18/06/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>09/07/2015</td>
+			<td>David Nascimento</td>
+			<td>Ajuste do cenário C001 e adição do cenário C002 a fim de contemplar a exibição correta das informações de
+				usuário e data/hora.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/index.html#detalharARC">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<blockquote>
+		<li>A lista de servidores foi <a href="TestR001DetalharARC-DadoQue-MOCK_BCPESSOA.html" class="include">carregada.</a>
+		</li>
+	</blockquote>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarInformacoesTendenciaARC">validar que campos exibir e seus valores
+			para o grupo 'Tendência do ARC'</a>.
+	</blockquote>
+
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[C001] - </b>Verificar a seção para ARC cujo rascunho encontra-se no status:
+							'Preenchido' (perfil: gerente).</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							
+							<banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestR001DetalharARC-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="10000">ABN AMRO</span></li>
+								<li>Clicar no ARC de 'Risco': <span class="clickon" by="id:linkRisco52" sleep="15000"><b>Crédito</b></span>
+									pertencente a 'Atividade B'
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td><span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+								<table>
+									<thead>
+										<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Tendência -
+												Risco de Crédito</b></th>
+									</thead>
+
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td>Tendência vigente</td>
+
+											<td>
+												<table>
+													<tbody>
+														<tr>
+															<td><label>Atualizado por TESTESLQB13 MASSA DE TESTE em 13/12/2014 00:00h.</label></td>
+														</tr>
+														<tr>
+															<td><b><label>Estabilidade</label></b></td>
+														</tr>
+														<tr>
+															<td><div>Justificativa da tendência de Estabilidade</div></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3">
+											<td>Tendência inspetor</td>
+
+											<td>
+												<table>
+													<tbody>
+														<tr>
+															<td><label>Atualizado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+														</tr>
+														<tr>
+															<td><b><label id="idTipoTendenciaInspetor2d8">Indefinida</label></b></td>
+														</tr>
+														<tr>
+															<td><div>Justificativa para tendência indefinida</div></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+						</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[C002] - </b>Verificar a seção para ARC cujo rascunho encontra-se no status:
+							'Preenchido' (tendência vigente do supervisor).</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+			
+							<banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestR007DetalharARC-DadoQue-C002.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+									<li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="10000">ABN AMRO</span></li>
+								<li>Clicar no ARC de 'Risco': <span class="clickon" by="id:linkRisco52" sleep="15000"><b>Crédito</b></span>
+									pertencente a 'Atividade B'
+								</li>
+							</ul>
+						</td>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td><span class="compareTable" by="xpath://table[@id='tDadosTendenciaRiscoMercado']">
+								<table>
+									<thead>
+										<th colspan="8" class="aesquerda" style="width: 482px; background-color: #4a73a2"><b>Tendência -
+												Risco de Crédito</b></th>
+									</thead>
+
+									<tbody>
+										<tr class="fundoPadraoAClaro3">
+											<td>Tendência vigente</td>
+
+											<td>
+												<table>
+													<tbody>
+														<tr>
+															<td><label>Atualizado por Supervidor 114 em 14/12/2014 00:00h.</label></td>
+														</tr>
+														<tr>
+															<td><b><label>Melhora</label></b></td>
+														</tr>
+														<tr>
+															<td><div>Justificativa da tendência de Melhora</div></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+
+											<td></td>
+										</tr>
+
+										<tr class="fundoPadraoAClaro3">
+											<td>Tendência inspetor</td>
+
+											<td>
+												<table>
+													<tbody>
+														<tr>
+															<td><label>Atualizado por TESTESLQB13 MASSA DE TESTE em 17/06/2015 00:00h.</label></td>
+														</tr>
+														<tr>
+															<td><b><label id="idTipoTendenciaInspetor2d8">Indefinida</label></b></td>
+														</tr>
+														<tr>
+															<td><div>Justificativa para tendência indefinida</div></td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+						</span></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+
+</body>
+</html>

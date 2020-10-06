@@ -1,0 +1,202 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R001 - Listar ANEFs aguardando revisão no painel do supervisor</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Listar ANEFs aguardando revisão no painel do supervisor</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>14/01/2015</td>
+			<td>David Nascimento</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#listarSinteseAQTRevisaoSupervisor">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+		<li><banco />Os dados encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/listaraqtsintese/TestR001ListarAQTRevisaoSupervisor_dadoque_c001.html"
+			class="include">aqui</a>.</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexWeb.html#verificarEstadoInicial"> validar estado inicial da tela</a>.
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001] - </b>Supervisor possui ANEFs aguardando revisão</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='tSintesesAQTRevisao']">
+					<table id="tSintesesAQTRevisao" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr style="width: 90%; margin: auto;">
+								<td>
+									<div align="center" style="width: 100%; margin: auto;" id="painelSintesesAQTRevisaof5">
+										<div class="centralizado">
+											<span id="tabelaf6">
+												<div align="center">
+													<table id="idTituloSinteseAQT" class="tabela fundoPadraoAEscuro2"
+														style="width: 100%; font-weight: bold; border-bottom: none;">
+														<tbody>
+															<tr>
+																<th><span id="titulof7">Sínteses de ANEF para revisão</span></th>
+															</tr>
+														</tbody>
+													</table>
+													<table id="idDadosSintesesAQT" class="tabela" style="width: 100%;">
+														<thead>
+															<tr>
+																<th nowrap="" id="ordenar_ciclo.entidadeSupervisionavel.nome" class="wicket_orderUp crescente"
+																	style="width: 35%">
+																	<table href="#" id="idOrdenarCicloentidadeSupervisionavelnome"
+																		onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./supervisor?3-1.ILinkListener-formulario-painelSintesesAQTRevisao-tabela-tabelaDados-dados-cabecalhos-0-celula-orderByLink'; } ;return false">
+																		<tbody>
+																			<tr>
+																				<th width="100%">
+																					<div>
+																						<span id="valorfb"> ES </span>
+																					</div>
+																				</th>
+																				<th><img id="ordenarfc" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																				</th>
+																			</tr>
+																		</tbody>
+																	</table>
+																</th>
+																<th nowrap="" id="ordenar_parametroAQT.descricao" class="wicket_orderNone fundoPadraoAEscuro4"
+																	style="width: 25%">
+																	<table href="#" id="idOrdenarParametroAQTdescricao"
+																		onclick="var win = this.ownerDocument.defaultView || this.ownerDocument.parentWindow; if (win == window) { window.location.href='./supervisor?3-1.ILinkListener-formulario-painelSintesesAQTRevisao-tabela-tabelaDados-dados-cabecalhos-1-celula-orderByLink'; } ;return false">
+																		<tbody>
+																			<tr>
+																				<th width="100%">
+																					<div>
+																						<span id="valorff"> Síntese </span>
+																					</div>
+																				</th>
+																				<th><img id="ordenar100" src="../../../../../../../web/src/test/java/crt2/crescA.png">
+																				</th>
+																			</tr>
+																		</tbody>
+																	</table>
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr class="fundoPadraoAClaro2" id="id1101">
+																<td id="id1102"><span id="cell103"> ABN AMRO </span></td>
+																<td id="id2104"><span id="cell105"> <a
+																		href="./supervisor?3-1.ILinkListener-formulario-painelSintesesAQTRevisao-tabela-tabelaDados-dados-linhas-1-cells-2-cell-link"
+																		align="center" id="linkSintese_ParametroResultados_ESABN AMRO"> Resultados </a>
+																</span></td>
+															</tr>
+															<tr class="fundoPadraoAClaro3" id="id2106">
+																<td id="id1107"><span id="cell108"> ABN AMRO </span></td>
+																<td id="id2109"><span id="cell10a"> <a
+																		href="./supervisor?3-1.ILinkListener-formulario-painelSintesesAQTRevisao-tabela-tabelaDados-dados-linhas-2-cells-2-cell-link"
+																		align="center" id="linkSintese_ParametroLiquidez_ESABN AMRO"> Liquidez </a>
+																</span></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</span>
+										</div>
+										<br>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <br></td>
+		</tr>
+
+
+
+		<tr class="scenario">
+			<td class='title'><b>[C002] - </b>Supervisor não possui ANEFs aguardando revisão</td>
+			<td>
+				<ul>
+					<li>O usuário logado <sisliq115>é "deliq.sisliq115"</sisliq115></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+				</ul>
+			</td>
+			<td><span class="compareTable dados" by="xpath://table[@id='tSintesesAQTRevisao']">
+					<table id="tSintesesAQTRevisao" cellpadding="0" cellspacing="0" style="width: 90%">
+						<tbody>
+							<tr style="width: 90%; margin: auto;">
+								<td>
+									<div align="center" style="width: 100%; margin: auto;" id="painelSintesesAQTRevisao159">
+										<div class="centralizado">
+											<span id="tabela15a">
+												<div align="center">
+													<table id="idTituloSinteseAQT" class="tabela fundoPadraoAEscuro2"
+														style="width: 100%; font-weight: bold; border-bottom: none;">
+														<tbody>
+															<tr>
+																<th><span id="titulo15b">Sínteses de ANEF para revisão</span></th>
+															</tr>
+														</tbody>
+													</table>
+													<table id="idDadosSintesesAQT" class="tabela" style="width: 100%;">
+														<tbody>
+															<tr id="linha15d" class="fundoPadraoAClaro3">
+																<td id="mensagem15e" style="padding: 4px">Nenhum registro que satisfaça os critérios de pesquisa
+																	foi encontrado.</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</span>
+										</div>
+										<br>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</span> <br> <br></td>
+		</tr>
+
+
+	</table>
+</body>
+</html>

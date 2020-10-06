@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html xmlns:wicket="http://wicket.apache.org/">
+	<body>
+		<wicket:extend>
+		 	<input type="hidden" wicket:id="loadScriptAlerta"/>
+
+			<form wicket:id="formulario">
+				<input wicket:id="idFieldUploadAnexo" style="visibility: hidden;" type="file"/>
+
+				<div wicket:id="resumoCicloPanel" style="width: 100%; margin: auto;"></div>
+				<br>
+
+				<div wicket:id="ajusteCorecPanel" style="width: 100%; margin: auto;"></div>
+				<br><br>
+
+				<div wicket:id="ajusteArcPanel" style="width: 100%; margin: auto;"></div>
+				<br><br>
+
+				<div wicket:id="ajusteAnefPanel" style="width: 100%; margin: auto;"></div>
+				<br><br>
+
+				<div wicket:id="outrasDeliberacoesPanel" style="width: 100%; margin: auto;"></div>
+				<br><br>
+
+				<div wicket:id="participantesComitePanel" style="width: 100%; margin: auto;"></div>
+				<br><br>
+
+				<div wicket:id="idPainelApresentacao" style="width: 100%; margin: auto;"></div>
+				<br>
+
+				<div class="centralizado">
+					<table>
+						<tr>
+							<td><input type="button" class="botao" style="width: 280px" id="bttAlterarStatusCiclo" wicket:id="bttAlterarStatusCiclo" value="Retornar ciclo para estado &quot;Em Andamento&quot;"/></td>
+							<td><input type="button" class="botao" style="width: 220px" id="bttEncerrarCorec" wicket:id="bttEncerrarCorec" value="Encerrar Corec e iniciar novo ciclo"/></td>
+						</tr>
+					</table>
+				</div>
+
+				<div align="center">
+		            <input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar" style="visibility: visible;" title="Voltar para a p&aacute;gina anterior" value="Voltar">
+		            <br>
+		            <input name="bttVoltarSemSalvar" type="button" class="botao" id="bttVoltarSemSalvar" style="visibility: hidden; width: 120px; background-color: red; color: white;" wicket:id="bttVoltarSemSalvar" title="Voltar para a p&aacute;gina anterior" value="Voltar sem salvar">
+		        </div>
+
+				<br><br>
+			</form>
+		</wicket:extend>
+	</body>
+</html>

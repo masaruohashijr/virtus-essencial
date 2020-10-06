@@ -1,0 +1,60 @@
+<wicket:panel>
+	<table width="100%" id="TabelaParametroConsulta" cellspacing="0" cellpadding="3" >
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th colspan="2" class="thform" style="text-align: left; border-bottom: 0px;">Agenda de Corecs</th>
+			</tr>
+			<tr class="fundoPadraoAEscuro3">
+				<th colspan="2" class="thform" style="text-align: left; border-bottom: 0px;">Filtro</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+              <tr wicket:id="wmcExibirData">
+                  <td class="nomeCampo" style="width: 35%;">Corec </td>
+                  <td style="">
+                   <input name="idDataCorecPrevistoInicio" type="text" id="idDataCorecPrevistoInicio"  wicket:id="idDataCorecPrevistoInicio"
+                       title="Informe a data do início do ciclo" size="11" maxlength="10" onblur="" value="" onkeyup="" onkeypress="" /> 
+                       <label>a</label>
+                   <input name="idDataCorecPrevistoFim" type="text" id="idDataCorecPrevistoFim"  wicket:id="idDataCorecPrevistoFim"
+                       title="Informe a data do início do ciclo" size="11" maxlength="10" onblur="" value="" onkeyup="" onkeypress="" />
+                 </td>
+             </tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Parte do nome da ES</td>
+				<td style=""><input type="text" maxlength="200" style="width: 404px;" wicket:id="idParteNomeES" /></td>
+			</tr>
+
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Equipe</td>
+				<td style=""><select id="idUnidade" wicket:id="idUnidade">&nbsp;
+				</select> <select id="idSubUnidade" wicket:id="idSubUnidade">&nbsp;
+				</select> <select id="idSubUnidade2" wicket:id="idSubUnidade2">&nbsp;
+				</select> <select id="idSubUnidade3" wicket:id="idSubUnidade3">&nbsp;
+				</select></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Supervisor titular</td>
+				<td style=""><select id="idSupervisor" wicket:id="idSupervisor">&nbsp;
+				</select></td>
+			</tr>
+
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Prioridade</td>
+				<td style=""><select id="idPrioridade" wicket:id="idPrioridade"></select></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;"></td>
+				<td><input type="submit" class="botao" title="Filtrar" wicket:id="bttFiltrar" value="Filtrar">&nbsp;</input><input
+					name="bttLimparFiltro" class="botao" style="width: 100px;" type="button" id="bttLimparFiltro" wicket:id="bttLimparFiltro" title="Limpar filtros"
+					value="Limpar filtros">&nbsp;</input></td>
+			</tr>
+
+		</tbody>
+	</table>
+</wicket:panel>

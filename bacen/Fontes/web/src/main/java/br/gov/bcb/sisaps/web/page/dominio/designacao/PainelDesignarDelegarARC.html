@@ -1,0 +1,39 @@
+<wicket:panel>
+    <table id="tPainelServidores" cellspacing="0" cellpadding="3" style="width: 90%" class="tabela">
+        <thead>
+	        <tr class="fundoPadraoAEscuro3">
+	            <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">
+	               <span wicket:id="titulo">(Nova)Designação/Delegação</span>
+	            </th>
+	        </tr>
+        </thead>
+        <tbody>
+            <tr class="aesquerda">
+                <td class="nomeCampo" style="width: 25%;">Servidores da equipe</td>
+                <td style=""><select id="idServidorEquipe" wicket:id="idServidorEquipe"></select></td>
+            </tr>
+            <tr class="aesquerda">
+                <td class="nomeCampo">Outros servidores</td>
+                <td style=""><select id="idUnidade" wicket:id="idUnidade"></select>
+                    <select id="idServidorUnidadeSelecionada"  wicket:id="idServidorUnidadeSelecionada"></select>
+                </td>
+            </tr>
+            <wicket:container wicket:id="designacao">
+	            <tr class="aesquerda">
+	                <td class="nomeCampo"></td>
+	                <td style="">
+	                    <input type="submit" class="botao" title="Designar" wicket:id="bttDesignar" value="Designar">&nbsp;</input>
+	                </td>
+	            </tr>
+            </wicket:container>
+            <wicket:container wicket:id="delegacao">
+                <tr class="aesquerda">
+                    <td class="nomeCampo"></td>
+                    <td style="">
+                        <input type="submit" class="botao" title="Delegar" wicket:id="bttDelegar" value="Delegar">&nbsp;</input>
+                    </td>
+                </tr>
+            </wicket:container>
+        </tbody>
+    </table>
+</wicket:panel>

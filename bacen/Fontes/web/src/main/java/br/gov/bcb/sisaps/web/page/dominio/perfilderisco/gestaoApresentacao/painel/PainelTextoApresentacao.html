@@ -1,0 +1,17 @@
+<wicket:panel>
+	<wicket:extend>
+		<tr class="fundoPadraoAClaro3">
+		    <td>
+                <textarea wicket:id="idTexto" contentEditable="true"></textarea>
+			</td>	
+		</tr>
+		<tr class="fundoPadraoAClaro3">
+		    <td style="text-align: right;">
+                   <label wicket:id="idAlertaDadosNaoSalvos" style="color: red; font-size:7pt; margin:auto; text-align:right; visibility: hidden;">
+                       Atenção: informações não salvas.
+                   </label>
+				<input style="width: 150px;" type="submit" class="botao" value="Salvar informações" wicket:id="bttSalvarInformacoes" />	
+			</td>	
+		</tr>
+	</wicket:extend>
+</wicket:panel>

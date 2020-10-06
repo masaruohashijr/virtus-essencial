@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Salvar outras deliberações do comitê</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Salvar outras deliberações do comitê'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>27/08/2015</td>
+				<td>Marília Vasconcelos</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#outrasDeliberacoes">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq104"</span>'</strong>.</li>
+ 			<li><dataHoraAtual valor="26/06/2015 00:00:00">Data/hora atual do sistema: 26/06/2015 00:00:00</dataHoraAtual></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote>Cenários para <a href="indexNegocio.html#outrasDeliberacoes">Validar cenário ao salvar outras deliberações do comitê'</a>.<br/></blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<td>
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Atualizar 'Outras deliberações' quando existe registro de ajustes do comitê para o ciclo.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+					    	<td>
+					    		<banco/> 
+
+								Os dados encontram-se <a href="TestR001C001OutrasDeliberacoesDoComite-DadoQue.html" class="include">aqui</a>.
+					    	</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr><th colspan="2">Entrada</th></tr>
+
+									<tr>
+										<th>Ciclo</th>
+						    			<th>Outras Deliberações</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+										<td class="set" name="outrasDeliberacoes" converter="String">Texto Outras Deliberações do Comitê.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<ul>
+									<span class="execute" value="$THIS.outrasDeliberacoesDoComite(idCiclo, outrasDeliberacoes)">
+									<li>Os dados alterados estão <a href="TestR001C001OutrasDeliberacoesDoComite-PorFim.html" class="include">aqui</a>.</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+		<table class="exemplos">
+			<tr>
+				<td>
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Criar um novo registro de ajustes do comitê e salvar as outras deliberações.</td></tr>
+						<tr><th>Dado que</th></tr>
+
+						<tr>
+					    	<td>
+					    		<banco/> 
+
+								Os dados encontram-se <a href="TestR001C002OutrasDeliberacoesDoComite-DadoQue.html" class="include">aqui</a>.
+					    	</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr><th colspan="3">Entrada</th></tr>
+
+									<tr>
+										<th>Ciclo</th>
+										<th>Outras Deliberações</th>
+									</tr>
+
+									<tr>
+										<td class="set" name="idCiclo" converter="Integer">1</td>
+										<td class="set" name="outrasDeliberacoes" converter="String">Texto Outras Deliberações do Comitê.</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<pausa>
+
+						<tr>
+							<td>
+								<ul>
+									<span class="execute" value="$THIS.outrasDeliberacoesDoComite(idCiclo, outrasDeliberacoes)">
+									<li>Os dados alterados estão <a href="TestR001C002OutrasDeliberacoesDoComite-PorFim.html" class="include">aqui</a>.</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

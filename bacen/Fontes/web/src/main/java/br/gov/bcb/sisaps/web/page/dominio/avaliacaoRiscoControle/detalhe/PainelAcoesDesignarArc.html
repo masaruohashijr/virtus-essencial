@@ -1,0 +1,45 @@
+<wicket:panel>
+
+	<table id="tDadosArcDesignar" cellspacing="0" cellpadding="3" style="width: 90%" >
+        <thead>
+	        <tr class="fundoPadraoAEscuro3">
+	            <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2" wicket:id="idNovaDesignacao">Nova designação</th>
+	        </tr>
+        </thead>
+        <tbody>
+            <tr class="aesquerda">
+                <td class="nomeCampo" style="width: 25%;">Servidores da equipe</td>
+                <td style=""><select id="idServidorEquipe" wicket:id="idServidorEquipe"></select></td>
+            </tr>
+            <tr class="aesquerda">
+                <td class="nomeCampo"  style="width: 25%;">Outros servidores</td>
+                <td style=""><select id="idUnidade" wicket:id="idUnidade"></select>
+                    <select id="idServidorUnidadeSelecionada"  wicket:id="idServidorUnidadeSelecionada"></select>
+                </td>
+            </tr>
+            <tr class="aesquerda">
+                <td class="nomeCampo"  style="width: 25%;"></td>
+                <td style=""><input name="bttDesignar" type="submit" class="botao"
+					id="bttDesignar" wicket:id="bttDesignar"
+					title="Designar" value="Designar">&nbsp;</input> <label wicket:id="idMsg" style="color: red; font-size: 7pt; margin: auto; text-align: right; " ></label>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+  <!--   <table id="tDadosArcDesignar" cellspacing="0" cellpadding="3" style="width: 90%" wicket:id="wmcExibirExcluirDesignacao">
+       <tr class="fundoPadraoAEscuro3">
+	            <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Excluir designação</th>
+	        </tr>
+	        
+	          <tr class="aesquerda">
+                <td class="nomeCampo"  style="width: 25%;"></td>
+                <td style=""><input name="bttExcluir" wicket:id="bttExcluir" type="submit" class="botao" id="bttExcluir"
+					title="Excluir" value="Excluir designação" style="width: 120px">&nbsp;</input> 
+					<label wicket:id="idMsgExcluir" style="color: red; font-size: 7pt; margin: auto; text-align: right; " ></label>
+                </td>
+            </tr>
+    </table> -->
+
+
+</wicket:panel>

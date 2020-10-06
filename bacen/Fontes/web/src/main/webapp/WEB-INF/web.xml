@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ATENCAO: Ao criar um pacote publicavel para o Websphere ou outro servidor 
+  corporativo, uma versão processada deste arquivo e incluida no WAR. Os trechos 
+  comentados que contenham a string $deployment$ sao descomentados. Portanto, 
+  nao retire esses trechos. -->
+  
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  version="2.5" metadata-complete="true">
+
+  <display-name>APS - SRC Dinâmico</display-name>
+
+  <session-config>
+    <session-timeout>120</session-timeout>
+  </session-config>
+
+  <filter>
+    <filter-name>hibernateSession</filter-name>
+    <filter-class>
+      org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    <init-param>
+      <param-name>sessionFactoryBeanName</param-name>
+      <param-value>sessionFactory</param-value>
+    </init-param>
+    <init-param>
+      <param-name>singleSession</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>hibernateSession</filter-name>
+    <servlet-name>wicket.sisaps</servlet-name>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>br.gov.bcb.sisaps.web.app.AppContextListener</listener-class>
+  </listener>
+  
+  <!-- Spring -->
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>WEB-INF/applicationContext*.xml</param-value>
+  </context-param>
+
+  <!-- Wicket -->
+
+  <servlet>
+    <servlet-name>wicket.sisaps</servlet-name>
+    <servlet-class>org.apache.wicket.protocol.http.WicketServlet</servlet-class>
+
+    <!-- ATENÇÃO: Leia o trecho comentado no inicio do arquivo -->
+    
+    <!-- $deployment$ 
+    <init-param>
+      <param-name>wicket.configuration</param-name>
+      <param-value>DEPLOYMENT</param-value>
+    </init-param>
+    $deployment$ -->
+
+    <init-param>
+      <param-name>applicationFactoryClassName</param-name>
+      <param-value>org.apache.wicket.spring.SpringWebApplicationFactory</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>wicket.sisaps</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- Segurança declarativa -->
+
+  <servlet>
+    <description>Login Servlet</description>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>br.gov.bcb.seguranca.LoginServlet</servlet-class>
+    <init-param>
+      <param-name>bacen.security.title</param-name>
+      <param-value>Login do Sistema APS-SRC</param-value>
+    </init-param>
+    <init-param>
+      <param-name>bacen.security.title_logout</param-name>
+      <param-value>Logout do Sistema APS-SRC</param-value>
+    </init-param>
+    <init-param>
+      <param-name>bacen.security.semdependencia</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/dologin</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/dologin?error=403</location>
+  </error-page>
+
+  <!-- ATENÇÃO: Leia o trecho comentado no inicio do arquivo -->
+  <security-constraint>
+    <display-name>restricao-geral</display-name>
+    <web-resource-collection>
+      <web-resource-name>Sistema APS-SRC</web-resource-name>
+      <description>Restricao de acesso aos recursos do sistema</description>
+      <url-pattern>/*</url-pattern>
+      <url-pattern>*.*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>FUNCI</role-name>
+      <role-name>SRAT001</role-name>
+      <role-name>SRAT002</role-name>
+      <role-name>SRAT003</role-name>
+      <role-name>SRAT004</role-name>
+      <role-name>SRAT005</role-name>
+      <role-name>SRAT006</role-name>
+      <role-name>SRAT007</role-name>
+      <role-name>SRAT008</role-name>
+      <role-name>SRAT009</role-name>
+      <role-name>SRAT010</role-name>
+      <role-name>SRAT011</role-name>
+      <role-name>SRAT012</role-name>
+      <role-name>SRAT013</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+  <security-constraint>
+    <display-name>irrestrito</display-name>
+    <web-resource-collection>
+      <web-resource-name>Links irrestritos</web-resource-name>
+      <description></description>
+      <url-pattern>/dologin</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>usuarios</realm-name>
+    <form-login-config>
+      <form-login-page>/dologin</form-login-page>
+      <form-error-page>/dologin?loginerror</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <description>Funcionario do Bacen</description>
+    <role-name>FUNCI</role-name>
+  </security-role>
+  <security-role>
+      <description>Supervisor</description>
+      <role-name>SRAT001</role-name>
+  </security-role>
+  <security-role>
+      <description>Gerente Executivo</description>
+      <role-name>SRAT002</role-name>
+  </security-role>
+  <security-role>
+      <description>Gerente Técnico</description>
+      <role-name>SRAT003</role-name>
+  </security-role>
+  <security-role>
+      <description>Comitê</description>
+      <role-name>SRAT004</role-name>
+  </security-role>
+  <security-role>
+      <description>Administrador</description>
+      <role-name>SRAT005</role-name>
+  </security-role>
+  <security-role>
+      <description>Analista Econômico-Financeiro</description>
+      <role-name>SRAT006</role-name>
+  </security-role>
+  <security-role>
+      <description>Revisor Econômico-Financeiro</description>
+      <role-name>SRAT007</role-name>
+  </security-role>
+  <security-role>
+      <description>Consultor de Metodologia</description>
+      <role-name>SRAT008</role-name>
+  </security-role>
+  <security-role>
+      <description>Gerente de Revisor</description>
+      <role-name>SRAT009</role-name>
+  </security-role>
+  <security-role>
+      <description>Revisor</description>
+      <role-name>SRAT010</role-name>
+  </security-role>
+  <security-role>
+      <description>Gerente de Consultor Especialista</description>
+      <role-name>SRAT011</role-name>
+  </security-role>
+  <security-role>
+      <description>Consultor Especialista</description>
+      <role-name>SRAT012</role-name>
+  </security-role>
+  <security-role>
+      <description>Inspetor</description>
+      <role-name>SRAT013</role-name>
+  </security-role>
+  
+  <!-- $deployment$
+  <resource-ref>
+    <res-ref-name>jdbc/sisaps</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+    <res-sharing-scope>Shareable</res-sharing-scope>
+  </resource-ref>
+  $deployment$ -->
+
+</web-app>

@@ -1,0 +1,46 @@
+<wicket:panel>
+ <table align="center" id="tARCs" width="90%" cellspacing="0" cellpadding="3">
+        <thead>
+            <tr class="fundoPadraoAEscuro2">
+                <th colspan="2" class="thform" style="text-align: left; border-bottom: 0px;">ARCs para Designação</th>
+            </tr>
+            <tr class="fundoPadraoAEscuro3">
+                <th colspan="2" class="thform" style="text-align: left; border-bottom: 0px;">Filtro</th>
+            </tr>
+        </thead>
+        <tbody>
+	        <tr class="fundoPadraoAClaro3">
+	            <td class="nomeCampo" style="width: 25%;">Atividade</td>
+	            <td><select id="idAtividade" wicket:id="idAtividade"></select></td>
+	        </tr>
+	        
+	       <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Grupo</td>
+                <td><select id="idGrupoRiscoControle" wicket:id="idGrupoRiscoControle"></select></td>
+            </tr>
+            
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Risco/Controle</td>
+                <td><select id="idTipoGrupoRiscoControle" wicket:id="idTipoGrupoRiscoControle"></select></td>
+            </tr>
+            
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Estado</td>
+                <td><select id="idEstadoARC" wicket:id="idEstadoARC"></select></td>
+            </tr>
+            
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">Responsável</td>
+                <td><select id="idResponsavelARC" wicket:id="idResponsavelARC"></select></td>
+            </tr>
+            
+           <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo">&nbsp;</td>
+                <td>
+                    <input name="bttFiltrar" type="submit" class="botao" id="bttFiltrar" wicket:id="bttFiltrar" value="Filtrar">&nbsp;
+                    <input name="bttLimparFiltros" style="width: 100px;" type="submit" class="botao" id="bttLimparFiltros" wicket:id="bttLimparFiltros" value="Limpar filtros">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>

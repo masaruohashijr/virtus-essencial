@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ciclos do SRC - Meu histórico</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Ciclos do SRC - Meu histórico</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="meuHistorico" class="menu">Meu histórico</a>
+ </h2>
+
+ 	<ul>
+		<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Historico/Painel/painel_historico.html">protótipo</a>.</li>
+		<li>Regras gerais:</li>
+		<ul>
+			<li>As regras de acesso e substituição definas na 'Gestão de perfil de acesso' <b>NÃO</b> devem ser consideradas. Ou seja, a funcionalidade é aberta para qualquer usuário.</li>
+			<li>As listagens de ARCs ou ANEFs históricos devem ser listados todos os ARCs/ANEFs em que o usuário logado efetuou a conclusão da edição ou a conclusão da análise, devendo ser desconsiderados os ARCs/ANEFs que foram copiados no processo de <a href="../corec/index.html#encerrarCorec">encerrar Corec e iniciar novo ciclo</a>.</li>
+			<li>As listagens de ARCs ou ANEFs históricos devem ser paginadas, considerando 10 registros por página.</li>
+			<li>Para os ARCs/ANEFs com o estado 'Concluído', que tiveram sua publicação efetuada no mesmo dia, só deve ser considerado o último registro do dia. Ou seja, caso um ARC/ANEF tinha sido publicado no dia 11/06/2015 às 10:00 e outro ARC/ANEF tenha sido publicado nesse mesmo dia, mas às 16:00, o segundo ARC/ANEF(às 16:00) é que tem que ser considerado.</li>
+			<li>Para o filtro 'Ação', os valores de seleção devem ser 'Preenchido'(conclusão da edição) e 'Analisado'(conclusão da análise).</li>
+			<li>Ao clicar no botão 'Filtrar':</li>
+			<ul>
+				<li>Os filtros devem ser considerados para a consulta e atualizar a lista de ARCs ou ANEFs, de acordo com a seção em questão.</li>
+			</ul>
+			<li>Ao clicar no botão 'Limpar filtros':</li>
+			<ul>
+				<li>Os filtros preenchidos devem ser apagados e a consulta sem os filtros refeita, atualizando a lista de ARCs ou ANEFs, de acordo com a seção em questão.</li>
+			</ul>
+			<li>Para a coluna 'Ação':</li>
+			<ul>
+				<li>Deverá ser exibido o tipo de ação que o usuário logado realizou no ARC/ANEF. Preenchido, caso o usuário efetuou a conclusão da edição do ARC/ANEF; Analisado, caso o usuário efetuou a conclusão da análise do ARC/ANEF.</li>
+			</ul>
+			<li>Para a coluna 'Versão':</li>
+			<ul>
+				<li>Caso o ARC/ANEF esteja no estado 'Concluído', deverá ser exibido a data em que foi feita a publicação do ARC/ANEF.</li>
+				<li>Senão, deverá ser exibido o estado atual do ARC/ANEF.</li>
+			</ul>
+		</ul>
+	</ul>
+	
+	<h3>    
+	    <a name="areaARCs" class="menu">Área de ARCs</a>
+    </h3>	  
+		<ul>
+			<li>Observar o descrito em '<a href="#meuHistorico">Meu histórico</a>'.</li>
+			<li>Para o filtro 'Grupo', os valores de seleção devem ser os parâmetros de grupos de riscos e controles da metodologia default.</li>
+			<li>Para o filtro 'Risco/Controle', os valores de seleção além de 'Todos' devem ser 'R' e 'C'.</li>
+			    <ul>
+					<li>Os ARCs do tipo 'Externo' só serão selecionados se a opção escolhida for 'Todos'</li>
+			    </ul>
+			<li>A ordenação default deve seguir a seguinte regra:</li>
+			<ul>
+				<li>Ordem descrecente pela coluna versão (estado atual dos ARC's não concluídos com maior prioridade em relação a data de publicação dos ARC's concluídos);</li>
+				<li>Ordem alfabética dos nomes das ES's;</li>
+    		    <li>Para ARC do tipo 'Externo':</li>
+    		        <ul>
+    		            <li>Sempre será o último a ser exibido, preenchendo em branco as colunas 'Atividade' e 'R/C'.</li>
+    		        </ul>
+    		    <li>Para os demais:</li>
+    		        <ul>
+	  				    <li>Ordem alfabética dos nomes dos parâmetros de tipo de atividade de negócio, com a atividade corporativa por último;</li>
+						<li>Ordem definida na metodologia para os parâmetros de grupo de risco e controle;</li>
+						<li>Ordem do tipo do ARC (Controle, depois Risco);</li>
+						<li>Ordem alfabética do tipo da ação (Analisado, depois Preenchido).</li>
+					</ul>	
+			</ul>
+		</ul>
+	
+		<blockquote>
+			<a href="areaarcs/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+	<h4>
+		<a name="detalharARCHistorico" class="menu">Detalhes de ARC histórico</a>
+	</h4>
+		
+		<ul>
+			<li>Ao clicar na coluna 'Versão', deverá ir para a tela 'Detalhes do ARC' conforme 
+			<a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfilderisco/requirement/ARC_navega%C3%A7%C3%A3o.xlsx">documentação</a> 
+			com as seguintes ressalvas:</li>
+			<ul>
+			    <li>Detalhar o registro do ARC indicado na listagem; e</li>
+			    <li>Não exibir da seção de 'Ações'.</li>
+			    <li>Observar as ressalvas descritas em <a href="../analisequalitativa/index.html#avaliacaoRiscoControle">avaliação de risco e controle (ARC)</a> para ARC do tipo 'Externo.</li>
+			</ul>    
+		</ul>
+		
+		<blockquote>
+			<a href="../../../../../../../web/src/test/java/crt2/meuhistorico/detalhararchistorico/indexWeb.html">Cenários de teste web</a>
+		</blockquote>
+		
+	<h3>    
+	    <a name="areaANEFs" class="menu">Área de ANEFs</a>
+    </h3>	  
+		<ul>
+			<li>Observar o descrito em '<a href="#meuHistorico">Meu histórico</a>'.</li>
+			<li>A ordenação default deve seguir a seguinte regra:</li>
+			<ul>
+				<li>Ordem descrecente pela coluna versão (estado atual dos ANEFS's não concluídos com maior prioridade em relação a data de publicação dos ANEF's concluídos);</li>
+				<li>Ordem alfabética dos nomes das ES's;</li>
+				<li>Ordem definida na metodologia para os parâmetros ANEF;</li>
+				<li>Ordem alfabética do tipo da ação (Analisado, depois Preenchido).</li>
+			</ul>
+		</ul>
+	
+		<blockquote>
+			<a href="areaanefs/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+	<h4>
+		<a name="detalharANEFHistorico" class="menu">Detalhes de ANEF histórico</a>
+	</h4>
+		
+		<ul>
+			<li>Ao clicar na coluna 'Versão', deverá ir para a tela definida em <a href="../analisequantitativa/index.html#detalharAQT">detalhar ANEF</a> com as seguintes ressalvas:</li>
+			<ul>
+			    <li>Detalhar o registro do ANEF indicado na listagem; e</li>
+			    <li>Não exibir da seção de 'Ações'.</li>
+			</ul>    
+		</ul>
+		
+		<blockquote>
+			<a href="../../../../../../../web/src/test/java/crt2/meuhistorico/detalharanefhistorico/indexWeb.html">Cenários de teste web</a>
+		</blockquote>
+ 	
+</body>
+</html>

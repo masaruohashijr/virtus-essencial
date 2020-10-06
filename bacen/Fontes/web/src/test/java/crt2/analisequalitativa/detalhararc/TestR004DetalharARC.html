@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R004 - Detalhar ARC</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../jquery.js"></script>
+        <script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória: "Detalhar ARC"</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+			    <td>1.0</td>
+			    <td>18/06/2015</td>
+			    <td>David Nascimento</td>
+			    <td>Versão inicial</td>
+		    </tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2> 
+
+		<blockquote>Para as regras da estória clique <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequalitativa/index.html#detalharARC">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+        <blockquote>
+		  <li>A lista de servidores foi <a
+			href="TestR001DetalharARC-DadoQue-MOCK_BCPESSOA.html"
+			class="include">carregada.</a></li>
+		  <banco/>
+		  <li>Os dados encontram-se <a href="TestR001DetalharARC-DadoQue.html" class="include">aqui</a>.</li>
+	   </blockquote>
+		
+        <h2>Cenários</h2>
+        
+        <blockquote>Cenários para <a href="indexWeb.html#verificarCamposElementosARC">validar que campos exibir para o grupo 'Nome do elemento'</a>.</blockquote>
+		
+		<table class="scenario"  >
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[C001] - </b>Verificar as seções para ARC cujo rascunho encontra-se no status: 'Preenchido' (perfil: gerente).</td></tr>
+
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>
+							   <ul>
+					                <li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+					                <li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+					                <li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="10000">ABN AMRO</span></li>
+					                <li>Clicar no ARC de 'Risco': <span class="clickon" by="id:linkRisco52" sleep="10000"><b>Crédito</b></span> pertencente a 'Atividade B'</li>
+                                </ul>
+							</td>
+						</tr>
+
+						<tr><th>Resultado esperado</th></tr>
+
+						<tr>
+							<td>
+								<span class="compareTable" by="xpath://table[@id='tDadosElementosArc_Risco de Inadimplência']">
+									<table>
+										<thead><tr><th colspan="4" align="left" style="width: 600px; background-color: #003d79">Risco de Inadimplência</th></tr></thead>
+
+										<tr>
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota inspetor</b></td>
+											<td>1</td>
+
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota vigente</b></td>
+											<td>1</td>
+										</tr>
+									</table>
+								</span>
+
+								<span class="compareTable" by="xpath://table[@id='tDadosElementosArc_Risco de Concentração']">
+									<table>
+										<thead><tr><th colspan="4" align="left" style="width: 600px; background-color: #003d79">Risco de Concentração</th></tr></thead>
+
+										<tr>
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota inspetor</b></td>
+											<td>2</td>
+
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota vigente</b></td>
+											<td>N/A</td>
+										</tr>
+									</table>
+								</span>
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementosArc_Risco de Ineficácia de Mitigadores']">
+									<table>
+										<thead><tr><th colspan="4" align="left" style="width: 600px; background-color: #003d79">Risco de Ineficácia de Mitigadores</th></tr></thead>
+
+										<tr>
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota inspetor</b></td>
+											<td>3</td>
+
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota vigente</b></td>
+											<td>N/A</td>
+										</tr>
+									</table>
+								</span>
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementosArc_Risco de Liquidação']">
+									<table>
+										<thead><tr><th colspan="4" align="left" style="width: 600px; background-color: #003d79">Risco de Liquidação</th></tr></thead>
+
+										<tr>
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota inspetor</b></td>
+											<td>4</td>
+
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota vigente</b></td>
+											<td>N/A</td>
+										</tr>
+									</table>
+								</span>
+								
+								<span class="compareTable" by="xpath://table[@id='tDadosElementosArc_Risco de Crédito de Contraparte - RCC']">
+									<table>
+										<thead><tr><th colspan="4" align="left" style="width: 600px; background-color: #003d79">Risco de Crédito de Contraparte - RCC</th></tr></thead>
+
+										<tr>
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota inspetor</b></td>
+											<td>N/A</td>
+
+											<td style="text-align: right; color: black; background-color: #4a73a2"><b>Nota vigente</b></td>
+											<td>N/A</td>
+										</tr>
+									</table>
+								</span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,394 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Batch de extração do perfil de atuação para o APS</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen" />
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários da estória - 'Batch de extração do perfil de atuação para o APS'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+
+		<tr>
+			<td>1.0</td>
+			<td>28/11/2016</td>
+			<td>David Nascimento</td>
+			<td>Versão inicial</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/administrador/index.html#">aqui</a>
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li><dataHoraAtual valor="28/11/2016 00:00:00">Data/hora atual do sistema: 28/11/2016 00:00:00</dataHoraAtual></li>
+	</ul>
+
+	<h2>Validar a geração do batch do perfil de atuação</h2>
+	<blockquote>
+		<a
+			href="indexNegocio.html#validarBatchPerfil">Cenários para validar a geração do batch.</a>
+	</blockquote>
+
+
+<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Validar geração do batch (para ES 'default' com perfil de risco, junto à outras ES's sem perfil de risco dentro do consolidado).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C001BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>A tabela populada encontra-se <a href="TestR001C001BatchPerfilAtuacao-PorFim.html" class="include">aqui</a>.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002]</b> - Validar geração do batch (para ES 'default' com perfil de risco, junto à outras ES's com perfil de risco dentro do consolidado).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C002BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>A tabela populada encontra-se <a href="TestR001C002BatchPerfilAtuacao-PorFim.html" class="include">aqui</a>.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003]</b> - Validar geração do batch (para ES 'não default' com perfil de risco, onde a ES 'default' possui perfil de risco dentro do consolidado).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C003BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>A base de dados não foi populada.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004]</b> - Validar geração do batch (para ES 'não default' com perfil de risco, onde as outras ES's possuem perfil de risco dentro do consolidado).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C004BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>A base de dados não foi populada.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT005]</b> - Validar geração do batch (para ES 'não default' com perfil de risco, onde somente ela possui perfil de risco dentro do consolidado).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C005BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>As tabelas populadas encontra-se <a href="TestR001C005BatchPerfilAtuacao-PorFim.html" class="include">aqui</a>.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT006]</b> - Validar geração do batch (para ES com perfil de risco sem consolidado).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C006BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>A base de dados não foi populada.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT007]</b> - Validar geração do batch (para ES com perfil de risco que não faz parte do APS).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C007BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							 <ul>
+								 <li>A base de dados não foi populada.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT008]</b> - Validar geração do batch (para ES com perfil de risco que encontra-se bloqueada no SRC).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C008BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							  <ul>
+								 <li>As tabelas populadas encontra-se <a href="TestR001C008BatchPerfilAtuacao-PorFim.html" class="include">aqui</a>.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT009]</b> - Validar geração do batch (para ESs com IDs distintos, porém com o mesmo CNPJ).</td>
+					</tr>
+					<tr>
+						<th>DadoQue</th>
+					</tr>
+					<tr>
+					    <td><banco/>Os dados encontram-se <a href="TestR001C009BatchPerfilAtuacao-DadoQue.html" class="include">aqui</a>.</td>
+					</tr>
+					<tr>
+				        <th>Ação pretendida</th>
+			       </tr>
+			       <tr>
+				        <td><span class="execute" value="$THIS.executarBatch()">Executar batch</span></td>
+			       </tr>
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+					    <td>
+							  <ul>
+								 <li>As tabelas populadas encontra-se <a href="TestR001C009BatchPerfilAtuacao-PorFim.html" class="include">aqui</a>.</li>
+							 </ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,722 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Perfil 'Administrador'</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Perfil 'Administrador'</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="painelAdministrador" class="menu">Painel 'Administrador'</a>
+ </h2>
+
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/Painel/painel_administrador.html">protótipo</a>.</li>
+			
+			<li>Regras gerais:</li>
+			   <ul>
+			   <li>Seguir as seguintes planilhas de especificação:<li>
+			   <ul>
+			       <li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/perfildeacesso/requirement/APSFW0501_Painel_do_administrador.xlsx">APSFW0501_Painel_do_administrador.xlsx</a></li>
+			   </ul>
+		      </ul>
+		</ul>
+		
+ 	<h3>
+ 	    <a name="agendaCorec" class="menu">Agenda de Corecs</a>
+ 	</h3>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoAgendaCorec/gestao_agenda_administrador.html">protótipo</a>.</li>
+			<li>Regras gerais:</li>
+			<ul>
+				<li>A aba default é 'Comitês a realizar'.</li>
+				<li>Devem ser listados 50 registros por página.</li>
+			   <li>Filtros:<li>
+			   <ul>
+			       <li>Corec/Corec previsto:</li>
+			           <ul>
+			               <li>É possível consultar digitando apenas a data inicial. (filtra comitês a partir desta data, inclusive).</li>
+			               <li>É possível consultar digitando apenas a data final. (filtra comitês até esta data, inclusive).</li>
+			               <li>É possível consultar digitando a data final e a data final. Neste caso, a data final precisa ser maior ou igual a data inicial.</li>
+			           </ul>    
+			       <li>Parte do nome da ES:</li>
+			           <ul>
+			               <li>É possível consultar a ES digitando apenas parte do seu nome.</li>
+			           </ul>    
+			       <li>Equipe:</li>
+			           <ul>
+			               <li>Deve abranger as equipes das ESs ativas(com prioridade e que pertencem ao SRC) cadastradas.</li>
+			               <li>Em todos os combos, deve ter a opção 'Todos'.</li>
+			               <li>Inicialmente, apenas o combo mais a esquerda deve exibir as opções de unidade disponíveis.</li>
+			               <li>Para cada combo que for selecionada, o combo imediatamente à direita apresentará as subunidades subordinadas.</li> 
+			           </ul>    
+			       <li>Supervisor titular:</li>
+			           <ul>
+			               <li>Deve abranger os supervisores titulares das ESs ativas cadastradas.</li>
+			               <li>Deve ter a opção 'Todos'.</li>
+			           </ul>    
+			       <li>Prioridade:</li>
+			           <ul>
+			               <li>Deve exibir as opções do 'Parâmetro prioridade' ativas da metodologia ordenados pela prioridade.</li>
+			               <li>Deve ter a opção 'Todos'.</li>
+			           </ul>    
+			   </ul>
+			   <li>Ao clicar em 'Filtrar':<li>
+			   <ul>
+			       <li>Adicionar o filtro as consultas definidas nas abas <a href="#listarComitesRealizados">comitês realizados</a> e <a href="#listarComitesARealizar">comitês a realizar</a>. </li>
+			   </ul>
+			   <li>Ao clicar em 'Limpar filtros':<li>
+			   <ul>
+			       <li>Limpar todos os campos de filtros, voltando ao estado inicial da tela definido no protótipo.</li>
+			       <li>Refazer a consulta.</li>
+			   </ul>
+		      </ul>
+				<li>Ordenação default: </li>
+			    <ul> 
+			        <li>'Corec'</li>
+			        <li>'ES'</li>
+			    </ul>    
+			</ul>
+	   </ul>		
+
+ 	<h4>
+ 	    <a name="listarComites" class="menu">Listar comitês</a>
+ 	</h4>
+
+ 	<h5>
+ 	    <a name="listarComitesRealizados" class="menu">Listar comitês realizados</a>
+ 	</h5>
+ 	   <ul>
+			<li>Observar as regras definidas em <a href="#agendaCorec">agenda de corecs</a>.</li>
+			<li>Devem ser listados todos os ciclos com estado 'Pós-Corec' e 'Encerrado'.</li>
+			<li>Os ciclos migrados não poderão ser alterados.</li>
+	   </ul>
+		
+       <blockquote>
+		    <a href="listarcomitesrealizados/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+ 	<h5>
+ 	    <a name="listarComitesARealizar" class="menu">Listar comitês a realizar</a>
+ 	</h5>
+ 	   <ul>
+			<li>Observar as regras definidas em <a href="#agendaCorec">agenda de corecs</a>.</li>
+			<li>Devem ser listados todos os ciclos com estado 'Em andamento' e 'Corec'.</li>
+	   </ul>
+		
+       <blockquote>
+		    <a href="listarcomitesarealizar/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+
+ 	<h4>
+ 	    <a name="detalharComite" class="menu">Detalhar comitê</a>
+ 	</h4>
+ 	     <ul>
+			<li>Regras gerais:</li>
+			   <ul>
+			        <li>As observações devem ser listados na ordem em que foram inseridas.</li>
+			   </ul>
+		 </ul>	        
+
+ 	<h5>
+ 	    <a name="detalharComiteRealizado" class="menu">Detalhar comitê realizado</a>
+ 	</h5>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoAgendaCorec/gestao_agenda_administrador.html">protótipo</a> clicando no botão de detalhar da aba 'Comitês realizados'.</li>
+			<li>Observar as regras gerais definidas em <a href="#detalharComite">detalhar comitê</a>.</li>
+			<li>Regras gerais:</li>
+			   <ul>
+			        <li>A lista de participantes deve exibir os participantes efetivos do comitê.</li>
+			        <li>Campos de data:</li>
+			           <ul>
+			        		<li>O campo 'Data e-mail apresentação' deve exibir a data em que o e-mail de apresentação foi enviado.</li>
+			        		<li>O campo 'Data e-mail disponibilidade' deve exibir a data em que o e-mail de disponibilidade foi enviado.</li>
+			        	</ul>	
+			   </ul> 
+	   </ul>
+		
+       <blockquote>
+		    <a href="detalharcomiterealizado/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+ 	<h5>
+ 	    <a name="detalharComiteRealizar" class="menu">Detalhar comitê a realizar</a>
+ 	</h5>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoAgendaCorec/gestao_agenda_administrador.html">protótipo</a> clicando no botão de detalhar da aba 'Comitês a realizar'.</li>
+			<li>Observar as regras gerais definidas em <a href="#detalharComite">detalhar comitê</a>.</li>
+			<li>Regras gerais:</li>
+			   <ul>
+			        <li>A lista de participantes deve exibir a <a href="#rng_possiveisparticipantes">os possíveis participantes do comitê</a> da ES.</li>
+			        <li>Campos de data:</li>
+			           <ul>
+			        	   <li>O campo 'Data e-mail apresentação' deve exibir a data em que o e-mail de apresentação foi enviado adicionando a palavra (enviado). Caso não tenha sido enviado, exibir a data do 'Corec previsto' - número de dias definido no parâmeto 'Data e-mail apresentação' adicionando a palavra (previsto).</li>
+			        	   <li>O campo 'Data e-mail disponibilidade' deve exibir a data em que o e-mail de disponibilidade foi enviado adicionando a palavra (enviado). Caso não tenha sido enviado, exibir a data do 'Corec previsto' - número de dias definido no parâmeto 'Data e-mail disponibilidade' adicionando a palavra (previsto).</li>
+			        	   <li>Caso os campos de data tenham sido calculados e seu valor seja menor ou igual a data atual, exibir em <span style="color: red"> vermelho.</span></li>
+			           </ul>
+			   </ul> 
+	   </ul>
+		
+       <blockquote>
+		    <a href="detalharcomiterealizar/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+
+
+ 	<h4>
+ 	    <a name="alterarComite" class="menu">Alterar comitê</a>
+ 	</h4>
+ 	   <ul>
+ 	       <li>Regras gerais:</li>
+ 	          <ul>
+			        <li>Observações:</li>
+			           <ul>
+			        	<li>O campo texto é de preenchimento obrigatório para a inclusão da observação.</li>
+			            <li>Ao incluir, deve registrar o usuário logado e data/hora de alteração.</li>
+			            <li>As alterações (inclusão/exclusão) só serão efetivadas ao clicar no botão 'Salvar'.</li>
+			          </ul>  	
+ 	          </ul>
+ 	   </ul>
+
+ 	<h5>
+ 	    <a name="alterarComiteRealizado" class="menu">Alterar comitê realizado</a>
+ 	</h5>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoAgendaCorec/gestao_agenda_administrador.html">protótipo</a> clicando no botão de alterar da aba 'Comitês realizados'.</li>
+			<li>Observar as regras de exibição de campos definidas em <a href="#detalharComiteRealizado">detalhar comitê realizado</a>. </li>
+			<li>Observar as regras gerais definidas em <a href="#alterarComite">alterar comitê</a>.</li>
+			<li>Regras gerais:</li>
+			   <ul>
+			        <li>Nenhum campo é de preenchimento obrigatório.</li>
+			   </ul> 
+	   </ul>
+		
+       <blockquote>
+		    <a href="alterarcomiterealizado/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+ 	<h5>
+ 	    <a name="alterarComiteRealizar" class="menu">Alterar comitê a realizar</a>
+ 	</h5>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoAgendaCorec/gestao_agenda_administrador.html">protótipo</a> clicando no botão de alterar da aba 'Comitês a realizar'.</li>
+			<li>Observar as regras de exibição de campos definidas em <a href="#detalharComiteRealizar">detalhar comitê a realizar</a>.</li>
+			<li>Observar as regras gerais definidas em <a href="#alterarComite">alterar comitê</a>.</li>
+			<li>Regras gerais:</li>
+			   <ul>
+			        <li><a name="efetivarCorecPrevistoAlteracaoComiteRealizar">Campo 'Corec previsto':</a></li>
+			           <ul>
+		                   <li>A data é de preenchimento obrigatório e deve ser uma data válida maior ou igual que a data corrente.</li>
+		                   <li>Sempre que for alterada a data do 'Corec previsto', pelo menos uma nova observação deve ser registrada.</li>
+		            	   <li>Ao efetivar alteração:</li>
+		            	      <ul>
+		            	          <li>Caso já tenham sidos preenchidas, remover a 'Data e-mail apresentação' e a 'Data e-mail disponibilidade'.</li>
+		            	          <li>Na lista de 'Possíveis participantes' a data do 'e-mail disponibilidade' deve ser removida.</li>
+		            	          <li>Atualizar o campo 'Última alteração' da 'Agenda'.</li>
+		            	      </ul>    
+			           </ul>
+			   </ul> 
+	   </ul>
+		
+       <blockquote>
+		    <a href="alterarcomiterealizar/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+
+ 	<h4>
+ 	    <a name="exportarAgendaCorecExcel" class="menu">Exportar agenda COREC para Excel</a>
+ 	</h4>
+ 	   <ul>
+			<li>Observar as regras definidas em <a href="#agendaCorec">agenda de corecs</a>.</li>
+			<li>Ao clicar no link presente nas abas <a href="#listarComitesRealizados">listar comitês realizados</a> e <a href="#listarComitesARealizar">listar comitês a realizar</a>, o sistema deverá gerar uma planilha excel com os dados contidos na listagem, conforme o seguinte modelo:</li>
+			<ul>
+				<li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/administrador/ListaAgendaCorec.xlsx">Lista Agenda Corec.xlsx</a></li>
+			</ul>
+	   </ul>
+		
+       <blockquote>
+            Para o teste, utilizar os cenários descritos em:
+			<ul>
+			   <li><a href="#listarComitesRealizados">Listar comitês realizados</a>.</li>
+			   <li><a href="#listarComitesARealizar">Listar comitês a realizar</a>.</li>
+			</ul>
+		</blockquote>
+
+ 	<h4>
+ 	    <a name="gerenciarParticipantesComite" class="menu">Gerenciar possíveis participantes do comitê</a>
+ 	</h4>
+
+ 	<h5>
+ 	    <a name="uploadHistoricoParticipantesComite" class="menu">Upload e histórico de arquivos processados</a>
+ 	</h5>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoAgendaCorec/gestao_agenda_administrador.html">protótipo</a> clicando na aba 'Comitês a realizar'.</li>
+			<li>Regras gerais:</li>
+			<ul>
+				<li>Novo arquivo:</li>
+				   <ul>
+				      <li>Seu preenchimento é obrigatório para adicionar um arquivo.</li>
+				      <li>Validação: </li>
+				          <ul>
+				              <li>Validar se a primeira linha contém a string abaixo na primeira linha. Caso contrário deverá informar que o arquivo está em formato inválido:</li>
+						       <ul>
+						          <li><i>prioridade,email,matricula,nome,equipe,funcao,Equipe_a_Excluir,considerar_subordinadas_excluir, Equipe_a_Incluir,considerar_subordinadas_incluir</i></li>
+						       </ul>
+						       <li>Validar se o tamanho das colunas do arquivo é suportado no banco de dados. Caso contrário, deverá informar a primeira linha onde ocorre o problema.</li>
+						       <li>Validar se os campos 'considerar_subordinadas_excluir' e 'considerar_subordinadas_incluir' apresentam apenas os valores "S"|"N"|nulo. Caso contrário, deverá informar a primeira linha onde ocorre o problema.</li>
+						       <li>Validar se o código da "prioridade" faz parte do domínio definido em PPD_PAR_PRIORIDADE_ES. Caso contrário, deverá informar a primeira linha onde ocorre o problema.</li>
+				       <li>Carga após a validação:</li>
+				             <ul>
+				                 <li>Carregar as informações do arquivo na tabela de possíveis participantes dos comitês.</li>
+				                 <li>Deverá ser atualizado o histórico de arquivos processados.</li>
+				             </ul>
+				       </ul>
+				   </ul>    
+				<li>Histórico de arquivos processados:</li>
+				   <ul>
+				      <li>Devem ser listados os últimos 5 arquivos processados.</li>
+				   </ul>   
+			</ul>
+	   </ul>
+		
+       <blockquote>
+		    <a href="gerenciarparticipantescomite/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+ 	<h3>
+ 	    <a name="editarParametros" class="menu">Editar parâmetros</a>
+ 	</h3>
+
+ 	<h4>
+ 	    <a name="editarParametroEmail" class="menu">Editar parâmetro do tipo 'e-mail'</a>
+ 	</h4>
+ 	   <ul>
+ 	        <li>Cada parâmetro do tipo e-mail é composto das seguintes partes: remetente, título, corpo e, opcionalmente (prazo de envio).</li>
+ 	        <li>Regras gerais:</li>
+ 	            <ul>
+ 	                <li>O sistema deve validar se uma variável digitada existe e se pode estar presente na seção.</li>
+ 	                <li>Caso exista, o prazo deve ser maior do que zero.</li>
+ 	            </ul>    
+ 	        <li>Variáveis permitidas:</li>
+ 	        <table class="exemplos">
+ 	          <tr>
+ 	              <th>Parâmetro</th>
+ 	              <th>Significado</th>
+ 	              <th>Em que seção é permitida</th>
+ 	          </tr>
+ 	          <tr>
+ 	              <td>%datacorec%</td>
+ 	              <td>Data do corec previsto</td>
+ 	              <td>Título e corpo do e-mail</td>
+ 	          </tr>
+ 	          <tr>
+ 	              <td>%es%</td>
+ 	              <td>Nome da ES</td>
+ 	              <td>Título e corpo do e-mail</td>
+ 	          </tr>
+ 	          <tr>
+ 	              <td>%localização%</td>
+ 	              <td>Localização da ES</td>
+ 	              <td>Título e corpo do e-mail</td>
+ 	          </tr>
+ 	          <tr>
+ 	              <td>%local%</td>
+ 	              <td>local da reunião</td>
+ 	              <td>Título e corpo do e-mail</td>
+ 	          </tr>
+ 	          <tr>
+ 	              <td>%horário%</td>
+ 	              <td>Horário da reunião</td>
+ 	              <td>Título e corpo do e-mail</td>
+ 	          </tr>
+ 	          <tr>
+ 	              <td>%tabelacomite%</td>
+ 	              <td>Tabela contendo 1 ou mais registros: Nome da ES, localização e supervisor responsável.</td>
+ 	              <td>Corpo do e-mail</td>
+ 	          </tr>
+ 	        </table>
+ 	   </ul>
+ 	   </ul>
+ 	   <br/></br/><br/>
+
+        <blockquote>
+		    <a href="editaremail/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+
+ 	<h4>
+ 	    <a name="editarPrioridade" class="menu">Editar parâmetro 'prioridade'</a>
+ 	</h4>
+ 	   <ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/EdicaoParametro/edicao_parametro_prioridade_administrador.html">protótipo</a>.</li>
+			<li>Regras gerais:</li>
+			   <ul>
+			        <li>Ao entrar na tela:</li>
+			            <ul>
+			                <li>Deve ser exibido o botão 'Adicionar'.</li>
+			                <li>A lista de prioridade deve exibir a lista de 'Parâmetros prioridade' ativas da metodologia ordenados pela prioridade.</li>
+			            </ul>
+			        <li>Incluir prioridade:</li>
+			            <ul>
+			               <li>Validações:</li>
+			                   <ul>
+			               	      <li>O campo 'Descrição' é obrigatório.</li>
+			               	      <li>Não pode haver nomes ativos duplicados.</li>
+			               	   </ul>   
+			               <li>Ao clicar em 'Adicionar':</li>
+			                   <ul>
+ 			                       <li>O novo registro deverá apresentar a prioridade mais baixa.</li>
+			                       <li>Os dados serão salvos.</li> 
+			                       <li>Os campos de edição serão limpos.</li>
+			                   </ul>
+			               <li>Ao clicar em 'Cancelar':</li>
+			                   <ul>
+			                       <li>Os campos de edição serão limpos.</li>
+			                   </ul>    
+			            </ul>
+			        <li>Alterar prioridade:</li>
+			            <ul>
+			               <li>Ao selecionar uma prioridade deve ser exibido o botão 'Salvar'.</li>
+			               <li>Validações:</li>
+			                   <ul>
+			               	       <li>O campo 'Descrição' é obrigatório.</li>
+			               	       <li>Não pode haver nomes ativos duplicados.</li>
+			               	   </ul>   
+			               <li>Ao clicar em 'Salvar':</li>
+			                   <ul>
+			                       <li>Os dados serão salvos.</li> 
+			                       <li>Deve ser exibido o botão 'Adicionar'.</li>
+			                       <li>Os campos de edição serão limpos.</li>
+			                   </ul>    
+			               <li>Ao clicar em 'Cancelar':</li>
+			                   <ul>
+			                       <li>Os campos de edição serão limpos.</li>
+			                       <li>Deve ser exibido o botão 'Adicionar'.</li>
+			                   </ul>    
+			            </ul>
+			        <li>Excluir prioridade:</li>
+			            <ul>
+			               <li>Validações:</li>
+			                   <ul>
+			                       <li>Só é permitido excluir uma prioridade caso ela não esteja sendo utilizada perfil de risco atual de nenhuma ES.</li>
+			                   </ul>    
+			               <li>Ao clicar em 'Excluir':</li>
+			                   <ul>
+			                       <li>Caso o registro não tenha sido referenciado por algum perfil de risco deve ser excluído fisicamente.</li>
+			                       <li>Senão, deve ser excluído logicamente, tornando-se inativo.</li>
+			                       <li>Os registros com prioridade inferior ao registro excluído devem ser renumerados para manter a sequencia.</li>
+			                   </ul>    
+			            </ul>
+			        <li>Mover prioridade:</li>
+			            <ul>
+			               <li>Validações:</li>
+			                   <ul>
+			                       <li>A primeira prioridade não pode ser movida para cima.</li>
+			                       <li>A última prioridade não pode ser movida para baixo.</li>
+			                   </ul>    
+			               <li>Ao clicar em mover para cima ou para baixo:</li>
+			                   <ul>
+			                       <li>Alterar a ordem da prioridade dos registros.</li>
+			                   </ul>    
+			            </ul>
+			   </ul>
+       </ul>			
+		
+        <blockquote>
+		    <a href="editarprioridade/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+    
+ 	<h3>
+ 	    <a name="gestaoES" class="menu">Gestão de ESs</a>
+ 	</h3>
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Administrador/GestaoES/gestao_es_administrador.html">protótipo</a>.</li>
+			
+			<li>Regras gerais:</li>
+			   <ul>
+			   <li>Filtros:<li>
+			   <ul>
+			       <li>Parte do nome da ES:</li>
+			           <ul>
+			               <li>É possível consultar a ES digitando apenas parte do seu nome.</li>
+			           </ul>    
+			       <li>Equipe:</li>
+			           <ul>
+			               <li>Deve abranger as equipes das ESs ativas(com prioridade e que pertencem ao SRC) cadastradas.</li>
+			               <li>Em todos os combos, deve ter a opção 'Todos'.</li>
+			               <li>Inicialmente, apenas o combo mais a esquerda deve exibir as opções de unidade disponíveis.</li>
+			               <li>Para cada combo que for selecionada, o combo imediatamente à direita apresentará as subunidades subordinadas.</li> 
+			           </ul>    
+			       <li>Supervisor titular:</li>
+			           <ul>
+			               <li>Deve abranger os supervisores titulares das ESs ativas cadastradas.</li>
+			               <li>Deve ter a opção 'Todos'.</li>
+			           </ul>    
+			       <li>Prioridade:</li>
+			           <ul>
+			               <li>Deve exibir as opções do 'Parâmetro prioridade' ativas da metodologia ordenados pela prioridade.</li>
+			               <li>Deve ter a opção 'Todos'.</li>
+			           </ul>    
+			   </ul>
+			   <li>Ao clicar em 'Filtrar':<li>
+			   <ul>
+			       <li>Deve listar as ESs ativas(com ou sem ciclo) que atendem ao critério de consulta.</li>
+			       <li>O campo 'Corec previsto' deve ser recuperado do ciclo mais recente da ES.</li>
+			   </ul>
+			   <li>Ao clicar em 'Limpar filtros':<li>
+			   <ul>
+			       <li>Limpar todos os campos de filtros, voltando ao estado inicial da tela definido no protótipo.</li>
+			       <li>Refazer a consulta.</li>
+			   </ul>
+		      </ul>
+		</ul>
+ 	
+        
+        <blockquote>
+		    <a href="gestaoes/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+
+ 	<h4>
+ 	    <a name="alterarES" class="menu">Alterar informações da ES</a>
+ 	</h4>
+ 		<ul>
+			<li>Regras gerais:</li>
+			   <ul>
+			<li>Utilizar o protótipo descrito em <a href="#gestaoES">gestão de ESs</a>.</li>
+			
+			<li>Campos editáveis:</li>
+			   <ul>
+		       <li>Prioridade:</li>
+		           <ul>
+	                  <li>Deve exibir as opções do 'Parâmetro prioridade' ativas da metodologia ordenados pela prioridade.</li>
+			       </ul>    
+		       <li>Ciclo:</li>
+			           <ul>
+			               <li>Deve abranger os seguintes valores (1, 2, 3, 4).</li>
+			           </ul>    
+			   </ul>
+			<li>Nome do botão para 'Salvar':</li>
+			   <ul>
+	              <li>Se a ES não possui ciclo, ou nenhum campo for alterado: 'Salvar'.</li>
+			      <li>Senão: 'Salvar e atualizar perfil de risco.'</li>
+			   </ul>
+			   <li>Ao salvar:<li>
+			   <ul>
+			       <li>Caso o campo 'Prioridade' seja alterado e a ES possua ciclo:</li>
+			           <ul>
+			               <li>O perfil de risco atual da ES deve ser versionado com a nova informação da ES.</li>
+	 	                   <li>Gerar evento de atualização de perfil de risco no APS conforme descrito em <a href="../gerente/index.html#gerarEventoPerfilRisco">gerar evento do perfil de risco</a>.</li>
+			               
+			           </ul>
+			       <li>Caso o campo 'Ciclo' seja alterado (tendo ou não ciclo e tendo ou não alterado o campo 'Prioridade'):</li>
+			           <ul>
+			               <li>Recalcular o campo 'Corec previsto' do ciclo com base na alteração feita no campo 'Ciclo'. (exemplo: se o ciclo passar de 1 para 2, o campo 'Corec Previsto' deve aumentar em 1 ano).</li>
+			               <li>Efetuar as ações de alteração do campo <a href="#efetivarCorecPrevistoAlteracaoComiteRealizar"> 'Corec previsto'</a> da estória  <a href="#alterarComiteRealizar">alterar comitê a realizar</a>.</li>
+			               <li>Adicionar uma nova observação na agenda corec indicando 'Alteração de ciclo pelo administrador'.</li>
+			           </ul>        
+			       <li>Retornar para a tela anterior exibindo a mensagem de sucesso.
+			       <li>Mensagem de sucesso:</li>
+			           <ul>
+			              <li>Caso o perfil de risco seja atualizado: 'ES e perfil de risco atualizados com sucesso.'</li>
+			              <li>Senão: 'ES alterada com sucesso.'</li>
+			       	</ul>	  
+			   </ul>
+		      </ul>
+		      </ul>
+		</ul>
+ 	
+        
+        <blockquote>
+		    <a href="alterares/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+     
+    <h3>
+       <a name="simularLocalizacaoAdministrador" class="menu">Simular localização do Administrador</a>
+    </h3>
+       <ul>
+          <li>Regras gerais:</li>
+    	<ul>
+			<li>As regras de acesso e substituição para o perfil Administrador definas na <a href="../perfildeacesso/index.html#gestaoPerfilAcesso">gestão de perfil de acesso</a> devem ser consideradas.</li>
+			<li>Seção 'Simular localização'</li>
+			<ul>
+				<li>O campo 'Localização simulada atual' será preenchido com a informação da localização que o Administrador simulou na sessão atual.</li>
+				<li>O campo 'Nova localização' não virá preenchido ao entrar na tela.</li>
+				<li>Botão 'Alterar':</li>
+				<ul>
+					<li>Validações ao clicar no botão:</li>
+					<ul>
+						<li>Caso o campo não tenha sido preenchido, exibir a seguinte mensagem de erro: "Campo 'Nova localização' é de preenchimento obrigatório.".</li>
+						<li>Caso a localização preenchida não existir no BcPessoa, exibir a seguinte mensagem de erro: "Campo 'Nova localização' inválido.".</li>
+						<li>Caso a localização preenchida for igual a localização de substituição, se existir, ou caso não exista e for igual a localização do usuário logado, exibir a seguinte mensagem de erro: "Campo 'Nova localização' não pode ser igual a sua localização atual."</li>
+					</ul>
+					<li>Após clicar e passar com sucesso pelas validações:</li>
+					<ul>
+						<li>Gravar a informação da localização simulada para o Administrador na sessão.</li>
+						<li>Exibir a mensagem de sucesso: 'Localização simulada alterada com sucesso.'</li>
+					</ul>
+				</ul>
+				<li>Botão 'Cancelar simulação':</li>
+				<ul>
+					<li>Ao clicar no botão:</li>
+					<ul>
+						<li>Apagar a informação da localização simulada para o Administrador da sessão.</li>
+					</ul>
+				</ul>
+			</ul>
+			<li>A localização simulada para o Administrador deverá ser a localização prioritária, caso exista na sessão, a frente da localização de substituição e da localização do usuário logado para as consultas dos painéis dos perfis. Essa localização não será utilizada para determinar acesso aos perfis.</li>
+		</ul>
+       </ul>
+		
+		<blockquote>
+		  <a href="../perfildeacesso/simularlocalizacaoadministrador/indexNegocio.html">Cenários de teste de negócio</a><br>
+      </blockquote>
+      	
+ 	<h2>
+ 	    <a name="enviarEmails" class="menu">Notificações de agendamento via e-mail</a>
+ 	</h2>
+ 	    <ul>
+ 	        <li>Para cada e-mail, deverá haver um <a href="#editarParametroEmail">parâmetro</a> correspondente indicando o template para o e-mail.
+ 	    </ul>
+
+ 	<h3>
+ 	    <a name="batchEmailApresentacao" class="menu">E-mail de apresentação</a>
+ 	</h3>
+ 	   <ul>
+ 	        <li>Regras gerais:</li>
+ 	           <ul>
+			        <li>Observar as regras definidas em <a href="#enviarEmails">notificações de agendamento via e-mail</a>.</li>
+			   </ul> 
+ 	       <li>Para cada <a href="#listarComitesARealizar">comitê a realizar</a>:</li>
+ 	           <ul>
+ 	              <li>Se ('Data e-mail apresentação' for vazio) E ('Corec previsto' - 'prazo definido no parâmetro e-mail apresentação' é menor ou igual que a data corrente)</b>:</li>
+ 	                  <ul>
+ 	                    <li>Utilizando o <a href="#editarParametroEmail">parâmetros de e-mail</a> 'apresentação', enviar e-mail para o supervisor da ES e o seu substituto.</li>
+ 	                    <li>Atualizar o campo 'Data e-mail apresentação' com a data corrente.</li>
+ 	                  </ul>
+ 	           </ul>
+ 	   </ul>
+       <blockquote>
+		    <a href="../../../../../../../batch/src/test/java/crt2/dominio/batchemailapresentacao/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+		
+
+ 	<h3>
+ 	    <a name="batchEmailDisponibilidade" class="menu">E-mail de disponibilidade</a>
+ 	</h3>
+ 	   <ul>
+ 	        <li>Regras gerais:</li>
+ 	           <ul>
+			        <li>Observar as regras definidas em <a href="#enviarEmails">notificações de agendamento via e-mail</a>.</li>
+			   </ul> 
+ 	       <li>Para cada <a href="#listarComitesARealizar">comitê a realizar</a>:</li>
+ 	           <ul>
+ 	              <li>Se ('Data e-mail disponibilidade' não for vazio) OU ('Corec previsto' - 'prazo definido no parâmetro e-mail disponibilidade' é menor ou igual que a data corrente)</b>:</li>
+ 	                  <ul>
+ 	                    <li>Se existem <a href="#rng_possiveisparticipantes">possíveis participantes</a> do comitê que ainda não receberam o e-mail:</li>
+ 	                       <ul>
+ 	                    		<li>Utilizando o <a href="#editarParametroEmail">parâmetros de e-mail</a> 'disponibilidade', enviar e-mail para os <a href="#rng_possiveisparticipantes">possíveis participantes</a> do comitê que ainda não receberam o e-mail.</li>
+ 	                    		<li>Inserir registro para aqueles que foram enviado e-mail com a data corrente, indicando envio do e-mail de disponibilidade.</li>
+ 	                    		<li>Se a data do e-mail de disponibilidade for vazia:</li>
+ 	                    		    <ul>
+ 	                    				<li>Atualizar o campo 'Data e-mail disponibilidade' com a data corrente.</li>
+ 	                    			</ul> 
+ 	                    </ul>
+ 	                  </ul>
+ 	           </ul>
+ 	   </ul>
+       <blockquote>
+		    <a href="../../../../../../../batch/src/test/java/crt2/dominio/batchemaildisponibilidade/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+
+ 	<h2>
+ 	    <a name="rng" class="menu">Regras de negócio</a>
+ 	</h2>
+		
+ 	<h3>
+ 	    <a name="rng_possiveisparticipantes" class="menu">Lista de possíveis participantes dos comitês a realizar</a>
+ 	</h3>
+ 	   <ul>
+ 	        <li>Premissas:</li>
+ 	        <ul>
+ 	        <li>Utilizar o seguinte arquivo de layout/exemplo:</li>
+ 	            <ul>
+ 	                 <li><a href="ParticipantesPotenciaisdoCorec.csv">ParticipantesPotenciaisdoCorec.csv</a>.</li>
+ 	            </ul>
+			<li>Significado das colunas:</li>
+			    <ul>
+			        <li><b>Prioridade</b> - Indica a prioridade da ES associada ao comitê.</li>
+			        <li><b>E-mail</b> - E-mail do possível participante.</li>
+			        <li><b>Matricula</b> - Matrícula do possível participante.</li>
+			        <li><b>Nome</b> - Nome do possível participante.</li>
+			        <li><b>Equipe</b> - Localização do possível participante.</li>
+			        <li><b>Função</b> - Função do possível participante.</li>
+			        <li><b>Equipe_a_excluir</b> - Se preenchida: </li>
+			               <ul>
+			                   <li>Se <b>considerar_subordinadas_excluir</b> = 'N', indica que se a localização da ES for <i>igual</i> a esta coluna, o servidor não fará parte da lista de possíveis participantes do comitê da ES.</li>
+			                   <li>Senão, indica que se a localização da ES for <i>igual ou subordinada</i> a esta coluna, o servidor não fará parte da lista de possíveis participantes do comitê da ES.</li>
+			               </ul>    
+			        <li><b>Equipe_a_incluir</b> - Se preenchida:</li>
+			               <ul>
+			                    <li>Se <b>considerar_subordinadas_incluir</b> = 'N', indica que se a localização da ES for <i>igual</i> a esta coluna, o servidor fará parte da lista de possíveis participantes do comitê da ES.</li>
+			                    <li>Senão, indica que se a localização da ES for <i>igual ou subordinada</i> a esta coluna, o servidor fará parte da lista de possíveis participantes do comitê da ES.</li>
+			               </ul>
+			    </ul>    
+			    </ul>    
+			<li>Recuperando a lista de possíveis participantes do comitê para uma ES:</li>
+				   <ul>
+		              <li>Utilizar os dados carregados via <a href="#uploadHistoricoParticipantesComite">upload</a> e que atendam as seguintes validações:</li>
+		                  <ul>
+		          			  <li>Possuam a mesma <b>prioridade</b> da ES; e</li>
+		              		  <li>Se preenchida a coluna <b>equipe_a_excluir</b>:</li>
+		              		      <ul>
+		              		        <li>Se <b>considerar_subordinadas_excluir</b> = 'N':</li>
+		              		            <ul>
+		              		                <li>A localização da ES não é igual da <b>equipe_a_excluir</b>; e</li>
+		              		            </ul>
+		              		        <li>Senão:</li>
+		              		            <ul>        
+		              		        		<li>A localização da ES não é igual ou subordinada da <b>equipe_a_excluir</b>; e</li>
+		              		        	</ul>	
+		              		      </ul>  
+              				  <li>Se preenchida a coluna <b>equipe_a_incluir</b>:</li>
+              				     <ul> 
+              				  		 <li>Se <b>considerar_subordinadas_incluir</b> = 'N': </li>
+              				  		      <ul>
+              				  		          <li>A localização da ES é igual a <b>equipe_a_incluir</b>.</li>
+              				  		      </ul>    
+		              		        <li>Senão:</li>
+		              		            <ul>        
+              				  		 		<li>A localização da ES é igual ou subornidada a <b>equipe_a_incluir</b>.</li>
+		              		        	</ul>	
+              				     </ul>
+              			  </ul>
+          		</ul>
+			</ul>
+	   </ul>		
+      		
+</body>
+</html>

@@ -1,0 +1,75 @@
+<wicket:panel>
+	<table  width="100%"  cellSpacing="0" cellpadding="3">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="3"><label wicket:id="nomeMatriz"></label></th>
+			</tr>
+		</thead>
+		<tbody wicket:id="colunaNotaCalculada">
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeMatriz" style="text-align: right; width: 15%;">Nota calculada</td>
+				<td style="text-align: left; width: 85%;"><label wicket:id="notaMatriz"></label></td>
+			</tr>
+		</tbody>
+	</table>
+	<table wicket:id="tPainelCorpo" width="100%"  cellSpacing="1">
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="fundoPadraoAClaro3" colspan="2"></td>
+				<span wicket:id="listaNomeGrupoParametro">
+					<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><a href=" " wicket:id="linkNomeGrupo"><span
+							wicket:id="nomeGrupoComLink"></span></a> <span wicket:id="nomeGrupo"></span></td>
+				</span>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="fundoPadraoAClaro3" colspan="2"><label wicket:id="labelPossuiLink" style="text-align: left; border-bottom: 0px;">Clique
+						nas notas para ler o ARC.</label></td>
+				<span wicket:id="listaPercentualGrupoParametro">
+					<td align="center" class="nomeMatriz" style="width: 120px;" colspan="2"><span wicket:id="percentualGrupo"></span></td>
+				</span>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3">
+				<td class="fundoPadraoAClaro3" colspan="2"></td>
+				<span wicket:id="listaRiscoControle">
+					<td width="60px" align="center" class="nomeMatriz">R</td>
+					<td width="60px" align="center" class="nomeMatriz">C</td>
+				</span>
+			</tr>
+		<tbody wicket:id="listaLinhaMatrizVo">
+			<tr class="fundoPadraoAClaro3">
+				<td class=" " wicket:id="nomeLinhaVo"></td>
+				<td class=" " width="80px" align="center" wicket:id="percentualLinhaVo"></td>
+				<span wicket:id="listaArc">
+					<td align="center" class=" " wicket:id="dadosRisco"><a href="#" wicket:id="linkRisco"><span
+							wicket:id="risco" /></a> <label wicket:id="risco" /></td>
+					<td align="center" class=" " wicket:id="dadosControle"><a href="#" wicket:id="linkControle"><span
+							wicket:id="controle" /></a><label wicket:id="controle" /></td>
+				</span>
+			</tr>
+		</tbody>
+
+
+		<tr class="fundoPadraoAClaro3">
+			<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+			<span wicket:id="listaNotasResiduais">
+				<td align="center" class=" " wicket:id="notasResiduais"></td>
+			</span>
+		</tr>
+
+		<tr class="fundoPadraoAClaro3">
+			<span wicket:id="listaMediaNotasResiduais">
+				<td align="center" class=" " wicket:id="mediasResiduais" colspan="2"></td>
+			</span>
+		</tr>
+
+		</tbody>
+		
+	</table>
+	
+	<div align="center" wicket:id="infoGovernancaCorporativa" style="width: 100%; margin: auto;"></div>	
+	
+	<div align="center" wicket:id="resumoMatrizRecalculadaPanel" style="width: 100%; margin: auto;"></div>
+
+</wicket:panel>

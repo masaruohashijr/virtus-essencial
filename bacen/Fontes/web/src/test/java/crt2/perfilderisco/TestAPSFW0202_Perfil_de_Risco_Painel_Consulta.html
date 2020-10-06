@@ -1,0 +1,1649 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Testando o Perfil de Risco acessado pelo painel de consulta</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../negocio/src/test/java/crt2/estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+		<script type="text/javascript" src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória APSFW0202 - Perfil de Risco - Painel de consulta.</h1>
+
+		<span id="index"></span>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>22/07/2014</td>
+				<td>Christiano Nogueira</td>
+				<td>Versão Inicial</td>
+			</tr>
+
+			<tr>
+				<td>1.1</td>
+				<td>27/08/2014</td>
+				<td>Victor Vasconcelos</td>
+				<td>Estória - Ajuste da regra de associação de ESs com inspetores, supervisores e gerentes (demais telas)</td>
+			</tr>
+
+			<tr>
+				<td>1.2</td>
+				<td>05/09/2014</td>
+				<td>Wilkie Martins</td>
+				<td>Estória - Cálculo da nota final e nota refinada da matriz</td>
+			</tr>
+
+			<tr>
+				<td>1.3</td>
+				<td>08/10/2014</td>
+				<td>Cleonides Macriny</td>
+				<td>Estória - Adicionando log de consulta</td>
+			</tr>
+		</table>
+
+		<blockquote><dataHoraAtual valor="17/03/2014 00:00:00">Data atual: 17/03/2014 00:00:00</dataHoraAtual></blockquote>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>Para as regras da estória:
+			<ul><li><a href="http://svn/svn/fis/sisaps/trunk/Modelos_e_Implementacao/Implementacao_SRC_Dinamico/negocio/src/test/java/crt2/dominio/painelconsulta/requirement/APSFW0202_Perfil_de_risco_Perfil_de_consulta.xlsx">APSFW0202_Perfil_de_risco_Perfil_de_consulta.xlsx</a>.</li></ul>
+		</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul><li>A lista de servidores foi <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li></ul>
+
+		<h2>Cenários de teste para a estória APSFW0202 - Perfil de Risco - Painel de consulta.</h2>
+
+		<blockquote>Cenários onde devem ser apresentadas mensagens de erro/impedimento e sucesso para o Perfil de Risco - Perfil de Risco - Painel de consulta.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<th width="10%">Estado</th>
+				<th width="10%">Cenário</th>
+				<th width="20%">Dados pré-existentes</th>
+				<th width="20%">Ação pretendida</th>
+				<th width="40%">Resultado esperado</th>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C001</b> - <br>Verificar a ausência dos botões 'Gerenciar detalhes da ES', 'Gerenciar ARCs' e 'Editar estrutura da matriz'. Perfil 'Consulta tudo'.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0202_Perfil_de_Risco_Painel_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<ul>
+						<li>O botão 'Gerenciar detalhes da ES' não pode estar presente <input class="notContains" by="id:bttGerenciarDetalheES" value="Gerenciar detalhes da ES" type="button"></li>
+						<li>O botão 'Gerenciar ARCs' não pode estar presente <input class="notContains" by="id:bttGerenciarArcs" value="Gerenciar ARCs" type="button"></li>
+						<li>O botão 'Editar estrutura da matriz' não pode estar presente <input class="notContains" by="id:bttEditarMatriz" value="Editar estrutura da matriz" type="button"></li>
+						<li>O botão 'Gerenciar notas e sínteses' não pode estar presente <input class="notContains" by="id:bttGerenciarNotasSinteses" value="Gerenciar notas e sínteses" type="button"></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C002</b> - <br>Verificar a não existência de link na nota do ARC. Perfil 'Consulta tudo'.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+						<li>Clica na nota <span class="clickon" by="id:riscod8" sleep="5000">'*A' do ARC 'Risco' do grupo 'Contágio' da 'Atividade corporativa'</span></li>
+					</ul>
+
+					<font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C003</b> - <br>Clicar e verificar a navegação do link na nota do ARC. Perfil 'Consulta tudo'.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+						<li>Clica na nota: <span class="clickon" by="id:linkRisco9" sleep="2000">"2" do ARC "Risco" do grupo "Risco Inadimplência"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Consulta de ARCs</span></li>
+						<li>O título da tela deve ser: <span class="contains">Consulta de ARCs</span></li>
+						<li>O código da tela deve ser: <span class="contains">[APSFW0402]</span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C004</b> - <br>Verificar a ausência dos botões 'Gerenciar detalhes da ES', 'Gerenciar ARCs' e 'Editar estrutura da matriz'. Perfil 'Consulta somente não bloqueados'.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0202_Perfil_de_Risco_Painel_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq108>é "deliq.sisliq108"</sisliq108></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<ul>
+						<li>O botão 'Gerenciar detalhes da ES' não pode estar presente <input class="notContains" by="id:bttGerenciarDetalheES" value="Gerenciar detalhes da ES" type="button"></li>
+						<li>O botão 'Gerenciar ARCs' não pode estar presente <input class="notContains" by="id:bttGerenciarArcs" value="Gerenciar ARCs" type="button"></li>
+						<li>O botão 'Editar estrutura da matriz' não pode estar presente <input class="notContains" by="id:bttEditarMatriz" value="Editar estrutura da matriz" type="button"></li>
+						<li>O botão 'Gerenciar notas e sínteses' não pode estar presente <input class="notContains" by="id:bttGerenciarNotasSinteses" value="Gerenciar notas e sínteses" type="button"></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq108</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C005</b> - <br>Verificar a não existência de link na nota do ARC. Perfil 'Consulta somente não bloqueados'.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq108>é "deliq.sisliq108"</sisliq108></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+						<li>Clica na nota <span class="clickon" by="id:riscod8" sleep="5000">'*A' do ARC 'Risco' do grupo 'Contágio' da 'Atividade corporativa'</span></li>						
+					</ul>
+
+					<font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C006</b> - <br>Clicar e verificar a navegação do link na nota do ARC. Perfil 'Consulta somente não bloqueados'.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq108>é "deliq.sisliq108"</sisliq108></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+						<li>Clica na nota: <span class="clickon" by="id:linkRisco9" sleep="2000">"2" do ARC "Risco" do grupo "Risco Inadimplência"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Consulta de ARCs</span></li>
+						<li>O título da tela deve ser: <span class="contains">Consulta de ARC</span></li>
+						<li>O código da tela deve ser: <span class="contains">[APSFW0402]</span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq108</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C007</b> - <br>Verificar a ausência dos botões 'Gerenciar detalhes da ES', 'Gerenciar ARCs' e 'Editar estrutura da matriz'. Perfil 'Consulta somente resumo de perfil não bloqueado'.</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0202_Perfil_de_Risco_Painel_Consulta_dadoque.html" class="include">aqui</a>
+				</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq109>é "deliq.sisliq109"</sisliq109></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+
+					<ul>
+						<li>O botão 'Gerenciar detalhes da ES' não pode estar presente <input class="notContains" by="id:bttGerenciarDetalheES" value="Gerenciar detalhes da ES" type="button"></li>
+						<li>O botão 'Gerenciar ARCs' não pode estar presente <input class="notContains" by="id:bttGerenciarArcs" value="Gerenciar ARCs" type="button"></li>
+						<li>O botão 'Editar estrutura da matriz' não pode estar presente <input class="notContains" by="id:bttEditarMatriz" value="Editar estrutura da matriz" type="button"></li>
+						<li>O botão 'Gerenciar notas e sínteses' não pode estar presente <input class="notContains" by="id:bttGerenciarNotasSinteses" value="Gerenciar notas e sínteses" type="button"></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq109</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C008</b> - <br>Verificar a não existência de link na nota do ARC. Perfil 'Consulta somente resumo de perfil não bloqueado'.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq109>é "deliq.sisliq109"</sisliq109></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+						<li>Clica na nota <span class="clickon" by="id:riscod8" sleep="5000">'*A' do ARC 'Risco' do grupo 'Contágio' da 'Atividade corporativa'</span></li>
+					</ul>
+
+					<font color="red">Será executado um clique que não deverá surtir efeito. Pela nova regra, a nota, objeto do clique, não possui link.</font>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco</span></li>
+						<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					</ul>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C009</b> - <br>Clicar e verificar a navegação do link na nota do ARC. Perfil 'Consulta somente resumo de perfil não bloqueado'.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq109>é "deliq.sisliq109"</sisliq109></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+						<li>Clica na nota: <span class="clickon" by="id:linkRisco9" sleep="2000">"2" do ARC "Risco" do grupo "Risco Inadimplência"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Consulta de ARCs</span></li>
+						<li>O título da tela deve ser: <span class="contains">Consulta de ARCs</span></li>
+						<li>O código da tela deve ser: <span class="contains">[APSFW0402]</span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>00000776</td>
+							<td>ITAU</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq109</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C010</b> - <br>Verificar o cálculo do percentual e notas</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0202_Perfil_de_Risco_Matriz_dadoque_3.html" class="include">aqui</a><br><br>
+
+					<table class="prepare dados">
+						<caption>PFR_PAR_FATOR_RELEV_RIS_CON</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>PFR_ID</th>
+							<th>PFR_VL_ALFA</th>
+							<th>PFR_VL_BETA</th>
+						</tr>
+
+						<tr>
+							<td>U</td>
+							<td>1</td>
+							<td>0.4</td>
+							<td>0.6</td>
+						</tr>
+					</table>
+				</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">"ABN AMRO"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+						<table cellspacing="0" cellpadding="0">
+							<tbody>
+								<tr class="aesquerda">
+									<td style="width: 25%; text-align: right;">ciclo</td>
+
+									<td style="width: 25%;">
+										<ul class="options" by="id:idCiclo"><li><span class="selected" by="id:idCiclo">atual</span></li></ul>
+									</td>
+
+									<td style="width: 25%; text-align: right;">versão</td>
+
+									<td style="width: 25%;">
+										<ul class="options" by="id:idPerfilRisco">
+											<li><span class="selected" by="id:idPerfilRisco">vigente</span></li>
+											<li>28/05/2013</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+						<table>
+							<tbody>
+								<tr style="width: 100%; margin: auto;">
+									<td>
+										<div id="idPainelMatrizVigente21e">
+											<table width="100%" cellspacing="0" cellpadding="3" id="tPainelResumo">
+												<thead><tr class="fundoPadraoAEscuro3"><th colspan="6" class="thform" style="text-align: left; border-bottom: 0px;"><span>Resumo</span></th></tr></thead>
+
+												<tbody>
+													<tr>
+														<td>Nota calculada</td>
+														<td>1,37</td>
+														<td>Nota refinada</td>
+														<td>1</td>
+														<td><span><a><img src="../../crt2/mais-p.gif"></a></span>Nota ajustada</td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+
+											<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+												<thead><tr class="fundoPadraoAEscuro3"><th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo21f">Matriz de riscos e controles</span></th></tr></thead>
+											</table>
+
+											<table bordercolor="white" style="width: 100%; border-top-color: #ffffff; border-right-color: #ffffff; border-bottom-color: #ffffff; border-left-color: #ffffff;" border="1" cellspacing="0" id="tPainelCorpoVigente">
+												<tbody>
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2" style="background-color: #4a73a2"><span id="id0220"></span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo223">Crédito</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2">Liquidez</td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo225">Contágio</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo225">Estratégia</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo225">LD</span></td>
+													</tr>
+
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;">Clique nas notas para ler o ARC.</label></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo229">80%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo227">1,7%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">14,7%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">2%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">1,7%</span></td>
+													</tr>
+
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2" style="background-color: #4a73a2"><span id="id022c"></span></td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width: 3%;" id="nomeLinhaVo230">Unidade de negócio 1</td>
+														<td class="nomeMatriz" style="width: 1%;" align="center" id="percentualLinhaVo231">40%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco233"><a href="#" id="linkRisco1aa"><span id="risco234"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle235"><a href="#" id="linkControle1a9"><span id="controle236"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco238"><a href="#" id="linkRisco1ac"><span id="risco239"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23a"><a href="#" id="linkControle1ab"><span id="controle23b"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatrizSemNegrito" style="width:3%;" id="nomeLinhaVo242">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" style="width:1%;" align="center" id="percentualLinhaVo243">40%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24a"><a href="#" id="linkRisco1b2"><span id="risco24b">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle24c"><a href="#" id="linkControle1b1"><span id="controle24d">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco245"><a href="#" id="linkRisco1b0"><span id="risco246"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle247"><a href="#" id="linkControle1af"><span id="controle248"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatrizSemNegrito" style="width:3%;" id="nomeLinhaVo254">Unidade de negócio 2</td>
+														<td class="nomeMatrizSemNegrito" style="width:1%;" align="center" id="percentualLinhaVo255">10%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco257"><a href="#" id="linkRisco1b6"><span id="risco258"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle259"><a href="#" id="linkControle1b5"><span id="controle25a"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco25c"><a href="#" id="linkRisco1b8"><span id="risco25d"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle25e"><a href="#" id="linkControle1b7"><span id="controle25f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade de negócio 2</td>
+														<td class="nomeMatriz" style="width: 1%;" align="center" id="percentualLinhaVo279">10%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c">4</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e">4</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">3</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">3</span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade corporativa 1</td>
+														<td class="nomeMatriz" style="width:1%;" align="center" id="percentualLinhaVo279">40%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade corporativa 2</td>
+														<td class="nomeMatriz" style="width: 1%;" align="center" id="percentualLinhaVo279">10%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">3</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">3</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">4</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">4</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="fundoPadraoAClaro3">1,00</td>
+														<td align="center" class="fundoPadraoAClaro3">1,00</td>
+														<td align="center" class="fundoPadraoAClaro3">4,00</td>
+														<td align="center" class="fundoPadraoAClaro3">4,00</td>
+														<td align="center" class="fundoPadraoAClaro3">2,55</td>
+														<td align="center" class="fundoPadraoAClaro3">2,55</td>
+														<td align="center" class="fundoPadraoAClaro3">4,00</td>
+														<td align="center" class="fundoPadraoAClaro3">4,00</td>
+														<td align="center" class="fundoPadraoAClaro3">3,00</td>
+														<td align="center" class="fundoPadraoAClaro3">3,00</td>
+													</tr>
+
+													<tr>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">1,00</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">4,00</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">2,55</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">4,00</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">3,00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C011</b> - Cenário anterior, alterando a versão do perfil de risco.</td>
+				<td>Mesmo estado anterior.</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">"ABN AMRO"</span></li>
+						<li>Selecione o perfil de risco: <span class="select" by="id:idPerfilRisco">28/05/2013</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+						<table cellspacing="0" cellpadding="0">
+							<tbody>
+								<tr class="aesquerda">
+									<td style="width: 25%; text-align: right;">ciclo</td>
+
+									<td style="width: 25%;">
+										<ul class="options" by="id:idCiclo"><li><span class="selected" by="id:idCiclo">atual</span></li></ul>
+									</td>
+
+									<td style="width: 25%; text-align: right;">versão</td>
+
+									<td style="width: 25%;">
+										<ul class="options" by="id:idPerfilRisco">
+											<li>vigente</li>
+											<li><span class="selected" by="id:idPerfilRisco">28/05/2013</span></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+
+					<br><br>
+
+					<span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+						<table>
+							<tbody>
+								<tr style="width: 100%; margin: auto;">
+									<td>
+										<div id="idPainelMatrizVigente21e">
+											<table width="100%" cellspacing="0" cellpadding="3" id="tPainelResumo">
+												<thead><tr class="fundoPadraoAEscuro3"><th colspan="6" class="thform" style="text-align: left; border-bottom: 0px;"><span>Resumo</span></th></tr></thead>
+
+												<tbody>
+													<tr>
+														<td>Nota calculada</td>
+														<td>*A</td>
+														<td>Nota refinada</td>
+														<td></td>
+														<td><span><a><img src="../../crt2/mais-p.gif"></a></span>Nota ajustada</td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+
+											<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+												<thead><tr class="fundoPadraoAEscuro3"><th colspan="3" class="thform" style="text-align: left; border-bottom: 0px;"><span id="idTitulo21f">Matriz de riscos e controles</span></th></tr></thead>
+											</table>
+
+											<table bordercolor="white" style="width: 100%; border-top-color: #ffffff; border-right-color: #ffffff; border-bottom-color: #ffffff; border-left-color: #ffffff;" border="1" cellspacing="0" id="tPainelCorpoVigente">
+												<tbody>
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2" style="background-color: #4a73a2"><span id="id0220"></span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo223">Crédito</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2">Liquidez</td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo225">Contágio</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo225">Estratégia</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="nomeGrupo225">LD</span></td>
+													</tr>
+
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;">Clique nas notas para ler o ARC.</label></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo229">80%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo227">1,7%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">14,7%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">2%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">1,7%</span></td>
+													</tr>
+
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2" style="background-color: #4a73a2"><span id="id022c"></span></td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width: 3%;" id="nomeLinhaVo230">Unidade de negócio 1</td>
+														<td class="nomeMatriz" style="width: 1%;" align="center" id="percentualLinhaVo231">40%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco233"><a href="#" id="linkRisco1aa"><span id="risco234"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle235"><a href="#" id="linkControle1a9"><span id="controle236"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco238"><a href="#" id="linkRisco1ac"><span id="risco239"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23a"><a href="#" id="linkControle1ab"><span id="controle23b"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatrizSemNegrito" style="width:3%;" id="nomeLinhaVo242">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" style="width:1%;" align="center" id="percentualLinhaVo243">40%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24a"><a href="#" id="linkRisco1b2"><span id="risco24b">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle24c"><a href="#" id="linkControle1b1"><span id="controle24d">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco245"><a href="#" id="linkRisco1b0"><span id="risco246"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle247"><a href="#" id="linkControle1af"><span id="controle248"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatrizSemNegrito" style="width:3%;" id="nomeLinhaVo254">Unidade de negócio 2</td>
+														<td class="nomeMatrizSemNegrito" style="width:1%;" align="center" id="percentualLinhaVo255">10%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco257"><a href="#" id="linkRisco1b6"><span id="risco258"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle259"><a href="#" id="linkControle1b5"><span id="controle25a"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco25c"><a href="#" id="linkRisco1b8"><span id="risco25d"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle25e"><a href="#" id="linkControle1b7"><span id="controle25f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade de negócio 2</td>
+														<td class="nomeMatriz" style="width: 1%;" align="center" id="percentualLinhaVo279">10%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">*A</span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade corporativa 1</td>
+														<td class="nomeMatriz" style="width:1%;" align="center" id="percentualLinhaVo279">40%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade corporativa 2</td>
+														<td class="nomeMatriz" style="width: 1%;" align="center" id="percentualLinhaVo279">10%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">*A</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+														<td align="center" class="fundoPadraoAClaro3">*A</td>
+													</tr>
+
+													<tr>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">*A</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">*A</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">*A</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">*A</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">*A</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C012</b> - Verificar percentual e notas com nova metodologia</td>
+
+				<td>
+					<banco/>
+
+					As regras para os perfis de acesso se encontram <a href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html" class="include">aqui</a><br><br>
+					Os dados da Metodologia se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					Os dados do Ciclo, Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a href="dadoque/TestAPSFW0205_Edicao_matriz_notas_dadoque_2.html" class="include">aqui</a><br>
+				</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">"ABN AMRO"</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<span class="compareTable" by="xpath://table[@id='tPainelMatrizVigente']">
+						<table>
+							<tbody>
+								<tr style="width: 100%; margin: auto;">
+									<td>
+										<div id="idPainelMatrizVigente21e">
+											<table width="100%" cellspacing="0" cellpadding="3" id="tPainelResumo">
+												<thead><tr class="fundoPadraoAEscuro3"><th colspan="6" class="thform" style="text-align: left; border-bottom: 0px;"><span>Resumo</span></th></tr></thead>
+
+												<tbody>
+													<tr>
+														<td>Nota calculada</td>
+														<td>2,40</td>
+														<td>Nota refinada</td>
+														<td>2</td>
+														<td><span><a><img src="../../crt2/mais-p.gif"></a></span>Nota ajustada</td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+
+											<table width="100%" cellspacing="0" cellpadding="3" id="tPainelTituloVigente">
+												<thead><tr class="fundoPadraoAEscuro3"><th colspan="3" class="thform"style="text-align: left; border-bottom: 0px;"><span id="idTitulo21f">Matriz de riscos e controles</span></th></tr></thead>
+											</table>
+
+											<table bordercolor="white" style="width: 100%; border-top-color: #ffffff; border-right-color: #ffffff; border-bottom-color: #ffffff; border-left-color: #ffffff;" border="1" cellspacing="0" id="tPainelCorpoVigente">
+												<tbody>
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2" style="background-color: #4a73a2"><span id="id0226"></span></td>
+														<td align="center" class="nomeMatriz" style="width:10%;" colspan="2"><span id="nomeGrupo223">Crédito</span></td>
+														<td align="center" class="nomeMatriz" style="width:10%;" colspan="2">Contágio</span></td>
+														<td align="center" class="nomeMatriz" style="width:10%;" colspan="2"><span id="nomeGrupo225">Estratégia</span></td>
+													</tr>
+
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2"><label style="text-align: left; border-bottom: 0px;">Clique nas notas para ler o ARC.</label></td>
+														<td align="center" class="nomeMatriz" style="width:10%;" colspan="2"><span id="percentualGrupo229">16,8%</span></td>
+														<td align="center" class="nomeMatriz" style="width:10%;" colspan="2"><span id="percentualGrupo227">60,7%</span></td>
+														<td align="center" class="nomeMatriz" style="width: 10%;" colspan="2"><span id="percentualGrupo22b">22,5%</span></td>
+													</tr>
+
+													<tr>
+														<td class="fundoPadraoAClaro3" colspan="2" style="background-color: #4a73a2"><span id="id022c"></span></td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+														<td align="center" class="nomeMatriz">R</td>
+														<td align="center" class="nomeMatriz">C</td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo230">Unidade de negócio</td>
+														<td class="nomeMatriz" style="width:1%;" align="center" id="percentualLinhaVo231">9,2%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco233"><a href="#" id="linkRisco1aa"><span id="risco234"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle235"><a href="#" id="linkControle1a9"><span id="controle236"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco238"><a href="#" id="linkRisco1ac"><span id="risco239"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23a"><a href="#" id="linkControle1ab"><span id="controle23b"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco23d"><a href="#" id="linkRisco1ae"><span id="risco23e"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle23f"><a href="#" id="linkControle1ad"><span id="controle240"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatrizSemNegrito" style="width:3%;" id="nomeLinhaVo242">Atividade de negócio 1</td>
+														<td class="nomeMatrizSemNegrito" style="width:1%;" align="center" id="percentualLinhaVo243">1,8%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24a"><a href="#" id="linkRisco1b2"><span id="risco24b"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle24c"><a href="#" id="linkControle1b1"><span id="controle24d"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco245"><a href="#" id="linkRisco1b0"><span id="risco246">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle247"><a href="#" id="linkControle1af"><span id="controle248">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco24f"><a href="#" id="linkRisco1b4"><span id="risco250"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle251"><a href="#" id="linkControle1b3"><span id="controle252"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatrizSemNegrito" style="width:3%;" id="nomeLinhaVo254">Atividade de negócio 2</td>
+														<td class="nomeMatrizSemNegrito" style="width:1%;" align="center" id="percentualLinhaVo255">7,3%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco25c"><a href="#" id="linkRisco1b8"><span id="risco25d"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle25e"><a href="#" id="linkControle1b7"><span id="controle25f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco257"><a href="#" id="linkRisco1b6"><span id="risco258">3</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle259"><a href="#" id="linkControle1b5"><span id="controle25a">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco26e"><a href="#" id="linkRisco1be"><span id="risco26f"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade de negócio isolada 1</td>
+														<td class="nomeMatriz" style="width:1%;" align="center" id="percentualLinhaVo279">36,7%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283">2</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c">4</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288"></span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade de negócio isolada 2</td>
+														<td class="nomeMatriz" style="width:1%;" align="center" id="percentualLinhaVo279">9,2%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"><span id="controle27e">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><span id="risco286"></span></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><span id="controle288"></span></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" style="width:3%;" id="nomeLinhaVo278">Atividade corporativa</td>
+														<td class="nomeMatriz" style="width:1%;" align="center" id="percentualLinhaVo279">45%</td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco280"><a href="#" id="linkRisco1c4"><span id="risco281"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle282"><a href="#" id="linkControle1c3"><span id="controle283"></span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco27b"><a href="#" id="linkRisco1c2"><span id="risco27c">1</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle27d"><a href="#" id="linkControle1c1"> <span id="controle27e">4</span></a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosRisco285"><a href="#" id="linkRisco1c6"><span id="risco286"></span>3</a></td>
+														<td align="center" class="fundoPadraoAClaro3" id="dadosControle287"><a href="#" id="linkControle1c5"><span id="controle288">3</span></a></td>
+													</tr>
+
+													<tr>
+														<td class="nomeMatriz" colspan="2" rowspan="2">Notas residuais</td>
+														<td align="center" class="fundoPadraoAClaro3">1,73</td>
+														<td align="center" class="fundoPadraoAClaro3">1,73</td>
+														<td align="center" class="fundoPadraoAClaro3">2,48</td>
+														<td align="center" class="fundoPadraoAClaro3">2,26</td>
+														<td align="center" class="fundoPadraoAClaro3">3,00</td>
+														<td align="center" class="fundoPadraoAClaro3">3,00</td>
+													</tr>
+
+													<tr>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">1,73</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">2,36</td>
+														<td align="center" class="fundoPadraoAClaro3" colspan="2">3,00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</span>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C013</b> - Verificar se usuário com superposição de perfis (supervisor e consulta), está sendo redirecionado para a tela correta - Painel consulta - Consulta de ARCs.</td>
+
+				<td>Regra de perfis <a href="dadoque/TestAPSFW0202_Perfil_de_Risco_Painel_Consulta_perfil_dadoque.html" class="include">aqui</a><br></td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">inicio/painelconsulta</span></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">"ABN AMRO"</span></li>
+						<li>Clica no ARC: <span class="clickon" by="id:linkRisco22" sleep="2000">Risco de Contágio (Risco) da Atividade de negócio 1</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Consulta de ARCs</span></li>
+						<li>O título da tela deve ser: <span class="contains">Consulta de ARCs</span></li>
+						<li>O código da tela deve ser: <span class="contains">[APSFW0402]</span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>2</td>
+							<td>00000191</td>
+							<td>ABN AMRO</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq101</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>00000191</td>
+							<td>ABN AMRO</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco-Consulta de ARCs</td>
+							<td>Consulta de ARCs</td>
+							<td>APSFW0402</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq101</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>C014</b> - Verificar se usuário com superposição de perfis (supervisor e consulta), está sendo redirecionado para a tela correta - Painel do supervisor - Detalhes do ARC.</td>
+
+				<td>Mesmo estado anterior.</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+						<li>Acesse o menu: <span class="open" url="sisaps/supervisor">inicio/painelsupervisor</span></li>
+						<li>Clica na ES: <span class="clickon" by="id:link_ES1">"ABN AMRO"</span></li>
+						<li>Clica no ARC: <span class="clickon" by="id:linkRisco26" sleep="2000">Risco de Contágio (Risco) da Atividade de negócio 1</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel do supervisor<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Detalhes do ARC</span></li>
+						<li>O título da tela deve ser: <span class="contains">Detalhes do ARC</span></li>
+						<li>O código da tela deve ser: <span class="contains">[APSFW0207]</span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>4</td>
+							<td>00000191</td>
+							<td>ABN AMRO</td>
+							<td>2</td>
+							<td>Início-Painel do supervisor-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq101</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr class="scenario">
+				<td class='title'><b>CENÁRIO EXTRA</b> - <br>Gerar log quando entrar na tela de perfil de risco. E versionar perfil para gerar o logo com o perfil de risco atual.</td>
+
+				<td>*** Banco não reinicializado. Dadoque aproveitado do cenário anterior ***</td>
+
+				<td>
+					<ul>
+						<li>O usuário logado <sisliq106>é "deliq.sisliq106"</sisliq106></li>
+						<li>Clica na ES: <span class="clickon" by="id:linkPerfil1">"ABN AMRO"</span></li>
+						<li>Clica na nota: <span class="clickon" by="id:linkRisco24" sleep="2000">"3" do ARC 'Risco' do grupo 'Contágio'</span></li>
+					</ul>
+				</td>
+
+				<td>
+					<ul>
+						<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image" src="../../crt2/seta.gif"/>Painel de consulta<input type="image" src="../../crt2/seta.gif"/>Perfil de risco<input type="image" src="../../crt2/seta.gif"/>Consulta de ARCs</span></li>
+						<li>O título da tela deve ser: <span class="contains">Consulta de ARCs</span></li>
+						<li>O código da tela deve ser: <span class="contains">[APSFW0402]</span></li>
+					</ul>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>5</td>
+							<td>00000191</td>
+							<td>ABN AMRO</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>6</td>
+							<td>00000191</td>
+							<td>ABN AMRO</td>
+							<td>2</td>
+							<td>Início-Painel de consulta-Perfil de risco-Consulta de ARCs</td>
+							<td>Consulta de ARCs</td>
+							<td>APSFW0402</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>PER_PERFIL_RISCO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>PER_ID</th>
+							<th>CIC_ID</th>
+							<th>PER_DH_CRIACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>1</td>
+							<td>30/08/2014 00:00:00</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>VER_VERSAO_PERFIL_RISCO</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>VER_ID</th>
+							<th>VER_CD_TIPO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>53</td>
+							<td>8</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>NMA_NOTA_MATRIZ</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>NMA_ID</th>
+							<th>PNO_ID</th>
+							<th>NMA_DS_NOTA_MAT</th>
+							<th>VER_ID</th>
+							<th>MAT_ID</th>
+							<th>NMA_ID_ANTERIOR</th>
+							<th>NMA_DH_ATUALZ</th>
+							<th>NMA_CD_OPER_ATUALZ</th>
+							<th>NMA_NU_VERSAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>1</td>
+							<td>1001</td>
+							<td>Justificativa nova nota ajustada</td>
+							<td converter="null"></td>
+							<td>1</td>
+							<td converter="null"></td>
+							<td>28/05/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+							<td>0</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>NMA_NOTA_MATRIZ</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>NMA_ID</th>
+							<th>VER_ID</th>
+							<th>NMA_DH_ATUALZ</th>
+							<th>NMA_CD_OPER_ATUALZ</th>
+							<th>NMA_NU_VERSAO</th>
+						</tr>
+
+						<tr>
+							<td>U</td>
+							<td>1</td>
+							<td>53</td>
+							<td>28/05/2014 00:00:00</td>
+							<td>deliq.sisliq101</td>
+							<td>1</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<table class="prepare dados">
+						<caption>PVE_PER_VER</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>PER_ID</th>
+							<th>VER_ID</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>2</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>3</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>4</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>29</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>30</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>31</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>32</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>33</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>34</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>35</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>36</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>37</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>38</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>39</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>40</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>41</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>42</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>43</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>44</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>45</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>46</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>47</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>48</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>49</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>50</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>51</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>52</td>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>3</td>
+							<td>53</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>Clica no botão voltar <span class="clickon" by="id:bttVoltar">"Voltar"</span></li>
+
+					<br><br>
+
+					<table class="verify dados">
+						<caption>LOP_LOG_OPERACOES</caption>
+
+						<tr>
+							<th>Ação</th>
+							<th>LOP_ID</th>
+							<th>LOP_CD_CNPJ</th>
+							<th>LOP_DS_NOME_ES</th>
+							<th>PER_ID</th>
+							<th>LOP_DS_TRILHA</th>
+							<th>LOP_DS_TITULO_TELA</th>
+							<th>LOP_CD_CODIGO_TELA</th>
+							<th>LOP_DH_OPERACAO</th>
+							<th>LOP_CD_RESP_OPERACAO</th>
+						</tr>
+
+						<tr>
+							<td>I</td>
+							<td>7</td>
+							<td>00000191</td>
+							<td>ABN AMRO</td>
+							<td>3</td>
+							<td>Início-Painel de consulta-Perfil de risco</td>
+							<td>Perfil de risco</td>
+							<td>APSFW0202</td>
+							<td>17/03/2014 00:00:00</td>
+							<td>deliq.sisliq106</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E3.22. Consulta ARC para usuários designados</title>
+		<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>14/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+
+			<tr>
+				<td>23/04/2014</td>
+				<td>2.0</td>
+				<td>Versão atualizada - Correção nos estados do ARC, adequação de funcionalidades e regras e cenários de teste.</td>
+				<td>Christiano/DIREC</td>
+			</tr>
+		</table>
+
+		<h2><a id="E3_22">E3.22. Consulta ARC para usuários designados</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir ARCs designados para o usuário logado no sistema.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Qualquer perfil válido no sistema</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela inicial da aplicação para o perfil inspetor</p>
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Painel do Inspetor</b></p>
+			<p>Trilha: Início --> Painel do Inspetor</p>
+			<p>Código de tela: [APSFW0601]</p>
+			<p>Comando: Selecionar ARC.</p>
+
+			<input type="image" src="Tela01_E3_22.png"/>
+		</blockquote>
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade básica de listar os ARCs designados para o usuário logado.</p>
+			<p>Tela inicial disponível apenas para o perfil <b>Inspetor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Tela inicial da aplicação para o inspetor.</li>
+
+			<li>A tela inicial da aplicação deve exibir a relação dos ARCs designados para o inspetor logado no sistema. ARCs nos estados:
+				<ul>
+					<li>1 - Previsto.</li>
+					<li>2 - Designado.</li>
+					<li>3 - Em edição.</li>
+					<li>4 - Preenchido.</li>
+					<li>5 - Análise delegada.</li>
+					<li>6 - Em análise.</li>
+				</ul>
+			</li>
+
+			<li>Esta tela permite a seleção do ARC para: 
+				<ul>
+					<li>detalhar, incluir e alterar notas do ARC - se o ARC estiver nos estados 2 - Designado ou 3 - Em edição e somente para o usuário que foi designado para atualizar o ARC.</li>
+					<li>detalhar, analisar (aprovar/rejeitar) ARC - se o ARC estiver nos estados 4 - Preenchido ou 5 - Análise delegada e somente para o usuário que foi delegada a analise do ARC.</li>
+					<li>detalhar - se o ARC estiver em qualquer estado diferente dos demais somente para o usuário que foi designado/delegado para o ARC.</li>
+				</ul>
+			</li>
+
+			<li>As funcionalidades básicas de um usuário com perfil inspetor são detalhar, incluir e alterar ARCs para ele designado.</li>
+			<li>No entanto, o supervisor responsável pela ES poderá delegar a um outro usuário a funcionalidade que permite analisar o ARC.</li>
+
+			<li>Ciclo de vida do ARC:
+				<ul>
+					<li>1 - Previsto: na criação do ARC após liberação da matriz na inclusão manual do ciclo ou na inclusão automática do ciclo,
+							ambos por usuário com perfil supervisor (responsável da ES).</li>
+					<li>2 - Designado: após a designação de atualização do ARC pelo usuário com perfil supervisor (responsável da ES).</li>
+					<li>3 - Em edição: após alteração do ARC pelo usuário designado. Permanece neste estado até o usuário designado concluir o preenchimento.</li>
+					<li>4 - Preenchido: usuário informa que finalizou a inclusão de notas.</li>
+					<li>5 - Análise delegada: supervisor responsável da ES delega a análise do ARC para outro usuário.</li>
+					<li>6 - Em análise: supervisor responsável da ES ou outro usuário por ele delegado está analisando o ARC.</li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Cenários de teste</h2>
+
+		<h3>Dado que:</h3> 
+
+		<ul>
+			<li>ARCs nos estados 1 - Previsto; 2 - Designado; 3 - Em edição; 4 - Preenchido; 5 - Análise delegada; 6 - Em análise.</li>
+			<li>ARCs designados para dois usuários distintos com perfil inspetor.</li>
+		</ul>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+
+		<h3><a href="TestE3_22_Consulta_ARCs_perfil_inspetor.html">Negócio</a>.</h3>
+
+		<ul>
+			<li>
+				<b id="C001">C001</b> Falha - Usuário logado não possui ARCs designados. Mensagem:
+				<ul><li>"Não há ARCs designados."</li></ul>
+			</li>
+
+			<li>
+				<b id="C002">C002</b> Sucesso - Apresenta a relação de ARCs designados para o usuário logado
+			</li>
+		</ul>
+
+		<h3><a href="../../../../../../../../../../../web/src/test/java/br/gov/bcb/sisaps/web/crt2/arc/tela/TestE3_22_Consulta_ARCs_perfil_inspetor.html">Web</a>.</h3>	
+
+		<ul>
+			<li>Teste web equivalente - <b><a href="#C001">C001</a></b> - Conferir apenas a mesangem.</li>
+			<li>Teste web equivalente - <b><a href="#C002">C002</a></b> - Conferir a listagem de ARCs.</li>
+			<li>Conferir se o botão Selecionar ARC está habilitado somente para ARCs selecionados nos estados 2 - Designado ou 3 - Em edição.</li>
+			<li>Sucesso - Testar a navegabilidade do comando Selecionar ARC que deve direcionar o usuário para a tela de edição de ARC.</li>
+		</ul>
+	</body>
+</html>

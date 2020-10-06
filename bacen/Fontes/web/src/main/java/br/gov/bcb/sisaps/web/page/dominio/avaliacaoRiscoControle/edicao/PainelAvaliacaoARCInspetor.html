@@ -1,0 +1,52 @@
+<wicket:panel>
+    <table id="tDadosNotaArc" cellspacing="0" cellpadding="3" style="width: 90%">
+        <thead>
+            <tr class="fundoPadraoAEscuro2">
+                <th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5"><label
+                    wicket:id="idNomeGrupoRiscoControle"></label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" colspan="2" style="width: 25%;">Nota vigente do ARC</td>
+                <td colspan="2"><label wicket:id="idNotaVigenteArc"></label></td>
+            </tr>
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo" rowspan="3">Nova nota inspetor</td>
+                <td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+                <td colspan="2" wicket:id="idNovaNotaArc"></td>
+            </tr>
+            <tr class="fundoPadraoAClaro3">
+                <td class="nomeCampo " style="border-left: 1px solid white;">Ajuste</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td><select wicket:id="idSelectNovaNotaArcAjustada"></select></td>
+                        </tr>
+                        <tbody wicket:id="wmcJustificativa">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <textarea wicket:id="idJustificativa" id="idJustificativa"
+                                            contentEditable="true"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <td>
+                                <div align="right">
+                                    <label
+                                        style="color: red; font-size: 7pt; margin: auto; text-align: right; visibility: hidden;"
+                                        id="idAlertaDadosNaoSalvosAvaliacao"> Atenção informações não salvas. </label> <input
+                                        type="button" class="botao" wicket:id="bttSalvarAvaliacaoARC" value="Salvar" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 25%;"></td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>

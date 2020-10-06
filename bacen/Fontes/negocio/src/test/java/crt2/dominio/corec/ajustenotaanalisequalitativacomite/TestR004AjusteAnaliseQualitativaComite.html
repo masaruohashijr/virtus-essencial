@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R004 - Ajuste da nota da análise qualitativa pelo comitê</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Ajuste da nota da análise qualitativa pelo comitê'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>09/08/2017</td>
+			<td>Kalina Lígia</td>
+			<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#ajusteNotaAnaliseQualitativaComite">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+	<ul>
+		<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#valoresSelecaoNovoCalculo">validar quais os valores que podem ser selecionados</a>.<br />
+	</blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<td>
+				<table class="scenario">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001]</b> - Notas disponíveis para seleção quando não existe ajuste comitê e nem ajuste de nota pelo supervisor.</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					<tr>
+					<tr>
+						<td><banco />
+
+							<li>Os dados encontram-se <a href="TestR004AjusteAnaliseQualitativaComite-DadoQue.html" class="include">aqui</a>.
+						</li></td>
+					</tr>
+
+					<tr>
+						<th>Ação/Validação</th>
+					</tr>
+
+					<tr>
+						<td>As notas para seleção são: <br> <br>
+							<table>
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<th>Entrada</th>
+												<th style="background-color: green">Saída</th>
+											</tr>
+											<tr>
+												<th>Ciclo</th>
+												<th style="background-color: green">Notas</th>
+											</tr>
+											<tr>
+												<td class="set" name="ciclo" converter="Integer">2</td>
+												<td>
+													<table class="verifyRows" name="parametroNota" value="$THIS.buscarNotasAjusteCorec(ciclo)">
+														<tr style="display: none">
+															<th class="eq" value="$THIS.getDescricaoNota(parametroNota)"></th>
+														</tr>
+													<tr>
+												<td>1</td>
+											</tr>
+											<tr>
+												<td>1-</td>
+											</tr>
+											<tr>
+												<td>2+</td>
+											</tr>
+											<tr>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3+</td>
+											</tr>
+											<tr>
+												<td>3</td>
+											</tr>
+											<tr>
+												<td>3-</td>
+											</tr>
+											<tr>
+												<td>4+</td>
+											</tr>
+												<tr>
+												<td>4</td>
+											</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

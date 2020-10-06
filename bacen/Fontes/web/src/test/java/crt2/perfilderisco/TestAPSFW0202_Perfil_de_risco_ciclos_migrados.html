@@ -1,0 +1,1341 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Cenários de teste para a estória APSFW0202 - Perfil de
+	risco - Matriz.</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../../negocio/src/test/java/crt2/estilos.css"
+	media="screen" />
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/jquery.js"></script>
+<script type="text/javascript"
+	src="../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória a APSFW0202 - Ajuste na sessão de outras informações - Exibir os dados migrados (Perfil de risco)</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>11/09/2014</td>
+			<td>David Nascimento</td>
+			<td>Especificação dos testes automatizados</td>
+		</tr>
+	</table>
+
+	<h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras desta estória:<br><br> <a href="../../../../../../negocio/src/test/java/crt2/dominio/perfilderisco/index.html#ciclosMigrados">Aqui</a><br>
+    </blockquote>
+
+
+
+	<h2>Premissas iniciais</h2>
+
+	<blockquote>
+		Lista de servidores: <a
+			href="../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html"
+			class="include">aqui</a>
+	</blockquote>
+
+
+	<blockquote>Cenários onde devem ser apresentadas a
+		trilha, código, título, filtro e demais detalhes da tela de Perfil de risco juntamente com os anexos para o perfil consulta, inspetor e supervisor</blockquote>
+
+	<span id="cenarios"></span>
+
+
+	<!-- ##### -->
+	<!-- CT001 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C001]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+							<td><banco /> As regras para os perfis de acesso se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dados_basicos/REGRAS_PERFIS_ACESSO_GERAL.html"
+				class="include">aqui</a><br> <br> Os dados da Metodologia
+				se encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE1_carga_nova_metodologia_e_parametros_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados das ESs se
+				encontram <a
+				href="../../../../../../negocio/src/test/java/crt2/dominio/comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html"
+				class="include">aqui</a><br> <br> Os dados do Ciclo,
+				Matriz, Unidades, Atividades, ARCs e seus estados se encontram <a
+				href="dadoque/TestAPSFW0202_Perfil_de_risco_ciclos_migrados_dadoque.html"
+				class="include">aqui</a><br>
+				</td>
+						</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+						<tr>
+							<td>
+			    <font color="blue">O usuário logado é o CONSULTA TUDO.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco com as informações do ciclo atual na tela.<br>A combobox dos filtros: 'Ciclo' e 'versão' deverão mostrar os dados do ciclo atual e do(s) ciclo(s) migrado(s).</font>
+				<ul>
+					<li>O usuário logado <sisliq106>é
+						"deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+				</ul>
+			</td>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li>29/05/2009</li>
+                                            <li>28/05/2008</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                            <li>28/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td>Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>28/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec
+										previsto</b></td>
+								<td>28/05/2015</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+						
+                   </table>
+			</span>
+			</td>
+		</tr>
+					
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+			
+			
+			
+			
+    <!-- ##### -->
+	<!-- CT002 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C002]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+							<td>Mesmo "dadoque" anterior..<br></td>
+						</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+						<tr>
+			<td>
+			    <font color="blue">O usuário logado é o CONSULTA TUDO.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (30/05/2010).<br>Após isso serão exibidos as informações históricas do ciclo e anexos na tela.</font>
+				<ul>
+					<li>O usuário logado <sisliq106>é
+						"deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="2000">30/05/2010</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li><span class="selected" by="id:idCiclo">30/05/2010</span></li>
+                                            <li>29/05/2009</li>
+                                            <li>28/05/2008</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão </td>
+                                    <td style="width: 25%;">histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Encerrado</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>30/05/2010</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Data-base</b></td><td>05/2009</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+                  </table>
+			</span><br><br>
+			
+            <span class="compareTable" by="xpath://table[@id='tDadosInformacoesCicloMigrado']">
+                <table>
+                    <thead>
+						<tr>
+							<th colspan="3" class="aesquerda"
+								style="width: 482px; background-color: #4a73a2"><b>Informações</b></th>
+						</tr>
+					</thead>
+					<tbody>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+	                                            <table>
+				                                    <tbody>
+				                                        <tr><td><a>ARCs.pdf</a></td></tr>
+				                                          <tr><td><a>Ata do Corec.doc</a></td></tr>
+				                                        <tr><td><a>Ofício.docx</a></td></tr>
+				                                    </tbody>
+				                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+					</tbody>
+                </table>
+            </span><br><br>
+       
+       <li>O botão de 'Voltar' é exibido:<br> <br> <input class="present" by="conter:" type="button"
+					value="Voltar" /></li>
+			</td>
+		</tr>
+					
+				
+				
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>	
+	
+	
+	
+ <!-- ##### -->
+	<!-- CT003 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C003]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br></td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			    <font color="blue">O usuário logado é o CONSULTA TUDO.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (29/05/2009).<br>Após isso serão exibidos as informações históricas do ciclo e anexos na tela.</font>
+				<ul>
+					<li>O usuário logado <sisliq106>é
+						"deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">29/05/2009</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li><span class="selected" by="id:idCiclo">29/05/2009</span></li>
+                                            <li>28/05/2008</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Encerrado</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>29/05/2009</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Data-base</b></td><td>05/2008</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										</b></td>
+								<td>Tiago Gomes</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										</b></td>
+								<td>Silvio Cavalcanti</td>
+							</tr>
+						</tbody>
+
+					</table>
+			</span><br><br>
+			
+			<span class="compareTable" by="xpath://table[@id='tDadosInformacoesCicloMigrado']">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="aesquerda"
+                                style="width: 482px; background-color: #4a73a2"><b>Informações</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td><a>Matriz.pdf</a></td></tr>
+                                                        <tr><td><a>Conclu.pdf</a></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span><br><br>
+			</td>
+		</tr>
+					
+				
+				
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+			
+			
+			
+	<!-- ##### -->
+	<!-- CT004 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C004]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br></td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			    <font color="blue">O usuário logado é o CONSULTA TUDO.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (28/05/2008).<br>Após isso serão exibidos as informações históricas do ciclo e anexos na tela.</font>
+				<ul>
+					<li>O usuário logado <sisliq106>é
+						"deliq.sisliq106"</sisliq106></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">28/05/2008</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li>29/05/2009</li>
+                                            <li><span class="selected" by="id:idCiclo">28/05/2008</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Encerrado</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>28/05/2008</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Data-base</b></td><td>05/2007</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										</b></td>
+								<td>Gustavo Silva</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										</b></td>
+								<td>Silvio Cavalcanti</td>
+							</tr>
+						</tbody>
+				</table>
+			</span><br><br>
+			
+			<span class="compareTable" by="xpath://table[@id='tDadosInformacoesCicloMigrado']">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="aesquerda"
+                                style="width: 482px; background-color: #4a73a2"><b>Informações</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td><a>Dossiê.pdf</a></td></tr>
+                                                        <tr><td><a>Apresentação ao Corec.ppt</a></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span><br><br>
+			</td>
+		</tr>
+					
+				
+				
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>	
+	
+	
+	
+ <!-- ##### -->
+	<!-- CT005 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C005]</b> - Verificar na combobox da tela de perfil de risco (via painel inspetor) que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br></td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			    <font color="blue">O usuário logado é o INSPETOR.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (28/05/2008).<br>Após isso serão exibidos as informações históricas do ciclo e anexos na tela.</font>
+				<ul>
+					<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+					<li>Clica no Link da ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">28/05/2008</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início <img src="../../crt2/seta.gif" />
+							Painel do inspetor <img src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+				</ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li>29/05/2009</li>
+                                            <li><span class="selected" by="id:idCiclo">28/05/2008</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Encerrado</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>28/05/2008</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Data-base</b></td><td>05/2007</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										</b></td>
+								<td>Gustavo Silva</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										</b></td>
+								<td>Silvio Cavalcanti</td>
+							</tr>
+						</tbody>
+				</table>
+			</span><br><br>
+			
+			<span class="compareTable" by="xpath://table[@id='tDadosInformacoesCicloMigrado']">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="aesquerda"
+                                style="width: 482px; background-color: #4a73a2"><b>Informações</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td><a>Dossiê.pdf</a></td></tr>
+                                                        <tr><td><a>Apresentação ao Corec.ppt</a></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span><br><br>
+			
+			
+       
+       <li>O botão de 'Voltar' é exibido:<br> <br> <input class="present" by="conter:" type="button"
+					value="Voltar" /></li>
+			</td>
+	</tr>
+					
+				
+				
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>	
+	
+	
+	
+ <!-- ##### -->
+	<!-- CT006 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C006]</b> - Verificar na combobox da tela de perfil de risco (via painel Supervisor) que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br></td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			    <font color="blue">O usuário logado é o SUPERVISOR.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (28/05/2008).<br>Após isso serão exibidos as informações históricas do ciclo e anexos na tela.</font>
+				<ul>
+					<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+                    <li>Acesse o menu: <span class="open"
+                        url="sisaps/supervisor/painelsupervisor">inicio/painelsupervisor</span></li>
+					<li>Clica no Link da ES: <span class="clickon" by="id:link_ES3">ITAU</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">28/05/2008</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+                    <li>A trilha na tela que deve ser: <span class="contains">Início<input
+                            type="image" src="../../crt2/seta.gif" />Painel do supervisor<input
+                            type="image" src="../../crt2/seta.gif" />Perfil de risco
+                    </span></li>
+                    <li>O título da tela deve ser: <span class="contains"><b>Perfil
+                                de risco<b></span></li>
+                    <li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+                </ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li>29/05/2009</li>
+                                            <li><span class="selected" by="id:idCiclo">28/05/2008</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td><b>Encerrado</b></td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec</b></td>
+								<td>28/05/2008</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Data-base</b></td><td>05/2007</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										</b></td>
+								<td>Gustavo Silva</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										</b></td>
+								<td>Silvio Cavalcanti</td>
+							</tr>
+						</tbody>
+				</table>
+			</span><br><br>
+			
+			<span class="compareTable" by="xpath://table[@id='tDadosInformacoesCicloMigrado']">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="aesquerda"
+                                style="width: 482px; background-color: #4a73a2"><b>Informações</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td><a>Dossiê.pdf</a></td></tr>
+                                                        <tr><td><a>Apresentação ao Corec.ppt</a></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </span><br><br>
+			
+			
+       
+       <li>O botão de 'Voltar' é exibido:<br> <br> <input class="present" by="conter:" type="button"
+					value="Voltar" /></li>
+			</td>
+	</tr>
+					
+				
+				
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>	
+	
+	
+	
+	
+	<!-- ##### -->
+	<!-- CT007 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C007]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating para usuário CONSULTA RESUMOS NÃO BLOQUEADOS com perfil de 'CONSULTA TUDO'.</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br>
+			<table class="prepare dados">
+		<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+		<tr>
+			<th>Ação</th>
+			<th>RPA_ID</th>
+			<th>RPA_CD_PERFIL</th>
+			<th>RPA_DS_LOCALIZACAO</th>
+			<th>RPA_IB_SUB_LOCALIZACAO</th>
+			<th>RPA_CD_FUNCAO</th>
+			<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+			<th>RPA_CD_SITUACAO</th>
+			<th>RPA_CD_MATRICULA</th>
+			<th>RPA_DH_ATUALZ</th>
+			<th>RPA_CD_OPER_ATUALZ</th>
+			<th>RPA_NU_VERSAO</th>
+		</tr>
+		<tr>
+			<td>I</td>
+			<td>23</td>
+			<td>5</td>
+			<td>DESUP/GBPM1/GTSP4</td>
+			<td>0</td>
+			<td></td>
+			<td></td>
+			<td>116</td>
+			<td>04040404</td>
+			<td>17/03/2014 00:00:00</td>
+			<td>deliq.sisliq105</td>
+			<td>0</td>
+		</tr>
+		</table>
+			</td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			      <font color="blue">O usuário logado é o CONSULTA RESUMOS NÃO BLOQUEADOS com perfil de 'CONSULTA TUDO'.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (28/05/2008).<br>Após isso serão exibidos as informações históricas do ciclo.</font>
+				<ul>
+					<li>O usuário logado <sisliq109>é
+						"deliq.sisliq109"</sisliq109></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">28/05/2008</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li>29/05/2009</li>
+                                            <li><span class="selected" by="id:idCiclo">28/05/2008</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+			</td>
+		</tr>
+		
+			
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	
+	
+	
+	
+	<!-- ##### -->
+	<!-- CT008 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C008]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos os dados do ciclo atual e dos ciclos migrados do Rating para usuário CONSULTA RESUMOS NÃO BLOQUEADOS com perfil de 'CONSULTA NÃO BLOQUEADOS'.</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br>
+			<table class="prepare dados">
+		<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+		<tr>
+			<th>Ação</th>
+			<th>RPA_ID</th>
+			<th>RPA_CD_PERFIL</th>
+			<th>RPA_DS_LOCALIZACAO</th>
+			<th>RPA_IB_SUB_LOCALIZACAO</th>
+			<th>RPA_CD_FUNCAO</th>
+			<th>RPA_CD_SUBST_EVENTUAL_FUNCAO</th>
+			<th>RPA_CD_SITUACAO</th>
+			<th>RPA_CD_MATRICULA</th>
+			<th>RPA_DH_ATUALZ</th>
+			<th>RPA_CD_OPER_ATUALZ</th>
+			<th>RPA_NU_VERSAO</th>
+		</tr>
+		<tr>
+			<td>D</td>
+			<td>23</td>
+			<td>5</td>
+			<td>DESUP/GBPM1/GTSP4</td>
+			<td>0</td>
+			<td></td>
+			<td></td>
+			<td>116</td>
+			<td>04040404</td>
+			<td>17/03/2014 00:00:00</td>
+			<td>deliq.sisliq105</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>I</td>
+			<td>23</td>
+			<td>3</td>
+			<td>DESUP/GBPM1/GTSP4</td>
+			<td>0</td>
+			<td></td>
+			<td></td>
+			<td>116</td>
+			<td>04040404</td>
+			<td>17/03/2014 00:00:00</td>
+			<td>deliq.sisliq105</td>
+			<td>0</td>
+		</tr>
+		</table>
+			</td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			      <font color="blue">O usuário logado é o CONSULTA RESUMOS NÃO BLOQUEADOS com perfil de 'CONSULTA NÃO BLOQUEADOS'.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco.<br>O mesmo selecionará um ciclo migrado (28/05/2008).<br>Após isso serão exibidos as informações históricas do ciclo.</font>
+				<ul>
+					<li>O usuário logado <sisliq109>é
+						"deliq.sisliq109"</sisliq109></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+					<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo">28/05/2008</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                            <li>30/05/2010</li>
+                                            <li>29/05/2009</li>
+                                            <li><span class="selected" by="id:idCiclo">28/05/2008</span></li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão histórica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+			</td>
+		</tr>
+		
+			
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	
+	
+	
+ <!-- ##### -->
+	<!-- CT009 -->
+	<!-- ##### -->
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tbody>
+						<tr>
+							<th>Cenário</th>
+						</tr>
+						<tr>
+							<td class='title'><b>[C009]</b> - Verificar na combobox da tela de perfil de risco que estão sendo exibidos  apenas os dados do ciclo atual para usuário com perfil 'CONSULTA RESUMOS NÃO BLOQUEADOS'</font>.</td>
+						</tr>
+						<tr>
+							<th>Dados pré-existentes</th>
+						</tr>
+						<tr>
+			<td>Mesmo "dadoque" anterior..<br>
+			<table class="prepare dados">
+		<caption>RPA_REGRA_PERFIL_ACESSO</caption>
+		<tr>
+			<th>Ação</th>
+			<th>RPA_ID</th>
+		</tr>
+		<tr>
+			<td>D</td>
+			<td>23</td>
+		</tr>
+		</table>
+			</td>
+		</tr>
+						<tr>
+							<th>Ação pretendida</th>
+						</tr>
+<tr>
+			<td>
+			      <font color="blue">O usuário logado é o CONSULTA RESUMOS NÃO BLOQUEADOS.<br>Ele vai clicar sobre a ES "ITAU" onde será direcionado para a tela de Perfil de risco com as informações do ciclo atual na tela.<br>A combobox dos filtros: 'Ciclo' e 'versão' deverão mostrar apenas os  dados do ciclo atual.</font>
+				<ul>
+					<li>O usuário logado <sisliq109>é
+						"deliq.sisliq109"</sisliq109></li>
+					<li>Acesse o menu: <span class="open" url="sisaps/painelconsulta">sisaps/painelconsulta</span></li>
+					<li>Clica na ES: <span class="clickon" by="id:linkPerfil3">"ITAU"</span></li>
+				</ul>
+			</td>
+		</tr>
+						<tr>
+							<th>Resultado esperado</th>
+						</tr>
+						<tr>
+			<td>
+				<ul>
+					<li>A trilha na tela que deve ser: <span class="contains">Início<input type="image"
+							src="../../crt2/seta.gif" />Painel de consulta<input type="image" src="../../crt2/seta.gif" />Perfil de risco
+					</span></li>
+					<li>O título da tela deve ser: <span class="contains"><b>Perfil de risco</b></span></li>
+					<li>O código da tela deve ser: <span class="contains"><b>[APSFW0202]</b></span></li>
+				</ul> 
+				<span class="present" by="xpath://table[@id='tPainelFiltroPerfilRisco']">
+                        <table cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr class="aesquerda">
+                                    <td style="width: 25%; text-align: right;">ciclo</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idCiclo">
+                                            <li>atual</li>
+                                        </ul>
+                                    </td>
+                                    <td style="width: 25%; text-align: right;">versão</td>
+                                    <td style="width: 25%;">
+                                        <ul class="options" by="id:idPerfilRisco">
+                                            <li>vigente</li>
+                                            <li>28/05/2014</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span><br><br>
+				<span class="compareTable"
+				by="xpath://table[@id='tDadosCicloResumido']">
+					<table>
+						<thead>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>ITAU (00000776)</b></th>
+							</tr>
+							<tr>
+								<th colspan="2" class="aesquerda"
+									style="width: 482px; background-color: #4a73a2"><b>Ciclo</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Estado</b></td>
+								<td>Em andamento</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Início</b></td>
+								<td>28/05/2014</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Corec
+										previsto</b></td>
+								<td>28/05/2015</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor
+										titular</b></td>
+								<td>ROBERTO SANTOS ALENCAR</td>
+							</tr>
+							<tr>
+								<td colspan="1" style="color: black; background-color: #4a73a2"><b>Gerente
+										titular</b></td>
+								<td>ANFRISIO RODRIGUES VIEIRA</td>
+							</tr>
+						</tbody>
+						
+                   </table>
+			</span>
+			</td>
+		</tr>
+		
+			
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
+		
+	
+
+</body>
+</html>

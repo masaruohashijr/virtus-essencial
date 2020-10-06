@@ -1,0 +1,174 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>E5.11. Consulta ciclo ativo da ES perfil supervisor</title>
+		<link rel="stylesheet" type="text/css" href="../estilos.css" media="screen"/>
+	</head>
+
+	<body>
+		<table class="exemplos">
+			<tr>
+				<th>Data</th>
+				<th>Versão</th>
+				<th>Descrição</th>
+				<th>Autor</th>	
+			</tr>
+
+			<tr>
+				<td>01/04/2014</td>
+				<td>1.0</td>
+				<td>Versão inicial - Criação do documento e especificação.</td>
+				<td>Eliane/DIREC</td>
+			</tr>
+			<tr>
+				<td>04/04/2014</td>
+				<td>1.1</td>
+				<td>Foram adicionados itens de teste.</td>
+				<td>Eliane/DIREC</td>
+			</tr>			
+		</table>
+
+		<h2><a id="E5_11">E5.11. Consulta ciclo ativo da ES perfil supervisor - Iteração 02</a></h2>
+
+		<h3>Pré-requisitos</h3>
+
+		<blockquote>
+			<p>Deve existir um ciclo ativo para ES sob a responsabilidade do supervisor logado no sistema.</p>
+		</blockquote>
+
+		<h3>Perfil de usuário</h3>
+
+		<blockquote>
+			<p>Supervisor.</p>
+		</blockquote>	
+
+		<h3>Item de menu</h3>
+
+		<blockquote>
+			<p>Tela inicial da aplicação para o perfil supervisor</p>
+			<p>Ciclo SRC -- Consulta</p>
+		</blockquote>
+
+		<h3>Telas</h3>
+
+		<blockquote>
+			<p><b>Título: Relação de ciclos SRC ativos</b></p>
+			<p>Trilha: Ciclo SRC -- Consulta</p>
+			<p>Código de tela: [RATFW0302]</p>
+			<p>Comandos (Ações): Perfil de risco (equivale ao detalhar ou selecionar), Análise quantitativa, Avaliação de riscos e controles - ARC, Edição da matriz de riscos e controles (poderão surgir outros comandos).</p>
+			<p>Comandos (Tela): Voltar (somente quando a tela for exibida através do menu, este comando não é exibido na tela inicial da aplicação).</p>
+
+			<table class="exemplos">
+				<tbody>
+					<tr>
+						<th colspan="6" style="color:black; background-color:#FFFFEE;">Relação de ciclos SRC ativos</th>
+        			</tr>
+
+					<tr>
+						<th align="left" colspan="6" style="background-color: #003366">Ciclos SRC ativos</th>
+        			</tr>
+
+					<!-- <tr> -->
+						<!-- <th align="left" colspan="3" style="background-color: #4a73a2">Ciclos SRC ativos</th> -->
+					<!-- </tr> -->
+
+					<tr>
+            			<td colspan="1" style="background-color: #4a73a2"><b>CNPJ/Cód. Congl.</b></td>
+                		<td colspan="1" style="background-color: #4a73a2"><b>Entidade supervisionável</b></td>
+                		<td colspan="1" style="background-color: #4a73a2"><b>Data de início do ciclo</b></td>
+                		<td colspan="1" style="background-color: #4a73a2"><b>Data prevista do corec</b></td>
+                		<td colspan="1" style="background-color: #4a73a2"><b>Estado do ciclo</b></td>
+                		<td colspan="1" style="background-color: #4a73a2"><b>Ações</b></td>
+					</tr>
+
+            		<tr>
+            			<td colspan="1">10045</td>
+						<td colspan="1">BRADESCO</td>
+						<td colspan="1">01/01/2014</td>
+						<td colspan="1">01/01/2016</td>
+						<td colspan="1">Em andamento</td>
+						<td colspan="1">P AQ ARC M</td>
+					</tr>
+
+            		<tr>
+            			<td colspan="1">1023570</td>
+						<td colspan="1">BCO RABOBANK INTL BRASIL S.A.</td>
+						<td colspan="1">01/03/2012</td>
+						<td colspan="1">01/03/2014</td>
+						<td colspan="1">Corec</td>
+						<td colspan="1">P AQ ARC M</td>
+					</tr>
+				</tbody>
+			</table>
+		</blockquote>		
+
+		<h3>Descrição</h3>
+
+		<blockquote>
+			<p>Funcionalidade básica de listar os ciclos SRC ativos.</p>
+			<p>Funcionalidades disponíveis apenas para o perfil <b>Supervisor</b>.</p>
+		</blockquote>
+
+		<h3>Regras específicas</h3>
+
+		Detalhamento:
+
+		<ul>
+			<li>Tela inicial da aplicação para o supervisor.</li>
+			<li>Tela pode ser exibida do mesmo modo através de opção de menu para o supervisor.</li>
+			<li>A inclusão é feita pelo usuário supervisor através do menu Administração -- Ciclo SRC -- Inclusão.</li>
+
+			<li>A tela inicial da aplicação deve exibir a relação dos ciclos ativos que estejam sob a responsabilidade do supervisor logado no sistema. Ciclos nos estados:
+				<ul>
+					<li>Em andamento</li>
+					<li>Corec</li>
+				</ul>
+			</li>
+
+			<li>Esta tela exibe uma coluna de ações que permite acionar para cada ES as telas: 
+				<ul>
+					<li>Perfil de risco</li>
+					<li>Análise quantitativa</li>
+					<li>Avaliação de riscos e controles - ARC</li>
+					<li>Edição da matriz de riscos e controles.</li>
+				</ul>
+			</li>
+
+			<li>Paras os ciclos no estado corec a aplicação exibe apenas o comando Perfil de risco.</li>
+			<li>Quando a tela é aciona através de opção de menu, apresentar o comando Voltar.</li>
+		</ul>
+
+		<h2>Cenários de teste para <a href="TestE5_11_Consulta_ciclo_ativo_da_ES_perfil_supervisor.html">E5.11. Consulta ciclo ativo da ES perfil supervisor</a>.</h2>
+
+		<p>Observação: agrupar a maior quantidade de itens de teste no mesmo teste.</p>
+		<p>Dado que:</p> 
+
+		<ul>
+			<li>registros de ciclos para ESs sob a responsabilidade do supervisor nos estados 1 - Em andamento; 2  - Corec; 3 - Pós - corec; 4 - Encerrado; 5 - Excluído.</li>
+			<li>registros de ciclos para ESs sob a responsabilidade de outro supervisor nos estados 1 - Em andamento; 2  - Corec; 3 - Pós - corec; 4 - Encerrado; 5 - Excluído.</li>
+		</ul>
+
+		Negócio:
+
+		<ul>
+			<li>Usuário logado não possui ES sob sua responsabilidade. Exibir a mensagem:
+				<ul>
+					<li>Nenhum registro que satisfaça os critérios de pesquisa foi encontrado. Refaça sua pesquisa alterando os critérios.</li>
+				</ul>			
+			</li>
+		</ul>
+
+		<h2>Cenários de teste para <a href="TestE5_11_Consulta_ciclo_ativo_da_ES_perfil_supervisor.html">E5.11. Consulta ciclo ativo da ES perfil supervisor</a>.</h2>	
+
+		Web:
+
+		<ul>
+			<li>Acesso a tela inicial da aplicação.</li>
+			<li>Acesso via menu Ciclo SRC -- Consulta.</li>
+			<li>Conferir que para ES com ciclo no estado corec será exibido apenas o comando Perfil de risco.</li>
+			<li>Testas a navegabilidade do comando Voltar.</li>
+		</ul>
+
+		<br><br>	
+	</body>
+</html>

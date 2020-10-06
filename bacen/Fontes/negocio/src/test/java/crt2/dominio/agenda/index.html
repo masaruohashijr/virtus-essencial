@@ -1,0 +1,196 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ciclos do SRC - Agenda </title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Ciclos do SRC - Agenda</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="agenda" class="menu">Agenda</a>
+ </h2>
+
+ 	<ul>
+		<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Agenda/Painel/painel_agenda.html">protótipo</a>.</li>
+		<li>Regras gerais:</li>
+		<ul>
+			<li>As regras de acesso e substituição definas na 'Gestão de perfil de acesso' <b>NÃO</b> devem ser consideradas. Ou seja, a funcionalidade é aberta para qualquer usuário.</li>
+		</ul>	
+	</ul>
+	
+ 	<h3>
+ 	    <a name="agendaCorec" class="menu">Agenda de Corecs</a>
+ 	</h3>
+ 	   <ul>
+			<li>Observar as regras definidas em <a href="#agenda">agenda</a>.</li>
+			<li>Deve seguir as mesmas regras de filtragens definidas em <a href="../administrador/index.html#agendaCorec">agenda de corecs do perfil de administrador.</a>
+	   </ul>		
+
+ 	<h4>
+ 	    <a name="listarComites" class="menu">Listar comitês</a>
+ 	</h4>
+
+ 	<h5>
+ 	    <a name="listarComitesRealizados" class="menu">Listar comitês realizados</a>
+ 	</h5>
+ 	   <ul>
+			<li>Observar as regras definidas em <a href="#agendaCorec">agenda de corecs</a>.</li>
+			<li>Observar as regras definidas em <a href="../administrador/index.html#listarComitesRealizados">listar comitês realizados do perfil de administrador</a> com as seguintes ressalvas:</li>
+			<ul>
+			     <li>Nenhum registro poderá ser alterado.</li>
+			</ul>
+	   </ul>
+		
+       <blockquote>
+		    <a href="../administrador/listarcomitesrealizados/indexNegocio.html">Utilizar os cenários de teste de negócio do perfil de administrador para testes manuais</a><br>
+		</blockquote>
+
+ 	<h5>
+ 	    <a name="listarComitesARealizar" class="menu">Listar comitês a realizar</a>
+ 	</h5>
+ 	   <ul>
+			<li>Observar as regras definidas em <a href="#agendaCorec">agenda de corecs</a>.</li>
+			<li>Observar as regras definidas em <a href="../administrador/index.html#listarComitesARealizar">listar comitês a realizar do perfil de administrador</a> com as seguintes ressalvas:</li>
+			<ul>
+			     <li>Nenhum registro poderá ser alterado.</li>
+			</ul>
+	   </ul>
+		
+       <blockquote>
+		    <a href="../administrador/listarcomitesarealizar/indexNegocio.html">Utilizar os cenários de teste de negócio do perfil de administrador para testes manuais</a><br>
+		</blockquote>
+
+ 	<h4>
+ 	    <a name="detalharComite" class="menu">Detalhar comitê</a>
+ 	</h4>
+ 	     <ul>
+			<li>Deve seguir as mesmas regras de filtragens definidas em <a href="../administrador/index.html#detalharComite">detalhar comitê do perfil de administrador.</a>
+		 </ul>	        
+
+ 	<h5>
+ 	    <a name="detalharComiteRealizado" class="menu">Detalhar comitê realizado</a>
+ 	</h5>
+ 	   <ul>
+			<li>Observar as regras gerais definidas em <a href="#detalharComite">detalhar comitê</a>.</li>
+			<li>Observar as regras definidas em <a href="../administrador/index.html#detalharComiteRealizado">detalhar comitê realizado do perfil de administrador</a>.</li>
+	   </ul>
+		
+       <blockquote>
+		    <a href="../administrador/detalharcomiterealizado/indexNegocio.html">Utilizar os cenários de teste de negócio do perfil de administrador para testes manuais</a><br>
+		</blockquote>
+		
+ 	<h5>
+ 	    <a name="detalharComiteRealizar" class="menu">Detalhar comitê a realizar</a>
+ 	</h5>
+ 	   <ul>
+			<li>Observar as regras gerais definidas em <a href="#detalharComite">detalhar comitê</a>.</li>
+			<li>Observar as regras definidas em <a href="../administrador/index.html#detalharComiteRealizar">detalhar comitê a realizar do perfil de administrador</a>.</li>
+	   </ul>
+		
+       <blockquote>
+		    <a href="../administrador/detalharcomiterealizar/indexNegocio.html">Utilizar os cenários de teste de negócio do perfil de administrador para testes manuais</a><br>
+		</blockquote>
+
+	<h3>    
+	    <a name="meusComites" class="menu">Meus comitês</a>
+    </h3>	  
+		<ul>
+			<li>Observar o descrito em <a href="#agenda">agenda</a>.</li>
+		</ul>
+		
+	<h4>
+		<a name="listarComitesAtaPendente" class="menu">Listar comitês com assinatura de ata pendente</a>
+	</h4>
+		<ul>
+			<li>Observar as regras gerais definidas em <a href="#meusComites">meus comitês</a>.</li>
+			<li>Deverão ser listados os comitês em estado 'Pós-Corec' que o usuário logado participa e que ele <b>ainda não</b> <a href="#assinarAta">assinou a ata</a>.</li>
+		</ul>
+		
+		<blockquote>
+			<a href="listarcomitesatapendente/indexNegocio.html">Cenários de testes de negócio</a>
+		</blockquote>
+
+ 	<h5>
+ 	    <a name="assinarAta" class="menu">Assinar ata</a>
+ 	</h5>
+ 	   <ul>
+ 	        <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Agenda/Painel/painel_agenda.html">protótipo</a> clicando no botão de alterar da aba 'Comitês com assinatura de ata pendente'. </li>
+			<li>Observar as regras definidas em <a href="#listarComitesAtaPendente">listar comitês com assinatura de ata pendente</a>.</li>
+			<li>Regras gerais:</li>
+			    <ul>
+			        <li>Caso o usuário clique no botão salvar sem marcar o checkbox, o sistema exibirá a seguinte mensagem de erro: "A ata não foi assinada."</li>
+				      <li>Ao clicar no link da ata:</li>
+					<ul>
+	    		   		<li>Utilizando o parâmetro 'Ata corec', gerar PDF para o download do arquivo.</li>
+	       			</ul>	
+			        <li>Ao salvar:</li>
+			           <ul>
+			              <li>O sistema deverá voltar para a tela da <a href="#agenda">agenda</a>, atualiando a lista de <a href="#listarComitesAtaPendente">lista de comitês com assinatura de ata pendente</a> e a <a href="#listarComitesAtaAssinada">lista de comitês com ata assinada</a>.</li>
+		              </ul>
+			    </ul>
+			
+	   </ul>
+		
+		<blockquote>
+			<a href="assinarata/indexNegocio.html">Cenários de teste de negócio</a>
+		</blockquote>
+
+
+
+	<h4>
+		<a name="listarComitesAtaAssinada" class="menu">Listar comitês com ata assinada</a>
+	</h4>
+		<ul>
+			<li>Observar as regras gerais definidas em <a href="#meusComites">meus comitês</a>.</li>
+			<li>Deverão ser listados os comitês que o usuário logado participa e que ele <a href="#assinarAta">assinou a ata</a>.</li>
+		</ul>
+		
+		<blockquote>
+			<a href="listarcomitesataassinada/indexNegocio.html">Cenários de testes de negócio</a>
+		</blockquote>
+
+ 	<h5>
+ 	    <a name="detalharAtaAssinada" class="menu">Detalhar ata assinada</a>
+ 	</h5>
+ 	   <ul>
+ 	      <li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Agenda/Painel/painel_agenda.html">protótipo</a> clicando no botão de detalhar da aba 'Comitês com ata assinada'. </li>
+	      <li>Observar as regras gerais definidas em <a href="#listarComitesAtaAssinada">listar comitês com ata assinada</a>.</li>
+	      <li>Exibição da ata:</li>
+	      <ul>
+	            <li>Caso exista uma ata do COREC anexada ao sistema:</li>
+	                <ul>
+	                    <li>Exibir link com o nome do arquivo para download.</li>
+	                 </ul>   
+	            <li>Senão:</li>
+	                <ul>
+	                    <li>Exibir link conforme o protótipo e ao clicar no link da ata utilizando o parâmetro 'Ata corec', gerar PDF para o download.</li>
+	       			</ul>
+	       </ul>		
+	   </ul>
+		
+		<blockquote>
+			<a href="detalharataassinada/indexNegocio.html">Cenários para a realização de testes manuais</a>
+		</blockquote>
+	
+</body>
+</html>

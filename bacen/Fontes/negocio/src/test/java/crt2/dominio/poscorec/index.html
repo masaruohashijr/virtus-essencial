@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ciclos do SRC - Pós-COREC</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+</head>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../estilo.js"></script>
+<script type="text/javascript" src="../../documentacao.js"></script>
+<body>
+        
+	<a name="sumario"></a>
+
+	<h1>Ciclos do SRC - Pós-COREC</h1>
+	
+	<h2>Sumário</h2>
+     	<blockquote>
+          <div id="sumario"></div>
+    	</blockquote> 
+	
+	<h2> 
+	    <a name="regrasGerais" class="menu">Regras de gerais do sistema</a>
+	</h2>
+
+	<blockquote>
+		Para as regras gerais do sistema, clique <a href="../../NegocioSisaps.html">aqui</a>.
+	</blockquote>
+
+ <h2>       
+     <a name="corec" class="menu">Ciclos do SRC - Pós-COREC</a>
+ </h2>
+
+	<h3>
+ 	    <a name="listarCiclosPosCorec" class="menu">Listagem de Ciclos em Pós-Corec</a>
+ 	</h3>
+ 	
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Comite/Painel/painel_comite.html">protótipo</a>.</li>
+			<li>As regras de acesso e substituição para o perfil Comitê definas na 'Gestão de perfil de acesso' devem ser consideradas.</li>
+			<li>Deverão ser listados as ESs que tem ciclo no estado 'Pós-Corec'.</li>
+			<li>A coluna 'Entrada Corec' deverá ser a data que ocorreu o início do Corec.</li>
+			<li>A coluna 'Corec' deverá ser a data prevista para o Corec do ciclo.</li>
+			<li>A ordenação default da listagem deve ser a coluna 'Corec'.</li>
+			<li>Se nenhum registro for encontrado será exibida a mensagem 'Nenhum registro que satisfaça os critérios de pesquisa foi encontrado.'.</li>
+			<li>Ao clicar no link da coluna 'ES', deverá ir para a tela '<a href="#gestaoPosCorec">Gestão Pós-Corec</a>'.</li>
+		</ul>
+		
+		<blockquote>
+			<a href="listarciclosposcorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h3>
+ 	    <a name="gestaoPosCorec" class="menu">Gestão Pós-Corec</a>
+ 	</h3>
+ 	
+ 		<ul>
+			<li>Utilizar o <a href="http://svn/svn/fis/sisaps/trunk/Requisitos/Prototipos/APS/Comite/GestaoPosCorec/gestao_pos_corec_comite.html">protótipo</a>.</li>
+			<li>Permissão:</li>
+			<ul>
+				<li>Apenas o usuário com perfil comitê pode acessar esta funcionalidade a partir da <a href="#listarCiclosPosCorec">listagem de ciclos em pós-corec</a>.</li>
+			</ul>
+		</ul>
+	
+	<h4>
+ 	    <a name="anexosPosCorec" class="menu">Anexos Pós-corec</a>
+ 	</h4>
+ 		<ul>
+			<li>Observar o descrito em '<a href="#gestaoPosCorec">Gestão Pós-Corec</a>'.</li>
+			<li>Regras gerais:</li>
+			<ul>
+			    <li>Seção 'Ata':</li>
+			    <ul>
+	       			<li>Utilizando o parâmetro 'Ata corec', gerar PDF para o download do arquivo.</li>
+	       		</ul>	
+			    <li>Seção 'Ofício':</li>
+			    <ul>
+				<li>Só é possível anexar um arquivo.</li>
+				<li>Ao exibir a seção:</li>
+				<ul>
+					<li>Caso tenha anexo:</li>
+					<ul>
+						<li>Suprimir a seção para a escolha do arquivo.</li>
+						<li>Exibir o nome do anexo com o link para seu download e a opção para excluir o anexo.</li>
+					</ul>
+					<li>Senão:</li>
+					<ul>
+						<li>Exibir a seção para a escolha do arquivo.</li>
+					</ul>
+				</ul>
+				<li>Ao anexar:</li>
+				<ul>
+					<li>Validações ao anexar:</li>
+					<ul>
+						<li>Caso o usuário tente anexar um arquivo que não seja no formato PDF A4, exibir a seguinte mensagem de erro: 'Não é permitido anexar arquivo com formato diferente de PDF tamanho A4.'</li>
+						<li>Caso o usuário tente anexar um arquivo sem informar o campo 'Ofício entregue em', exibir a seguinte mensagem de erro: 'Campo 'Ofício entregue em' é de preenchimento obrigatório.'.</li>
+						<li>Caso o usuário tente anexar um arquivo, informando a data de entrega do ofício com data maior a data atual, exibir a seguinte mensagem de erro: 'Campo 'Ofício entregue em' deve ser menor ou igual à data corrente.'.</li>
+					</ul>
+					<li>Após validar com sucesso:</li>
+					<ul>
+						<li>Salvar as informações do anexo, atualizar a data de entrega do ofício e atualizar a seção.</li>
+						<li>Exibir a seguinte mensagem de sucesso: 'Ofício anexado com sucesso.'</li>
+					</ul>	
+				</ul>
+				<li>Ao excluir:</li>
+				<ul>
+					<li>Excluir o arquivo anexado e a data de entrega do ofício e atualizar a seção.</li>
+					<li>Exibir a seguinte mensagem de sucesso: 'Ofício excluído com sucesso.'</li>
+				</ul>
+				</ul>
+			</ul>
+		</ul>
+		
+		<blockquote>
+			<a href="gestaoposcorec/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+	<h4>
+ 	    <a name="botaoEncerrarCiclo" class="menu">Botão encerrar Ciclo</a>
+ 	</h4>
+ 	
+ 		<ul>
+			<li>Observar o descrito em '<a href="#gestaoPosCorec">Gestão Pós-Corec</a>'.</li>
+			<li>Botão 'Encerrar Ciclo':</li>
+			<ul>
+				<li>Exibir um pop-up com a seguinte mensagem: 'Deseja realmente encerrar o Ciclo?'; e com as opções 'Sim' e 'Não'.</li>
+ 				<li>Ao clicar na opção 'Sim':</li>
+	 			<ul>
+					<li>Validações ao clicar no botão:</li>
+					<ul>
+						<li>Caso não exista anexo de Ofício cadastrado, exibir a seguinte mensagem de erro: 'O anexo do Ofício é obrigatório.'</li>
+						<li>Caso pelo menos um dos participantes do comitê não possua a data de assinatura da Ata, exibir a seguinte mensagem de erro: 'Todos os participantes do comitê devem assinar a Ata.'</li>
+					</ul>
+					<li>Após clicar e passar com sucesso pelas validações:</li>
+					<ul>
+						<li>Mudar o ciclo para o estado 'Encerrado'.</li>
+					</ul>
+					<li>Tela de resultado:</li>
+					<ul>
+						<li>O sistema deve voltar para a tela 'Painel do comitê', com a seguinte mensagem de sucesso: 'O Ciclo foi encerrado com sucesso.'.</li>
+					</ul>
+	 			</ul>
+ 				<li>Ao clicar na opção 'Não':</li>
+ 				<ul>
+ 					<li>Fechar o pop-up e não realizar nenhuma ação.</li>
+ 				</ul>
+			</ul>
+		</ul>
+		
+		<blockquote>
+			<a href="botaoencerrarciclo/indexNegocio.html">Cenários de teste de negócio</a><br>
+		</blockquote>
+	
+</body>
+</html>

@@ -1,0 +1,92 @@
+<wicket:panel>
+	<table id="tDadosTendenciaRiscoMercado" width="90%" cellspacing="0" cellpadding="3" >
+		<thead>
+			<tr class="fundoPadraoAEscuro2"  wicket:id="exibirTendenciaCelula">
+				<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;">Tendência - <span
+					wicket:id="idNomeGrupoRiscoControle">RISCO DE MERCADO</span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			 <tr class="fundoPadraoAClaro3" wicket:id="exibirTendenciaVigente">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Tendência vigente</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: right;">
+                                <label style="font-size: 7pt;" wicket:id="idDataVigente">Atualizado em dd/MM/yyyy </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+	                            <b>
+	                            	<label wicket:id="idTipoTendenciaVigente"></label> 
+	                            </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div style="width: 100%" wicket:id="idTendenciaVigente"></div></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 25%;">
+                    
+                </td>
+            </tr>
+			
+			  <tr class="fundoPadraoAClaro3" wicket:id="exibirTendenciaInspetor">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Tendência inspetor</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: right;">
+                                <label style="font-size: 7pt;" wicket:id="idDataInspetor">Atualizado em dd/MM/yyyy </label>
+                            </td>
+                        </tr>
+                        <tr>
+                       		 <td>
+	                            <b>
+	                            	<label wicket:id="idTipoTendenciaInspetor"></label> 
+	                            </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div style="width: 100%" wicket:id="idTendenciaInspetor"></div></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 25%;">
+                    
+                </td>
+            </tr>
+			
+			  <tr class="fundoPadraoAClaro3" wicket:id="exibirTendenciaSupervisor">
+                <td class="nomeCampo" style="width: 25%; vertical-align: middle;">Tendência supervisor</td>
+                <td>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="text-align: right;">
+                                <label style="font-size: 7pt;" wicket:id="idDataSupervisor">Atualizado em dd/MM/yyyy </label>
+                            </td>
+                        </tr>
+                        <tr>
+                         	<td>
+	                            <b>
+	                            	<label wicket:id="idTipoTendenciaSupervisor"></label> 
+	                            </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div style="width: 100%" wicket:id="idTendenciaSupervisor"></div></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 25%;">
+                    
+                </td>
+            </tr>
+			
+		</tbody>
+	</table>
+</wicket:panel>

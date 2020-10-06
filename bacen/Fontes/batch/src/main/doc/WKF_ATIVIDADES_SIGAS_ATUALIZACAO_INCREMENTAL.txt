@@ -1,0 +1,18 @@
+Job Name .....................: WKF_ATIVIDADES_SIGAS_ATUALIZACAO_INCREMENTAL
+Descrição ....................: Carga de atividades a partir da base do Sigas
+Servidor .....................: SBCDF066
+File name (script) ...........: WKF_ATIVIDADES_SIGAS_ATUALIZACAO_INCREMENTAL.sh
+Path (diretório) .............: /pcenter/controlm/TR_G17_APS
+Owner (usuário de execução) ..: pcenter
+Periocidade ..................: diário, de segunda-feira a sexta-feira, às 0h
+Doc Mem ......................: WKF_ATIVIDADES_SIGAS_ATUALIZACAO_INCREMENTAL.txt
+Doc Lib ......................: /pcenter/controlmdocs/TR_G17_APS
+Max Wait .....................: 3
+
+----------------------------------OBSERVACOES---------------------------------------
+
+Em caso de cancelamento ou termino anormal:
+
+Apenas registrar o incidente para o grupo WKG-DEINF/DINE4-JAVABATCH.
+
+------------------- CRIADO EM 24/02/2015 POR DEINF.DINALDO -----------------------

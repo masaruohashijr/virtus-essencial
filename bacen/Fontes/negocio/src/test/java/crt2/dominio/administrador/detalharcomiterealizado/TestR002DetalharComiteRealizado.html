@@ -1,0 +1,176 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R002 - Perfil 'Administrador' - Detalhar comitê realizado</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Perfil 'Administrador' - Detalhar comitê realizado'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>31/07/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+			<tr>
+				<td>2.0</td>
+				<td>06/08/2015</td>
+				<td>David Nascimento</td>
+				<td>Alteração da estória: mudança de onde recuperar os registros de participante;<br>e o comitê realizado será considerado nos ciclos em 'Pós-Corec' e 'Encerrado'.</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#detalharComiteRealizado">aqui</a></blockquote>
+
+		<h2>Premissas iniciais</h2>
+		<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a></li>
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq105"</span></strong></li>
+			<banco/>
+            <li>Os dados encontram-se <a href="../detalharcomiterealizar/TestR001DetalharComiteRealizar-DadoQue.html" class="include">aqui</a></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote><a href="indexNegocio.html#exibirParticipantes">Cenários para validar a exibição de partipantes</a></blockquote>
+
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Ciclo com participantes efetivos.</td></tr>
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>Verificar a lista de participantes efetivos do ciclo:<br>
+								<table>
+									<tr><th colspan="1">Entrada</th></tr>
+									<tr><th>Ciclo</th></tr>
+									<tr><td><span class="set" name="cicloES">1</span></td></tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>Os participantes efetivos a serem exibidos:<br>
+								<table>
+									<tr><th style="background-color: green;">Saída</th></tr>
+
+									<tr>
+										<td style="padding: 0px;">
+											<table class="verifyRows" name="resultado" value="$THIS.listar(cicloES)">
+												<tr><th style="background-color: green;" class="eq" value="$THIS.getNome(resultado)">Nome</th></tr>
+												<tr><td>ANFRISIO RODRIGUES VIEIRA</td></tr>
+												<tr><td>ROBERTO SANTOS ALENCAR</td></tr>
+												<tr><td>TESTESLQB13 MASSA DE TESTE</td></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table><br>
+		
+		<table class="scenario">
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Ciclo sem participantes efetivos e com registro na agenda.</td></tr>
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>Verificar a lista de participantes efetivos do ciclo:<br>
+								<table>
+									<tr><th colspan="1">Entrada</th></tr>
+									<tr><th>Ciclo</th></tr>
+									<tr><td class="set" name="cicloES">4</td></tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>Os participantes efetivos a serem exibidos:<br>
+								<table>
+									<tr><th style="background-color: green;">Saída</th></tr>
+
+									<tr>
+										<td style="padding: 0px;">
+											<table class="verifyRows" name="resultado" value="$THIS.listar(cicloES)">
+												<tr><th style="background-color: green;" class="eq" value="$THIS.getNome(resultado)">Nome</th></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table><br>
+		
+		<table class="scenario" >
+			<tr>
+				<td>
+					<table class="exemplos">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> - Ciclo sem partipantes efetivos e sem registro na agenda.</td></tr>
+						<tr><th>Ação pretendida</th></tr>
+
+						<tr>
+							<td>Verificar a lista de participantes efetivos do ciclo:<br>
+								<table>
+									<tr><th colspan="1">Entrada</th></tr>
+									<tr><th>Ciclo</th></tr>
+									<tr><td class="set" name="cicloES">3</td></tr>
+								</table>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>Os participantes efetivos a serem exibidos:<br>
+								<table>
+									<tr><th style="background-color: green;">Saída</th></tr>
+
+									<tr>
+										<td style="padding: 0px;">
+											<table class="verifyRows" name="resultado" value="$THIS.listar(cicloES)">
+												<tr><th style="background-color: green;" class="eq" value="$THIS.getNome(resultado)">Nome</th></tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

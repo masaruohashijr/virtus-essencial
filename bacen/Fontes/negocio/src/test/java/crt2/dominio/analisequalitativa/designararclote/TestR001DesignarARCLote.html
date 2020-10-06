@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Designar ARC em lote</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Designar ARC em lote, com ARC do tipo Externo.</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>26/05/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+    	<span id="cenarios"></span>
+
+    	<h2>Regras aplicáveis</h2>
+
+		<blockquote>Para as regras da estória clique <a href="../index.html#designarARCLote">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+	    	<ul>
+		    	<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+
+				<banco/> 
+				
+				<li>O usuário é <strong><span class="sentence" method="logar">"deliq.sisliq114"</span></strong>.</li>
+		     	<li><dataHoraAtual valor="28/06/2015 00:00:00">Data/hora atual do sistema: 28/06/2015 00:00:00</dataHoraAtual></li>
+			</ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#designarARCLote">validar cenários ao efetuar a designação</a>.</blockquote>
+	
+		<table >
+			<tr>
+				<td>
+					<table class="exemplos" >
+						<tr>
+						    <th>Cenário</th>
+						    <th>Dados iniciais</th>
+						    <th>Ação pretendida</th>
+						    <th>Resultado esperado</th>
+						</tr>
+						
+						<tr class="scenario">
+							<td class='title'><b>[CT001]</b> - Designar ARC's em lote, ARC's com  estado:  Previsto.</td>
+							<td>
+								Os dados encontram-se <a href="TestR001C001DesignarARCLote-DadoQue.html" class="include">aqui</a>.
+							</td>
+							<td>Designar ARC's - ID's:</br> 
+								<strong><span class="set" name="arc1" converter="Integer">1</span></strong>,
+								<strong><span class="set" name="arc2" converter="Integer">2</span></strong>,
+								<strong><span class="set" name="arc3" converter="Integer">3</span></strong>,
+								<strong><span class="set" name="arc4" converter="Integer">4</span></strong>,
+								<strong><span class="set" name="arc5" converter="Integer">5</span></strong></br>
+								Para o servidor de matricula: 
+								<strong>'<span class="set" name="matriculaServidorEquipe" converter="String">99990830</span>'</strong>
+							</td>
+							<td>
+							
+								<ul>
+									<li>
+										<span class="execute" value="$THIS.designarARCLote(arc1, arc2, arc3, arc4, arc5, matriculaServidorEquipe)"></span>
+										<span class="eq" value="$THIS.getMensagem()">ARC(s) designado(s) com sucesso.</span>
+									</li>
+									<li>Os dados alterados estão <a href="TestR001C001designarARCLote-PorFim.html" class="include">aqui</a></li>
+								</ul>
+							</td>
+						</tr>
+						
+						<tr class="scenario">
+							<td class='title'><b>[CT002]</b> - Designar ARC's em lote, ARC's com  estado:  Previsto ou Designado.</td>
+							<td>
+								<banco/>
+								Os dados encontram-se <a href="TestR001C002DesignarARCLote-DadoQue.html" class="include">aqui</a>.
+							</td>
+							<td>Designar ARC's - ID's:</br> 
+								<strong><span class="set" name="arc1" converter="Integer">1</span></strong>,
+								<strong><span class="set" name="arc2" converter="Integer">2</span></strong>,
+								<strong><span class="set" name="arc3" converter="Integer">3</span></strong>,
+								<strong><span class="set" name="arc4" converter="Integer">4</span></strong>,
+								<strong><span class="set" name="arc5" converter="Integer">5</span></strong></br>
+								Para o servidor de matricula: 
+								<strong>'<span class="set" name="matriculaServidorEquipe" converter="String">99990830</span>'</strong></td>
+
+							<td>
+								<ul>
+									<li>
+										<span class="execute" value="$THIS.designarARCLote(arc1, arc2, arc3, arc4, arc5, matriculaServidorEquipe)"></span>
+										<span class="eq" value="$THIS.getMensagem()">ARC(s) designado(s) com sucesso.</span>
+									</li>
+									<li>Os dados alterados estão <a href="TestR001C002designarARCLote-PorFim.html" class="include">aqui</a></li>
+								</ul>
+							</td>
+						</tr>
+					</td>
+				</tr>
+			</table>
+		</body>
+	</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+			http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+			http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/util 
+    		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <description>
+        Desenvolvimento local
+    </description>
+
+    <import resource="classpath:applicationContext-stubs.xml" />
+
+      <!-- JTA: ATOMIKOS -->
+<!--     <bean id="jtaUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+      <property name="transactionTimeout" value="600000" />
+    </bean>
+    <bean id="jtaTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init"
+      destroy-method="close">
+    </bean> 
+
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+      <property name="userTransaction" ref="jtaUserTransaction" />
+      <property name="transactionManager" ref="jtaTransactionManager" />
+      <property name="allowCustomIsolationLevels" value="true" />
+    </bean>-->
+    
+    
+   <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init"
+    destroy-method="close">
+    <property name="forceShutdown" value="true" />
+  </bean>
+
+  <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+    <property name="transactionTimeout" value="600000" />
+  </bean> 
+  
+
+  <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+    <property name="userTransaction" ref="atomikosUserTransaction" />
+     <property name="transactionManager" ref="atomikosTransactionManager" />
+     <property name="allowCustomIsolationLevels" value="true" />
+  </bean> 
+    
+
+    <bean id="sessionFactory" parent="abstractHbnSessionFactory">
+      <property name="jtaTransactionManager" ref="transactionManager" />
+      <property name="hibernateProperties">
+        <props merge="true">
+          <!-- HSQLDB Desenvolvimento -->
+          <prop key="hibernate.show_sql">false</prop>
+          <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+          <prop key="hibernate.hbm2ddl.auto">#{ T(crt2.util.Hbm2ddlProviderSpring).getValue() }</prop>
+          <prop key="hibernate.connection.shutdown">true</prop>
+          <prop key="hibernate.jdbc.batch_size">0</prop>
+          <prop key="hibernate.default_schema">SUP</prop>
+        </props>
+      </property>
+    </bean>
+
+    <!-- DB: HSQLDB MEM -->
+    <bean id="mainDS" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean" destroy-method="close">
+      <property name="url" ref="urlBanco" />
+      <property name="poolSize" value="10" />
+      <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+      <property name="user" value="sa" />
+      <property name="password" value="" />
+      <property name="uniqueResourceName" value="mainDSEspecificacao" />
+      <property name="borrowConnectionTimeout" value="180" />
+    </bean>
+    
+    <bean id="urlBanco" class="crt2.util.DataSourceUrlProviderSpring" factory-method="getUrl"></bean>
+   
+ </beans>

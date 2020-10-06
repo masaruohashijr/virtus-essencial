@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.gov.bcb.sisaps</groupId>
+		<artifactId>modulos</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>web</artifactId>
+	<packaging>war</packaging>
+
+	<name>sisaps - Modulo Web (on-line)</name>
+	<description>sisaps - Modulo Web (on-line)</description>
+
+	<dependencies>
+		<!-- DEIXAR AS DEPENDÊNCIAS DA BcWish COMO AS PRIMEIRAS! As dependências 
+			da BcWish NÃO devem ficar abaixo das dependências dos componentes de negócio 
+			(exemplo BcMoeda) para não virem versões erradas das dependências por transitividade, 
+			vindas dos componentes de negócio. -->
+
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>3.1.0.GA</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate-core</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-commons-annotations</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Bibliotecas BcWish -->
+		<dependency>
+			<groupId>br.gov.bcb.componente.wish.pom</groupId>
+			<artifactId>BcPomNegocio</artifactId>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate-core</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>BcSpringHibernateStuff</artifactId>
+					<groupId>br.gov.bcb.componente.app</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-commons-annotations</artifactId>
+					<groupId>org.hibernate.common</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>joda-time</groupId>
+					<artifactId>joda-time</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb.componente.wish.pom</groupId>
+			<artifactId>BcPomWeb</artifactId>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+                <exclusion>
+                  <artifactId>google-collections</artifactId>
+                  <groupId>com.google.collections</groupId>
+                </exclusion>
+                <exclusion>
+                	<groupId>joda-time</groupId>
+                	<artifactId>joda-time</artifactId>
+                </exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- CRT2 -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+        <dependency>
+          <groupId>org.hsqldb</groupId>
+          <artifactId>sqltool</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.specrunner</groupId>
+			<artifactId>specrunner-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xercesImpl</artifactId>
+					<groupId>xerces</groupId>
+				</exclusion>
+
+				<exclusion>
+					<groupId>joda-time</groupId>
+					<artifactId>joda-time</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.specrunner</groupId>
+			<artifactId>specrunner-core-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.specrunner</groupId>
+			<artifactId>specrunner-sql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.specrunner</groupId>
+			<artifactId>specrunner-jetty</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.specrunner</groupId>
+			<artifactId>specrunner-webdriver</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+
+        <dependency>
+          <groupId>net.sf.jasperreports</groupId>
+          <artifactId>jasperreports</artifactId>
+          <version>5.6.1</version>
+          <exclusions>
+            <exclusion>
+              <artifactId>xml-apis</artifactId>
+              <groupId>xml-apis</groupId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+ 
+        <dependency>
+          <groupId>com.lowagie</groupId>
+          <artifactId>itext</artifactId>
+          <version>2.1.7</version>
+          <exclusions>
+            <exclusion>
+              <artifactId>bcprov-jdk14</artifactId>
+              <groupId>bouncycastle</groupId>
+            </exclusion>
+            <exclusion>
+              <artifactId>bcprov-jdk14</artifactId>
+              <groupId>org.bouncycastle</groupId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      
+        <dependency>
+          <groupId>org.olap4j</groupId>
+          <artifactId>olap4j</artifactId>
+          <version>0.9.8.343</version>
+        </dependency>
+
+
+		<!-- Bibliotecas BcWish de Teste -->
+		<dependency>
+			<groupId>br.gov.bcb.componente.wish.pom</groupId>
+			<artifactId>BcPomTeste</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+            <exclusions>
+              <exclusion>
+                <artifactId>google-collections</artifactId>
+                <groupId>com.google.collections</groupId>
+              </exclusion>
+              <exclusion>
+              	<groupId>joda-time</groupId>
+              	<artifactId>joda-time</artifactId>
+              </exclusion>
+            </exclusions>
+      
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb.componente.wish.pom</groupId>
+			<artifactId>BcPomEspecificacao</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>joda-time</groupId>
+					<artifactId>joda-time</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb.componente.wish.pom</groupId>
+			<artifactId>BcPomWebTeste</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+            <exclusions>
+              <exclusion>
+                <artifactId>google-collections</artifactId>
+                <groupId>com.google.collections</groupId>
+              </exclusion>
+            </exclusions>
+      
+		</dependency>
+
+		<!-- Dependências internas -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>negocio</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>negocio</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>test</scope>
+			<classifier>tests</classifier>
+		</dependency>
+
+		<!-- Bibliotecas de infra do Bacen -->
+		<dependency>
+			<groupId>br.gov.bcb.componente.infra</groupId>
+			<artifactId>BcExcecoes</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb.componente.infra</groupId>
+			<artifactId>BcLogin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb.componente.infra</groupId>
+			<artifactId>BcIntegracao</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb.componente.infra</groupId>
+			<artifactId>BcLogging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.bcb</groupId>
+			<artifactId>bcLog4jAdapter</artifactId>
+		</dependency>
+    
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.0.1B</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3</version>
+    	</dependency>
+    
+        <dependency>
+          <groupId>org.eclipse.jetty.orbit</groupId>
+          <version>3.0.0.v201112011016</version>
+          <artifactId>javax.servlet</artifactId>
+          <scope>provided</scope>
+        </dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+    
+        <!-- DB2 -->
+        
+        <dependency>
+          <groupId>com.ibm.db2.jdbc</groupId>
+          <artifactId>jcc-driver</artifactId>
+        </dependency>
+        
+        <dependency>
+          <groupId>com.ibm.db2.jdbc</groupId>
+          <artifactId>jcc-driver-license-cu</artifactId>
+        </dependency> 
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+
+		<plugins>
+    
+            <plugin>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <skipTests>true</skipTests>
+              </configuration>
+            </plugin>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>websphere</id>
+<!--             <dependencies>
+              <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+              </dependency>
+            </dependencies>
+ -->			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>${maven-antrun-plugin.version}</version>
+						<!-- Substitui os comentarios marcados com \$deployment\$ no web.xml. 
+							Usado para gerar o pacote publicado no jboss/websphere. Veja comentarios 
+							no web.xml. -->
+						<executions>
+							<execution>
+								<phase>process-resources</phase>
+								<configuration>
+									<tasks>
+										<copy file="src/main/webapp/WEB-INF/web.xml" todir="${project.build.directory}"
+											overwrite="true" />
+										<replaceregexp file="${project.build.directory}/web.xml"
+											match="&lt;!--\s*\$deployment\$(.*)" replace="" flags="g" />
+										<replaceregexp file="${project.build.directory}/web.xml"
+											match="\$deployment\$\s*--&gt;" replace="" flags="g" />
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>${maven-war-plugin.version}</version>
+						<configuration>
+							<warName>sisaps</warName>
+							<warSourceDirectory>
+								src/main/config/webapp-websphere-integracao
+							</warSourceDirectory>
+							<webXml>${project.build.directory}/web.xml</webXml>
+							<webResources>
+								<resource>
+									<directory>src/main/webapp</directory>
+									<excludes>
+										<exclude>**/*-desktop.*</exclude>
+									</excludes>
+								</resource>
+							</webResources>
+							<packagingExcludes>WEB-INF/classes/log4j.*,WEB-INF/classes/transactions.properties</packagingExcludes>
+							<archive>
+								<manifestEntries>
+									<!-- TODO: Inclua aqui as referencias no MANIFEST para as dependencias 
+										provided dos componentes BC. As dependências abaixo são apenas exemplos. -->
+									<!-- ATENÇÃO: - Não quebrar a linha. Deixar apenas um espaço entre 
+										os componentes. -->
+									<Class-Path><![CDATA[//W:/lib/bc_bto/atual/bc_bto.jar //W:/lib/bc_ejbutils/atual/ejbutils.jar //W:/lib/bc_controle/atual/bc_controle.jar //W:/lib/bc_calendario/atual/ejb/bc_calendario.jar]]></Class-Path>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

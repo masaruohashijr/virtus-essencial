@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<wicket:extend xmlns:wicket="http://wicket.apache.org/">
+
+	<script>
+		function pageScroll() {
+			window.scroll(0, 0); 
+		}
+		function verificaDadosNaoSalvos() {
+			if ($('#idAlertaDadosNaoSalvos').css("visibility") == "hidden") {
+				return true;
+			} else {
+				atualizarAlerta('idAlertaDadosNaoSalvosInferior', true);
+				return false;
+			}
+		}
+	</script>
+	
+	<div style="margin: auto; text-align: center; visibility: hidden;" id="idAlertaDadosNaoSalvosInferior"
+		class="centralizado">
+		<ul>
+			<li class="msgErro">Todos os dados da tela devem ser salvos antes de concluir a edição.</li>
+		</ul>
+		<input type="hidden" wicket:id="loadScriptAlertaInferior" /> <input type="hidden" wicket:id="hideScriptAlertaInferior" />
+	</div>
+	
+	
+	<form wicket:id="formulario">
+
+		<table id="tPainelCicloResumo" cellpadding="0" cellspacing="0" style="width: 90%">
+			<tr style="width: 100%; margin: auto;">
+				<wicket:container wicket:id="painelCiclo"></wicket:container>
+			</tr>
+		</table>
+		<table id="tPainelInformacoes" cellpadding="0" cellspacing="0" style="width: 90%">
+			<tr style="width: 100%; margin: auto;">
+				<wicket:container wicket:id="painelInformacoesArc"></wicket:container>
+			</tr>
+		</table>
+
+		 <div wicket:id="painelResumoElementosArc"></div>
+
+		<table id="tPainelAcoes" cellpadding="0" cellspacing="0" style="width: 90%">
+			<tr style="width: 100%; margin: auto;">
+				<wicket:container wicket:id="painelAcoesArc"></wicket:container>
+			</tr>
+		</table>
+
+		<br />
+		<div wicket:id="painelRiscoMercado"></div>
+		<div wicket:id="painelElementos"></div>
+
+		<br />
+		<span wicket:id="painelTendencia"></span>
+
+		<br /> <span wicket:id="idPainelAnexoArc" />
+
+
+	<br/>
+	<br/>
+		<div class="centralizado">
+			<span style="color: white; background-color: red; margin: auto; text-align: center; visibility: hidden;"
+				id="idAlertaDadosNaoSalvos"> Há informações não salvas nesta página. </span> <input type="hidden"
+				wicket:id="loadScriptAlerta" />
+		</div>
+	<br/>
+	<br/>	
+
+		<div class="centralizado tamanho90" style="margin: auto; padding-bottom: 15px;">
+			<input type="submit" class="botao" style="width: 120px" id="bttConcluir" wicket:id="bttConcluir" onclick="pageScroll()" 
+				value="Concluir análise">&nbsp;</input> <input name="bttVoltar" type="button"
+				class="botao" id="bttVoltar" wicket:id="bttVoltar" title="Voltar para a p&aacute;gina anterior" value="Voltar" />&nbsp;
+		</div>
+	</form>
+</wicket:extend>

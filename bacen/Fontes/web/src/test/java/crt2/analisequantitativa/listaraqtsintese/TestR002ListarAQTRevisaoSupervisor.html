@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Listar ANEFs aguardando revisão no painel do supervisor</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários de teste para a estória - Listar ANEFs aguardando revisão no painel do supervisor</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>19/01/2015</td>
+			<td>Adjamir Galvão</td>
+			<td>Versão Inicial</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		As regras da estória encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/index.html#listarSinteseAQTRevisaoSupervisor">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	  <banco />
+	  <ul>
+		   <li>A lista de servidores foi <a href="../../../../../../../negocio/src/test/java/crt2/dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada.</a></li>
+	       <li> <banco />Os dados encontram-se <a href="../../../../../../../negocio/src/test/java/crt2/dominio/analisequantitativa/listaraqtsintese/TestR001ListarAQTRevisaoSupervisor_dadoque_c001.html" class="include">aqui</a>.</li>
+       </ul>				
+
+	<h2>Cenários</h2>
+	<blockquote>Cenários para <a href="indexWeb.html#verificarLink">verificar a navegabilidade</a>. </blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001] - </b>Supervisor clica no link da síntese</td>
+			    <td>
+			        <ul>
+					    <li>O usuário logado <sisliq101>é "deliq.sisliq101"</sisliq101></li>
+					    <li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+						<li>Clicar na ES: <span class="clickon" by="id:linkSintese_ParametroLiquidez_ESABN AMRO">Liquidez</span></li>
+					</ul> 
+				</td>
+			    <td>
+					<ul>
+						<li>O código da tela deve ser: <span class="contains"><b>[APSFW0211]</b></span></li>
+					</ul>
+			    </td>
+		</tr>
+	</table>
+</body>
+</html>

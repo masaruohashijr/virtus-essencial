@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+	<wicket:extend>
+		<form wicket:id="formulario">
+
+			<div align="center" wicket:id="filtroVersaoPanel" style="width: 90%; margin: auto;"></div>
+
+
+			<table id="tPainelCicloResumo" cellpadding="0" cellspacing="0" style="width: 90%">
+				<tr style="width: 100%; margin: auto;">
+					<div wicket:id="idPainelCicloResumo"></div>
+				</tr>
+			</table>
+
+
+
+			<div wicket:id="idPainelInformacoesArc"></div>
+
+			<div wicket:id="idPainelResumoElementosArc"></div>
+
+
+			<br /> <span wicket:id="idPainelRiscoMercado" /> <span wicket:id="idPainelElementos" /> <br /> <span
+				wicket:id="idPainelTendenciaRiscoMercado" /> <br /> <span wicket:id="idPainelAnexoArc" />
+
+
+			<div class="adireita tamanho90" style=" margin: auto; padding-top: 5px;">
+				<a wicket:id="linkImprimirArc" target="_blank"> <img wicket:id="imprimir" /> versão para impressão
+				</a>
+			</div>
+
+
+			<div class="centralizado tamanho90" style="margin: auto; padding-bottom: 15px;">
+				<br /> <input name="bttVoltar" type="button" class="botao" id="bttVoltar" wicket:id="bttVoltar"
+					title="Voltar para a p&aacute;gina anterior" value="Voltar">&nbsp;</input>
+
+			</div>
+		</form>
+	</wicket:extend>
+</body>
+</html>

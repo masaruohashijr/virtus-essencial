@@ -1,0 +1,93 @@
+<wicket:panel>
+	<tr class="fundoPadraoAClaro3">
+		<td width="5%"></td>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td width="90%">
+		    <p><strong wicket:id="tituloJustificativa">Nova justificativa</strong></p><br />
+		</td>
+		<td width="5%"></td>
+	</tr>
+	
+	
+	<tr class="fundoPadraoAClaro3">
+	    <td></td>
+	    <td style="text-align: right;">
+			<label style="font-size: 7pt;"  wicket:id="idUltimaAlteracaoDocumento">Última alteração salva </label>
+		</td>
+		<td></td>
+	</tr>
+
+
+	<tr class="fundoPadraoAClaro3">
+		<td></td>
+		<td>
+            <div>
+                <textarea wicket:id="idNovaJustificativa" contentEditable="true"></textarea>
+			</div>
+		</td>
+		<td></td>
+	</tr>
+
+	<tr class="fundoPadraoAClaro3">
+				    <td></td>
+				    <td>
+						<div align="right">
+                            <label wicket:id="idAlertaDadosNaoSalvosDocumento" style="color: red; font-size:7pt; margin:auto; text-align:right; visibility: hidden;">
+                                Atenção texto não salvo.
+                            </label>
+							<input  type="submit" class="botao" value="Salvar texto" wicket:id="bttSalvarJustificativaItem" />	
+						</div>
+					</td>
+					<td></td>
+				</tr>
+				
+				
+				<tr class="fundoPadraoAClaro3">
+                    <td></td>
+				    <td>
+						<div class="centralizado" wicket:id="idTabelaAnexoDocumento"/>
+					</td>	
+					<td></td>
+				</tr>
+				
+				
+				
+				<tr class="fundoPadraoAClaro3">
+				    <td></td>
+					<td>
+						<div style="width: 100%; padding-top: 5px; padding-bottom: 5px;" class="centralizado" >
+							<br/><br/>
+							<label for="arquivo"><acronym title="Arquivo que será anexado.">&nbsp;Arquivo</acronym></label>
+		            	    <input wicket:id="idFieldUploadAnexo" type="file" size="65" />
+							<br/><br/>
+							<input type="submit" wicket:id="botaoAnexarAquivo" style="width: 150px;" class="botao" value="Anexar arquivo novo" />
+						</div> 
+					</td>
+					<td></td>
+				</tr>
+		
+				<tr class="fundoPadraoAClaro3">
+				    <td></td>
+				    <td style="text-align: right;">
+						<label style="font-size: 7pt;"  wicket:id="idUltimaAlteracaoDocumentoVigente">Última alteração salva </label>
+					</td>
+					<td></td>
+				</tr>
+				
+				<tr>
+				    <td colspan="3">
+						<table id="tDadosAnaliseElementoSupervisor" cellspacing="0" cellpadding="0" style="width: 100%">
+							<div class="fundoPadraoAClaro3">
+								<tr>
+									<td width="5%" class="fundoPadraoAClaro3"></td>
+									<td width="90%" class="fundoPadraoAClaro3">
+											<div wicket:id="GrupoEspansivelAvaliacao"></div>
+											<div wicket:id="idPainelJustificativaVigente"></div>
+									</td>
+									<td width="5%" class="fundoPadraoAClaro3"></td>
+								</tr>
+							</div>
+						</table>
+				    </td>
+				</tr>
+				
+</wicket:panel>

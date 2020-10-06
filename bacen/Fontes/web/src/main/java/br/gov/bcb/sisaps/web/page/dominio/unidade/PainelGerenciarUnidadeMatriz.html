@@ -1,0 +1,40 @@
+<wicket:extend>
+	<form wicket:id="form">
+		<div>
+			<table width="100%" cellspacing="0" id="idTabelaUnidade" name="idTabelaUnidade">
+				<thead>
+					<tr class="fundoPadraoAEscuro3">
+						<th colspan="4" class="thform" style="text-align: left">Unidade</th>
+					</tr>
+
+				</thead>
+
+				<tbody>
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 25%;">Unidade</td>
+						<td><input type="text" size="70" maxlength="100" id="idNomeUnidade" wicket:id="idNomeUnidade" /></td>
+					</tr>
+
+					<tr class="fundoPadraoAClaro3">
+						<td class="nomeCampo" style="width: 25%;">Peso</td>
+						<td><select id="idPeso" wicket:id="idPeso"></select></td>
+					</tr>
+
+					<tr>
+						<td colspan="2">
+						<br>
+							<div align="center">
+								<input type="button" class="botao centralizado" id="bttIncluirUnidade" wicket:id="bttIncluirUnidade" style="width: 120px;" value="Incluir unidade">&nbsp;</input>
+								<input type="button" class="botao centralizado" id="bttConfirmarAlteracao" wicket:id="bttConfirmarAlteracao" style="width: 140px;" value="Confirmar alteração" >&nbsp;</input>
+								<input type="button" class="botao centralizado" id="bttVoltarModal" wicket:id="bttVoltarModal" value="Voltar">&nbsp;</input>
+							</div>
+
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<br>
+		</div>
+	</form>
+</wicket:extend>

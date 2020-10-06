@@ -1,0 +1,287 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Encerrar Corec (entrada "Pós-corec") e iniciar novo ciclo</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Encerrar Corec (entrada "Pós-corec") e iniciar novo ciclo'</h1>
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+			<tr>
+				<td>1.0</td>
+				<td>16/08/2017</td>
+				<td>Kalina Lígia</td>
+				<td>Alteração da lógica de cálculo das notas dos ARCs e ANEFs, e notas finais.</td>
+			</tr>
+	</table>
+
+    	<span id="cenarios"></span>
+    
+    	<h2>Regras aplicáveis</h2>
+		<blockquote>Para as regras da estória clique <a href="../index.html#encerrarCorec">aqui</a>.</blockquote>
+
+    	<h2>Premissas iniciais</h2>
+    	<ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+
+			<banco/> 
+
+			<li>O usuário logado é <strong><span class="sentence" method="logar">"deliq.sisliq104"</span></strong>.</li>
+			<li>Data/hora atual do sistema: <strong><dataHoraAtual valor="28/01/2015 00:00:00">28/01/2015 00:00:00</dataHoraAtual></strong></li>
+		</ul>
+
+		<h2>Cenários</h2>
+		<blockquote><a href="indexNegocio.html#validarCriacaoCicloNovoCiclo">Cenário para validar a criação do novo ciclo 'Em andamento' ao concluir o Corec</a>.<br/></blockquote>
+
+	<table class="exemplos">
+		<tr>
+			<th>Cenário</th>
+			<th>Dados pré-existentes</th>
+			<th>Ação pretendida</th>
+			<th>Resultado esperado</th>
+		</tr>
+
+		<tr class="scenario">
+			<td class='title'><b>[C001] - </b>Encerrar Corec quando não há
+				ajuste de comitê para nota ajustada da matriz de riscos e da análise
+				econômico financeira.</td>
+
+			<td><ul>
+					<li>Os dados encontram-se <a
+						href="TestR002EncerrarCorec-DadoQue-C001.html" class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set"
+					name="ciclo" converter="Integer">1</b>"
+			</span>.</td>
+
+			<td>
+				<ul>
+					<span class="execute" name="mensagem" value="$THIS.concluirCorec(ciclo)"></span>
+					<li>Os dados alterados estão <a
+						href="TestR002EncerrarCorec-Porfim-C001.html" class="include">aqui</a>.
+					</li>
+					<li>Os e-mails enviados são:</li>
+				</ul>
+				<table>
+					<tr>
+						<th style="background-color: green">Saída</th>
+					</tr>
+					<tr>
+						<th style="background-color: green">E-mails</th>
+					</tr>
+					<tr>
+						<td>
+							<table class="verifyRows" name="resultado"
+								value="$THIS.getEmailsEnviados()">
+								<tr>
+									<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+									<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+									<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+									<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+								</tr>
+								<tr>
+									<td>remetentesolicitacaoassinatura@bcb.gov.br</td>
+									<td>sisliq101@bcb.gov.br; deliq.anfrisio@bcb.gov.br;
+										sisliq113@bcb.gov.br; sisliq104@bcb.gov.br;
+										sisliq102@bcb.gov.br; sisliq105@bcb.gov.br</td>
+									<td>Solicitação da assinatura da ata do comitê da ABNAMRO,
+										DELIQ/GLIQ1/GTBHO, na data 15/12/2015,na Sala1, às 12:00.</td>
+									<td reader="xml">Corpo do e-mail de solicitação de
+										assinatura do comitê da ABNAMRO, DELIQ/GLIQ1/GTBHO, na data
+										15/12/2015, na Sala1, às 12:00.
+										<table width="90%" border="1">
+											<thead>
+												<tr style="background-color: #EBEEF1;">
+													<th width="25%" style="text-align: left">ES</th>
+													<th width="25%" style="text-align: left">Localização</th>
+													<th width="25%" style="text-align: left">Supervisortitular</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>ABNAMRO</td>
+													<td>DELIQ/GLIQ1/GTBHO</td>
+													<td>ROBERTOSANTOSALENCAR</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>[C002] - </b>Encerrar Corec quando há
+				ajuste de comitê para nota ajustada da matriz de riscos e da análise
+				econômico financeira.</td>
+			<td><banco />
+				<ul>
+					<li>Os dados encontram-se <a
+						href="TestR002EncerrarCorec-DadoQue-C002.html"
+						class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set"
+					name="ciclo" converter="Integer">1</b>"
+			</span>.</td>
+
+			<td>
+				<ul>
+					<span class="execute" name="mensagem" value="$THIS.concluirCorec(ciclo)"></span>
+					<li>Os dados alterados estão <a href="TestR002EncerrarCorec-Porfim-C002.html" class="include">aqui</a>.
+					</li>
+					<table>
+						<tr>
+							<th style="background-color: green">Saída</th>
+						</tr>
+						<tr>
+							<th style="background-color: green">E-mails</th>
+						</tr>
+						<tr>
+							<td>
+								<table class="verifyRows" name="resultado"
+									value="$THIS.getEmailsEnviados()">
+									<tr>
+										<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+										<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+										<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+										<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+									</tr>
+									<tr>
+										<td>remetentesolicitacaoassinatura@bcb.gov.br</td>
+										<td>sisliq101@bcb.gov.br; deliq.anfrisio@bcb.gov.br; 
+										sisliq113@bcb.gov.br; sisliq104@bcb.gov.br;
+										sisliq102@bcb.gov.br; sisliq105@bcb.gov.br</td>
+										<td>Solicitação da assinatura da ata do comitê da
+											ABNAMRO, DELIQ/GLIQ1/GTBHO, na data 15/12/2015,na Sala1, às
+											12:00.</td>
+										<td reader="xml">Corpo do e-mail de solicitação de
+											assinatura do comitê da ABNAMRO, DELIQ/GLIQ1/GTBHO, na data
+											15/12/2015, na Sala1, às 12:00.
+											<table width="90%" border="1">
+												<thead>
+													<tr style="background-color: #EBEEF1;">
+														<th width="25%" style="text-align: left">ES</th>
+														<th width="25%" style="text-align: left">Localização</th>
+														<th width="25%" style="text-align: left">Supervisortitular</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>ABNAMRO</td>
+														<td>DELIQ/GLIQ1/GTBHO</td>
+														<td>ROBERTOSANTOSALENCAR</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</ul>
+			</td>
+		</tr>
+		<tr class="scenario">
+			<td class='title'><b>[C003] - </b>Encerrar Corec quando há
+				ajuste de comitê para nota ajustada da matriz de riscos e da análise
+				econômico financeira (possuindo rascunho de ARC externo no ciclo com percentual zerado).</td>
+			<td><banco />
+				<ul>
+					<li>Os dados encontram-se <a
+						href="TestR002EncerrarCorec-DadoQue-C003.html"
+						class="include">aqui</a>.
+					</li>
+				</ul></td>
+
+			<td><span>Concluir Corec para o ciclo "<b class="set"
+					name="ciclo" converter="Integer">1</b>"
+			</span>.</td>
+
+			<td>
+				<ul>
+					<span class="execute" name="mensagem" value="$THIS.concluirCorec(ciclo)"></span>
+					<li>Os dados alterados estão <a href="TestR002EncerrarCorec-Porfim-C003.html" class="include">aqui</a>.
+					</li>
+					<table>
+						<tr>
+							<th style="background-color: green">Saída</th>
+						</tr>
+						<tr>
+							<th style="background-color: green">E-mails</th>
+						</tr>
+						<tr>
+							<td>
+								<table class="verifyRows" name="resultado"
+									value="$THIS.getEmailsEnviados()">
+									<tr>
+										<th class="eq" value="$THIS.getRemetente(resultado)">Remetente</th>
+										<th class="eq" value="$THIS.getDestinatario(resultado)">Destinatário</th>
+										<th class="eq" value="$THIS.getTitulo(resultado)">Título</th>
+										<th class="eq" value="$THIS.getCorpo(resultado)">Corpo</th>
+									</tr>
+									<tr>
+										<td>remetentesolicitacaoassinatura@bcb.gov.br</td>
+										<td>sisliq101@bcb.gov.br; deliq.anfrisio@bcb.gov.br; 
+										sisliq113@bcb.gov.br; sisliq104@bcb.gov.br;
+										sisliq102@bcb.gov.br; sisliq105@bcb.gov.br</td>
+										<td>Solicitação da assinatura da ata do comitê da
+											ABNAMRO, DELIQ/GLIQ1/GTBHO, na data 15/12/2015,na Sala1, às
+											12:00.</td>
+										<td reader="xml">Corpo do e-mail de solicitação de
+											assinatura do comitê da ABNAMRO, DELIQ/GLIQ1/GTBHO, na data
+											15/12/2015, na Sala1, às 12:00.
+											<table width="90%" border="1">
+												<thead>
+													<tr style="background-color: #EBEEF1;">
+														<th width="25%" style="text-align: left">ES</th>
+														<th width="25%" style="text-align: left">Localização</th>
+														<th width="25%" style="text-align: left">Supervisortitular</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>ABNAMRO</td>
+														<td>DELIQ/GLIQ1/GTBHO</td>
+														<td>ROBERTOSANTOSALENCAR</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+</body>
+</html>							
+				
+									
+			
+

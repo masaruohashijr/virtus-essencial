@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Concluir síntese e atualizar perfil de risco</title>
+<link rel="stylesheet" type="text/css" href="../../../estilos.css"
+	media="screen" />
+<script type="text/javascript" src="../../../jquery.js"></script>
+<script type="text/javascript" src="../../../estilo.js"></script>
+</head>
+<body>
+	<h1>Cenários da estória 'Concluir síntese e atualizar perfil de risco'</h1>
+
+	<span id="index"></span>
+	
+	<h2>Histórico</h2>
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>21/07/2017</td>
+			<td>David Nascimento</td>
+			<td>Alteração da lógica de cálculo das notas dos ARCs.</td>
+		</tr>
+	</table>
+
+    <span id="cenarios"></span>
+    
+    <h2>Regras aplicáveis</h2>
+	<blockquote>
+		Para as regras da estória clique <a href="../index.html#concluirSinteseARC">aqui</a>.
+	</blockquote>
+    
+    <h2>Premissas iniciais</h2>
+	    <ul>
+			<li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li>
+			<li><dataHoraAtual valor="30/04/2015 00:00:00">Data/hora atual do sistema: 30/04/2015 00:00:00</dataHoraAtual></li>
+			<li>O usuário logado é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+		</ul>
+
+	<h2>Cenários</h2>
+	<blockquote>
+		Cenários para <a href="indexNegocio.html#concluirSinteseARCMetodologiaAntigaNova">validação manual dos valores (anterior e atual) que serão exibidos na tela de gestão de sínteses para ARC de governança corporativa.</a>
+	</blockquote>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[C001] - </b>Concluir ARC no estado "Analisado" (ARC anterior concluído com metodologia antiga e rascunho com a metodologia nova).</td>
+					</tr>
+					<tr>
+						<th>Dado que</th>
+					</tr>
+					<tr>
+						<td>
+							<banco />
+							<ul>
+								<li>Os dados para este cenário encontram-se <a href="TestR002ConcluirSinteseARC-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul>
+						</td>
+					</tr>
+					
+					
+					<tr>
+					    <th>Ação pretendida</th>
+					<tr>
+					    <td>
+							<p>Realizar a conclusão da síntese do ARC conforme tabela abaixo:</p>
+							<table>
+								<tr>
+									<th colspan="2">Entradas</th>
+								</tr>
+								<tr>
+									<th>Sintese</th>
+										<th>ARC</th>
+								</tr>
+								<tr>
+									<td class="set" name="idSintese" converter="Integer">17</td>
+									<td class="set" name="idArc" converter="Integer">69</td>
+								</tr>
+							</table>
+					    </td>
+					</tr>    
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li>O sistema deverá exibir a seguinte mensagem de sucesso:
+									<span class="execute" value="$THIS.concluirSinteseARC(idSintese)"></span>
+									<span class="eq" value="$THIS.getMensagem()">Síntese confirmada com sucesso.</span>
+									<br>
+								<span>Os dados alterados estão <a href="TestR002ConcluirSinteseARC-Porfim.html" class="include">aqui</a>.</span>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

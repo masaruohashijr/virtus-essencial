@@ -1,0 +1,2236 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>R002 - Ajustes no perfil de risco para destacar avaliações Corec</title>
+<link rel="stylesheet" type="text/css" href="../../estilos.css" media="screen" />
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../../../../../../negocio/src/test/java/crt2/estilo.js"></script>
+</head>
+
+<body>
+	<h1>Cenários de teste para a estória 'Ajustes no perfil de risco para destacar avaliações Corec'</h1>
+
+	<span id="index"></span>
+
+	<h2>Histórico</h2>
+
+	<table class="exemplos historico">
+		<tr>
+			<th>Versão</th>
+			<th>Data</th>
+			<th>Responsável</th>
+			<th>Descrição</th>
+		</tr>
+		<tr>
+			<td>1.0</td>
+			<td>24/03/2015</td>
+			<td>Christiano Nogueira Ferreira</td>
+			<td>Versão Inicial</td>
+		</tr>
+		<tr>
+			<td>1.1</td>
+			<td>22/04/2015</td>
+			<td>David Nascimento</td>
+			<td>Segunda versão</td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>28/08/2015</td>
+			<td>David Nascimento</td>
+			<td>Alterando os cenários CT004 e CT005 e incluindo os cenários CT006, CT007, CT008 e CT009 (a qual foram reordenados para CT010, CT011, CT012 e CT013) a fim de contemplar a mudança a qual o supervisor e o gerente ao detalhar ARC com ciclo em 'COREC', deve ser exibido sempre o ARC vigente.</td>
+		</tr>
+	</table>
+
+	<span id="cenarios"></span>
+
+	<h2>Regras aplicáveis</h2>
+
+	<blockquote>
+		As regras da estória encontram-se <a
+			href="../../../../../../../negocio/src/test/java/crt2/dominio/corec/index.html#ajustesPerfilRiscoAvaliacoesCorec">aqui</a>.
+	</blockquote>
+
+	<h2>Premissas iniciais</h2>
+
+	<ul>
+		<li>A lista de servidores foi <a
+			href="../../../../../../../web/src/test/java/crt2/analisequalitativa/detalhararc/TestR001DetalharARC-DadoQue-MOCK_BCPESSOA.html" class="include">carregada</a>.
+		</li>
+	</ul>
+
+	<h2>Cenários</h2>
+
+	<blockquote>
+		<a href="indexWeb.html#destaquesDetalhesdeARC">Cenários para validar os destaques na tela de Detalhes de ARC</a>.
+	</blockquote>
+
+	<table class="scenario"  >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT001] - </b>Ciclo com estado 'Em andamento'; com ajuste do comitê no Corec anterior; e
+							com ARC no estado 'Concluído'.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco52" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td colspan="1">4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos" >
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT002] - </b>Ciclo com estado 'Em andamento'; com ajuste do comitê no Corec anterior; e
+							com ARC no estado diferente de 'Concluído'.</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco52" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="2" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Vigente<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="compareTable" by="xpath://table[@id='tDadosArcGrupo']">
+										<table id="tDadosArcGrupo" width="90%" cellspacing="0" cellpadding="3" class="fundoPadraoAClaro3">
+											<thead>
+												<tr class="fundoPadraoAEscuro2">
+													<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;"><label
+														id="idNomeDoGrupo386">Risco de Crédito</label></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="fundoPadraoAClaro3" id="exibirNotaVigente387">
+													<td class="nomeCampo" style="width: 25%;">Nota vigente do ARC</td>
+													<td><label id="idNotaVigenteArc388">4 (Corec)</label></td>
+												</tr>
+
+
+											</tbody>
+										</table>
+									</div></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT003] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual; perfil
+							"Inspetor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C003AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"1" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table>
+								</li>
+
+								<li>A seção com o 'nome do arc' é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1"
+												style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2; width: 59px"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2; width: 66px"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+										<tr>
+											<td colspan="1"
+												style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2; width: 59px"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+									</table>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+
+
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT004] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual e anterior; acessando ARC de versão anterior (mais antiga); perfil "Supervisor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR002AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="10000">16/12/2014</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td>4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT005] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual e anterior; acessando ARC de versão anterior (intermediária); perfil "Supervisor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR002AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="10000">17/12/2014</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco45" sleep="8000">"3" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Melhora</td>
+												<td><font color="#8B8989">Melhora</font></td>
+												<td>Melhora</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">3</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">3</font></td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT006] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual e anterior; acessando ARC vigente; perfil "Supervisor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR002AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco46" sleep="8000">"1" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>1 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Indefinida</td>
+												<td><font color="#8B8989">Indefinida</font></td>
+												<td>Indefinida</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="tDadosArcGrupo" by="xpath://table[@id='tDadosNotaArc']">
+										<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">3</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">3</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td>1</td>
+										</tr>
+									</table>
+									</div></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT007] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual e anterior; acessando ARC de versão anterior (mais antiga); perfil "Gerente".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR002AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="10000">16/12/2014</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td>4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT008] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual e anterior; acessando ARC de versão anterior (intermediária); perfil "Gerente".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR002AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html" class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona a versão: <span class="select" by="id:idPerfilRisco" sleep="10000">17/12/2014</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco45" sleep="8000">"3" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Melhora</td>
+												<td><font color="#8B8989">Melhora</font></td>
+												<td>Melhora</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">3</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">3</font></td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table><br>
+	
+	
+	
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT009] - </b>Ciclo com estado 'Corec'; com ajuste do comitê no Corec atual e anterior; acessando ARC vigente; perfil "Gerente".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="TestR002AjustesPerfilRiscoAvaliacoesCorec-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq102>deliq.sisliq102</sisliq102></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/gerente">inicio/painelgerente</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco46" sleep="8000">"1" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>2</td>
+												<td><font color="#8B8989">2</font></td>
+												<td>2</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>3</td>
+												<td><font color="#8B8989">3</font></td>
+												<td>3</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>1 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Indefinida</td>
+												<td><font color="#8B8989">Indefinida</font></td>
+												<td>Indefinida</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<div class="tDadosArcGrupo" by="xpath://table[@id='tDadosNotaArc']">
+										<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">3</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">3</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td>1</td>
+										</tr>
+									</table>
+									</div></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+    <br>
+    
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT010] - </b>Ciclo com estado 'Pós-Corec'; com ajuste do comitê no Corec atual; perfil
+							"Supervisor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="8000">15/12/2015</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td colspan="1">4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<table class="scenario" >
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT011] - </b>Ciclo com estado 'Pós-Corec'; com ajuste do comitê no Corec atual; perfil
+							"Inspetor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C001AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="8000">15/12/2015</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td colspan="1">4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table class="scenario">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT012] - </b>Ciclo com estado 'Encerrado'; com ajuste do comitê no Corec atual; perfil
+							"Supervisor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C009AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq101>deliq.sisliq101</sisliq101></li>
+								<li>Acesse o menu: <span class="open" url="sisaps/supervisor">sisaps/supervisor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="8000">15/12/2015</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td colspan="1">4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<table class="scenario"  execute="true">
+		<tr>
+			<td>
+				<table class="exemplos">
+					<tr>
+						<th>Cenário</th>
+					</tr>
+					<tr>
+						<td class='title'><b>[CT013] - </b>Ciclo com estado 'Encerrado'; com ajuste do comitê no Corec atual; perfil
+							"Inspetor".</td>
+					</tr>
+
+					<tr>
+						<th>Dado que</th>
+					</tr>
+
+					<tr>
+						<td><banco />
+
+							<ul>
+								<li>Os dados para este cenário encontram-se <a
+									href="../alteracaocalculonotasajustecomite/TestR001C009AlteracaoCalculoNotasAjusteComite-DadoQue.html"
+									class="include">aqui</a>.
+								</li>
+							</ul></td>
+					</tr>
+
+					<tr>
+						<th>Ação pretendida</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>Logar como: <sisliq113>deliq.sisliq113</sisliq113></li>
+								<li>Acessar o menu: <span class="open" url="sisaps/inspetor">sisaps/inspetor</span></li>
+								<li>Clicar na ES: <span class="clickon" by="id:link_ES1" sleep="8000">ABN AMRO</span></li>
+								<li>Seleciona o Ciclo: <span class="select" by="id:idCiclo" sleep="8000">15/12/2015</span></li>
+								<li>Clica na nota: <span class="clickon" by="id:linkRisco30" sleep="8000">"4" do ARC "Risco" do
+										grupo "Crédito" da Atividade "B"</span></li>
+							</ul>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Resultado esperado</th>
+					</tr>
+
+					<tr>
+						<td>
+							<ul>
+								<li>O código da tela deve ser: <span class="contains"><b>[APSFW0207]</b></span></li>
+								<li>A seção com o resumo do arc e sua <b>nota ajustada</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tARCResumido']">
+										<thead>
+											<tr>
+												<th colspan="4" class="aesquerda" style="text-align: left; width: 459px; background-color: #4a73a2">Resumo
+													do ARC</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Final<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Supervisor<b></td>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Inspetor<b></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoinadimplencia" href="#"><b>Risco
+															de Inadimplência</b></a></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoconcentracao" href="#"><b>Risco
+															de Concentração</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoineficaciamitigadores"
+													href="#"><b>Risco de Ineficácia de Mitigadores</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscoliquidacao" href="#"><b>Risco
+															de Liquidação</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkriscocreditocontrapartercc"
+													href="#"><b>Risco de Crédito de Contraparte - RCC</b></a></td>
+												<td>N/A</td>
+												<td><font color="#8B8989">N/A</font></td>
+												<td>N/A</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota calculada</b></td>
+												<td>1</td>
+												<td><font color="#8B8989">1</font></td>
+												<td>1</td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><b>Nota ajustada</b></td>
+												<td>4 (Corec)</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+											<tr>
+												<td colspan="1" style="color: black; background-color: #4a73a2"><a id="linkTendencia" href="#"><b>Tendência</b></a></td>
+												<td>Estabilidade</td>
+												<td><font color="#8B8989">Estabilidade</font></td>
+												<td>Estabilidade</td>
+											</tr>
+										</tbody>
+									</table></li>
+
+								<li>A seção com o 'nome do arc' e seu ajuste de <b>nota corec</b> é:
+
+									<table class="compareTable" by="xpath://table[@id='tDadosNotaArc']">
+										<thead>
+											<tr>
+												<th colspan="3" align="left" style="width: 459px; background-color: #003d79">Risco de Crédito</th>
+											</tr>
+										</thead>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													inspetor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1">1</td>
+										</tr>
+
+										<tr>
+											<td colspan="1" style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													supervisor</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Calculada</b></td>
+											<td colspan="1"><font color="#8B8989">1</font></td>
+										</tr>
+
+										<tr>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Nota
+													Corec</b></td>
+											<td style="vertical-align: middle; text-align: right; color: black; background-color: #4a73a2"><b>Ajuste</b></td>
+											<td colspan="1">4</td>
+										</tr>
+									</table></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

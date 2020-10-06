@@ -1,0 +1,46 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tARCResumido" cellspacing="1" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Resumo do ARC</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<th class="nomeCampo" style="width: 25%;"></th>
+				<th class="nomeCampoEsquerdo" style="width: 160px;">Inspetor</th>
+				<th class="nomeCampoEsquerdo" style="width: 160px;">Vigente</th>
+			</tr>
+		</tbody>
+
+		<wicket:container wicket:id="lista">
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;"><a href="" wicket:id="linkElemento"> <wicket:container
+							wicket:id="parametroElemento.nome"></wicket:container></a></td>
+				<td wicket:id="notaInspetor"></td>
+				<td wicket:id="notaVigente"></td>
+			</tr>
+		</wicket:container>
+
+		<tr class="fundoPadraoAClaro3">
+			<td class="nomeCampo" style="width: 25%;">Nota calculada</td>
+			<td wicket:id="notaCalculadaArrastoInspetor"></td>
+			<td wicket:id="notaCalculadaArrastoVigente"></td>
+		</tr>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Nota ajustada</td>
+				<td wicket:id="notaAjustadaInspetor"></td>
+				<td wicket:id="notaAjustadaVigente"></td>
+			</tr>
+		</tbody>
+
+		<tr class="fundoPadraoAClaro3">
+			<td class="nomeCampo" style="width: 25%;"><a href="#tDadosTendenciaRiscoMercado">Tendência</a></td>
+			<td wicket:id="notaTendenciaInspetor"></td>
+			<td wicket:id="notaTendenciaVigente"></td>
+		</tr>
+		</tbody>
+	</table>
+</wicket:panel>

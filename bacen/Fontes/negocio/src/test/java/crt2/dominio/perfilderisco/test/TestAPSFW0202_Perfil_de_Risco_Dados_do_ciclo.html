@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Cenários de teste para a estória - Perfil de Risco (dados do ciclo)</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../jquery.js"></script>
+		<script type="text/javascript" src="../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários de teste para a estória - Perfil de Risco (dados do ciclo)</h1>
+
+		<span id="index"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<!-- <blockquote><pessoa>Mock de servidores</pessoa></blockquote>
+		<blockquote><regra>Regras para os perfis de acesso</regra></blockquote> -->
+		<blockquote><dataHoraAtual valor="28/05/2014 00:00:00">Data atual: 28/05/2014 00:00:00</dataHoraAtual></blockquote>
+
+		<h2>Cenário onde deve ser apresentada a mensagem de erro para acesso ao perfil de risco de ES sem ciclo, atual ou anterior.</h2>
+
+		<table class="exemplos">
+			<tr>
+				<th>Cenário</th>
+				<th>Dados pré-existentes</th>
+				<th>Ação pretendida</th>
+				<th>Resultado esperado</th>
+			</tr>
+
+            <tr class="scenario">
+        		<banco/>
+
+				<td class='title'><b>C001.1</b><br><br>Falha - Acionar perfil de risco de ES sem ciclo iniciado.</td>
+
+				<td>
+					Os dados da Metodologia se encontram <a href="../../comum/dadoque/TestE1_carga_metodologia_e_parametros_dadoque.html" class="include">aqui</a><br><br>
+					Os dados das ESs se encontram <a href="../../comum/dadoque/TestE10_1_carga_inicial_de_ES_via_Sigas_dadoque.html" class="include">aqui</a><br><br>
+					<!-- Os dados e estados do Ciclo, Matriz, Unidades, Atividades se encontram <a href="../../perfilderisco/test/dadoque/TestAPSFW0202_Perfil_de_Risco_dadoque.html" class="include">aqui</a><br><br> -->
+				</td>
+
+            	<td>
+            		<ul>
+						<li><span class="sentence" method="detalharPerfilRisco">Entidade Supervisionável (Nome=VOLKSWAGEN) ENS_ID ="4"</span></li>
+					</ul>
+            	</td>
+
+				<td>
+		    		<ul class="execute" value="$THIS.verificar($NODE)">
+						<li>Entidade supervisionável não possui ciclo de supervisão.</li>
+					</ul>
+		    	</td>
+		    </tr>
+      	</table>
+	</body>
+</html>

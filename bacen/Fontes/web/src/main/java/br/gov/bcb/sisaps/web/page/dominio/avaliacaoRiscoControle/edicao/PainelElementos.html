@@ -1,0 +1,54 @@
+<wicket:panel>
+	<div wicket:id="listaElementos">
+		<table wicket:id="tDadosElemento" width="90%" cellspacing="0" cellpadding="3" >
+			<thead>
+				<tr class="fundoPadraoAEscuro3">
+					<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;" wicket:id="idTituloElemento"/>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo" style="width: 25%;">Nota inspetor</td>
+					<td style="width: 25%;">
+						<select wicket:id="idSelectNovaNotaElemento" />
+						<input type="submit" class="botao" wicket:id="bttSalvarElemento" value="Salvar" />
+						<label wicket:id="idAlertaDadosNaoSalvosElemento" style="color: red; font-size:7pt; margin:auto; text-align:right; visibility: hidden;">
+                            Atenção nota não salva.
+                        </label>
+					</td>
+					
+					<td class="nomeCampo" style="width: 25%;">Nota vigente</td>
+					<td><label wicket:id="idNotaVigenteElemento"></label></td>
+				</tr>
+				<tr class="fundoPadraoAClaro3">
+					<td colspan="4">
+						<div wicket:id="idPainelItem" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<table wicket:id="tDadosAnaliseElemento" cellspacing="0" cellpadding="3" style="width: 90%">
+			<thead>
+				<tr class="fundoPadraoAEscuro3">
+					<th colspan="6" class="thform" style="text-align: left; border-bottom: 0px;" wicket:id="idTituloAnaliseVigente" />
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="fundoPadraoAClaro3">
+					<td></td>
+					<td style="text-align: right;"><label style="font-size: 7pt;" wicket:id="idDataAvaliacao"></label></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td width="5%" class="fundoPadraoAClaro3"></td>
+					<td width="90%" class="fundoPadraoAClaro3">
+							<div wicket:id="GrupoEspansivelAvaliacao"></div>
+							<div wicket:id="idPainelJustificativaVigente"></div>
+					</td>
+					<td width="5%" class="fundoPadraoAClaro3"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</wicket:panel>

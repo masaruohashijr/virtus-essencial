@@ -1,0 +1,20 @@
+.tituloTabela th {
+	padding: 6px;
+}
+
+
+.crescente, .decrescente, .crescente th, .decrescente th {
+    background-color: #857896;
+}
+
+.exportar {
+	float:right; 
+	font-weight: normal; 
+	color: black;
+	border-bottom: 1px dotted black;
+}
+
+.exportar a {
+	color: black;
+	font-weight: bold;
+}

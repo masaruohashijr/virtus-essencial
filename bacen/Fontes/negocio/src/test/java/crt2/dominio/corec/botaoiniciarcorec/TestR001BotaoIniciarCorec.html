@@ -1,0 +1,268 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>R001 - Iniciar fase Corec</title>
+		<link rel="stylesheet" type="text/css" href="../../../estilos.css" media="screen"/>
+		<script type="text/javascript" src="../../../jquery.js"></script>
+		<script type="text/javascript" src="../../../estilo.js"></script>
+	</head>
+
+	<body>
+		<h1>Cenários da estória 'Iniciar fase Corec'</h1>
+
+		<span id="index"></span>
+
+		<h2>Histórico</h2>
+
+		<table class="exemplos historico">
+			<tr>
+				<th>Versão</th>
+				<th>Data</th>
+				<th>Responsável</th>
+				<th>Descrição</th>
+			</tr>
+
+			<tr>
+				<td>1.0</td>
+				<td>19/02/2015</td>
+				<td>Christiano Nogueira Ferreira</td>
+				<td>Versão Inicial</td>
+			</tr>
+		</table>
+
+		<span id="cenarios"></span>
+
+		<h2>Regras aplicáveis</h2>
+
+		<blockquote>Para as regras da estória clique <a href="../index.html#botaoIniciarCorec">aqui</a>.</blockquote>
+
+		<h2>Premissas iniciais</h2>
+
+		<ul><li>A lista de servidores foi <a href="../../../dados_basicos/MOCK_BCPESSOA_stubs_dadoque.html" class="include">carregada</a>.</li></ul>
+
+		<h2>Cenários</h2>
+
+		<blockquote>Cenários para <a href="indexNegocio.html#validarExibicaoSecao">validar exibição da seção 'Corec'</a>.</blockquote>
+
+		<table class="exemplos">
+			<tr>
+				<td>
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT001]</b> - Verificar a exibição da seção para perfil de risco anterior, do ciclo atual, com estado 'Em andamento', para o perfil 'Supervisor'.</td></tr>
+						<tr><th>Dado que</th>
+
+						<tr>
+							<td>
+								<li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BotaoIniciarCorec-C001-DadoQue.html" class="include">aqui</a></li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th style="width: 133px">Entradas</th>
+										<th style="width: 120px; background-color: green">Saída</th>
+									</tr>
+								</table>
+
+								<table class="column">
+									<tr>
+										<th style="width: 60px">Ciclo</th>
+										<th style="width: 60px">Perfil</th>
+										<th style="width: 120px">Mostrar seção?</th>
+									</tr>
+
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>Não</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT002]</b> - Verificar a exibição da seção para perfil de risco vigente, do ciclo atual, com estado 'Corec', para o perfil 'Supervisor'.</td></tr>
+						<tr><th>Dado que</th>
+
+						<tr>
+							<td>
+								<li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BotaoIniciarCorec-C002-DadoQue.html" class="include">aqui</a></li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th style="width: 133px">Entradas</th>
+										<th style="width: 120px; background-color: green">Saída</th>
+									</tr>
+								</table>
+
+								<table class="column">
+									<tr>
+										<th style="width: 60px">Ciclo</th>
+										<th style="width: 60px">Perfil</th>
+										<th style="width: 120px">Mostrar seção?</th>
+									</tr>
+
+									<tr>
+										<td>1</td>
+										<td>4</td>
+										<td>Não</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT003]</b> - Verificar a exibição da seção para perfil de risco vigente, do ciclo atual, com estado 'Em andamento', para o perfil 'Inspetor'.</td></tr>
+						<tr><th>Dado que</th>
+
+						<tr>
+							<td>
+								<li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq113"</span>'</strong>.</li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BotaoIniciarCorec-C001-DadoQue.html" class="include">aqui</a></li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th style="width: 133px">Entradas</th>
+										<th style="width: 120px; background-color: green">Saída</th>
+									</tr>
+								</table>
+
+								<table class="column">
+									<tr>
+										<th style="width: 60px">Ciclo</th>
+										<th style="width: 60px">Perfil</th>
+										<th style="width: 120px">Mostrar seção?</th>
+									</tr>
+
+									<tr>
+										<td>1</td>
+										<td>4</td>
+										<td>Não</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT004]</b> - Verificar a exibição da seção para perfil de risco vigente, do ciclo atual, com estado 'Em andamento', para o perfil 'Consulta'.</td></tr>
+						<tr><th>Dado que</th>
+
+						<tr>
+							<td>
+								<li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq106"</span>'</strong>.</li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BotaoIniciarCorec-C001-DadoQue.html" class="include">aqui</a></li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th style="width: 133px">Entradas</th>
+										<th style="width: 120px; background-color: green">Saída</th>
+									</tr>
+								</table>
+
+								<table class="column">
+									<tr>
+										<th style="width: 60px">Ciclo</th>
+										<th style="width: 60px">Perfil</th>
+										<th style="width: 120px">Mostrar seção?</th>
+									</tr>
+
+									<tr>
+										<td>1</td>
+										<td>4</td>
+										<td>Não</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+
+					<table class="scenario">
+						<tr><th>Cenário</th></tr>
+						<tr><td class='title'><b>[CT005]</b> - Verificar a exibição da seção para perfil de risco vigente, do ciclo atual, com estado 'Em andamento', para o perfil 'Supervisor'.</td></tr>
+						<tr><th>Dado que</th>
+
+						<tr>
+							<td>
+								<li>O usuário é <strong>'<span class="sentence" method="logar">"deliq.sisliq101"</span>'</strong>.</li>
+
+								<banco/>
+
+								<li>Os dados encontram-se <a href="TestR001BotaoIniciarCorec-C001-DadoQue.html" class="include">aqui</a></li>
+							</td>
+						</tr>
+
+						<tr><th>Validação</th></tr>
+
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<th style="width: 133px">Entradas</th>
+										<th style="width: 120px; background-color: green">Saída</th>
+									</tr>
+								</table>
+
+								<table class="column">
+									<tr>
+										<th style="width: 60px">Ciclo</th>
+										<th style="width: 60px">Perfil</th>
+										<th style="width: 120px">Mostrar seção?</th>
+									</tr>
+
+									<tr>
+										<td>1</td>
+										<td>4</td>
+										<td>Sim</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosAjusteResultados" cellspacing="0" cellpadding="1"
+		style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;"
+					colspan="2">Ajuste de resultados</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr valign="top">
+				<td><span wicket:id="ajustesResultados"></span></td>
+			</tr>
+			<tr valign="top">
+				<td>* Saldo dos últimos 6 meses</td>
+			</tr>
+            	
+			<tr valign="top">
+            	<td align="right" >
+            	<font style="color: red"><span
+						wicket:id="labelInfoNaoSalvasResultados">*Atenção informações não salvas.</span></font>
+	            	<input type="submit" class="botao" wicket:id="bttSalvarInformacoes" value="Salvar informações" style="width: 150px" />
+            	</td>
+            </tr>
+		</tbody>
+	</table>
+	<wicket:fragment wicket:id="fragmentInputAjuste">
+		<input type="text" size="10" wicket:id="inputAjuste" />
+		<span  wicket:id="label" ></span>
+		<font style="font-weight: bold; color: red"><span
+			wicket:id="asteriscoEdicaoAjuste">*</span></font>
+	</wicket:fragment>
+	
+	<wicket:fragment wicket:id="fragmentInputAjustado">
+		<input type="text" size="10" wicket:id="inputAjustado" />
+		<span  wicket:id="label" ></span>
+		<font style="font-weight: bold; color: red"><span
+			wicket:id="asteriscoEdicaoAjustado">*</span></font>
+	</wicket:fragment>
+</wicket:panel>

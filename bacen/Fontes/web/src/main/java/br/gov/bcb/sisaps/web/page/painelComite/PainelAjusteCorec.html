@@ -1,0 +1,56 @@
+<wicket:panel>
+
+	<table class="tabela" cellpadding="0" cellspacing="1" style="width: 90%;">
+		<tbody>
+			<tr class="fundoPadraoAEscuro2" style="height: 25px">
+				<th colspan="3">&nbsp;Ajustes</th>
+			</tr>
+			<tr>
+				<th class="fundoPadraoAEscuro4" style="width: 50%; height: 25px"></th>
+				<th class="fundoPadraoAEscuro4" style="width: 30%">&nbsp;Avaliação supervisor</th>
+				<th class="fundoPadraoAEscuro4" style="width: 20%">&nbsp;Avaliação comitê</th>
+			</tr>
+
+
+			<tr class="fundoPadraoAClaro2" >
+				<td style="height: 19px">Nota final</td>
+				<td><span wicket:id="idParametroNotaGrauSupervisor"></span></td>
+				<td style="vertical-align: middle"><select wicket:id="idParametroNotaGrau"></select> &nbsp&nbsp <font
+					wicket:id="idAlertaGrau" color="red" style="vertical-align: middle"> *</font></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3"  style="height: 19px">
+				<td style="height: 19px">Nota final qualitativa</td>
+				<td style="height: 19px"><span wicket:id="idParametroNotaQualitativaSupervisor"></span></td>
+				<td style="vertical-align: middle; height: 19px"><select wicket:id="idParametroNotaQualitativa"></select> &nbsp&nbsp <font
+					wicket:id="idAlertaQualitativa" color="red" style="vertical-align: middle"> *</font></td>
+			</tr>
+			<tr class="fundoPadraoAClaro2" >
+				<td style="height: 19px">Nota final da análise econômico-financeira</td>
+				<td><span wicket:id="idParametroNotaQuantitativaSupervisor"></span></td>
+				<td style="vertical-align: middle"><select wicket:id="idParametroNotaQuantitativa"></select> &nbsp&nbsp <font
+					wicket:id="idAlertaQuantitativa" color="red" style="vertical-align: middle"> *</font></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" >
+				<td style="height: 19px">Perspectiva</td>
+				<td><span wicket:id="idParametroPerspectivaSupervisor"></span></td>
+				<td style="vertical-align: middle;"><select wicket:id="idParametroPerspectiva"></select> &nbsp&nbsp <font
+					wicket:id="idAlertaPerspectiva" color="red" style="vertical-align: middle"> *</font></td>
+			</tr>
+		</tbody>
+
+
+	</table>
+	<table style="width: 90%;">
+
+		<tr>
+			<td align=right>
+				<p></p>
+				<p>
+					<font wicket:id="idAlertaPainelCorec" align="center" color="red" style="vertical-align: middle"> * </font>
+					&nbsp&nbsp <input type="button" class="botao" style="width: 150px" wicket:id="bttSalvarAjusteCorec"
+						value="Salvar informações">
+				</p>
+			</td>
+		</tr>
+	</table>
+</wicket:panel>

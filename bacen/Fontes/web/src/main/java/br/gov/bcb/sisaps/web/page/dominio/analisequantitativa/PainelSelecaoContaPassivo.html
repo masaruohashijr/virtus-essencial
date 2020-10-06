@@ -1,0 +1,37 @@
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosSelecaoContaPassivo" cellspacing="0" cellpadding="3"  style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2"><input type="hidden" wicket:id="passivoHidden">Seleção de contas de passivo</th>
+			</tr>
+			<tr class="fundoPadraoAEscuro3">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="2">Passivo</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <tr valign="top"  class="fundoPadraoAClaro3">
+	            <td colspan="6" style="text-align: right;" ><strong>Em R$ milhões</strong></td>
+            </tr>
+			 <tr valign="top">
+            	<td>
+	            	<span  wicket:id="contas" ></span>
+            	</td>
+            </tr>	
+            <tr valign="top">
+            	<td align="right" >
+            	<font style="color: red"><span
+						wicket:id="labelInformacoesNaoSalvasContaPassivo">*Atenção informações não salvas.</span></font>
+	            	<input type="submit" class="botao" wicket:id="bttSalvarInformacoes" value="Salvar informações" style="width: 150px" />
+            	</td>
+            </tr>
+		</tbody>
+	</table>
+		<wicket:fragment wicket:id="fragmentCheck">
+			<input type="checkbox"  wicket:id="check" />
+		</wicket:fragment>
+		<wicket:fragment wicket:id="fragmentInput">
+		    <span  wicket:id="label" ></span>
+			<input  type="text" size="10"  wicket:id="input" /><font style="font-weight: bold; color: red"><span
+			wicket:id="asteriscoEdicao">*</span></font>
+	    </wicket:fragment>
+</wicket:panel>

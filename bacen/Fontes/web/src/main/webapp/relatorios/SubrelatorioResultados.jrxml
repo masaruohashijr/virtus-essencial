@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubrelatorioResultados" pageWidth="307" pageHeight="842" columnWidth="307" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.610510000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="NOME_SISTEMA" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITULO_RELATORIO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="COD_PAGINA" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[Formato - SSTTNNNN
+SSS - Sigla do sistema
+TT Tipo da transação - WS (web service), RB (batch), FW (form) ou RE (relatório)
+NNNN - Numérico. Sugestão: UUNN, sendo UU o número do caso de uso e NN um número sequencial]]></parameterDescription>
+	</parameter>
+	<parameter name="LOGO" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["http://bcb.gov.br/img/logoBacen_preto.gif"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="exibirAjustadoLucros" class="java.lang.Boolean"/>
+	<parameter name="exibirAjustadoRspla" class="java.lang.Boolean"/>
+	<parameter name="SUB_RELATORIO_RESULTADOS_NOVO" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="resultadosNovo" class="java.util.List"/>
+	<parameter name="periodos" class="java.util.List"/>
+	<parameter name="SUB_RELATORIO_RESULTADOS_PERIODOS" class="net.sf.jasperreports.engine.JasperReport"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="17">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="306" height="16"/>
+				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true" isItalic="false" pdfFontName="Times-Bold"/>
+				</textElement>
+				<text><![CDATA[RESULTADOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="55" y="0" width="252" height="16" isRemoveLineWhenBlank="true"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{resultadosNovo})]]></dataSourceExpression>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{SUB_RELATORIO_RESULTADOS_NOVO}]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="0" width="55" height="16" isRemoveLineWhenBlank="true"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{periodos})]]></dataSourceExpression>
+				<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{SUB_RELATORIO_RESULTADOS_PERIODOS}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

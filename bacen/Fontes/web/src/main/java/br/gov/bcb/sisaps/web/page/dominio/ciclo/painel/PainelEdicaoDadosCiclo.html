@@ -1,0 +1,51 @@
+<wicket:panel>
+	<table id="tDadosInclusao" cellpadding="0" cellspacing="0" class="tabela" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;">Dados inclusão</th>
+			</tr>
+		</thead>
+	</table>
+	<table id="tDadosBasicos" width="90%" cellspacing="0" cellpadding="3" class="tabela">
+		<thead>
+			<tr class="fundoPadraoAEscuro3">
+				<th colspan="4" class="thform" style="text-align: left; border-bottom: 0px;">Dados básicos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Número do PT/PE</td>
+				<td style=""><input type="text" maxlength="12" wicket:id="numeroPT" /></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Entidade Supervisionável *</td>
+				<td style=""><select id="idEntidadeSupervisionavel" wicket:id="idEntidadeSupervisionavel"></select></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Metodologia</td>
+				<td style=""><label wicket:id="metodologia"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Data do início do ciclo *</td>
+				<td style=""><input name="idDataInicio" type="text" id="idDataInicio" wicket:id="idDataInicio"
+					title="Informe a data prevista do COREC" size="11" maxlength="10" onblur="" value="" onkeyup="" onkeypress="" /></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampo" style="width: 25%;">Data prevista do COREC *</td>
+				<td style=""><input name="idDataDataPrevCorec" type="text" id="idDataDataPrevCorec"
+					wicket:id="idDataDataPrevCorec" title="Informe a data prevista do COREC" size="11" maxlength="10" onblur=""
+					value="" onkeyup="" onkeypress="" /></td>
+			</tr>
+		</tbody>
+
+	</table>
+
+	<table id="tPainelEscopo" cellpadding="0" cellspacing="0" style="width: 90%">
+
+		<tr style="width: 100%; margin: auto;">
+			<td><div wicket:id="idPainelEquipe"></div></td>
+		</tr>
+	</table>
+
+
+</wicket:panel>

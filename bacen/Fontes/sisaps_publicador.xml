@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sisaps" default="mvn_package" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+    <!-- Definir variavel de ambiente com o caminho para o Maven -->
+    <property environment="env"/>
+	<property name="mvn_cmd" value="${MVN_CMD}" />
+    <property name="servidor" value="${SERVIDOR_J2EE}" />
+    <property name="ambiente" value="${BC_AMBIENTE}" />
+    <property name="earDir" value="${PUBLICADOR_DIR_EAR}" />	
+	
+	<!-- Remove os arquivos gerados pelo Maven (limpa a pasta target dos projetos). --> 
+	<target name="clean">
+		<exec executable="${mvn_cmd}" failonerror="true" dir="." resultproperty="teste">
+			<arg value="clean" /> 
+		</exec>
+	</target>
+	
+    <!-- executa o Maven para geracao do EAR. -->
+	<target name="mvn_package">
+		<exec executable="${mvn_cmd}" failonerror="true" dir="." resultproperty="teste">
+            <arg value="-U"/>
+            <arg value="-e"/>
+			<arg value="-P"/>
+            <arg value="websphere"/>            
+            <arg value="-Ddiretorio.do.ear=${earDir}"/>
+			<arg value="-DAMBIENTE=${ambiente}"/>
+            <arg value="clean"/>
+			<arg value="install"/>
+            <arg value="package"/>
+			<arg value="-Dpmd.skip=true" />
+			<arg value="-DskipTests=true" />
+			<arg value="-DskipPmd=true" />
+			<arg value="-Dmaven.pmd.skip=true" />
+			<arg value="-Dfindbugs.skip=true" />
+		</exec>
+	</target>
+</project>
+

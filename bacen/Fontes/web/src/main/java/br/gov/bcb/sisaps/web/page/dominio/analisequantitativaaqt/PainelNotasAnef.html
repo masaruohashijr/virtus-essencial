@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<wicket:panel xmlns:wicket="http://wicket.apache.org/">
+	<table id="tDadosNotasAnef" cellspacing="0" cellpadding="3"  style="width: 90%" class="fundoPadraoAClaro3">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="4"><label wicket:id="idNomeDoGrupo"></label></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirVigente">
+				<td class="nomeCampo" colspan="3" style="width: 25%;">Nota vigente do ANEF</td>
+				<td><label wicket:id="idNotaVigenteAnef"></label></td>
+			</tr>
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirCalculadaInspetor">
+				<td class="nomeCampo" style="vertical-align: middle; text-align: right;" rowspan="3" colspan="2" wicket:id="idNovaNotaInspetor">Nova nota inspetor</td>
+				<td class="nomeCampo" style="border-left: 1px solid white;" wicket:id="idNotaCalculada">Calculada</td>
+				<td wicket:id="idNotaArrastoAnefInspetor"></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirJustificativaInspetor">
+				<td style="border-left: 1px solid white; vertical-align: middle; text-align: right;" class="nomeCampo">Ajuste</td>
+				<td><p><label wicket:id="idNotaAnefAjustadaInspetor"></label></p><p><label wicket:id="idJustificativaInspetor"></label></p><p></p></td>
+			</tr>
+
+			<tr></tr>
+
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirNotaCalculadaSupervisor">
+				<td class="nomeCampo" style="vertical-align: middle; text-align: right;" rowspan="3" colspan="2" wicket:id="tituloNovaNotaSupervisor" >Nova nota supervisor</td>
+				<td class="nomeCampo" style="border-left: 1px solid white;">Calculada</td>
+				<td wicket:id="idNotaArrastoAnefSupervisor" style=""></td>
+			</tr>
+
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirNotaAjustadaSupervisor">
+				<td style="border-left: 1px solid white; vertical-align: middle; text-align: right;" class="nomeCampo">Ajuste</td>
+				<td><p><label wicket:id="idNovaNotaAnefAjustadaSupervisor"></label></p><p><label wicket:id="idJustificativaSupervisor"></label></p><p></p></td>
+			</tr>
+
+			<tr></tr>
+
+			<tr class="fundoPadraoAClaro3" wicket:id="wmcExibirNotaCorec">
+				<td class="nomeCampo" colspan="2">Nota Corec</td>
+				<td class="nomeCampo" style="border-left: 1px solid white;">Ajuste</td>
+				<td wicket:id="idNotaCorec"></td>
+			</tr>
+		</tbody>
+	</table>
+</wicket:panel>

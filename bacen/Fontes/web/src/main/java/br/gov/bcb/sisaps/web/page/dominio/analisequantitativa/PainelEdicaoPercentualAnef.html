@@ -1,0 +1,44 @@
+<wicket:panel>
+
+
+	<script>
+		
+		function handleChange(input) {
+			if (input.value < 0)
+				input.value = 0;
+			if (input.value > 100)
+				input.value = 100;
+		}
+
+	</script>
+	<table id="tBloco" cellspacing="1" cellpadding="3" style="width: 90%">
+		<thead>
+			<tr class="fundoPadraoAEscuro2">
+				<th class="thform" style="text-align: left; border-bottom: 0px;" colspan="5">Percentuais</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampoEsquerdo" style="width: 25%;"></td>
+				<td class="nomeCampoEsquerdo" style="width: 25%;">Vigente</td>
+				<td class="nomeCampoEsquerdo" style="width: 25%;">Em edição</td>
+				<td class="nomeCampoEsquerdo" style="width: 25%;" colspan="2"> Novo </td>
+			</tr>
+			<wicket:container wicket:id="lista">
+			<tr class="fundoPadraoAClaro3">
+				<td class="nomeCampoAnefPercentual" style="width: 25%;" wicket:id="componente"></td>
+				<td ><label  wicket:id="idPercentualVigente">1231</label></td>
+				<td ><label  wicket:id="idPercentualEmEdicao">333</label></td>
+				<td><input type="text" maxlength="3" wicket:id="idNovoPercentualCorporativo" onkeypress="return Onlynumbers(event)"  onkeyup="handleChange(this)"  size="5"/>%</td>
+				<td><input type="submit" title="Alterar" class="botao" wicket:id="bttAlterarPercentual" value="Alterar"/></td>
+			</tr>
+			</wicket:container>
+				<tr class="fundoPadraoAClaro3">
+					<td class="nomeCampo"></td>
+					<td><input type="submit" title="Confirmar percentual em edição" class="botao" wicket:id="bttConfirmarPercentual" style="width: 220px" value="Confirmar percentual em edição">&nbsp;</input></td>
+				</tr>		   
+		</tbody>
+
+	</table>
+</wicket:panel>
