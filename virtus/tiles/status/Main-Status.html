@@ -1,0 +1,13 @@
+{{ define "Main-Status" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Menu" . }}
+{{ template "Delete-Status" }}
+{{ template "Edit-Status" }}
+{{ template "Create-Status" }}
+{{ template "List-Status" . }}
+</body>
+</html>
+{{end}}

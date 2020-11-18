@@ -1,0 +1,17 @@
+{{ define "Main-Ciclos" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Menu" . }}
+{{ template "Delete-Ciclo" }}
+{{ template "Iniciar-Ciclo" . }}
+{{ template "Edit-Ciclo" }}
+{{ template "Create-Ciclo" }}
+{{ template "Delete-Pilar-Ciclo" }}
+{{ template "Edit-Pilar-Ciclo" . }}
+{{ template "Create-Pilar-Ciclo" . }}
+{{ template "List-Ciclos" . }}
+</body>
+</html>
+{{end}}

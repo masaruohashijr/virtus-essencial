@@ -1,0 +1,14 @@
+{{ define "Main-Designar-Equipes" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Menu" . }}
+{{ template "Edit-Designar-Equipe" . }}
+{{ template "Delete-Integrante" . }}
+{{ template "Edit-Integrante" . }}
+{{ template "Create-Integrante" . }}
+{{ template "List-Designar-Equipes" . }}
+</body>
+</html>
+{{end}}

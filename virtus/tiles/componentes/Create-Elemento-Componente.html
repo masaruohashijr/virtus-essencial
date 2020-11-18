@@ -1,0 +1,43 @@
+{{define "Create-Elemento-Componente"}}
+<!-- Create Elemento Componente Form -->
+<div class="w3-container">
+    <div id="create-elemento-componente-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="top:50px ;width: 1000px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Adicionar novo elemento</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('create-elemento-componente-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" id="formulario-elemento-componente-create">
+                <label class="w3-label">Elemento</label>
+	            <select class="w3-input" name="ElementoComponenteForInsert" id="ElementoComponenteForInsert">
+					<option value=""></option>
+					{{range $index, $elemento := .Elementos }}
+		                <option value="{{$elemento.Id}}">
+							{{$elemento.Nome}}
+						</option>
+		            {{end}}
+	            </select>
+                <label class="w3-label">Tipo de Nota</label>
+	            <select class="w3-input" name="TipoNotaForInsert" id="TipoNotaForInsert">
+					<option value=""></option>
+					{{range $index, $tipoNota := .TiposNota }}
+		                <option value="{{$tipoNota.Id}}">
+							{{$tipoNota.Nome}}
+						</option>
+		            {{end}}
+	            </select>
+                <label class="w3-label">Peso Padrão</label>
+				<input class="w3-input" type="number" id="PesoPadraoForInsert" name="PesoPadraoForInsert" value="">
+                <button 
+					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
+					type="button"
+					onclick="criarElementoComponente()"
+					>Criar
+				</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

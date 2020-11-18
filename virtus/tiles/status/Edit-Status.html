@@ -1,0 +1,33 @@
+{{define "Edit-Status"}}
+<!-- Edit Status -->
+<div class="w3-container">
+    <div id="edit-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1000px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Editar status</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('edit-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" action="/updateStatus" method="post">
+                <input type="hidden" name="Id" id="StatusIdForUpdate">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" id="StatusNameForUpdate" name="Name" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea rows="6" class="w3-input" type="text" id="StatusDescriptionForUpdate" name="Description" value=""></textarea>
+                <label class="w3-label">Estereótipo</label>
+                <br>	
+				<br>	
+	            <select class="w3-input" name="Stereotype" id="StatusStereotypeForUpdate" style="width:100%">
+	                <option value=""></option>
+	                <option value="Start">Start</option>
+	                <option value="End">End</option>
+	            </select>
+				<br>
+				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}
