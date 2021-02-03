@@ -1,0 +1,14 @@
+{{ define "Main-Actions" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+{{ template "Delete-Action" }}
+{{ template "Edit-Action" . }}
+{{ template "Create-Action" . }}
+{{ template "Message" .Msg }}
+{{ template "Error-Message" .ErrMsg }}
+{{ template "List-Actions" . }}
+</body>
+</html>
+{{end}}

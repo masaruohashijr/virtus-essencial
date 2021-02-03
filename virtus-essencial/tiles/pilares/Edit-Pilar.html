@@ -1,0 +1,60 @@
+{{define "Edit-Pilar"}}
+<!-- Edit Pilar -->
+<div class="w3-container">
+    <div id="edit-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1200px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Editar Pilar</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('edit-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" action="/updatePilar" method="POST">
+                <input type="hidden" name="Id" id="PilarIdForUpdate">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" id="PilarNomeForUpdate" name="Nome" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" id="PilarDescricaoForUpdate" name="Descricao" rows="5" value=""></textarea>
+                <label class="w3-label">Link de Referência</label>
+                <input class="w3-input" type="text" id="PilarReferenciaForUpdate" name="Referencia" value="">
+				<br>
+		        <header class="w3-container w3-center w3-teal">
+					<div class="aria">
+						<div style="margin-top: 6px;text-align: left;z-index:1">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Componentes</h4>
+						<div style="margin-top: 8px">
+		                    <div class="w3-right" id="edit-form-componente-pilar-btn" >
+		                        <a href="#" onclick="contexto='edit';document.getElementById('create-componente-pilar-form').style.display='block'">
+		                            <i class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></i>
+		                        </a>
+		                    </div>
+		                </div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" 
+					id="table-componentes-pilar-edit">
+		            <tr>
+		                <th style="vertical-align:middle;width: 30%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Nome" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'table-componentes-pilar-edit', 1, 0)"></th>
+		                <th style="vertical-align:middle;width: 10%;">Tipo Média</th>
+		                <th style="vertical-align:middle;width: 10%;">Peso Padrão</th>
+		                <th style="vertical-align:middle;width: 5%;">Sonda</th>
+		                <th style="vertical-align:middle;width: 10%;">Autor</th>
+		                <th style="vertical-align:middle;width: 10%;">Criado Em</th>
+						<th style="vertical-align:middle;width: 25%;">Ações</th>
+		            </tr>
+		        </table>
+				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

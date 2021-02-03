@@ -1,0 +1,17 @@
+{{ define "Main-Anotacoes" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+{{ template "Delete-Anotacao" }}
+{{ template "Edit-Anotacao" . }}
+{{ template "Create-Anotacao" . }}
+{{ template "Delete-Atualizacao-Anotacao" . }}
+{{ template "Edit-Atualizacao-Anotacao" . }}
+{{ template "Create-Atualizacao-Anotacao" . }}
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Message" .Msg }}
+{{ template "List-Anotacoes" . }}
+</body>
+</html>
+{{end}}

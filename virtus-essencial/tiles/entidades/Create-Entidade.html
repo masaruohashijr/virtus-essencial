@@ -1,0 +1,92 @@
+{{define "Create-Entidade"}}
+<!-- Create Entidade -->
+<div class="w3-container">
+    <div id="create-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1200px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Criar nova entidade</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('create-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" action="/createEntidade" method="POST" id="formulario-create">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" name="Nome" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" id="EntidadeDescricaoForInsert" name="Descricao" rows="5" value=""></textarea>
+                <label class="w3-label">Sigla</label>
+                <input class="w3-input" type="text" id="EntidadeSiglaForInsert" name="Sigla" value="">
+                <label class="w3-label">Código</label>
+                <input class="w3-input" type="text" id="EntidadeCodigoForInsert" name="Codigo" value="">
+                <label class="w3-label">Situação</label>
+                <input class="w3-input" type="text" id="EntidadeSituacaoForInsert" name="Situacao" value="">
+                <label class="w3-label">ESI</label>
+                <select class="w3-input" 
+					id="EntidadeESIForInsert" 
+					name="ESI">
+					<option value="true">Sim</option>
+					<option value="false">Não</option>
+                </select>
+                <label class="w3-label">Município</label>
+                <input class="w3-input" type="text" id="EntidadeMunicipioForInsert" name="Municipio" value="">
+                <label class="w3-label">SiglaUF</label>
+                <input class="w3-input" type="text" id="EntidadeSiglaUFForInsert" name="SiglaUF" value="">
+				<header class="w3-container w3-center w3-teal">
+		            <div class="aria">
+						<div style="margin-top: 6px;text-align: left;z-index:1">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Ciclos da Entidade</h4>
+						<div style="margin-top: 8px" id="create-form-ciclo-btn" >
+							{{$allowed := (call .LoggedUser.HasPermission "createCiclo")}}
+							{{if $allowed}}						
+						    <a href="#" onclick="contexto='create';document.getElementById('create-ciclo-entidade-form').style.display='block'">
+	                            <i class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></i>
+	                        </a>
+							{{end}}
+						</div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" 
+					id="table-ciclos-entidade-create">
+		            <tr>
+		                <th>Nome</th>
+		                <th>Tipo de Média</th>
+		                <th>Inicia Em</th>
+		                <th>Termina Em</th>
+						<th>Ações</th>
+		            </tr>
+		        </table>
+				<br>
+				<header class="w3-container w3-center w3-teal">
+		            <div class="aria">
+						<div style="margin-top: 6px;text-align: left;z-index:1">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Planos</h4>
+						<div style="margin-top: 8px" id="create-form-plano-btn" >
+						    <a href="#" onclick="contexto='create';document.getElementById('create-plano-form').style.display='block'">
+	                            <i class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></i>
+	                        </a>
+						</div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" 
+						id="table-planos-create">
+		            <tr>
+		                <th>CNPB</th>
+		                <th>Modalidade</th>
+		                <th>Recurso Garantidor</th>
+						<th>Ações</th>
+		            </tr>
+		        </table>
+                <button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

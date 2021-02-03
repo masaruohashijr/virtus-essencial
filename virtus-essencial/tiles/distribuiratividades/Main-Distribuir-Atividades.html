@@ -1,0 +1,18 @@
+{{ define "Main-Distribuir-Atividades" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Config-Planos" . }}
+{{ template "Historico-Componente-Dist" . }}
+{{ template "Motivar-Reprogramacao-Dist" . }}
+{{ template "Motivar-Reconfiguracao-Dist" . }}
+{{ template "Motivar-Remocao-Dist" . }}
+{{ template "Motivo-Remocao-Dist" . }}
+{{ template "Menu" . }}
+{{ template "Warn-Message" .WarnMsg }}
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Message" .Msg }}
+{{ template "List-Distribuir-Atividades" . }}
+</body>
+</html>
+{{end}}

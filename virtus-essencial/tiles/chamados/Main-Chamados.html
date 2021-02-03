@@ -1,0 +1,17 @@
+{{ define "Main-Chamados" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+{{ template "Delete-Chamado" }}
+{{ template "Edit-Chamado" . }}
+{{ template "Create-Chamado" . }}
+{{ template "Delete-Comentario" }}
+{{ template "Edit-Comentario" . }}
+{{ template "Create-Comentario" . }}
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Message" .Msg }}
+{{ template "List-Chamados" . }}
+</body>
+</html>
+{{end}}

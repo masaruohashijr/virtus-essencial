@@ -1,0 +1,65 @@
+{{define "Edit-Elemento"}}
+<!-- Edit Elemento -->
+<div class="w3-container">
+    <div id="edit-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1200px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Editar elemento</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('edit-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" id="formulario-edit" action="/updateElemento" method="POST">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="hidden" id="ElementoIdForUpdate" name="ElementoIdForUpdate" value="">
+                <input class="w3-input" type="text" id="ElementoNomeForUpdate" name="ElementoNomeForUpdate" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" id="ElementoDescricaoForUpdate" name="ElementoDescricaoForUpdate" rows="5" value=""></textarea>
+                <label class="w3-label">Link de Referência</label>
+				<input class="w3-input" type="text" id="ElementoReferenciaForUpdate" name="ElementoReferenciaForUpdate" value="">
+                <label class="w3-label">Autor</label>
+                <input class="w3-input" type="text" id="ElementoAutorForUpdate" name="ElementoAutorForUpdate" value="" disabled="disabled" readOnly="readOnly">
+                <label class="w3-label">Criado Em</label>
+                <input class="w3-input" type="text" id="ElementoCriadoEmForUpdate" name="ElementoCriadoEmForUpdate" value="" disabled="disabled" readOnly="readOnly">
+                <label class="w3-label">Status</label>
+                <input class="w3-input" type="hidden" id="ElementoIdForUpdate" name="ElementoIdForUpdate" value="">
+                <input class="w3-input" type="text" id="ElementoStatusForUpdate" name="ElementoStatusForUpdate" value="" disabled="disabled" readOnly="readOnly">
+				<header class="w3-container w3-center w3-teal">
+		            <div class="aria">
+						<div style="margin-top: 6px;text-align: left;">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Itens a Avaliar</h4>
+		                <div style="margin-top: 8px">
+		                    <div class="w3-right" id="edit-form-jurisdicao-btn" >
+		                        <a href="#" onclick="contexto='edit';openCreateItem()">
+		                            <i class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></i>
+		                        </a>
+		                    </div>
+		                </div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" id="table-itens-edit">
+		            <tr>
+		                <th style="width: 45%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Nome" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'table-itens-edit', 1, 1)"></th>
+		                <th style="display:none">Descrição</th>
+		                <th style="display:none">Referência</th>
+		                <th style="width: 10%;">Autor</th>
+		                <th style="width: 10%;">Criado Em</th>
+		                <th style="width: 10%;">Status</th>
+						<th style="width: 25%;">Ações</th>
+		            </tr>
+		        </table>
+                <button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

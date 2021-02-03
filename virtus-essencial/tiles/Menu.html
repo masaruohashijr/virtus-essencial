@@ -1,0 +1,111 @@
+{{ define "Menu" }}
+<div id="mySidenav" class="sidenav">
+	<div style="float: right;">
+		<a href="javascript:void(0)" class="closebtn" onclick="navGadget()">&times;</a>
+	</div>
+	<div sytle="position:absolute;top:0px;left:25px;z-index:1"><br>
+		<img src="/statics/images/Banner_Previc.png" alt="SRC" class="logo">
+	</div>
+	<br>
+	<br>
+	<table width="100%">
+		<tr><td><a href="/about">Sobre</a></td></tr>
+		{{if (call .LoggedUser.HasPermission "homeChefe")}}
+		<!--tr><td><a href="/homeChefe">Home</a></td></tr-->
+		{{end}}
+		{{if (call .LoggedUser.HasPermission "homeSupervisor")}}
+		<!--tr><td><a href="/homeSupervisor">Home</a></td></tr-->
+		{{end}}
+		{{if (call .LoggedUser.HasPermission "homeAuditor")}}
+		<!--tr><td><a href="/homeAuditor">Home</a></td></tr-->
+		{{end}}
+		{{if or (eq .LoggedUser.User.RoleName "Supervisor") (eq .LoggedUser.User.RoleName "Chefe") (eq .LoggedUser.User.RoleName "Admin") }}
+		<tr class="menu" onclick="expandirSubMenu(this,'Coordenação')"><td class="menu">
+			<a href="#">
+				<i style="font-size:1.3em;" class="ion-android-arrow-dropright hoverbtn"></i>
+			&nbsp;Coordenação</a>
+		</td></tr>
+		{{end}}
+		{{if (call .LoggedUser.HasPermission "designarEquipes")}}
+		<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/listDesignarEquipes">Designar Equipes</a></td></tr>
+		{{end}}
+		{{if (call .LoggedUser.HasPermission "distribuirAtividades")}}
+		<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/listDistribuirAtividades">Distribuir Atividades</a></td></tr>
+		{{end}}
+		<tr class="menu" onclick="expandirSubMenu(this,'Avaliação')"><td class="menu">
+			<a href="#">
+				<i style="font-size:1.3em;" class="ion-android-arrow-dropright hoverbtn"></i>
+			&nbsp;Avaliação</a>
+		</td></tr>
+			{{if (call .LoggedUser.HasPermission "avaliarPlanos")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/listAvaliarPlanos">Avaliar Planos</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "viewMatriz")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/listMatrizes">Matrizes</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listRadares")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/radares">Radares</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listAnotacoes")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/anotacoes">Anotações</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listEntidades")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/entidades">Entidades</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listVersoes")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/versoes">Versões</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listChamados")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/chamados">Chamados</a></td></tr>
+			{{end}}
+		{{if eq .LoggedUser.User.RoleName "Admin" }}
+			<tr class="menu" onclick="expandirSubMenu(this, 'Configuração')"><td class="menu">
+				<a href="#">
+					<i style="font-size:1.3em;" class="ion-android-arrow-dropright hoverbtn"></i>
+				&nbsp;Configuração</a>
+			</td></tr>
+			{{if (call .LoggedUser.HasPermission "listCiclos")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/ciclos">Ciclos</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listPilares")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/pilares">Pilares</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listComponentes")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/componentes">Componentes</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listTiposNotas")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/tiposnotas">Tipos de Nota</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listElementos")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/elementos">Elementos</a></td></tr>
+			{{end}}
+			<tr class="menu" onclick="expandirSubMenu(this, 'Administração')"><td>
+				<a  href="#">
+					<i style="font-size:1.3em;" class="ion-android-arrow-dropright hoverbtn"></i>
+				&nbsp;Administração</a>
+			</td></tr>			
+			{{if (call .LoggedUser.HasPermission "listUsers")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/users">Usuários</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listEscritorios")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/escritorios">Escritórios</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listRoles")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/perfis">Perfis</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listFeatures")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/features">Funcionalidades</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listStatus")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/status">Status</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listActions")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/actions">Ações</a></td></tr>
+			{{end}}
+			{{if (call .LoggedUser.HasPermission "listWorkflows")}}
+			<tr class="submenu" style="display:none"><td style="padding-left: 30px;"><a href="/workflows">Workflows</a></td></tr>
+			{{end}}
+		{{end}}
+	</table>
+</div>
+{{end}}

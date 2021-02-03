@@ -1,0 +1,25 @@
+{{define "Create-Atualizacao-Anotacao"}}
+<!-- Create Atualizacao Anotacao Form -->
+<div class="w3-container">
+    <div id="create-atualizacao-anotacao-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="top:50px ;width: 1000px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Adicionar nova atualização</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('create-atualizacao-anotacao-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" id="formulario-atualizacao-anotacao-create">
+                <label class="w3-label">Atualização</label>
+				<textarea rows="8" class="w3-input" type="text" id="AtualizacaoForInsert" name="AtualizacaoForInsert" value=""></textarea>
+                <button 
+					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
+					type="button"
+					onclick="criarAtualizacao()"
+					>Criar
+				</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

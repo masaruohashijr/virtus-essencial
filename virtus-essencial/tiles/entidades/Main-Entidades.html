@@ -1,0 +1,21 @@
+{{ define "Main-Entidades" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+{{ template "Delete-Entidade" . }}
+{{ template "View-Entidade" . }}
+{{ template "Edit-Entidade" . }}
+{{ template "Create-Entidade" . }}
+{{ template "Delete-Plano" . }}
+{{ template "Edit-Plano" . }}
+{{ template "Create-Plano" . }}
+{{ template "Delete-Ciclo-Entidade" . }}
+{{ template "Edit-Ciclo-Entidade" . }}
+{{ template "Create-Ciclo-Entidade" . }}
+{{ template "Error-Message" .ErrMsg }}
+{{ template "Message" .Msg }}
+{{ template "List-Entidades" . }}
+</body>
+</html>
+{{end}}
