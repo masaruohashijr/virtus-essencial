@@ -87,52 +87,175 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) md
 func atualizarPilarNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_PILARES
 	sqlStatement := "UPDATE produtos_pilares " +
-		" SET nota = (select DISTINCT " +
+		" SET nota = (select " +
 		" round(sum(nota*peso)/sum(peso),2) AS media " +
 		" FROM produtos_componentes b " +
 		" WHERE " +
-		" entidade_id = b.entidade_id " +
-		" AND ciclo_id = b.ciclo_id  " +
-		" AND pilar_id = b.pilar_id " +
-		" AND b.nota IS NOT NULL " +
+		" produtos_pilares.entidade_id = b.entidade_id " +
+		" AND produtos_pilares.ciclo_id = b.ciclo_id  " +
+		" AND produtos_pilares.pilar_id = b.pilar_id " +
+		" AND (b.nota IS NOT NULL and b.peso IS NOT NULL) " +
 		" GROUP BY b.entidade_id,  " +
 		" b.ciclo_id, " +
 		" b.pilar_id ) " +
-		" WHERE entidade_id = ? " +
-		" AND ciclo_id = ? "
+		" WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
+		" AND ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
+		" AND pilar_id = " + strconv.FormatInt(produto.PilarId, 10)
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
 	}
-	updtForm.Exec(produto.EntidadeId, produto.CicloId)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
 
 func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_COMPONENTES
-	sqlStatement := "UPDATE produtos_componentes " +
-		" set nota = (select  " +
-		" round(sum(nota*peso)/100,2) as media " +
-		" FROM produtos_planos b " +
-		" WHERE " +
-		" entidade_id = b.entidade_id " +
-		" and ciclo_id = b.ciclo_id  " +
-		" and pilar_id = b.pilar_id " +
-		" and componente_id = b.componente_id " +
-		" and id_versao_origem is null " +
-		" GROUP BY b.entidade_id,  " +
-		" b.ciclo_id, " +
-		" b.pilar_id, " +
-		" b.componente_id " +
-		" HAVING sum(peso)>0) " +
-		" WHERE entidade_id = ? " +
-		" AND ciclo_id = ? "
+	log.Println("***** ATUALIZAR NOTA DO COMPONENTE")
+	sqlStatement := " WITH T1 AS " +
+		"   (SELECT entidade_id, " +
+		"           ciclo_id, " +
+		"           pilar_id, " +
+		"           plano_id, " +
+		"           componente_id, " +
+		"           tipo_nota_id, " +
+		"           round(avg(peso), 2) AS peso_tn " +
+		"    FROM produtos_elementos " +
+		"    GROUP BY entidade_id, " +
+		"             ciclo_id, " +
+		"             pilar_id, " +
+		"             plano_id, " +
+		"             componente_id, " +
+		"             tipo_nota_id), " +
+		"      T2 AS " +
+		"   (SELECT entidade_id, " +
+		"           ciclo_id, " +
+		"           pilar_id, " +
+		"           componente_id, " +
+		"           plano_id, " +
+		"           SUM(peso_tn) AS soma_pesos_tipos_notas " +
+		"    FROM T1 " +
+		"    GROUP BY entidade_id, " +
+		"             ciclo_id, " +
+		"             pilar_id, " +
+		"             componente_id, " +
+		"             plano_id), " +
+		"      T3 AS " +
+		"   (SELECT T1.entidade_id, " +
+		"           T1.ciclo_id, " +
+		"           T1.pilar_id, " +
+		"           T1.componente_id, " +
+		"           T1.plano_id, " +
+		"           T1.tipo_nota_id, " +
+		"           T1.peso_tn, " +
+		"           T2.soma_pesos_tipos_notas, " +
+		"           round(T1.peso_tn*100/T2.soma_pesos_tipos_notas, 2) AS ponderacao_tipo " +
+		"    FROM T1 " +
+		"    INNER JOIN T2 ON (T1.entidade_id = T2.entidade_id " +
+		"                      AND T1.ciclo_id = T2.ciclo_id " +
+		"                      AND T1.pilar_id = T2.pilar_id " +
+		"                      AND T1.componente_id = T2.componente_id " +
+		"                      AND T1.plano_id = T2.plano_id) " +
+		"    GROUP BY T1.entidade_id, " +
+		"             T1.ciclo_id, " +
+		"             T1.pilar_id, " +
+		"             T1.componente_id, " +
+		"             T1.plano_id, " +
+		"             T1.tipo_nota_id, " +
+		"             T1.peso_tn, " +
+		"             T2.soma_pesos_tipos_notas), " +
+		"      T4 AS " +
+		"   (SELECT T3.entidade_id, " +
+		"           T3.ciclo_id, " +
+		"           T3.pilar_id, " +
+		"           T3.componente_id, " +
+		"           T3.plano_id, " +
+		"           ponderacao_tipo, " +
+		"           peso_tn, " +
+		"           soma_pesos_tipos_notas, " +
+		"           p.nota, " +
+		"           ponderacao_tipo*peso_tn/100 AS peso_plano, " +
+		"           p.peso/100 AS ponderacao_plano " +
+		"    FROM T3 " +
+		"    INNER JOIN produtos_planos p ON (p.entidade_id = T3.entidade_id " +
+		"                                     AND p.ciclo_id = T3.ciclo_id " +
+		"                                     AND p.pilar_id = T3.pilar_id " +
+		"                                     AND p.componente_id = T3.componente_id " +
+		"                                     AND p.plano_id = T3.plano_id)), " +
+		"      T5 AS " +
+		"   (SELECT T4.entidade_id, " +
+		"           T4.ciclo_id, " +
+		"           T4.pilar_id, " +
+		"           T4.componente_id, " +
+		"           T4.plano_id, " +
+		"           sum(peso_plano) AS total_peso_plano " +
+		"    FROM T4 " +
+		"    WHERE T4.entidade_id = 217 " +
+		"      AND T4.ciclo_id = 1 " +
+		"      AND T4.pilar_id = 1 " +
+		"      AND T4.componente_id = 1 " +
+		"    GROUP BY T4.entidade_id, " +
+		"             T4.ciclo_id, " +
+		"             T4.pilar_id, " +
+		"             T4.componente_id, " +
+		"             T4.plano_id), " +
+		"      T6 AS " +
+		"   (SELECT T5.entidade_id, " +
+		"           T5.ciclo_id, " +
+		"           T5.pilar_id, " +
+		"           T5.componente_id, " +
+		"           AVG(total_peso_plano) AS media_pesos_planos " +
+		"    FROM T5 " +
+		"    GROUP BY entidade_id, " +
+		"             ciclo_id, " +
+		"             pilar_id, " +
+		"             componente_id), " +
+		" T7 AS " +
+		" (SELECT  " +
+		" 	p.entidade_id,  " +
+		" 	p.ciclo_id, " +
+		" 	p.pilar_id, " +
+		" 	p.componente_id, " +
+		" 	ROUND(SUM(p.nota * p.peso/100 * total_peso_plano)/media_pesos_planos, 2) AS nota_componente " +
+		" 	FROM produtos_planos p " +
+		" 	INNER JOIN T5 ON (p.entidade_id = t5.entidade_id " +
+		" 					  AND p.ciclo_id = t5.ciclo_id " +
+		" 					  AND p.pilar_id = t5.pilar_id " +
+		" 					  AND p.componente_id = t5.componente_id " +
+		" 					  AND p.plano_id = t5.plano_id) " +
+		" 	INNER JOIN T6 ON (t6.entidade_id = t5.entidade_id " +
+		" 					  AND t6.ciclo_id = t5.ciclo_id " +
+		" 					  AND t6.pilar_id = t5.pilar_id " +
+		" 					  AND t6.componente_id = t5.componente_id) " +
+		" 	GROUP BY  " +
+		" 		p.entidade_id,  " +
+		" 		p.ciclo_id, " +
+		" 		p.pilar_id, " +
+		" 		p.componente_id " +
+		" 	) " +
+		" UPDATE produtos_componentes " +
+		" SET nota = T7.nota_componente " +
+		" FROM T7 " +
+		" WHERE produtos_componentes.componente_id = T7.componente_id " +
+		"   AND produtos_componentes.pilar_id = T7.pilar_id " +
+		"   AND produtos_componentes.ciclo_id = T7.ciclo_id " +
+		"   AND produtos_componentes.entidade_id = T7.entidade_id " +
+		"   AND produtos_componentes.entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
+		"   AND produtos_componentes.ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
+		"   AND produtos_componentes.pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
+		"   AND produtos_componentes.componente_id = " + strconv.FormatInt(produto.ComponenteId, 10)
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
 	}
-	updtForm.Exec(produto.EntidadeId, produto.CicloId)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
 
 func atualizarPlanoNota(produto mdl.ProdutoElemento) {
@@ -170,31 +293,66 @@ func atualizarPlanoNota(produto mdl.ProdutoElemento) {
 
 func atualizarTipoNotaNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_TIPOS_NOTAS
-	sqlStatement := "UPDATE produtos_tipos_notas " +
-		" set nota = (select  " +
-		" round(sum(nota*peso)/sum(peso),2) as media " +
-		" FROM produtos_elementos b " +
-		" WHERE " +
-		" produtos_tipos_notas.entidade_id = b.entidade_id " +
-		" and produtos_tipos_notas.ciclo_id = b.ciclo_id  " +
-		" and produtos_tipos_notas.pilar_id = b.pilar_id " +
-		" and produtos_tipos_notas.plano_id = b.plano_id " +
-		" and produtos_tipos_notas.componente_id = b.componente_id " +
-		" and produtos_tipos_notas.tipo_nota_id = b.tipo_nota_id " +
-		" and (b.peso > 0 AND b.nota > 0) " +
-		" GROUP BY b.entidade_id,  " +
-		" b.ciclo_id, " +
-		" b.pilar_id, " +
-		" b.plano_id, " +
-		" b.componente_id, " +
-		" b.tipo_nota_id " +
-		" HAVING sum(peso)>0) " +
-		" WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
-		" AND ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
-		" AND pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
-		" AND componente_id = " + strconv.FormatInt(produto.ComponenteId, 10) +
-		" AND plano_id = " + strconv.FormatInt(produto.PlanoId, 10) +
-		" AND tipo_nota_id = " + strconv.FormatInt(produto.TipoNotaId, 10)
+	sqlStatement := " WITH T1 AS " +
+		"   (SELECT entidade_id, " +
+		"           ciclo_id, " +
+		"           pilar_id, " +
+		"           plano_id, " +
+		"           componente_id, " +
+		"           tipo_nota_id, " +
+		"           peso*nota AS produtos " +
+		"    FROM produtos_elementos), " +
+		"      T2 AS " +
+		"   (SELECT entidade_id, " +
+		"           ciclo_id, " +
+		"           pilar_id, " +
+		"           plano_id, " +
+		"           componente_id, " +
+		"           tipo_nota_id, " +
+		"           SUM(peso) AS soma_pesos_elementos " +
+		"    FROM produtos_elementos " +
+		"    GROUP BY entidade_id, " +
+		"             ciclo_id, " +
+		"             pilar_id, " +
+		"             plano_id, " +
+		"             componente_id, " +
+		"             tipo_nota_id), " +
+		"      T3 AS " +
+		"   (SELECT T1.entidade_id, " +
+		"           T1.ciclo_id, " +
+		"           T1.pilar_id, " +
+		"           T1.componente_id, " +
+		"           t1.plano_id, " +
+		"           t1.tipo_nota_id, " +
+		"           SUM(T1.produtos)/T2.soma_pesos_elementos AS nota_tn " +
+		"    FROM T1 " +
+		"    INNER JOIN T2 ON (T1.entidade_id = T2.entidade_id " +
+		"                      AND T1.ciclo_id = T2.ciclo_id " +
+		"                      AND T1.pilar_id = T2.pilar_id " +
+		"                      AND T1.componente_id = T2.componente_id " +
+		"                      AND t1.plano_id = t2.plano_id " +
+		"                      AND t1.tipo_nota_id = t2.tipo_nota_id) " +
+		"    WHERE T1.entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
+		"      AND T1.ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
+		"      AND T1.pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
+		"      AND T1.componente_id = " + strconv.FormatInt(produto.ComponenteId, 10) +
+		"      AND t1.plano_id = " + strconv.FormatInt(produto.PlanoId, 10) +
+		"    GROUP BY t1.entidade_id, " +
+		"             t1.ciclo_id, " +
+		"             t1.pilar_id, " +
+		"             t1.plano_id, " +
+		"             t1.componente_id, " +
+		"             t1.tipo_nota_id, " +
+		"             t2.soma_pesos_elementos) " +
+		" UPDATE produtos_tipos_notas " +
+		" SET nota = round(T3.nota_tn, 2) " +
+		" FROM T3 " +
+		" WHERE produtos_tipos_notas.tipo_nota_id = T3.tipo_nota_id " +
+		"   AND produtos_tipos_notas.componente_id = T3.componente_id " +
+		"   AND produtos_tipos_notas.plano_id = T3.plano_id " +
+		"   AND produtos_tipos_notas.pilar_id = T3.pilar_id " +
+		"   AND produtos_tipos_notas.ciclo_id = T3.ciclo_id " +
+		"   AND produtos_tipos_notas.entidade_id = T3.entidade_id"
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
@@ -210,7 +368,7 @@ func atualizarCicloNota(produto mdl.ProdutoElemento) {
 		" FROM produtos_pilares b " +
 		" WHERE b.entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" AND b.ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
-		" AND b.nota is not null) R " +
+		" AND b.nota <> 0 AND b.nota IS NOT NULL) R " +
 		" WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" AND ciclo_id = " + strconv.FormatInt(produto.CicloId, 10)
 	log.Println(sqlStatement)
@@ -516,89 +674,98 @@ func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 func atualizarPesoComponentes(produto mdl.ProdutoElemento, currentUser mdl.User) {
 	// PESOS COMPONENTES
 	log.Println("*** ATUALIZAR PESO COMPONENTE ***")
-	sqlStatement := "WITH TMP AS " +
-		"   (SELECT r1.entidade_id, " +
-		"           r1.ciclo_id, " +
-		"           r1.pilar_id, " +
-		"           r1.plano_id, " +
-		"           r1.componente_id, " +
-		"           r1.tipo_nota_id, " +
-		"           round((r1.TOTAL/r2.contador), 2) AS PONDERACAO " +
-		"    FROM " +
-		"      (SELECT entidade_id, " +
-		"              ciclo_id, " +
-		"              pilar_id, " +
-		"              plano_id, " +
-		"              componente_id, " +
-		"              tipo_nota_id, " +
-		"              round(sum(peso), 2) AS TOTAL " +
-		"       FROM produtos_elementos " +
-		"       GROUP BY entidade_id, " +
-		"                ciclo_id, " +
-		"                pilar_id, " +
-		"                plano_id, " +
-		"                componente_id, " +
-		"                tipo_nota_id) R1 " +
-		"    INNER JOIN " +
-		"      (SELECT entidade_id, " +
-		"              ciclo_id, " +
-		"              pilar_id, " +
-		"              plano_id, " +
-		"              componente_id, " +
-		"              tipo_nota_id, " +
-		"              count(1) AS CONTADOR " +
-		"       FROM produtos_elementos " +
-		"       WHERE peso <> 0 " +
-		"       GROUP BY entidade_id, " +
-		"                ciclo_id, " +
-		"                pilar_id, " +
-		"                plano_id, " +
-		"                componente_id, " +
-		"                tipo_nota_id) R2 ON (r1.entidade_id = r2.entidade_id " +
-		"                                     AND r1.ciclo_id = r2.ciclo_id " +
-		"                                     AND r1.pilar_id = r2.pilar_id " +
-		"                                     AND r1.componente_id = r2.componente_id " +
-		"                                     AND r1.tipo_nota_id = r2.tipo_nota_id)), " +
+	sqlStatement := " WITH T1 AS " +
+		"   (SELECT entidade_id, " +
+		"           ciclo_id, " +
+		"           pilar_id, " +
+		"           plano_id, " +
+		"           componente_id, " +
+		"           tipo_nota_id, " +
+		"           round(avg(peso), 2) AS peso_tn " +
+		"    FROM produtos_elementos " +
+		"    GROUP BY entidade_id, " +
+		"             ciclo_id, " +
+		"             pilar_id, " +
+		"             plano_id, " +
+		"             componente_id, " +
+		"             tipo_nota_id), " +
 		"      T2 AS " +
 		"   (SELECT entidade_id, " +
 		"           ciclo_id, " +
 		"           pilar_id, " +
 		"           componente_id, " +
-		"           SUM(PONDERACAO) AS TOTAL_PESOS_TNS " +
-		"    FROM TMP " +
+		"           plano_id, " +
+		"           SUM(peso_tn) AS soma_pesos_tipos_notas " +
+		"    FROM T1 " +
 		"    GROUP BY entidade_id, " +
 		"             ciclo_id, " +
 		"             pilar_id, " +
-		"             componente_id) " +
+		"             componente_id, " +
+		"             plano_id), " +
+		"      T3 AS " +
+		"   (SELECT T1.entidade_id, " +
+		"           T1.ciclo_id, " +
+		"           T1.pilar_id, " +
+		"           T1.componente_id, " +
+		"           T1.plano_id, " +
+		"           T1.tipo_nota_id, " +
+		"           T1.peso_tn, " +
+		"           T2.soma_pesos_tipos_notas, " +
+		"           round(T1.peso_tn*100/T2.soma_pesos_tipos_notas, 2) AS ponderacao_tipo " +
+		"    FROM T1 " +
+		"    INNER JOIN T2 ON (T1.entidade_id = T2.entidade_id " +
+		"                      AND T1.ciclo_id = T2.ciclo_id " +
+		"                      AND T1.pilar_id = T2.pilar_id " +
+		"                      AND T1.componente_id = T2.componente_id " +
+		"                      AND T1.plano_id = T2.plano_id) " +
+		"    GROUP BY T1.entidade_id, " +
+		"             T1.ciclo_id, " +
+		"             T1.pilar_id, " +
+		"             T1.componente_id, " +
+		"             T1.plano_id, " +
+		"             T1.tipo_nota_id, " +
+		"             T1.peso_tn, " +
+		"             T2.soma_pesos_tipos_notas), " +
+		"      T4 AS " +
+		"   (SELECT T3.entidade_id, " +
+		"           T3.ciclo_id, " +
+		"           T3.pilar_id, " +
+		"           T3.componente_id, " +
+		"           T3.plano_id, " +
+		"           ponderacao_tipo, " +
+		"           peso_tn, " +
+		"           soma_pesos_tipos_notas, " +
+		"           ponderacao_tipo*peso_tn/100 AS peso_plano, " +
+		"           p.peso/100 AS ponderacao_plano " +
+		"    FROM T3 " +
+		"    INNER JOIN produtos_planos p ON (p.entidade_id = T3.entidade_id " +
+		"                                     AND p.ciclo_id = T3.ciclo_id " +
+		"                                     AND p.pilar_id = T3.pilar_id " +
+		"                                     AND p.componente_id = T3.componente_id " +
+		"                                     AND p.plano_id = T3.plano_id)), " +
+		"      T5 AS " +
+		"   (SELECT T4.entidade_id, " +
+		"           T4.ciclo_id, " +
+		"           T4.pilar_id, " +
+		"           T4.componente_id, " +
+		"           sum(peso_plano*ponderacao_plano) AS peso_componente " +
+		"    FROM T4 " +
+		"    GROUP BY T4.entidade_id, " +
+		"             T4.ciclo_id, " +
+		"             T4.pilar_id, " +
+		"             T4.componente_id) " +
 		" UPDATE produtos_componentes " +
-		" SET peso = RR.peso_componente " +
-		" FROM " +
-		"   (SELECT t1.entidade_id, " +
-		"           t1.ciclo_id, " +
-		"           t1.pilar_id, " +
-		"           t1.componente_id, " +
-		"           round((SUM(t1.PONDERACAO*t1.PONDERACAO*p.peso/t2.total_pesos_tns/100)), 2) AS PESO_COMPONENTE " +
-		"    FROM TMP T1 " +
-		"    INNER JOIN T2 ON (t1.entidade_id = t2.entidade_id " +
-		"                      AND t1.pilar_id = t2.pilar_id " +
-		"                      AND t1.ciclo_id = t2.ciclo_id " +
-		"                      AND t1.componente_id = t2.componente_id) " +
-		"    INNER JOIN produtos_planos p ON (t1.entidade_id = p.entidade_id " +
-		"                                     AND t1.pilar_id = p.pilar_id " +
-		"                                     AND t1.ciclo_id = p.ciclo_id " +
-		"                                     AND t1.componente_id = p.componente_id) " +
-		"    WHERE t1.componente_id = " + strconv.FormatInt(produto.ComponenteId, 10) +
-		"      AND t1.pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
-		"      AND t1.ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
-		"      AND t1.entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
-		"    GROUP BY t1.entidade_id, " +
-		"             t1.ciclo_id, " +
-		"             t1.pilar_id, " +
-		"             t1.componente_id) RR " +
-		" WHERE RR.entidade_id = produtos_componentes.entidade_id " +
-		"   AND RR.pilar_id = produtos_componentes.pilar_id " +
-		"   AND RR.ciclo_id = produtos_componentes.ciclo_id " +
-		"   AND RR.componente_id = produtos_componentes.componente_id "
+		" SET peso = " +
+		"   (SELECT DISTINCT round(T5.peso_componente,2) " +
+		"    FROM T5 " +
+		"    WHERE entidade_id = produtos_componentes.entidade_id " +
+		"      AND ciclo_id = produtos_componentes.ciclo_id " +
+		"      AND pilar_id = produtos_componentes.pilar_id " +
+		"      AND componente_id = produtos_componentes.componente_id) " +
+		" WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
+		" 	AND ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
+		" 	AND pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
+		" 	AND componente_id = " + strconv.FormatInt(produto.ComponenteId, 10)
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {

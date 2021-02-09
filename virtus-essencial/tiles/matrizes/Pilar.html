@@ -67,11 +67,7 @@
             <tr>
 				{{$auxComponente = 0}}
 				{{range $index, $m := .ElementosDaMatriz}}
-					{{if or (ne $auxTipoNota $m.TipoNotaId) (ne $auxComponente $m.ComponenteId) }}
-						<td style="font-size:0.8em;border: 1px solid lightgrey">{{$m.TipoNotaLetra}}</td>
-						{{$auxTipoNota = $m.TipoNotaId}}
-						{{$auxComponente = $m.ComponenteId}}
-					{{end}}
+					<td style="font-size:0.8em;border: 1px solid lightgrey">{{$m.ComponenteQtdTiposNotas}} {{$m.TipoNotaLetra}}</td>
 				{{end}}
             </tr>
 				{{$linhas := .ElementosDaMatriz}}

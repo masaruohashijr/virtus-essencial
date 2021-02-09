@@ -2,8 +2,10 @@ package main
 
 import (
 	"database/sql"
-	//"fmt"
+	//	"fmt"
+	"github.com/BurntSushi/toml"
 	_ "github.com/alexbrainman/odbc"
+	//	"strconv"
 	//_ "github.com/denisenkom/go-mssqldb"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
@@ -20,51 +22,63 @@ import (
 )
 
 var db *sql.DB
+var dbConfig Config
+var eConfig Config
+var sConfig Config
 
-var server = "NOTEBOOK-01\\SQLEXPRESS"
-var port = 58162
-var user = "virtus"
-var password = "virtus"
-var database = "virtus"
-var DSN = "dsn=VIRTUS"
-var encrypt = false
-
-func determineListenAddress() (string, error) {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "5000"
-	}
-	return ":" + port, nil
-
+type Config struct {
+	DbServer          string
+	DbPort            string
+	DbUser            string
+	DbPassword        string
+	DbName            string
+	DbMaxOpenConns    string
+	DbMaxIdleConns    string
+	DbConnMaxLifetime string
+	DbDriver          string
+	DbDSN             string
+	Ambiente          string
+	EncryptionKey     string
+	ServerPort        string
+	EmailFrom         string
+	EmailPassword     string
+	EmailSubject      string
+	SmtpHost          string
+	SmtpPort          string
 }
+
+type ConfigType int
+
+const (
+	SERVER ConfigType = iota
+	EMAIL
+	BANCO
+)
 
 func dbConn() *sql.DB {
 	var dbase *sql.DB
-	driver := os.Getenv("DRIVER")
-	if driver == "" {
-		driver = "sqlserver"
-	}
-	// connString := fmt.Sprintf("user id=%s;password=%s;port=%d;database=%s",user, password, port, database)
-	//	dbase, err := sql.Open("sqlserver", connString)
-	dbase, _ = sql.Open("odbc", DSN)
+	dbConfig := ReadConfig(BANCO)
+	//port, _ := strconv.Atoi(dbConfig.DbPort)
+	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s", dbConfig.DbServer, dbConfig.DbUser, dbConfig.DbPassword, port, dbConfig.DbName)
+	//dbase, err := sql.Open(dbConfig.DbDriver, connString)
+	dbase, _ = sql.Open("odbc", dbConfig.DbDSN)
 	dbase.SetMaxOpenConns(20)
 	dbase.SetMaxIdleConns(20)
-	dbase.SetConnMaxLifetime(10 * time.Second)
-	dbase.Exec("SET client_encoding='UTF-8'")
-	log.Printf("CONECTADO COM SUCESSO!!!\n")
+	dbase.SetConnMaxLifetime(10 * time.Minute)
 	err := dbase.Ping()
 	if err != nil {
-		log.Fatal(">>: " + err.Error())
+		log.Fatal("VIRTUS > > > : " + err.Error())
 	} else {
-		log.Printf("Pingou")
+		log.Printf("VIRTUS > > > CONECTADO COM SUCESSO!\n")
 	}
 	return dbase
 }
 
 func main() {
-	sec.Store = sessions.NewCookieStore([]byte("vindixit123581321"))
+	sConfig := ReadConfig(SERVER)
+	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + os.Getenv("AMBIENTE") + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	dpk.Initialize()
@@ -223,13 +237,37 @@ func main() {
 		http.StripPrefix("/statics/", http.FileServer(http.Dir("./statics"))),
 	)
 	http.Handle("/", r)
-	addr, err := determineListenAddress()
-	if err != nil {
-		log.Fatal(err)
-	}
+	addr := ":" + sConfig.ServerPort
 	log.Printf("Listening on %s...\n", addr)
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Println(err)
 	}
 	defer hd.Db.Close()
+}
+
+func check(e error) {
+	if e != nil {
+		log.Println(e)
+	}
+}
+
+func ReadConfig(t ConfigType) Config {
+	var configfile = "config/"
+	if t == SERVER {
+		configfile += "server.ini"
+	} else if t == EMAIL {
+		configfile += "email.ini"
+	} else {
+		configfile += "banco.ini"
+	}
+	log.Println(configfile)
+	_, err := os.Stat(configfile)
+	if err != nil {
+		log.Fatal("Arquivo de configuração "+configfile+" faltando: ", configfile)
+	}
+	var config Config
+	if _, err := toml.DecodeFile(configfile, &config); err != nil {
+		log.Fatal(err)
+	}
+	return config
 }

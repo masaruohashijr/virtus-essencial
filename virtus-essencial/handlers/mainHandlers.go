@@ -168,7 +168,10 @@ func HasPermission(currentUser mdl.User, permission string) bool {
 	query := "SELECT " +
 		"A.feature_id, B.code FROM features_roles A, features B " +
 		"WHERE A.feature_id = B.id AND A.role_id = ?"
-	rows, _ := Db.Query(query, currentUser.Role)
+	rows, err := Db.Query(query, currentUser.Role)
+	if err != nil {
+		log.Println(err.Error())
+	}
 	defer rows.Close()
 	var featuresCurrentUser []mdl.Feature
 	var feature mdl.Feature
@@ -180,10 +183,8 @@ func HasPermission(currentUser mdl.User, permission string) bool {
 		//log.Println("Feature CurUser: " + value.Code)
 		if value.Code == permission {
 			//log.Println("Permission: " + permission)
-			//log.Println("PASSEI NO VESTIBULAR")
 			return true
 		}
 	}
-	//log.Println("NÃO PASSEI ")
 	return false
 }

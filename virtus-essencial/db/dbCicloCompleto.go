@@ -85,21 +85,19 @@ func createCicloCompleto() {
 	nome := cicloESI.Nome
 	descricao := "Descricao do " + nome
 	stmt := " INSERT INTO ciclos(nome, descricao, author_id, criado_em, status_id) OUTPUT INSERTED.ID " +
-		" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id FROM ciclos WHERE nome = '" + nome + "' )"
-	log.Println(stmt)
-	log.Println(nome)
-	log.Println(descricao)
-	log.Println(autor)
-	log.Println(statusZero)
-	row := db.QueryRow(stmt, nome, descricao, autor, statusZero)
+		" SELECT '" + nome + "', '" + descricao + "', " + strconv.Itoa(autor) + ", GETDATE(), " +
+		strconv.Itoa(statusZero) +
+		" WHERE NOT EXISTS (SELECT id FROM ciclos WHERE nome = '" + nome + "' )"
+	//log.Println(stmt)
+	row := db.QueryRow(stmt)
 	err := row.Scan(&idCiclo)
-	if err != nil {
+	/*if err != nil {
 		log.Println(err.Error())
-	}
+	}*/
 
 	if idCiclo == 0 {
 		log.Println("INICIANDO O CICLO COMPLETO")
-		// return
+		return
 	}
 
 	pesoPadrao = 100

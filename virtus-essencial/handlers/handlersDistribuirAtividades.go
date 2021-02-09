@@ -584,6 +584,30 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	atualizarPilarNota(produto)
 	atualizarCicloNota(produto)
 	atualizarPesoTiposNotas(produto, currentUser)
+	sqlStatement = "UPDATE produtos_componentes " +
+		" SET nota = 0 " +
+		" WHERE " +
+		" entidade_id = " + entidadeId +
+		" and ciclo_id = " + cicloId +
+		" and pilar_id = " + pilarId +
+		" and componente_id = " + componenteId
+	log.Println(sqlStatement)
+	updtForm, _ = Db.Prepare(sqlStatement)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	sqlStatement = "UPDATE produtos_pilares " +
+		" SET nota = 0 " +
+		" WHERE ciclo_id = " + cicloId +
+		" and pilar_id = " + pilarId +
+		" and entidade_id = " + entidadeId
+	log.Println(sqlStatement)
+	updtForm, _ = Db.Prepare(sqlStatement)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
 
 func removePlanoCfg(planos []PlanosCfg, planoCfgToBeRemoved PlanosCfg) []PlanosCfg {

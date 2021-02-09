@@ -27,6 +27,7 @@
 			</div>
 		</header>
         <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" width="1200px">
+			{{$inc := .Inc}}
 			{{$primeiroPlano := true}}
 			{{$primeiraLinha := true}}
 			{{$auxEntidade := 0}}
@@ -76,13 +77,20 @@
             </tr>
             <tr>
 				{{$auxComponente = 0}}
+				{{$auxPlano = 0}}
 				{{$elTipoNota:=.ElementosDaMatriz}}
+				{{$contador := 0}}
 				{{range $index, $m := $elTipoNota}}
-					{{if or (ne $auxTipoNota $m.TipoNotaId) (ne $auxComponente $m.ComponenteId) }}
+					{{$contador = call $inc $contador}}
+					{{if and (ne $auxComponente $m.ComponenteId) (ne $auxComponente 0)}}
 						<td style="font-size:0.8em;border: 1px solid lightgrey">{{$m.TipoNotaLetra}}</td>
-						{{$auxTipoNota = $m.TipoNotaId}}
-						{{$auxComponente = $m.ComponenteId}}
+						{{$contador = 0}}
+					{{else}}
+						{{if le $contador $m.ComponenteColSpan}}
+							<td style="font-size:0.8em;border: 1px solid lightgrey">{{$m.TipoNotaLetra}}</td>
+						{{end}}
 					{{end}}
+					{{$auxComponente = $m.ComponenteId}}
 				{{end}}
             </tr>
 				{{$linhas := .ElementosDaMatriz}}

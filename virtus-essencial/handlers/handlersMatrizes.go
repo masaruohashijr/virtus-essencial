@@ -220,7 +220,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		" AND R3.entidade_id = EL.entidade_id " +
 		" AND R3.plano_id = EL.plano_id) " +
 		" LEFT JOIN users q ON R3.author_id = q.id " +
-		" ORDER BY ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id, elemento_id, rg "
+		" ORDER BY ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -369,7 +369,7 @@ func loadTiposNotasMatriz(entidadeId string, cicloId string, pilarId string) []m
 		" LEFT JOIN tipos_notas m ON R1.tipo_nota_id = m.id " +
 		" LEFT JOIN planos z ON R2.plano_id = z.id " +
 		" LEFT JOIN entidades y ON y.id = " + entidadeId +
-		" ORDER BY ciclo_id,pilar_id,componente_id,tipo_nota_id,rg "
+		" ORDER BY ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
