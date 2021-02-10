@@ -1,0 +1,28 @@
+# github.com/BurntSushi/toml v0.3.1
+## explicit
+github.com/BurntSushi/toml
+# github.com/alexbrainman/odbc v0.0.0-20200426075526-f0492dfa1575
+## explicit
+github.com/alexbrainman/odbc
+github.com/alexbrainman/odbc/api
+# github.com/denisenkom/go-mssqldb v0.9.0
+## explicit
+# github.com/gorilla/mux v1.8.0
+## explicit
+github.com/gorilla/mux
+# github.com/gorilla/securecookie v1.1.1
+github.com/gorilla/securecookie
+# github.com/gorilla/sessions v1.2.1
+## explicit
+github.com/gorilla/sessions
+# github.com/lib/pq v1.9.0
+## explicit
+github.com/lib/pq
+github.com/lib/pq/oid
+github.com/lib/pq/scram
+# golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
+## explicit
+golang.org/x/crypto/bcrypt
+golang.org/x/crypto/blowfish
+# golang.org/x/sys v0.0.0-20190412213103-97732733099d
+golang.org/x/sys/windows

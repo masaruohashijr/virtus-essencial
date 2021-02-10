@@ -1,0 +1,55 @@
+{{define "Create-Elemento"}}
+<!-- Create Elemento -->
+<div class="w3-container">
+    <div id="create-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1200px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Criar novo elemento</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('create-form').style.display='none';">&times;</span>
+            </div>
+            <form class="w3-container" action="/createElemento" method="POST">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" id="NomeElementoForInsert" name="NomeElementoForInsert" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" id="DescricaoElementoForInsert" name="DescricaoElementoForInsert" rows="5" value=""></textarea>
+                <label class="w3-label">Link de Referência</label>
+                <input class="w3-input" type="text" id="ReferenciaElementoForInsert" name="ReferenciaElementoForInsert" value="">
+				<header class="w3-container w3-center w3-teal">
+		            <div class="aria">
+						<div style="margin-top: 6px;text-align: left;z-index:1">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Itens a Avaliar</h4>
+						<div style="margin-top: 8px" id="create-form-item-btn" >
+						    <a href="#" onclick="contexto='create';openCreateItem();">
+	                            <i class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></i>
+	                        </a>
+						</div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" id="table-itens-create">
+		            <tr>
+		                <th style="width: 45%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Nome" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'table-itens-create', 1, 1)"></th>
+		                <th style="display:none">Descrição</th>
+		                <th style="display:none">Referência</th>
+						<th style="width: 10%;">Autor</th>
+		                <th style="width: 10%;">Criado Em</th>
+		                <th style="width: 10%;">Status</th>
+						<th style="width: 25%;">Ações</th>
+		            </tr>
+		        </table>
+                <button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

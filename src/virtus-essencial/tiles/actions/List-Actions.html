@@ -1,0 +1,74 @@
+{{define "List-Actions"}}
+<!-- List Actions -->
+<div id="main" class="w3-row-padding">
+	<header class="w3-container w3-center w3-teal">
+	<div class="row">
+	  <div class="w3-third" style="">
+		<a style="cursor:pointer;text-align: left" onclick="navGadget()">
+			<h3>&#9776; {{.AppName}}</h3>
+		</a>
+	  </div>
+	  <div class="w3-third" style="">
+		<h3>{{.Title}}</h3>
+	  </div>
+	  <div class="w3-third" style="text-align: right;padding:10px;font-size:1vw;">
+		{{$allowed := (call .LoggedUser.HasPermission "createAction")}}
+		<div class="w3-half" style="text-align: right;">
+			{{.LoggedUser.User.Name}} (&nbsp;{{.LoggedUser.User.RoleName}}&nbsp;)
+		</div>
+		<div class="w3-half">
+			<span style="width:120px;">
+			{{if $allowed}}
+		    <a href="#" onclick="openCreateAction()">
+				<span class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></span>
+			</a>&nbsp;
+			{{end}}
+		    <a href="/logout">
+				<span class="icon ion-log-out w3-xxlarge hoverbtn"></span>
+			</a>
+			<span>
+		</div>
+	  </div>
+	</header>
+    <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable">
+        <thead>
+        <tr>
+            <th>Ord</th>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Exceto</th>
+            <th>Status Origem</th>
+            <th>Status Destino</th>
+            <th>Autor</th>
+            <th>Criado Em</th>
+            <th>Status</th>
+			{{if $allowed}}
+			<th>Ações</th>
+			{{end}}
+        </tr>
+        </thead>
+        <tbody>
+        {{range $index, $action := .Actions}}
+        <tr>
+            <td>#{{$action.Order}}</td>
+            <td>{{$action.Id}}</td>
+            <td><input type="hidden" value="{{$action.Description}}">{{$action.Name}}</td>
+            <td>{{$action.OtherThan}}</td>
+            <td><input type="hidden" value="{{$action.OriginId}}">{{$action.Origin}}</td>
+            <td><input type="hidden" value="{{$action.DestinationId}}">{{$action.Destination}}</td>
+            <td>{{$action.AuthorName}}</td>
+            <td>{{$action.C_CreatedAt}}</td>
+            <td>{{$action.CStatus}}</td>
+			{{if $allowed}}
+            <td>
+                <button class="w3-btn w3-teal" onclick="editAction(this);">Editar</button>
+                <button class="w3-btn w3-red" onclick="deleteAction(this)">Apagar</button>
+            </td>
+			{{end}}
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+    </div>
+</div>
+{{end}}

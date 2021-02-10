@@ -1,0 +1,12 @@
+{{ define "Main-Entidades-Distribuir-Atividades" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+{{ template "Message" .Msg }}
+{{ template "Warn-Message" .WarnMsg }}
+{{ template "Error-Message" .ErrMsg }}
+{{ template "List-Entidades-Distribuir-Atividades" . }}
+</body>
+</html>
+{{end}}

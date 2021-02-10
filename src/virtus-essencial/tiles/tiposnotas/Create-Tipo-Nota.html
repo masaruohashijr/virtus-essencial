@@ -1,0 +1,42 @@
+{{define "Create-Tipo-Nota"}}
+<!-- Create Tipo de Nota -->
+<div class="w3-container">
+    <div id="create-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Criar novo tipo de nota</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('create-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" action="/createTipoNota" method="POST">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" name="Nome" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" name="Descricao" rows="5" value=""></textarea>
+                <label class="w3-label">Link de Referência</label>
+                <input class="w3-input" type="text" name="Referencia" id="Referencia" value="">
+                <label class="w3-label">Letra na Matriz</label>
+                <input class="w3-input" type="text" name="Simbolo" maxlength="1" value="">
+                <label class="w3-label">Cor da Letra na Matriz</label>
+				<select class="w3-input" id="CorLetraForUpdate" name="CorLetra">
+					<option value="ff6961">Vermelho Pastel</option>
+					<option value="d19033">Amarelo Fuel</option>
+					<option value="6495ed">Azul Cornflower</option>
+					<option value="f6fdc6">Amarelo Pálido</option>
+					<option value="d61d1c">Vermelho Extintor</option>
+					<option value="d62561">Cereja</option>
+					<option value="74f146">Verde</option>
+					<option value="329d53">Eucalipto</option>
+					<option value="ed494c">Rosa Carmine</option>
+					<option value="ab3900">Vermelho Rústico</option>
+					<option value="e028b6">Spicy Pink</option>
+					<option value="32640f">Lincoln Green</option>
+                </select>
+                <button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

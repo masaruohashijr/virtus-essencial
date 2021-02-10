@@ -1,0 +1,43 @@
+{{define "Edit-Action"}}
+<!-- Edit Action -->
+<div class="w3-container">
+    <div id="edit-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1000px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Editar ação</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('edit-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" action="/updateAction" method="post" id="formulario-action-edit">
+                <input type="hidden" name="Id" id="ActionIdForUpdate">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" id="ActionNameForUpdate" name="Name" value="">
+				<label class="w3-label">Status Origem</label>
+				<label class="w3-label">Exceto</label>&nbsp;<input type="checkbox" name="ExceptForUpdate" id="ExceptForUpdate" value="Except">
+	            <select class="w3-input" name="OriginStatusForUpdate" id="OriginStatusForUpdate" style="width:100%">
+					<option value=""></option>
+					{{range $index, $status := .Statuss }}
+		                <option value="{{$status.Id}}">
+							{{$status.Name}}{{if ne $status.Stereotype ""}} (estereótipo: {{$status.Stereotype}}){{end}}
+						</option>
+		            {{end}}
+	            </select>
+				<label class="w3-label">Status Destino</label>
+	            <select class="w3-input" name="DestinationStatusForUpdate" id="DestinationStatusForUpdate" style="width:100%">
+					<option value=""></option>
+					{{range $index, $status := .Statuss }}
+		                <option value="{{$status.Id}}">
+							{{$status.Name}}{{if ne $status.Stereotype ""}} (estereótipo: {{$status.Stereotype}}){{end}}
+						</option>
+		            {{end}}
+	            </select>
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" name="Description" id="ActionDescriptionForUpdate" rows="5" value=""></textarea>
+				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

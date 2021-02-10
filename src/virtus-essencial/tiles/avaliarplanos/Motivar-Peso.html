@@ -1,0 +1,99 @@
+{{define "Motivar-Peso"}}
+<!-- Motivar Peso -->
+<div class="w3-container">
+    <div id="motivar-peso-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1200px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Motivar Peso</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="resetPeso();resetFormAvaliarPlanos();document.getElementById('motivar-peso-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" id="formulario-edit">
+				<input type="hidden" id="motPeso_callback" value="">
+				<table width="100%">
+					<tr>
+						<td width="50%" colspan="2">
+							<label class="w3-label">EFPC</label>					
+	                		<input class="w3-input" type="text" name="Nome" id="motPesoEntidade" readonly="readonly" disabled="disabled" value="">
+						</td>
+						<td width="50%" rowspan="8" style="vertical-align: top;">
+							<label class="w3-label">Motivação Peso</label>
+							<br>
+							<textarea id="motPeso_text" class="w3-input" rows="22" cols="55"></textarea>
+						</td>
+					</tr>	
+					<tr>
+                		<td colspan="2">
+							<label class="w3-label">Ciclo</label>
+							<input class="w3-input" type="text" name="Nome" id="motPesoCiclo" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>	
+					<tr>						
+						<td colspan="2">
+							<label class="w3-label">Pilar</label>
+                			<input class="w3-input" type="text" name="Pilar" id="motPesoPilar" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>	
+					<tr>						
+						<td colspan="2">
+							<label class="w3-label">Plano</label>
+                			<input class="w3-input" type="text" name="Plano" id="motPesoPlano" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>	
+					<tr>						
+						<td colspan="2">
+							<label class="w3-label">Componente</label>
+                			<input class="w3-input" type="text" name="Componente" id="motPesoComponente" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>	
+					<tr>
+						<td colspan="2">
+							<label class="w3-label">Tipo de Nota</label>
+                			<input class="w3-input" type="text" name="TipoNota" id="motPesoTipoNota" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>	
+					<tr>						
+						<td colspan="2">
+							<label class="w3-label">Elemento</label>
+                			<input class="w3-input" type="text" name="Elemento" id="motPesoElemento" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>
+					<tr>						
+						<td>
+							<label class="w3-label">Peso Anterior</label>
+                			<input class="w3-input" type="text" name="PesoAnterior" id="motPesoPesoAnterior" readonly="readonly" disabled="disabled" value="">
+						</td>
+						<td>
+							<label class="w3-label">Novo Peso</label>
+                			<input class="w3-input" type="text" name="NovoPeso" id="motPesoNovoPeso" readonly="readonly" disabled="disabled" value="">
+						</td>
+					</tr>
+				</table>	
+		        <header class="w3-container w3-center w3-teal">
+		            <div class="w3-row">
+		                <div class="w3-half" style="text-align: center;z-index:0">
+		                    <h4 class="w3-right">Anexos</h4>
+		                </div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" 
+					id="table-pilar-ciclo-edit">
+		            <tr>
+		                <th>Nome</th>
+		                <th>Postado em</th>
+		                <th>Autor</th>
+		                <th>Status</th>
+						<th>Ações</th>
+		            </tr>
+		        </table>
+				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
+					onClick="salvarPesoElemento()" 
+					id="btnSalvarPeso"
+					type="button">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

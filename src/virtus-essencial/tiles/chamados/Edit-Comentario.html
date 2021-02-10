@@ -1,0 +1,28 @@
+{{define "Edit-Comentario"}}
+<!-- Edit Comentario Form -->
+<div class="w3-container">
+    <div id="edit-comentario-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="top:50px ;width: 1000px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Editar comentário</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('edit-comentario-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" id="formulario-comentario-edit">
+				<input type="hidden" id="Id-ComentarioForUpdate" value="" readonly="readonly" disabled="disabled">
+				<input type="hidden" id="Order-ComentarioForUpdate" value="" readonly="readonly" disabled="disabled">
+				<input type="hidden" id="ChamadoId-ComentarioForUpdate" value="" readonly="readonly" disabled="disabled">
+                <label class="w3-label">Comentário</label>
+				<textarea rows="8" class="w3-input" type="text" id="ComentarioForUpdate" name="ComentarioForUpdate" value=""></textarea>
+                <button 
+					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
+					type="button"
+					onclick="updateComentario()"
+					>Salvar
+				</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

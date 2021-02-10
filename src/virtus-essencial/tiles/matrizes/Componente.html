@@ -1,0 +1,146 @@
+{{define "Componente"}}
+<!-- Matriz -->
+<div id="main" class="w3-row-padding">
+		<header class="w3-container w3-center w3-teal">
+		    <div class="aria">
+				<div style="margin-top: 6px;text-align: left;z-index:1">
+		    		<a style="font-size:28px;cursor:pointer" onclick="navGadget()">
+						&#9776; {{.AppName}}
+		    		</a>
+				</div>
+				    <h3>{{.Title}}</h3>
+				<div style="margin-top: 10px;">
+                    <span style="position:absolute; top:34px; right:120px">{{.LoggedUser.User.Name}} ( {{.LoggedUser.User.RoleName}} )</span>
+					{{$allowed := (call .LoggedUser.HasPermission "viewMatriz")}}
+				    <a style="margin-top: 6px" href="/logout">
+						<span class="icon ion-log-out w3-xxlarge hoverbtn"></span>
+					</a>
+				</div>
+		    </div>
+		</header>
+        <table class="w3-table w3-centered w3-border w3-bordered">
+			{{$mulTxt := .MulTxt}}
+			{{$mul := .Mul}}
+			{{$somarTxt := .SomarTxt}}
+			{{$somar := .Somar}}
+			{{$inc := .Inc}}
+			{{$dec := .Dec}}
+			{{$cospan := 0}}
+			{{$auxEntidade := 0}}
+			{{$auxCiclo := 0}}
+			{{$notaCiclo := 0}}
+			{{$auxPilar := 0}}
+			{{$auxComponente := 0}}
+			{{$auxPlano := 0}}
+			{{$auxCNPB := ""}}
+			{{$auxTipoNota := 0}}
+			{{$auxElemento := 0}}
+			{{$rowOpened := false}}
+			{{$matrizElementos := .ElementosDaMatriz}}
+			{{$matrizTiposNotas := .ElementosDaMatriz}}
+			{{range $index, $m := .ElementosDaMatriz}}
+				{{if ne $m.CicloId $auxCiclo}}
+					{{$colspan := $m.ComponenteQtdTiposNotas}}
+		            <tr>
+						<td style="cursor:pointer;font-size:0.8em;border: 1px solid lightgrey"
+							id="NmCiclo"
+							title="{{$m.SupervisorName}}"
+							colspan="{{$colspan = call $somarTxt 5 $colspan}}{{$colspan}}"
+							onclick="loadMatriz('{{$m.EntidadeId}}','{{$m.CicloId}}')">
+							{{$m.CicloNome}}
+						</td>
+		            </tr>
+					{{$notaCiclo = $m.CicloNota}}
+					{{$auxCiclo = $m.CicloId}}
+				{{end}}
+				{{if ne $m.PilarId $auxPilar}}
+					{{$colspan := $m.ComponenteQtdTiposNotas}}
+		            <tr>
+						<td style="cursor:pointer;font-size:0.8em;border: 1px solid lightgrey"
+							id="NmPilar"
+							title="{{$m.SupervisorName}}"
+							colspan="{{$colspan := call $somarTxt 5 $colspan}}{{$colspan}}"
+							onclick="loadVisaoPilar('{{$m.EntidadeId}}','{{$m.CicloId}}','{{$m.PilarId}}')">
+							{{$m.PilarNome}}
+						</td>
+		            </tr>
+					{{$auxPilar = $m.PilarId}}
+				{{end}}
+				{{if ne $m.ComponenteId $auxComponente}}
+					{{$colspan := $m.ComponenteQtdTiposNotas}}
+		            <tr>
+						<td style="cursor:pointer;font-size:0.8em;border: 1px solid lightgrey"
+							id="NmComponente"
+							title="{{$m.AuditorName}}"
+							colspan="{{$colspan := call $somarTxt 5 $colspan}}{{$colspan}}"
+							onclick="loadVisaoComponente('{{$m.EntidadeId}}','{{$m.CicloId}}','{{$m.PilarId}}','{{$m.ComponenteId}}')">
+							{{$m.ComponenteNome}}
+						</td>
+		            </tr>
+				{{end}}
+				{{if or (eq $auxPlano 0) (ne $auxPlano $m.PlanoId) }}
+					{{if ne $m.EntidadeId $auxEntidade}}
+		            <tr>
+						<td class="borda">EFPC</td>
+						<td class="borda">CNPB</td>	
+						<td class="borda">Recursos Garantidores</td>	
+						<td class="borda">Elementos</td>
+						<td class="borda">Peso</td>	
+						{{range $i, $e := $matrizElementos}}
+							{{if and (eq $e.PlanoId $m.PlanoId) (eq $e.ComponenteId $m.ComponenteId) (eq $e.PilarId $m.PilarId) (eq $e.CicloId $m.CicloId) (ne $auxTipoNota $e.TipoNotaId) }}
+								<td class="borda">{{$e.TipoNotaNome}}</td>	
+								{{$auxTipoNota = $e.TipoNotaId}}	
+							{{end}}
+						{{end}}
+		            </tr>
+					{{end}}	
+					{{if ne $m.ElementoId $auxElemento }}
+						{{if ne $m.EntidadeId $auxEntidade }}
+				            <tr>
+							{{$rowOpened = true}}
+							{{$rows := $m.ComponenteQtdPlanos}}
+							<td class="borda" id="NmEntidade"
+								rowspan="{{$m.EntidadeRowspan}}"
+								style="vertical-align: middle;">
+								{{$m.ComponenteQtdPlanos}} {{$m.EntidadeNome}}	
+							</td>
+							{{$auxEntidade = $m.EntidadeId}}
+						{{end}}
+						{{if ne $auxElemento $m.ElementoId}}
+							{{if not $rowOpened}}
+							<tr>
+							{{$rowOpened = false}}
+							{{end}}
+								<td class="borda">{{$m.CNPB}}</td>	
+								<td class="borda">{{$m.RecursoGarantidor}}</td>	
+								<td class="borda">{{$m.ElementoNome}}</td>	
+								<td class="borda">{{$m.ElementoPeso}}</td>
+								{{$auxTipoNota := 0}}
+								{{range $i, $e := $matrizElementos}}
+									{{if and (eq $e.PlanoId $m.PlanoId) (eq $e.ComponenteId $m.ComponenteId) (eq $e.PilarId $m.PilarId) (eq $e.CicloId $m.CicloId) (ne $auxTipoNota $e.TipoNotaId) }}
+										<td class="borda">{{$m.ElementoNota}}</td>
+										{{$auxTipoNota = $e.TipoNotaId}}	
+									{{end}}									
+								{{end}}
+							</tr>
+						{{end}}
+						{{$auxElemento = $m.ElementoId}}
+					{{end}}
+				{{end}}
+				{{$auxComponente = $m.ComponenteId}}	
+			{{end}}
+			<tr>
+				<td style="border:1px solid lightgrey; vertical-align:middle" colspan="">NOTA EFPC</td>
+				<td colspan="{{$colspan:= call $somarTxt 5 .ComponenteQtdTiposNotas}}{{$colspan}}"
+					style="font-size:2em;border: 1px solid lightgrey">{{$notaCiclo}}</td>
+			</tr>
+        </table>
+		<form action="/executarMatriz" method="POST" id="formulario-executar-matriz">
+			<input type="hidden" id="EntidadeId" name="EntidadeId">
+			<input type="hidden" id="CicloId" name="CicloId">
+			<input type="hidden" id="PilarId" name="PilarId">
+			<input type="hidden" id="ComponenteId" name="ComponenteId">
+		</form>
+    </div>
+</div>
+{{end}}

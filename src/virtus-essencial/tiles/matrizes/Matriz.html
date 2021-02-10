@@ -1,0 +1,137 @@
+{{define "Matriz"}}
+<!-- Matriz -->
+<div id="main" class="w3-row-padding">
+		<header class="w3-container w3-center w3-teal">
+			<div class="row">
+			  <div class="w3-third" style="">
+	    		<a style="cursor:pointer;text-align: left" onclick="navGadget()">
+					<h3>&#9776; {{.AppName}}</h3>
+	    		</a>
+			  </div>
+			  <div class="w3-third" style="">
+				<h3>{{.Title}}</h3>
+			  </div>
+			  <div class="w3-third" style="text-align: right;padding:10px;font-size:1vw;">
+				{{$allowed := (call .LoggedUser.HasPermission "viewMatriz")}}
+				<div class="w3-half" style="text-align: right;">
+					{{.LoggedUser.User.Name}}<br>(&nbsp;{{.LoggedUser.User.RoleName}}&nbsp;)
+				</div>
+				<div class="w3-half">
+					<span style="width:120px;">
+					    <a href="/logout">
+							<span class="icon ion-log-out w3-xxlarge hoverbtn"></span>
+						</a>
+					<span>
+				</div>
+			  </div>
+			</div>
+		</header>
+        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" width="1200px">
+			{{$inc := .Inc}}
+			{{$primeiroPlano := true}}
+			{{$primeiraLinha := true}}
+			{{$auxEntidade := 0}}
+			{{$notaCiclo := ""}}
+			{{$auxPlano := 0}}
+			{{$auxPilar := 0}}
+			{{$auxComponente := 0}}
+			{{$auxTipoNota := 0}}
+			{{$componenteColSpan := ""}}
+			{{$pilarColSpan := ""}}
+			{{$cicloColSpan := ""}}
+			{{$currentUser := .LoggedUser.User.Id}}
+            <tr>
+				<td style="vertical-align:middle; border: 1px solid lightgrey" rowspan="4" colspan="2">EFPC</td>
+				{{ $elCiclo := .ElementosDaMatriz }}
+				{{range $index, $m := $elCiclo}}
+					{{if $primeiraLinha}}
+						{{$primeiraLinha = false}}
+						{{$notaCiclo = $m.CicloNota}}
+						{{$cicloColSpan = $m.CicloColSpan}}
+						<td style="cursor:pointer;font-size:0.8em;border: 1px solid lightgrey" 
+							colspan="{{$m.CicloColSpan}}">{{$m.CicloNome}}</td>
+					{{end}}
+				{{end}}
+            </tr>
+            <tr>
+				{{$elPilar:=.ElementosDaMatriz}}
+				{{range $index, $m := $elPilar}}
+					{{if ne $auxPilar $m.PilarId }}
+						<td style="cursor:pointer;font-size:0.8em;border: 1px solid lightgrey"
+							onclick="loadVisaoPilar('{{$m.EntidadeId}}','{{$m.CicloId}}','{{$m.PilarId}}')" 
+							colspan="{{$m.PilarColSpan}}">{{$m.PilarNome}}</td>
+						{{$auxPilar = $m.PilarId}}
+					{{end}}
+				{{end}}
+            </tr>
+            <tr>
+				{{$elComponente:=.ElementosDaMatriz}}
+				{{range $index, $c := $elComponente}}
+					{{if ne $auxComponente $c.ComponenteId }}
+						<td style="cursor:pointer;font-size:0.8em;border: 1px solid lightgrey" 
+							onclick="loadVisaoComponente('{{$c.EntidadeId}}','{{$c.CicloId}}','{{$c.PilarId}}','{{$c.ComponenteId}}')"
+							colspan="{{$c.ComponenteColSpan}}">{{$c.ComponenteNome}}</td>
+						{{$auxComponente = $c.ComponenteId}}
+					{{end}}
+				{{end}}
+            </tr>
+            <tr>
+				{{$auxComponente = 0}}
+				{{$auxPlano = 0}}
+				{{$elTipoNota:=.ElementosDaMatriz}}
+				{{$contador := 0}}
+				{{range $index, $m := $elTipoNota}}
+					{{$contador = call $inc $contador}}
+					{{if and (ne $auxComponente $m.ComponenteId) (ne $auxComponente 0)}}
+						<td style="font-size:0.8em;border: 1px solid lightgrey">{{$m.TipoNotaLetra}}</td>
+						{{$contador = 0}}
+					{{else}}
+						{{if le $contador $m.ComponenteColSpan}}
+							<td style="font-size:0.8em;border: 1px solid lightgrey">{{$m.TipoNotaLetra}}</td>
+						{{end}}
+					{{end}}
+					{{$auxComponente = $m.ComponenteId}}
+				{{end}}
+            </tr>
+				{{$linhas := .ElementosDaMatriz}}
+				{{$cols := .ElementosDaMatriz}}
+				{{range $linha := $linhas}}
+					{{if and (ne $auxPlano $linha.PlanoId) (ne $linha.PlanoId 0) }}
+		            <tr>	
+						{{if ne $auxEntidade $linha.EntidadeId}}
+							<td style="font-size:0.8em; vertical-align:middle" rowspan="{{$linha.EntidadeQtdPlanos}}">{{$linha.EntidadeNome}}</td>
+							{{$auxEntidade = $linha.EntidadeId}}
+						{{end}}				
+						<td style="font-size:0.8em;border: 1px solid lightgrey"
+							title="{{$linha.Modalidade}} - {{$linha.RecursoGarantidor}}">{{$linha.CNPB}}</td>
+						{{range $c := $cols}}
+							{{if eq $linha.PlanoId $c.PlanoId }}
+								<td style="font-size:0.8em;border: 1px solid lightgrey">
+									{{$c.TipoNotaNota}} 
+								</td>
+							{{else}}
+								{{if eq $c.PlanoId 0 }}
+								<td style="font-size:0.8em;border: 1px solid lightgrey">
+									- 
+								</td>
+								{{end}}
+							{{end}}
+						{{end}}
+		            </tr>
+					{{$auxPlano = $linha.PlanoId}}
+					{{end}}
+				{{end}}
+				<tr>
+					<td style="border:1px solid lightgrey; vertical-align:middle" colspan="2">NOTA EFPC</td>
+					<td colspan="{{$cicloColSpan}}" style="font-size:2em;border: 1px solid lightgrey">{{$notaCiclo}}</td>
+				</tr>
+        </table>
+		<form action="/executarMatriz" method="POST" id="formulario-executar-matriz">
+			<input type="hidden" id="EntidadeId" name="EntidadeId" value="{{$auxEntidade}}">
+			<input type="hidden" id="CicloId" name="CicloId">
+			<input type="hidden" id="PilarId" name="PilarId">
+			<input type="hidden" id="ComponenteId" name="ComponenteId">
+		</form>
+    </div>
+</div>
+{{end}}
