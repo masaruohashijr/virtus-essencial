@@ -67,9 +67,9 @@ func dbConn() *sql.DB {
 	dbase.SetConnMaxLifetime(10 * time.Minute)
 	err := dbase.Ping()
 	if err != nil {
-		log.Fatal("VIRTUS > > > : " + err.Error())
+		log.Fatal("VIRTUS >>>>> : " + err.Error())
 	} else {
-		log.Printf("VIRTUS > > > CONECTADO COM SUCESSO!\n")
+		log.Printf("VIRTUS >>>>> CONECTADO COM SUCESSO!\n")
 	}
 	return dbase
 }
@@ -200,7 +200,7 @@ func main() {
 	r.HandleFunc("/createWorkflow", hd.CreateWorkflowHandler).Methods("POST")
 	r.HandleFunc("/updateWorkflow", hd.UpdateWorkflowHandler).Methods("POST")
 	r.HandleFunc("/deleteWorkflow", hd.DeleteWorkflowHandler).Methods("POST")
-	// ----------------- AJAX
+	// ----------------- Microserviços
 	r.HandleFunc("/salvarAnalise", hd.SalvarAnalise).Methods("GET")
 	r.HandleFunc("/salvarPesoPilar", hd.SalvarPesoPilar).Methods("GET")
 	r.HandleFunc("/salvarPesoElemento", hd.SalvarPesoElemento).Methods("GET")

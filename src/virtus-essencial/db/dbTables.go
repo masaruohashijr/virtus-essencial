@@ -83,6 +83,16 @@ func createTable() {
 		" status_id integer)" +
 		" END ")
 
+	// Table CHAMADOS_VERSOES
+	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
+		" WHERE object_id = OBJECT_ID(N'activities_roles') AND type in (N'U'))" +
+		" BEGIN" +
+		" CREATE TABLE activities_roles (" +
+		" id integer DEFAULT NEXT VALUE FOR chamados_versoes_id_seq NOT NULL," +
+		" activity_id integer," +
+		" role_id integer)" +
+		" END ")
+
 	// Table CICLOS
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'ciclos') AND type in (N'U'))" +

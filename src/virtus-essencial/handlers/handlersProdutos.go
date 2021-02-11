@@ -94,7 +94,7 @@ func atualizarPilarNota(produto mdl.ProdutoElemento) {
 		" produtos_pilares.entidade_id = b.entidade_id " +
 		" AND produtos_pilares.ciclo_id = b.ciclo_id  " +
 		" AND produtos_pilares.pilar_id = b.pilar_id " +
-		" AND (b.nota IS NOT NULL and b.peso IS NOT NULL) " +
+		" AND (b.nota IS NOT NULL AND b.nota <> 0) " +
 		" GROUP BY b.entidade_id,  " +
 		" b.ciclo_id, " +
 		" b.pilar_id ) " +
@@ -193,10 +193,10 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		"           T4.plano_id, " +
 		"           sum(peso_plano) AS total_peso_plano " +
 		"    FROM T4 " +
-		"    WHERE T4.entidade_id = 217 " +
-		"      AND T4.ciclo_id = 1 " +
-		"      AND T4.pilar_id = 1 " +
-		"      AND T4.componente_id = 1 " +
+		"    WHERE T4.entidade_id =  " + strconv.FormatInt(produto.EntidadeId, 10) +
+		"      AND T4.ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
+		"      AND T4.pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
+		"      AND T4.componente_id = " + strconv.FormatInt(produto.ComponenteId, 10) +
 		"    GROUP BY T4.entidade_id, " +
 		"             T4.ciclo_id, " +
 		"             T4.pilar_id, " +
@@ -234,7 +234,8 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		" 		p.entidade_id,  " +
 		" 		p.ciclo_id, " +
 		" 		p.pilar_id, " +
-		" 		p.componente_id " +
+		" 		p.componente_id, " +
+		"		media_pesos_planos " +
 		" 	) " +
 		" UPDATE produtos_componentes " +
 		" SET nota = T7.nota_componente " +
@@ -789,7 +790,7 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		" SELECT " +
 		entidadeId + ", " +
 		cicloId + ", " +
-		" 1, " +
+		" 0 as nota, " +
 		" ?, " +
 		" ?, " +
 		" GETDATE() " +
@@ -815,8 +816,8 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		entidadeId + ", " +
 		cicloId + ", " +
 		" a.pilar_id, " +
-		" 0, " +
-		" 1, " +
+		" 0 as peso, " +
+		" 0 as nota, " +
 		" ?, " +
 		" ?, " +
 		" GETDATE() " +
@@ -849,7 +850,7 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		" criado_em ) " +
 		" OUTPUT INSERTED.id " +
 		" SELECT " + entidadeId + ", " + cicloId + ", a.pilar_id, b.componente_id, " +
-		" round(avg(c.peso_padrao),2), 1, " +
+		" round(avg(c.peso_padrao),2), 0 as nota, " +
 		" ?, ?, GETDATE() " +
 		" FROM " +
 		" PILARES_CICLOS a " +

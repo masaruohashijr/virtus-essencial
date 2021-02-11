@@ -1,6 +1,8 @@
 package db
 
-import ()
+import (
+	"log"
+)
 
 func createUniqueKey() {
 	db.Exec(" ALTER TABLE actions_status" +
@@ -45,706 +47,668 @@ func createUniqueKey() {
 
 func createFKey() {
 	// ACTIONS
-	db.Exec("ALTER TABLE actions " +
+	log.Println("FOREIGN KEYS")
+	_, err := db.Exec("ALTER TABLE actions " +
 		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (destination_status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE actions " +
+	_, err = db.Exec("ALTER TABLE actions " +
 		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (origin_status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE actions " +
+	_, err = db.Exec("ALTER TABLE actions " +
 		" ADD CONSTRAINT workflows_fkey FOREIGN KEY (workflow_id)" +
-		" REFERENCES workflows (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES workflows (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	//  ACTIONS_STATUS
-	db.Exec("ALTER TABLE actions_status " +
+	_, err = db.Exec("ALTER TABLE actions_status " +
 		" ADD CONSTRAINT actions_fkey FOREIGN KEY (action_id)" +
-		" REFERENCES actions (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES actions (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE actions_status " +
+	_, err = db.Exec("ALTER TABLE actions_status " +
 		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (origin_status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE actions_status " +
+	_, err = db.Exec("ALTER TABLE actions_status " +
 		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (destination_status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	// ACTIVITIES
-	db.Exec("ALTER TABLE activities ADD CONSTRAINT action_fkey FOREIGN KEY (action_id)" +
-		" REFERENCES actions (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT action_fkey FOREIGN KEY (action_id)" +
+		" REFERENCES actions (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (expiration_action_id)" +
-		" REFERENCES actions (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (expiration_action_id)" +
+		" REFERENCES actions (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE activities ADD CONSTRAINT workflow_fkey FOREIGN KEY (workflow_id)" +
-		" REFERENCES workflows (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT workflow_fkey FOREIGN KEY (workflow_id)" +
+		" REFERENCES workflows (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	// ACTIVITIES_ROLES
-	db.Exec("ALTER TABLE activities_roles " +
+	_, err = db.Exec("ALTER TABLE activities_roles " +
 		" ADD CONSTRAINT activities_fkey FOREIGN KEY (activity_id)" +
-		" REFERENCES activities (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES activities (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE activities_roles " +
+	_, err = db.Exec("ALTER TABLE activities_roles " +
 		" ADD CONSTRAINT roles_fkey FOREIGN KEY (role_id)" +
-		" REFERENCES roles (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
+		" REFERENCES roles (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	// CICLOS
-	db.Exec("ALTER TABLE ciclos" +
+	_, err = db.Exec("ALTER TABLE ciclos" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE ciclos" +
+	_, err = db.Exec("ALTER TABLE ciclos" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	// CICLOS ENTIDADES
-	db.Exec("ALTER TABLE ciclos_entidades" +
+	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE ciclos_entidades" +
+	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE ciclos_entidades" +
+	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE ciclos_entidades" +
+	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	// COMPONENTES
-	db.Exec("ALTER TABLE componentes" +
+	_, err = db.Exec("ALTER TABLE componentes" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE componentes" +
+	_, err = db.Exec("ALTER TABLE componentes" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 
 	// COMPONENTES PILARES
-	db.Exec("ALTER TABLE componentes_pilares" +
+	_, err = db.Exec("ALTER TABLE componentes_pilares" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE componentes_pilares" +
+	_, err = db.Exec("ALTER TABLE componentes_pilares" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE componentes_pilares" +
+	_, err = db.Exec("ALTER TABLE componentes_pilares" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 
-	db.Exec("ALTER TABLE componentes_pilares" +
+	_, err = db.Exec("ALTER TABLE componentes_pilares" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 	// ELEMENTOS
-	db.Exec("ALTER TABLE elementos" +
+	_, err = db.Exec("ALTER TABLE elementos" +
 		" ADD CONSTRAINT users_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE elementos" +
+	_, err = db.Exec("ALTER TABLE elementos" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 
 	// ELEMENTOS_COMPONENTES
-	db.Exec("ALTER TABLE elementos_componentes" +
+	_, err = db.Exec("ALTER TABLE elementos_componentes" +
 		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
-		" REFERENCES tipos_notas (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE elementos_componentes" +
+	_, err = db.Exec("ALTER TABLE elementos_componentes" +
 		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
-		" REFERENCES elementos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
+		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 
-	db.Exec("ALTER TABLE elementos_componentes" +
+	_, err = db.Exec("ALTER TABLE elementos_componentes" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE elementos_componentes" +
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE elementos_componentes" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE elementos_componentes" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE elementos_componentes" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// ENTIDADES
-	db.Exec("ALTER TABLE entidades" +
+	_, err = db.Exec("ALTER TABLE entidades" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE entidades" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE entidades" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// ESCRITÓRIOS
-	db.Exec("ALTER TABLE escritorios" +
+	_, err = db.Exec("ALTER TABLE escritorios" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE escritorios" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE escritorios" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// FEATURES_ACTIVITIES
-	db.Exec("ALTER TABLE features_activities " +
+	_, err = db.Exec("ALTER TABLE features_activities " +
 		" ADD CONSTRAINT activities_fkey FOREIGN KEY (activity_id)" +
-		" REFERENCES activities (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
-
-	db.Exec("ALTER TABLE features_activities " +
+		" REFERENCES activities (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE features_activities " +
 		" ADD CONSTRAINT features_fkey FOREIGN KEY (feature_id)" +
-		" REFERENCES features (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
-
+		" REFERENCES features (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// FEATURES_ROLES
-	db.Exec("ALTER TABLE features_roles " +
+	_, err = db.Exec("ALTER TABLE features_roles " +
 		" ADD CONSTRAINT features_fkey FOREIGN KEY (feature_id)" +
-		" REFERENCES features (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
-
-	db.Exec("ALTER TABLE features_roles " +
+		" REFERENCES features (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE features_roles " +
 		" ADD CONSTRAINT roles_fkey FOREIGN KEY (role_id)" +
-		" REFERENCES roles (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
-
+		" REFERENCES roles (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// ITENS
-	db.Exec("ALTER TABLE itens" +
+	_, err = db.Exec("ALTER TABLE itens" +
 		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
-		" REFERENCES elementos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PILARES
-	db.Exec("ALTER TABLE pilares" +
+	_, err = db.Exec("ALTER TABLE pilares" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE pilares" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE pilares" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PILARES_CICLOS
-	db.Exec("ALTER TABLE pilares_ciclos" +
+	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE pilares_ciclos" +
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE pilares_ciclos" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE pilares_ciclos" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PLANOS
-	db.Exec("ALTER TABLE planos" +
+	_, err = db.Exec("ALTER TABLE planos" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE planos" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE planos" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE planos" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE planos" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PRODUTOS_CICLOS
-	db.Exec("ALTER TABLE produtos_ciclos" +
+	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_ciclos" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_ciclos" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_ciclos" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PRODUTOS_PILARES
-	db.Exec("ALTER TABLE produtos_pilares" +
+	_, err = db.Exec("ALTER TABLE produtos_pilares" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_pilares" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_pilares" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_pilares" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_pilares" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_pilares" +
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_pilares" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_pilares" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_pilares" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PRODUTOS_COMPONENTES
-	db.Exec("ALTER TABLE produtos_componentes" +
+	_, err = db.Exec("ALTER TABLE produtos_componentes" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_componentes" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_componentes" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_componentes" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_componentes" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_componentes" +
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_componentes" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_componentes" +
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_componentes" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_componentes" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_componentes" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PRODUTOS_TIPOS_NOTAS
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
-		" REFERENCES tipos_notas (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_tipos_notas" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PRODUTOS_ELEMENTOS
-	db.Exec("ALTER TABLE produtos_elementos" +
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
-		" REFERENCES tipos_notas (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
-		" REFERENCES elementos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_elementos" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_elementos" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// PRODUTOS_ITENS
-	db.Exec("ALTER TABLE produtos_itens" +
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
-		" REFERENCES ciclos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
-		" REFERENCES pilares (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
-		" REFERENCES elementos (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT itens_fkey FOREIGN KEY (item_id)" +
-		" REFERENCES itens (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES itens (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE produtos_itens" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE produtos_itens" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// TIPOS_NOTAS
-	db.Exec("ALTER TABLE tipos_notas" +
+	_, err = db.Exec("ALTER TABLE tipos_notas" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE tipos_notas" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE tipos_notas" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// TIPOS_NOTAS_COMPONENTES
-	db.Exec("ALTER TABLE tipos_notas_componentes" +
+	_, err = db.Exec("ALTER TABLE tipos_notas_componentes" +
 		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
-		" REFERENCES tipos_notas (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-	db.Exec("ALTER TABLE tipos_notas_componentes" +
+		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE tipos_notas_componentes" +
 		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
-		" REFERENCES componentes (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-	db.Exec("ALTER TABLE tipos_notas" +
+		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE tipos_notas" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-	db.Exec("ALTER TABLE tipos_notas" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE tipos_notas" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// USERS
-	db.Exec("ALTER TABLE users " +
+	_, err = db.Exec("ALTER TABLE users " +
 		" ADD CONSTRAINT roles_fkey FOREIGN KEY (role_id)" +
-		" REFERENCES roles (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT")
-
-	db.Exec("ALTER TABLE users" +
+		" REFERENCES roles (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE users" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE users" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE users" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// JURISDICOES
-	db.Exec("ALTER TABLE jurisdicoes" +
+	_, err = db.Exec("ALTER TABLE jurisdicoes" +
 		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
-		" REFERENCES entidades (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE jurisdicoes" +
+		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE jurisdicoes" +
 		" ADD CONSTRAINT escritorios_fkey FOREIGN KEY (escritorio_id)" +
-		" REFERENCES escritorios (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE jurisdicoes" +
+		" REFERENCES escritorios (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE jurisdicoes" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE jurisdicoes" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE jurisdicoes" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 	// MEMBROS
-	db.Exec("ALTER TABLE membros" +
+	_, err = db.Exec("ALTER TABLE membros" +
 		" ADD CONSTRAINT usuarios_fkey FOREIGN KEY (usuario_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE membros" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE membros" +
 		" ADD CONSTRAINT escritorios_fkey FOREIGN KEY (escritorio_id)" +
-		" REFERENCES escritorios (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE membros" +
+		" REFERENCES escritorios (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE membros" +
 		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
-		" REFERENCES users (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT ON DELETE RESTRICT" +
-		" NOT VALID")
-
-	db.Exec("ALTER TABLE membros" +
+		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
+	_, err = db.Exec("ALTER TABLE membros" +
 		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
-		" REFERENCES status (id) MATCH SIMPLE" +
-		" ON UPDATE RESTRICT" +
-		" ON DELETE RESTRICT" +
-		" NOT VALID")
-
+		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
 
 func createPKey() {
@@ -757,6 +721,8 @@ func createPKey() {
 	db.Exec("ALTER TABLE chamados ADD CONSTRAINT chamados_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE chamados_versoes ADD CONSTRAINT chamados_versoes_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE ciclos ADD CONSTRAINT ciclos_pkey PRIMARY KEY (id)")
+	db.Exec("ALTER TABLE ciclos_entidades ADD CONSTRAINT ciclos_pkey PRIMARY KEY (id)")
+	db.Exec("ALTER TABLE comentarios_chamados ADD CONSTRAINT comentarios_chamados_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE componentes ADD CONSTRAINT componentes_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE componentes_pilares ADD CONSTRAINT componentes_pilares_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE elementos ADD CONSTRAINT elementos_pkey PRIMARY KEY (id)")
@@ -774,6 +740,7 @@ func createPKey() {
 	db.Exec("ALTER TABLE pilares ADD CONSTRAINT pilares_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE pilares_ciclos ADD CONSTRAINT pilares_ciclos_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE planos ADD CONSTRAINT planos_pkey PRIMARY KEY (id)")
+	db.Exec("ALTER TABLE processos ADD CONSTRAINT processos_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE produtos_ciclos ADD CONSTRAINT produtos_ciclos_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE produtos_pilares ADD CONSTRAINT produtos_pilares_pkey PRIMARY KEY (id)")
 	db.Exec("ALTER TABLE produtos_componentes ADD CONSTRAINT produtos_componentes_pkey PRIMARY KEY (id)")

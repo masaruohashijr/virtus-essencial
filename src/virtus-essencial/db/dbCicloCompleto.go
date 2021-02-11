@@ -97,7 +97,7 @@ func createCicloCompleto() {
 
 	if idCiclo == 0 {
 		log.Println("INICIANDO O CICLO COMPLETO")
-		return
+		//return
 	}
 
 	pesoPadrao = 100
