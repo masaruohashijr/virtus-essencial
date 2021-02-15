@@ -219,7 +219,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		" 	p.ciclo_id, " +
 		" 	p.pilar_id, " +
 		" 	p.componente_id, " +
-		" 	ROUND(SUM(p.nota * p.peso/100 * total_peso_plano)/media_pesos_planos, 2) AS nota_componente " +
+		" 	CASE WHEN p.nota = 0 THEN 0 ELSE ROUND(SUM(p.nota * p.peso/100 ), 2) END AS nota_componente " +
 		" 	FROM produtos_planos p " +
 		" 	INNER JOIN T5 ON (p.entidade_id = t5.entidade_id " +
 		" 					  AND p.ciclo_id = t5.ciclo_id " +
@@ -235,16 +235,18 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		" 		p.ciclo_id, " +
 		" 		p.pilar_id, " +
 		" 		p.componente_id, " +
+		" 		p.nota, " +
 		"		media_pesos_planos " +
 		" 	) " +
 		" UPDATE produtos_componentes " +
-		" SET nota = T7.nota_componente " +
+		" SET nota = ( SELECT round(SUM(T7.nota_componente),2) " +
 		" FROM T7 " +
 		" WHERE produtos_componentes.componente_id = T7.componente_id " +
 		"   AND produtos_componentes.pilar_id = T7.pilar_id " +
 		"   AND produtos_componentes.ciclo_id = T7.ciclo_id " +
 		"   AND produtos_componentes.entidade_id = T7.entidade_id " +
-		"   AND produtos_componentes.entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
+		"	GROUP BY T7.entidade_id, T7.ciclo_id, T7.pilar_id, T7.componente_id) " +
+		" WHERE produtos_componentes.entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		"   AND produtos_componentes.ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) +
 		"   AND produtos_componentes.pilar_id = " + strconv.FormatInt(produto.PilarId, 10) +
 		"   AND produtos_componentes.componente_id = " + strconv.FormatInt(produto.ComponenteId, 10)
@@ -261,6 +263,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 
 func atualizarPlanoNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_PLANOS
+	log.Println("***** ATUALIZAR NOTA DO PLANO")
 	sqlStatement := "UPDATE produtos_planos " +
 		" set nota = (select  " +
 		" round(sum(nota*peso)/sum(peso),2) as media " +
@@ -271,7 +274,6 @@ func atualizarPlanoNota(produto mdl.ProdutoElemento) {
 		" AND produtos_planos.pilar_id = b.pilar_id " +
 		" AND produtos_planos.componente_id = b.componente_id " +
 		" AND produtos_planos.plano_id = b.plano_id " +
-		" AND produtos_planos.nota IS NOT NULL " +
 		" GROUP BY b.entidade_id,  " +
 		" b.ciclo_id, " +
 		" b.pilar_id, " +
@@ -288,12 +290,16 @@ func atualizarPlanoNota(produto mdl.ProdutoElemento) {
 	if err != nil {
 		log.Println(err.Error())
 	}
-	updtForm.Exec()
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
 
 }
 
 func atualizarTipoNotaNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_TIPOS_NOTAS
+	log.Println("***** ATUALIZAR NOTA DO TIPO DA NOTA")
 	sqlStatement := " WITH T1 AS " +
 		"   (SELECT entidade_id, " +
 		"           ciclo_id, " +
@@ -523,6 +529,7 @@ func montarValoresAtuais(ps mdl.PesosAtuais, ns mdl.NotasAtuais) mdl.ValoresAtua
 
 func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) {
 	// PESOS TIPOS NOTAS
+	log.Println(">>>>> PESOS TIPOS NOTAS")
 	sqlStatement := "WITH R1 AS  " +
 		"  (SELECT entidade_id, " +
 		"                  ciclo_id, " +
@@ -560,9 +567,9 @@ func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		"               r1.plano_id, " +
 		"               r1.componente_id, " +
 		"               r1.tipo_nota_id, " +
-		"               round((r1.TOTAL/r2.contador), 2) AS PONDERACAO " +
+		"               CASE WHEN r2.contador IS NULL THEN 0 ELSE round((r1.TOTAL/r2.contador), 2) END AS PONDERACAO " +
 		"        FROM R1         " +
-		"        INNER JOIN R2 " +
+		"        LEFT JOIN R2 " +
 		"  		ON (r1.entidade_id = r2.entidade_id " +
 		"  		AND r1.ciclo_id = r2.ciclo_id " +
 		"  		AND r1.pilar_id = r2.pilar_id " +
@@ -583,7 +590,7 @@ func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		"  	A1.plano_id,                             " +
 		"  	A1.componente_id, " +
 		"  	A1.tipo_nota_id, " +
-		"  	round((A1.PONDERACAO/T2.total_pesos_tns)*100, 2) AS peso " +
+		"  	CASE WHEN T2.total_pesos_tns = 0 THEN 0 ELSE round((A1.PONDERACAO/T2.total_pesos_tns)*100, 2) end AS peso " +
 		"  	   FROM TMP A1 " +
 		"  	   INNER JOIN T2 ON (A1.entidade_id = t2.entidade_id " +
 		"  							 AND A1.pilar_id = t2.pilar_id " +
@@ -614,6 +621,7 @@ func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) 
 
 func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 	// PESOS PLANOS
+	log.Println(">>>>> PESOS PLANOS")
 	sqlStatement := "WITH total AS " +
 		"      (SELECT a.entidade_id, " +
 		"              a.ciclo_id, " +
@@ -684,6 +692,7 @@ func atualizarPesoComponentes(produto mdl.ProdutoElemento, currentUser mdl.User)
 		"           tipo_nota_id, " +
 		"           round(avg(peso), 2) AS peso_tn " +
 		"    FROM produtos_elementos " +
+		"    WHERE (peso IS NOT NULL and peso <> 0) " +
 		"    GROUP BY entidade_id, " +
 		"             ciclo_id, " +
 		"             pilar_id, " +
