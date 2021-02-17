@@ -1,6 +1,8 @@
 {{define "List-Distribuir-Atividades"}}
 <!-- List Distribuir Atividades -->
-<form action="/updateDistribuirAtividades" method="POST">
+<form action="/updateDistribuirAtividades" 
+	name="formulario-distribuir-atividades" 
+	method="POST">
 	<div id="main" class="w3-row-padding">
 		<header class="w3-container w3-center w3-teal">
 		    <div class="row">
@@ -130,6 +132,7 @@
 					<button class="w3-btn w3-red"
 					{{end}}
 						type="button"
+						{{if and (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe") }}disabled{{end}}
 						name="BtnPlanos_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.AuditorId}}"
 						onclick="openConfigPlanos(this)">Planos</button>&nbsp;								
 				</td>
@@ -157,6 +160,8 @@
 								<input 
 									class="w3-input" 
 									type="date" 
+									required
+									{{if and (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe") }}disabled{{end}}
 									onchange="if(!isDatasInvertidas(this)) motivarReprogramacao(this);"
 									name="IniciaEmComponente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.IniciaEm}}" 
 									value="{{$produto.IniciaEm}}">
@@ -165,6 +170,8 @@
 								<input 
 									class="w3-input" 
 									type="date" 
+									required
+									{{if and (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe") }}disabled{{end}}
 									onchange="if(!isDatasInvertidas(this)) motivarReprogramacao(this);"
 									name="TerminaEmComponente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.TerminaEm}}" 
 									value="{{$produto.TerminaEm}}">
@@ -186,6 +193,7 @@
 			<tr>
 				<td colspan="7" style="text-align: center">
 					<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom"
+						onclick="validarDistribuirAtividades()"
 						type="submit">
 						Salvar Auditores
 					</button>

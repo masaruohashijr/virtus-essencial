@@ -161,7 +161,7 @@
 						type="number"
 						id="PilarPeso_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.PilarPeso}}" 
 						name="PilarPeso_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.PilarPeso}}" 
-						{{if and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")}}readonly disabled{{end}}
+						{{if and (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")}}disabled{{end}}
 						onchange="sinalizarAlteracao(this)"
 						onblur="motivarPesoPilar(this)" 
 						value="{{ $produto.PilarPeso }}">

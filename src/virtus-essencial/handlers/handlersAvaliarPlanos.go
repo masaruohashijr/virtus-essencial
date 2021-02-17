@@ -613,9 +613,9 @@ func SalvarPesoPilar(w http.ResponseWriter, r *http.Request) {
 	produtoPilar.Peso, _ = strconv.ParseFloat(peso, 64)
 	produtoPilar.Motivacao = motivacaoPeso
 	currentUser := GetUserInCookie(w, r)
-	registrarPesoPilar(produtoPilar)
+	cicloNota := registrarPesoPilar(produtoPilar)
 	registrarHistoricoPesoPilar(produtoPilar, currentUser)
-	w.Write([]byte("OK"))
+	w.Write([]byte(cicloNota))
 	log.Println("----------")
 }
 

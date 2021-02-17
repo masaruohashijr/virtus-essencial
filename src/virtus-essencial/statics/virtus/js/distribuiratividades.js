@@ -12,7 +12,7 @@ function submeterDistribuirAtividadesForm(e){
 	document.getElementById("formulario-distribuir-atividades").submit();
 }
 
-function validarDistribuirAtividades(e){
+function validarListDistribuirAtividades(e){
 	if (e.parentNode.parentNode.childNodes[7].childNodes[1].length == 0) {
 		// Na tabela de Distribuição de Atividades
 		// campo Select dos ciclos da entidade na linha da tabela
@@ -39,8 +39,6 @@ function motivarReprogramacao(campo){
 		document.getElementById("motReproCiclo").value = ciclosMap.get(cicloId);
 		document.getElementById("motReproPilar").value = pilaresMap.get(pilarId);
 		document.getElementById("motReproComponente").value = componentesMap.get(componenteId);
-		alert(dataAnterior);
-		alert(formatarData(dataAnterior));
 		document.getElementById("motReproDataAnterior").value = formatarData(dataAnterior);
 		document.getElementById("motReproNovaData").value = formatarData(campo.value);
 		if(nomeCampo.startsWith('Inicia')){
@@ -147,4 +145,41 @@ function motivarConfigPlanos(){
 	document.getElementById('motivar-reconfiguracao-form').style.display='block';
 	document.getElementById("motReconf_text").value='';
 	document.getElementById("motReconf_text").focus();
+}
+
+function validarDistribuirAtividades() {
+  console.log("**** validarDistribuirAtividades ****");
+  let formulario = document.forms["formulario-distribuir-atividades"];
+  let selects = formulario.getElementsByTagName("select");
+  for(n=0;n<selects.length;n++){
+	console.log(selects[n].name);
+	if(selects[n].value == ''){
+	  let estrutura = selects[n].name.split('_');
+	  let iniciaEmComponente = 'IniciaEmComponente_'+estrutura[1]+'_'+estrutura[2]+'_'+estrutura[3]+'_'+estrutura[4]+'_';
+	  let terminaEmComponente = 'TerminaEmComponente_'+estrutura[1]+'_'+estrutura[2]+'_'+estrutura[3]+'_'+estrutura[4]+'_';
+	  let inputs = formulario.getElementsByTagName("input");
+	  let fInicia = '';
+	  for(i=0;i<inputs.length;i++){
+		  if(inputs[i].name.startsWith(iniciaEmComponente)){
+			  console.log(inputs[i].name);
+			  fInicia = inputs[i];
+		  }
+	  }
+	  inputs = formulario.getElementsByTagName("input");
+	  let fTermina = '';
+	  for(i=0;i<inputs.length;i++){
+		  if(inputs[i].name.startsWith(terminaEmComponente)){
+			  console.log(inputs[i].name);
+			  fTermina = inputs[i];
+		  }
+	  }
+	  if(fInicia.value == ''){
+		fInicia.required = false;
+	  }
+	  if(fInicia.value == ''){
+	  	fTermina.required = false;
+	  }
+	}
+  }
+  return true;
 }

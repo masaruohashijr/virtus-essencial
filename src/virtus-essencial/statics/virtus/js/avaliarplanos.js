@@ -695,11 +695,14 @@ function salvarPesoPilar(){
 					let pesoAnterior = document.getElementById('motPesoPilarPesoAnterior').value;
 					let novoPeso = document.getElementById('motPesoPilarNovoPeso').value;
 					let messageText = "O peso foi atualizado com sucesso de "+pesoAnterior +" para "+novoPeso+".";
+					document.getElementById("motPesoPilar_text").value = "";
 					document.getElementById("messageText").innerText = messageText;
 					document.getElementById("message").style.display="block";
 					let field = document.getElementsByName(acionadoPor)[0];
 					atualizarFieldName(field, novoPeso);
-					resetPesoPilar(); 
+					let entidadeId = valores[1];
+					let cicloId = valores[2];
+					document.getElementById('CicloNota_'+entidadeId+'_'+cicloId).value = xmlhttp.responseText;
 				}
 		}
 		let entidadeId = valores[1];
