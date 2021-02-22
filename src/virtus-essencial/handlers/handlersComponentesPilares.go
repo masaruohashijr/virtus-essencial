@@ -12,23 +12,23 @@ func ListComponentesByPilarId(pilarId string) []mdl.ComponentePilar {
 	log.Println("List Componentes By Pilar Id")
 	sql := "SELECT " +
 		" a.id, " +
-		" a.pilar_id, " +
-		" a.componente_id," +
+		" a.id_pilar, " +
+		" a.id_componente," +
 		" coalesce(c.nome,'') as componente_nome," +
 		" a.tipo_media," +
 		" b.peso_padrao," +
 		" coalesce(a.sonda,'') as sonda," +
-		" a.author_id, " +
+		" a.id_author, " +
 		" coalesce(u.name,'') as author_name, " +
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em," +
-		" a.status_id, " +
+		" a.id_status, " +
 		" coalesce(s.name,'') as status_name " +
 		" FROM componentes_pilares a " +
-		" LEFT JOIN componentes c ON a.componente_id = c.id " +
-		" LEFT JOIN users u ON a.author_id = u.id " +
-		" LEFT JOIN status s ON a.status_id = s.id " +
-		" LEFT JOIN (select componente_id, round(avg(peso_padrao),2) as peso_padrao from elementos_componentes group by componente_id) b ON a.componente_id = b.componente_id " +
-		" WHERE a.pilar_id = ? " +
+		" LEFT JOIN componentes c ON a.id_componente = c.id " +
+		" LEFT JOIN users u ON a.id_author = u.id " +
+		" LEFT JOIN status s ON a.id_status = s.id " +
+		" LEFT JOIN (select id_componente, round(avg(peso_padrao),2) as peso_padrao from elementos_componentes group by id_componente) b ON a.id_componente = b.id_componente " +
+		" WHERE a.id_pilar = ? " +
 		" ORDER BY c.nome ASC"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, pilarId)
@@ -112,7 +112,7 @@ func updateComponentePilarHandler(componentePilarPage mdl.ComponentePilar, compo
 }
 
 func DeleteComponentesPilarByPilarId(pilarId string) {
-	sqlStatement := "DELETE FROM componentes_pilares WHERE pilar_id=?"
+	sqlStatement := "DELETE FROM componentes_pilares WHERE id_pilar=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

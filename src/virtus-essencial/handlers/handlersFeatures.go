@@ -21,7 +21,8 @@ func CreateFeatureHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		code := r.FormValue("Code")
 		description := r.FormValue("Description")
-		sqlStatement := "INSERT INTO features(name, code, description, author_id, created_at) OUTPUT INSERTED.id VALUES (?, ?, ?, ?, GETDATE()) "
+		sqlStatement := "INSERT INTO features(name, code, description, id_author, created_at) " +
+			" OUTPUT INSERTED.id_feature VALUES (?, ?, ?, ?, GETDATE()) "
 		id := 0
 		err := Db.QueryRow(sqlStatement, name, code, description, currentUser.Id).Scan(&id)
 		if err != nil {
@@ -87,7 +88,7 @@ func DeleteFeatureHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteFeaturesByRoleHandler(roleId string) {
-	sqlStatement := "DELETE FROM features_roles WHERE role_id=?"
+	sqlStatement := "DELETE FROM features_roles WHERE id_role=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -97,7 +98,7 @@ func DeleteFeaturesByRoleHandler(roleId string) {
 }
 
 func DeleteFeaturesHandler(diffDB []mdl.Feature) {
-	sqlStatement := "DELETE FROM features_roles WHERE feature_id=?"
+	sqlStatement := "DELETE FROM features_roles WHERE id_feature=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -130,15 +131,15 @@ func listFeatures(errorMsg string, msg string) mdl.PageFeatures {
 		" coalesce(a.name,''), " +
 		" coalesce(a.code,''), " +
 		" coalesce(a.description,'') as dsc, " +
-		" a.author_id, " +
+		" a.id_author, " +
 		" coalesce(b.name,''), " +
 		" format(a.created_at,'dd/MM/yyyy HH:mm:ss'), " +
 		" coalesce(c.name,'') as cstatus, " +
-		" a.status_id, " +
+		" a.id_status, " +
 		" a.id_versao_origem " +
 		" FROM features a LEFT JOIN users b " +
-		" ON a.author_id = b.id " +
-		" LEFT JOIN status c ON a.status_id = c.id " +
+		" ON a.id_author = b.id " +
+		" LEFT JOIN status c ON a.id_status = c.id " +
 		" order by a.id asc"
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
@@ -179,8 +180,8 @@ func listFeatures(errorMsg string, msg string) mdl.PageFeatures {
 // AJAX
 func ListFeaturesByRoleIdHandler(roleId string) []mdl.Feature {
 	log.Println("List Features By Role Id")
-	sql := "SELECT feature_id" +
-		" FROM features_roles WHERE role_id= ?"
+	sql := "SELECT id_feature" +
+		" FROM features_roles WHERE id_role= ?"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, roleId)
 	defer rows.Close()
@@ -202,14 +203,14 @@ func LoadAvailableFeatures(w http.ResponseWriter, r *http.Request) {
 	log.Println("entityType: " + entityType)
 	log.Println("statusId: " + statusId)
 	sql := " SELECT a.id, a.name, a.code " +
-		" FROM features a INNER JOIN features_activities b ON a.id = b.feature_id " +
-		" INNER JOIN activities c ON c.id = b.activity_id " +
-		" INNER JOIN actions d ON c.action_id = d.id " +
-		" INNER JOIN workflows e ON c.workflow_id = e.id " +
+		" FROM features a INNER JOIN features_activities b ON a.id = b.id_feature " +
+		" INNER JOIN activities c ON c.id = b.id_activity " +
+		" INNER JOIN actions d ON c.id_action = d.id " +
+		" INNER JOIN workflows e ON c.id_workflow = e.id " +
 		" WHERE e.end_at IS null " +
 		" AND e.entity_type = ? " +
-		" AND d.origin_status_id = ? " +
-		" AND a.id in ( SELECT feature_id from features_roles where role_id = ? ) "
+		" AND d.id_origin_status = ? " +
+		" AND a.id in ( SELECT id_feature from features_roles where id_role = ? ) "
 	log.Println("Query Available Features: " + sql)
 	rows, _ := Db.Query(sql, entityType, statusId, savedUser.Role)
 	defer rows.Close()

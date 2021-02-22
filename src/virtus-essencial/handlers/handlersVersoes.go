@@ -28,7 +28,7 @@ func CreateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 			" definicao_pronto, " +
 			" inicia_em, " +
 			" termina_em, " +
-			" author_id, " +
+			" id_author, " +
 			" criado_em) " +
 			" VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id"
 		idVersao := 0
@@ -56,9 +56,9 @@ func CreateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 					sqlStatement := " INSERT INTO " +
 						" questoes_radares( " +
 						" radar_id, " +
-						" questao_id, " +
+						" id_questao, " +
 						" registro_ata, " +
-						" author_id, " +
+						" id_author, " +
 						" criado_em ) " +
 						" VALUES (?, ?, ?, ?, ?) RETURNING id"
 					log.Println(sqlStatement)
@@ -187,11 +187,11 @@ func UpdateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 				pilarVersao = diffPage[i]
 				log.Println("Versao Id: " + radarId)
 				sqlStatement := "INSERT INTO questoes_radares ( " +
-					" ciclo_id, " +
-					" pilar_id, " +
+					" id_ciclo, " +
+					" id_pilar, " +
 					" tipo_media, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					" ) " +
 					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
@@ -247,15 +247,15 @@ func ListVersoesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.definicao_pronto,''), " +
 			" format(a.inicia_em,'dd/MM/yyyy'), " +
 			" format(a.termina_em,'dd/MM/yyyy'), " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM versoes a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -304,7 +304,7 @@ func ListVersoesHandler(w http.ResponseWriter, r *http.Request) {
 			"FROM entidades a " +
 			"WHERE NOT EXISTS " +
 			"(SELECT 1 FROM radares_entidades b " +
-			" WHERE b.entidade_id = a.id) " +
+			" WHERE b.id_entidade = a.id) " +
 			"ORDER BY a.sigla"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

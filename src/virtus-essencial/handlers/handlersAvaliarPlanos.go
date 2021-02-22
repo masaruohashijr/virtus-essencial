@@ -11,28 +11,28 @@ import (
 	sec "virtus-essencial/security"
 )
 
-const sqlAvaliarPlanos = " SELECT a.entidade_id, " +
+const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" 	   coalesce(b.nome,'') as entidade_nome, " +
-	"        a.ciclo_id, " +
+	"        a.id_ciclo, " +
 	" 	   coalesce(c.nome,'') as ciclo_nome, " +
 	" 	   coalesce(pdc.nota,0) as ciclo_nota, " +
-	"        a.pilar_id,        " +
+	"        a.id_pilar,        " +
 	" 	   coalesce(d.nome,'') as pilar_nome, " +
 	" 	   coalesce(f.peso,0) as pilar_peso, coalesce(f.nota,0) as pilar_nota, " +
-	"        a.componente_id, " +
+	"        a.id_componente, " +
 	" 	   coalesce(e.nome,'') as componente_nome, " +
 	" 	   coalesce(g.peso,0) as componente_peso, coalesce(g.nota,0) as componente_nota, " +
-	" 	   coalesce(g.supervisor_id,0) as super_id, coalesce(h.name,'') as supervisor_nome, " +
-	" 	   coalesce(g.auditor_id,0) as super_id, coalesce(i.name,'') as auditor_nome, " +
-	" 	   a.tipo_nota_id, m.letra, m.cor_letra, m.nome, " +
+	" 	   coalesce(g.id_supervisor,0) as super_id, coalesce(h.name,'') as supervisor_nome, " +
+	" 	   coalesce(g.id_auditor,0) as super_id, coalesce(i.name,'') as auditor_nome, " +
+	" 	   a.id_tipo_nota, m.letra, m.cor_letra, m.nome, " +
 	" 	   coalesce(o.peso,0) as tipo_nota_peso, coalesce(o.nota,0) as tipo_nota_nota, " +
-	"        a.elemento_id, coalesce(k.nome,'') as elemento_nome, " +
+	"        a.id_elemento, coalesce(k.nome,'') as elemento_nome, " +
 	" 	   coalesce(n.peso,0) as elemento_peso, coalesce(n.nota,0) as elemento_nota, " +
-	"	   n.tipo_pontuacao_id, ec.peso_padrao, " +
+	"	   n.id_tipo_pontuacao, ec.peso_padrao, " +
 	" 	   cp.tipo_media, cp.peso_padrao, " +
 	" 	   pc.tipo_media, pc.peso_padrao, " +
-	" 	   a.item_id, coalesce(l.nome,'') as item_nome, " +
-	"      a.plano_id, " +
+	" 	   a.id_item, coalesce(l.nome,'') as item_nome, " +
+	"      a.id_plano, " +
 	"	   j.cnpb, CASE WHEN j.recurso_garantidor > 1000000 AND j.recurso_garantidor < 1000000000 THEN concat(format(j.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN j.recurso_garantidor > 1000000000 THEN concat(format(j.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(j.recurso_garantidor/1000,'N','pt-br'),' Milhares') END, j.modalidade_id, " +
 	" 	   coalesce(p.peso,0) as plano_peso, coalesce(p.nota,0) as plano_nota, " +
 	"	   coalesce(format(g.inicia_em, 'dd/MM/yyyy'), '') AS inicia_em, " +
@@ -46,62 +46,62 @@ const sqlAvaliarPlanos = " SELECT a.entidade_id, " +
 	"	    ELSE 0 " +
 	"	   END AS periodo_permitido " +
 	" FROM produtos_itens a " +
-	" INNER JOIN entidades b ON a.entidade_id = b.id " +
-	" INNER JOIN ciclos c ON a.ciclo_id = c.id " +
-	" INNER JOIN pilares d ON a.pilar_id = d.id " +
-	" INNER JOIN componentes e ON a.componente_id = e.id " +
+	" INNER JOIN entidades b ON a.id_entidade = b.id " +
+	" INNER JOIN ciclos c ON a.id_ciclo = c.id " +
+	" INNER JOIN pilares d ON a.id_pilar = d.id " +
+	" INNER JOIN componentes e ON a.id_componente = e.id " +
 	" INNER JOIN produtos_pilares f ON " +
-	" ( a.pilar_id = f.pilar_id AND  " +
-	"   a.ciclo_id = f.ciclo_id AND  " +
-	"   a.entidade_id = f.entidade_id ) " +
+	" ( a.id_pilar = f.id_pilar AND  " +
+	"   a.id_ciclo = f.id_ciclo AND  " +
+	"   a.id_entidade = f.id_entidade ) " +
 	" INNER JOIN produtos_componentes g ON  " +
-	" ( a.componente_id = g.componente_id AND  " +
-	"   a.pilar_id = g.pilar_id AND  " +
-	"   a.ciclo_id = g.ciclo_id AND  " +
-	"   a.entidade_id = g.entidade_id  " +
+	" ( a.id_componente = g.id_componente AND  " +
+	"   a.id_pilar = g.id_pilar AND  " +
+	"   a.id_ciclo = g.id_ciclo AND  " +
+	"   a.id_entidade = g.id_entidade  " +
 	" ) " +
-	" LEFT JOIN users h ON g.supervisor_id = h.id " +
-	" LEFT JOIN users i ON g.auditor_id = i.id " +
-	" INNER JOIN planos j ON a.plano_id = j.id " +
-	" INNER JOIN elementos k ON a.elemento_id = k.id   " +
-	" INNER JOIN itens l ON a.item_id = l.id   " +
-	" INNER JOIN elementos_componentes ec ON ( a.elemento_id = ec.elemento_id AND a.tipo_nota_id = ec.tipo_nota_id AND a.componente_id = ec.componente_id ) " +
-	" INNER JOIN componentes_pilares cp ON ( a.componente_id = cp.componente_id AND a.pilar_id = cp.pilar_id ) " +
-	" INNER JOIN pilares_ciclos pc ON ( a.pilar_id = pc.pilar_id AND a.ciclo_id = pc.ciclo_id ) " +
-	" INNER JOIN tipos_notas m ON a.tipo_nota_id = m.id " +
+	" LEFT JOIN users h ON g.id_supervisor = h.id " +
+	" LEFT JOIN users i ON g.id_auditor = i.id " +
+	" INNER JOIN planos j ON a.id_plano = j.id " +
+	" INNER JOIN elementos k ON a.id_elemento = k.id   " +
+	" INNER JOIN itens l ON a.id_item = l.id   " +
+	" INNER JOIN elementos_componentes ec ON ( a.id_elemento = ec.id_elemento AND a.id_tipo_nota = ec.id_tipo_nota AND a.id_componente = ec.id_componente ) " +
+	" INNER JOIN componentes_pilares cp ON ( a.id_componente = cp.id_componente AND a.id_pilar = cp.id_pilar ) " +
+	" INNER JOIN pilares_ciclos pc ON ( a.id_pilar = pc.id_pilar AND a.id_ciclo = pc.id_ciclo ) " +
+	" INNER JOIN tipos_notas m ON a.id_tipo_nota = m.id " +
 	" INNER JOIN produtos_elementos n ON  " +
-	" 	( a.elemento_id = n.elemento_id AND  " +
-	" 	a.tipo_nota_id = n.tipo_nota_id AND  " +
-	" 	a.plano_id = n.plano_id AND  " +
-	" 	a.componente_id = n.componente_id AND  " +
-	" 	a.pilar_id = n.pilar_id AND  " +
-	" 	a.ciclo_id = n.ciclo_id AND  " +
-	" 	a.entidade_id = n.entidade_id ) " +
+	" 	( a.id_elemento = n.id_elemento AND  " +
+	" 	a.id_tipo_nota = n.id_tipo_nota AND  " +
+	" 	a.id_plano = n.id_plano AND  " +
+	" 	a.id_componente = n.id_componente AND  " +
+	" 	a.id_pilar = n.id_pilar AND  " +
+	" 	a.id_ciclo = n.id_ciclo AND  " +
+	" 	a.id_entidade = n.id_entidade ) " +
 	" INNER JOIN produtos_tipos_notas o ON  " +
-	" ( a.tipo_nota_id = o.tipo_nota_id AND  " +
-	"   a.plano_id = o.plano_id AND " +
-	"   a.componente_id = o.componente_id AND " +
-	"   a.pilar_id = o.pilar_id AND  " +
-	"   a.ciclo_id = o.ciclo_id AND  " +
-	"   a.entidade_id = o.entidade_id) " +
+	" ( a.id_tipo_nota = o.id_tipo_nota AND  " +
+	"   a.id_plano = o.id_plano AND " +
+	"   a.id_componente = o.id_componente AND " +
+	"   a.id_pilar = o.id_pilar AND  " +
+	"   a.id_ciclo = o.id_ciclo AND  " +
+	"   a.id_entidade = o.id_entidade) " +
 	" INNER JOIN produtos_planos p ON  " +
-	"  (a.plano_id = p.plano_id AND  " +
-	"   a.componente_id = p.componente_id AND  " +
-	"   a.pilar_id = p.pilar_id AND  " +
-	"   a.ciclo_id = p.ciclo_id AND  " +
-	"   a.entidade_id = p.entidade_id)   " +
+	"  (a.id_plano = p.id_plano AND  " +
+	"   a.id_componente = p.id_componente AND  " +
+	"   a.id_pilar = p.id_pilar AND  " +
+	"   a.id_ciclo = p.id_ciclo AND  " +
+	"   a.id_entidade = p.id_entidade)   " +
 	" INNER JOIN produtos_ciclos pdc ON " +
-	"  (a.ciclo_id = pdc.ciclo_id AND " +
-	"   a.entidade_id = pdc.entidade_id) " +
-	" WHERE a.entidade_id = ? " +
-	"   AND a.ciclo_id = ? " +
-	" ORDER BY a.ciclo_id, " +
-	"          a.pilar_id, " +
-	"          a.componente_id, " +
+	"  (a.id_ciclo = pdc.id_ciclo AND " +
+	"   a.id_entidade = pdc.id_entidade) " +
+	" WHERE a.id_entidade = ? " +
+	"   AND a.id_ciclo = ? " +
+	" ORDER BY a.id_ciclo, " +
+	"          a.id_pilar, " +
+	"          a.id_componente, " +
 	"          j.recurso_garantidor DESC, " +
-	"          a.tipo_nota_id, " +
-	"          a.elemento_id, " +
-	"          a.item_id "
+	"          a.id_tipo_nota, " +
+	"          a.id_elemento, " +
+	"          a.id_item "
 
 func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("List Avaliar Planos Handler")
@@ -110,15 +110,15 @@ func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("--------------")
 		var page mdl.PageEntidadesCiclos
 		// Entidades da jurisdição do Escritório ao qual pertenço
-		sql := "SELECT DISTINCT d.codigo, b.entidade_id, d.nome, a.abreviatura " +
+		sql := "SELECT DISTINCT d.codigo, b.id_entidade, d.nome, a.abreviatura " +
 			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.escritorio_id " +
-			" LEFT JOIN membros c ON c.escritorio_id = b.escritorio_id " +
-			" LEFT JOIN entidades d ON d.id = b.entidade_id " +
-			" LEFT JOIN users u ON u.id = c.usuario_id " +
-			" INNER JOIN ciclos_entidades e ON e.entidade_id = b.entidade_id " +
-			" INNER JOIN produtos_planos f ON (f.entidade_id = e.entidade_id AND f.ciclo_id = e.ciclo_id) " +
-			" WHERE (c.usuario_id = ? AND u.role_id in (3,4)) OR (a.chefe_id = ?)"
+			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
+			" LEFT JOIN membros c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN entidades d ON d.id = b.id_entidade " +
+			" LEFT JOIN users u ON u.id = c.id_usuario " +
+			" INNER JOIN ciclos_entidades e ON e.id_entidade = b.id_entidade " +
+			" INNER JOIN produtos_planos f ON (f.id_entidade = e.id_entidade AND f.id_ciclo = e.id_ciclo) " +
+			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id, currentUser.Id)
 		defer rows.Close()
@@ -141,8 +141,8 @@ func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 			var cicloEntidade mdl.CicloEntidade
 			sql = "SELECT b.id, b.nome " +
 				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.ciclo_id = b.id " +
-				" WHERE a.entidade_id = ? " +
+				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+				" WHERE a.id_entidade = ? " +
 				" ORDER BY id asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
@@ -240,15 +240,15 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		page.Produtos = produtos
 
 		sql := " SELECT " +
-			" a.usuario_id, " +
+			" a.id_usuario, " +
 			" coalesce(b.name,'') " +
 			" FROM integrantes a " +
 			" LEFT JOIN users b " +
-			" ON a.usuario_id = b.id " +
+			" ON a.id_usuario = b.id " +
 			" WHERE " +
-			" a.entidade_id = " + entidadeId +
-			" AND a.ciclo_id = " + cicloId +
-			" AND b.role_id = 3 "
+			" a.id_entidade = " + entidadeId +
+			" AND a.id_ciclo = " + cicloId +
+			" AND b.id_role = 3 "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -262,15 +262,15 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		page.Supervisores = supervisores
 
 		sql = " SELECT " +
-			" a.usuario_id, " +
+			" a.id_usuario, " +
 			" b.name " +
 			" FROM integrantes a " +
 			" LEFT JOIN users b " +
-			" ON a.usuario_id = b.id " +
+			" ON a.id_usuario = b.id " +
 			" WHERE " +
-			" a.entidade_id = " + entidadeId +
-			" AND a.ciclo_id = " + cicloId +
-			" AND b.role_id in (2,3,4) ORDER BY 2 "
+			" a.id_entidade = " + entidadeId +
+			" AND a.id_ciclo = " + cicloId +
+			" AND b.id_role in (2,3,4) ORDER BY 2 "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -361,15 +361,15 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 	page.Produtos = produtos
 
 	sql := " SELECT " +
-		" a.usuario_id, " +
+		" a.id_usuario, " +
 		" coalesce(b.name,'') " +
 		" FROM integrantes a " +
 		" LEFT JOIN users b " +
-		" ON a.usuario_id = b.id " +
+		" ON a.id_usuario = b.id " +
 		" WHERE " +
-		" a.entidade_id = " + entidadeId +
-		" AND a.ciclo_id = " + cicloId +
-		" AND b.role_id = 3 "
+		" a.id_entidade = " + entidadeId +
+		" AND a.id_ciclo = " + cicloId +
+		" AND b.id_role = 3 "
 	log.Println(sql)
 	rows, _ = Db.Query(sql)
 	defer rows.Close()
@@ -383,15 +383,15 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 	page.Supervisores = supervisores
 
 	sql = " SELECT " +
-		" a.usuario_id, " +
+		" a.id_usuario, " +
 		" b.name " +
 		" FROM integrantes a " +
 		" LEFT JOIN users b " +
-		" ON a.usuario_id = b.id " +
+		" ON a.id_usuario = b.id " +
 		" WHERE " +
-		" a.entidade_id = " + entidadeId +
-		" AND a.ciclo_id = " + cicloId +
-		" AND b.role_id in (2,3,4) "
+		" a.id_entidade = " + entidadeId +
+		" AND a.id_ciclo = " + cicloId +
+		" AND b.id_role in (2,3,4) "
 	log.Println(sql)
 	rows, _ = Db.Query(sql)
 	defer rows.Close()

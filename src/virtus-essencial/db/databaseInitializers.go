@@ -37,15 +37,15 @@ func Initialize() {
 }
 
 func ajustesEmPerfis() {
-	dml := "DELETE FROM features_roles a WHERE a.role_id IN (2,3,4) AND a.feature_id = (SELECT b.id from features b WHERE b.code = 'createEntidade')"
+	dml := "DELETE FROM features_roles a WHERE a.id_role IN (2,3,4) AND a.id_feature = (SELECT b.id_feature from features b WHERE b.code = 'createEntidade')"
 	log.Println(dml)
 	db.Exec(dml)
 }
 
 func ajustesEmTiposNotas() {
 	dml := "DELETE FROM TIPOS_NOTAS_COMPONENTES WHERE " +
-		" componente_id = (SELECT ID FROM COMPONENTES WHERE NOME = 'Eficiência Operacional') " +
-		" AND tipo_nota_id <> (SELECT ID FROM TIPOS_NOTAS WHERE LETRA = 'A')"
+		" id_componente = (SELECT ID FROM COMPONENTES WHERE NOME = 'Eficiência Operacional') " +
+		" AND id_tipo_nota <> (SELECT ID FROM TIPOS_NOTAS WHERE LETRA = 'A')"
 	log.Println(dml)
 	db.Exec(dml)
 }
@@ -57,9 +57,9 @@ func ajustesEmChamados() {
 }
 
 func createStatusZERO() {
-	query := "INSERT INTO status (id, name, stereotype, description, author_id, created_at)" +
+	query := "INSERT INTO status (id_status, name, stereotype, description, id_author, created_at)" +
 		" SELECT 0, '-', '', '', 1, GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id FROM status WHERE id = 0)"
+		" WHERE NOT EXISTS (SELECT id_status FROM status WHERE id = 0)"
 	//log.Println(query)
 	db.Exec(query)
 }

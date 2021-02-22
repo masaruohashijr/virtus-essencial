@@ -32,7 +32,7 @@ func createRoles() {
 }
 
 func updateRoles() {
-	query := " UPDATE roles SET author_id = 1 WHERE name = 'Admin' AND (SELECT author_id FROM roles WHERE name = 'Admin') IS NULL "
+	query := " UPDATE roles SET id_author = 1 WHERE name = 'Admin' AND (SELECT id_author FROM roles WHERE name = 'Admin') IS NULL "
 	//log.Println(query)
 	db.Exec(query)
 }

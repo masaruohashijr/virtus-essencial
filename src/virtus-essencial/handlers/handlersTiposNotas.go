@@ -22,7 +22,7 @@ func CreateTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 		referencia := r.FormValue("Referencia")
 		letra := r.FormValue("Letra")
 		corLetra := r.FormValue("CorLetra")
-		sqlStatement := "INSERT INTO tipos_notas(nome, descricao, referencia, letra, cor_letra, author_id, criado_em) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+		sqlStatement := "INSERT INTO tipos_notas(nome, descricao, referencia, letra, cor_letra, id_author, criado_em) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
 		tipoNotaId := 0
 		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, letra, corLetra, currentUser.Id, time.Now()).Scan(&tipoNotaId)
 		if err != nil {
@@ -91,15 +91,15 @@ func ListTiposNotasHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.referencia,''), " +
 			" coalesce(a.letra,''), " +
 			" coalesce(a.cor_letra,''), " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM tipos_notas a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by id asc"
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)

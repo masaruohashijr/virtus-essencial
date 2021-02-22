@@ -19,12 +19,12 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		var page mdl.PageEntidadesCiclos
-		sql := " SELECT b.entidade_id, c.nome, c.codigo, a.abreviatura " +
+		sql := " SELECT b.id_entidade, c.nome, c.codigo, a.abreviatura " +
 			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.escritorio_id " +
-			" LEFT JOIN entidades c ON c.id = b.entidade_id " +
-			" INNER JOIN ciclos_entidades d ON d.entidade_id = b.entidade_id " +
-			" WHERE a.chefe_id = ?"
+			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
+			" LEFT JOIN entidades c ON c.id = b.id_entidade " +
+			" INNER JOIN ciclos_entidades d ON d.id_entidade = b.id_entidade " +
+			" WHERE a.id_chefe = ?"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id)
 		defer rows.Close()
@@ -47,8 +47,8 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 			var cicloEntidade mdl.CicloEntidade
 			sql = "SELECT b.id, b.nome " +
 				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.ciclo_id = b.id " +
-				" WHERE a.entidade_id = ? " +
+				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+				" WHERE a.id_entidade = ? " +
 				" ORDER BY id asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
@@ -64,22 +64,22 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		sql = " WITH subordinacoes AS " +
-			"   (SELECT b.usuario_id, " +
-			"           a.supervisor_id " +
+			"   (SELECT b.id_usuario, " +
+			"           a.id_supervisor " +
 			"    FROM ciclos_entidades a " +
 			"    INNER JOIN integrantes b  " +
-			"    ON (a.ciclo_id = b.ciclo_id AND a.entidade_id = b.entidade_id)) " +
-			" SELECT DISTINCT b.usuario_id, " +
+			"    ON (a.id_ciclo = b.id_ciclo AND a.id_entidade = b.id_entidade)) " +
+			" SELECT DISTINCT b.id_usuario, " +
 			"        coalesce(c.name, '') AS nome_auditor, " +
 			"        coalesce(d.name, '') AS role_name, " +
-			"        coalesce(s.supervisor_id,0) AS subordinacao " +
+			"        coalesce(s.id_supervisor,0) AS subordinacao " +
 			" FROM escritorios a " +
-			" LEFT JOIN membros b ON a.id = b.escritorio_id " +
-			" LEFT JOIN users c ON b.usuario_id = c.id " +
-			" LEFT JOIN ROLES d ON c.role_id = d.id " +
-			" LEFT JOIN subordinacoes s ON B.usuario_id = s.usuario_id " +
-			" WHERE a.chefe_id = ? " +
-			"   AND c.role_id in (2,3,4) " +
+			" LEFT JOIN membros b ON a.id = b.id_escritorio " +
+			" LEFT JOIN users c ON b.id_usuario = c.id " +
+			" LEFT JOIN ROLES d ON c.id_role = d.id " +
+			" LEFT JOIN subordinacoes s ON B.id_usuario = s.id_usuario " +
+			" WHERE a.id_chefe = ? " +
+			"   AND c.id_role in (2,3,4) " +
 			" ORDER BY nome_auditor "
 		log.Println(sql)
 		rows, _ = Db.Query(sql, currentUser.Id)
@@ -96,13 +96,13 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 			membros = append(membros, membro)
 		}
 		sql = " SELECT " +
-			" b.usuario_id, coalesce(c.name,'') AS nome_usuario, " +
+			" b.id_usuario, coalesce(c.name,'') AS nome_usuario, " +
 			" coalesce(d.name,'') as role_name " +
 			" FROM escritorios a " +
-			" LEFT JOIN membros b ON a.id = b.escritorio_id " +
-			" LEFT JOIN users c ON b.usuario_id = c.id " +
-			" LEFT JOIN roles d ON c.role_id = d.id " +
-			" WHERE a.chefe_id = ? AND c.role_id in (2,3) " +
+			" LEFT JOIN membros b ON a.id = b.id_escritorio " +
+			" LEFT JOIN users c ON b.id_usuario = c.id " +
+			" LEFT JOIN roles d ON c.id_role = d.id " +
+			" WHERE a.id_chefe = ? AND c.id_role in (2,3) " +
 			" ORDER BY nome_usuario"
 		log.Println(sql)
 		rows, _ = Db.Query(sql, currentUser.Id)
@@ -143,8 +143,8 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 		supervisorId := r.FormValue("SupervisorId")
 
 		if supervisorId != "" {
-			sqlStatement := "UPDATE ciclos_entidades SET supervisor_id=" + supervisorId +
-				" WHERE entidade_id=" + entidadeId + " AND ciclo_id=" + cicloId
+			sqlStatement := "UPDATE ciclos_entidades SET id_supervisor=" + supervisorId +
+				" WHERE id_entidade=" + entidadeId + " AND id_ciclo=" + cicloId
 			log.Println(sqlStatement)
 			updtForm, _ := Db.Prepare(sqlStatement)
 			sqlResult, err := updtForm.Exec()
@@ -152,8 +152,8 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				log.Println(err.Error())
 			}
-			sqlStatement = "UPDATE produtos_componentes SET supervisor_id=" + supervisorId +
-				" WHERE entidade_id=" + entidadeId + " AND ciclo_id=" + cicloId
+			sqlStatement = "UPDATE produtos_componentes SET id_supervisor=" + supervisorId +
+				" WHERE id_entidade=" + entidadeId + " AND id_ciclo=" + cicloId
 			log.Println(sqlStatement)
 			updtForm, _ = Db.Prepare(sqlStatement)
 			sqlResult, err = updtForm.Exec()
@@ -241,14 +241,14 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				integrante = diffPage[i]
 				sqlStatement := "INSERT INTO integrantes ( " +
-					" entidade_id, " +
-					" ciclo_id, " +
-					" usuario_id, " +
-					" author_id, " +
+					" id_entidade, " +
+					" id_ciclo, " +
+					" id_usuario, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id " +
+					" id_status " +
 					" ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_integrante " +
 					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				Db.QueryRow(
@@ -310,7 +310,7 @@ func removeIntegrante(membros []mdl.Integrante, membroToBeRemoved mdl.Integrante
 }
 
 func DeleteIntegrantesByEntidadeCicloId(entidadeId string, cicloId string) {
-	sqlStatement := "DELETE FROM integrantes WHERE entidade_id=? AND ciclo_id = ?"
+	sqlStatement := "DELETE FROM integrantes WHERE id_entidade=? AND id_ciclo = ?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -408,10 +408,10 @@ func LoadSupervisorByEntidadeIdCicloId(w http.ResponseWriter, r *http.Request) {
 	var cicloId = r.FormValue("cicloId")
 	log.Println("entidadeId: " + entidadeId)
 	log.Println("cicloId: " + cicloId)
-	sql := "SELECT a.supervisor_id, b.name " +
+	sql := "SELECT a.id_supervisor, b.name " +
 		"FROM ciclos_entidades a " +
-		"LEFT JOIN users b ON a.supervisor_id = b.id " +
-		"WHERE a.entidade_id = ? AND a.ciclo_id = ? "
+		"LEFT JOIN users b ON a.id_supervisor = b.id " +
+		"WHERE a.id_entidade = ? AND a.id_ciclo = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId, cicloId)
 	defer rows.Close()

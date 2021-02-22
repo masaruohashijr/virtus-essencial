@@ -36,8 +36,8 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 		log.Println(hash)
 		statusUsuarioId := GetStartStatus("usuario")
-		sqlStatement := "INSERT INTO Users(name, username, password, email, mobile, role_id, author_id, criado_em, status_id) " +
-			" OUTPUT INSERTED.id VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), ?)"
+		sqlStatement := "INSERT INTO Users(name, username, password, email, mobile, id_role, id_author, criado_em, id_status) " +
+			" OUTPUT INSERTED.id_user VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), ?)"
 		id := 0
 		err = Db.QueryRow(sqlStatement, name, username, hash, email, mobile, role, currentUser.Id, statusUsuarioId).Scan(&id)
 		if err != nil {
@@ -71,7 +71,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 		role := r.FormValue("RoleForUpdate")
 		log.Println("Role: " + role)
 		sqlStatement := " UPDATE Users SET name=?, " +
-			" username=?, email=?, mobile=?, role_id=? " +
+			" username=?, email=?, mobile=?, id_role=? " +
 			" WHERE id=? "
 		log.Println(sqlStatement)
 		updtForm, err := Db.Prepare(sqlStatement)
@@ -230,9 +230,9 @@ func RegisterNewUserHandler(w http.ResponseWriter, r *http.Request) {
 		" password, " +
 		" email, " +
 		" mobile, " +
-		" role_id, " +
+		" id_role, " +
 		" criado_em, " +
-		" status_id) " +
+		" id_status) " +
 		" VALUES ( '" + name + "', " +
 		" '" + username + "', " +
 		" '" + string(hash[:]) + "', " +
@@ -275,17 +275,17 @@ func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 		sql := "SELECT " +
 			" a.id, a.name, a.username, a.password, " +
 			" a.email, a.mobile, " +
-			" COALESCE(a.role_id, 0), COALESCE(b.name,'') as role_name, " +
-			" coalesce(a.author_id,0) as author_id, " +
+			" COALESCE(a.id_role, 0), COALESCE(b.name,'') as role_name, " +
+			" coalesce(a.id_author,0) as id_author, " +
 			" coalesce(e.name,'') as author_name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(d.name,'') as cstatus, " +
-			" coalesce(a.status_id,0) , " +
+			" coalesce(a.id_status,0) , " +
 			" coalesce(a.id_versao_origem,0) " +
 			" FROM users a " +
-			" LEFT JOIN roles b ON a.role_id = b.id " +
-			" LEFT JOIN status d ON a.status_id = d.id " +
-			" LEFT JOIN users e ON a.author_id = e.id " +
+			" LEFT JOIN roles b ON a.id_role = b.id " +
+			" LEFT JOIN status d ON a.id_status = d.id " +
+			" LEFT JOIN users e ON a.id_author = e.id " +
 			" ORDER BY a.name ASC "
 		log.Println("SQL: " + sql)
 		rows, _ := Db.Query(sql)

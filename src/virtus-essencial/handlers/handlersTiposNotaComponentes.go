@@ -7,9 +7,9 @@ import (
 
 func ListTiposNotaByComponenteId(componenteId string) []mdl.TipoNota {
 	sql := " SELECT " +
-		" id, tipo_nota_id, " +
+		" id, id_tipo_nota, " +
 		" peso_padrao " +
-		" FROM tipos_notas_componentes WHERE componente_id = ? "
+		" FROM tipos_notas_componentes WHERE id_componente = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, componenteId)
 	defer rows.Close()

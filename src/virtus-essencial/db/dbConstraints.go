@@ -6,64 +6,64 @@ import (
 
 func createUniqueKey() {
 	db.Exec(" ALTER TABLE actions_status" +
-		" ADD CONSTRAINT action_status_unique_key UNIQUE (action_id, origin_status_id, destination_status_id)")
+		" ADD CONSTRAINT action_status_unique_key UNIQUE (id_action, id_origin_status, id_destination_status)")
 	db.Exec(" ALTER TABLE features_roles" +
-		" ADD CONSTRAINT feature_role_unique_key UNIQUE (role_id, feature_id)")
+		" ADD CONSTRAINT feature_role_unique_key UNIQUE (id_role, id_feature)")
 	db.Exec(" ALTER TABLE users" +
 		" ADD CONSTRAINT username_unique_key UNIQUE (username)")
 	db.Exec(" ALTER TABLE activities_roles" +
-		" ADD CONSTRAINT action_role_unique_key UNIQUE (activity_id, role_id)")
+		" ADD CONSTRAINT action_role_unique_key UNIQUE (id_activity, id_role)")
 	db.Exec(" ALTER TABLE features_activities" +
-		" ADD CONSTRAINT features_activities_unique_key UNIQUE (activity_id, feature_id)")
+		" ADD CONSTRAINT features_activities_unique_key UNIQUE (id_activity, id_feature)")
 	db.Exec(" ALTER TABLE jurisdicoes" +
-		" ADD CONSTRAINT jurisdicoes_unique_key UNIQUE (escritorio_id, entidade_id)")
+		" ADD CONSTRAINT jurisdicoes_unique_key UNIQUE (id_escritorio, id_entidade)")
 	db.Exec(" ALTER TABLE membros" +
-		" ADD CONSTRAINT membros_unique_key UNIQUE (escritorio_id, usuario_id)")
+		" ADD CONSTRAINT membros_unique_key UNIQUE (id_escritorio, id_usuario)")
 	db.Exec(" ALTER TABLE ciclos_entidades" +
-		" ADD CONSTRAINT ciclos_entidades_unique_key UNIQUE (entidade_id, ciclo_id)")
+		" ADD CONSTRAINT ciclos_entidades_unique_key UNIQUE (id_entidade, id_ciclo)")
 	db.Exec(" ALTER TABLE pilares_ciclos" +
-		" ADD CONSTRAINT pilares_ciclos_unique_key UNIQUE (ciclo_id, pilar_id)")
+		" ADD CONSTRAINT pilares_ciclos_unique_key UNIQUE (id_ciclo, id_pilar)")
 	db.Exec(" ALTER TABLE componentes_pilares" +
-		" ADD CONSTRAINT componentes_pilares_unique_key UNIQUE (pilar_id, componente_id)")
+		" ADD CONSTRAINT componentes_pilares_unique_key UNIQUE (id_pilar, id_componente)")
 	db.Exec(" ALTER TABLE elementos_componentes" +
-		" ADD CONSTRAINT elementos_componentes_unique_key UNIQUE (componente_id, elemento_id, tipo_nota_id)")
+		" ADD CONSTRAINT elementos_componentes_unique_key UNIQUE (id_componente, id_elemento, id_tipo_nota)")
 	db.Exec(" ALTER TABLE tipos_notas_componentes" +
-		" ADD CONSTRAINT tipos_notas_componentes_unique_key UNIQUE (componente_id, tipo_nota_id)")
+		" ADD CONSTRAINT tipos_notas_componentes_unique_key UNIQUE (id_componente, id_tipo_nota)")
 	db.Exec(" ALTER TABLE produtos_ciclos" +
-		" ADD CONSTRAINT produtos_ciclos_unique_key UNIQUE (entidade_id, ciclo_id)")
+		" ADD CONSTRAINT produtos_ciclos_unique_key UNIQUE (id_entidade, id_ciclo)")
 	db.Exec(" ALTER TABLE produtos_pilares" +
-		" ADD CONSTRAINT produtos_pilares_unique_key UNIQUE (entidade_id, ciclo_id, pilar_id)")
+		" ADD CONSTRAINT produtos_pilares_unique_key UNIQUE (id_entidade, id_ciclo, id_pilar)")
 	db.Exec(" ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT produtos_componentes_unique_key UNIQUE (entidade_id, ciclo_id, pilar_id, componente_id)")
+		" ADD CONSTRAINT produtos_componentes_unique_key UNIQUE (id_entidade, id_ciclo, id_pilar, id_componente)")
 	db.Exec(" ALTER TABLE produtos_planos" +
-		" ADD CONSTRAINT produtos_planos_unique_key UNIQUE (entidade_id, ciclo_id, pilar_id, componente_id, plano_id)")
+		" ADD CONSTRAINT produtos_planos_unique_key UNIQUE (id_entidade, id_ciclo, id_pilar, id_componente, id_plano)")
 	db.Exec(" ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT produtos_tipos_notas_unique_key UNIQUE (entidade_id, ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id)")
+		" ADD CONSTRAINT produtos_tipos_notas_unique_key UNIQUE (id_entidade, id_ciclo, id_pilar, id_componente, id_plano, id_tipo_nota)")
 	db.Exec(" ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT produtos_elementos_unique_key UNIQUE (entidade_id, ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id, elemento_id)")
+		" ADD CONSTRAINT produtos_elementos_unique_key UNIQUE (id_entidade, id_ciclo, id_pilar, id_componente, id_plano, id_tipo_nota, id_elemento)")
 	db.Exec(" ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT produtos_itens_unique_key UNIQUE (entidade_id, ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id, elemento_id, item_id)")
+		" ADD CONSTRAINT produtos_itens_unique_key UNIQUE (id_entidade, id_ciclo, id_pilar, id_componente, id_plano, id_tipo_nota, id_elemento, id_item)")
 }
 
 func createFKey() {
 	// ACTIONS
 	log.Println("FOREIGN KEYS")
 	_, err := db.Exec("ALTER TABLE actions " +
-		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (destination_status_id)" +
+		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (id_destination_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE actions " +
-		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (origin_status_id)" +
+		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (id_origin_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE actions " +
-		" ADD CONSTRAINT workflows_fkey FOREIGN KEY (workflow_id)" +
+		" ADD CONSTRAINT workflows_fkey FOREIGN KEY (id_workflow)" +
 		" REFERENCES workflows (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
@@ -71,40 +71,40 @@ func createFKey() {
 
 	//  ACTIONS_STATUS
 	_, err = db.Exec("ALTER TABLE actions_status " +
-		" ADD CONSTRAINT actions_fkey FOREIGN KEY (action_id)" +
+		" ADD CONSTRAINT actions_fkey FOREIGN KEY (id_action)" +
 		" REFERENCES actions (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE actions_status " +
-		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (origin_status_id)" +
+		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (id_origin_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE actions_status " +
-		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (destination_status_id)" +
+		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (id_destination_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	// ACTIVITIES
-	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT action_fkey FOREIGN KEY (action_id)" +
+	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT action_fkey FOREIGN KEY (id_action)" +
 		" REFERENCES actions (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
-	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (expiration_action_id)" +
+	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (id_expiration_action)" +
 		" REFERENCES actions (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
-	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT workflow_fkey FOREIGN KEY (workflow_id)" +
+	_, err = db.Exec("ALTER TABLE activities ADD CONSTRAINT workflow_fkey FOREIGN KEY (id_workflow)" +
 		" REFERENCES workflows (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
@@ -112,14 +112,14 @@ func createFKey() {
 
 	// ACTIVITIES_ROLES
 	_, err = db.Exec("ALTER TABLE activities_roles " +
-		" ADD CONSTRAINT activities_fkey FOREIGN KEY (activity_id)" +
+		" ADD CONSTRAINT activities_fkey FOREIGN KEY (id_activity)" +
 		" REFERENCES activities (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE activities_roles " +
-		" ADD CONSTRAINT roles_fkey FOREIGN KEY (role_id)" +
+		" ADD CONSTRAINT roles_fkey FOREIGN KEY (id_role)" +
 		" REFERENCES roles (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
@@ -127,14 +127,14 @@ func createFKey() {
 
 	// CICLOS
 	_, err = db.Exec("ALTER TABLE ciclos" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE ciclos" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
@@ -142,28 +142,28 @@ func createFKey() {
 
 	// CICLOS ENTIDADES
 	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE ciclos_entidades" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
@@ -171,37 +171,37 @@ func createFKey() {
 
 	// COMPONENTES
 	_, err = db.Exec("ALTER TABLE componentes" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE componentes" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 
 	// COMPONENTES PILARES
 	_, err = db.Exec("ALTER TABLE componentes_pilares" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE componentes_pilares" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE componentes_pilares" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 
 	_, err = db.Exec("ALTER TABLE componentes_pilares" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
@@ -209,502 +209,502 @@ func createFKey() {
 
 	// ELEMENTOS
 	_, err = db.Exec("ALTER TABLE elementos" +
-		" ADD CONSTRAINT users_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT users_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE elementos" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 
 	// ELEMENTOS_COMPONENTES
 	_, err = db.Exec("ALTER TABLE elementos_componentes" +
-		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
+		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (id_tipo_nota)" +
 		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE elementos_componentes" +
-		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
+		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (id_elemento)" +
 		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	_, err = db.Exec("ALTER TABLE elementos_componentes" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE elementos_componentes" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE elementos_componentes" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// ENTIDADES
 	_, err = db.Exec("ALTER TABLE entidades" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE entidades" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// ESCRITÓRIOS
 	_, err = db.Exec("ALTER TABLE escritorios" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE escritorios" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// FEATURES_ACTIVITIES
 	_, err = db.Exec("ALTER TABLE features_activities " +
-		" ADD CONSTRAINT activities_fkey FOREIGN KEY (activity_id)" +
+		" ADD CONSTRAINT activities_fkey FOREIGN KEY (id_activity)" +
 		" REFERENCES activities (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE features_activities " +
-		" ADD CONSTRAINT features_fkey FOREIGN KEY (feature_id)" +
+		" ADD CONSTRAINT features_fkey FOREIGN KEY (id_feature)" +
 		" REFERENCES features (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// FEATURES_ROLES
 	_, err = db.Exec("ALTER TABLE features_roles " +
-		" ADD CONSTRAINT features_fkey FOREIGN KEY (feature_id)" +
+		" ADD CONSTRAINT features_fkey FOREIGN KEY (id_feature)" +
 		" REFERENCES features (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE features_roles " +
-		" ADD CONSTRAINT roles_fkey FOREIGN KEY (role_id)" +
+		" ADD CONSTRAINT roles_fkey FOREIGN KEY (id_role)" +
 		" REFERENCES roles (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// ITENS
 	_, err = db.Exec("ALTER TABLE itens" +
-		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
+		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (id_elemento)" +
 		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PILARES
 	_, err = db.Exec("ALTER TABLE pilares" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE pilares" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PILARES_CICLOS
 	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE pilares_ciclos" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PLANOS
 	_, err = db.Exec("ALTER TABLE planos" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE planos" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE planos" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PRODUTOS_CICLOS
 	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_ciclos" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PRODUTOS_PILARES
 	_, err = db.Exec("ALTER TABLE produtos_pilares" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_pilares" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_pilares" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_pilares" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_pilares" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PRODUTOS_COMPONENTES
 	_, err = db.Exec("ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_componentes" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PRODUTOS_TIPOS_NOTAS
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
+		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (id_tipo_nota)" +
 		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_tipos_notas" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PRODUTOS_ELEMENTOS
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
+		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (id_tipo_nota)" +
 		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
+		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (id_elemento)" +
 		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_elementos" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// PRODUTOS_ITENS
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (ciclo_id)" +
+		" ADD CONSTRAINT ciclos_fkey FOREIGN KEY (id_ciclo)" +
 		" REFERENCES ciclos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (pilar_id)" +
+		" ADD CONSTRAINT pilares_fkey FOREIGN KEY (id_pilar)" +
 		" REFERENCES pilares (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (elemento_id)" +
+		" ADD CONSTRAINT elementos_fkey FOREIGN KEY (id_elemento)" +
 		" REFERENCES elementos (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT itens_fkey FOREIGN KEY (item_id)" +
+		" ADD CONSTRAINT itens_fkey FOREIGN KEY (id_item)" +
 		" REFERENCES itens (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE produtos_itens" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// TIPOS_NOTAS
 	_, err = db.Exec("ALTER TABLE tipos_notas" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE tipos_notas" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// TIPOS_NOTAS_COMPONENTES
 	_, err = db.Exec("ALTER TABLE tipos_notas_componentes" +
-		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (tipo_nota_id)" +
+		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (id_tipo_nota)" +
 		" REFERENCES tipos_notas (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE tipos_notas_componentes" +
-		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (componente_id)" +
+		" ADD CONSTRAINT componentes_fkey FOREIGN KEY (id_componente)" +
 		" REFERENCES componentes (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE tipos_notas" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE tipos_notas" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// USERS
 	_, err = db.Exec("ALTER TABLE users " +
-		" ADD CONSTRAINT roles_fkey FOREIGN KEY (role_id)" +
+		" ADD CONSTRAINT roles_fkey FOREIGN KEY (id_role)" +
 		" REFERENCES roles (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE users" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE users" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// JURISDICOES
 	_, err = db.Exec("ALTER TABLE jurisdicoes" +
-		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (entidade_id)" +
+		" ADD CONSTRAINT entidades_fkey FOREIGN KEY (id_entidade)" +
 		" REFERENCES entidades (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE jurisdicoes" +
-		" ADD CONSTRAINT escritorios_fkey FOREIGN KEY (escritorio_id)" +
+		" ADD CONSTRAINT escritorios_fkey FOREIGN KEY (id_escritorio)" +
 		" REFERENCES escritorios (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE jurisdicoes" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE jurisdicoes" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	// MEMBROS
 	_, err = db.Exec("ALTER TABLE membros" +
-		" ADD CONSTRAINT usuarios_fkey FOREIGN KEY (usuario_id)" +
+		" ADD CONSTRAINT usuarios_fkey FOREIGN KEY (id_usuario)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE membros" +
-		" ADD CONSTRAINT escritorios_fkey FOREIGN KEY (escritorio_id)" +
+		" ADD CONSTRAINT escritorios_fkey FOREIGN KEY (id_escritorio)" +
 		" REFERENCES escritorios (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE membros" +
-		" ADD CONSTRAINT authors_fkey FOREIGN KEY (author_id)" +
+		" ADD CONSTRAINT authors_fkey FOREIGN KEY (id_author)" +
 		" REFERENCES users (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())
 	}
 	_, err = db.Exec("ALTER TABLE membros" +
-		" ADD CONSTRAINT status_fkey FOREIGN KEY (status_id)" +
+		" ADD CONSTRAINT status_fkey FOREIGN KEY (id_status)" +
 		" REFERENCES status (id) ON DELETE NO ACTION ON UPDATE NO ACTION ")
 	if err != nil {
 		log.Println(err.Error())

@@ -35,8 +35,8 @@ func ExecuteActionHandler(w http.ResponseWriter, r *http.Request) {
 		tableName = "chamados"
 	}
 	// verificar brecha de segurança aqui acesso GET com parametros.
-	sqlStatement := "update " + tableName + " set status_id = " +
-		" (select destination_status_id from actions " +
+	sqlStatement := "update " + tableName + " set id_status = " +
+		" (select id_destination_status from actions " +
 		" where id = ?) where id = ?"
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
@@ -46,7 +46,7 @@ func ExecuteActionHandler(w http.ResponseWriter, r *http.Request) {
 	updtForm.Exec(actionId, id)
 	log.Println("UPDATE: Id: " + actionId)
 
-	sqlStatement = "SELECT a.status_id, b.name FROM " + tableName + " a LEFT JOIN status b ON a.status_id = b.id WHERE a.id = ?"
+	sqlStatement = "SELECT a.id_status, b.name FROM " + tableName + " a LEFT JOIN status b ON a.id_status = b.id WHERE a.id = ?"
 	log.Println("Query: " + sqlStatement)
 	rows, _ := Db.Query(sqlStatement, id)
 	defer rows.Close()
@@ -76,7 +76,8 @@ func CreateActionHandler(w http.ResponseWriter, r *http.Request) {
 		destinationStatus := r.Form["DestinationStatusForInsert"]
 		log.Println(destinationStatus)
 		description := r.FormValue("DescriptionForInsert")
-		sqlStatement := "INSERT INTO actions(name, origin_status_id, destination_status_id, other_than, description, author_id, created_at) OUTPUT INSERTED.id VALUES (?, ?, ?, ?, ?, ?, GETDATE())"
+		sqlStatement := "INSERT INTO actions(name, id_origin_status, id_destination_status, other_than, description, id_author, created_at) " +
+			" OUTPUT INSERTED.id_action VALUES (?, ?, ?, ?, ?, ?, GETDATE())"
 		actionId := 0
 		err := Db.QueryRow(
 			sqlStatement,
@@ -89,7 +90,7 @@ func CreateActionHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err.Error())
 		}
-		sqlStatement = "INSERT INTO actions_status(action_id,origin_status_id,destination_status_id) VALUES (?,?,?)"
+		sqlStatement = "INSERT INTO actions_status(id_action,id_origin_status,id_destination_status) VALUES (?,?,?)"
 		Db.QueryRow(sqlStatement, actionId, originStatus[0], destinationStatus[0])
 		if err != nil {
 			log.Println(err.Error())
@@ -117,7 +118,7 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(originStatus)
 		destinationStatus := r.Form["DestinationStatusForUpdate"]
 		log.Println(destinationStatus)
-		query := "SELECT origin_status_id, destination_status_id FROM actions_status WHERE action_id = ? "
+		query := "SELECT id_origin_status, id_destination_status FROM actions_status WHERE id_action = ? "
 		log.Println("List Action -> Query: " + query)
 		rows, _ := Db.Query(query, actionId)
 		defer rows.Close()
@@ -128,7 +129,7 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if originStatus[0] != originStatusDB || destinationStatus[0] != destinationStatusDB {
-			sqlStatement := "DELETE FROM actions_status WHERE action_id=?"
+			sqlStatement := "DELETE FROM actions_status WHERE id_action=?"
 			deleteForm, _ := Db.Prepare(sqlStatement)
 			_, err := deleteForm.Exec(actionId)
 			if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -136,7 +137,7 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			log.Println("DELETE Action_Status: Id: " + actionId)
 		}
-		sqlStatement := "UPDATE actions SET name=?, origin_status_id=?, destination_status_id=?, other_than=?, description=? WHERE id=?"
+		sqlStatement := "UPDATE actions SET name=?, id_origin_status=?, id_destination_status=?, other_than=?, description=? WHERE id=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -146,10 +147,10 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(err.Error())
 		}
 		log.Println("UPDATE: Id: " + actionId + " | Name: " + name)
-		sqlStatement = "INSERT INTO actions_status(action_id,origin_status_id,destination_status_id) " +
+		sqlStatement = "INSERT INTO actions_status(id_action,id_origin_status,id_destination_status) " +
 			" SELECT " + actionId + "," + originStatus[0] + "," + destinationStatus[0] +
 			" WHERE NOT EXISTS " +
-			" (SELECT 1 FROM actions_status WHERE origin_status_id = " + originStatus[0] + " AND destination_status_id = " + destinationStatus[0] + " ) "
+			" (SELECT 1 FROM actions_status WHERE id_origin_status = " + originStatus[0] + " AND id_destination_status = " + destinationStatus[0] + " ) "
 		log.Println(sqlStatement)
 		Db.QueryRow(sqlStatement, actionId, originStatus[0], destinationStatus[0], originStatus[0], destinationStatus[0])
 		http.Redirect(w, r, route.ActionsRoute+"?msg=Ação atualizada com sucesso.", 301)
@@ -181,7 +182,7 @@ func DeleteActionHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete Action")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM actions_status WHERE action_id=?"
+		sqlStatement := "DELETE FROM actions_status WHERE id_action=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -212,22 +213,22 @@ func ListActionsHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id, " +
 			" a.name, " +
 			" a.description, " +
-			" a.origin_status_id, " +
+			" a.id_origin_status, " +
 			" b.name as origin_name, " +
-			" a.destination_status_id, " +
+			" a.id_destination_status, " +
 			" c.name as destination_name, " +
 			" a.other_than, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" d.name, " +
 			" format(a.created_at,'dd/MM/yyyy HH:mm:ss') as created_at, " +
 			" coalesce(e.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM actions a " +
-			" LEFT JOIN status b ON a.origin_status_id = b.id " +
-			" LEFT JOIN status c ON a.destination_status_id = c.id " +
-			" LEFT JOIN users d ON a.author_id = d.id " +
-			" LEFT JOIN status e ON a.status_id = c.id " +
+			" LEFT JOIN status b ON a.id_origin_status = b.id " +
+			" LEFT JOIN status c ON a.id_destination_status = c.id " +
+			" LEFT JOIN users d ON a.id_author = d.id " +
+			" LEFT JOIN status e ON a.id_status = c.id " +
 			" ORDER BY a.id asc "
 		log.Println("List Action -> SQL: " + sql)
 		rows, _ := Db.Query(sql)
@@ -309,14 +310,14 @@ func LoadAllowedActions(w http.ResponseWriter, r *http.Request) {
 	log.Println("entityType: " + entityType)
 	log.Println("statusId: " + statusId)
 	sql := " select id, name from actions where " +
-		" (other_than = 0 and origin_status_id = ? " +
-		" and id in ( select a.action_id from activities a, activities_roles b " +
-		" where a.workflow_id = ( select id from workflows where entity_type = ? and end_at is null) " +
-		" and a.id = b.activity_id and b.role_id = ? ) ) " +
+		" (other_than = 0 and id_origin_status = ? " +
+		" and id in ( select a.id_action from activities a, activities_roles b " +
+		" where a.id_workflow = ( select id from workflows where entity_type = ? and end_at is null) " +
+		" and a.id = b.id_activity and b.id_role = ? ) ) " +
 		" or " +
-		" (other_than = 1 and origin_status_id != ? " +
-		" and id in ( select a.action_id from activities a, activities_roles b " +
-		" where a.workflow_id = ( select id from workflows where entity_type = ? and end_at is null) ) ) " +
+		" (other_than = 1 and id_origin_status != ? " +
+		" and id in ( select a.id_action from activities a, activities_roles b " +
+		" where a.id_workflow = ( select id from workflows where entity_type = ? and end_at is null) ) ) " +
 		" order by other_than asc "
 	log.Println("Query: " + sql)
 	rows, _ := Db.Query(sql, statusId, entityType, roleId, statusId, entityType)

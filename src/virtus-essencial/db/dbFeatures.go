@@ -56,19 +56,19 @@ func createFeatures() {
 }
 
 func updateFeatures() {
-	query := " UPDATE features SET author_id = 1, created_at = GETDATE(), status_id = 0 " +
-		" WHERE id <= 60 AND EXISTS (SELECT 1 FROM features a WHERE a.author_id IS NULL)"
+	query := " UPDATE features SET id_author = 1, created_at = GETDATE(), id_status = 0 " +
+		" WHERE id <= 60 AND EXISTS (SELECT 1 FROM features a WHERE a.id_author IS NULL)"
 	db.Exec(query)
 	//log.Println(query)
 }
 
 func createRoleFeatures() {
-	stmt1 := " INSERT INTO features_roles (role_id, feature_id) "
+	stmt1 := " INSERT INTO features_roles (id_role, id_feature) "
 	stmt2 := ""
 	for j := 1; j <= 60; j++ {
 		roleId := "1"
 		featureId := strconv.Itoa(j)
-		stmt2 = stmt2 + " SELECT " + roleId + ", " + featureId + " WHERE NOT EXISTS (SELECT 1 FROM features_roles WHERE feature_id = " + featureId + " AND role_id = " + roleId + ") UNION "
+		stmt2 = stmt2 + " SELECT " + roleId + ", " + featureId + " WHERE NOT EXISTS (SELECT 1 FROM features_roles WHERE id_feature = " + featureId + " AND id_role = " + roleId + ") UNION "
 	}
 	pos := strings.LastIndex(stmt2, "UNION")
 	stmt2 = stmt2[:pos]
@@ -78,45 +78,45 @@ func createRoleFeatures() {
 	for j := 1; j <= 60; j++ {
 		roleId := "6"
 		featureId := strconv.Itoa(j)
-		stmt2 = stmt2 + " SELECT " + roleId + ", " + featureId + " WHERE NOT EXISTS (SELECT 1 FROM features_roles WHERE feature_id = " + featureId + " AND role_id = " + roleId + ") UNION "
+		stmt2 = stmt2 + " SELECT " + roleId + ", " + featureId + " WHERE NOT EXISTS (SELECT 1 FROM features_roles WHERE id_feature = " + featureId + " AND id_role = " + roleId + ") UNION "
 	}
 	pos = strings.LastIndex(stmt2, "UNION")
 	stmt2 = stmt2[:pos]
 	//	log.Println(stmt1 + stmt2)
 	db.Exec(stmt1 + stmt2)
-	stmt1 = " INSERT INTO features_roles (role_id, feature_id) " +
+	stmt1 = " INSERT INTO features_roles (id_role, id_feature) " +
 		" SELECT 2, a.id FROM features a " +
 		" WHERE NOT EXISTS ( " +
 		" SELECT 1  " +
 		" FROM features_roles b " +
-		" WHERE b.role_id = 2 AND b.feature_id = a.id) " +
+		" WHERE b.id_role = 2 AND b.id_feature = a.id) " +
 		" AND a.code IN ('designarEquipes','distribuirAtividades','avaliarPlanos','viewMatriz','listEntidades','viewEntidade','homeSupervisor','homeChefe','homeAuditor','listChamados','createChamado','listAnotacoes','createAnotacao') "
 		//	log.Println(stmt1)
 	db.Exec(stmt1)
-	stmt1 = " INSERT INTO features_roles (role_id, feature_id) " +
+	stmt1 = " INSERT INTO features_roles (id_role, id_feature) " +
 		" SELECT 3, a.id FROM features a " +
 		" WHERE NOT EXISTS ( " +
 		" SELECT 1  " +
 		" FROM features_roles b " +
-		" WHERE b.role_id = 3 AND b.feature_id = a.id) " +
+		" WHERE b.id_role = 3 AND b.id_feature = a.id) " +
 		" AND a.code IN ('distribuirAtividades','avaliarPlanos','viewMatriz','listEntidades','viewEntidade','homeSupervisor','listChamados','createChamado','listAnotacoes','createAnotacao') "
 		//	log.Println(stmt1)
 	db.Exec(stmt1)
-	stmt1 = " INSERT INTO features_roles (role_id, feature_id) " +
+	stmt1 = " INSERT INTO features_roles (id_role, id_feature) " +
 		" SELECT 4, a.id FROM features a " +
 		" WHERE NOT EXISTS ( " +
 		" SELECT 1  " +
 		" FROM features_roles b " +
-		" WHERE b.role_id = 4 AND b.feature_id = a.id) " +
+		" WHERE b.id_role = 4 AND b.id_feature = a.id) " +
 		" AND a.code IN ('avaliarPlanos','viewMatriz','listEntidades','viewEntidade','homeAuditor','listChamados','createChamado','listAnotacoes','createAnotacao') "
 		//	log.Println(stmt1)
 	db.Exec(stmt1)
-	stmt1 = " INSERT INTO features_roles (role_id, feature_id) " +
+	stmt1 = " INSERT INTO features_roles (id_role, id_feature) " +
 		" SELECT 5, a.id FROM features a " +
 		" WHERE NOT EXISTS ( " +
 		" SELECT 1  " +
 		" FROM features_roles b " +
-		" WHERE b.role_id = 5 AND b.feature_id = a.id) " +
+		" WHERE b.id_role = 5 AND b.id_feature = a.id) " +
 		" AND (SUBSTRING(a.code,1,4) = 'list' OR a.code IN ('createChamado','viewEntidade','viewMatriz'))"
 	//log.Println(stmt1)
 	db.Exec(stmt1)

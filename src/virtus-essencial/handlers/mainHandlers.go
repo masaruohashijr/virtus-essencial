@@ -79,10 +79,10 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		" u.name, " +
 		" u.username, " +
 		" u.password, " +
-		" COALESCE(u.role_id, 0), " +
+		" COALESCE(u.id_role, 0), " +
 		" coalesce(r.name,'') as role_name " +
 		" FROM users u " +
-		" LEFT JOIN roles r ON u.role_id = r.id " +
+		" LEFT JOIN roles r ON u.id_role = r.id " +
 		" WHERE username='" + username + "'"
 	log.Println(sql)
 	Db.QueryRow(sql).Scan(
@@ -139,8 +139,8 @@ func BuildLoggedUser(user mdl.User) mdl.LoggedUser {
 	loggedUser.HasPermission = func(permission string) bool {
 		//log.Println("permission: " + permission)
 		query := "SELECT " +
-			"A.feature_id, B.code FROM features_roles A, features B " +
-			"WHERE A.feature_id = B.id AND A.role_id = " + strconv.FormatInt(user.Role, 10)
+			"A.id_feature, B.code FROM features_roles A, features B " +
+			"WHERE A.id_feature = B.id AND A.id_role = " + strconv.FormatInt(user.Role, 10)
 		//log.Println("query: " + query)
 		rows, _ := Db.Query(query)
 		defer rows.Close()
@@ -166,8 +166,8 @@ func BuildLoggedUser(user mdl.User) mdl.LoggedUser {
 func HasPermission(currentUser mdl.User, permission string) bool {
 	log.Println("HasPermission")
 	query := "SELECT " +
-		"A.feature_id, B.code FROM features_roles A, features B " +
-		"WHERE A.feature_id = B.id AND A.role_id = ?"
+		"A.id_feature, B.code FROM features_roles A, features B " +
+		"WHERE A.id_feature = B.id AND A.id_role = ?"
 	rows, err := Db.Query(query, currentUser.Role)
 	if err != nil {
 		log.Println(err.Error())

@@ -47,13 +47,13 @@ func CreateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		statusChamadoId := GetStartStatus("chamado")
 		sqlStatement := "INSERT INTO chamados(" +
-			" tipo_chamado_id, " +
+			" id_tipo_chamado, " +
 			" titulo, " +
 			" descricao, " +
 			" acompanhamento, " +
 			" prioridade_id, " +
-			" relator_id, " +
-			" responsavel_id, "
+			" id_relator, " +
+			" id_responsavel, "
 		if iniciaEm != "" {
 			sqlStatement += " inicia_em, "
 		}
@@ -61,10 +61,10 @@ func CreateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 			sqlStatement += " pronto_em, "
 		}
 		sqlStatement += " estimativa, " +
-			" author_id, " +
+			" id_author, " +
 			" criado_em, " +
-			" status_id) " +
-			" OUTPUT INSERTED.id " +
+			" id_status) " +
+			" OUTPUT INSERTED.id_chamado " +
 			" VALUES ('" +
 			tipoChamado + "', '" +
 			titulo + "', '" +
@@ -123,13 +123,13 @@ func UpdateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 		estimativa := r.FormValue("Estimativa")
 		log.Println(estimativa)
 		sqlStatement := "UPDATE chamados SET " +
-			" tipo_chamado_id = '" + tipo + "', " +
+			" id_tipo_chamado = '" + tipo + "', " +
 			" prioridade_id = '" + prioridade + "', " +
 			" titulo = '" + titulo + "', " +
 			" descricao = '" + descricao + "', " +
 			" acompanhamento = '" + acompanhamento + "', " +
-			" responsavel_id = " + responsavel + ", " +
-			" relator_id = " + relator + ", " +
+			" id_responsavel = " + responsavel + ", " +
+			" id_relator = " + relator + ", " +
 			" estimativa = " + estimativa + " "
 		if iniciaEm != "" {
 			sqlStatement += ", inicia_em = '" + iniciaEm + "'"
@@ -218,11 +218,11 @@ func UpdateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 				pilarChamado = diffPage[i]
 				log.Println("Chamado Id: " + chamadoId)
 				sqlStatement := "INSERT INTO questoes_chamados ( " +
-					" ciclo_id, " +
-					" pilar_id, " +
+					" id_ciclo, " +
+					" id_pilar, " +
 					" tipo_media, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					" ) " +
 					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
@@ -277,18 +277,18 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.titulo,''), " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.acompanhamento,''), " +
-			" coalesce(a.responsavel_id,0), " +
+			" coalesce(a.id_responsavel,0), " +
 			" coalesce(d.name,'') as responsavel_name, " +
-			" coalesce(a.relator_id, 0), " +
+			" coalesce(a.id_relator, 0), " +
 			" coalesce(e.name,'') as relator_name, " +
 			" coalesce(format(a.inicia_em,'dd/MM/yyyy'),''), " +
 			" coalesce(format(a.pronto_em,'dd/MM/yyyy'),''), " +
 			" case " +
-			"   when a.tipo_chamado_id = 'A' then 'Adequação ' " +
-			"   when a.tipo_chamado_id = 'C' then 'Correcão ' " +
-			"   when a.tipo_chamado_id = 'D' then 'Dúvida ' " +
-			"   when a.tipo_chamado_id = 'M' then 'Melhoria ' " +
-			"   when a.tipo_chamado_id = 'S' then 'Sugestão ' " +
+			"   when a.id_tipo_chamado = 'A' then 'Adequação ' " +
+			"   when a.id_tipo_chamado = 'C' then 'Correcão ' " +
+			"   when a.id_tipo_chamado = 'D' then 'Dúvida ' " +
+			"   when a.id_tipo_chamado = 'M' then 'Melhoria ' " +
+			"   when a.id_tipo_chamado = 'S' then 'Sugestão ' " +
 			"   else 'Tarefa' " +
 			" end, " +
 			" case " +
@@ -299,19 +299,19 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			"   else 'Desejável' " +
 			" end, " +
 			" coalesce(a.estimativa,0), " +
-			" coalesce(a.author_id,0), " +
+			" coalesce(a.id_author,0), " +
 			" coalesce(b.name,''), " +
 			" coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),''), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" coalesce(a.status_id,0), " +
+			" coalesce(a.id_status,0), " +
 			" coalesce(a.id_versao_origem,0) " +
 			" FROM chamados a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
-			" LEFT JOIN users d ON a.responsavel_id = d.id " +
-			" LEFT JOIN users e ON a.relator_id = e.id "
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
+			" LEFT JOIN users d ON a.id_responsavel = d.id " +
+			" LEFT JOIN users e ON a.id_relator = e.id "
 		if statusEndChamado != "0" {
-			sql += " WHERE a.status_id <> " + statusEndChamado
+			sql += " WHERE a.id_status <> " + statusEndChamado
 		}
 		sql += " order by a.id asc"
 		log.Println(sql)
@@ -345,26 +345,26 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			chamados = append(chamados, chamado)
 		}
-		sql = " SELECT a.usuario_id, " +
+		sql = " SELECT a.id_usuario, " +
 			"        c.name, " +
-			"        c.role_id, " +
+			"        c.id_role, " +
 			"        d.name " +
 			" FROM membros a " +
-			" INNER JOIN escritorios b ON a.escritorio_id = b.id " +
-			" INNER JOIN users c ON a.usuario_id = c.id " +
-			" INNER JOIN ROLES d ON c.role_id = d.id " +
+			" INNER JOIN escritorios b ON a.id_escritorio = b.id " +
+			" INNER JOIN users c ON a.id_usuario = c.id " +
+			" INNER JOIN ROLES d ON c.id_role = d.id " +
 			" WHERE b.id in " +
-			"     (SELECT escritorio_id " +
+			"     (SELECT id_escritorio " +
 			"      FROM membros " +
-			"      WHERE usuario_id = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
+			"      WHERE id_usuario = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
 			" UNION  " +
 			" SELECT e.id, " +
 			"        e.name, " +
-			"        e.role_id, " +
+			"        e.id_role, " +
 			"        f.name " +
 			" FROM users e	    " +
-			" INNER JOIN ROLES f ON e.role_id = f.id " +
-			" WHERE e.role_id in (1,2,3,4,5,6) " +
+			" INNER JOIN ROLES f ON e.id_role = f.id " +
+			" WHERE e.id_role in (1,2,3,4,5,6) " +
 			" ORDER BY 2 ASC "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

@@ -26,14 +26,14 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		warnMsg := r.FormValue("warnMsg")
 		var page mdl.PageEntidadesCiclos
-		sql := "SELECT DISTINCT d.codigo, b.entidade_id, d.nome, a.abreviatura " +
+		sql := "SELECT DISTINCT d.codigo, b.id_entidade, d.nome, a.abreviatura " +
 			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.escritorio_id " +
-			" LEFT JOIN membros c ON c.escritorio_id = b.escritorio_id " +
-			" LEFT JOIN entidades d ON d.id = b.entidade_id " +
-			" LEFT JOIN users u ON u.id = c.usuario_id " +
-			" INNER JOIN ciclos_entidades e ON e.entidade_id = b.entidade_id " +
-			" WHERE (c.usuario_id = ? AND u.role_id in (3,4)) OR (a.chefe_id = ?)"
+			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
+			" LEFT JOIN membros c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN entidades d ON d.id = b.id_entidade " +
+			" LEFT JOIN users u ON u.id = c.id_usuario " +
+			" INNER JOIN ciclos_entidades e ON e.id_entidade = b.id_entidade " +
+			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id, currentUser.Id)
 		defer rows.Close()
@@ -56,8 +56,8 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			var cicloEntidade mdl.CicloEntidade
 			sql = "SELECT b.id, b.nome " +
 				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.ciclo_id = b.id " +
-				" WHERE a.entidade_id = ? " +
+				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+				" WHERE a.id_entidade = ? " +
 				" ORDER BY id asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
@@ -116,11 +116,11 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				//log.Println(fieldName + " - value: " + value[0])
 				if value[0] != "" {
 					sqlStatement := "UPDATE produtos_componentes SET " +
-						" auditor_id=" + value[0] + ", supervisor_id=" + supervisorId +
-						" WHERE entidade_id=" + entidadeId +
-						" AND ciclo_id=" + cicloId +
-						" AND pilar_id=" + pilarId +
-						" AND componente_id= " + componenteId
+						" id_auditor=" + value[0] + ", id_supervisor=" + supervisorId +
+						" WHERE id_entidade=" + entidadeId +
+						" AND id_ciclo=" + cicloId +
+						" AND id_pilar=" + pilarId +
+						" AND id_componente= " + componenteId
 					log.Println(sqlStatement)
 					updtForm, _ := Db.Prepare(sqlStatement)
 					_, err := updtForm.Exec()
@@ -147,10 +147,10 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				if value[0] != "" {
 					sqlStatement := "UPDATE produtos_componentes SET " +
 						" inicia_em='" + value[0] + "' " +
-						" WHERE entidade_id=" + entidadeId +
-						" AND ciclo_id=" + cicloId +
-						" AND pilar_id=" + pilarId +
-						" AND componente_id= " + componenteId
+						" WHERE id_entidade=" + entidadeId +
+						" AND id_ciclo=" + cicloId +
+						" AND id_pilar=" + pilarId +
+						" AND id_componente= " + componenteId
 					log.Println(sqlStatement)
 					updtForm, _ := Db.Prepare(sqlStatement)
 					_, err := updtForm.Exec()
@@ -173,10 +173,10 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				if value[0] != "" {
 					sqlStatement := "UPDATE produtos_componentes SET " +
 						" termina_em='" + value[0] + "' " +
-						" WHERE entidade_id=" + entidadeId +
-						" AND ciclo_id=" + cicloId +
-						" AND pilar_id=" + pilarId +
-						" AND componente_id= " + componenteId
+						" WHERE id_entidade=" + entidadeId +
+						" AND id_ciclo=" + cicloId +
+						" AND id_pilar=" + pilarId +
+						" AND id_componente= " + componenteId
 					log.Println(sqlStatement)
 					updtForm, _ := Db.Prepare(sqlStatement)
 					_, err := updtForm.Exec()
@@ -205,36 +205,36 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		cicloId := r.FormValue("CicloId")
 		var page mdl.PageProdutosComponentes
 		sql := " SELECT " +
-			" a.ciclo_id, c.nome as ciclo_nome, " +
-			" a.pilar_id, d.nome as pilar_nome, " +
-			" a.componente_id, e.nome as componente_nome, " +
-			" coalesce(b.nome,''), a.entidade_id, " +
+			" a.id_ciclo, c.nome as ciclo_nome, " +
+			" a.id_pilar, d.nome as pilar_nome, " +
+			" a.id_componente, e.nome as componente_nome, " +
+			" coalesce(b.nome,''), a.id_entidade, " +
 			" coalesce(R.configurado,'N'), " +
 			" coalesce(e.pga,'') as pga, " +
-			" coalesce(h.supervisor_id,0) as super_id, coalesce(f.name,'') as supervisor_nome, " +
-			" coalesce(a.auditor_id,0) as audit_id, coalesce(g.name,'') as auditor_nome,  " +
+			" coalesce(h.id_supervisor,0) as super_id, coalesce(f.name,'') as supervisor_nome, " +
+			" coalesce(a.id_auditor,0) as audit_id, coalesce(g.name,'') as auditor_nome,  " +
 			" coalesce(format(a.inicia_em,'yyyy-MM-dd'),'') as inicia_em, " +
 			" coalesce(format(a.termina_em,'yyyy-MM-dd'),'') as termina_em " +
 			" FROM produtos_componentes a " +
-			" LEFT JOIN entidades b ON a.entidade_id = b.id " +
-			" LEFT JOIN ciclos c ON a.ciclo_id = c.id " +
-			" LEFT JOIN pilares d ON a.pilar_id = d.id " +
-			" LEFT JOIN componentes e ON a.componente_id = e.id " +
-			" LEFT JOIN ciclos_entidades h ON (a.entidade_id = h.entidade_id AND a.ciclo_id = h.ciclo_id) " +
-			" LEFT JOIN users f ON h.supervisor_id = f.id " +
-			" LEFT JOIN users g ON a.auditor_id = g.id " +
-			" LEFT JOIN (select a.entidade_id, a.ciclo_id, a.pilar_id, a.componente_id, " +
+			" LEFT JOIN entidades b ON a.id_entidade = b.id " +
+			" LEFT JOIN ciclos c ON a.id_ciclo = c.id " +
+			" LEFT JOIN pilares d ON a.id_pilar = d.id " +
+			" LEFT JOIN componentes e ON a.id_componente = e.id " +
+			" LEFT JOIN ciclos_entidades h ON (a.id_entidade = h.id_entidade AND a.id_ciclo = h.id_ciclo) " +
+			" LEFT JOIN users f ON h.id_supervisor = f.id " +
+			" LEFT JOIN users g ON a.id_auditor = g.id " +
+			" LEFT JOIN (select a.id_entidade, a.id_ciclo, a.id_pilar, a.id_componente, " +
 			" 	CASE WHEN COUNT(i.id)>0 THEN 'S' ELSE 'N' END AS configurado from produtos_componentes a " +
-			" 	INNER JOIN produtos_planos i ON (a.entidade_id = i.entidade_id " +
-			" 	AND a.ciclo_id = i.ciclo_id " +
-			" 	AND a.pilar_id = i.pilar_id " +
-			" 	AND a.componente_id = i.componente_id) " +
-			" 	GROUP BY a.entidade_id, a.ciclo_id, a.pilar_id, a.componente_id) R " +
-			" ON (a.entidade_id = R.entidade_id " +
-			" 	AND a.ciclo_id = R.ciclo_id " +
-			" 	AND a.pilar_id = R.pilar_id " +
-			" 	AND a.componente_id = R.componente_id) " +
-			" WHERE a.entidade_id = " + entidadeId + " AND a.ciclo_id = " + cicloId +
+			" 	INNER JOIN produtos_planos i ON (a.id_entidade = i.id_entidade " +
+			" 	AND a.id_ciclo = i.id_ciclo " +
+			" 	AND a.id_pilar = i.id_pilar " +
+			" 	AND a.id_componente = i.id_componente) " +
+			" 	GROUP BY a.id_entidade, a.id_ciclo, a.id_pilar, a.id_componente) R " +
+			" ON (a.id_entidade = R.id_entidade " +
+			" 	AND a.id_ciclo = R.id_ciclo " +
+			" 	AND a.id_pilar = R.id_pilar " +
+			" 	AND a.id_componente = R.id_componente) " +
+			" WHERE a.id_entidade = " + entidadeId + " AND a.id_ciclo = " + cicloId +
 			" ORDER BY d.nome, e.nome "
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -267,11 +267,11 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		page.Produtos = produtos
 		orderable := ""
 		sql = " SELECT " +
-			" b.usuario_id, coalesce(c.name,''), UPPER(coalesce(c.name,'')) AS supervisor_nome " +
+			" b.id_usuario, coalesce(c.name,''), UPPER(coalesce(c.name,'')) AS supervisor_nome " +
 			" FROM escritorios a " +
-			" LEFT JOIN membros b ON a.id = b.escritorio_id " +
-			" LEFT JOIN users c ON b.usuario_id = c.id " +
-			" WHERE c.role_id = 3 ORDER BY supervisor_nome "
+			" LEFT JOIN membros b ON a.id = b.id_escritorio " +
+			" LEFT JOIN users c ON b.id_usuario = c.id " +
+			" WHERE c.id_role = 3 ORDER BY supervisor_nome "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -285,16 +285,16 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		page.Supervisores = supervisores
 
 		sql = " SELECT " +
-			" a.usuario_id, " +
+			" a.id_usuario, " +
 			" coalesce(b.name,''), " +
 			" UPPER(coalesce(b.name,'')) AS orderable " +
 			" FROM integrantes a " +
 			" LEFT JOIN users b " +
-			" ON a.usuario_id = b.id " +
+			" ON a.id_usuario = b.id " +
 			" WHERE " +
-			" a.entidade_id = " + entidadeId +
-			" AND a.ciclo_id = " + cicloId +
-			" AND b.role_id = 4 "
+			" a.id_entidade = " + entidadeId +
+			" AND a.id_ciclo = " + cicloId +
+			" AND b.id_role = 4 "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -306,7 +306,7 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		sql = " SELECT id, cnpb, modalidade_id, CASE WHEN recurso_garantidor > 1000000 AND recurso_garantidor < 1000000000 THEN concat(format(recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN recurso_garantidor > 1000000000 THEN concat(format(recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(recurso_garantidor/1000,'N','pt-br'),' Milhares') END " +
-			" FROM planos WHERE entidade_id = ? AND left(cnpb,1) not in ('4','5') ORDER BY recurso_garantidor DESC "
+			" FROM planos WHERE id_entidade = ? AND left(cnpb,1) not in ('4','5') ORDER BY recurso_garantidor DESC "
 		log.Println(sql)
 		rows, _ = Db.Query(sql, entidadeId)
 		defer rows.Close()
@@ -360,7 +360,7 @@ func UpdateConfigPlanos(w http.ResponseWriter, r *http.Request) {
 	log.Println("planos: " + planos)
 	var planosPage []PlanosCfg
 	var planoPage PlanosCfg
-	sql := " select id, cnpb from planos where entidade_id = " + entidadeId + " order by cnpb "
+	sql := " select id, cnpb from planos where id_entidade = " + entidadeId + " order by cnpb "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -385,19 +385,19 @@ func UpdateConfigPlanos(w http.ResponseWriter, r *http.Request) {
 	if len(planos) > 0 {
 		planos = planos[:len(planos)-1]
 	}
-	sql = " select a.plano_id, c.cnpb, " +
+	sql = " select a.id_plano, c.cnpb, " +
 		" case when count(b.id) = 0 then 1 else 0 end as pode_apagar " +
 		" from produtos_elementos a " +
 		" left join produtos_elementos_historicos b on " +
-		" (a.entidade_id = b.entidade_id and a.ciclo_id = b.ciclo_id " +
-		" and a.pilar_id = b.pilar_id and a.componente_id = b.componente_id " +
-		" and a.plano_id = b.plano_id) " +
-		" inner join planos c on c.id = a.plano_id " +
-		" where a.entidade_id = " + entidadeId +
-		" and a.ciclo_id = " + cicloId +
-		" and a.pilar_id = " + pilarId +
-		" and a.componente_id = " + componenteId +
-		" group by a.plano_id,c.cnpb "
+		" (a.id_entidade = b.id_entidade and a.id_ciclo = b.id_ciclo " +
+		" and a.id_pilar = b.id_pilar and a.id_componente = b.id_componente " +
+		" and a.id_plano = b.id_plano) " +
+		" inner join planos c on c.id = a.id_plano " +
+		" where a.id_entidade = " + entidadeId +
+		" and a.id_ciclo = " + cicloId +
+		" and a.id_pilar = " + pilarId +
+		" and a.id_componente = " + componenteId +
+		" group by a.id_plano,c.cnpb "
 	log.Println(sql)
 	rows, _ = Db.Query(sql)
 	defer rows.Close()
@@ -514,11 +514,11 @@ func UpdateConfigPlanos(w http.ResponseWriter, r *http.Request) {
 
 func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, componenteId string, planoId string, currentUser mdl.User) {
 	sqlStatement := "DELETE FROM produtos_itens WHERE " +
-		" entidade_id = " + entidadeId +
-		" and ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and componente_id = " + componenteId +
-		" and plano_id = " + planoId
+		" id_entidade = " + entidadeId +
+		" and id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_componente = " + componenteId +
+		" and id_plano = " + planoId
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec()
@@ -526,11 +526,11 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 		log.Println(err.Error())
 	}
 	sqlStatement = "DELETE FROM produtos_elementos_historicos WHERE " +
-		" entidade_id = " + entidadeId +
-		" and ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and componente_id = " + componenteId +
-		" and plano_id = " + planoId
+		" id_entidade = " + entidadeId +
+		" and id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_componente = " + componenteId +
+		" and id_plano = " + planoId
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec()
@@ -538,11 +538,11 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 		log.Println(err.Error())
 	}
 	sqlStatement = "DELETE FROM produtos_elementos WHERE " +
-		" entidade_id = " + entidadeId +
-		" and ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and componente_id = " + componenteId +
-		" and plano_id = " + planoId
+		" id_entidade = " + entidadeId +
+		" and id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_componente = " + componenteId +
+		" and id_plano = " + planoId
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec()
@@ -550,11 +550,11 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 		log.Println(err.Error())
 	}
 	sqlStatement = "DELETE FROM produtos_tipos_notas WHERE " +
-		" entidade_id = " + entidadeId +
-		" and ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and componente_id = " + componenteId +
-		" and plano_id = " + planoId
+		" id_entidade = " + entidadeId +
+		" and id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_componente = " + componenteId +
+		" and id_plano = " + planoId
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec()
@@ -562,11 +562,11 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 		log.Println(err.Error())
 	}
 	sqlStatement = "DELETE FROM produtos_planos WHERE " +
-		" entidade_id = " + entidadeId +
-		" and ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and componente_id = " + componenteId +
-		" and plano_id = " + planoId
+		" id_entidade = " + entidadeId +
+		" and id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_componente = " + componenteId +
+		" and id_plano = " + planoId
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec()
@@ -587,10 +587,10 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	sqlStatement = "UPDATE produtos_componentes " +
 		" SET nota = 0 " +
 		" WHERE " +
-		" entidade_id = " + entidadeId +
-		" and ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and componente_id = " + componenteId
+		" id_entidade = " + entidadeId +
+		" and id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_componente = " + componenteId
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec()
@@ -599,9 +599,9 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	}
 	sqlStatement = "UPDATE produtos_pilares " +
 		" SET nota = 0 " +
-		" WHERE ciclo_id = " + cicloId +
-		" and pilar_id = " + pilarId +
-		" and entidade_id = " + entidadeId
+		" WHERE id_ciclo = " + cicloId +
+		" and id_pilar = " + pilarId +
+		" and id_entidade = " + entidadeId
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec()

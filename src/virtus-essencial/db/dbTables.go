@@ -10,16 +10,16 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'actions') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  actions (" +
-		" id integer DEFAULT NEXT VALUE FOR actions_id_seq NOT NULL, " +
+		" id_action integer DEFAULT NEXT VALUE FOR id_actions_seq NOT NULL, " +
 		" name varchar(255) NOT NULL, " +
-		" origin_status_id integer, " +
-		" destination_status_id integer, " +
+		" id_origin_status integer, " +
+		" id_destination_status integer, " +
 		" other_than bit, " +
 		" description varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END "
 	_, err := db.Exec(stmt)
 	if err != nil {
@@ -31,10 +31,10 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'actions_status') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE actions_status (" +
-		" id integer DEFAULT NEXT VALUE FOR actions_status_id_seq NOT NULL," +
-		" action_id integer," +
-		" origin_status_id integer," +
-		" destination_status_id integer)" +
+		" id_action_status integer DEFAULT NEXT VALUE FOR id_actions_status_seq NOT NULL," +
+		" id_action integer," +
+		" id_origin_status integer," +
+		" id_destination_status integer)" +
 		" END ")
 
 	// Table ACTIVITIES
@@ -42,10 +42,10 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'activities') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE activities (" +
-		" id integer DEFAULT NEXT VALUE FOR activities_id_seq NOT NULL," +
-		" workflow_id integer," +
-		" action_id integer," +
-		" expiration_action_id integer," +
+		" id_activity integer DEFAULT NEXT VALUE FOR id_activities_seq NOT NULL," +
+		" id_workflow integer," +
+		" id_action integer," +
+		" id_expiration_action integer," +
 		" expiration_time_days integer," +
 		" start_at datetime ," +
 		" end_at datetime )" +
@@ -56,9 +56,9 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'activities_roles') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE activities_roles (" +
-		" id integer DEFAULT NEXT VALUE FOR activities_roles_id_seq NOT NULL," +
-		" activity_id integer," +
-		" role_id integer)" +
+		" id_activity_role integer DEFAULT NEXT VALUE FOR id_activities_roles_seq NOT NULL," +
+		" id_activity integer," +
+		" id_role integer)" +
 		" END ")
 
 	// Table CHAMADOS
@@ -66,21 +66,21 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'chamados') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE chamados (" +
-		" id integer DEFAULT NEXT VALUE FOR chamados_id_seq NOT NULL," +
+		" id_chamado integer DEFAULT NEXT VALUE FOR id_chamados_seq NOT NULL," +
 		" titulo varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" acompanhamento varchar(4000)," +
-		" responsavel_id integer," +
-		" relator_id integer," +
-		" tipo_chamado_id character(1)," +
+		" id_responsavel integer," +
+		" id_relator integer," +
+		" id_tipo_chamado character(1)," +
 		" prioridade_id character(1)," +
 		" estimativa integer," +
 		" inicia_em datetime ," +
 		" pronto_em datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table CHAMADOS_VERSOES
@@ -88,9 +88,9 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'activities_roles') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE activities_roles (" +
-		" id integer DEFAULT NEXT VALUE FOR chamados_versoes_id_seq NOT NULL," +
-		" activity_id integer," +
-		" role_id integer)" +
+		" id_chamado_versao integer DEFAULT NEXT VALUE FOR id_chamados_versoes_seq NOT NULL," +
+		" id_activity integer," +
+		" id_role integer)" +
 		" END ")
 
 	// Table CICLOS
@@ -98,14 +98,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'ciclos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  ciclos (" +
-		" id integer DEFAULT NEXT VALUE FOR ciclos_id_seq NOT NULL," +
+		" id_ciclo integer DEFAULT NEXT VALUE FOR id_ciclos_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table CICLOS_ENTIDADES
@@ -113,17 +113,17 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'ciclos_entidades') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE ciclos_entidades (" +
-		" id integer DEFAULT NEXT VALUE FOR ciclos_entidades_id_seq NOT NULL," +
-		" ciclo_id integer," +
-		" entidade_id integer," +
+		" id_ciclo_entidade integer DEFAULT NEXT VALUE FOR id_ciclos_entidades_seq NOT NULL," +
+		" id_ciclo integer," +
+		" id_entidade integer," +
 		" tipo_media integer," +
-		" supervisor_id integer," + // TODO FK
+		" id_supervisor integer," + // TODO FK
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table COMENTARIOS ANOTACOES
@@ -131,14 +131,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'comentarios_anotacoes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  comentarios_anotacoes (" +
-		" id integer DEFAULT NEXT VALUE FOR comentarios_anotacoes_id_seq NOT NULL," +
-		" anotacao_id integer," +
+		" id_comentario_anotacao integer DEFAULT NEXT VALUE FOR id_comentarios_anotacoes_seq NOT NULL," +
+		" id_anotacao integer," +
 		" texto varchar(4000)," +
 		" referencia varchar(255)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table COMENTARIOS CHAMADOS
@@ -146,14 +146,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'comentarios_chamados') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  comentarios_chamados (" +
-		" id integer DEFAULT NEXT VALUE FOR comentarios_chamados_id_seq NOT NULL," +
-		" chamado_id integer," +
+		" id_comentario_chamado integer DEFAULT NEXT VALUE FOR id_comentarios_chamados_seq NOT NULL," +
+		" id_chamado integer," +
 		" texto varchar(4000)," +
 		" referencia varchar(255)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table COMPONENTES
@@ -161,15 +161,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'componentes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  componentes (" +
-		" id integer DEFAULT NEXT VALUE FOR componentes_id_seq NOT NULL," +
+		" id_componente integer DEFAULT NEXT VALUE FOR id_componentes_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
 		" pga varchar(1)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table COMPONENTES_PILARES
@@ -177,16 +177,16 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'componentes_pilares') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE componentes_pilares (" +
-		" id integer DEFAULT NEXT VALUE FOR componentes_pilares_id_seq NOT NULL," +
-		" componente_id integer, " +
-		" pilar_id integer," +
+		" id_componente_pilar integer DEFAULT NEXT VALUE FOR id_componentes_pilares_seq NOT NULL," +
+		" id_componente integer, " +
+		" id_pilar integer," +
 		" tipo_media integer," +
 		" peso_padrao integer," +
 		" sonda varchar (255)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END "
 	_, err = db.Exec(stmt)
 	if err != nil {
@@ -198,14 +198,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'elementos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  elementos (" +
-		" id integer DEFAULT NEXT VALUE FOR elementos_id_seq NOT NULL," +
+		" id_elemento integer DEFAULT NEXT VALUE FOR id_elementos_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
 		" peso integer DEFAULT 1 NOT NULL," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table ELEMENTOS_COMPONENTES
@@ -213,15 +213,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'elementos_componentes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE elementos_componentes (" +
-		" id integer DEFAULT NEXT VALUE FOR elementos_componentes_id_seq NOT NULL," +
-		" componente_id integer," +
-		" elemento_id integer," +
-		" tipo_nota_id integer," +
+		" id_elemento_componente integer DEFAULT NEXT VALUE FOR id_elementos_componentes_seq NOT NULL," +
+		" id_componente integer," +
+		" id_elemento integer," +
+		" id_tipo_nota integer," +
 		" peso_padrao integer," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table ENTIDADES
@@ -229,7 +229,7 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'entidades') AND type in (N'U')) " +
 		" BEGIN " +
 		" CREATE TABLE entidades (" +
-		" id integer DEFAULT NEXT VALUE FOR entidades_id_seq NOT NULL," +
+		" id_entidade integer DEFAULT NEXT VALUE FOR id_entidades_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" sigla varchar(25)," +
@@ -238,10 +238,10 @@ func createTable() {
 		" ESI BIT," +
 		" municipio varchar(255)," +
 		" sigla_uf character(2)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END "
 		//	log.Println(stmt)
 	_, err = db.Exec(stmt)
@@ -254,15 +254,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'escritorios') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  escritorios (" +
-		" id integer DEFAULT NEXT VALUE FOR escritorios_id_seq NOT NULL," +
+		" id_escritorio integer DEFAULT NEXT VALUE FOR id_escritorios_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" abreviatura character (4)," +
 		" descricao varchar(4000)," +
-		" chefe_id integer," +
-		" author_id integer," +
+		" id_chefe integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table FEATURES
@@ -270,14 +270,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'features') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  features  (" +
-		" id integer DEFAULT NEXT VALUE FOR features_id_seq NOT NULL," +
+		" id_feature integer DEFAULT NEXT VALUE FOR id_features_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" code varchar(255) NOT NULL," +
 		" description varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table FEATURES_ROLES
@@ -285,9 +285,9 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'features_roles') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE features_roles (" +
-		" id int DEFAULT NEXT VALUE FOR features_roles_id_seq," +
-		" feature_id int NOT NULL," +
-		" role_id int NOT NULL," +
+		" id int DEFAULT NEXT VALUE FOR id_features_roles_seq," +
+		" id_feature int NOT NULL," +
+		" id_role int NOT NULL," +
 		" CONSTRAINT pkey_features_roles PRIMARY KEY NONCLUSTERED (id))" +
 		" END ")
 
@@ -296,9 +296,9 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'features_activities') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE features_activities (" +
-		" id integer DEFAULT NEXT VALUE FOR features_activities_id_seq NOT NULL," +
-		" feature_id integer," +
-		" activity_id integer)" +
+		" id_feature_activity integer DEFAULT NEXT VALUE FOR id_features_activities_seq NOT NULL," +
+		" id_feature integer," +
+		" id_activity integer)" +
 		" END ")
 
 	// Table INTEGRANTES
@@ -306,17 +306,17 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'integrantes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE integrantes (" +
-		" id integer DEFAULT NEXT VALUE FOR integrantes_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" usuario_id integer," +
+		" id_integrante integer DEFAULT NEXT VALUE FOR id_integrantes_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_usuario integer," +
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
 		" motivacao varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table ITENS
@@ -324,14 +324,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'itens') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  itens (" +
-		" id integer DEFAULT NEXT VALUE FOR itens_id_seq NOT NULL," +
-		" elemento_id integer," +
+		" id_item integer DEFAULT NEXT VALUE FOR id_itens_seq NOT NULL," +
+		" id_elemento integer," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
 		" criado_em datetime ," +
-		" author_id integer," +
-		" status_id integer)" +
+		" id_author integer," +
+		" id_status integer)" +
 		" END ")
 
 	// Table JURISDICOES
@@ -339,15 +339,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'jurisdicoes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE jurisdicoes (" +
-		" id integer DEFAULT NEXT VALUE FOR jurisdicoes_id_seq NOT NULL," +
-		" escritorio_id integer," +
-		" entidade_id integer," +
+		" id_jurisdicao integer DEFAULT NEXT VALUE FOR id_jurisdicoes_seq NOT NULL," +
+		" id_escritorio integer," +
+		" id_entidade integer," +
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table MEMBROS
@@ -355,15 +355,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'membros') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE membros (" +
-		" id integer DEFAULT NEXT VALUE FOR membros_id_seq NOT NULL," +
-		" escritorio_id integer," +
-		" usuario_id integer," +
+		" id_membro integer DEFAULT NEXT VALUE FOR id_membros_seq NOT NULL," +
+		" id_escritorio integer," +
+		" id_usuario integer," +
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PILARES
@@ -371,14 +371,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'pilares') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  pilares (" +
-		" id integer DEFAULT NEXT VALUE FOR pilares_id_seq NOT NULL," +
+		" id_pilar integer DEFAULT NEXT VALUE FOR id_pilares_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PILARES_CICLOS
@@ -386,15 +386,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'pilares_ciclos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE pilares_ciclos (" +
-		" id integer DEFAULT NEXT VALUE FOR pilares_ciclos_id_seq NOT NULL," +
-		" pilar_id integer," +
-		" ciclo_id integer," +
+		" id_pilar_ciclo integer DEFAULT NEXT VALUE FOR id_pilares_ciclos_seq NOT NULL," +
+		" id_pilar integer," +
+		" id_ciclo integer," +
 		" tipo_media integer," +
 		" peso_padrao double precision," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PLANOS
@@ -402,8 +402,8 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'planos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  planos (" +
-		" id integer DEFAULT NEXT VALUE FOR planos_id_seq NOT NULL," +
-		" entidade_id integer," +
+		" id_plano integer DEFAULT NEXT VALUE FOR id_planos_seq NOT NULL," +
+		" id_entidade integer," +
 		" nome varchar(255)," +
 		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
@@ -412,10 +412,10 @@ func createTable() {
 		" situacao varchar(255)," +
 		" recurso_garantidor double precision," +
 		" modalidade_id character(2)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PROCESSOS
@@ -423,15 +423,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'processos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  processos (" +
-		" id integer DEFAULT NEXT VALUE FOR processos_id_seq NOT NULL," +
-		" questao_id integer," +
+		" id_processo integer DEFAULT NEXT VALUE FOR id_processos_seq NOT NULL," +
+		" id_questao integer," +
 		" numero varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(255)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_CICLOS
@@ -439,19 +439,19 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_ciclos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_ciclos (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_ciclos_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" tipo_pontuacao_id integer," +
+		" id_produto_ciclo integer DEFAULT NEXT VALUE FOR id_produtos_ciclos_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_tipo_pontuacao integer," +
 		" nota double precision," +
 		" analise varchar(4000)," +
 		" motivacao varchar(4000)," +
-		" supervisor_id integer," +
-		" auditor_id integer," +
-		" author_id integer," +
+		" id_supervisor integer," +
+		" id_auditor integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_PILARES
@@ -459,22 +459,22 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_pilares') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_pilares (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_pilares_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" tipo_pontuacao_id integer," +
+		" id_produto_pilar integer DEFAULT NEXT VALUE FOR id_produtos_pilares_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
 		" analise varchar(4000)," +
 		" motivacao_peso varchar(4000)," +
 		" motivacao_nota varchar(4000)," +
-		" supervisor_id integer," +
-		" auditor_id integer," +
-		" author_id integer," +
+		" id_supervisor integer," +
+		" id_auditor integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_COMPONENTES
@@ -482,12 +482,12 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_componentes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_componentes (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_componentes_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" componente_id integer," +
-		" tipo_pontuacao_id integer," +
+		" id_produto_componente integer DEFAULT NEXT VALUE FOR id_produtos_componentes_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_componente integer," +
+		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
 		" analise varchar(4000)," +
@@ -495,14 +495,14 @@ func createTable() {
 		" motivacao_nota varchar(4000)," +
 		" motivacao_reprogramacao character varying(4000)," +
 		" justificativa varchar(4000)," +
-		" supervisor_id integer," +
-		" auditor_id integer," +
-		" author_id integer," +
+		" id_supervisor integer," +
+		" id_auditor integer," +
+		" id_author integer," +
 		" inicia_em DATE ," +
 		" termina_em DATE ," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_ELEMENTOS
@@ -510,27 +510,27 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_elementos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_elementos (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_elementos_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" componente_id integer," +
-		" plano_id integer," +
-		" tipo_nota_id integer," +
-		" elemento_id integer," +
-		" tipo_pontuacao_id integer," +
+		" id_produto_elemento integer DEFAULT NEXT VALUE FOR id_produtos_elementos_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_componente integer," +
+		" id_plano integer," +
+		" id_tipo_nota integer," +
+		" id_elemento integer," +
+		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
 		" analise varchar(4000)," +
 		" motivacao_peso varchar(4000)," +
 		" motivacao_nota varchar(4000)," +
 		" justificativa varchar(4000)," +
-		" supervisor_id integer," +
-		" auditor_id integer," +
-		" author_id integer," +
+		" id_supervisor integer," +
+		" id_auditor integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_ITENS
@@ -538,21 +538,21 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_itens') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_itens (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_itens_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" componente_id integer," +
-		" plano_id integer," +
-		" tipo_nota_id integer," +
-		" elemento_id integer," +
-		" item_id integer," +
+		" id_produto_item integer DEFAULT NEXT VALUE FOR id_produtos_itens_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_componente integer," +
+		" id_plano integer," +
+		" id_tipo_nota integer," +
+		" id_elemento integer," +
+		" id_item integer," +
 		" analise varchar(4000)," +
 		" anexo varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_PLANOS
@@ -560,22 +560,22 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_planos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_planos (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_planos_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" componente_id integer," +
-		" plano_id integer," +
-		" tipo_pontuacao_id integer," +
+		" id_produto_plano integer DEFAULT NEXT VALUE FOR id_produtos_planos_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_componente integer," +
+		" id_plano integer," +
+		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
 		" analise varchar(4000)," +
 		" motivacao_peso varchar(4000)," +
 		" motivacao_nota varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table PRODUTOS_TIPOS_NOTAS
@@ -583,22 +583,22 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_tipos_notas') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  produtos_tipos_notas (" +
-		" id integer DEFAULT NEXT VALUE FOR produtos_tipos_notas_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" componente_id integer," +
-		" plano_id integer," +
-		" tipo_nota_id integer," +
-		" tipo_pontuacao_id integer," +
+		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_produtos_tipos_notas_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_componente integer," +
+		" id_plano integer," +
+		" id_tipo_nota integer," +
+		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
 		" analise varchar(4000)," +
 		" anexo varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table ANOTACOES
@@ -606,26 +606,26 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'anotacoes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  anotacoes (" +
-		" id integer DEFAULT NEXT VALUE FOR anotacoes_id_seq NOT NULL," +
-		" entidade_id integer," +
-		" ciclo_id integer," +
-		" pilar_id integer," +
-		" componente_id integer," +
-		" plano_id integer," +
-		" tipo_nota_id integer," +
-		" elemento_id integer," +
-		" item_id integer," +
+		" id_anotacao integer DEFAULT NEXT VALUE FOR id_anotacoes_seq NOT NULL," +
+		" id_entidade integer," +
+		" id_ciclo integer," +
+		" id_pilar integer," +
+		" id_componente integer," +
+		" id_plano integer," +
+		" id_tipo_nota integer," +
+		" id_elemento integer," +
+		" id_item integer," +
 		" assunto varchar(255) NOT NULL," +
 		" risco character(1)," +
 		" tendencia character(1)," +
-		" relator_id integer," +
-		" responsavel_id integer," +
+		" id_relator integer," +
+		" id_responsavel integer," +
 		" descricao varchar(4000)," +
 		" matriz varchar(255)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table ANOTACOES_RADARES
@@ -633,17 +633,17 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'anotacoes_radares') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  anotacoes_radares (" +
-		" id integer DEFAULT NEXT VALUE FOR anotacoes_radares_id_seq NOT NULL," +
-		" radar_id integer," +
-		" anotacao_id integer," +
+		" id_anotacao_radar integer DEFAULT NEXT VALUE FOR id_anotacoes_radares_seq NOT NULL," +
+		" id_radar integer," +
+		" id_anotacao integer," +
 		" observacoes varchar(4000)," +
 		" registro_ata varchar(4000)," +
 		" ultima_atualizacao datetime ," +
-		" ultimo_atualizador_id integer," +
-		" author_id integer," +
+		" id_ultimo_atualizador integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table RADARES
@@ -651,15 +651,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'radares') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  radares  (" +
-		" id integer DEFAULT NEXT VALUE FOR radares_id_seq NOT NULL," +
+		" id_radar integer DEFAULT NEXT VALUE FOR id_radares_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
 		" referencia varchar(255)," +
 		" data_radar datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table ROLES
@@ -667,13 +667,13 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'roles') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  roles  (" +
-		" id integer DEFAULT NEXT VALUE FOR roles_id_seq NOT NULL," +
+		" id_role integer DEFAULT NEXT VALUE FOR id_roles_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" description varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table VERSOES
@@ -681,16 +681,16 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'versoes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  versoes (" +
-		" id integer DEFAULT NEXT VALUE FOR versoes_id_seq NOT NULL," +
+		" id_versao integer DEFAULT NEXT VALUE FOR id_versoes_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" objetivo varchar(4000)," +
 		" definicao_pronto varchar(4000)," +
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table STATUS
@@ -698,13 +698,13 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'status') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  status  (" +
-		" id integer DEFAULT NEXT VALUE FOR status_id_seq NOT NULL," +
+		" id_status integer DEFAULT NEXT VALUE FOR id_status_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" description varchar(4000)," +
-		" author_id integer," +
+		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer," +
+		" id_status integer," +
 		" stereotype varchar(255))" +
 		" END ")
 	if err != nil {
@@ -716,16 +716,16 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'tipos_notas') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  tipos_notas (" +
-		" id integer DEFAULT NEXT VALUE FOR tipos_notas_id_seq NOT NULL," +
+		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_tipos_notas_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(255)," +
 		" referencia varchar(500)," +
 		" letra character(1) NOT NULL," +
 		" cor_letra character(6)," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table TIPOS_NOTAS_COMPONENTES
@@ -733,14 +733,14 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'tipos_notas_componentes') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE tipos_notas_componentes (" +
-		" id integer DEFAULT NEXT VALUE FOR tipos_notas_componentes_id_seq NOT NULL," +
-		" componente_id integer," +
-		" tipo_nota_id integer," +
+		" id_tipo_nota_componente integer DEFAULT NEXT VALUE FOR id_tipos_notas_componentes_seq NOT NULL," +
+		" id_componente integer," +
+		" id_tipo_nota integer," +
 		" peso_padrao double precision," +
-		" author_id integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table USERS
@@ -748,17 +748,17 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'users') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  users (" +
-		" id integer DEFAULT NEXT VALUE FOR users_id_seq NOT NULL," +
+		" id_user integer DEFAULT NEXT VALUE FOR id_users_seq NOT NULL," +
 		" name varchar(255)," +
 		" username varchar(255) NOT NULL," +
 		" password varchar(255) NOT NULL," +
 		" email varchar(255)," +
 		" mobile varchar(255)," +
-		" role_id integer," +
-		" author_id integer," +
+		" id_role integer," +
+		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 
 	// Table WORKFLOWS
@@ -766,15 +766,15 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'workflows') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE  workflows  (" +
-		" id integer DEFAULT NEXT VALUE FOR workflows_id_seq NOT NULL," +
+		" id_workflow integer DEFAULT NEXT VALUE FOR id_workflows_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" description varchar(4000)," +
 		" entity_type varchar(50)," +
 		" start_at datetime ," +
 		" end_at datetime ," +
-		" author_id integer," +
+		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
-		" status_id integer)" +
+		" id_status integer)" +
 		" END ")
 }

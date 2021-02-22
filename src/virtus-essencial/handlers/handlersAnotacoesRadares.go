@@ -14,23 +14,23 @@ func ListAnotacoesRadarByRadarId(radarId string) []mdl.AnotacaoRadar {
 	log.Println("radarId: " + radarId)
 	sql := " SELECT a.id, " +
 		" a.radar_id, " +
-		" d.entidade_id, " +
-		" a.anotacao_id, " +
+		" d.id_entidade, " +
+		" a.id_anotacao, " +
 		" coalesce(a.observacoes,''), " +
 		" coalesce(a.registro_ata,''), " +
-		" a.author_id, " +
+		" a.id_author, " +
 		" coalesce(b.name,'') as author_name, " +
 		" coalesce(format(a.criado_em,'dd/MM/yyyy')) as criado_em, " +
-		" a.status_id, " +
+		" a.id_status, " +
 		" coalesce(c.name,'') as status_name, " +
-		" a.ultimo_atualizador_id, " +
+		" a.id_ultimo_atualizador, " +
 		" coalesce(e.name,'') as ultimo_atualizador_name, " +
 		" coalesce(format(a.ultima_atualizacao,'dd/MM/yyyy')) " +
 		" FROM anotacoes_radares a " +
-		" LEFT JOIN anotacoes d ON a.anotacao_id = d.id " +
-		" LEFT JOIN users b ON a.author_id = b.id " +
-		" LEFT JOIN status c ON a.status_id = c.id " +
-		" LEFT JOIN users e ON a.ultimo_atualizador_id = e.id " +
+		" LEFT JOIN anotacoes d ON a.id_anotacao = d.id " +
+		" LEFT JOIN users b ON a.id_author = b.id " +
+		" LEFT JOIN status c ON a.id_status = c.id " +
+		" LEFT JOIN users e ON a.id_ultimo_atualizador = e.id " +
 		" WHERE a.radar_id = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, radarId)
@@ -92,8 +92,8 @@ func hasSomeFieldChangedAnotacaoRadar(anotacaoRadarPage mdl.AnotacaoRadar, anota
 
 func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB mdl.AnotacaoRadar, currentUserId int64) {
 	sqlStatement := "UPDATE anotacoes_radares " +
-		" SET radar_id=?, anotacao_id=?, observacoes=?, registro_ata=?, " +
-		" ultimo_atualizador_id=?, ultima_atualizacao=? " +
+		" SET radar_id=?, id_anotacao=?, observacoes=?, registro_ata=?, " +
+		" id_ultimo_atualizador=?, ultima_atualizacao=? " +
 		" WHERE id = ? "
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)

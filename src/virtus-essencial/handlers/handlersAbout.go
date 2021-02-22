@@ -19,18 +19,18 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id, " +
 			" coalesce(a.titulo,''), " +
 			" coalesce(a.descricao,''), " +
-			" coalesce(a.responsavel_id,0), " +
+			" coalesce(a.id_responsavel,0), " +
 			" coalesce(d.name,'') as responsavel_name, " +
-			" coalesce(a.relator_id, 0), " +
+			" coalesce(a.id_relator, 0), " +
 			" coalesce(e.name,'') as relator_name, " +
 			" coalesce(format(a.inicia_em,'dd/MM/yyyy'),''), " +
 			" coalesce(format(a.pronto_em,'dd/MM/yyyy'),''), " +
 			" case " +
-			"   when a.tipo_chamado_id = 'A' then 'Adequação' " +
-			"   when a.tipo_chamado_id = 'C' then 'Correção' " +
-			"   when a.tipo_chamado_id = 'D' then 'Dúvida' " +
-			"   when a.tipo_chamado_id = 'M' then 'Melhoria' " +
-			"   when a.tipo_chamado_id = 'S' then 'Sugestão' " +
+			"   when a.id_tipo_chamado = 'A' then 'Adequação' " +
+			"   when a.id_tipo_chamado = 'C' then 'Correção' " +
+			"   when a.id_tipo_chamado = 'D' then 'Dúvida' " +
+			"   when a.id_tipo_chamado = 'M' then 'Melhoria' " +
+			"   when a.id_tipo_chamado = 'S' then 'Sugestão' " +
 			"   else 'Tarefa' " +
 			" end, " +
 			" case " +
@@ -39,18 +39,18 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 			"   else 'Baixa' " +
 			" end, " +
 			" coalesce(a.estimativa,0), " +
-			" coalesce(a.author_id,0), " +
+			" coalesce(a.id_author,0), " +
 			" coalesce(b.name,''), " +
 			" coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),''), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" coalesce(a.status_id,0), " +
+			" coalesce(a.id_status,0), " +
 			" coalesce(a.id_versao_origem,0) " +
 			" FROM chamados a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
-			" LEFT JOIN users d ON a.responsavel_id = d.id " +
-			" LEFT JOIN users e ON a.relator_id = e.id " +
-			" WHERE a.status_id = " + strconv.Itoa(chamadoEndStatusId) +
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
+			" LEFT JOIN users d ON a.id_responsavel = d.id " +
+			" LEFT JOIN users e ON a.id_relator = e.id " +
+			" WHERE a.id_status = " + strconv.Itoa(chamadoEndStatusId) +
 			" order by a.id desc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)

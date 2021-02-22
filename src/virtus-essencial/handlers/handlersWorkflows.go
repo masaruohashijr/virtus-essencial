@@ -15,8 +15,8 @@ import (
 
 func GetStartStatus(entityType string) int {
 	log.Println("Get <<Start>> Status")
-	query := "SELECT TOP 1 id FROM status where id in (select origin_status_id from actions_status where action_id in " +
-		" ( select action_id from activities where workflow_id in (select id from workflows where " +
+	query := "SELECT TOP 1 id FROM status where id in (select id_origin_status from actions_status where id_action in " +
+		" ( select id_action from activities where id_workflow in (select id from workflows where " +
 		" entity_type = ? and end_at is null))) " +
 		" and stereotype = 'Start' "
 	log.Println("List WF -> Query: " + query)
@@ -34,8 +34,8 @@ func GetStartStatus(entityType string) int {
 
 func GetEndStatus(entityType string) int {
 	log.Println("Get <<End>> Status")
-	query := "SELECT TOP 1 id FROM status where id in (select destination_status_id from actions_status where action_id in " +
-		" ( select action_id from activities where workflow_id in (select id from workflows where " +
+	query := "SELECT TOP 1 id FROM status where id in (select id_destination_status from actions_status where id_action in " +
+		" ( select id_action from activities where id_workflow in (select id from workflows where " +
 		" entity_type = ? and end_at is null))) " +
 		" and stereotype = 'End' "
 	log.Println("List WF -> Query: " + query)
@@ -65,7 +65,8 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		updtForm.Exec(time.Now(), entityType)
 		sqlStatement = "INSERT INTO " +
-			" workflows(name, entity_type, start_at, description, author_id, created_at) OUTPUT INSERTED.id " +
+			" workflows(name, entity_type, start_at, description, id_author, created_at) " +
+			" OUTPUT INSERTED.id_workflow " +
 			" VALUES (?,?,GETDATE(),?,?,GETDATE()) "
 		wId := 0
 		err = Db.QueryRow(
@@ -94,8 +95,8 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				strRoles := strings.Split(array[10], ":")[1]
 				log.Println("actionId: " + actionId)
 				sqlStatement := "INSERT INTO " +
-					" activities(workflow_id, action_id, start_at, end_at, expiration_time_days, expiration_action_id) " +
-					" OUTPUT INSERTED.id VALUES (?,?,?,?,?,?) "
+					" activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
+					" OUTPUT INSERTED.id_activity VALUES (?,?,?,?,?,?) "
 				log.Println(sqlStatement)
 				log.Println("wId: " + strconv.Itoa(wId) + " | Action: " + actionId + " | ExpDays: " + expTime + " | ExpAction: " + expActionId)
 				if expActionId == "" {
@@ -111,7 +112,7 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 					roles := strings.Split(strRoles, ".")
 					for _, roleId := range roles {
 						sqlStatement := "INSERT INTO " +
-							" activities_roles(activity_id, role_id) " +
+							" activities_roles(id_activity, id_role) " +
 							" VALUES (?,?)"
 						log.Println(sqlStatement + " - " + strconv.Itoa(activityId) + " - " + roleId)
 						Db.QueryRow(sqlStatement, activityId, roleId)
@@ -225,8 +226,8 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				act = diffPage[i]
 				log.Println("Workflow Id: " + strconv.FormatInt(act.WorkflowId, 10))
 				sqlStatement := "INSERT INTO " +
-					"activities(workflow_id, action_id, start_at, end_at, expiration_time_days, expiration_action_id) " +
-					"OUTPUT INSERTED.id VALUES (?,?,?,?,?,?) "
+					"activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
+					"OUTPUT INSERTED.id_activity VALUES (?,?,?,?,?,?) "
 				log.Println(sqlStatement)
 				var activityId int
 				log.Println("wId: " + wId + " | Action: " + strconv.FormatInt(act.ActionId, 10) + " | ExpDays: " + strconv.Itoa(act.ExpirationTimeDays) + " | ExpAction: " + strconv.FormatInt(act.ExpirationActionId, 10))
@@ -245,7 +246,7 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				strRoles := strings.Split(act.CRoles, ".")
 				for _, roleId := range strRoles {
 					sqlStatement := "INSERT INTO " +
-						"activities_roles(activity_id, role_id) " +
+						"activities_roles(id_activity, id_role) " +
 						"VALUES (?,?)"
 					log.Println(sqlStatement + " - " + strconv.Itoa(activityId) + " - " + roleId)
 					Db.QueryRow(sqlStatement, activityId, roleId)
@@ -309,16 +310,16 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(format(a.start_at,'dd/MM/yyyy'),'') as c_start_at, " +
 			" coalesce(format(a.end_at,'dd/MM/yyyy'),'') as c_end_at, " +
 			" coalesce(a.description,'') as dsc, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.created_at,'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM " +
 			" workflows a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" ORDER BY a.id ASC"
 
 		log.Println("List WF -> SQL: " + sql)
@@ -348,15 +349,15 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 		sql = " SELECT " +
 			" a.id, " +
 			" a.name, " +
-			" a.origin_status_id, " +
+			" a.id_origin_status, " +
 			" b.name as origin_status, " +
-			" a.destination_status_id, " +
+			" a.id_destination_status, " +
 			" c.name as destination_status, " +
 			" a.other_than " +
 			" FROM " +
 			" actions a " +
-			" LEFT JOIN status b ON a.origin_status_id = b.id " +
-			" LEFT JOIN status c ON a.destination_status_id = c.id " +
+			" LEFT JOIN status b ON a.id_origin_status = b.id " +
+			" LEFT JOIN status c ON a.id_destination_status = c.id " +
 			" ORDER BY a.id asc"
 		log.Println("List WF -> sql: " + sql)
 		rows, _ = Db.Query(sql)

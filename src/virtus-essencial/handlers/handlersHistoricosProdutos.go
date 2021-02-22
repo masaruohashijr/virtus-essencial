@@ -10,23 +10,23 @@ import (
 
 func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId string, componenteId string, currentUser mdl.User, configuracaoAnterior string, motivacao string) {
 	sqlStatement := " INSERT INTO produtos_componentes_historicos( " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	componente_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_componente,  " +
 		"	tipo_alteracao,  " +
 		" 	config, " +
 		"	config_anterior, " +
 		"	motivacao_config, " +
-		"	author_id, " +
+		"	id_author, " +
 		"	criado_em, " +
 		"	id_versao_origem, " +
-		"	status_id) " +
+		"	id_status) " +
 		" SELECT " +
-		"	a.entidade_id, " +
-		"	a.ciclo_id, " +
-		"	a.pilar_id, " +
-		"	a.componente_id, " +
+		"	a.id_entidade, " +
+		"	a.id_ciclo, " +
+		"	a.id_pilar, " +
+		"	a.id_componente, " +
 		"	'P', " +
 		"	COALESCE(cfg.planos_configurados,''), " +
 		"	'" + configuracaoAnterior + "', " +
@@ -34,36 +34,36 @@ func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId s
 		strconv.FormatInt(currentUser.Id, 10) + ", " +
 		"	GETDATE(),  " +
 		"	a.id,  " +
-		"	a.status_id " +
+		"	a.id_status " +
 		"	FROM produtos_componentes a " +
-		"	LEFT JOIN (SELECT pp.entidade_id, pp.ciclo_id, pp.pilar_id, pp.componente_id, string_agg(pl.cnpb,', ') planos_configurados " +
-		"	FROM produtos_planos pp INNER JOIN planos pl ON pp.plano_id = pl.id GROUP BY " +
-		" 	pp.entidade_id, " +
-		" 	pp.ciclo_id, " +
-		" 	pp.pilar_id, " +
-		" 	pp.componente_id) cfg " +
-		" 	ON ( cfg.entidade_id = a.entidade_id AND cfg.pilar_id =  a.pilar_id AND cfg.componente_id = a.componente_id ) " +
-		"	WHERE a.entidade_id = " + entidadeId + " AND " +
-		"	a.ciclo_id = " + cicloId + " AND " +
-		"	a.pilar_id = " + pilarId + " AND " +
-		"	a.componente_id = " + componenteId
+		"	LEFT JOIN (SELECT pp.id_entidade, pp.id_ciclo, pp.id_pilar, pp.id_componente, string_agg(pl.cnpb,', ') planos_configurados " +
+		"	FROM produtos_planos pp INNER JOIN planos pl ON pp.id_plano = pl.id GROUP BY " +
+		" 	pp.id_entidade, " +
+		" 	pp.id_ciclo, " +
+		" 	pp.id_pilar, " +
+		" 	pp.id_componente) cfg " +
+		" 	ON ( cfg.id_entidade = a.id_entidade AND cfg.id_pilar =  a.id_pilar AND cfg.id_componente = a.id_componente ) " +
+		"	WHERE a.id_entidade = " + entidadeId + " AND " +
+		"	a.id_ciclo = " + cicloId + " AND " +
+		"	a.id_pilar = " + pilarId + " AND " +
+		"	a.id_componente = " + componenteId
 	log.Println(sqlStatement)
 	Db.QueryRow(sqlStatement)
 }
 
 func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, currentUser mdl.User, tipoData string) {
 	sqlStatement := "INSERT INTO produtos_componentes_historicos( " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	componente_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_componente,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	tipo_alteracao,  " +
 		"	motivacao_reprogramacao,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  "
+		"	id_supervisor,  " +
+		"	id_auditor,  "
 	if tipoData == "iniciaEm" {
 		sqlStatement += "	inicia_em, "
 		sqlStatement += "	inicia_em_anterior, "
@@ -71,16 +71,16 @@ func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, cu
 		sqlStatement += "	termina_em, "
 		sqlStatement += "	termina_em_anterior, "
 	}
-	sqlStatement += "	author_id,  " +
+	sqlStatement += "	id_author,  " +
 		"	criado_em,  " +
 		"	id_versao_origem,  " +
-		"	status_id) " +
+		"	id_status) " +
 		"SELECT  " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	componente_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_componente,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  "
 	if tipoData == "iniciaEm" {
@@ -89,8 +89,8 @@ func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, cu
 		sqlStatement += "	'T',  "
 	}
 	sqlStatement += "	motivacao_reprogramacao,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  "
+		"	id_supervisor,  " +
+		"	id_auditor,  "
 	if tipoData == "iniciaEm" {
 		sqlStatement += " '" + produto.IniciaEm + "',  "
 		sqlStatement += " '" + produto.IniciaEmAnterior + "',  "
@@ -101,158 +101,158 @@ func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, cu
 	sqlStatement += strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
 		"	id,  " +
-		"	status_id " +
+		"	id_status " +
 		"	FROM produtos_componentes " +
-		"	WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
-		"	ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
-		"	pilar_id = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
-		"	componente_id = " + strconv.FormatInt(produto.ComponenteId, 10)
+		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
+		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
+		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
+		"	id_componente = " + strconv.FormatInt(produto.ComponenteId, 10)
 	log.Println(sqlStatement)
 	Db.QueryRow(sqlStatement)
 }
 
 func registrarHistoricoAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.User) {
 	sqlStatement := "INSERT INTO produtos_componentes_historicos( " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	componente_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_componente,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	tipo_alteracao,  " +
 		"	justificativa,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
 		"	auditor_anterior_id,  " +
-		"	author_id,  " +
+		"	id_author,  " +
 		"	criado_em,  " +
 		"	id_versao_origem,  " +
-		"	status_id) " +
+		"	id_status) " +
 		"SELECT  " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	componente_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_componente,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	'R',  " +
 		"	justificativa,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
 		strconv.FormatInt(produto.AuditorAnteriorId, 10) + ",  " +
 		strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
 		"	id,  " +
-		"	status_id " +
+		"	id_status " +
 		"	FROM produtos_componentes " +
-		"	WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
-		"	ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
-		"	pilar_id = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
-		"	componente_id = " + strconv.FormatInt(produto.ComponenteId, 10)
+		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
+		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
+		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
+		"	id_componente = " + strconv.FormatInt(produto.ComponenteId, 10)
 	log.Println(sqlStatement)
 	Db.QueryRow(sqlStatement)
 }
 
 func registrarHistoricoNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) {
 	sqlStatement := "INSERT INTO produtos_elementos_historicos( " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	plano_id,  " +
-		"	componente_id,  " +
-		"   tipo_nota_id," +
-		"   elemento_id," +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_plano,  " +
+		"	id_componente,  " +
+		"   id_tipo_nota," +
+		"   id_elemento," +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	tipo_alteracao,  " +
 		"	motivacao_nota,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
-		"	author_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
+		"	id_author,  " +
 		"	criado_em,  " +
 		"	id_versao_origem,  " +
-		"	status_id) " +
+		"	id_status) " +
 		"SELECT  " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	plano_id,  " +
-		"	componente_id,  " +
-		"	tipo_nota_id,  " +
-		"	elemento_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_plano,  " +
+		"	id_componente,  " +
+		"	id_tipo_nota,  " +
+		"	id_elemento,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	'N',  " +
 		"	motivacao_nota,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
 		"	" + strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
 		"	id,  " +
-		"	status_id " +
+		"	id_status " +
 		"	FROM produtos_elementos " +
-		"	WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
-		"	ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
-		"	pilar_id = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
-		"	plano_id = " + strconv.FormatInt(produto.PlanoId, 10) + " AND " +
-		"	componente_id = " + strconv.FormatInt(produto.ComponenteId, 10) + " AND " +
-		"	tipo_nota_id = " + strconv.FormatInt(produto.TipoNotaId, 10) + " AND " +
-		"	elemento_id = " + strconv.FormatInt(produto.ElementoId, 10)
+		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
+		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
+		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
+		"	id_plano = " + strconv.FormatInt(produto.PlanoId, 10) + " AND " +
+		"	id_componente = " + strconv.FormatInt(produto.ComponenteId, 10) + " AND " +
+		"	id_tipo_nota = " + strconv.FormatInt(produto.TipoNotaId, 10) + " AND " +
+		"	id_elemento = " + strconv.FormatInt(produto.ElementoId, 10)
 	log.Println(sqlStatement)
 	Db.QueryRow(sqlStatement)
 }
 
 func registrarHistoricoPesoElemento(produto mdl.ProdutoElemento, currentUser mdl.User) {
 	sqlStatement := "INSERT INTO produtos_elementos_historicos( " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	plano_id,  " +
-		"	componente_id,  " +
-		"   tipo_nota_id," +
-		"   elemento_id," +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_plano,  " +
+		"	id_componente,  " +
+		"   id_tipo_nota," +
+		"   id_elemento," +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	tipo_alteracao,  " +
 		"	motivacao_peso,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
-		"	author_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
+		"	id_author,  " +
 		"	criado_em,  " +
 		"	id_versao_origem,  " +
-		"	status_id) " +
+		"	id_status) " +
 		"SELECT  " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	plano_id,  " +
-		"	componente_id,  " +
-		"	tipo_nota_id,  " +
-		"	elemento_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_plano,  " +
+		"	id_componente,  " +
+		"	id_tipo_nota,  " +
+		"	id_elemento,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	'P',  " +
 		"	motivacao_peso,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
 		"	" + strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
 		"	id,  " +
-		"	status_id " +
+		"	id_status " +
 		"	FROM produtos_elementos " +
-		"	WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
-		"	ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
-		"	pilar_id = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
-		//"	plano_id = " + strconv.FormatInt(produto.PlanoId, 10) + " AND " +
-		"	componente_id = " + strconv.FormatInt(produto.ComponenteId, 10) + " AND " +
-		"	tipo_nota_id = " + strconv.FormatInt(produto.TipoNotaId, 10) + " AND " +
-		"	elemento_id = " + strconv.FormatInt(produto.ElementoId, 10)
+		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
+		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
+		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
+		//"	id_plano = " + strconv.FormatInt(produto.PlanoId, 10) + " AND " +
+		"	id_componente = " + strconv.FormatInt(produto.ComponenteId, 10) + " AND " +
+		"	id_tipo_nota = " + strconv.FormatInt(produto.TipoNotaId, 10) + " AND " +
+		"	id_elemento = " + strconv.FormatInt(produto.ElementoId, 10)
 	log.Println(sqlStatement)
 	Db.QueryRow(sqlStatement)
 }
@@ -283,28 +283,28 @@ func ListHistoricosElemento(filtro mdl.Historico) []mdl.Historico {
 	log.Println("List Históricos do Elemento")
 	sql := "SELECT " +
 		"a.id, " +
-		"a.entidade_id, " +
-		"a.ciclo_id, " +
-		"a.pilar_id, " +
-		"a.plano_id, " +
-		"a.componente_id, " +
-		"a.elemento_id, " +
+		"a.id_entidade, " +
+		"a.id_ciclo, " +
+		"a.id_pilar, " +
+		"a.id_plano, " +
+		"a.id_componente, " +
+		"a.id_elemento, " +
 		"a.peso, " +
-		"a.tipo_pontuacao_id, " +
+		"a.id_tipo_pontuacao, " +
 		"a.nota, " +
-		"a.author_id, " +
+		"a.id_author, " +
 		"coalesce(b.name,''), " +
 		"coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as alterado_em, " +
 		"case when tipo_alteracao = 'P' then a.motivacao_peso else a.motivacao_nota end, " +
 		"case when tipo_alteracao = 'P' then 'Peso' else 'Nota' end " +
 		"FROM produtos_elementos_historicos a " +
-		"LEFT JOIN users b ON a.author_id = b.id " +
-		"WHERE a.entidade_id = " + filtro.EntidadeId + " AND " +
-		"a.ciclo_id = " + filtro.CicloId + " AND " +
-		"a.pilar_id = " + filtro.PilarId + " AND " +
-		"a.plano_id = " + filtro.PlanoId + " AND " +
-		"a.componente_id = " + filtro.ComponenteId + " AND " +
-		"a.elemento_id = " + filtro.ElementoId + " ORDER BY a.criado_em DESC "
+		"LEFT JOIN users b ON a.id_author = b.id " +
+		"WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
+		"a.id_ciclo = " + filtro.CicloId + " AND " +
+		"a.id_pilar = " + filtro.PilarId + " AND " +
+		"a.id_plano = " + filtro.PlanoId + " AND " +
+		"a.id_componente = " + filtro.ComponenteId + " AND " +
+		"a.id_elemento = " + filtro.ElementoId + " ORDER BY a.criado_em DESC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -364,10 +364,10 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 	sql :=
 		"SELECT  " +
 			"	a.id,  " +
-			"	entidade_id,  " +
-			"	ciclo_id,  " +
-			"	pilar_id,  " +
-			"	componente_id,  " +
+			"	id_entidade,  " +
+			"	id_ciclo,  " +
+			"	id_pilar,  " +
+			"	id_componente,  " +
 			"	coalesce(format(inicia_em,'dd/MM/yyyy'),'') as inicia_em,  " +
 			"	coalesce(format(inicia_em_anterior,'dd/MM/yyyy'),'') as inicia_em_anterior,  " +
 			"	coalesce(format(termina_em,'dd/MM/yyyy'),'') as termina_em,  " +
@@ -375,12 +375,12 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 			"	coalesce(config,'') as config,  " +
 			"	coalesce(config_anterior,'') as config_anterior,  " +
 			"	coalesce(peso,0),  " +
-			"	coalesce(tipo_pontuacao_id,0),  " +
+			"	coalesce(id_tipo_pontuacao,0),  " +
 			"	coalesce(nota,0),  " +
 			"	tipo_alteracao,  " +
-			"	coalesce(auditor_id,0),  " +
+			"	coalesce(id_auditor,0),  " +
 			"	coalesce(auditor_anterior_id,0),  " +
-			"	a.author_id,  " +
+			"	a.id_author,  " +
 			"	coalesce(b.name,'') as author_name, " +
 			"	coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as alterado_em,  " +
 			"	case " +
@@ -390,11 +390,11 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 			"       when tipo_alteracao = 'P' then motivacao_config " +
 			"	end as motivacao " +
 			"	FROM produtos_componentes_historicos a " +
-			"	LEFT JOIN users b ON a.author_id = b.id " +
-			"	WHERE a.entidade_id = " + filtro.EntidadeId + " AND " +
-			"   a.ciclo_id = " + filtro.CicloId + " AND " +
-			"	a.pilar_id = " + filtro.PilarId + " AND " +
-			"	a.componente_id = " + filtro.ComponenteId +
+			"	LEFT JOIN users b ON a.id_author = b.id " +
+			"	WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
+			"   a.id_ciclo = " + filtro.CicloId + " AND " +
+			"	a.id_pilar = " + filtro.PilarId + " AND " +
+			"	a.id_componente = " + filtro.ComponenteId +
 			" 	ORDER BY a.criado_em DESC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
@@ -441,39 +441,39 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 func registrarHistoricoPesoPilar(produto mdl.ProdutoPilar, currentUser mdl.User) {
 	log.Println("========== registrarHistoricoPesoPilar ===========")
 	sqlStatement := "INSERT INTO produtos_pilares_historicos( " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	tipo_alteracao,  " +
 		"	motivacao_peso,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
-		"	author_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
+		"	id_author,  " +
 		"	criado_em,  " +
 		"	id_versao_origem,  " +
-		"	status_id) " +
+		"	id_status) " +
 		"SELECT  " +
-		"	entidade_id,  " +
-		"	ciclo_id,  " +
-		"	pilar_id,  " +
-		"	tipo_pontuacao_id,  " +
+		"	id_entidade,  " +
+		"	id_ciclo,  " +
+		"	id_pilar,  " +
+		"	id_tipo_pontuacao,  " +
 		"	peso,  " +
 		"	nota,  " +
 		"	'P',  " +
 		"	motivacao_peso,  " +
-		"	supervisor_id,  " +
-		"	auditor_id,  " +
+		"	id_supervisor,  " +
+		"	id_auditor,  " +
 		"	" + strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
 		"	id,  " +
-		"	status_id " +
+		"	id_status " +
 		"	FROM produtos_pilares " +
-		"	WHERE entidade_id = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
-		"	ciclo_id = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
-		"	pilar_id = " + strconv.FormatInt(produto.PilarId, 10)
+		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
+		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
+		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10)
 	log.Println(sqlStatement)
 	Db.QueryRow(sqlStatement)
 }
@@ -499,22 +499,22 @@ func ListHistoricosPilar(filtro mdl.Historico) []mdl.Historico {
 	sql :=
 		"SELECT  " +
 			"	a.id,  " +
-			"	entidade_id,  " +
-			"	ciclo_id,  " +
-			"	pilar_id,  " +
+			"	id_entidade,  " +
+			"	id_ciclo,  " +
+			"	id_pilar,  " +
 			"	coalesce(peso,0),  " +
-			"	tipo_pontuacao_id,  " +
+			"	id_tipo_pontuacao,  " +
 			"	coalesce(nota,0),  " +
 			"	tipo_alteracao,  " +
-			"	a.author_id,  " +
+			"	a.id_author,  " +
 			"	coalesce(b.name,'') as author_name, " +
 			"	coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as alterado_em,  " +
 			"	motivacao_peso  " +
 			"	FROM produtos_pilares_historicos a " +
-			"	LEFT JOIN users b ON a.author_id = b.id " +
-			"	WHERE a.entidade_id = " + filtro.EntidadeId + " AND " +
-			"   a.ciclo_id = " + filtro.CicloId + " AND " +
-			"	a.pilar_id = " + filtro.PilarId +
+			"	LEFT JOIN users b ON a.id_author = b.id " +
+			"	WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
+			"   a.id_ciclo = " + filtro.CicloId + " AND " +
+			"	a.id_pilar = " + filtro.PilarId +
 			" 	ORDER BY a.criado_em DESC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)

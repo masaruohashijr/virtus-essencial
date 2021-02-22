@@ -13,22 +13,22 @@ func ListCiclosEntidadeByEntidadeId(entidadeId string) []mdl.CicloEntidade {
 	log.Println("entidadeId: " + entidadeId)
 	sql := "SELECT " +
 		"a.id, " +
-		"a.entidade_id, " +
+		"a.id_entidade, " +
 		"d.nome, " +
-		"a.ciclo_id, " +
+		"a.id_ciclo, " +
 		"a.tipo_media, " +
-		"a.author_id, " +
+		"a.id_author, " +
 		"coalesce(b.name,'') as author_name, " +
 		"coalesce(format(a.inicia_em,'dd/MM/yyyy'), '') as inicia_em, " +
 		"coalesce(format(a.termina_em,'dd/MM/yyyy'), '') as termina_em, " +
 		"coalesce(format(a.criado_em,'dd/MM/yyyy'), '') as criado_em, " +
-		"a.status_id, " +
+		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM ciclos_entidades a " +
-		"LEFT JOIN ciclos d ON a.ciclo_id = d.id " +
-		"LEFT JOIN users b ON a.author_id = b.id " +
-		"LEFT JOIN status c ON a.status_id = c.id " +
-		"WHERE a.entidade_id = ? "
+		"LEFT JOIN ciclos d ON a.id_ciclo = d.id " +
+		"LEFT JOIN users b ON a.id_author = b.id " +
+		"LEFT JOIN status c ON a.id_status = c.id " +
+		"WHERE a.id_entidade = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId)
 	defer rows.Close()
@@ -113,7 +113,7 @@ func updateCicloEntidadeHandler(ce mdl.CicloEntidade, cicloEntidadeDB mdl.CicloE
 }
 
 func DeleteCiclosEntidadeByEntidadeId(entidadeId string) {
-	sqlStatement := "DELETE FROM ciclos_entidades WHERE entidade_id=?"
+	sqlStatement := "DELETE FROM ciclos_entidades WHERE id_entidade=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

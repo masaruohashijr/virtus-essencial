@@ -19,15 +19,15 @@ func ListMatrizesHandler(w http.ResponseWriter, r *http.Request) {
 		var page mdl.PageEntidadesCiclos
 		log.Println(currentUser.Id)
 		// Entidades da jurisdição do Escritório ao qual pertenço
-		sql := "SELECT DISTINCT d.codigo, b.entidade_id, d.nome, a.abreviatura " +
+		sql := "SELECT DISTINCT d.codigo, b.id_entidade, d.nome, a.abreviatura " +
 			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.escritorio_id " +
-			" LEFT JOIN membros c ON c.escritorio_id = b.escritorio_id " +
-			" LEFT JOIN entidades d ON d.id = b.entidade_id " +
-			" LEFT JOIN users u ON u.id = c.usuario_id " +
-			" INNER JOIN ciclos_entidades e ON e.entidade_id = b.entidade_id " +
-			" INNER JOIN produtos_planos f ON (f.entidade_id = e.entidade_id AND f.ciclo_id = e.ciclo_id) " +
-			" WHERE (c.usuario_id = ? AND u.role_id in (3,4)) OR (a.chefe_id = ?)"
+			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
+			" LEFT JOIN membros c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN entidades d ON d.id = b.id_entidade " +
+			" LEFT JOIN users u ON u.id = c.id_usuario " +
+			" INNER JOIN ciclos_entidades e ON e.id_entidade = b.id_entidade " +
+			" INNER JOIN produtos_planos f ON (f.id_entidade = e.id_entidade AND f.id_ciclo = e.id_ciclo) " +
+			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id, currentUser.Id)
 		defer rows.Close()
@@ -44,8 +44,8 @@ func ListMatrizesHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			sql = "SELECT b.id, b.nome " +
 				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.ciclo_id = b.id " +
-				" WHERE a.entidade_id = ? " +
+				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+				" WHERE a.id_entidade = ? " +
 				" ORDER BY id asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
@@ -75,47 +75,47 @@ func ListMatrizesHandler(w http.ResponseWriter, r *http.Request) {
 
 func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, componenteId string) []mdl.ElementoDaMatriz {
 	sql := " SELECT " +
-		" 	     coalesce(R3.author_id,0) as author_id, " +
+		" 	     coalesce(R3.id_author,0) as id_author, " +
 		" 	     coalesce(q.name,'') as author_name, " +
 		" 	     coalesce(R3.motivacao_peso,'') as motivacao_peso, " +
 		" 	     coalesce(R3.motivacao_nota,'') as motivacao_nota, " +
-		" 	     coalesce(CO.supervisor_id,0) as super_id, coalesce(o.name,'') as supervisor_nome, " +
-		" 	     coalesce(CO.auditor_id,0) as auditor_id, coalesce(p.name,'') as auditor_nome, " +
-		"		 R1.elemento_id as elemento_id, " +
+		" 	     coalesce(CO.id_supervisor,0) as super_id, coalesce(o.name,'') as supervisor_nome, " +
+		" 	     coalesce(CO.id_auditor,0) as id_auditor, coalesce(p.name,'') as auditor_nome, " +
+		"		 R1.id_elemento as id_elemento, " +
 		"		 COALESCE((SELECT count(1) FROM elementos_componentes " +
-		"				WHERE componente_id = " + componenteId + "),0) AS qtdElementos, " +
+		"				WHERE id_componente = " + componenteId + "),0) AS qtdElementos, " +
 		"		 COALESCE((SELECT count(1) FROM produtos_planos " +
-		"           WHERE ciclo_id = " + cicloId + " AND entidade_id = " + entidadeId + " AND pilar_id = " + pilarId + " AND componente_id = " + componenteId + "),0) AS qtdPlanos, " +
-		"        R1.ciclo_id, " +
+		"           WHERE id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + " AND id_pilar = " + pilarId + " AND id_componente = " + componenteId + "),0) AS qtdPlanos, " +
+		"        R1.id_ciclo, " +
 		"        COALESCE(R1.ciclo_nome, ''), " +
-		"        (SELECT coalesce(nota,0) from produtos_ciclos where  ciclo_id = " + cicloId + " AND entidade_id = " + entidadeId + ") AS ciclo_nota, " +
+		"        (SELECT coalesce(nota,0) from produtos_ciclos where  id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + ") AS ciclo_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
-		"      (SELECT pilar_id " +
+		"      (SELECT id_pilar " +
 		"       FROM pilares_ciclos " +
-		"       WHERE ciclo_id = R1.ciclo_id " +
-		"       GROUP BY pilar_id) R) AS qtdPilares, " +
-		"        R1.pilar_id, " +
+		"       WHERE id_ciclo = R1.id_ciclo " +
+		"       GROUP BY id_pilar) R) AS qtdPilares, " +
+		"        R1.id_pilar, " +
 		"        COALESCE(R1.pilar_nome, ''), " +
 		"        COALESCE(PI.peso, 0) AS pilar_peso, " +
 		"        COALESCE(PI.nota, 0) AS pilar_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
-		"      (SELECT componente_id " +
+		"      (SELECT id_componente " +
 		"       FROM componentes_pilares " +
-		"       WHERE pilar_id = R1.pilar_id " +
-		"       GROUP BY componente_id) R) AS qtdComponentes, " +
-		"        R1.componente_id, " +
+		"       WHERE id_pilar = R1.id_pilar " +
+		"       GROUP BY id_componente) R) AS qtdComponentes, " +
+		"        R1.id_componente, " +
 		"        COALESCE(R1.componente_nome, ''), " +
 		"        COALESCE(CO.peso, 0) AS componente_peso, " +
 		"        COALESCE(CO.nota, 0) AS componente_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
-		"      (SELECT tipo_nota_id " +
+		"      (SELECT id_tipo_nota " +
 		"       FROM elementos_componentes " +
-		"       WHERE componente_id = R1.componente_id " +
-		"       GROUP BY tipo_nota_id) R) AS qtdTiposNotas, " +
-		"        R1.tipo_nota_id, " +
+		"       WHERE id_componente = R1.id_componente " +
+		"       GROUP BY id_tipo_nota) R) AS qtdTiposNotas, " +
+		"        R1.id_tipo_nota, " +
 		"        COALESCE(m.nome,'') AS tipo_nota_nome, " +
 		"        COALESCE(m.letra,'') AS tipo_nota_letra, " +
 		"        COALESCE(m.cor_letra,'') as tipo_nota_cor_letra, " +
@@ -124,103 +124,103 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		"      	 COALESCE(n.nome, '') AS elemento_nome, " +
 		"     	 COALESCE(EL.peso, 0) AS elemento_peso, " +
 		"    	 COALESCE(EL.nota, 0) AS elemento_nota,	" +
-		"        " + entidadeId + " AS entidade_id, " +
+		"        " + entidadeId + " AS id_entidade, " +
 		"        COALESCE(y.nome,'') as entidade_nome, " +
-		"        COALESCE(R2.plano_id, 0) AS plano_id, " +
+		"        COALESCE(R2.id_plano, 0) AS id_plano, " +
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
 		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
 		"        COALESCE(z.modalidade_id,'') as modalidade, " +
 		"        COALESCE((SELECT count(1) " +
 		"   		FROM " +
-		"     		(SELECT b.elemento_id " +
+		"     		(SELECT b.id_elemento " +
 		"      			FROM produtos_planos a " +
 		"	   			LEFT JOIN elementos_componentes b ON " +
-		"	  			a.componente_id = b.componente_id " +
-		"	  			WHERE a.ciclo_id = " + cicloId +
-		"      			AND a.entidade_id = " + entidadeId +
-		"	  			AND a.pilar_id = " + pilarId +
-		"	  			AND a.componente_id = " + componenteId +
+		"	  			a.id_componente = b.id_componente " +
+		"	  			WHERE a.id_ciclo = " + cicloId +
+		"      			AND a.id_entidade = " + entidadeId +
+		"	  			AND a.id_pilar = " + pilarId +
+		"	  			AND a.id_componente = " + componenteId +
 		"      			) R),0) as EntidadeRowspan " +
 		" FROM " +
-		"   (SELECT a.id AS ciclo_id, " +
+		"   (SELECT a.id AS id_ciclo, " +
 		"           a.nome AS ciclo_nome, " +
-		"           b.id AS pilar_id, " +
+		"           b.id AS id_pilar, " +
 		"           c.nome AS pilar_nome, " +
-		"           e.id AS componente_id, " +
+		"           e.id AS id_componente, " +
 		"           e.nome AS componente_nome, " +
-		"           g.id AS tipo_nota_id, " +
+		"           g.id AS id_tipo_nota, " +
 		"           g.nome AS tipo_nota_nome, " +
-		"			i.id AS elemento_id, " +
+		"			i.id AS id_elemento, " +
 		"			i.nome AS elemento_nome " +
 		"    FROM ciclos a " +
-		"    INNER JOIN pilares_ciclos b ON b.ciclo_id = a.id " +
-		"    INNER JOIN pilares c ON c.id = b.pilar_id " +
-		"    INNER JOIN componentes_pilares d ON d.pilar_id = c.id " +
-		"    INNER JOIN componentes e ON d.componente_id = e.id " +
-		"    INNER JOIN tipos_notas_componentes f ON e.id = f.componente_id " +
-		"    INNER JOIN tipos_notas g ON g.id = f.tipo_nota_id " +
-		" 	 INNER JOIN elementos_componentes h ON e.id = h.componente_id and g.id = h.tipo_nota_id " +
-		"	 INNER JOIN elementos i ON i.id = h.elemento_id " +
+		"    INNER JOIN pilares_ciclos b ON b.id_ciclo = a.id " +
+		"    INNER JOIN pilares c ON c.id = b.id_pilar " +
+		"    INNER JOIN componentes_pilares d ON d.id_pilar = c.id " +
+		"    INNER JOIN componentes e ON d.id_componente = e.id " +
+		"    INNER JOIN tipos_notas_componentes f ON e.id = f.id_componente " +
+		"    INNER JOIN tipos_notas g ON g.id = f.id_tipo_nota " +
+		" 	 INNER JOIN elementos_componentes h ON e.id = h.id_componente and g.id = h.id_tipo_nota " +
+		"	 INNER JOIN elementos i ON i.id = h.id_elemento " +
 		"    WHERE a.id = 1 "
 	if pilarId != "" {
-		sql += " AND b.pilar_id = " + pilarId
+		sql += " AND b.id_pilar = " + pilarId
 	}
 	if componenteId != "" {
-		sql += " AND d.componente_id = " + componenteId
+		sql += " AND d.id_componente = " + componenteId
 	}
 	sql += " ) R1 " +
 		" LEFT JOIN " +
-		"   (SELECT DISTINCT entidade_id, " +
-		"                    ciclo_id, " +
+		"   (SELECT DISTINCT id_entidade, " +
+		"                    id_ciclo, " +
 		"                    PILAR_ID, " +
 		"                    COMPONENTE_ID, " +
-		"                    plano_id " +
+		"                    id_plano " +
 		"    FROM produtos_planos " +
-		"    WHERE ciclo_id = " + cicloId +
-		"      AND entidade_id = " + entidadeId +
-		"    ) R2 ON (R1.CICLO_id = R2.ciclo_id " +
+		"    WHERE id_ciclo = " + cicloId +
+		"      AND id_entidade = " + entidadeId +
+		"    ) R2 ON (R1.CICLO_id = R2.id_ciclo " +
 		"                       AND R1.PILAR_ID = R2.PILAR_ID " +
 		"                       AND R1.COMPONENTE_ID = R2.COMPONENTE_ID) " +
-		" LEFT JOIN produtos_elementos EL ON (R1.ciclo_id = EL.CICLO_ID " +
-		"                                     AND R1.pilar_id = EL.pilar_id " +
-		"                                     AND R1.componente_id = EL.componente_id " +
-		"                                     AND R1.tipo_nota_id = EL.tipo_nota_id " +
-		"								   	  AND R1.elemento_id = EL.elemento_id " +
-		"                                     AND EL.entidade_id = R2.entidade_id " +
-		"                                     AND EL.plano_id = R2.plano_id) " +
-		" LEFT JOIN produtos_tipos_notas TN ON (R1.ciclo_id = TN.CICLO_ID " +
-		"                                       AND R1.pilar_id = TN.pilar_id " +
-		"                                       AND R1.componente_id = TN.componente_id " +
-		"                                       AND R1.tipo_nota_id = TN.tipo_nota_id " +
-		"                                       AND TN.entidade_id = R2.entidade_id " +
-		"                                       AND TN.plano_id = R2.plano_id) " +
-		" LEFT JOIN produtos_componentes CO ON (R1.componente_id = CO.componente_id " +
-		"                                       AND R1.pilar_id = CO.pilar_id " +
-		"                                       AND R1.ciclo_id = CO.ciclo_id " +
-		"                                       AND CO.entidade_id = " + entidadeId + ") " +
-		" LEFT JOIN produtos_pilares PI ON (R1.pilar_id = PI.pilar_id " +
-		"                                   AND R1.ciclo_id = PI.ciclo_id " +
-		"                                   AND PI.entidade_id = R2.entidade_id) " +
-		" LEFT JOIN produtos_ciclos CI ON (R1.ciclo_id = CI.ciclo_id " +
-		"                                  AND R2.entidade_id = CI.entidade_id) " +
-		" LEFT JOIN tipos_notas m ON R1.tipo_nota_id = m.id " +
-		" LEFT JOIN elementos n ON R1.elemento_id = n.id " +
-		" LEFT JOIN planos z ON R2.plano_id = z.id " +
+		" LEFT JOIN produtos_elementos EL ON (R1.id_ciclo = EL.CICLO_ID " +
+		"                                     AND R1.id_pilar = EL.id_pilar " +
+		"                                     AND R1.id_componente = EL.id_componente " +
+		"                                     AND R1.id_tipo_nota = EL.id_tipo_nota " +
+		"								   	  AND R1.id_elemento = EL.id_elemento " +
+		"                                     AND EL.id_entidade = R2.id_entidade " +
+		"                                     AND EL.id_plano = R2.id_plano) " +
+		" LEFT JOIN produtos_tipos_notas TN ON (R1.id_ciclo = TN.CICLO_ID " +
+		"                                       AND R1.id_pilar = TN.id_pilar " +
+		"                                       AND R1.id_componente = TN.id_componente " +
+		"                                       AND R1.id_tipo_nota = TN.id_tipo_nota " +
+		"                                       AND TN.id_entidade = R2.id_entidade " +
+		"                                       AND TN.id_plano = R2.id_plano) " +
+		" LEFT JOIN produtos_componentes CO ON (R1.id_componente = CO.id_componente " +
+		"                                       AND R1.id_pilar = CO.id_pilar " +
+		"                                       AND R1.id_ciclo = CO.id_ciclo " +
+		"                                       AND CO.id_entidade = " + entidadeId + ") " +
+		" LEFT JOIN produtos_pilares PI ON (R1.id_pilar = PI.id_pilar " +
+		"                                   AND R1.id_ciclo = PI.id_ciclo " +
+		"                                   AND PI.id_entidade = R2.id_entidade) " +
+		" LEFT JOIN produtos_ciclos CI ON (R1.id_ciclo = CI.id_ciclo " +
+		"                                  AND R2.id_entidade = CI.id_entidade) " +
+		" LEFT JOIN tipos_notas m ON R1.id_tipo_nota = m.id " +
+		" LEFT JOIN elementos n ON R1.id_elemento = n.id " +
+		" LEFT JOIN planos z ON R2.id_plano = z.id " +
 		" LEFT JOIN entidades y ON y.id = " + entidadeId +
-		" LEFT JOIN users o ON co.supervisor_id = o.id " +
-		" LEFT JOIN users p ON co.auditor_id = p.id " +
-		" LEFT JOIN (SELECT R1.id, R1.entidade_id, R1.ciclo_id, R1.pilar_id, R1.plano_id, R1.componente_id, R1.tipo_nota_id, R1.elemento_id, motivacao_peso, motivacao_nota, author_id, criado_em " +
+		" LEFT JOIN users o ON co.id_supervisor = o.id " +
+		" LEFT JOIN users p ON co.id_auditor = p.id " +
+		" LEFT JOIN (SELECT R1.id, R1.id_entidade, R1.id_ciclo, R1.id_pilar, R1.id_plano, R1.id_componente, R1.id_tipo_nota, R1.id_elemento, motivacao_peso, motivacao_nota, id_author, criado_em " +
 		" FROM produtos_elementos_historicos R1 " +
-		" INNER JOIN (SELECT peh.entidade_id, peh.ciclo_id, peh.pilar_id, peh.componente_id, peh.plano_id, peh.elemento_id, max(peh.id) as id " +
-		" FROM produtos_elementos_historicos PEH group by peh.entidade_id,peh.ciclo_id,peh.pilar_id,peh.componente_id,peh.plano_id,peh.elemento_id) R2 " +
-		" ON R1.id = R2.id) R3 ON (R3.ciclo_id = EL.CICLO_ID " +
-		" AND R3.pilar_id = EL.pilar_id " +
-		" AND R3.componente_id = EL.componente_id " +
-		" AND R3.tipo_nota_id = EL.tipo_nota_id " +
-		" AND R3.entidade_id = EL.entidade_id " +
-		" AND R3.plano_id = EL.plano_id) " +
-		" LEFT JOIN users q ON R3.author_id = q.id " +
-		" ORDER BY ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id "
+		" INNER JOIN (SELECT peh.id_entidade, peh.id_ciclo, peh.id_pilar, peh.id_componente, peh.id_plano, peh.id_elemento, max(peh.id) as id " +
+		" FROM produtos_elementos_historicos PEH group by peh.id_entidade,peh.id_ciclo,peh.id_pilar,peh.id_componente,peh.id_plano,peh.id_elemento) R2 " +
+		" ON R1.id = R2.id) R3 ON (R3.id_ciclo = EL.CICLO_ID " +
+		" AND R3.id_pilar = EL.id_pilar " +
+		" AND R3.id_componente = EL.id_componente " +
+		" AND R3.id_tipo_nota = EL.id_tipo_nota " +
+		" AND R3.id_entidade = EL.id_entidade " +
+		" AND R3.id_plano = EL.id_plano) " +
+		" LEFT JOIN users q ON R3.id_author = q.id " +
+		" ORDER BY id_ciclo, id_pilar, id_componente, id_plano, id_tipo_nota "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -277,99 +277,99 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 	return elementosMatriz
 }
 func loadTiposNotasMatriz(entidadeId string, cicloId string, pilarId string) []mdl.ElementoDaMatriz {
-	sql := " SELECT R1.ciclo_id, " +
+	sql := " SELECT R1.id_ciclo, " +
 		"        COALESCE(R1.ciclo_nome, ''), " +
-		"        (SELECT coalesce(nota,0) from produtos_ciclos where  ciclo_id = " + cicloId + " AND entidade_id = " + entidadeId + ") AS ciclo_nota, " +
+		"        (SELECT coalesce(nota,0) from produtos_ciclos where  id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + ") AS ciclo_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
-		"      (SELECT pilar_id " +
+		"      (SELECT id_pilar " +
 		"       FROM pilares_ciclos " +
-		"       WHERE ciclo_id = R1.ciclo_id " +
-		"       GROUP BY pilar_id) R) AS qtdPilares, " +
-		"        R1.pilar_id, " +
+		"       WHERE id_ciclo = R1.id_ciclo " +
+		"       GROUP BY id_pilar) R) AS qtdPilares, " +
+		"        R1.id_pilar, " +
 		"        COALESCE(R1.pilar_nome, ''), " +
 		"        COALESCE(PI.peso, 0) AS pilar_peso, " +
 		"        COALESCE(PI.nota, 0) AS pilar_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
-		"      (SELECT componente_id " +
+		"      (SELECT id_componente " +
 		"       FROM componentes_pilares " +
-		"       WHERE pilar_id = R1.pilar_id " +
-		"       GROUP BY componente_id) R) AS qtdComponentes, " +
+		"       WHERE id_pilar = R1.id_pilar " +
+		"       GROUP BY id_componente) R) AS qtdComponentes, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
-		"      (SELECT tipo_nota_id " +
+		"      (SELECT id_tipo_nota " +
 		"       FROM elementos_componentes " +
-		"       WHERE componente_id = R1.componente_id " +
-		"       GROUP BY tipo_nota_id) R) AS qtdTiposNotas, " +
-		"        R1.componente_id, " +
+		"       WHERE id_componente = R1.id_componente " +
+		"       GROUP BY id_tipo_nota) R) AS qtdTiposNotas, " +
+		"        R1.id_componente, " +
 		"        COALESCE(R1.componente_nome, ''), " +
 		"        COALESCE(CO.peso, 0) AS componente_peso, " +
 		"        COALESCE(CO.nota, 0) AS componente_nota, " +
-		"        R1.tipo_nota_id, " +
+		"        R1.id_tipo_nota, " +
 		"        COALESCE(m.letra,'') AS tipo_nota_letra, " +
 		"        COALESCE(m.cor_letra,'') as tipo_nota_cor_letra, " +
 		"        COALESCE(TN.peso, 0) AS tipo_nota_peso, " +
 		"        COALESCE(TN.nota, 0) AS tipo_nota_nota, " +
-		"        " + entidadeId + " AS entidade_id, " +
+		"        " + entidadeId + " AS id_entidade, " +
 		"        COALESCE(y.nome,'') as entidade_nome, " +
-		"        COALESCE(R2.plano_id, 0) AS plano_id, " +
+		"        COALESCE(R2.id_plano, 0) AS id_plano, " +
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
 		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
 		"        COALESCE(z.modalidade_id,'') as modalidade, " +
-		"        (SELECT count(1) FROM (SELECT DISTINCT plano_id FROM produtos_planos WHERE entidade_id = " + entidadeId + " AND ciclo_id = " + cicloId + " GROUP BY plano_id) S) as EntidadeQtdPlanos " +
+		"        (SELECT count(1) FROM (SELECT DISTINCT id_plano FROM produtos_planos WHERE id_entidade = " + entidadeId + " AND id_ciclo = " + cicloId + " GROUP BY id_plano) S) as EntidadeQtdPlanos " +
 		" FROM " +
-		"   (SELECT a.id AS ciclo_id, " +
+		"   (SELECT a.id AS id_ciclo, " +
 		"           a.nome AS ciclo_nome, " +
-		"           b.id AS pilar_id, " +
+		"           b.id AS id_pilar, " +
 		"           c.nome AS pilar_nome, " +
-		"           e.id AS componente_id, " +
+		"           e.id AS id_componente, " +
 		"           e.nome AS componente_nome, " +
-		"           g.id AS tipo_nota_id, " +
+		"           g.id AS id_tipo_nota, " +
 		"           g.nome AS tipo_nota_nome " +
 		"    FROM ciclos a " +
-		"    INNER JOIN pilares_ciclos b ON b.ciclo_id = a.id " +
-		"    INNER JOIN pilares c ON c.id = b.pilar_id " +
-		"    INNER JOIN componentes_pilares d ON d.pilar_id = c.id " +
-		"    INNER JOIN componentes e ON d.componente_id = e.id " +
-		"    INNER JOIN tipos_notas_componentes f ON e.id = f.componente_id " +
-		"    INNER JOIN tipos_notas g ON g.id = f.tipo_nota_id " +
+		"    INNER JOIN pilares_ciclos b ON b.id_ciclo = a.id " +
+		"    INNER JOIN pilares c ON c.id = b.id_pilar " +
+		"    INNER JOIN componentes_pilares d ON d.id_pilar = c.id " +
+		"    INNER JOIN componentes e ON d.id_componente = e.id " +
+		"    INNER JOIN tipos_notas_componentes f ON e.id = f.id_componente " +
+		"    INNER JOIN tipos_notas g ON g.id = f.id_tipo_nota " +
 		"    WHERE a.id = 1 "
 	if pilarId != "" {
-		sql += " AND b.pilar_id = " + pilarId
+		sql += " AND b.id_pilar = " + pilarId
 	}
 	sql += " ) R1 " +
 		" LEFT JOIN " +
-		"   (SELECT DISTINCT entidade_id, " +
-		"                    ciclo_id, " +
+		"   (SELECT DISTINCT id_entidade, " +
+		"                    id_ciclo, " +
 		"                    PILAR_ID, " +
 		"                    COMPONENTE_ID, " +
-		"                    plano_id " +
+		"                    id_plano " +
 		"    FROM produtos_planos " +
-		"    WHERE ciclo_id = " + cicloId +
-		"      AND entidade_id = " + entidadeId +
-		"    ) R2 ON (R1.CICLO_id = R2.ciclo_id " +
+		"    WHERE id_ciclo = " + cicloId +
+		"      AND id_entidade = " + entidadeId +
+		"    ) R2 ON (R1.CICLO_id = R2.id_ciclo " +
 		"                       AND R1.PILAR_ID = R2.PILAR_ID " +
 		"                       AND R1.COMPONENTE_ID = R2.COMPONENTE_ID) " +
-		" LEFT JOIN produtos_tipos_notas TN ON (R1.ciclo_id = TN.CICLO_ID " +
-		"                                       AND R1.pilar_id = TN.pilar_id " +
-		"                                       AND R1.componente_id = TN.componente_id " +
-		"                                       AND R1.tipo_nota_id = TN.tipo_nota_id " +
-		"                                       AND TN.entidade_id = R2.entidade_id " +
-		"                                       AND TN.plano_id = R2.plano_id) " +
-		" LEFT JOIN produtos_componentes CO ON (R1.componente_id = CO.componente_id " +
-		"                                       AND R1.pilar_id = CO.pilar_id " +
-		"                                       AND R1.ciclo_id = CO.ciclo_id " +
-		"                                       AND CO.entidade_id = R2.entidade_id) " +
-		" LEFT JOIN produtos_pilares PI ON (R1.pilar_id = PI.pilar_id " +
-		"                                   AND R1.ciclo_id = PI.ciclo_id " +
-		"                                   AND PI.entidade_id = R2.entidade_id) " +
-		" LEFT JOIN produtos_ciclos CI ON (R1.ciclo_id = CI.ciclo_id " +
-		"                                  AND R2.entidade_id = CI.entidade_id) " +
-		" LEFT JOIN tipos_notas m ON R1.tipo_nota_id = m.id " +
-		" LEFT JOIN planos z ON R2.plano_id = z.id " +
+		" LEFT JOIN produtos_tipos_notas TN ON (R1.id_ciclo = TN.CICLO_ID " +
+		"                                       AND R1.id_pilar = TN.id_pilar " +
+		"                                       AND R1.id_componente = TN.id_componente " +
+		"                                       AND R1.id_tipo_nota = TN.id_tipo_nota " +
+		"                                       AND TN.id_entidade = R2.id_entidade " +
+		"                                       AND TN.id_plano = R2.id_plano) " +
+		" LEFT JOIN produtos_componentes CO ON (R1.id_componente = CO.id_componente " +
+		"                                       AND R1.id_pilar = CO.id_pilar " +
+		"                                       AND R1.id_ciclo = CO.id_ciclo " +
+		"                                       AND CO.id_entidade = R2.id_entidade) " +
+		" LEFT JOIN produtos_pilares PI ON (R1.id_pilar = PI.id_pilar " +
+		"                                   AND R1.id_ciclo = PI.id_ciclo " +
+		"                                   AND PI.id_entidade = R2.id_entidade) " +
+		" LEFT JOIN produtos_ciclos CI ON (R1.id_ciclo = CI.id_ciclo " +
+		"                                  AND R2.id_entidade = CI.id_entidade) " +
+		" LEFT JOIN tipos_notas m ON R1.id_tipo_nota = m.id " +
+		" LEFT JOIN planos z ON R2.id_plano = z.id " +
 		" LEFT JOIN entidades y ON y.id = " + entidadeId +
-		" ORDER BY ciclo_id, pilar_id, componente_id, plano_id, tipo_nota_id "
+		" ORDER BY id_ciclo, id_pilar, id_componente, id_plano, id_tipo_nota "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -439,15 +439,15 @@ func ExecutarMatrizHandler(w http.ResponseWriter, r *http.Request) {
 		page.ComponenteQtdTiposNotas = elementosMatriz[0].ComponenteQtdTiposNotas
 
 		sql := " SELECT " +
-			" a.usuario_id, " +
+			" a.id_usuario, " +
 			" coalesce(b.name,'') " +
 			" FROM integrantes a " +
 			" LEFT JOIN users b " +
-			" ON a.usuario_id = b.id " +
+			" ON a.id_usuario = b.id " +
 			" WHERE " +
-			" a.entidade_id = " + entidadeId +
-			" AND a.ciclo_id = " + cicloId +
-			" AND b.role_id = 3 "
+			" a.id_entidade = " + entidadeId +
+			" AND a.id_ciclo = " + cicloId +
+			" AND b.id_role = 3 "
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -460,15 +460,15 @@ func ExecutarMatrizHandler(w http.ResponseWriter, r *http.Request) {
 		page.Supervisores = supervisores
 
 		sql = " SELECT " +
-			" a.usuario_id, " +
+			" a.id_usuario, " +
 			" b.name " +
 			" FROM integrantes a " +
 			" LEFT JOIN users b " +
-			" ON a.usuario_id = b.id " +
+			" ON a.id_usuario = b.id " +
 			" WHERE " +
-			" a.entidade_id = " + entidadeId +
-			" AND a.ciclo_id = " + cicloId +
-			" AND b.role_id = 4 "
+			" a.id_entidade = " + entidadeId +
+			" AND a.id_ciclo = " + cicloId +
+			" AND b.id_role = 4 "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -521,12 +521,12 @@ func calcularColspan(tipo string, identificador int64) int {
 		tipo = "cp.componente"
 	}
 	sql = " SELECT COUNT(1) FROM ( " +
-		" SELECT ciclo_id, pc.pilar_id, cp.componente_id, tnc.tipo_nota_id " +
+		" SELECT id_ciclo, pc.id_pilar, cp.id_componente, tnc.id_tipo_nota " +
 		" FROM tipos_notas_componentes tnc " +
-		" LEFT JOIN componentes c ON tnc.componente_id = c.id " +
-		" LEFT JOIN componentes_pilares cp ON c.id = cp.componente_id " +
-		" LEFT JOIN pilares p ON p.id = cp.pilar_id " +
-		" LEFT JOIN pilares_ciclos pc ON p.id = pc.pilar_id " +
+		" LEFT JOIN componentes c ON tnc.id_componente = c.id " +
+		" LEFT JOIN componentes_pilares cp ON c.id = cp.id_componente " +
+		" LEFT JOIN pilares p ON p.id = cp.id_pilar " +
+		" LEFT JOIN pilares_ciclos pc ON p.id = pc.id_pilar " +
 		" WHERE " + tipo + "_id = ?) R "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, identificador)
@@ -541,38 +541,38 @@ func calcularColspan(tipo string, identificador int64) int {
 
 func preencherColspans(elementosMatriz []mdl.ElementoDaMatriz, cicloId string) []mdl.ElementoDaMatriz {
 	sql := " WITH R0 AS " +
-		" (SELECT DISTINCT a.ciclo_id, " +
-		"                 a.pilar_id, " +
-		"                 b.componente_id, " +
-		"                 c.tipo_nota_id                 " +
+		" (SELECT DISTINCT a.id_ciclo, " +
+		"                 a.id_pilar, " +
+		"                 b.id_componente, " +
+		"                 c.id_tipo_nota                 " +
 		"          FROM pilares_ciclos a " +
-		"          INNER JOIN componentes_pilares b ON b.pilar_id = a.pilar_id " +
-		"          INNER JOIN tipos_notas_componentes c ON b.componente_id = c.componente_id " +
-		"          INNER JOIN elementos_componentes ec ON (ec.tipo_nota_id = c.tipo_nota_id " +
-		"          AND b.componente_id = ec.componente_id) " +
-		"          WHERE a.ciclo_id = ?), " +
+		"          INNER JOIN componentes_pilares b ON b.id_pilar = a.id_pilar " +
+		"          INNER JOIN tipos_notas_componentes c ON b.id_componente = c.id_componente " +
+		"          INNER JOIN elementos_componentes ec ON (ec.id_tipo_nota = c.id_tipo_nota " +
+		"          AND b.id_componente = ec.id_componente) " +
+		"          WHERE a.id_ciclo = ?), " +
 		" R1 AS ( " +
 		" SELECT  " +
-		" 	ciclo_id,  " +
-		" 	pilar_id,  " +
-		" 	componente_id,  " +
+		" 	id_ciclo,  " +
+		" 	id_pilar,  " +
+		" 	id_componente,  " +
 		" 	COUNT(1) AS qtdCelula " +
 		" 	FROM R0 " +
 		" 	GROUP BY 	 " +
-		" 	ciclo_id,  " +
-		" 	pilar_id,  " +
-		" 	componente_id) " +
-		" SELECT ciclo_id, 0 as pilar_id, 0 as componente_id, sum(qtdCelula) as qtdCelula  " +
+		" 	id_ciclo,  " +
+		" 	id_pilar,  " +
+		" 	id_componente) " +
+		" SELECT id_ciclo, 0 as id_pilar, 0 as id_componente, sum(qtdCelula) as qtdCelula  " +
 		" FROM R1 " +
-		" GROUP BY ciclo_id " +
+		" GROUP BY id_ciclo " +
 		" UNION " +
-		" SELECT ciclo_id, pilar_id, 0 as componente_id, sum(qtdCelula) as qtdCelula  " +
+		" SELECT id_ciclo, id_pilar, 0 as id_componente, sum(qtdCelula) as qtdCelula  " +
 		" FROM R1 " +
-		" GROUP BY ciclo_id, pilar_id " +
+		" GROUP BY id_ciclo, id_pilar " +
 		" UNION " +
-		" SELECT ciclo_id, pilar_id, componente_id, sum(qtdCelula) as qtdCelula  " +
+		" SELECT id_ciclo, id_pilar, id_componente, sum(qtdCelula) as qtdCelula  " +
 		" FROM R1 " +
-		" GROUP BY ciclo_id, pilar_id, componente_id " +
+		" GROUP BY id_ciclo, id_pilar, id_componente " +
 		" ORDER BY 1,2,3"
 	rows, _ := Db.Query(sql, cicloId)
 	defer rows.Close()

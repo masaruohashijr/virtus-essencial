@@ -13,23 +13,23 @@ func ListElementosByComponenteId(componenteId string) []mdl.ElementoComponente {
 	log.Println("componenteId: " + componenteId)
 	sql := "SELECT " +
 		"a.id, " +
-		"a.componente_id, " +
+		"a.id_componente, " +
 		"coalesce(d.nome,'') as elemento_nome, " +
-		"a.elemento_id, " +
-		"a.tipo_nota_id, " +
+		"a.id_elemento, " +
+		"a.id_tipo_nota, " +
 		"e.nome as tipo_nota_nome, " +
 		"a.peso_padrao, " +
-		"a.author_id, " +
+		"a.id_author, " +
 		"coalesce(b.name,'') as author_name, " +
 		"coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), '') as criado_em, " +
-		"a.status_id, " +
+		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM elementos_componentes a " +
-		"LEFT JOIN elementos d ON a.elemento_id = d.id " +
-		"LEFT JOIN users b ON a.author_id = b.id " +
-		"LEFT JOIN status c ON a.status_id = c.id " +
-		"LEFT JOIN tipos_notas e ON a.tipo_nota_id = e.id " +
-		"WHERE a.componente_id = ? ORDER BY elemento_nome"
+		"LEFT JOIN elementos d ON a.id_elemento = d.id " +
+		"LEFT JOIN users b ON a.id_author = b.id " +
+		"LEFT JOIN status c ON a.id_status = c.id " +
+		"LEFT JOIN tipos_notas e ON a.id_tipo_nota = e.id " +
+		"WHERE a.id_componente = ? ORDER BY elemento_nome"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, componenteId)
 	defer rows.Close()
@@ -104,11 +104,11 @@ func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, 
 		" SET peso_padrao = " +
 		" (SELECT round(avg(b.peso_padrao),2) " +
 		" FROM elementos_componentes b " +
-		" WHERE b.componente_id = a.componente_id AND " +
-		" b.pilar_id = a.pilar_id AND " +
-		" b.ciclo_id = a.ciclo_id AND " +
-		" b.entidade_id = a.entidade_id " +
-		" GROUP BY b.entidade_id, b.ciclo_id, b.pilar_id, b.componente_id) " +
+		" WHERE b.id_componente = a.id_componente AND " +
+		" b.id_pilar = a.id_pilar AND " +
+		" b.id_ciclo = a.id_ciclo AND " +
+		" b.id_entidade = a.id_entidade " +
+		" GROUP BY b.id_entidade, b.id_ciclo, b.id_pilar, b.id_componente) " +
 		" WHERE a.id=? "
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
@@ -120,7 +120,7 @@ func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, 
 }
 
 func DeleteElementosComponenteByComponenteId(componenteId string) {
-	sqlStatement := "DELETE FROM elementos_componentes WHERE componente_id=?"
+	sqlStatement := "DELETE FROM elementos_componentes WHERE id_componente=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

@@ -19,8 +19,8 @@ func CreatePilarHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "INSERT INTO pilares(nome, descricao, referencia, author_id, criado_em) " +
-			" OUTPUT INSERTED.id VALUES (?, ?, ?, ?, GETDATE())"
+		sqlStatement := "INSERT INTO pilares(nome, descricao, referencia, id_author, criado_em) " +
+			" OUTPUT INSERTED.id_pilar VALUES (?, ?, ?, ?, GETDATE())"
 		idPilar := 0
 		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, currentUser.Id).Scan(&idPilar)
 		if err != nil {
@@ -42,14 +42,14 @@ func CreatePilarHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				sqlStatement := " INSERT INTO " +
 					" componentes_pilares( " +
-					" pilar_id, " +
-					" componente_id, " +
+					" id_pilar, " +
+					" id_componente, " +
 					" tipo_media, " +
 					" peso_padrao, " +
 					" sonda, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_componente_pilar " +
 					" VALUES (?, ?, ?, ?, ?, ?, GETDATE())"
 				log.Println(sqlStatement)
 				err = Db.QueryRow(
@@ -168,14 +168,14 @@ func UpdatePilarHandler(w http.ResponseWriter, r *http.Request) {
 				componentePilar = diffPage[i]
 				log.Println("Pilar Id: " + pilarId)
 				sqlStatement := "INSERT INTO componentes_pilares ( " +
-					" pilar_id, " +
-					" componente_id, " +
+					" id_pilar, " +
+					" id_componente, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id " +
+					" id_status " +
 					" ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_componente_pilar " +
 					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				row := Db.QueryRow(
@@ -228,15 +228,15 @@ func ListPilaresHandler(w http.ResponseWriter, r *http.Request) {
 			" a.nome, " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.referencia,''), " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" coalesce(b.name,''), " +
 			" coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),''), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM pilares a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)

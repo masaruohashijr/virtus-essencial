@@ -20,14 +20,17 @@ func CreateRoleHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		description := r.FormValue("Description")
 		features := r.Form["FeaturesForInsert"]
-		sqlStatement := "INSERT INTO roles(name, description, author_id, created_at) OUTPUT INSERTED.id VALUES (?, ?, ?, GETDATE())"
+		sqlStatement := "INSERT INTO roles(name, description, id_author, created_at) " +
+			" OUTPUT INSERTED.id_role " +
+			" VALUES (?, ?, ?, GETDATE())"
 		roleId := 0
 		err := Db.QueryRow(sqlStatement, name, description, currentUser.Id).Scan(&roleId)
 		if err != nil {
 			log.Println(err.Error())
 		}
 		for _, featureId := range features {
-			sqlStatement := "INSERT INTO features_roles(feature_id,role_id) OUTPUT INSERTED.id VALUES (?,?)"
+			sqlStatement := "INSERT INTO features_roles(id_feature,id_role) " +
+				" OUTPUT INSERTED.id_feature_role VALUES (?,?)"
 			featureRoleId := 0
 			err = Db.QueryRow(sqlStatement, featureId, roleId).Scan(&featureRoleId)
 			if err != nil {
@@ -86,7 +89,7 @@ func UpdateRoleHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				feature = diffPage[i]
 				log.Println("Role Id: " + roleId)
-				sqlStatement := "INSERT INTO features_roles(role_id, feature_id) VALUES (?,?)"
+				sqlStatement := "INSERT INTO features_roles(id_role, id_feature) VALUES (?,?)"
 				log.Println(sqlStatement)
 				Db.QueryRow(sqlStatement, roleId, feature.Id)
 			}
@@ -145,15 +148,15 @@ func ListPerfisHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id, " +
 			" a.name, " +
 			" a.description, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.created_at,'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM roles a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by id asc"
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)
@@ -221,8 +224,8 @@ func LoadFeaturesByRoleId(w http.ResponseWriter, r *http.Request) {
 // AJAX
 func ListPerfisByActionIdHandler(actionId string) []mdl.Role {
 	log.Println("List Perfis By Action Id")
-	sql := "SELECT role_id" +
-		" FROM actions_roles WHERE action_id= ?"
+	sql := "SELECT id_role" +
+		" FROM actions_roles WHERE id_action= ?"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, actionId)
 	defer rows.Close()
@@ -236,7 +239,7 @@ func ListPerfisByActionIdHandler(actionId string) []mdl.Role {
 }
 
 func DeletePerfisByActionHandler(actionId string) {
-	sqlStatement := "DELETE FROM actions_roles WHERE action_id=?"
+	sqlStatement := "DELETE FROM actions_roles WHERE id_action=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -246,7 +249,7 @@ func DeletePerfisByActionHandler(actionId string) {
 }
 
 func DeletePerfisHandler(diffDB []mdl.Role) {
-	sqlStatement := "DELETE FROM actions_roles WHERE role_id=?"
+	sqlStatement := "DELETE FROM actions_roles WHERE id_role=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

@@ -13,21 +13,21 @@ func ListPilaresByCicloId(cicloId string) []mdl.PilarCiclo {
 	log.Println("cicloId: " + cicloId)
 	sql := "SELECT " +
 		"a.id, " +
-		"a.ciclo_id, " +
+		"a.id_ciclo, " +
 		"coalesce(d.nome,'') as pilar_nome, " +
-		"a.pilar_id, " +
+		"a.id_pilar, " +
 		"concat(a.peso_padrao,' %'), " +
 		"a.tipo_media, " +
-		"a.author_id, " +
+		"a.id_author, " +
 		"coalesce(b.name,'') as author_name, " +
 		"coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), '') as criado_em, " +
-		"a.status_id, " +
+		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM pilares_ciclos a " +
-		"LEFT JOIN pilares d ON a.pilar_id = d.id " +
-		"LEFT JOIN users b ON a.author_id = b.id " +
-		"LEFT JOIN status c ON a.status_id = c.id " +
-		"WHERE a.ciclo_id = ? ORDER BY d.nome ASC "
+		"LEFT JOIN pilares d ON a.id_pilar = d.id " +
+		"LEFT JOIN users b ON a.id_author = b.id " +
+		"LEFT JOIN status c ON a.id_status = c.id " +
+		"WHERE a.id_ciclo = ? ORDER BY d.nome ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, cicloId)
 	defer rows.Close()
@@ -107,7 +107,7 @@ func updatePilarCicloHandler(ce mdl.PilarCiclo, pilarCicloDB mdl.PilarCiclo) {
 }
 
 func DeletePilaresCicloByCicloId(cicloId string) {
-	sqlStatement := "DELETE FROM pilares_ciclos WHERE ciclo_id=?"
+	sqlStatement := "DELETE FROM pilares_ciclos WHERE id_ciclo=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

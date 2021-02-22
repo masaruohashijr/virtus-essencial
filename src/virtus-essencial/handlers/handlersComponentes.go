@@ -21,8 +21,8 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
 		statusComponenteId := GetStartStatus("componente")
-		sqlStatement := "INSERT INTO componentes(nome, descricao, referencia, pga, author_id, criado_em, status_id) " +
-			" OUTPUT INSERTED.id" +
+		sqlStatement := "INSERT INTO componentes(nome, descricao, referencia, pga, id_author, criado_em, id_status) " +
+			" OUTPUT INSERTED.id_componente " +
 			" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 		idComponente := 0
 		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, 'N', currentUser.Id, statusComponenteId).Scan(&idComponente)
@@ -41,14 +41,14 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				pesoPadrao := strings.Split(array[5], ":")[1]
 				sqlStatement := " INSERT INTO " +
 					" elementos_componentes( " +
-					" componente_id, " +
-					" elemento_id, " +
-					" tipo_nota_id, " +
+					" id_componente, " +
+					" id_elemento, " +
+					" id_tipo_nota, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id) " +
-					" OUTPUT INSERTED.id " +
+					" id_status) " +
+					" OUTPUT INSERTED.id_elemento_componente " +
 					" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
@@ -71,13 +71,13 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				statusTipoNotaId := GetStartStatus("tipo_nota")
 				sqlStatement := " INSERT INTO " +
 					" tipos_notas_componentes( " +
-					" componente_id," +
-					" tipo_nota_id," +
+					" id_componente," +
+					" id_tipo_nota," +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id) " +
-					" OUTPUT INSERTED.id " +
+					" id_status) " +
+					" OUTPUT INSERTED.id_tipo_nota_componente " +
 					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
@@ -173,13 +173,13 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				tipoNotaId := strings.Split(key, "_")[1]
 				tipoNotaPeso := value[0]
 				if tipoNotaPeso != "" {
-					sqlStatement = "INSERT INTO tipos_notas_componentes (tipo_nota_id,componente_id) " +
+					sqlStatement = "INSERT INTO tipos_notas_componentes (id_tipo_nota,id_componente) " +
 						" SELECT " + tipoNotaId + ", " + componenteId +
 						" WHERE NOT EXISTS (select 1 from tipos_notas_componentes " +
-						" WHERE tipo_nota_id = " + tipoNotaId + " AND componente_id = " + componenteId + ")"
+						" WHERE id_tipo_nota = " + tipoNotaId + " AND id_componente = " + componenteId + ")"
 					log.Println(sqlStatement)
 					Db.QueryRow(sqlStatement)
-					sqlStatement = "UPDATE tipos_notas_componentes SET peso_padrao=? WHERE tipo_nota_id=? AND componente_id = ?"
+					sqlStatement = "UPDATE tipos_notas_componentes SET peso_padrao=? WHERE id_tipo_nota=? AND id_componente = ?"
 					updtForm, err = Db.Prepare(sqlStatement)
 					if err != nil {
 						log.Println(err.Error())
@@ -216,12 +216,12 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				elementoComponente = diffPage[i]
 				log.Println("Componente Id: " + componenteId)
 				sqlStatement := "INSERT INTO elementos_componentes ( " +
-					" componente_id, " +
-					" elemento_id, " +
+					" id_componente, " +
+					" id_elemento, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id " +
+					" id_status " +
 					" ) " +
 					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
 				log.Println(sqlStatement)
@@ -269,15 +269,15 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.referencia,''), " +
 			" case when a.pga = 'S' then 'Sim' else 'Não' end as PGA, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM componentes a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)

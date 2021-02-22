@@ -19,7 +19,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, chefe_id=? WHERE id=?"
+		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -100,16 +100,16 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 				membro = diffPage[i]
 				log.Println("Escritorio Id: " + escritorioId)
 				sqlStatement := "INSERT INTO membros ( " +
-					" escritorio_id, " +
-					" usuario_id, " +
-					" author_id, " +
+					" id_escritorio, " +
+					" id_usuario, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id " +
+					" id_status " +
 					" ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_membro " +
 					" SELECT ?, ?, ?, ?, ? " +
 					" WHERE NOT EXISTS (SELECT 1 FROM membros " +
-					" WHERE usuario_id = ? AND escritorio_id = ?) "
+					" WHERE id_usuario = ? AND id_escritorio = ?) "
 				log.Println(sqlStatement)
 				Db.QueryRow(
 					sqlStatement,
@@ -153,23 +153,23 @@ func ListMembrosByEscritorioId(escritorioId string) []mdl.Membro {
 	log.Println("escritorioId: " + escritorioId)
 	sql := "SELECT " +
 		"a.id, " +
-		"a.escritorio_id, " +
-		"a.usuario_id, " +
+		"a.id_escritorio, " +
+		"a.id_usuario, " +
 		"coalesce(d.name,'') as usuario_nome, " +
 		"coalesce(e.name,'') as role_name, " +
-		"a.author_id, " +
+		"a.id_author, " +
 		"coalesce(b.name,'') as author_name, " +
 		"coalesce(format(a.criado_em,'dd/MM/yyyy'), '') as criado_em, " +
-		"a.status_id, " +
+		"a.id_status, " +
 		"coalesce(c.name,'') as status_name, " +
 		"coalesce(format(a.inicia_em,'dd/MM/yyyy'), '') as inicia_em, " +
 		"coalesce(format(a.termina_em,'dd/MM/yyyy'), '') as termina_em " +
 		"FROM membros a " +
-		"LEFT JOIN users b ON a.author_id = b.id " +
-		"LEFT JOIN status c ON a.status_id = c.id " +
-		"LEFT JOIN users d ON a.usuario_id = d.id " +
-		"LEFT JOIN roles e ON d.role_id = e.id " +
-		"WHERE a.escritorio_id = ? ORDER BY d.name ASC "
+		"LEFT JOIN users b ON a.id_author = b.id " +
+		"LEFT JOIN status c ON a.id_status = c.id " +
+		"LEFT JOIN users d ON a.id_usuario = d.id " +
+		"LEFT JOIN roles e ON d.id_role = e.id " +
+		"WHERE a.id_escritorio = ? ORDER BY d.name ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, escritorioId)
 	defer rows.Close()
@@ -201,7 +201,7 @@ func ListMembrosByEscritorioId(escritorioId string) []mdl.Membro {
 }
 
 func DeleteMembrosByEscritorioId(escritorioId string) {
-	sqlStatement := "DELETE FROM membros WHERE escritorio_id=?"
+	sqlStatement := "DELETE FROM membros WHERE id_escritorio=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

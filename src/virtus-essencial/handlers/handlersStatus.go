@@ -20,8 +20,8 @@ func CreateStatusHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		description := r.FormValue("Descricao")
 		stereotype := r.FormValue("Stereotype")
-		sqlStatement := "INSERT INTO status(name, description, stereotype, author_id, created_at) " +
-			" OUTPUT INSERTED.id VALUES ('" + name + "', '" +
+		sqlStatement := "INSERT INTO status(name, description, stereotype, id_author, created_at) " +
+			" OUTPUT INSERTED.id_status VALUES ('" + name + "', '" +
 			description + "', '" + stereotype + "', ?, GETDATE())"
 		id := 0
 		log.Println(sqlStatement)
@@ -113,15 +113,15 @@ func listStatus(errorMsg string) mdl.PageStatus {
 		" a.name, " +
 		" coalesce(a.description,'') as descr, " +
 		" coalesce(a.stereotype,'') as stereo_type, " +
-		" a.author_id, " +
+		" a.id_author, " +
 		" b.name, " +
 		" format(a.created_at,'dd/MM/yyyy HH:mm:ss'), " +
 		" coalesce(c.name,'') as cstatus, " +
-		" a.status_id, " +
+		" a.id_status, " +
 		" a.id_versao_origem " +
 		" FROM status a LEFT JOIN users b " +
-		" ON a.author_id = b.id " +
-		" LEFT JOIN status c ON a.status_id = c.id " +
+		" ON a.id_author = b.id " +
+		" LEFT JOIN status c ON a.id_status = c.id " +
 		" order by id asc"
 	log.Println("sql: " + sql)
 	rows, _ := Db.Query(sql)

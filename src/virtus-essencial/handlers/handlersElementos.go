@@ -20,8 +20,8 @@ func CreateElementoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("NomeElementoForInsert")
 		descricao := r.FormValue("DescricaoElementoForInsert")
 		referencia := r.FormValue("ReferenciaElementoForInsert")
-		sqlStatement := "INSERT INTO elementos(nome, descricao, referencia, author_id, criado_em, status_id) " +
-			" OUTPUT INSERTED.id VALUES (?, ?, ?, ?, GETDATE(), ?)"
+		sqlStatement := "INSERT INTO elementos(nome, descricao, referencia, id_author, criado_em, id_status) " +
+			" OUTPUT INSERTED.id_elemento VALUES (?, ?, ?, ?, GETDATE(), ?)"
 		elementoId := 0
 		authorId := strconv.FormatInt(GetUserInCookie(w, r).Id, 10)
 		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, authorId, statusElementoId).Scan(&elementoId)
@@ -41,8 +41,8 @@ func CreateElementoHandler(w http.ResponseWriter, r *http.Request) {
 				referenciaItem := strings.Split(array[5], ":")[1]
 				log.Println("itemId: " + strconv.Itoa(itemId))
 				sqlStatement := "INSERT INTO itens( " +
-					" elemento_id, nome, descricao, referencia, criado_em, author_id, status_id ) " +
-					" OUTPUT INSERTED.id VALUES (?, ?, ?, ?, GETDATE(), ?, ?) "
+					" id_elemento, nome, descricao, referencia, criado_em, id_author, id_status ) " +
+					" OUTPUT INSERTED.id_item VALUES (?, ?, ?, ?, GETDATE(), ?, ?) "
 				log.Println(sqlStatement)
 				log.Println("elementoId: " + strconv.Itoa(elementoId))
 				err = Db.QueryRow(sqlStatement, elementoId, nomeItem, descricaoItem, referenciaItem, currentUser.Id, statusItemId).Scan(&itemId)
@@ -136,8 +136,8 @@ func UpdateElementoHandler(w http.ResponseWriter, r *http.Request) {
 				item = diffPage[i]
 				log.Println("Elemento Id: " + strconv.FormatInt(item.ElementoId, 10))
 				sqlStatement := "INSERT INTO " +
-					"itens(elemento_id, nome, descricao, referencia, criado_em, author_id, status_id) " +
-					"OUTPUT INSERTED.id VALUES (?,?,?,?,GETDATE(),?,?) "
+					"itens(id_elemento, nome, descricao, referencia, criado_em, id_author, id_status) " +
+					"OUTPUT INSERTED.id_item VALUES (?,?,?,?,GETDATE(),?,?) "
 				log.Println(sqlStatement)
 				err := Db.QueryRow(sqlStatement, elementoId, item.Nome, item.Descricao, item.Referencia, currentUser.Id, statusItemId).Scan(&itemId)
 				log.Println("itemId cadastrado: " + strconv.Itoa(itemId))
@@ -205,10 +205,10 @@ func ListElementosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as criado_em, " +
 			" a.peso, " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id " +
+			" a.id_status " +
 			" FROM elementos a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by a.id asc "
 		rows, _ := Db.Query(query)
 		defer rows.Close()

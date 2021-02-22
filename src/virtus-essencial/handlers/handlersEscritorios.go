@@ -21,15 +21,18 @@ func CreateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 		descricao := r.FormValue("Descricao")
 		abreviatura := r.FormValue("Abreviatura")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "INSERT INTO escritorios(nome, descricao, abreviatura, chefe_id, author_id, criado_em) OUTPUT INSERTED.id VALUES (?, ?, ?, ?, ?, GETDATE()) "
+		sqlStatement := "INSERT INTO escritorios" +
+			" (nome, descricao, abreviatura, id_chefe, id_author, criado_em) " +
+			" OUTPUT INSERTED.id_escritorio " +
+			" VALUES (?, ?, ?, ?, ?, GETDATE()) "
 		id := 0
 		Db.QueryRow(sqlStatement, nome, descricao, abreviatura, chefe, currentUser.Id).Scan(&id)
 		log.Println("INSERT: Id: " + strconv.Itoa(id) + " | Nome: " + nome + " | Descrição: " + descricao)
 		if chefe != "" {
 			sqlStatement = "INSERT INTO membros ( " +
-				" escritorio_id, " +
-				" usuario_id, " +
-				" author_id, " +
+				" id_escritorio, " +
+				" id_usuario, " +
+				" id_author, " +
 				" criado_em " +
 				" ) " +
 				" VALUES (?, ?, ?, GETDATE()) "
@@ -55,17 +58,17 @@ func UpdateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 		abreviatura := r.FormValue("Abreviatura")
 		chefe := r.FormValue("Chefe")
 		if chefe != "" {
-			sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, abreviatura=?, chefe_id=? WHERE id=?"
+			sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, abreviatura=?, id_chefe=? WHERE id=?"
 			updtForm, _ := Db.Prepare(sqlStatement)
 			updtForm.Exec(nome, descricao, abreviatura, chefe, id)
 			sqlStatement = "INSERT INTO membros ( " +
-				" escritorio_id, " +
-				" usuario_id, " +
-				" author_id, " +
+				" id_escritorio, " +
+				" id_usuario, " +
+				" id_author, " +
 				" criado_em " +
 				" ) " +
 				" SELECT ?, ?, ?, ? WHERE NOT EXISTS " +
-				" (SELECT 1 FROM membros WHERE escritorio_id = ? AND usuario_id =?)"
+				" (SELECT 1 FROM membros WHERE id_escritorio = ? AND id_usuario =?)"
 			log.Println(sqlStatement)
 			Db.QueryRow(
 				sqlStatement,
@@ -155,18 +158,18 @@ func listEscritorios(errorMsg string, msg string) mdl.PageEscritorios {
 		" a.nome, " +
 		" a.descricao, " +
 		" a.abreviatura, " +
-		" coalesce(a.chefe_id,0), " +
+		" coalesce(a.id_chefe,0), " +
 		" coalesce(d.name,'') as chefe_name, " +
-		" a.author_id, " +
+		" a.id_author, " +
 		" coalesce(b.name,'') as author_name, " +
 		" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 		" coalesce(c.name,'') as cstatus, " +
-		" a.status_id, " +
+		" a.id_status, " +
 		" a.id_versao_origem " +
 		" FROM escritorios a LEFT JOIN users b " +
-		" ON a.author_id = b.id " +
-		" LEFT JOIN status c ON a.status_id = c.id " +
-		" LEFT JOIN users d ON a.chefe_id = d.id " +
+		" ON a.id_author = b.id " +
+		" LEFT JOIN status c ON a.id_status = c.id " +
+		" LEFT JOIN users d ON a.id_chefe = d.id " +
 		" order by a.id asc"
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
@@ -196,10 +199,10 @@ func listEscritorios(errorMsg string, msg string) mdl.PageEscritorios {
 	var page mdl.PageEscritorios
 	page.Escritorios = escritorios
 
-	sql = "SELECT a.id, a.name, a.role_id, " +
+	sql = "SELECT a.id, a.name, a.id_role, " +
 		" coalesce(b.name,'SEM PERFIL') as role_name " +
 		" FROM users a " +
-		" LEFT JOIN roles b ON a.role_id = b.id " +
+		" LEFT JOIN roles b ON a.id_role = b.id " +
 		" ORDER BY a.name asc"
 	rows, _ = Db.Query(sql)
 	defer rows.Close()

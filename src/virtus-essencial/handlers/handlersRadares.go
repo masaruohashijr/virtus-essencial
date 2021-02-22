@@ -25,7 +25,7 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 		if dataRadar != "" {
 			sqlStatement += "data_radar, "
 		}
-		sqlStatement += " author_id, criado_em) " +
+		sqlStatement += " id_author, criado_em) " +
 			" VALUES ('" + nome + "', '" + descricao + "', '" + referencia + "',"
 		if dataRadar != "" {
 			sqlStatement += "'" + dataRadar + "',"
@@ -53,11 +53,11 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 				sqlStatement := " INSERT INTO " +
 					" anotacoes_radares( " +
 					" radar_id, " +
-					" entidade_id, " +
-					" anotacao_id, " +
+					" id_entidade, " +
+					" id_anotacao, " +
 					" observacoes, " +
 					" registro_ata, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em ) " +
 					" VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id"
 				log.Println(sqlStatement)
@@ -164,11 +164,11 @@ func UpdateRadarHandler(w http.ResponseWriter, r *http.Request) {
 				anotacaoRadar = diffPage[i]
 				log.Println("Radar Id: " + radarId)
 				sqlStatement := "INSERT INTO anotacoes_radares ( " +
-					" anotacao_id, " +
+					" id_anotacao, " +
 					" radar_id, " +
 					" observacoes, " +
 					" registro_ata, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					" ) " +
 					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
@@ -224,15 +224,15 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 			" a.descricao, " +
 			" a.referencia, " +
 			" format(a.data_radar,'dd/MM/yyyy'), " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM radares a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -260,20 +260,20 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 		sql = "SELECT " +
 			" a.id, " +
 			" a.assunto, " +
-			" a.entidade_id, " +
+			" a.id_entidade, " +
 			" d.sigla as entidade_sigla, " +
 			" case when a.risco = 'A' then 'Baixo' when a.risco = 'M' then 'Médio' else 'Baixo' end, " +
 			" case when a.tendencia = 'M' then 'Melhora' when a.tendencia = 'E' then 'Estabilidade' else 'Piora' end, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM anotacoes a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
-			" INNER JOIN entidades d ON a.entidade_id = d.id " +
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
+			" INNER JOIN entidades d ON a.id_entidade = d.id " +
 			" ORDER BY a.id asc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

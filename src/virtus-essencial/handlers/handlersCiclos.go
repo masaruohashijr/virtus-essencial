@@ -20,8 +20,8 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "INSERT INTO ciclos(nome, descricao, referencia, author_id, criado_em) " +
-			" OUTPUT INSERTED.id " +
+		sqlStatement := "INSERT INTO ciclos(nome, descricao, referencia, id_author, criado_em) " +
+			" OUTPUT INSERTED.id_ciclo " +
 			" VALUES (?, ?, ?, ?, GETDATE()) "
 		idCiclo := 0
 		Db.QueryRow(sqlStatement, nome, descricao, referencia, currentUser.Id, time.Now()).Scan(&idCiclo)
@@ -37,13 +37,13 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 				pesoPadrao := strings.Split(array[7], ":")[1]
 				sqlStatement := " INSERT INTO " +
 					" pilares_ciclos( " +
-					" ciclo_id, " +
-					" pilar_id, " +
+					" id_ciclo, " +
+					" id_pilar, " +
 					" tipo_media, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_pilar_ciclo " +
 					" VALUES (?, ?, ?, ?, ?, ?) "
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
@@ -96,13 +96,13 @@ func IniciarCicloHandler(w http.ResponseWriter, r *http.Request) {
 				snippet2 = snippet2 + ", ?"
 			}
 			sqlStatement := "INSERT INTO ciclos_entidades ( " +
-				" entidade_id, " +
-				" ciclo_id, " +
+				" id_entidade, " +
+				" id_ciclo, " +
 				" tipo_media, " +
-				" author_id, " +
+				" id_author, " +
 				" criado_em " +
 				snippet1 +
-				" ) OUTPUT INSERTED.id" +
+				" ) OUTPUT INSERTED.id_ciclo_entidade " +
 				" VALUES (?, ?, 1, ?, GETDATE() " + snippet2 + ") "
 			log.Println(sqlStatement)
 			log.Println("entidadeId: " + entidadeId)
@@ -225,14 +225,14 @@ func UpdateCicloHandler(w http.ResponseWriter, r *http.Request) {
 				pilarCiclo = diffPage[i]
 				log.Println("Ciclo Id: " + cicloId)
 				sqlStatement := "INSERT INTO pilares_ciclos ( " +
-					" ciclo_id, " +
-					" pilar_id, " +
+					" id_ciclo, " +
+					" id_pilar, " +
 					" tipo_media, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					" ) " +
-					" OUTPUT INSERTED.id  " +
+					" OUTPUT INSERTED.id_pilar_ciclo  " +
 					" VALUES (?, ?, ?, ?, ?, GETDATE()) "
 				log.Println(sqlStatement)
 				Db.QueryRow(
@@ -284,15 +284,15 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 			" a.nome, " +
 			" a.descricao, " +
 			" a.referencia, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM ciclos a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -339,7 +339,7 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 			"FROM entidades a " +
 			"WHERE NOT EXISTS " +
 			"(SELECT 1 FROM ciclos_entidades b " +
-			" WHERE b.entidade_id = a.id) " +
+			" WHERE b.id_entidade = a.id) " +
 			"ORDER BY a.sigla"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

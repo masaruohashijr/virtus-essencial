@@ -34,15 +34,15 @@ func CreateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 		matriz := r.FormValue("Matriz")
 		log.Println(matriz)
 		sqlStatement := "INSERT INTO anotacoes(" +
-			" entidade_id, " +
+			" id_entidade, " +
 			" assunto, " +
 			" risco, " +
 			" tendencia, " +
-			" relator_id, " +
-			" responsavel_id, " +
+			" id_relator, " +
+			" id_responsavel, " +
 			" descricao, " +
 			" matriz, " +
-			" author_id, " +
+			" id_author, " +
 			" criado_em) " +
 			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id"
 		idAnotacao := 0
@@ -73,9 +73,9 @@ func CreateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 					sqlStatement := " INSERT INTO " +
 						" anotacoes_radares( " +
 						" radar_id, " +
-						" anotacao_id, " +
+						" id_anotacao, " +
 						" registro_ata, " +
-						" author_id, " +
+						" id_author, " +
 						" criado_em ) " +
 						" VALUES (?, ?, ?, ?, ?) RETURNING id"
 					log.Println(sqlStatement)
@@ -121,12 +121,12 @@ func UpdateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 		matriz := r.FormValue("Matriz")
 		log.Println(matriz)
 		sqlStatement := " UPDATE anotacoes " +
-			" SET entidade_id=?, " +
+			" SET id_entidade=?, " +
 			"     assunto=?, " +
 			"     risco=?, " +
 			"     tendencia=?, " +
-			"     relator_id=?, " +
-			"     responsavel_id=?, " +
+			"     id_relator=?, " +
+			"     id_responsavel=?, " +
 			"     descricao=?, " +
 			"     matriz=? " +
 			" WHERE id = ? "
@@ -219,11 +219,11 @@ func UpdateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 				pilarAnotacao = diffPage[i]
 				log.Println("Anotacao Id: " + radarId)
 				sqlStatement := "INSERT INTO anotacoes_radares ( " +
-					" ciclo_id, " +
-					" pilar_id, " +
+					" id_ciclo, " +
+					" id_pilar, " +
 					" tipo_media, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					" ) " +
 					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
@@ -274,32 +274,32 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
 			" a.id, " +
-			" a.entidade_id, " +
+			" a.id_entidade, " +
 			" d.sigla as entidade_sigla, " +
 			" a.assunto, " +
 			" case when a.risco = 'A' then 'Baixo' when a.risco = 'M' then 'Médio' else 'Baixo' end, " +
 			" case when a.tendencia = 'M' then 'Melhora' when a.tendencia = 'E' then 'Estabilidade' else 'Piora' end, " +
-			" a.relator_id, " +
-			" a.responsavel_id, " +
+			" a.id_relator, " +
+			" a.id_responsavel, " +
 			" a.descricao, " +
 			" a.matriz, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
-			" coalesce(a.ciclo_id,0), " +
-			" coalesce(a.pilar_id,0), " +
-			" coalesce(a.componente_id,0), " +
-			" coalesce(a.plano_id,0), " +
-			" coalesce(a.tipo_nota_id,0), " +
-			" coalesce(a.elemento_id,0), " +
-			" coalesce(a.item_id,0), " +
+			" coalesce(a.id_ciclo,0), " +
+			" coalesce(a.id_pilar,0), " +
+			" coalesce(a.id_componente,0), " +
+			" coalesce(a.id_plano,0), " +
+			" coalesce(a.id_tipo_nota,0), " +
+			" coalesce(a.id_elemento,0), " +
+			" coalesce(a.id_item,0), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" coalesce(a.status_id,0), " +
+			" coalesce(a.id_status,0), " +
 			" a.id_versao_origem " +
 			" FROM anotacoes a " +
-			" LEFT JOIN users b ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
-			" LEFT JOIN entidades d ON a.entidade_id = d.id " +
+			" LEFT JOIN users b ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
+			" LEFT JOIN entidades d ON a.id_entidade = d.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -352,26 +352,26 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			entidades = append(entidades, entidade)
 		}
 
-		sql = " SELECT a.usuario_id, " +
+		sql = " SELECT a.id_usuario, " +
 			"        c.name, " +
-			"        c.role_id, " +
+			"        c.id_role, " +
 			"        d.name " +
 			" FROM membros a " +
-			" INNER JOIN escritorios b ON a.escritorio_id = b.id " +
-			" INNER JOIN users c ON a.usuario_id = c.id " +
-			" INNER JOIN ROLES d ON c.role_id = d.id " +
+			" INNER JOIN escritorios b ON a.id_escritorio = b.id " +
+			" INNER JOIN users c ON a.id_usuario = c.id " +
+			" INNER JOIN ROLES d ON c.id_role = d.id " +
 			" WHERE b.id in " +
-			"     (SELECT escritorio_id " +
+			"     (SELECT id_escritorio " +
 			"      FROM membros " +
-			"      WHERE usuario_id = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
+			"      WHERE id_usuario = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
 			" UNION  " +
 			" SELECT e.id, " +
 			"        e.name, " +
-			"        e.role_id, " +
+			"        e.id_role, " +
 			"        f.name " +
 			" FROM users e	    " +
-			" INNER JOIN ROLES f ON e.role_id = f.id " +
-			" WHERE e.role_id in (1,6) " +
+			" INNER JOIN ROLES f ON e.id_role = f.id " +
+			" WHERE e.id_role in (1,6) " +
 			" ORDER BY 2 ASC "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

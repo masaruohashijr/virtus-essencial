@@ -125,21 +125,21 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 	log.Println("entidadeId: " + entidadeId)
 	sql := "SELECT " +
 		" a.id, " +
-		" a.entidade_id, " +
+		" a.id_entidade, " +
 		" coalesce(a.nome,'')," +
 		" coalesce(a.descricao,''), " +
 		" a.cnpb," +
 		" CASE WHEN a.recurso_garantidor > 1000000 AND a.recurso_garantidor < 1000000000 THEN concat(format(a.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN a.recurso_garantidor > 1000000000 THEN concat(format(a.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(a.recurso_garantidor/1000,'N','pt-br'),' Milhares') END," +
 		" cast(a.recurso_garantidor as numeric), " +
 		" a.modalidade_id," +
-		" a.author_id, " +
+		" a.id_author, " +
 		" coalesce(b.name,'') as author_name, " +
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em," +
-		" a.status_id, " +
+		" a.id_status, " +
 		" coalesce(c.name,'') as status_name " +
-		" FROM planos a LEFT JOIN users b ON a.author_id = b.id " +
-		" LEFT JOIN status c ON a.status_id = c.id " +
-		" WHERE a.entidade_id = ? " +
+		" FROM planos a LEFT JOIN users b ON a.id_author = b.id " +
+		" LEFT JOIN status c ON a.id_status = c.id " +
+		" WHERE a.id_entidade = ? " +
 		" AND left(cnpb,1) not in ('4','5') " +
 		" ORDER BY a.recurso_garantidor DESC"
 	log.Println(sql)
@@ -174,7 +174,7 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 }
 
 func DeletePlanosByEntidadeId(entidadeId string) {
-	sqlStatement := "DELETE FROM Planos WHERE entidade_id=?"
+	sqlStatement := "DELETE FROM Planos WHERE id_entidade=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -220,13 +220,13 @@ func ListConfigPlanos(entidadeId string, cicloId string, pilarId string, compone
 	log.Println("List Config Planos")
 	sql := "SELECT " +
 		" a.id, " +
-		" a.entidade_id, " +
-		" a.plano_id " +
+		" a.id_entidade, " +
+		" a.id_plano " +
 		" FROM produtos_planos a " +
-		" WHERE a.entidade_id = " + entidadeId +
-		" AND a.ciclo_id = " + cicloId +
-		" AND a.pilar_id = " + pilarId +
-		" AND a.componente_id = " + componenteId
+		" WHERE a.id_entidade = " + entidadeId +
+		" AND a.id_ciclo = " + cicloId +
+		" AND a.id_pilar = " + pilarId +
+		" AND a.id_componente = " + componenteId
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()

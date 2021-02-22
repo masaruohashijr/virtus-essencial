@@ -24,7 +24,10 @@ func CreateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		esi := r.FormValue("ESI")
 		municipio := r.FormValue("Municipio")
 		siglaUF := r.FormValue("SigaUF")
-		sqlStatement := "INSERT INTO entidades(nome, descricao, sigla, codigo, situacao, esi, municipio, sigla_uf, author_id, criado_em) OUTPUT INSERTED.id VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE()) RETURNING id"
+		sqlStatement := "INSERT INTO entidades " +
+			" (nome, descricao, sigla, codigo, situacao, esi, municipio, sigla_uf, id_author, criado_em) " +
+			" OUTPUT INSERTED.id_entidade " +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE()) "
 		idEntidade := 0
 		err := Db.QueryRow(sqlStatement, nome, descricao, sigla, codigo, situacao, esi, municipio, siglaUF, currentUser.Id).Scan(&idEntidade)
 		if err != nil {
@@ -39,8 +42,8 @@ func CreateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				nomePlano := strings.Split(array[3], ":")[1]
 				descricaoPlano := strings.Split(array[4], ":")[1]
 				sqlStatement := "INSERT INTO planos( " +
-					" entidade_id, nome, descricao, author_id, criado_em ) " +
-					" OUTPUT INSERTED.id VALUES (?, ?, ?, ?, GETDATE())"
+					" id_entidade, nome, descricao, id_author, criado_em ) " +
+					" OUTPUT INSERTED.id_plano VALUES (?, ?, ?, ?, GETDATE())"
 				log.Println(sqlStatement)
 				err = Db.QueryRow(sqlStatement, idEntidade, nomePlano, descricaoPlano, currentUser.Id).Scan(&planoId)
 				if err != nil {
@@ -68,14 +71,14 @@ func CreateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 					snippet2 = snippet2 + ", ?"
 				}
 				sqlStatement := "INSERT INTO ciclos_entidades ( " +
-					" entidade_id, " +
-					" ciclo_id, " +
+					" id_entidade, " +
+					" id_ciclo, " +
 					" tipo_media, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					snippet1 +
 					" ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_ciclo_entidade " +
 					" VALUES (?, ?, ?, ?, GETDATE()" + snippet2 + ")"
 				log.Println(sqlStatement)
 				log.Println("idEntidade: " + strconv.Itoa(idEntidade))
@@ -178,8 +181,8 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				plano = diffPage[i]
 				log.Println("Entidade Id: " + strconv.FormatInt(plano.EntidadeId, 10))
 				sqlStatement := "INSERT INTO planos( " +
-					" entidade_id, nome, descricao, author_id, criado_em ) " +
-					" OUTPUT INSERTED.id " +
+					" id_entidade, nome, descricao, id_author, criado_em ) " +
+					" OUTPUT INSERTED.id_plano " +
 					" VALUES (?, ?, ?, ?, GETDATE())"
 				log.Println(sqlStatement)
 				Db.QueryRow(sqlStatement, plano.EntidadeId, plano.Nome, plano.Descricao, currentUser.Id).Scan(&planoId)
@@ -274,14 +277,14 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 					snippet2 = snippet2 + ", ?"
 				}
 				sqlStatement := "INSERT INTO ciclos_entidades ( " +
-					" entidade_id, " +
-					" ciclo_id, " +
+					" id_entidade, " +
+					" id_ciclo, " +
 					" tipo_media, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					snippet1 +
 					" ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_ciclo_entidade " +
 					" VALUES (?, ?, ?, ?, ?" + snippet2 + ")"
 				log.Println(sqlStatement)
 				if cicloEntidade.IniciaEm != "" && cicloEntidade.TerminaEm != "" {
@@ -312,13 +315,13 @@ func DeleteEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		log.Println("Deletando o id " + id)
-		sqlStatement := "DELETE FROM planos WHERE entidade_id=?"
+		sqlStatement := "DELETE FROM planos WHERE id_entidade=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
 			http.Redirect(w, r, route.EntidadesRoute+"?errMsg=Um plano está associado a um registro e não pôde ser removido.", 301)
 		}
-		sqlStatement = "DELETE FROM ciclos_entidades WHERE entidade_id=?"
+		sqlStatement = "DELETE FROM ciclos_entidades WHERE id_entidade=?"
 		deleteForm, _ = Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -356,19 +359,19 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.sigla_uf,''), " +
 			" coalesce(e.abreviatura,''), " +
 			" coalesce(g.nome, '') as ciclo_nome, " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" coalesce(b.name,'') as author_name, " +
 			" FORMAT(a.criado_em,'dd/MM/yyyy HH:mm:ss'), " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_versao_origem " +
 			" FROM entidades a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
-			" LEFT JOIN jurisdicoes d ON d.entidade_id = a.id " +
-			" LEFT JOIN escritorios e ON d.escritorio_id = e.id " +
-			" LEFT JOIN ciclos_entidades f ON a.id = f.entidade_id " +
-			" LEFT JOIN ciclos g ON f.ciclo_id = g.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
+			" LEFT JOIN jurisdicoes d ON d.id_entidade = a.id " +
+			" LEFT JOIN escritorios e ON d.id_escritorio = e.id " +
+			" LEFT JOIN ciclos_entidades f ON a.id = f.id_entidade " +
+			" LEFT JOIN ciclos g ON f.id_ciclo = g.id " +
 			" ORDER BY a.nome asc "
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)

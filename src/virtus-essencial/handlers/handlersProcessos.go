@@ -22,7 +22,7 @@ func CreateProcessoHandler(w http.ResponseWriter, r *http.Request) {
 		referencia := r.FormValue("Referencia")
 		dataProcesso := r.FormValue("DataProcesso")
 		sqlStatement := "INSERT INTO radares(" +
-			" nome, descricao, referencia, data_radar, author_id, criado_em) " +
+			" nome, descricao, referencia, data_radar, id_author, criado_em) " +
 			" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
 		idProcesso := 0
 		Db.QueryRow(sqlStatement, nome, descricao, referencia, dataProcesso, currentUser.Id, time.Now()).Scan(&idProcesso)
@@ -38,9 +38,9 @@ func CreateProcessoHandler(w http.ResponseWriter, r *http.Request) {
 					sqlStatement := " INSERT INTO " +
 						" questoes_radares( " +
 						" radar_id, " +
-						" questao_id, " +
+						" id_questao, " +
 						" registro_ata, " +
-						" author_id, " +
+						" id_author, " +
 						" criado_em ) " +
 						" VALUES (?, ?, ?, ?, ?) RETURNING id"
 					log.Println(sqlStatement)
@@ -154,11 +154,11 @@ func UpdateProcessoHandler(w http.ResponseWriter, r *http.Request) {
 				pilarProcesso = diffPage[i]
 				log.Println("Processo Id: " + radarId)
 				sqlStatement := "INSERT INTO questoes_radares ( " +
-					" ciclo_id, " +
-					" pilar_id, " +
+					" id_ciclo, " +
+					" id_pilar, " +
 					" tipo_media, " +
 					" peso_padrao, " +
-					" author_id, " +
+					" id_author, " +
 					" criado_em " +
 					" ) " +
 					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
@@ -214,15 +214,15 @@ func ListProcessosHandler(w http.ResponseWriter, r *http.Request) {
 			" a.descricao, " +
 			" a.referencia, " +
 			" format(a.data_radar,'dd/MM/yyyy'), " +
-			" a.author_id, " +
+			" a.id_author, " +
 			" b.name, " +
 			" format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), " +
 			" coalesce(c.name,'') as cstatus, " +
-			" a.status_id, " +
+			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM radares a LEFT JOIN users b " +
-			" ON a.author_id = b.id " +
-			" LEFT JOIN status c ON a.status_id = c.id " +
+			" ON a.id_author = b.id " +
+			" LEFT JOIN status c ON a.id_status = c.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -269,7 +269,7 @@ func ListProcessosHandler(w http.ResponseWriter, r *http.Request) {
 			"FROM entidades a " +
 			"WHERE NOT EXISTS " +
 			"(SELECT 1 FROM radares_entidades b " +
-			" WHERE b.entidade_id = a.id) " +
+			" WHERE b.id_entidade = a.id) " +
 			"ORDER BY a.sigla"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

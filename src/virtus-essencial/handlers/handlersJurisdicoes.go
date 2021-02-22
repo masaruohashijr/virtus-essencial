@@ -19,7 +19,7 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, chefe_id=? WHERE id=?"
+		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -103,13 +103,13 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 				jurisdicao = diffPage[i]
 				log.Println("Escritório Id: " + escritorioId)
 				sqlStatement := "INSERT INTO jurisdicoes ( " +
-					" escritorio_id, " +
-					" entidade_id, " +
-					" author_id, " +
+					" id_escritorio, " +
+					" id_entidade, " +
+					" id_author, " +
 					" criado_em, " +
-					" status_id " +
+					" id_status " +
 					" ) " +
-					" OUTPUT INSERTED.id " +
+					" OUTPUT INSERTED.id_jurisdicao " +
 					" VALUES (?, ?, ?, ?, ?)"
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
@@ -156,22 +156,22 @@ func ListJurisdicoesByEscritorioId(escritorioId string) []mdl.Jurisdicao {
 	log.Println("escritorioId: " + escritorioId)
 	sql := "SELECT " +
 		"a.id, " +
-		"a.escritorio_id, " +
-		"a.entidade_id, " +
+		"a.id_escritorio, " +
+		"a.id_entidade, " +
 		"coalesce(d.nome,'') as entidade_nome, " +
 		"coalesce(d.sigla,'') as entidade_sigla, " +
 		"coalesce(format(a.inicia_em,'dd/MM/yyyy'), '') as inicia_em, " +
 		"coalesce(format(a.termina_em,'dd/MM/yyyy'), '') as termina_em, " +
-		"a.author_id, " +
+		"a.id_author, " +
 		"coalesce(b.name,'') as author_name, " +
 		"coalesce(format(a.criado_em,'dd/MM/yyyy'), '') as criado_em, " +
-		"a.status_id, " +
+		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM jurisdicoes a " +
-		"LEFT JOIN entidades d ON a.entidade_id = d.id " +
-		"LEFT JOIN users b ON a.author_id = b.id " +
-		"LEFT JOIN status c ON a.status_id = c.id " +
-		"WHERE a.escritorio_id = ? ORDER BY d.nome ASC "
+		"LEFT JOIN entidades d ON a.id_entidade = d.id " +
+		"LEFT JOIN users b ON a.id_author = b.id " +
+		"LEFT JOIN status c ON a.id_status = c.id " +
+		"WHERE a.id_escritorio = ? ORDER BY d.nome ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, escritorioId)
 	defer rows.Close()
@@ -235,7 +235,7 @@ func hasSomeFieldChangedJurisdicao(jurisdicaoPage mdl.Jurisdicao, jurisdicaoDB m
 
 func updateJurisdicaoHandler(jurisdicao mdl.Jurisdicao, jurisdicaoDB mdl.Jurisdicao) {
 	sqlStatement := "UPDATE jurisdicoes SET " +
-		"entidade_id=? WHERE id=?"
+		"id_entidade=? WHERE id=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec(jurisdicao.EntidadeId, jurisdicao.Id)
@@ -261,7 +261,7 @@ func updateJurisdicaoHandler(jurisdicao mdl.Jurisdicao, jurisdicaoDB mdl.Jurisdi
 }
 
 func DeleteJurisdicoesByEscritorioId(escritorioId string) {
-	sqlStatement := "DELETE FROM jurisdicoes WHERE escritorio_id=?"
+	sqlStatement := "DELETE FROM jurisdicoes WHERE id_escritorio=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
