@@ -219,7 +219,7 @@ func DeleteVersaoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Versão está associado a um registro e não pode ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM radares WHERE id=?"
+		sqlStatement := "DELETE FROM radares WHERE id_radar=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)

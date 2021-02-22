@@ -101,7 +101,7 @@ func hasSomeFieldChangedPilar(componentePilarPage mdl.ComponentePilar, component
 
 func updateComponentePilarHandler(componentePilarPage mdl.ComponentePilar, componentePilarDB mdl.ComponentePilar) {
 	sqlStatement := "UPDATE componentes_pilares SET " +
-		"tipo_media=?, peso_padrao=?, sonda=? WHERE id=?"
+		"tipo_media=?, peso_padrao=?, sonda=? WHERE id_componente_pilar=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec(componentePilarPage.TipoMediaId, componentePilarPage.PesoPadrao, componentePilarPage.Sonda, componentePilarPage.Id)
@@ -122,7 +122,7 @@ func DeleteComponentesPilarByPilarId(pilarId string) {
 }
 
 func DeleteComponentesPilarHandler(diffDB []mdl.ComponentePilar) {
-	sqlStatement := "DELETE FROM componentes_pilares WHERE id=?"
+	sqlStatement := "DELETE FROM componentes_pilares WHERE id_componente_pilar=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

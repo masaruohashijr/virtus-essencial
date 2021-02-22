@@ -96,7 +96,7 @@ func hasSomeFieldChangedPilarCiclo(pilarCicloPage mdl.PilarCiclo, pilarCicloDB m
 
 func updatePilarCicloHandler(ce mdl.PilarCiclo, pilarCicloDB mdl.PilarCiclo) {
 	sqlStatement := "UPDATE pilares_ciclos SET " +
-		"tipo_media=?, peso_padrao=? WHERE id=?"
+		"tipo_media=?, peso_padrao=? WHERE id_pilar_ciclo=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec(ce.TipoMediaId, ce.PesoPadrao, ce.Id)
@@ -117,7 +117,7 @@ func DeletePilaresCicloByCicloId(cicloId string) {
 }
 
 func DeletePilaresCicloHandler(diffDB []mdl.PilarCiclo) {
-	sqlStatement := "DELETE FROM pilares_ciclos WHERE id=?"
+	sqlStatement := "DELETE FROM pilares_ciclos WHERE id_pilar_ciclo=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

@@ -320,7 +320,7 @@ func DeleteIntegrantesByEntidadeCicloId(entidadeId string, cicloId string) {
 }
 
 func DeleteIntegrantesHandler(diffDB []mdl.Integrante) {
-	sqlStatement := "DELETE FROM integrantes WHERE id=?"
+	sqlStatement := "DELETE FROM integrantes WHERE id_integrante=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

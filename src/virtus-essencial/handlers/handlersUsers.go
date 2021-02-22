@@ -72,7 +72,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Role: " + role)
 		sqlStatement := " UPDATE Users SET name=?, " +
 			" username=?, email=?, mobile=?, id_role=? " +
-			" WHERE id=? "
+			" WHERE id_user=? "
 		log.Println(sqlStatement)
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
@@ -98,7 +98,7 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "Usuário vinculado a registro não pode ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM Users WHERE id=?"
+		sqlStatement := "DELETE FROM Users WHERE id_user=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

@@ -66,7 +66,7 @@ func UpdateElementoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("ElementoNomeForUpdate")
 		descricao := r.FormValue("ElementoDescricaoForUpdate")
 		referencia := r.FormValue("ElementoReferenciaForUpdate")
-		sqlStatement := "UPDATE elementos SET nome=?, descricao=?, referencia=? WHERE id=?"
+		sqlStatement := "UPDATE elementos SET nome=?, descricao=?, referencia=? WHERE id_elemento=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -177,7 +177,7 @@ func DeleteElementoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Elemento está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM elementos WHERE id=?"
+		sqlStatement := "DELETE FROM elementos WHERE id_elemento=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

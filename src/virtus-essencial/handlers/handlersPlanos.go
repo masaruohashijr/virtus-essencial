@@ -36,7 +36,7 @@ func UpdatePlanoHandler(w http.ResponseWriter, r *http.Request) {
 		cnpb := r.FormValue("CNPB")
 		recursoGarantidor := r.FormValue("RecursoGarantidor")
 		modalidade := r.FormValue("Modalidade")
-		sqlStatement := "UPDATE planos SET nome=?, descricao=?, cnpb=?, recurso_garantidor=?, modalidade=? WHERE id=?"
+		sqlStatement := "UPDATE planos SET nome=?, descricao=?, cnpb=?, recurso_garantidor=?, modalidade=? WHERE id_plano=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -88,11 +88,11 @@ func hasSomeFieldChangedPlano(planoPage mdl.Plano, planoDB mdl.Plano) bool {
 
 func updatePlanoHandler(p mdl.Plano, planoDB mdl.Plano) {
 	sqlStatement := "UPDATE planos SET " +
-		"nome='" + p.Nome + "', descricao='" + p.Descricao + "', modalidade_id='" + p.Modalidade +
+		"nome='" + p.Nome + "', descricao='" + p.Descricao + "', id_modalidade='" + p.Modalidade +
 		"', recurso_garantidor=" +
 		p.RecursoGarantidor +
 		", cnpb='" + p.CNPB +
-		"' WHERE id=" + strconv.FormatInt(p.Id, 10)
+		"' WHERE id_plano=" + strconv.FormatInt(p.Id, 10)
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec()
@@ -106,7 +106,7 @@ func DeletePlanoHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete Plano")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM planos WHERE id=?"
+		sqlStatement := "DELETE FROM planos WHERE id_plano=?"
 		deleteForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -124,21 +124,21 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 	log.Println("List Planos By Entidade Id")
 	log.Println("entidadeId: " + entidadeId)
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_plano, " +
 		" a.id_entidade, " +
 		" coalesce(a.nome,'')," +
 		" coalesce(a.descricao,''), " +
 		" a.cnpb," +
 		" CASE WHEN a.recurso_garantidor > 1000000 AND a.recurso_garantidor < 1000000000 THEN concat(format(a.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN a.recurso_garantidor > 1000000000 THEN concat(format(a.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(a.recurso_garantidor/1000,'N','pt-br'),' Milhares') END," +
 		" cast(a.recurso_garantidor as numeric), " +
-		" a.modalidade_id," +
+		" a.id_modalidade," +
 		" a.id_author, " +
 		" coalesce(b.name,'') as author_name, " +
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em," +
 		" a.id_status, " +
 		" coalesce(c.name,'') as status_name " +
-		" FROM planos a LEFT JOIN users b ON a.id_author = b.id " +
-		" LEFT JOIN status c ON a.id_status = c.id " +
+		" FROM planos a LEFT JOIN users b ON a.id_author = b.id_user " +
+		" LEFT JOIN status c ON a.id_status = c.id_status " +
 		" WHERE a.id_entidade = ? " +
 		" AND left(cnpb,1) not in ('4','5') " +
 		" ORDER BY a.recurso_garantidor DESC"
@@ -184,7 +184,7 @@ func DeletePlanosByEntidadeId(entidadeId string) {
 }
 
 func DeletePlanosHandler(diffDB []mdl.Plano) {
-	sqlStatement := "DELETE FROM Planos WHERE id=?"
+	sqlStatement := "DELETE FROM Planos WHERE id_plano=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

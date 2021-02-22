@@ -19,7 +19,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id=?"
+		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id_escritorio=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -211,7 +211,7 @@ func DeleteMembrosByEscritorioId(escritorioId string) {
 }
 
 func DeleteMembrosHandler(diffDB []mdl.Membro) {
-	sqlStatement := "DELETE FROM membros WHERE id=?"
+	sqlStatement := "DELETE FROM membros WHERE id_membro=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

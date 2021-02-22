@@ -79,7 +79,7 @@ func UpdatePilarHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "UPDATE pilares SET nome=?, descricao=?, referencia=? WHERE id=?"
+		sqlStatement := "UPDATE pilares SET nome=?, descricao=?, referencia=? WHERE id_pilar=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -204,7 +204,7 @@ func DeletePilarHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Pilar vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM pilares WHERE id=?"
+		sqlStatement := "DELETE FROM pilares WHERE id_pilar=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

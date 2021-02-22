@@ -114,7 +114,7 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 		if pga != "" {
 			somentePGA = "S"
 		}
-		sqlStatement := "UPDATE componentes SET nome=?, descricao=?, referencia=?, pga=? WHERE id=?"
+		sqlStatement := "UPDATE componentes SET nome=?, descricao=?, referencia=?, pga=? WHERE id_componente=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -245,7 +245,7 @@ func DeleteComponenteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Componente está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM componentes WHERE id=?"
+		sqlStatement := "DELETE FROM componentes WHERE id_componente=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

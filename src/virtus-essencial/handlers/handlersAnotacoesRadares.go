@@ -92,7 +92,7 @@ func hasSomeFieldChangedAnotacaoRadar(anotacaoRadarPage mdl.AnotacaoRadar, anota
 
 func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB mdl.AnotacaoRadar, currentUserId int64) {
 	sqlStatement := "UPDATE anotacoes_radares " +
-		" SET radar_id=?, id_anotacao=?, observacoes=?, registro_ata=?, " +
+		" SET id_radar=?, id_anotacao=?, observacoes=?, registro_ata=?, " +
 		" id_ultimo_atualizador=?, ultima_atualizacao=? " +
 		" WHERE id = ? "
 	log.Println(sqlStatement)
@@ -111,7 +111,7 @@ func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB
 }
 
 func DeleteAnotacoesRadarByRadarId(radarId string) {
-	sqlStatement := "DELETE FROM anotacoes_radares WHERE radar_id=?"
+	sqlStatement := "DELETE FROM anotacoes_radares WHERE id_radar=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -121,7 +121,7 @@ func DeleteAnotacoesRadarByRadarId(radarId string) {
 }
 
 func DeleteAnotacoesRadarHandler(diffDB []mdl.AnotacaoRadar) string {
-	sqlStatement := "DELETE FROM anotacoes_radares WHERE id=?"
+	sqlStatement := "DELETE FROM anotacoes_radares WHERE id_anotacao_radar=?"
 	deleteForm, _ := Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		errMsg := ""

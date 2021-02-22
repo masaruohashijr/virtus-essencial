@@ -92,7 +92,7 @@ func hasSomeFieldChangedElementoComponente(elementoComponentePage mdl.ElementoCo
 func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, elementoComponenteDB mdl.ElementoComponente) {
 	log.Println("updateElementoComponenteHandler")
 	sqlStatement := "UPDATE elementos_componentes SET " +
-		"peso_padrao=? WHERE id=?"
+		"peso_padrao=? WHERE id_elemento_componente=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec(elementoComponente.PesoPadrao, elementoComponente.Id)
@@ -109,7 +109,7 @@ func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, 
 		" b.id_ciclo = a.id_ciclo AND " +
 		" b.id_entidade = a.id_entidade " +
 		" GROUP BY b.id_entidade, b.id_ciclo, b.id_pilar, b.id_componente) " +
-		" WHERE a.id=? "
+		" WHERE a.id_elemento_componente=? "
 	log.Println(sqlStatement)
 	updtForm, _ = Db.Prepare(sqlStatement)
 	_, err = updtForm.Exec(elementoComponente.ComponenteId)
@@ -130,7 +130,7 @@ func DeleteElementosComponenteByComponenteId(componenteId string) {
 }
 
 func DeleteElementosComponenteHandler(diffDB []mdl.ElementoComponente) {
-	sqlStatement := "DELETE FROM elementos_componentes WHERE id=?"
+	sqlStatement := "DELETE FROM elementos_componentes WHERE id_elemento_componente=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

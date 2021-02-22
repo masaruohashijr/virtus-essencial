@@ -117,7 +117,7 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		esi := r.FormValue("ESI")
 		municipio := r.FormValue("Municipio")
 		siglaUF := r.FormValue("SiglaUF")
-		sqlStatement := "UPDATE entidades SET nome=?, descricao=?, sigla=?, codigo=?, situacao=?, esi=?, municipio=?, sigla_uf=? WHERE id=?"
+		sqlStatement := "UPDATE entidades SET nome=?, descricao=?, sigla=?, codigo=?, situacao=?, esi=?, municipio=?, sigla_uf=? WHERE id_entidade=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -327,7 +327,7 @@ func DeleteEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
 			http.Redirect(w, r, route.EntidadesRoute+"?errMsg=Um ciclo está associado a um registro e não pôde ser removido.", 301)
 		}
-		sqlStatement = "DELETE FROM entidades WHERE id=?"
+		sqlStatement = "DELETE FROM entidades WHERE id_entidade=?"
 		deleteForm, err = Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -348,7 +348,7 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		var page mdl.PageEntidades
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_entidade, " +
 			" coalesce(a.sigla,''), " +
 			" coalesce(a.nome,''), " +
 			" coalesce(a.descricao,''), " +
@@ -366,12 +366,12 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_versao_origem " +
 			" FROM entidades a LEFT JOIN users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" LEFT JOIN jurisdicoes d ON d.id_entidade = a.id " +
-			" LEFT JOIN escritorios e ON d.id_escritorio = e.id " +
-			" LEFT JOIN ciclos_entidades f ON a.id = f.id_entidade " +
-			" LEFT JOIN ciclos g ON f.id_ciclo = g.id " +
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN status c ON a.id_status = c.id_status " +
+			" LEFT JOIN jurisdicoes d ON d.id_entidade = a.id_entidade " +
+			" LEFT JOIN escritorios e ON d.id_escritorio = e.id_escritorio " +
+			" LEFT JOIN ciclos_entidades f ON a.id_entidade = f.id_entidade " +
+			" LEFT JOIN ciclos g ON f.id_ciclo = g.id_ciclo " +
 			" ORDER BY a.nome asc "
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)
@@ -410,7 +410,7 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 		if msg != "" {
 			page.Msg = msg
 		}
-		sql = "SELECT id, nome FROM ciclos ORDER BY id asc"
+		sql = "SELECT id_ciclo, nome FROM ciclos ORDER BY id_ciclo asc"
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
 		var ciclos []mdl.Ciclo

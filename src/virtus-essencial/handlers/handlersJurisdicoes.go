@@ -19,7 +19,7 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id=?"
+		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id_escritorio=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -235,7 +235,7 @@ func hasSomeFieldChangedJurisdicao(jurisdicaoPage mdl.Jurisdicao, jurisdicaoDB m
 
 func updateJurisdicaoHandler(jurisdicao mdl.Jurisdicao, jurisdicaoDB mdl.Jurisdicao) {
 	sqlStatement := "UPDATE jurisdicoes SET " +
-		"id_entidade=? WHERE id=?"
+		"id_entidade=? WHERE id_jurisdicao=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec(jurisdicao.EntidadeId, jurisdicao.Id)
@@ -271,7 +271,7 @@ func DeleteJurisdicoesByEscritorioId(escritorioId string) {
 }
 
 func DeleteJurisdicoesHandler(diffDB []mdl.Jurisdicao) {
-	sqlStatement := "DELETE FROM jurisdicoes WHERE id=?"
+	sqlStatement := "DELETE FROM jurisdicoes WHERE id_jurisdicao=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

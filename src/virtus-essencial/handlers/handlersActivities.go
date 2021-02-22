@@ -127,7 +127,7 @@ func DeleteActivitiesHandler(diffDB []mdl.Activity) {
 		deleteForm.Exec(strconv.FormatInt(int64(diffDB[n].Id), 10))
 		log.Println("DELETE: Activity Role Id: " + strconv.FormatInt(int64(diffDB[n].Id), 10))
 	}
-	sqlStatement = "DELETE FROM activities WHERE id=?"
+	sqlStatement = "DELETE FROM activities WHERE id_activity=?"
 	deleteForm, _ = Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		deleteForm.Exec(strconv.FormatInt(int64(diffDB[n].Id), 10))
@@ -178,7 +178,7 @@ func updateActivityHandler(activityPage mdl.Activity, activityDB mdl.Activity) {
 		" expiration_time_days=?, " +
 		" start_at=?, " +
 		" end_at=? " +
-		" WHERE id=?"
+		" WHERE id_activity=?"
 	updtForm, _ := Db.Prepare(sqlStatement)
 	updtForm.Exec(activityPage.ActionId, activityPage.ExpirationActionId,
 		activityPage.ExpirationTimeDays, activityPage.CStartAt, activityPage.CEndAt)

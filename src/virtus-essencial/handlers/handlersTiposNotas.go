@@ -44,7 +44,7 @@ func UpdateTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 		referencia := r.FormValue("Referencia")
 		letra := r.FormValue("Letra")
 		corLetra := r.FormValue("CorLetra")
-		sqlStatement := "UPDATE tipos_notas SET nome=?, descricao=?, referencia=?, letra=?, cor_letra=? WHERE id=?"
+		sqlStatement := "UPDATE tipos_notas SET nome=?, descricao=?, referencia=?, letra=?, cor_letra=? WHERE id_tipo_nota=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -65,7 +65,7 @@ func DeleteTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Tipo de Nota vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM tipos_notas WHERE id=?"
+		sqlStatement := "DELETE FROM tipos_notas WHERE id_tipo_nota=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

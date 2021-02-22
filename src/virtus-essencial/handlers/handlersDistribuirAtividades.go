@@ -305,7 +305,7 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			auditores = append(auditores, auditor)
 		}
 
-		sql = " SELECT id, cnpb, modalidade_id, CASE WHEN recurso_garantidor > 1000000 AND recurso_garantidor < 1000000000 THEN concat(format(recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN recurso_garantidor > 1000000000 THEN concat(format(recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(recurso_garantidor/1000,'N','pt-br'),' Milhares') END " +
+		sql = " SELECT id, cnpb, id_modalidade, CASE WHEN recurso_garantidor > 1000000 AND recurso_garantidor < 1000000000 THEN concat(format(recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN recurso_garantidor > 1000000000 THEN concat(format(recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(recurso_garantidor/1000,'N','pt-br'),' Milhares') END " +
 			" FROM planos WHERE id_entidade = ? AND left(cnpb,1) not in ('4','5') ORDER BY recurso_garantidor DESC "
 		log.Println(sql)
 		rows, _ = Db.Query(sql, entidadeId)

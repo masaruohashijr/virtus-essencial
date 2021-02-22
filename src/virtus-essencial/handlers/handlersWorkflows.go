@@ -135,7 +135,7 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("NameForUpdate")
 		description := r.FormValue("DescriptionForUpdate")
 		entity := r.FormValue("EntityTypeForUpdate")
-		sqlStatement := "UPDATE workflows SET name=?, entity_type=?, description=? WHERE id=?"
+		sqlStatement := "UPDATE workflows SET name=?, entity_type=?, description=? WHERE id_workflow=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -284,7 +284,7 @@ func DeleteWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Workflow vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM workflows WHERE id=?"
+		sqlStatement := "DELETE FROM workflows WHERE id_workflow=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

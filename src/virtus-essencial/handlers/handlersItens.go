@@ -51,7 +51,7 @@ func DeleteItensByElementoHandler(elementoId string) {
 }
 
 func DeleteItensHandler(diffDB []mdl.Item) {
-	sqlStatement := "DELETE FROM itens WHERE id=?"
+	sqlStatement := "DELETE FROM itens WHERE id_item=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -99,7 +99,7 @@ func hasSomeFieldChanged(itemPage mdl.Item, itemDB mdl.Item) bool {
 
 func updateItemHandler(i mdl.Item, itemDB mdl.Item) {
 	sqlStatement := "UPDATE itens SET " +
-		"nome=?, descricao=?, referencia=? WHERE id=?"
+		"nome=?, descricao=?, referencia=? WHERE id_item=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	log.Println(i.Nome)

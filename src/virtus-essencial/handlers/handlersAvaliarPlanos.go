@@ -33,7 +33,7 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" 	   pc.tipo_media, pc.peso_padrao, " +
 	" 	   a.id_item, coalesce(l.nome,'') as item_nome, " +
 	"      a.id_plano, " +
-	"	   j.cnpb, CASE WHEN j.recurso_garantidor > 1000000 AND j.recurso_garantidor < 1000000000 THEN concat(format(j.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN j.recurso_garantidor > 1000000000 THEN concat(format(j.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(j.recurso_garantidor/1000,'N','pt-br'),' Milhares') END, j.modalidade_id, " +
+	"	   j.cnpb, CASE WHEN j.recurso_garantidor > 1000000 AND j.recurso_garantidor < 1000000000 THEN concat(format(j.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN j.recurso_garantidor > 1000000000 THEN concat(format(j.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(j.recurso_garantidor/1000,'N','pt-br'),' Milhares') END, j.id_modalidade, " +
 	" 	   coalesce(p.peso,0) as plano_peso, coalesce(p.nota,0) as plano_nota, " +
 	"	   coalesce(format(g.inicia_em, 'dd/MM/yyyy'), '') AS inicia_em, " +
 	"      coalesce(format(g.termina_em, 'dd/MM/yyyy'), '') AS termina_em, " +

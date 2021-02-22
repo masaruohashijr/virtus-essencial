@@ -50,7 +50,7 @@ func UpdateRoleHandler(w http.ResponseWriter, r *http.Request) {
 		roleId := r.FormValue("Id")
 		name := r.FormValue("Name")
 		description := r.FormValue("Description")
-		sqlStatement := "UPDATE roles SET name=?, description=? WHERE id=?"
+		sqlStatement := "UPDATE roles SET name=?, description=? WHERE id_role=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -125,7 +125,7 @@ func DeleteRoleHandler(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("Id")
 		log.Println("id: " + id)
 		errMsg := "Perfil vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM roles WHERE id=?"
+		sqlStatement := "DELETE FROM roles WHERE id_role=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

@@ -12,7 +12,7 @@ func ListCiclosEntidadeByEntidadeId(entidadeId string) []mdl.CicloEntidade {
 	log.Println("List Ciclos Entidades By Entidade Id")
 	log.Println("entidadeId: " + entidadeId)
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_ciclo_entidade, " +
 		"a.id_entidade, " +
 		"d.nome, " +
 		"a.id_ciclo, " +
@@ -25,9 +25,9 @@ func ListCiclosEntidadeByEntidadeId(entidadeId string) []mdl.CicloEntidade {
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM ciclos_entidades a " +
-		"LEFT JOIN ciclos d ON a.id_ciclo = d.id " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
-		"LEFT JOIN status c ON a.id_status = c.id " +
+		"LEFT JOIN ciclos d ON a.id_ciclo = d.id_ciclo " +
+		"LEFT JOIN users b ON a.id_author = b.id_user " +
+		"LEFT JOIN status c ON a.id_status = c.id_status " +
 		"WHERE a.id_entidade = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId)
@@ -100,7 +100,7 @@ func hasSomeFieldChangedCicloEntidade(cicloEntidadePage mdl.CicloEntidade, ciclo
 
 func updateCicloEntidadeHandler(ce mdl.CicloEntidade, cicloEntidadeDB mdl.CicloEntidade) {
 	sqlStatement := "UPDATE ciclos_entidades SET " +
-		"tipo_media=?, inicia_em=?, termina_em=? WHERE id=?"
+		"tipo_media=?, inicia_em=?, termina_em=? WHERE id_ciclo_entidade=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	log.Println("ce.IniciaEm: " + ce.IniciaEm)
@@ -123,7 +123,7 @@ func DeleteCiclosEntidadeByEntidadeId(entidadeId string) {
 }
 
 func DeleteCiclosEntidadeHandler(diffDB []mdl.CicloEntidade) string {
-	sqlStatement := "DELETE FROM ciclos_entidades WHERE id=?"
+	sqlStatement := "DELETE FROM ciclos_entidades WHERE id_ciclo_entidade=?"
 	deleteForm, _ := Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		errMsg := ""

@@ -52,7 +52,7 @@ func UpdateFeatureHandler(w http.ResponseWriter, r *http.Request) {
 		code := r.FormValue("Code")
 		log.Println(code)
 		description := r.FormValue("Description")
-		sqlStatement := "UPDATE features SET name=?, code=?, description=? WHERE id=?"
+		sqlStatement := "UPDATE features SET name=?, code=?, description=? WHERE id_feature=?"
 		log.Println(sqlStatement)
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
@@ -74,7 +74,7 @@ func DeleteFeatureHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "Funcionalidade vinculada a registro não pode ser removida."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM features WHERE id=?"
+		sqlStatement := "DELETE FROM features WHERE id_feature=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

@@ -411,7 +411,7 @@ func createTable() {
 		" legislacao varchar(255)," +
 		" situacao varchar(255)," +
 		" recurso_garantidor double precision," +
-		" modalidade_id character(2)," +
+		" id_modalidade character(2)," +
 		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +

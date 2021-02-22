@@ -137,7 +137,7 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			log.Println("DELETE Action_Status: Id: " + actionId)
 		}
-		sqlStatement := "UPDATE actions SET name=?, id_origin_status=?, id_destination_status=?, other_than=?, description=? WHERE id=?"
+		sqlStatement := "UPDATE actions SET name=?, id_origin_status=?, id_destination_status=?, other_than=?, description=? WHERE id_action=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -190,7 +190,7 @@ func DeleteActionHandler(w http.ResponseWriter, r *http.Request) {
 		} else {
 			http.Redirect(w, r, route.ActionsRoute+"?msg=Ação removida com sucesso.", 301)
 		}
-		sqlStatement = "DELETE FROM actions WHERE id=?"
+		sqlStatement = "DELETE FROM actions WHERE id_action=?"
 		deleteForm, _ = Db.Prepare(sqlStatement)
 		deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {

@@ -129,7 +129,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		"        COALESCE(R2.id_plano, 0) AS id_plano, " +
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
 		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
-		"        COALESCE(z.modalidade_id,'') as modalidade, " +
+		"        COALESCE(z.id_modalidade,'') as modalidade, " +
 		"        COALESCE((SELECT count(1) " +
 		"   		FROM " +
 		"     		(SELECT b.id_elemento " +
@@ -316,7 +316,7 @@ func loadTiposNotasMatriz(entidadeId string, cicloId string, pilarId string) []m
 		"        COALESCE(R2.id_plano, 0) AS id_plano, " +
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
 		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
-		"        COALESCE(z.modalidade_id,'') as modalidade, " +
+		"        COALESCE(z.id_modalidade,'') as modalidade, " +
 		"        (SELECT count(1) FROM (SELECT DISTINCT id_plano FROM produtos_planos WHERE id_entidade = " + entidadeId + " AND id_ciclo = " + cicloId + " GROUP BY id_plano) S) as EntidadeQtdPlanos " +
 		" FROM " +
 		"   (SELECT a.id AS id_ciclo, " +

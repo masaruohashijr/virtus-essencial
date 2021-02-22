@@ -3,7 +3,7 @@ package db
 import ()
 
 func createPlanos() {
-	sql := "INSERT INTO PLANOS (id_entidade, cnpb, modalidade_id, situacao, legislacao, recurso_garantidor )  " +
+	sql := "INSERT INTO PLANOS (id_entidade, cnpb, id_modalidade, situacao, legislacao, recurso_garantidor )  " +
 		" SELECT a.id as id_entidade, '1985000547' as cnpb, 'CD' as modalidade, 'ATIVO - EM TRANSFERÊNCIA DE GERENCIAMENTO' as situacao, 'LC109' as legislacao, 69618682.55 as recurso_garantidor FROM entidades a WHERE a.sigla = 'ACEPREV' AND NOT EXISTS (SELECT 1 FROM planos WHERE cnpb = '1985000547') UNION  " +
 		" SELECT a.id as id_entidade, '1994002492' as cnpb, 'CV' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC109' as legislacao, 1250527766.65 as recurso_garantidor FROM entidades a WHERE a.sigla = 'ACEPREV' AND NOT EXISTS (SELECT 1 FROM planos WHERE cnpb = '1994002492') UNION  " +
 		" SELECT a.id as id_entidade, '2012000411' as cnpb, 'CD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC109' as legislacao, 187000.61 as recurso_garantidor FROM entidades a WHERE a.sigla = 'ACIPREV' AND NOT EXISTS (SELECT 1 FROM planos WHERE cnpb = '2012000411') UNION  " +

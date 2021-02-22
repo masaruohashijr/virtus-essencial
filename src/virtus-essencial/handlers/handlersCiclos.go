@@ -257,7 +257,7 @@ func DeleteCicloHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Ciclo está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM ciclos WHERE id=?"
+		sqlStatement := "DELETE FROM ciclos WHERE id_ciclo=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)

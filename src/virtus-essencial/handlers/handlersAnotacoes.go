@@ -251,7 +251,7 @@ func DeleteAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "A Anotação está associada a um registro e não pode ser removida."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM anotacoes WHERE id=?"
+		sqlStatement := "DELETE FROM anotacoes WHERE id_anotacao=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)

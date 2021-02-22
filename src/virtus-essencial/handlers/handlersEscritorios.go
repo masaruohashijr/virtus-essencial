@@ -58,7 +58,7 @@ func UpdateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 		abreviatura := r.FormValue("Abreviatura")
 		chefe := r.FormValue("Chefe")
 		if chefe != "" {
-			sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, abreviatura=?, id_chefe=? WHERE id=?"
+			sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, abreviatura=?, id_chefe=? WHERE id_escritorio=?"
 			updtForm, _ := Db.Prepare(sqlStatement)
 			updtForm.Exec(nome, descricao, abreviatura, chefe, id)
 			sqlStatement = "INSERT INTO membros ( " +
@@ -79,7 +79,7 @@ func UpdateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 				id,
 				chefe)
 		} else {
-			sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, abreviatura=? WHERE id=?"
+			sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, abreviatura=? WHERE id_escritorio=?"
 			updtForm, _ := Db.Prepare(sqlStatement)
 			updtForm.Exec(nome, descricao, abreviatura, id)
 		}
@@ -94,7 +94,7 @@ func DeleteEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete Escritorio")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM escritorios WHERE id=?"
+		sqlStatement := "DELETE FROM escritorios WHERE id_escritorio=?"
 		deleteForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
