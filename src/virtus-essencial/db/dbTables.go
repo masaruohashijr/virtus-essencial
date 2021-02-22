@@ -589,7 +589,7 @@ func createTable() {
 		" id_pilar integer," +
 		" id_componente integer," +
 		" id_plano integer," +
-		" id_tipo_nota integer," +
+		" id_tipo_de_nota integer," +
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
@@ -704,7 +704,7 @@ func createTable() {
 		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
-		" id_status integer," +
+		" status_id integer," +
 		" stereotype varchar(255))" +
 		" END ")
 	if err != nil {

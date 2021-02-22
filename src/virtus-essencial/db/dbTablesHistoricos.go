@@ -10,7 +10,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_ciclos_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_ciclos_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_ciclos_historicos_seq, " +
+		" id_produto_ciclo_historico integer DEFAULT NEXT VALUE FOR id_produtos_ciclos_historicos_seq, " +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_tipo_pontuacao integer," +
@@ -34,7 +34,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_pilares_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_pilares_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_pilares_historicos_seq, " +
+		" id_produto_pilar_historico integer DEFAULT NEXT VALUE FOR id_produtos_pilares_historicos_seq, " +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +
@@ -57,7 +57,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_componentes_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_componentes_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_componentes_historicos_seq," +
+		" id_produto_componente_historico integer DEFAULT NEXT VALUE FOR id_produtos_componentes_historicos_seq," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +
@@ -92,7 +92,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_elementos_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_elementos_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_elementos_historicos_seq," +
+		" id_produto_elemento_historico integer DEFAULT NEXT VALUE FOR id_produtos_elementos_historicos_seq," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +
@@ -120,7 +120,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_itens_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_itens_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_itens_historicos_seq," +
+		" id_produto_item_historico integer DEFAULT NEXT VALUE FOR id_produtos_itens_historicos_seq," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +
@@ -142,7 +142,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_planos_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_planos_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_planos_historicos_seq," +
+		" id_produto_plano_historico integer DEFAULT NEXT VALUE FOR id_produtos_planos_historicos_seq," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +
@@ -163,7 +163,7 @@ func createTablesHistoricos() {
 		" WHERE object_id = OBJECT_ID(N'produtos_tipos_notas_historicos') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE produtos_tipos_notas_historicos (" +
-		" id integer DEFAULT NEXT VALUE FOR id_produtos_tipos_notas_historicos_seq," +
+		" id_produto_tipo_nota_historico integer DEFAULT NEXT VALUE FOR id_produtos_tipos_notas_historicos_seq," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +

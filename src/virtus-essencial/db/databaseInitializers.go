@@ -59,7 +59,7 @@ func ajustesEmChamados() {
 func createStatusZERO() {
 	query := "INSERT INTO status (id_status, name, stereotype, description, id_author, created_at)" +
 		" SELECT 0, '-', '', '', 1, GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_status FROM status WHERE id = 0)"
+		" WHERE NOT EXISTS (SELECT id_status FROM status WHERE id_status = 0)"
 	//log.Println(query)
 	db.Exec(query)
 }

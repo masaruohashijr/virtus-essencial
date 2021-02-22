@@ -954,7 +954,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" id_pilar, " +
 		" id_componente, " +
 		" id_plano, " +
-		" id_tipo_nota, " +
+		" id_tipo_de_nota, " +
 		//" peso, " +
 		" nota, " +
 		" id_tipo_pontuacao, " +

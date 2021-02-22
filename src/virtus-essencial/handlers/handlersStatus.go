@@ -51,7 +51,7 @@ func UpdateStatusHandler(w http.ResponseWriter, r *http.Request) {
 		description := r.FormValue("Description")
 		log.Println(description)
 		stereotype := r.FormValue("Stereotype")
-		stmt, err := Db.Prepare("UPDATE status SET name=?, description=?, stereotype=? WHERE id=?")
+		stmt, err := Db.Prepare("UPDATE status SET name=?, description=?, stereotype=? WHERE id_status=?")
 		if err != nil {
 			log.Println(err.Error())
 		}
@@ -109,7 +109,7 @@ func ListStatusHandler(w http.ResponseWriter, r *http.Request) {
 
 func listStatus(errorMsg string) mdl.PageStatus {
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_status, " +
 		" a.name, " +
 		" coalesce(a.description,'') as descr, " +
 		" coalesce(a.stereotype,'') as stereo_type, " +
@@ -117,7 +117,7 @@ func listStatus(errorMsg string) mdl.PageStatus {
 		" b.name, " +
 		" format(a.created_at,'dd/MM/yyyy HH:mm:ss'), " +
 		" coalesce(c.name,'') as cstatus, " +
-		" a.id_status, " +
+		" a.status_id, " +
 		" a.id_versao_origem " +
 		" FROM status a LEFT JOIN users b " +
 		" ON a.id_author = b.id " +
