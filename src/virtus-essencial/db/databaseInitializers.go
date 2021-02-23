@@ -10,26 +10,28 @@ var db *sql.DB
 
 func Initialize() {
 	db = hd.Db
+	createSchema()
 	createSeq()
 	createSeqHistoricos()
+
 	createTable()
 	createTablesHistoricos()
-	createPKey()
-	createFeatures()
-	createRoles()
-	createRoleFeatures()
-	createEscritorios()
-	createUsers()
-	createMembros()
-	createStatusZERO()
-	createEntidades()
-	createPlanos()
-	createJurisdicoes()
-	updateRoles()
-	updateFeatures()
-	createFKey()
-	createUniqueKey()
-	createCicloCompleto()
+	/*	createPKey()
+		createFeatures()
+		createRoles()
+		createRoleFeatures()
+		createEscritorios()
+		createUsers()
+		createMembros()
+		createStatusZERO()
+		createEntidades()
+		createPlanos()
+		createJurisdicoes()
+		updateRoles()
+		updateFeatures()
+		createFKey()
+		createUniqueKey()
+		createCicloCompleto()*/
 	//	/* remover 18/01/2021 */
 	//	ajustesEmChamados()
 	//	ajustesEmTiposNotas()
@@ -60,6 +62,13 @@ func createStatusZERO() {
 	query := "INSERT INTO status (id_status, name, stereotype, description, id_author, created_at)" +
 		" SELECT 0, '-', '', '', 1, GETDATE() " +
 		" WHERE NOT EXISTS (SELECT id_status FROM status WHERE id_status = 0)"
+	//log.Println(query)
+	db.Exec(query)
+}
+
+func createSchema() {
+	query := "IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'virtus') " +
+		" BEGIN EXEC('CREATE SCHEMA virtus') END"
 	//log.Println(query)
 	db.Exec(query)
 }

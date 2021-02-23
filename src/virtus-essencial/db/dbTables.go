@@ -7,9 +7,9 @@ import (
 func createTable() {
 	// Table ACTIONS
 	stmt := "IF NOT EXISTS (SELECT 1 FROM sys.objects " +
-		" WHERE object_id = OBJECT_ID(N'actions') AND type in (N'U'))" +
+		" WHERE name = 'actions' AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  actions (" +
+		" CREATE TABLE virtus.actions (" +
 		" id_action integer DEFAULT NEXT VALUE FOR id_actions_seq NOT NULL, " +
 		" name varchar(255) NOT NULL, " +
 		" id_origin_status integer, " +
@@ -30,7 +30,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'actions_status') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE actions_status (" +
+		" CREATE TABLE virtus.actions_status (" +
 		" id_action_status integer DEFAULT NEXT VALUE FOR id_actions_status_seq NOT NULL," +
 		" id_action integer," +
 		" id_origin_status integer," +
@@ -41,7 +41,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'activities') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE activities (" +
+		" CREATE TABLE virtus.activities (" +
 		" id_activity integer DEFAULT NEXT VALUE FOR id_activities_seq NOT NULL," +
 		" id_workflow integer," +
 		" id_action integer," +
@@ -55,7 +55,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'activities_roles') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE activities_roles (" +
+		" CREATE TABLE virtus.activities_roles (" +
 		" id_activity_role integer DEFAULT NEXT VALUE FOR id_activities_roles_seq NOT NULL," +
 		" id_activity integer," +
 		" id_role integer)" +
@@ -65,7 +65,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'chamados') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE chamados (" +
+		" CREATE TABLE virtus.chamados (" +
 		" id_chamado integer DEFAULT NEXT VALUE FOR id_chamados_seq NOT NULL," +
 		" titulo varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -87,7 +87,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'activities_roles') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE activities_roles (" +
+		" CREATE TABLE virtus.activities_roles (" +
 		" id_chamado_versao integer DEFAULT NEXT VALUE FOR id_chamados_versoes_seq NOT NULL," +
 		" id_activity integer," +
 		" id_role integer)" +
@@ -97,7 +97,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'ciclos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  ciclos (" +
+		" CREATE TABLE virtus.ciclos (" +
 		" id_ciclo integer DEFAULT NEXT VALUE FOR id_ciclos_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -112,7 +112,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'ciclos_entidades') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE ciclos_entidades (" +
+		" CREATE TABLE virtus.ciclos_entidades (" +
 		" id_ciclo_entidade integer DEFAULT NEXT VALUE FOR id_ciclos_entidades_seq NOT NULL," +
 		" id_ciclo integer," +
 		" id_entidade integer," +
@@ -130,7 +130,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'comentarios_anotacoes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  comentarios_anotacoes (" +
+		" CREATE TABLE virtus.comentarios_anotacoes (" +
 		" id_comentario_anotacao integer DEFAULT NEXT VALUE FOR id_comentarios_anotacoes_seq NOT NULL," +
 		" id_anotacao integer," +
 		" texto varchar(4000)," +
@@ -145,7 +145,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'comentarios_chamados') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  comentarios_chamados (" +
+		" CREATE TABLE virtus.comentarios_chamados (" +
 		" id_comentario_chamado integer DEFAULT NEXT VALUE FOR id_comentarios_chamados_seq NOT NULL," +
 		" id_chamado integer," +
 		" texto varchar(4000)," +
@@ -160,7 +160,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'componentes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  componentes (" +
+		" CREATE TABLE virtus.componentes (" +
 		" id_componente integer DEFAULT NEXT VALUE FOR id_componentes_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -174,9 +174,9 @@ func createTable() {
 
 	// Table COMPONENTES_PILARES
 	stmt = "IF NOT EXISTS (SELECT 1 FROM sys.objects " +
-		" WHERE object_id = OBJECT_ID(N'componentes_pilares') AND type in (N'U'))" +
+		" WHERE name = 'componentes_pilares' AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE componentes_pilares (" +
+		" CREATE TABLE virtus.componentes_pilares (" +
 		" id_componente_pilar integer DEFAULT NEXT VALUE FOR id_componentes_pilares_seq NOT NULL," +
 		" id_componente integer, " +
 		" id_pilar integer," +
@@ -197,7 +197,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'elementos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  elementos (" +
+		" CREATE TABLE virtus.elementos (" +
 		" id_elemento integer DEFAULT NEXT VALUE FOR id_elementos_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -212,7 +212,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'elementos_componentes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE elementos_componentes (" +
+		" CREATE TABLE virtus.elementos_componentes (" +
 		" id_elemento_componente integer DEFAULT NEXT VALUE FOR id_elementos_componentes_seq NOT NULL," +
 		" id_componente integer," +
 		" id_elemento integer," +
@@ -226,9 +226,9 @@ func createTable() {
 
 	// Table ENTIDADES
 	stmt = "IF NOT EXISTS (SELECT 1 FROM sys.objects " +
-		" WHERE object_id = OBJECT_ID(N'entidades') AND type in (N'U')) " +
+		" WHERE name = 'entidades' AND type in (N'U')) " +
 		" BEGIN " +
-		" CREATE TABLE entidades (" +
+		" CREATE TABLE virtus.entidades (" +
 		" id_entidade integer DEFAULT NEXT VALUE FOR id_entidades_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -253,7 +253,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'escritorios') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  escritorios (" +
+		" CREATE TABLE virtus.escritorios (" +
 		" id_escritorio integer DEFAULT NEXT VALUE FOR id_escritorios_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" abreviatura character (4)," +
@@ -269,7 +269,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'features') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  features  (" +
+		" CREATE TABLE virtus.features  (" +
 		" id_feature integer DEFAULT NEXT VALUE FOR id_features_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" code varchar(255) NOT NULL," +
@@ -284,7 +284,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'features_roles') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE features_roles (" +
+		" CREATE TABLE virtus.features_roles (" +
 		" id int DEFAULT NEXT VALUE FOR id_features_roles_seq," +
 		" id_feature int NOT NULL," +
 		" id_role int NOT NULL," +
@@ -295,7 +295,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'features_activities') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE features_activities (" +
+		" CREATE TABLE virtus.features_activities (" +
 		" id_feature_activity integer DEFAULT NEXT VALUE FOR id_features_activities_seq NOT NULL," +
 		" id_feature integer," +
 		" id_activity integer)" +
@@ -305,7 +305,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'integrantes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE integrantes (" +
+		" CREATE TABLE virtus.integrantes (" +
 		" id_integrante integer DEFAULT NEXT VALUE FOR id_integrantes_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -323,7 +323,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'itens') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  itens (" +
+		" CREATE TABLE virtus.itens (" +
 		" id_item integer DEFAULT NEXT VALUE FOR id_itens_seq NOT NULL," +
 		" id_elemento integer," +
 		" nome varchar(255) NOT NULL," +
@@ -338,7 +338,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'jurisdicoes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE jurisdicoes (" +
+		" CREATE TABLE virtus.jurisdicoes (" +
 		" id_jurisdicao integer DEFAULT NEXT VALUE FOR id_jurisdicoes_seq NOT NULL," +
 		" id_escritorio integer," +
 		" id_entidade integer," +
@@ -354,7 +354,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'membros') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE membros (" +
+		" CREATE TABLE virtus.membros (" +
 		" id_membro integer DEFAULT NEXT VALUE FOR id_membros_seq NOT NULL," +
 		" id_escritorio integer," +
 		" id_usuario integer," +
@@ -370,7 +370,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'pilares') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  pilares (" +
+		" CREATE TABLE virtus.pilares (" +
 		" id_pilar integer DEFAULT NEXT VALUE FOR id_pilares_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -385,7 +385,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'pilares_ciclos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE pilares_ciclos (" +
+		" CREATE TABLE virtus.pilares_ciclos (" +
 		" id_pilar_ciclo integer DEFAULT NEXT VALUE FOR id_pilares_ciclos_seq NOT NULL," +
 		" id_pilar integer," +
 		" id_ciclo integer," +
@@ -401,7 +401,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'planos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  planos (" +
+		" CREATE TABLE virtus.planos (" +
 		" id_plano integer DEFAULT NEXT VALUE FOR id_planos_seq NOT NULL," +
 		" id_entidade integer," +
 		" nome varchar(255)," +
@@ -422,7 +422,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'processos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  processos (" +
+		" CREATE TABLE virtus.processos (" +
 		" id_processo integer DEFAULT NEXT VALUE FOR id_processos_seq NOT NULL," +
 		" id_questao integer," +
 		" numero varchar(255) NOT NULL," +
@@ -438,7 +438,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_ciclos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_ciclos (" +
+		" CREATE TABLE virtus.produtos_ciclos (" +
 		" id_produto_ciclo integer DEFAULT NEXT VALUE FOR id_produtos_ciclos_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -458,7 +458,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_pilares') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_pilares (" +
+		" CREATE TABLE virtus.produtos_pilares (" +
 		" id_produto_pilar integer DEFAULT NEXT VALUE FOR id_produtos_pilares_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -481,7 +481,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_componentes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_componentes (" +
+		" CREATE TABLE virtus.produtos_componentes (" +
 		" id_produto_componente integer DEFAULT NEXT VALUE FOR id_produtos_componentes_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -509,7 +509,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_elementos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_elementos (" +
+		" CREATE TABLE virtus.produtos_elementos (" +
 		" id_produto_elemento integer DEFAULT NEXT VALUE FOR id_produtos_elementos_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -537,7 +537,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_itens') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_itens (" +
+		" CREATE TABLE virtus.produtos_itens (" +
 		" id_produto_item integer DEFAULT NEXT VALUE FOR id_produtos_itens_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -559,7 +559,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_planos') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_planos (" +
+		" CREATE TABLE virtus.produtos_planos (" +
 		" id_produto_plano integer DEFAULT NEXT VALUE FOR id_produtos_planos_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -582,7 +582,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'produtos_tipos_notas') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  produtos_tipos_notas (" +
+		" CREATE TABLE virtus.produtos_tipos_notas (" +
 		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_produtos_tipos_notas_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -605,7 +605,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'anotacoes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  anotacoes (" +
+		" CREATE TABLE virtus.anotacoes (" +
 		" id_anotacao integer DEFAULT NEXT VALUE FOR id_anotacoes_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
@@ -632,7 +632,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'anotacoes_radares') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  anotacoes_radares (" +
+		" CREATE TABLE virtus.anotacoes_radares (" +
 		" id_anotacao_radar integer DEFAULT NEXT VALUE FOR id_anotacoes_radares_seq NOT NULL," +
 		" id_radar integer," +
 		" id_anotacao integer," +
@@ -650,7 +650,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'radares') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  radares  (" +
+		" CREATE TABLE virtus.radares  (" +
 		" id_radar integer DEFAULT NEXT VALUE FOR id_radares_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(4000)," +
@@ -666,7 +666,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'roles') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  roles  (" +
+		" CREATE TABLE virtus.roles  (" +
 		" id_role integer DEFAULT NEXT VALUE FOR id_roles_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" description varchar(4000)," +
@@ -680,7 +680,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'versoes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  versoes (" +
+		" CREATE TABLE virtus.versoes (" +
 		" id_versao integer DEFAULT NEXT VALUE FOR id_versoes_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" objetivo varchar(4000)," +
@@ -695,9 +695,9 @@ func createTable() {
 
 	// Table STATUS
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
-		" WHERE object_id = OBJECT_ID(N'status') AND type in (N'U'))" +
+		" WHERE name = 'status' AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  status  (" +
+		" CREATE TABLE virtus.status  (" +
 		" id_status integer DEFAULT NEXT VALUE FOR id_status_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" description varchar(4000)," +
@@ -715,7 +715,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'tipos_notas') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  tipos_notas (" +
+		" CREATE TABLE virtus.tipos_notas (" +
 		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_tipos_notas_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" descricao varchar(255)," +
@@ -732,7 +732,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'tipos_notas_componentes') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE tipos_notas_componentes (" +
+		" CREATE TABLE virtus.tipos_notas_componentes (" +
 		" id_tipo_nota_componente integer DEFAULT NEXT VALUE FOR id_tipos_notas_componentes_seq NOT NULL," +
 		" id_componente integer," +
 		" id_tipo_nota integer," +
@@ -747,7 +747,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'users') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  users (" +
+		" CREATE TABLE virtus.users (" +
 		" id_user integer DEFAULT NEXT VALUE FOR id_users_seq NOT NULL," +
 		" name varchar(255)," +
 		" username varchar(255) NOT NULL," +
@@ -765,7 +765,7 @@ func createTable() {
 	db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects " +
 		" WHERE object_id = OBJECT_ID(N'workflows') AND type in (N'U'))" +
 		" BEGIN" +
-		" CREATE TABLE  workflows  (" +
+		" CREATE TABLE virtus.workflows  (" +
 		" id_workflow integer DEFAULT NEXT VALUE FOR id_workflows_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" description varchar(4000)," +
