@@ -12,6 +12,8 @@ RUN apk add gcc libc-dev g++ libffi-dev libxml2 unixodbc-dev
 WORKDIR $GOPATH/app/virtus-essencial/
 COPY . .
 
+RUN cp /go/app/virtus-essencial/config/odbc.ini /etc/
+
 RUN go install
 
 # This container exposes port 8080 to the outside world
