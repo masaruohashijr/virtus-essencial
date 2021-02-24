@@ -1,4 +1,5 @@
-FROM golang:1.12-alpine
+#FROM golang:1.12-alpine
+FROM FROM alpine:3.13
 
 ENV PATH="$GOPATH/bin:$GOROOT/bin:${PATH}"
 
