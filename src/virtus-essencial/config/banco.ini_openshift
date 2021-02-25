@@ -1,1 +1,1 @@
-dbdsn="DSN=#{DB_BASE}#;UID=#{DB_USERNAME}#;PWD=#{DB_PASSWORD}#"
+dbdsn="DSN=#{DB_BASE}#;database=#{DB_BASE}#;UID=#{DB_USERNAME}#;PWD=#{DB_PASSWORD}#"
