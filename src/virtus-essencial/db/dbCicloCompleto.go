@@ -10,28 +10,33 @@ import (
 )
 
 type ElementoESI struct {
-	Nome  string
-	Itens []string
+	Nome      string
+	Descricao string
+	Itens     []string
 }
 
 type TipoNotaESI struct {
 	Nome      string
+	Descricao string
 	Elementos []ElementoESI
 }
 
 type ComponenteESI struct {
 	Nome       string
+	Descricao  string
 	TiposNotas []TipoNotaESI
 }
 
 type PilarESI struct {
 	Nome        string
+	Descricao   string
 	Componentes []ComponenteESI
 }
 
 type CicloESI struct {
-	Nome    string
-	Pilares []PilarESI
+	Nome      string
+	Descricao string
+	Pilares   []PilarESI
 }
 
 func createCicloCompleto() {
