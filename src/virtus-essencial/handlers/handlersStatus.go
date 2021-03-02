@@ -51,7 +51,7 @@ func UpdateStatusHandler(w http.ResponseWriter, r *http.Request) {
 		description := r.FormValue("Description")
 		log.Println(description)
 		stereotype := r.FormValue("Stereotype")
-		stmt, err := Db.Prepare("UPDATE status SET name=?, description=?, stereotype=? WHERE id_status=?")
+		stmt, err := Db.Prepare("UPDATE virtus.status SET name=?, description=?, stereotype=? WHERE id_status=?")
 		if err != nil {
 			log.Println(err.Error())
 		}

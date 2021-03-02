@@ -513,7 +513,7 @@ func UpdateConfigPlanos(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, componenteId string, planoId string, currentUser mdl.User) {
-	sqlStatement := "DELETE FROM produtos_itens WHERE " +
+	sqlStatement := "DELETE FROM virtus.produtos_itens WHERE " +
 		" id_entidade = " + entidadeId +
 		" and id_ciclo = " + cicloId +
 		" and id_pilar = " + pilarId +
@@ -525,7 +525,7 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	if err != nil {
 		log.Println(err.Error())
 	}
-	sqlStatement = "DELETE FROM produtos_elementos_historicos WHERE " +
+	sqlStatement = "DELETE FROM virtus.produtos_elementos_historicos WHERE " +
 		" id_entidade = " + entidadeId +
 		" and id_ciclo = " + cicloId +
 		" and id_pilar = " + pilarId +
@@ -537,7 +537,7 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	if err != nil {
 		log.Println(err.Error())
 	}
-	sqlStatement = "DELETE FROM produtos_elementos WHERE " +
+	sqlStatement = "DELETE FROM virtus.produtos_elementos WHERE " +
 		" id_entidade = " + entidadeId +
 		" and id_ciclo = " + cicloId +
 		" and id_pilar = " + pilarId +
@@ -549,7 +549,7 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	if err != nil {
 		log.Println(err.Error())
 	}
-	sqlStatement = "DELETE FROM produtos_tipos_notas WHERE " +
+	sqlStatement = "DELETE FROM virtus.produtos_tipos_notas WHERE " +
 		" id_entidade = " + entidadeId +
 		" and id_ciclo = " + cicloId +
 		" and id_pilar = " + pilarId +
@@ -561,7 +561,7 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	if err != nil {
 		log.Println(err.Error())
 	}
-	sqlStatement = "DELETE FROM produtos_planos WHERE " +
+	sqlStatement = "DELETE FROM virtus.produtos_planos WHERE " +
 		" id_entidade = " + entidadeId +
 		" and id_ciclo = " + cicloId +
 		" and id_pilar = " + pilarId +

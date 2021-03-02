@@ -41,7 +41,7 @@ func ListItensHandler(elementoId string) []mdl.Item {
 }
 
 func DeleteItensByElementoHandler(elementoId string) {
-	sqlStatement := "DELETE FROM Itens WHERE id_elemento=?"
+	sqlStatement := "DELETE FROM virtus.Itens WHERE id_elemento=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
