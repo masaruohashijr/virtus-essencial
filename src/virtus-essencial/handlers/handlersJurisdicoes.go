@@ -19,7 +19,7 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id_escritorio=?"
+		sqlStatement := "UPDATE virtus.escritorios SET nome=?, descricao=?, id_chefe=? WHERE id_escritorio=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -102,7 +102,7 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				jurisdicao = diffPage[i]
 				log.Println("Escritório Id: " + escritorioId)
-				sqlStatement := "INSERT INTO jurisdicoes ( " +
+				sqlStatement := "INSERT INTO virtus.jurisdicoes ( " +
 					" id_escritorio, " +
 					" id_entidade, " +
 					" id_author, " +
@@ -125,7 +125,7 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				log.Println("De " + jurisdicao.IniciaEm + " a " + jurisdicao.TerminaEm)
 				if jurisdicao.IniciaEm != "" {
-					sqlStatement = "UPDATE jurisdicoes SET inicia_em = CAST('" + jurisdicao.IniciaEm + "' AS DATETIME) " + "WHERE id = " + strconv.Itoa(jurisdicaoId)
+					sqlStatement = "UPDATE virtus.jurisdicoes SET inicia_em = CAST('" + jurisdicao.IniciaEm + "' AS DATETIME) " + "WHERE id_jurisdicao = " + strconv.Itoa(jurisdicaoId)
 					log.Println(sqlStatement)
 					_, err = Db.Exec(sqlStatement)
 					if err != nil {
@@ -133,7 +133,7 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 				if jurisdicao.TerminaEm != "" {
-					sqlStatement = "UPDATE jurisdicoes SET termina_em = CAST('" + jurisdicao.TerminaEm + "' AS DATETIME) " + "WHERE id = " + strconv.Itoa(jurisdicaoId)
+					sqlStatement = "UPDATE virtus.jurisdicoes SET termina_em = CAST('" + jurisdicao.TerminaEm + "' AS DATETIME) " + "WHERE id_jurisdicao = " + strconv.Itoa(jurisdicaoId)
 					log.Println(sqlStatement)
 					_, err = Db.Exec(sqlStatement)
 					if err != nil {
@@ -168,9 +168,9 @@ func ListJurisdicoesByEscritorioId(escritorioId string) []mdl.Jurisdicao {
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM jurisdicoes a " +
-		"LEFT JOIN entidades d ON a.id_entidade = d.id " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
-		"LEFT JOIN status c ON a.id_status = c.id " +
+		"LEFT JOIN entidades d ON a.id_entidade = d.id_entidade " +
+		"LEFT JOIN users b ON a.id_author = b.id_user " +
+		"LEFT JOIN status c ON a.id_status = c.id_status " +
 		"WHERE a.id_escritorio = ? ORDER BY d.nome ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, escritorioId)
@@ -234,7 +234,7 @@ func hasSomeFieldChangedJurisdicao(jurisdicaoPage mdl.Jurisdicao, jurisdicaoDB m
 }
 
 func updateJurisdicaoHandler(jurisdicao mdl.Jurisdicao, jurisdicaoDB mdl.Jurisdicao) {
-	sqlStatement := "UPDATE jurisdicoes SET " +
+	sqlStatement := "UPDATE virtus.jurisdicoes SET " +
 		"id_entidade=? WHERE id_jurisdicao=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
@@ -244,14 +244,14 @@ func updateJurisdicaoHandler(jurisdicao mdl.Jurisdicao, jurisdicaoDB mdl.Jurisdi
 	}
 	log.Println("De " + jurisdicao.IniciaEm + " a " + jurisdicao.TerminaEm)
 	if jurisdicao.IniciaEm != "" {
-		sqlStatement = "UPDATE jurisdicoes SET inicia_em = CAST('" + jurisdicao.IniciaEm + "' AS DATETIME) " + "WHERE id = " + strconv.FormatInt(jurisdicao.Id, 10)
+		sqlStatement = "UPDATE virtus.jurisdicoes SET inicia_em = CAST('" + jurisdicao.IniciaEm + "' AS DATETIME) " + "WHERE id_jurisdicao = " + strconv.FormatInt(jurisdicao.Id, 10)
 		_, err = Db.Exec(sqlStatement)
 		if err != nil {
 			log.Println(err)
 		}
 	}
 	if jurisdicao.TerminaEm != "" {
-		sqlStatement = "UPDATE jurisdicoes SET termina_em = CAST('" + jurisdicao.TerminaEm + "' AS DATETIME) " + "WHERE id = " + strconv.FormatInt(jurisdicao.Id, 10)
+		sqlStatement = "UPDATE virtus.jurisdicoes SET termina_em = CAST('" + jurisdicao.TerminaEm + "' AS DATETIME) " + "WHERE id_jurisdicao = " + strconv.FormatInt(jurisdicao.Id, 10)
 		_, err = Db.Exec(sqlStatement)
 		if err != nil {
 			log.Println(err)
@@ -261,7 +261,7 @@ func updateJurisdicaoHandler(jurisdicao mdl.Jurisdicao, jurisdicaoDB mdl.Jurisdi
 }
 
 func DeleteJurisdicoesByEscritorioId(escritorioId string) {
-	sqlStatement := "DELETE FROM jurisdicoes WHERE id_escritorio=?"
+	sqlStatement := "DELETE FROM virtus.jurisdicoes WHERE id_escritorio=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -271,7 +271,7 @@ func DeleteJurisdicoesByEscritorioId(escritorioId string) {
 }
 
 func DeleteJurisdicoesHandler(diffDB []mdl.Jurisdicao) {
-	sqlStatement := "DELETE FROM jurisdicoes WHERE id_jurisdicao=?"
+	sqlStatement := "DELETE FROM virtus.jurisdicoes WHERE id_jurisdicao=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

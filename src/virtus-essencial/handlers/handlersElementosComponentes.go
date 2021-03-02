@@ -24,11 +24,11 @@ func ListElementosByComponenteId(componenteId string) []mdl.ElementoComponente {
 		"coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), '') as criado_em, " +
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
-		"FROM elementos_componentes a " +
-		"LEFT JOIN elementos d ON a.id_elemento = d.id " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
-		"LEFT JOIN status c ON a.id_status = c.id " +
-		"LEFT JOIN tipos_notas e ON a.id_tipo_nota = e.id " +
+		"FROM virtus.elementos_componentes a " +
+		"LEFT JOIN virtus.elementos d ON a.id_elemento = d.id " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id " +
+		"LEFT JOIN virtus.tipos_notas e ON a.id_tipo_nota = e.id " +
 		"WHERE a.id_componente = ? ORDER BY elemento_nome"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, componenteId)
@@ -91,7 +91,7 @@ func hasSomeFieldChangedElementoComponente(elementoComponentePage mdl.ElementoCo
 
 func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, elementoComponenteDB mdl.ElementoComponente) {
 	log.Println("updateElementoComponenteHandler")
-	sqlStatement := "UPDATE elementos_componentes SET " +
+	sqlStatement := "UPDATE virtus.elementos_componentes SET " +
 		"peso_padrao=? WHERE id_elemento_componente=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
@@ -100,10 +100,10 @@ func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, 
 		log.Println(err.Error())
 	}
 	log.Println("Statement: " + sqlStatement)
-	sqlStatement = "UPDATE componentes_pilares a " +
+	sqlStatement = "UPDATE virtus.componentes_pilares a " +
 		" SET peso_padrao = " +
 		" (SELECT round(avg(b.peso_padrao),2) " +
-		" FROM elementos_componentes b " +
+		" FROM virtus.elementos_componentes b " +
 		" WHERE b.id_componente = a.id_componente AND " +
 		" b.id_pilar = a.id_pilar AND " +
 		" b.id_ciclo = a.id_ciclo AND " +
@@ -120,7 +120,7 @@ func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, 
 }
 
 func DeleteElementosComponenteByComponenteId(componenteId string) {
-	sqlStatement := "DELETE FROM elementos_componentes WHERE id_componente=?"
+	sqlStatement := "DELETE FROM virtus.elementos_componentes WHERE id_componente=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -130,7 +130,7 @@ func DeleteElementosComponenteByComponenteId(componenteId string) {
 }
 
 func DeleteElementosComponenteHandler(diffDB []mdl.ElementoComponente) {
-	sqlStatement := "DELETE FROM elementos_componentes WHERE id_elemento_componente=?"
+	sqlStatement := "DELETE FROM virtus.elementos_componentes WHERE id_elemento_componente=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

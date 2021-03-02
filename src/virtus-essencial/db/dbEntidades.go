@@ -5,7 +5,7 @@ import (
 )
 
 func createEntidades() {
-	sql := "INSERT INTO entidades (nome, codigo, sigla, situacao, esi, municipio, sigla_uf, id_author, criado_em, id_status) " +
+	sql := "INSERT INTO virtus.entidades (nome, codigo, sigla, situacao, esi, municipio, sigla_uf, id_author, criado_em, id_status) " +
 		"SELECT 'ABBOTTPREV PREVIDENCIA PRIVADA','0396-2','ABBOTTPREV','NORMAL',0,'SAO PAULO','SP',1, GETDATE(), 0  WHERE NOT EXISTS (SELECT 1 FROM entidades WHERE codigo = '0396-2') UNION " +
 		"SELECT 'ABBPREV - SOCIEDADE DE PREVIDENCIA PRIVADA','0393-1','ABBPREV','SEM ATIVIDADES',0,'GUARULHOS','SP',1, GETDATE(), 0  WHERE NOT EXISTS (SELECT 1 FROM entidades WHERE codigo = '0393-1') UNION " +
 		"SELECT 'ACESITA PREVIDENCIA PRIVADA','0299-1','ACEPREV','NORMAL',0,'BELO HORIZONTE','MG',1, GETDATE(), 0  WHERE NOT EXISTS (SELECT 1 FROM entidades WHERE codigo = '0299-1') UNION " +

@@ -15,10 +15,10 @@ import (
 
 func GetStartStatus(entityType string) int {
 	log.Println("Get <<Start>> Status")
-	query := "SELECT TOP 1 id FROM status where id in (select id_origin_status from actions_status where id_action in " +
-		" ( select id_action from activities where id_workflow in (select id from workflows where " +
-		" entity_type = ? and end_at is null))) " +
-		" and stereotype = 'Start' "
+	query := "SELECT TOP 1 id_status FROM virtus.status WHERE id_status in (SELECT id_origin_status FROM actions_status WHERE id_action in " +
+		" ( SELECT id_action FROM virtus.activities WHERE id_workflow in (SELECT id_workflow FROM WORKFLOWS WHERE " +
+		" entity_type = ? AND end_at IS NULL))) " +
+		" AND stereotype = 'Start' "
 	log.Println("List WF -> Query: " + query)
 	log.Println("entityType: " + entityType)
 	rows, _ := Db.Query(query, entityType)
@@ -34,8 +34,8 @@ func GetStartStatus(entityType string) int {
 
 func GetEndStatus(entityType string) int {
 	log.Println("Get <<End>> Status")
-	query := "SELECT TOP 1 id FROM status where id in (select id_destination_status from actions_status where id_action in " +
-		" ( select id_action from activities where id_workflow in (select id from workflows where " +
+	query := "SELECT TOP 1 id_status FROM virtus.status where id_status in (select id_destination_status from actions_status where id_action in " +
+		" ( select id_action FROM virtus.activities where id_workflow in (select id_workflow from workflows where " +
 		" entity_type = ? and end_at is null))) " +
 		" and stereotype = 'End' "
 	log.Println("List WF -> Query: " + query)
@@ -58,14 +58,14 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		description := r.FormValue("Description")
 		entityType := r.FormValue("EntityTypeForInsert")
-		sqlStatement := "UPDATE workflows SET end_at = ? WHERE entity_type = ?"
+		sqlStatement := "UPDATE virtus.workflows SET end_at = ? WHERE entity_type = ?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
 		}
 		updtForm.Exec(time.Now(), entityType)
 		sqlStatement = "INSERT INTO " +
-			" workflows(name, entity_type, start_at, description, id_author, created_at) " +
+			" virtus.workflows(name, entity_type, start_at, description, id_author, created_at) " +
 			" OUTPUT INSERTED.id_workflow " +
 			" VALUES (?,?,GETDATE(),?,?,GETDATE()) "
 		wId := 0
@@ -95,7 +95,7 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				strRoles := strings.Split(array[10], ":")[1]
 				log.Println("actionId: " + actionId)
 				sqlStatement := "INSERT INTO " +
-					" activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
+					" virtus.activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
 					" OUTPUT INSERTED.id_activity VALUES (?,?,?,?,?,?) "
 				log.Println(sqlStatement)
 				log.Println("wId: " + strconv.Itoa(wId) + " | Action: " + actionId + " | ExpDays: " + expTime + " | ExpAction: " + expActionId)
@@ -112,7 +112,7 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 					roles := strings.Split(strRoles, ".")
 					for _, roleId := range roles {
 						sqlStatement := "INSERT INTO " +
-							" activities_roles(id_activity, id_role) " +
+							" virtus.activities_roles(id_activity, id_role) " +
 							" VALUES (?,?)"
 						log.Println(sqlStatement + " - " + strconv.Itoa(activityId) + " - " + roleId)
 						Db.QueryRow(sqlStatement, activityId, roleId)
@@ -135,7 +135,7 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("NameForUpdate")
 		description := r.FormValue("DescriptionForUpdate")
 		entity := r.FormValue("EntityTypeForUpdate")
-		sqlStatement := "UPDATE workflows SET name=?, entity_type=?, description=? WHERE id_workflow=?"
+		sqlStatement := "UPDATE virtus.workflows SET name=?, entity_type=?, description=? WHERE id_workflow=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -226,7 +226,7 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				act = diffPage[i]
 				log.Println("Workflow Id: " + strconv.FormatInt(act.WorkflowId, 10))
 				sqlStatement := "INSERT INTO " +
-					"activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
+					"virtus.activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
 					"OUTPUT INSERTED.id_activity VALUES (?,?,?,?,?,?) "
 				log.Println(sqlStatement)
 				var activityId int
@@ -246,7 +246,7 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				strRoles := strings.Split(act.CRoles, ".")
 				for _, roleId := range strRoles {
 					sqlStatement := "INSERT INTO " +
-						"activities_roles(id_activity, id_role) " +
+						"virtus.activities_roles(id_activity, id_role) " +
 						"VALUES (?,?)"
 					log.Println(sqlStatement + " - " + strconv.Itoa(activityId) + " - " + roleId)
 					Db.QueryRow(sqlStatement, activityId, roleId)
@@ -284,7 +284,7 @@ func DeleteWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Workflow vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM workflows WHERE id_workflow=?"
+		sqlStatement := "DELETE FROM virtus.workflows WHERE id_workflow=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -317,9 +317,9 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM " +
-			" workflows a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
+			" virtus.workflows a " +
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 			" ORDER BY a.id ASC"
 
 		log.Println("List WF -> SQL: " + sql)
@@ -355,10 +355,10 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			" c.name as destination_status, " +
 			" a.other_than " +
 			" FROM " +
-			" actions a " +
-			" LEFT JOIN status b ON a.id_origin_status = b.id " +
-			" LEFT JOIN status c ON a.id_destination_status = c.id " +
-			" ORDER BY a.id asc"
+			" virtus.actions a " +
+			" LEFT JOIN virtus.status b ON a.id_origin_status = b.id_status " +
+			" LEFT JOIN virtus.status c ON a.id_destination_status = c.id_status " +
+			" ORDER BY a.id_action asc"
 		log.Println("List WF -> sql: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -378,7 +378,7 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			actions = append(actions, action)
 		}
-		sql = "SELECT id, name FROM roles order by name asc"
+		sql = "SELECT id, name FROM virtus.roles order by name asc"
 		log.Println("List WF -> Query: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -392,8 +392,8 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			roles = append(roles, role)
 		}
 
-		sql = "SELECT id, name " +
-			" FROM features order by id desc"
+		sql = "SELECT id_feature, name " +
+			" FROM virtus.features order by id_feature desc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

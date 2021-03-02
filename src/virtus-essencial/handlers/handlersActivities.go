@@ -19,7 +19,7 @@ func ListActivitiesHandler(idWF string) []mdl.Activity {
 		" coalesce(expiration_time_days,'0'), " +
 		" coalesce(format(a.start_at,'dd/MM/yyyy HH:mm:ss'),'') as c_start_at, " +
 		" coalesce(format(a.end_at,'dd/MM/yyyy HH:mm:ss'),'') as c_end_at " +
-		" FROM activities a left outer join actions b " +
+		" FROM virtus.activities a left outer join actions b " +
 		" on a.id_action = b.id left outer join actions c on a.id_expiration_action = c.id " +
 		" WHERE a.id_workflow = ?"
 	log.Println(sql)
@@ -60,8 +60,8 @@ func translateDates(activity mdl.Activity) mdl.Activity {
 func assembleFeatures(activity mdl.Activity) mdl.Activity {
 	log.Println("List Features By Activity Id")
 	sql := "SELECT a.id_feature, b.name " +
-		" FROM features_activities a" +
-		" LEFT OUTER JOIN features b ON a.id_feature = b.id WHERE a.id_activity = ?"
+		" FROM virtus.features_activities a" +
+		" LEFT OUTER JOIN virtus.features b ON a.id_feature = b.id WHERE a.id_activity = ?"
 	log.Println(sql + string(activity.Id))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
@@ -86,8 +86,8 @@ func assembleFeatures(activity mdl.Activity) mdl.Activity {
 func assembleRoles(activity mdl.Activity) mdl.Activity {
 	log.Println("List Roles By Activity Id")
 	sql := "SELECT a.id_role, b.name " +
-		" FROM activities_roles a" +
-		" LEFT OUTER JOIN roles b ON a.id_role = b.id WHERE a.id_activity = ?"
+		" FROM virtus.activities_roles a" +
+		" LEFT OUTER JOIN virtus.roles b ON a.id_role = b.id WHERE a.id_activity = ?"
 	log.Println(sql + string(activity.Id))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
@@ -110,24 +110,24 @@ func assembleRoles(activity mdl.Activity) mdl.Activity {
 }
 
 func DeleteActivitiesByWorkflowIdHandler(wId string) {
-	sqlStatement := "DELETE FROM activities_roles WHERE id_activity IN ( SELECT id FROM activities WHERE id_workflow = ? )"
+	sqlStatement := "DELETE FROM virtus.activities_roles WHERE id_activity IN ( SELECT id_actitviy FROM virtus.activities WHERE id_workflow = ? )"
 	deleteForm, _ := Db.Prepare(sqlStatement)
 	deleteForm.Exec(wId)
 	log.Println("DELETE Activities_Roles in Workflow Id: " + wId)
-	sqlStatement = "DELETE FROM Activities WHERE id_workflow=?"
+	sqlStatement = "DELETE FROM virtus.activities WHERE id_workflow=?"
 	deleteForm, _ = Db.Prepare(sqlStatement)
 	deleteForm.Exec(wId)
 	log.Println("DELETE Activities in Workflow Id: " + wId)
 }
 
 func DeleteActivitiesHandler(diffDB []mdl.Activity) {
-	sqlStatement := "DELETE FROM activities_roles WHERE id_activity=?"
+	sqlStatement := "DELETE FROM virtus.activities_roles WHERE id_activity=?"
 	deleteForm, _ := Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		deleteForm.Exec(strconv.FormatInt(int64(diffDB[n].Id), 10))
 		log.Println("DELETE: Activity Role Id: " + strconv.FormatInt(int64(diffDB[n].Id), 10))
 	}
-	sqlStatement = "DELETE FROM activities WHERE id_activity=?"
+	sqlStatement = "DELETE FROM virtus.activities WHERE id_activity=?"
 	deleteForm, _ = Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		deleteForm.Exec(strconv.FormatInt(int64(diffDB[n].Id), 10))
@@ -172,7 +172,7 @@ func hasSomeActFieldChanged(actPage mdl.Activity, actDB mdl.Activity) bool {
 }
 
 func updateActivityHandler(activityPage mdl.Activity, activityDB mdl.Activity) {
-	sqlStatement := "UPDATE Activities SET " +
+	sqlStatement := "UPDATE virtus.Activities SET " +
 		" id_action=?, " +
 		" id_expiration_action=?, " +
 		" expiration_time_days=?, " +
@@ -184,7 +184,7 @@ func updateActivityHandler(activityPage mdl.Activity, activityDB mdl.Activity) {
 		activityPage.ExpirationTimeDays, activityPage.CStartAt, activityPage.CEndAt)
 	if activityDB.CRoles != activityPage.CRoles {
 		// 1. Apaga tudo da tabela activities_roles: Page{1.15} DB{1.14.15} => DB{1.15}
-		sqlStatement := "DELETE FROM activities_roles WHERE id_activity=?"
+		sqlStatement := "DELETE FROM virtus.activities_roles WHERE id_activity=?"
 		deleteForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -194,7 +194,7 @@ func updateActivityHandler(activityPage mdl.Activity, activityDB mdl.Activity) {
 		roles := strings.Split(activityPage.CRoles, ".")
 		for _, roleId := range roles {
 			sqlStatement := "INSERT INTO " +
-				"activities_roles(id_activity, id_role) " +
+				"virtus.activities_roles(id_activity, id_role) " +
 				"VALUES (?,?)"
 			log.Println(sqlStatement + " - " + strconv.FormatInt(int64(activityPage.Id), 10) + " - " + roleId)
 			Db.QueryRow(sqlStatement, strconv.FormatInt(int64(activityPage.Id), 10), roleId)
@@ -202,7 +202,7 @@ func updateActivityHandler(activityPage mdl.Activity, activityDB mdl.Activity) {
 	}
 	if activityDB.CFeatures != activityPage.CFeatures {
 		// 1. Apaga tudo da tabela activities_roles: Page{1.15} DB{1.14.15} => DB{1.15}
-		sqlStatement := "DELETE FROM features_activities WHERE id_activity=?"
+		sqlStatement := "DELETE FROM virtus.features_activities WHERE id_activity=?"
 		deleteForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -212,7 +212,7 @@ func updateActivityHandler(activityPage mdl.Activity, activityDB mdl.Activity) {
 		features := strings.Split(activityPage.CFeatures, ".")
 		for _, featureId := range features {
 			sqlStatement := "INSERT INTO " +
-				"features_activities(id_activity, id_feature) " +
+				"virtus.features_activities(id_activity, id_feature) " +
 				"VALUES (?,?)"
 			log.Println(sqlStatement + " - " + strconv.FormatInt(int64(activityPage.Id), 10) + " - " + featureId)
 			Db.QueryRow(sqlStatement, strconv.FormatInt(int64(activityPage.Id), 10), featureId)

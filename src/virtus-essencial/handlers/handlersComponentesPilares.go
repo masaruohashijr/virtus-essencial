@@ -24,10 +24,10 @@ func ListComponentesByPilarId(pilarId string) []mdl.ComponentePilar {
 		" a.id_status, " +
 		" coalesce(s.name,'') as status_name " +
 		" FROM componentes_pilares a " +
-		" LEFT JOIN componentes c ON a.id_componente = c.id " +
-		" LEFT JOIN users u ON a.id_author = u.id " +
-		" LEFT JOIN status s ON a.id_status = s.id " +
-		" LEFT JOIN (select id_componente, round(avg(peso_padrao),2) as peso_padrao from elementos_componentes group by id_componente) b ON a.id_componente = b.id_componente " +
+		" LEFT JOIN virtus.componentes c ON a.id_componente = c.id_componente " +
+		" LEFT JOIN virtus.users u ON a.id_author = u.id_user " +
+		" LEFT JOIN virtus.status s ON a.id_status = s.id_status " +
+		" LEFT JOIN (select id_componente, round(avg(peso_padrao),2) as peso_padrao from virtus.elementos_componentes group by id_componente) b ON a.id_componente = b.id_componente " +
 		" WHERE a.id_pilar = ? " +
 		" ORDER BY c.nome ASC"
 	log.Println(sql)
@@ -100,7 +100,7 @@ func hasSomeFieldChangedPilar(componentePilarPage mdl.ComponentePilar, component
 }
 
 func updateComponentePilarHandler(componentePilarPage mdl.ComponentePilar, componentePilarDB mdl.ComponentePilar) {
-	sqlStatement := "UPDATE componentes_pilares SET " +
+	sqlStatement := "UPDATE virtus.componentes_pilares SET " +
 		"tipo_media=?, peso_padrao=?, sonda=? WHERE id_componente_pilar=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
@@ -112,7 +112,7 @@ func updateComponentePilarHandler(componentePilarPage mdl.ComponentePilar, compo
 }
 
 func DeleteComponentesPilarByPilarId(pilarId string) {
-	sqlStatement := "DELETE FROM componentes_pilares WHERE id_pilar=?"
+	sqlStatement := "DELETE FROM virtus.componentes_pilares WHERE id_pilar=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -122,7 +122,7 @@ func DeleteComponentesPilarByPilarId(pilarId string) {
 }
 
 func DeleteComponentesPilarHandler(diffDB []mdl.ComponentePilar) {
-	sqlStatement := "DELETE FROM componentes_pilares WHERE id_componente_pilar=?"
+	sqlStatement := "DELETE FROM virtus.componentes_pilares WHERE id_componente_pilar=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

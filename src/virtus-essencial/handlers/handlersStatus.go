@@ -20,7 +20,7 @@ func CreateStatusHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		description := r.FormValue("Descricao")
 		stereotype := r.FormValue("Stereotype")
-		sqlStatement := "INSERT INTO status(name, description, stereotype, id_author, created_at) " +
+		sqlStatement := "INSERT INTO virtus.status(name, description, stereotype, id_author, created_at) " +
 			" OUTPUT INSERTED.id_status VALUES ('" + name + "', '" +
 			description + "', '" + stereotype + "', ?, GETDATE())"
 		id := 0
@@ -72,7 +72,7 @@ func DeleteStatusHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Status vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM status WHERE id_status=?"
+		sqlStatement := "DELETE FROM virtus.status WHERE id_status=?"
 		deleteForm, err := Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -119,10 +119,10 @@ func listStatus(errorMsg string) mdl.PageStatus {
 		" coalesce(c.name,'') as cstatus, " +
 		" a.status_id, " +
 		" a.id_versao_origem " +
-		" FROM status a LEFT JOIN users b " +
-		" ON a.id_author = b.id " +
-		" LEFT JOIN status c ON a.id_status = c.id " +
-		" order by id asc"
+		" FROM virtus.status a LEFT JOIN virtus.users b " +
+		" ON a.id_author = b.id_user " +
+		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+		" order by id_status asc"
 	log.Println("sql: " + sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()

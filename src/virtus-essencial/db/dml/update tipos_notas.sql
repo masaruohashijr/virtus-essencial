@@ -6,13 +6,13 @@
 "      (WITH TMP AS "+
 "         (SELECT id_componente, "+
 "                 SUM(peso_padrao) AS peso_padrao "+
-"          FROM elementos_componentes a "+
+"          FROM virtus.elementos_componentes a "+
 "          WHERE id_componente = a.id_componente "+
 "          GROUP BY id_componente) SELECT a.id_componente, "+
 "                                         a.id_tipo_nota, "+
 "                                         tmp.peso_padrao AS total, "+
 "                                         sum(a.peso_padrao) AS peso_padrao "+
-"       FROM elementos_componentes a "+
+"       FROM virtus.elementos_componentes a "+
 "       LEFT JOIN TMP ON a.id_componente = TMP.id_componente "+
 "       GROUP BY a.id_componente, "+
 "                a.id_tipo_nota, "+

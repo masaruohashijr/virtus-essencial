@@ -26,12 +26,12 @@ func ListAnotacoesRadarByRadarId(radarId string) []mdl.AnotacaoRadar {
 		" a.id_ultimo_atualizador, " +
 		" coalesce(e.name,'') as ultimo_atualizador_name, " +
 		" coalesce(format(a.ultima_atualizacao,'dd/MM/yyyy')) " +
-		" FROM anotacoes_radares a " +
-		" LEFT JOIN anotacoes d ON a.id_anotacao = d.id " +
-		" LEFT JOIN users b ON a.id_author = b.id " +
-		" LEFT JOIN status c ON a.id_status = c.id " +
-		" LEFT JOIN users e ON a.id_ultimo_atualizador = e.id " +
-		" WHERE a.radar_id = ? "
+		" FROM virtus.anotacoes_radares a " +
+		" LEFT JOIN virtus.anotacoes d ON a.id_anotacao = d.id_anotacao " +
+		" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+		" LEFT JOIN virtus.users e ON a.id_ultimo_atualizador = e.id_user " +
+		" WHERE a.id_radar = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, radarId)
 	defer rows.Close()
@@ -91,10 +91,10 @@ func hasSomeFieldChangedAnotacaoRadar(anotacaoRadarPage mdl.AnotacaoRadar, anota
 }
 
 func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB mdl.AnotacaoRadar, currentUserId int64) {
-	sqlStatement := "UPDATE anotacoes_radares " +
+	sqlStatement := "UPDATE virtus.anotacoes_radares " +
 		" SET id_radar=?, id_anotacao=?, observacoes=?, registro_ata=?, " +
 		" id_ultimo_atualizador=?, ultima_atualizacao=? " +
-		" WHERE id = ? "
+		" WHERE id_anotacao_radar = ? "
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
 	_, err := updtForm.Exec(anotacaoRadar.RadarId,
@@ -111,7 +111,7 @@ func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB
 }
 
 func DeleteAnotacoesRadarByRadarId(radarId string) {
-	sqlStatement := "DELETE FROM anotacoes_radares WHERE id_radar=?"
+	sqlStatement := "DELETE FROM virtus.anotacoes_radares WHERE id_radar=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -121,7 +121,7 @@ func DeleteAnotacoesRadarByRadarId(radarId string) {
 }
 
 func DeleteAnotacoesRadarHandler(diffDB []mdl.AnotacaoRadar) string {
-	sqlStatement := "DELETE FROM anotacoes_radares WHERE id_anotacao_radar=?"
+	sqlStatement := "DELETE FROM virtus.anotacoes_radares WHERE id_anotacao_radar=?"
 	deleteForm, _ := Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		errMsg := ""

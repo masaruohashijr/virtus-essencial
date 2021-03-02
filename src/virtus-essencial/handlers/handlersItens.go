@@ -20,8 +20,8 @@ func ListItensHandler(elementoId string) []mdl.Item {
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as data_criacao," +
 		" a.id_status, " +
 		" coalesce(c.name,'') as status_name " +
-		" FROM itens a LEFT JOIN users b ON a.id_author = b.id " +
-		" LEFT JOIN status c ON a.id_status = c.id " +
+		" FROM virtus.itens a LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 		" WHERE a.id_elemento = ? " +
 		" ORDER BY a.nome ASC"
 	log.Println(sql)
@@ -51,7 +51,7 @@ func DeleteItensByElementoHandler(elementoId string) {
 }
 
 func DeleteItensHandler(diffDB []mdl.Item) {
-	sqlStatement := "DELETE FROM itens WHERE id_item=?"
+	sqlStatement := "DELETE FROM virtus.itensWHERE id_item=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -98,7 +98,7 @@ func hasSomeFieldChanged(itemPage mdl.Item, itemDB mdl.Item) bool {
 }
 
 func updateItemHandler(i mdl.Item, itemDB mdl.Item) {
-	sqlStatement := "UPDATE itens SET " +
+	sqlStatement := "UPDATE virtus.itens SET " +
 		"nome=?, descricao=?, referencia=? WHERE id_item=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)

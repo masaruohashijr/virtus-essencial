@@ -20,7 +20,7 @@ func CreateElementoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("NomeElementoForInsert")
 		descricao := r.FormValue("DescricaoElementoForInsert")
 		referencia := r.FormValue("ReferenciaElementoForInsert")
-		sqlStatement := "INSERT INTO elementos(nome, descricao, referencia, id_author, criado_em, id_status) " +
+		sqlStatement := "INSERT INTO virtus.elementos(nome, descricao, referencia, id_author, criado_em, id_status) " +
 			" OUTPUT INSERTED.id_elemento VALUES (?, ?, ?, ?, GETDATE(), ?)"
 		elementoId := 0
 		authorId := strconv.FormatInt(GetUserInCookie(w, r).Id, 10)
@@ -40,7 +40,7 @@ func CreateElementoHandler(w http.ResponseWriter, r *http.Request) {
 				descricaoItem := strings.Split(array[4], ":")[1]
 				referenciaItem := strings.Split(array[5], ":")[1]
 				log.Println("itemId: " + strconv.Itoa(itemId))
-				sqlStatement := "INSERT INTO itens( " +
+				sqlStatement := "INSERT INTO virtus.itens( " +
 					" id_elemento, nome, descricao, referencia, criado_em, id_author, id_status ) " +
 					" OUTPUT INSERTED.id_item VALUES (?, ?, ?, ?, GETDATE(), ?, ?) "
 				log.Println(sqlStatement)
@@ -66,7 +66,7 @@ func UpdateElementoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("ElementoNomeForUpdate")
 		descricao := r.FormValue("ElementoDescricaoForUpdate")
 		referencia := r.FormValue("ElementoReferenciaForUpdate")
-		sqlStatement := "UPDATE elementos SET nome=?, descricao=?, referencia=? WHERE id_elemento=?"
+		sqlStatement := "UPDATE virtus.elementos SET nome=?, descricao=?, referencia=? WHERE id_elemento=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -136,7 +136,7 @@ func UpdateElementoHandler(w http.ResponseWriter, r *http.Request) {
 				item = diffPage[i]
 				log.Println("Elemento Id: " + strconv.FormatInt(item.ElementoId, 10))
 				sqlStatement := "INSERT INTO " +
-					"itens(id_elemento, nome, descricao, referencia, criado_em, id_author, id_status) " +
+					"virtus.itens(id_elemento, nome, descricao, referencia, criado_em, id_author, id_status) " +
 					"OUTPUT INSERTED.id_item VALUES (?,?,?,?,GETDATE(),?,?) "
 				log.Println(sqlStatement)
 				err := Db.QueryRow(sqlStatement, elementoId, item.Nome, item.Descricao, item.Referencia, currentUser.Id, statusItemId).Scan(&itemId)
@@ -177,7 +177,7 @@ func DeleteElementoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Elemento está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM elementos WHERE id_elemento=?"
+		sqlStatement := "DELETE FROM virtus.elementos WHERE id_elemento=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -206,9 +206,9 @@ func ListElementosHandler(w http.ResponseWriter, r *http.Request) {
 			" a.peso, " +
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status " +
-			" FROM elementos a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
+			" FROM virtus.elementos a " +
+			" LEFT JOIN virtus.users b ON a.id_author = b.id " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
 			" order by a.id asc "
 		rows, _ := Db.Query(query)
 		defer rows.Close()

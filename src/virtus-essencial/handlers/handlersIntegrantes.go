@@ -24,11 +24,11 @@ func ListIntegrantesByEntidadeIdByCicloId(entidadeId string, cicloId string) []m
 		"coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em, " +
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
-		"FROM integrantes a " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
-		"LEFT JOIN status c ON a.id_status = c.id " +
-		"LEFT JOIN users d ON a.id_usuario = d.id " +
-		"LEFT JOIN roles e ON e.id = d.id_role " +
+		"FROM virtus.integrantes a " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+		"LEFT JOIN virtus.users d ON a.id_usuario = d.id_user " +
+		"LEFT JOIN virtus.roles e ON e.id_role = d.id_role " +
 		"WHERE a.id_entidade = ? AND a.id_ciclo = ? ORDER BY d.name ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId, cicloId)

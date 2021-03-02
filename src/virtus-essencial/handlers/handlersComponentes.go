@@ -21,7 +21,7 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
 		statusComponenteId := GetStartStatus("componente")
-		sqlStatement := "INSERT INTO componentes(nome, descricao, referencia, pga, id_author, criado_em, id_status) " +
+		sqlStatement := "INSERT INTO virtus.componentes(nome, descricao, referencia, pga, id_author, criado_em, id_status) " +
 			" OUTPUT INSERTED.id_componente " +
 			" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 		idComponente := 0
@@ -40,7 +40,7 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				tipoNotaId := strings.Split(array[3], ":")[1]
 				pesoPadrao := strings.Split(array[5], ":")[1]
 				sqlStatement := " INSERT INTO " +
-					" elementos_componentes( " +
+					" virtus.elementos_componentes( " +
 					" id_componente, " +
 					" id_elemento, " +
 					" id_tipo_nota, " +
@@ -70,7 +70,7 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				pesoPadrao := value[0]
 				statusTipoNotaId := GetStartStatus("tipo_nota")
 				sqlStatement := " INSERT INTO " +
-					" tipos_notas_componentes( " +
+					" virtus.tipos_notas_componentes( " +
 					" id_componente," +
 					" id_tipo_nota," +
 					" peso_padrao, " +
@@ -114,7 +114,7 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 		if pga != "" {
 			somentePGA = "S"
 		}
-		sqlStatement := "UPDATE componentes SET nome=?, descricao=?, referencia=?, pga=? WHERE id_componente=?"
+		sqlStatement := "UPDATE virtus.componentes SET nome=?, descricao=?, referencia=?, pga=? WHERE id_componente=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -173,13 +173,13 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				tipoNotaId := strings.Split(key, "_")[1]
 				tipoNotaPeso := value[0]
 				if tipoNotaPeso != "" {
-					sqlStatement = "INSERT INTO tipos_notas_componentes (id_tipo_nota,id_componente) " +
+					sqlStatement = "INSERT INTO virtus.tipos_notas_componentes (id_tipo_nota,id_componente) " +
 						" SELECT " + tipoNotaId + ", " + componenteId +
 						" WHERE NOT EXISTS (select 1 from tipos_notas_componentes " +
 						" WHERE id_tipo_nota = " + tipoNotaId + " AND id_componente = " + componenteId + ")"
 					log.Println(sqlStatement)
 					Db.QueryRow(sqlStatement)
-					sqlStatement = "UPDATE tipos_notas_componentes SET peso_padrao=? WHERE id_tipo_nota=? AND id_componente = ?"
+					sqlStatement = "UPDATE virtus.tipos_notas_componentes SET peso_padrao=? WHERE id_tipo_nota=? AND id_componente = ?"
 					updtForm, err = Db.Prepare(sqlStatement)
 					if err != nil {
 						log.Println(err.Error())
@@ -215,7 +215,7 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				elementoComponente = diffPage[i]
 				log.Println("Componente Id: " + componenteId)
-				sqlStatement := "INSERT INTO elementos_componentes ( " +
+				sqlStatement := "INSERT INTO virtus.elementos_componentes ( " +
 					" id_componente, " +
 					" id_elemento, " +
 					" peso_padrao, " +
@@ -245,7 +245,7 @@ func DeleteComponenteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Componente está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM componentes WHERE id_componente=?"
+		sqlStatement := "DELETE FROM virtus.componentes WHERE id_componente=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -275,10 +275,10 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM componentes a LEFT JOIN users b " +
+			" FROM virtus.componentes a LEFT JOIN virtus.users b " +
 			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" order by id asc"
+			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
+			" order by id_componente asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -302,7 +302,7 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			componentes = append(componentes, componente)
 		}
-		sql = "SELECT id, nome FROM elementos ORDER BY id asc"
+		sql = "SELECT id_elemento, nome FROM elementos ORDER BY id_elemento asc"
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
 		var elementos []mdl.Elemento

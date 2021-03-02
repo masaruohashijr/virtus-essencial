@@ -22,7 +22,7 @@ func CreateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 		definicaoPronto := r.FormValue("DefinicaoPronto")
 		iniciaEm := r.FormValue("IniciaEm")
 		terminaEm := r.FormValue("TerminaEm")
-		sqlStatement := "INSERT INTO versoes(" +
+		sqlStatement := "INSERT INTO virtus.versoes(" +
 			" nome, " +
 			" objetivo, " +
 			" definicao_pronto, " +
@@ -97,13 +97,13 @@ func UpdateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(iniciaEm)
 		terminaEm := r.FormValue("TerminaEm")
 		log.Println(terminaEm)
-		sqlStatement := "UPDATE versoes SET " +
+		sqlStatement := "UPDATE virtus.versoes SET " +
 			" nome = ?, " +
 			" objetivo = ?, " +
 			" definicao_pronto = ?, " +
 			" inicia_em = ?, " +
 			" termina_em = ? " +
-			" WHERE id = ? "
+			" WHERE id_versao = ? "
 		log.Println(sqlStatement)
 		updtForm, _ := Db.Prepare(sqlStatement)
 		_, err := updtForm.Exec(nome, objetivo, definicaoPronto, iniciaEm, terminaEm, versaoId)
@@ -219,7 +219,7 @@ func DeleteVersaoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Versão está associado a um registro e não pode ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM radares WHERE id_radar=?"
+		sqlStatement := "DELETE FROM virtus.radares WHERE id_radar=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
@@ -253,10 +253,10 @@ func ListVersoesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM versoes a LEFT JOIN users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" order by a.id asc"
+			" FROM virtus.versoes a LEFT JOIN virtus.users b " +
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_user " +
+			" order by a.id_versao asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()

@@ -19,7 +19,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		chefe := r.FormValue("Chefe")
-		sqlStatement := "UPDATE escritorios SET nome=?, descricao=?, id_chefe=? WHERE id_escritorio=?"
+		sqlStatement := "UPDATE virtus.escritorios SET nome=?, descricao=?, id_chefe=? WHERE id_escritorio=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -99,7 +99,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				membro = diffPage[i]
 				log.Println("Escritorio Id: " + escritorioId)
-				sqlStatement := "INSERT INTO membros ( " +
+				sqlStatement := "INSERT INTO virtus.membros ( " +
 					" id_escritorio, " +
 					" id_usuario, " +
 					" id_author, " +
@@ -108,7 +108,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 					" ) " +
 					" OUTPUT INSERTED.id_membro " +
 					" SELECT ?, ?, ?, ?, ? " +
-					" WHERE NOT EXISTS (SELECT 1 FROM membros " +
+					" WHERE NOT EXISTS (SELECT 1 FROM virtus.membros " +
 					" WHERE id_usuario = ? AND id_escritorio = ?) "
 				log.Println(sqlStatement)
 				Db.QueryRow(
@@ -123,7 +123,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 
 				if membro.IniciaEm != "" {
 					log.Println(membro.IniciaEm)
-					sqlStatement := "UPDATE membros SET inicia_em = CAST('" + membro.IniciaEm + "' AS DATETIME) " + "WHERE id = " + strconv.FormatInt(membro.Id, 10)
+					sqlStatement := "UPDATE virtus.membros SET inicia_em = CAST('" + membro.IniciaEm + "' AS DATETIME) " + "WHERE id_membro = " + strconv.FormatInt(membro.Id, 10)
 					log.Println(sqlStatement)
 					_, err := Db.Exec(sqlStatement)
 					if err != nil {
@@ -132,7 +132,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				log.Println(membro.TerminaEm)
 				if membro.TerminaEm != "" {
-					sqlStatement := "UPDATE membros SET termina_em = CAST('" + membro.TerminaEm + "' AS DATETIME) " + "WHERE id = " + strconv.FormatInt(membro.Id, 10)
+					sqlStatement := "UPDATE virtus.membros SET termina_em = CAST('" + membro.TerminaEm + "' AS DATETIME) " + "WHERE id_membro = " + strconv.FormatInt(membro.Id, 10)
 					_, err := Db.Exec(sqlStatement)
 					if err != nil {
 						log.Println(err)
@@ -164,11 +164,11 @@ func ListMembrosByEscritorioId(escritorioId string) []mdl.Membro {
 		"coalesce(c.name,'') as status_name, " +
 		"coalesce(format(a.inicia_em,'dd/MM/yyyy'), '') as inicia_em, " +
 		"coalesce(format(a.termina_em,'dd/MM/yyyy'), '') as termina_em " +
-		"FROM membros a " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
-		"LEFT JOIN status c ON a.id_status = c.id " +
-		"LEFT JOIN users d ON a.id_usuario = d.id " +
-		"LEFT JOIN roles e ON d.id_role = e.id " +
+		"FROM virtus.membros a " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+		"LEFT JOIN virtus.users d ON a.id_usuario = d.id_user " +
+		"LEFT JOIN virtus.roles e ON d.id_role = e.id_role " +
 		"WHERE a.id_escritorio = ? ORDER BY d.name ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, escritorioId)
@@ -201,7 +201,7 @@ func ListMembrosByEscritorioId(escritorioId string) []mdl.Membro {
 }
 
 func DeleteMembrosByEscritorioId(escritorioId string) {
-	sqlStatement := "DELETE FROM membros WHERE id_escritorio=?"
+	sqlStatement := "DELETE FROM virtus.membros WHERE id_escritorio=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -211,7 +211,7 @@ func DeleteMembrosByEscritorioId(escritorioId string) {
 }
 
 func DeleteMembrosHandler(diffDB []mdl.Membro) {
-	sqlStatement := "DELETE FROM membros WHERE id_membro=?"
+	sqlStatement := "DELETE FROM virtus.membros WHERE id_membro=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -276,7 +276,7 @@ func hasSomeFieldChangedMembro(membroPage mdl.Membro, membroDB mdl.Membro) bool 
 func updateMembroHandler(membro mdl.Membro, membroDB mdl.Membro) {
 	if membro.IniciaEm != "" {
 		log.Println(membro.IniciaEm)
-		sqlStatement := "UPDATE membros SET inicia_em = CAST('" + membro.IniciaEm + "' AS DATETIME) " + "WHERE id = " + strconv.FormatInt(membro.Id, 10)
+		sqlStatement := "UPDATE virtus.membros SET inicia_em = CAST('" + membro.IniciaEm + "' AS DATETIME) " + "WHERE id_membro = " + strconv.FormatInt(membro.Id, 10)
 		log.Println(sqlStatement)
 		_, err := Db.Exec(sqlStatement)
 		if err != nil {
@@ -285,7 +285,7 @@ func updateMembroHandler(membro mdl.Membro, membroDB mdl.Membro) {
 	}
 	log.Println(membro.TerminaEm)
 	if membro.TerminaEm != "" {
-		sqlStatement := "UPDATE membros SET termina_em = CAST('" + membro.TerminaEm + "' AS DATETIME) " + "WHERE id = " + strconv.FormatInt(membro.Id, 10)
+		sqlStatement := "UPDATE virtus.membros SET termina_em = CAST('" + membro.TerminaEm + "' AS DATETIME) " + "WHERE id_membro = " + strconv.FormatInt(membro.Id, 10)
 		log.Println(sqlStatement)
 		_, err := Db.Exec(sqlStatement)
 		if err != nil {

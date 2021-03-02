@@ -45,31 +45,31 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	"	    THEN 1 " +
 	"	    ELSE 0 " +
 	"	   END AS periodo_permitido " +
-	" FROM produtos_itens a " +
-	" INNER JOIN entidades b ON a.id_entidade = b.id " +
-	" INNER JOIN ciclos c ON a.id_ciclo = c.id " +
-	" INNER JOIN pilares d ON a.id_pilar = d.id " +
-	" INNER JOIN componentes e ON a.id_componente = e.id " +
-	" INNER JOIN produtos_pilares f ON " +
+	" FROM virtus.produtos_itens a " +
+	" INNER JOIN virtus.entidades b ON a.id_entidade = b.id_entidade " +
+	" INNER JOIN virtus.ciclos c ON a.id_ciclo = c.id_ciclo " +
+	" INNER JOIN virtus.pilares d ON a.id_pilar = d.id_pilar " +
+	" INNER JOIN virtus.componentes e ON a.id_componente = e.id_componente " +
+	" INNER JOIN virtus.produtos_pilares f ON " +
 	" ( a.id_pilar = f.id_pilar AND  " +
 	"   a.id_ciclo = f.id_ciclo AND  " +
 	"   a.id_entidade = f.id_entidade ) " +
-	" INNER JOIN produtos_componentes g ON  " +
+	" INNER JOIN virtus.produtos_componentes g ON  " +
 	" ( a.id_componente = g.id_componente AND  " +
 	"   a.id_pilar = g.id_pilar AND  " +
 	"   a.id_ciclo = g.id_ciclo AND  " +
 	"   a.id_entidade = g.id_entidade  " +
 	" ) " +
-	" LEFT JOIN users h ON g.id_supervisor = h.id " +
-	" LEFT JOIN users i ON g.id_auditor = i.id " +
-	" INNER JOIN planos j ON a.id_plano = j.id " +
-	" INNER JOIN elementos k ON a.id_elemento = k.id   " +
-	" INNER JOIN itens l ON a.id_item = l.id   " +
-	" INNER JOIN elementos_componentes ec ON ( a.id_elemento = ec.id_elemento AND a.id_tipo_nota = ec.id_tipo_nota AND a.id_componente = ec.id_componente ) " +
-	" INNER JOIN componentes_pilares cp ON ( a.id_componente = cp.id_componente AND a.id_pilar = cp.id_pilar ) " +
-	" INNER JOIN pilares_ciclos pc ON ( a.id_pilar = pc.id_pilar AND a.id_ciclo = pc.id_ciclo ) " +
-	" INNER JOIN tipos_notas m ON a.id_tipo_nota = m.id " +
-	" INNER JOIN produtos_elementos n ON  " +
+	" LEFT JOIN virtus.users h ON g.id_supervisor = h.id_user " +
+	" LEFT JOIN virtus.users i ON g.id_auditor = i.id_user " +
+	" INNER JOIN virtus.planos j ON a.id_plano = j.id_plano " +
+	" INNER JOIN virtus.elementos k ON a.id_elemento = k.id_elemento " +
+	" INNER JOIN virtus.itens l ON a.id_item = l.id_item " +
+	" INNER JOIN virtus.elementos_componentes ec ON ( a.id_elemento = ec.id_elemento AND a.id_tipo_nota = ec.id_tipo_nota AND a.id_componente = ec.id_componente ) " +
+	" INNER JOIN virtus.componentes_pilares cp ON ( a.id_componente = cp.id_componente AND a.id_pilar = cp.id_pilar ) " +
+	" INNER JOIN virtus.pilares_ciclos pc ON ( a.id_pilar = pc.id_pilar AND a.id_ciclo = pc.id_ciclo ) " +
+	" INNER JOIN virtus.tipos_notas m ON a.id_tipo_nota = m.id_tipo_nota " +
+	" INNER JOIN virtus.produtos_elementos n ON  " +
 	" 	( a.id_elemento = n.id_elemento AND  " +
 	" 	a.id_tipo_nota = n.id_tipo_nota AND  " +
 	" 	a.id_plano = n.id_plano AND  " +
@@ -77,20 +77,20 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" 	a.id_pilar = n.id_pilar AND  " +
 	" 	a.id_ciclo = n.id_ciclo AND  " +
 	" 	a.id_entidade = n.id_entidade ) " +
-	" INNER JOIN produtos_tipos_notas o ON  " +
+	" INNER JOIN virtus.produtos_tipos_notas o ON  " +
 	" ( a.id_tipo_nota = o.id_tipo_nota AND  " +
 	"   a.id_plano = o.id_plano AND " +
 	"   a.id_componente = o.id_componente AND " +
 	"   a.id_pilar = o.id_pilar AND  " +
 	"   a.id_ciclo = o.id_ciclo AND  " +
 	"   a.id_entidade = o.id_entidade) " +
-	" INNER JOIN produtos_planos p ON  " +
+	" INNER JOIN virtus.produtos_planos p ON  " +
 	"  (a.id_plano = p.id_plano AND  " +
 	"   a.id_componente = p.id_componente AND  " +
 	"   a.id_pilar = p.id_pilar AND  " +
 	"   a.id_ciclo = p.id_ciclo AND  " +
 	"   a.id_entidade = p.id_entidade)   " +
-	" INNER JOIN produtos_ciclos pdc ON " +
+	" INNER JOIN virtus.produtos_ciclos pdc ON " +
 	"  (a.id_ciclo = pdc.id_ciclo AND " +
 	"   a.id_entidade = pdc.id_entidade) " +
 	" WHERE a.id_entidade = ? " +
@@ -111,13 +111,13 @@ func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		var page mdl.PageEntidadesCiclos
 		// Entidades da jurisdição do Escritório ao qual pertenço
 		sql := "SELECT DISTINCT d.codigo, b.id_entidade, d.nome, a.abreviatura " +
-			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
-			" LEFT JOIN membros c ON c.id_escritorio = b.id_escritorio " +
-			" LEFT JOIN entidades d ON d.id = b.id_entidade " +
-			" LEFT JOIN users u ON u.id = c.id_usuario " +
-			" INNER JOIN ciclos_entidades e ON e.id_entidade = b.id_entidade " +
-			" INNER JOIN produtos_planos f ON (f.id_entidade = e.id_entidade AND f.id_ciclo = e.id_ciclo) " +
+			" FROM virtus.escritorios a " +
+			" LEFT JOIN virtus.jurisdicoes b ON a.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.membros c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.entidades d ON d.id_entidade = b.id_entidade " +
+			" LEFT JOIN virtus.users u ON u.id_user = c.id_usuario " +
+			" INNER JOIN virtus.ciclos_entidades e ON e.id_entidade = b.id_entidade " +
+			" INNER JOIN virtus.produtos_planos f ON (f.id_entidade = e.id_entidade AND f.id_ciclo = e.id_ciclo) " +
 			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id, currentUser.Id)
@@ -139,11 +139,11 @@ func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		for i, entidade := range entidades {
 			var ciclosEntidade []mdl.CicloEntidade
 			var cicloEntidade mdl.CicloEntidade
-			sql = "SELECT b.id, b.nome " +
-				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+			sql = "SELECT b.id_ciclo_entidade, b.nome " +
+				" FROM virtus.ciclos_entidades a " +
+				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id_ciclo " +
 				" WHERE a.id_entidade = ? " +
-				" ORDER BY id asc"
+				" ORDER BY a.id_ciclo_entidade asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
 			i = 1
@@ -242,8 +242,8 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		sql := " SELECT " +
 			" a.id_usuario, " +
 			" coalesce(b.name,'') " +
-			" FROM integrantes a " +
-			" LEFT JOIN users b " +
+			" FROM virtus.integrantes a " +
+			" LEFT JOIN virtus.users b " +
 			" ON a.id_usuario = b.id " +
 			" WHERE " +
 			" a.id_entidade = " + entidadeId +
@@ -264,8 +264,8 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		sql = " SELECT " +
 			" a.id_usuario, " +
 			" b.name " +
-			" FROM integrantes a " +
-			" LEFT JOIN users b " +
+			" FROM virtus.integrantes a " +
+			" LEFT JOIN virtus.users b " +
 			" ON a.id_usuario = b.id " +
 			" WHERE " +
 			" a.id_entidade = " + entidadeId +
@@ -363,8 +363,8 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 	sql := " SELECT " +
 		" a.id_usuario, " +
 		" coalesce(b.name,'') " +
-		" FROM integrantes a " +
-		" LEFT JOIN users b " +
+		" FROM virtus.integrantes a " +
+		" LEFT JOIN virtus.users b " +
 		" ON a.id_usuario = b.id " +
 		" WHERE " +
 		" a.id_entidade = " + entidadeId +
@@ -385,8 +385,8 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 	sql = " SELECT " +
 		" a.id_usuario, " +
 		" b.name " +
-		" FROM integrantes a " +
-		" LEFT JOIN users b " +
+		" FROM virtus.integrantes a " +
+		" LEFT JOIN virtus.users b " +
 		" ON a.id_usuario = b.id " +
 		" WHERE " +
 		" a.id_entidade = " + entidadeId +

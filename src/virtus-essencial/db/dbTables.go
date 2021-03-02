@@ -73,7 +73,7 @@ func createTable() {
 		" id_responsavel integer," +
 		" id_relator integer," +
 		" id_tipo_chamado character(1)," +
-		" prioridade_id character(1)," +
+		" id_prioridade character(1)," +
 		" estimativa integer," +
 		" inicia_em datetime ," +
 		" pronto_em datetime ," +
@@ -285,7 +285,7 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'features_roles') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE virtus.features_roles (" +
-		" id int DEFAULT NEXT VALUE FOR id_features_roles_seq," +
+		" id_feature_role int DEFAULT NEXT VALUE FOR id_features_roles_seq," +
 		" id_feature int NOT NULL," +
 		" id_role int NOT NULL," +
 		" CONSTRAINT pkey_features_roles PRIMARY KEY NONCLUSTERED (id))" +
@@ -583,13 +583,13 @@ func createTable() {
 		" WHERE object_id = OBJECT_ID(N'produtos_tipos_notas') AND type in (N'U'))" +
 		" BEGIN" +
 		" CREATE TABLE virtus.produtos_tipos_notas (" +
-		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_produtos_tipos_notas_seq NOT NULL," +
+		" id_produto_tipo_nota integer DEFAULT NEXT VALUE FOR id_produtos_tipos_notas_seq NOT NULL," +
 		" id_entidade integer," +
 		" id_ciclo integer," +
 		" id_pilar integer," +
 		" id_componente integer," +
 		" id_plano integer," +
-		" id_tipo_de_nota integer," +
+		" id_tipo_nota integer," +
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +

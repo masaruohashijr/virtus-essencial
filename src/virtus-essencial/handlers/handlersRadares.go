@@ -21,7 +21,7 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
 		dataRadar := r.FormValue("DataRadar")
-		sqlStatement := "INSERT INTO radares(nome, descricao, referencia, "
+		sqlStatement := "INSERT INTO virtus.radares(nome, descricao, referencia, "
 		if dataRadar != "" {
 			sqlStatement += "data_radar, "
 		}
@@ -51,7 +51,7 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 				observacoes := strings.Split(array[5], ":")[1]
 				registroAta := strings.Split(array[6], ":")[1]
 				sqlStatement := " INSERT INTO " +
-					" anotacoes_radares( " +
+					" virtus.anotacoes_radares( " +
 					" radar_id, " +
 					" id_entidade, " +
 					" id_anotacao, " +
@@ -95,13 +95,13 @@ func UpdateRadarHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(descricao)
 		referencia := r.FormValue("Referencia")
 		log.Println(referencia)
-		sqlStatement := " UPDATE radares SET nome = '" + nome + "', "
+		sqlStatement := " UPDATE virtus.radares SET nome = '" + nome + "', "
 		if dataRadar != "" {
 			sqlStatement = sqlStatement + " data_radar = '" + dataRadar + "', "
 		}
 		sqlStatement += " descricao = '" + descricao + "', " +
 			" referencia = '" + referencia + "' " +
-			" WHERE id = " + radarId
+			" WHERE id_radar = " + radarId
 		log.Println(sqlStatement)
 		updtForm, _ := Db.Prepare(sqlStatement)
 		_, err := updtForm.Exec()
@@ -163,9 +163,9 @@ func UpdateRadarHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				anotacaoRadar = diffPage[i]
 				log.Println("Radar Id: " + radarId)
-				sqlStatement := "INSERT INTO anotacoes_radares ( " +
+				sqlStatement := "INSERT INTO virtus.anotacoes_radares ( " +
 					" id_anotacao, " +
-					" radar_id, " +
+					" id_radar, " +
 					" observacoes, " +
 					" registro_ata, " +
 					" id_author, " +
@@ -197,7 +197,7 @@ func DeleteRadarHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Radar está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM radares WHERE id_radar=?"
+		sqlStatement := "DELETE FROM virtus.radares WHERE id_radar=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
@@ -230,9 +230,9 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM radares a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
+			" FROM virtus.radares a " +
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -271,10 +271,10 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM anotacoes a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" INNER JOIN entidades d ON a.id_entidade = d.id " +
-			" ORDER BY a.id asc"
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" INNER JOIN virtus.entidades d ON a.id_entidade = d.id_entidade " +
+			" ORDER BY a.id_anotacao asc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

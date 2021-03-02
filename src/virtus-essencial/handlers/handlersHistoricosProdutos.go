@@ -9,7 +9,7 @@ import (
 )
 
 func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId string, componenteId string, currentUser mdl.User, configuracaoAnterior string, motivacao string) {
-	sqlStatement := " INSERT INTO produtos_componentes_historicos( " +
+	sqlStatement := " INSERT INTO virtus.produtos_componentes_historicos( " +
 		"	id_entidade,  " +
 		"	id_ciclo,  " +
 		"	id_pilar,  " +
@@ -35,9 +35,9 @@ func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId s
 		"	GETDATE(),  " +
 		"	a.id,  " +
 		"	a.id_status " +
-		"	FROM produtos_componentes a " +
+		"	FROM virtus.produtos_componentes a " +
 		"	LEFT JOIN (SELECT pp.id_entidade, pp.id_ciclo, pp.id_pilar, pp.id_componente, string_agg(pl.cnpb,', ') planos_configurados " +
-		"	FROM produtos_planos pp INNER JOIN planos pl ON pp.id_plano = pl.id GROUP BY " +
+		"	FROM produtos_planos pp INNER JOIN virtus.planos pl ON pp.id_plano = pl.id GROUP BY " +
 		" 	pp.id_entidade, " +
 		" 	pp.id_ciclo, " +
 		" 	pp.id_pilar, " +
@@ -52,7 +52,7 @@ func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId s
 }
 
 func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, currentUser mdl.User, tipoData string) {
-	sqlStatement := "INSERT INTO produtos_componentes_historicos( " +
+	sqlStatement := "INSERT INTO virtus.produtos_componentes_historicos( " +
 		"	id_entidade,  " +
 		"	id_ciclo,  " +
 		"	id_pilar,  " +
@@ -102,7 +102,7 @@ func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, cu
 		"	GETDATE(),  " +
 		"	id,  " +
 		"	id_status " +
-		"	FROM produtos_componentes " +
+		"	FROM virtus.produtos_componentes " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
 		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
 		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
@@ -112,7 +112,7 @@ func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, cu
 }
 
 func registrarHistoricoAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.User) {
-	sqlStatement := "INSERT INTO produtos_componentes_historicos( " +
+	sqlStatement := "INSERT INTO virtus.produtos_componentes_historicos( " +
 		"	id_entidade,  " +
 		"	id_ciclo,  " +
 		"	id_pilar,  " +
@@ -146,7 +146,7 @@ func registrarHistoricoAuditorComponente(produto mdl.ProdutoComponente, currentU
 		"	GETDATE(),  " +
 		"	id,  " +
 		"	id_status " +
-		"	FROM produtos_componentes " +
+		"	FROM virtus.produtos_componentes " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
 		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
 		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
@@ -156,7 +156,7 @@ func registrarHistoricoAuditorComponente(produto mdl.ProdutoComponente, currentU
 }
 
 func registrarHistoricoNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) {
-	sqlStatement := "INSERT INTO produtos_elementos_historicos( " +
+	sqlStatement := "INSERT INTO virtus.produtos_elementos_historicos( " +
 		"	id_entidade,  " +
 		"	id_ciclo,  " +
 		"	id_pilar,  " +
@@ -207,7 +207,7 @@ func registrarHistoricoNotaElemento(produto mdl.ProdutoElemento, currentUser mdl
 }
 
 func registrarHistoricoPesoElemento(produto mdl.ProdutoElemento, currentUser mdl.User) {
-	sqlStatement := "INSERT INTO produtos_elementos_historicos( " +
+	sqlStatement := "INSERT INTO virtus.produtos_elementos_historicos( " +
 		"	id_entidade,  " +
 		"	id_ciclo,  " +
 		"	id_pilar,  " +
@@ -297,8 +297,8 @@ func ListHistoricosElemento(filtro mdl.Historico) []mdl.Historico {
 		"coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as alterado_em, " +
 		"case when tipo_alteracao = 'P' then a.motivacao_peso else a.motivacao_nota end, " +
 		"case when tipo_alteracao = 'P' then 'Peso' else 'Nota' end " +
-		"FROM produtos_elementos_historicos a " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
+		"FROM virtus.produtos_elementos_historicos a " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id " +
 		"WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
 		"a.id_ciclo = " + filtro.CicloId + " AND " +
 		"a.id_pilar = " + filtro.PilarId + " AND " +
@@ -389,8 +389,8 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 			"       when tipo_alteracao = 'T' then motivacao_reprogramacao " +
 			"       when tipo_alteracao = 'P' then motivacao_config " +
 			"	end as motivacao " +
-			"	FROM produtos_componentes_historicos a " +
-			"	LEFT JOIN users b ON a.id_author = b.id " +
+			"	FROM virtus.produtos_componentes_historicos a " +
+			"	LEFT JOIN virtus.users b ON a.id_author = b.id " +
 			"	WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
 			"   a.id_ciclo = " + filtro.CicloId + " AND " +
 			"	a.id_pilar = " + filtro.PilarId + " AND " +
@@ -440,7 +440,7 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 
 func registrarHistoricoPesoPilar(produto mdl.ProdutoPilar, currentUser mdl.User) {
 	log.Println("========== registrarHistoricoPesoPilar ===========")
-	sqlStatement := "INSERT INTO produtos_pilares_historicos( " +
+	sqlStatement := "INSERT INTO virtus.produtos_pilares_historicos( " +
 		"	id_entidade,  " +
 		"	id_ciclo,  " +
 		"	id_pilar,  " +
@@ -510,8 +510,8 @@ func ListHistoricosPilar(filtro mdl.Historico) []mdl.Historico {
 			"	coalesce(b.name,'') as author_name, " +
 			"	coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as alterado_em,  " +
 			"	motivacao_peso  " +
-			"	FROM produtos_pilares_historicos a " +
-			"	LEFT JOIN users b ON a.id_author = b.id " +
+			"	FROM virtus.produtos_pilares_historicos a " +
+			"	LEFT JOIN virtus.users b ON a.id_author = b.id " +
 			"	WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
 			"   a.id_ciclo = " + filtro.CicloId + " AND " +
 			"	a.id_pilar = " + filtro.PilarId +

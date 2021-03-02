@@ -90,7 +90,7 @@ func createFKey() {
 		" OBJECT_ID(N'destination_status_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.actions " +
 		" ADD CONSTRAINT destination_status_fkey FOREIGN KEY (id_destination_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END ")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END ")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -99,7 +99,7 @@ func createFKey() {
 		" OBJECT_ID(N'origin_status_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.actions " +
 		" ADD CONSTRAINT origin_status_fkey FOREIGN KEY (id_origin_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -109,7 +109,7 @@ func createFKey() {
 		" OBJECT_ID(N'actions_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.actions_status " +
 		" ADD CONSTRAINT actions_fkey FOREIGN KEY (id_action)" +
-		" REFERENCES actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -118,7 +118,7 @@ func createFKey() {
 		" OBJECT_ID(N'origin_actions_status_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.actions_status " +
 		" ADD CONSTRAINT origin_actions_status_fkey FOREIGN KEY (id_origin_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -127,7 +127,7 @@ func createFKey() {
 		" OBJECT_ID(N'destination_actions_status_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.actions_status " +
 		" ADD CONSTRAINT destination_actions_status_fkey FOREIGN KEY (id_destination_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -136,7 +136,7 @@ func createFKey() {
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = " +
 		" OBJECT_ID(N'action_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.activities ADD CONSTRAINT action_fkey FOREIGN KEY (id_action)" +
-		" REFERENCES actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -144,7 +144,7 @@ func createFKey() {
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = " +
 		" OBJECT_ID(N'expiration_action_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (id_expiration_action)" +
-		" REFERENCES actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -152,7 +152,7 @@ func createFKey() {
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = " +
 		" OBJECT_ID(N'workflow_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.activities ADD CONSTRAINT workflow_fkey FOREIGN KEY (id_workflow)" +
-		" REFERENCES workflows (id_workflow) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.workflows (id_workflow) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -162,7 +162,7 @@ func createFKey() {
 		" OBJECT_ID(N'activities_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.activities_roles " +
 		" ADD CONSTRAINT activities_fkey FOREIGN KEY (id_activity)" +
-		" REFERENCES activities (id_activity) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.activities (id_activity) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -171,7 +171,7 @@ func createFKey() {
 		" OBJECT_ID(N'roles_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.activities_roles " +
 		" ADD CONSTRAINT roles_fkey FOREIGN KEY (id_role)" +
-		" REFERENCES roles (id_role) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.roles (id_role) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -181,7 +181,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.ciclos" +
 		" ADD CONSTRAINT authors_ciclos_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -190,7 +190,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.ciclos" +
 		" ADD CONSTRAINT status_ciclos_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -200,7 +200,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_ciclos_entidades_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.ciclos_entidades" +
 		" ADD CONSTRAINT entidades_ciclos_entidades_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -209,7 +209,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_ciclos_entidades_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.ciclos_entidades" +
 		" ADD CONSTRAINT ciclos_ciclos_entidades_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -218,7 +218,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_ciclos_entidades_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.ciclos_entidades" +
 		" ADD CONSTRAINT authors_ciclos_entidades_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -227,7 +227,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_ciclos_entidades_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.ciclos_entidades" +
 		" ADD CONSTRAINT status_ciclos_entidades_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -237,7 +237,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.componentes" +
 		" ADD CONSTRAINT authors_componentes_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -246,14 +246,14 @@ func createFKey() {
 		" OBJECT_ID(N'status_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.componentes" +
 		" ADD CONSTRAINT status_componentes_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 
 	// COMPONENTES PILARES
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = " +
 		" OBJECT_ID(N'componentes_componentes_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.componentes_pilares" +
 		" ADD CONSTRAINT componentes_componentes_pilares_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -262,7 +262,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_componentes_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.componentes_pilares" +
 		" ADD CONSTRAINT pilares_componentes_pilares_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -271,13 +271,13 @@ func createFKey() {
 		" OBJECT_ID(N'authors_componentes_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.componentes_pilares" +
 		" ADD CONSTRAINT authors_componentes_pilares_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = " +
 		" OBJECT_ID(N'status_componentes_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.componentes_pilares" +
 		" ADD CONSTRAINT status_componentes_pilares_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -287,7 +287,7 @@ func createFKey() {
 		" OBJECT_ID(N'users_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos" +
 		" ADD CONSTRAINT users_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -296,14 +296,14 @@ func createFKey() {
 		" OBJECT_ID(N'status_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos" +
 		" ADD CONSTRAINT status_elementos_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 
 	// ELEMENTOS_COMPONENTES
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE object_id = " +
 		" OBJECT_ID(N'tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos_componentes" +
 		" ADD CONSTRAINT tipos_notas_fkey FOREIGN KEY (id_tipo_nota)" +
-		" REFERENCES tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -312,7 +312,7 @@ func createFKey() {
 		" OBJECT_ID(N'elementos_elementos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos_componentes" +
 		" ADD CONSTRAINT elementos_elementos_componentes_fkey FOREIGN KEY (id_elemento)" +
-		" REFERENCES elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -321,7 +321,7 @@ func createFKey() {
 		" OBJECT_ID(N'componentes_elementos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos_componentes" +
 		" ADD CONSTRAINT componentes_elementos_componentes_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -329,7 +329,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_elementos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos_componentes" +
 		" ADD CONSTRAINT authors_elementos_componentes_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -337,7 +337,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_elementos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.elementos_componentes" +
 		" ADD CONSTRAINT status_elementos_componentes_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -346,7 +346,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_entidades_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.entidades" +
 		" ADD CONSTRAINT authors_entidades_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -354,7 +354,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_entidades_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.entidades" +
 		" ADD CONSTRAINT status_entidades_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -363,7 +363,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_escritorios_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.escritorios" +
 		" ADD CONSTRAINT authors_escritorios_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -371,7 +371,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_escritorios_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.escritorios" +
 		" ADD CONSTRAINT status_escritorios_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -380,7 +380,7 @@ func createFKey() {
 		" OBJECT_ID(N'activities_features_activities_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.features_activities " +
 		" ADD CONSTRAINT activities_features_activities_fkey FOREIGN KEY (id_activity)" +
-		" REFERENCES activities (id_activity) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.activities (id_activity) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -388,7 +388,7 @@ func createFKey() {
 		" OBJECT_ID(N'features_features_activities_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.features_activities " +
 		" ADD CONSTRAINT features_features_activities_fkey FOREIGN KEY (id_feature)" +
-		" REFERENCES features (id_feature) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.features (id_feature) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -397,7 +397,7 @@ func createFKey() {
 		" OBJECT_ID(N'features_features_roles_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.features_roles " +
 		" ADD CONSTRAINT features_features_roles_fkey FOREIGN KEY (id_feature)" +
-		" REFERENCES features (id_feature) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.features (id_feature) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -405,7 +405,7 @@ func createFKey() {
 		" OBJECT_ID(N'roles_features_roles_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.features_roles " +
 		" ADD CONSTRAINT roles_features_roles_fkey FOREIGN KEY (id_role)" +
-		" REFERENCES roles (id_role) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.roles (id_role) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -414,7 +414,7 @@ func createFKey() {
 		" OBJECT_ID(N'elementos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.itens" +
 		" ADD CONSTRAINT elementos_itens_fkey FOREIGN KEY (id_elemento)" +
-		" REFERENCES elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -423,7 +423,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.pilares" +
 		" ADD CONSTRAINT authors_pilares_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -431,7 +431,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.pilares" +
 		" ADD CONSTRAINT status_pilares_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -440,7 +440,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_pilares_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.pilares_ciclos" +
 		" ADD CONSTRAINT pilares_pilares_ciclos_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -448,7 +448,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_pilares_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.pilares_ciclos" +
 		" ADD CONSTRAINT ciclos_pilares_ciclos_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -456,7 +456,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_pilares_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.pilares_ciclos" +
 		" ADD CONSTRAINT authors_pilares_ciclos_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -464,7 +464,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_pilares_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.pilares_ciclos" +
 		" ADD CONSTRAINT status_pilares_ciclos_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -473,7 +473,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_planos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.planos" +
 		" ADD CONSTRAINT entidades_planos_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -481,7 +481,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_planos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.planos" +
 		" ADD CONSTRAINT authors_planos_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -489,7 +489,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_planos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.planos" +
 		" ADD CONSTRAINT status_planos_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -498,7 +498,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_produtos_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_ciclos" +
 		" ADD CONSTRAINT entidades_produtos_ciclos_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -506,7 +506,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_produtos_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_ciclos" +
 		" ADD CONSTRAINT ciclos_produtos_ciclos_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -514,7 +514,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_produtos_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_ciclos" +
 		" ADD CONSTRAINT authors_produtos_ciclos_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -522,7 +522,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_produtos_ciclos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_ciclos" +
 		" ADD CONSTRAINT status_produtos_ciclos_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -531,7 +531,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_produtos_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_pilares" +
 		" ADD CONSTRAINT entidades_produtos_pilares_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -539,7 +539,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_produtos_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_pilares" +
 		" ADD CONSTRAINT ciclos_produtos_pilares_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -547,7 +547,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_produtos_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_pilares" +
 		" ADD CONSTRAINT pilares_produtos_pilares_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -555,7 +555,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_produtos_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_pilares" +
 		" ADD CONSTRAINT authors_produtos_pilares_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -563,7 +563,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_produtos_pilares_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_pilares" +
 		" ADD CONSTRAINT status_produtos_pilares_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -572,7 +572,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_produtos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_componentes" +
 		" ADD CONSTRAINT entidades_produtos_componentes_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -580,7 +580,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_produtos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_componentes" +
 		" ADD CONSTRAINT ciclos_produtos_componentes_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -588,7 +588,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_produtos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_componentes" +
 		" ADD CONSTRAINT pilares_produtos_componentes_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -596,7 +596,7 @@ func createFKey() {
 		" OBJECT_ID(N'componentes_produtos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_componentes" +
 		" ADD CONSTRAINT componentes_produtos_componentes_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -604,7 +604,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_produtos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_componentes" +
 		" ADD CONSTRAINT authors_produtos_componentes_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -612,7 +612,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_produtos_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_componentes" +
 		" ADD CONSTRAINT status_produtos_componentes_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -621,7 +621,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT entidades_produtos_tipos_notas_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -629,7 +629,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT ciclos_produtos_tipos_notas_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -637,7 +637,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT pilares_produtos_tipos_notas_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -645,7 +645,7 @@ func createFKey() {
 		" OBJECT_ID(N'componentes_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT componentes_produtos_tipos_notas_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -653,7 +653,7 @@ func createFKey() {
 		" OBJECT_ID(N'tipos_notas_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT tipos_notas_produtos_tipos_notas_fkey FOREIGN KEY (id_tipo_nota)" +
-		" REFERENCES tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -661,7 +661,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT authors_produtos_tipos_notas_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -669,7 +669,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_produtos_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_tipos_notas" +
 		" ADD CONSTRAINT status_produtos_tipos_notas_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -678,7 +678,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT entidades_produtos_elementos_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -686,7 +686,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT ciclos_produtos_elementos_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -694,7 +694,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT pilares_produtos_elementos_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -702,7 +702,7 @@ func createFKey() {
 		" OBJECT_ID(N'componentes_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT componentes_produtos_elementos_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -710,7 +710,7 @@ func createFKey() {
 		" OBJECT_ID(N'tipos_notas_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT tipos_notas_produtos_elementos_fkey FOREIGN KEY (id_tipo_nota)" +
-		" REFERENCES tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -718,7 +718,7 @@ func createFKey() {
 		" OBJECT_ID(N'elementos_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT elementos_produtos_elementos_fkey FOREIGN KEY (id_elemento)" +
-		" REFERENCES elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -726,7 +726,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT authors_produtos_elementos_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -734,7 +734,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_produtos_elementos_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_elementos" +
 		" ADD CONSTRAINT status_produtos_elementos_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -743,7 +743,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT entidades_produtos_itens_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -751,7 +751,7 @@ func createFKey() {
 		" OBJECT_ID(N'ciclos_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT ciclos_produtos_itens_fkey FOREIGN KEY (id_ciclo)" +
-		" REFERENCES ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.ciclos (id_ciclo) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -759,7 +759,7 @@ func createFKey() {
 		" OBJECT_ID(N'pilares_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT pilares_produtos_itens_fkey FOREIGN KEY (id_pilar)" +
-		" REFERENCES pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.pilares (id_pilar) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -767,7 +767,7 @@ func createFKey() {
 		" OBJECT_ID(N'componentes_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT componentes_produtos_itens_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -775,7 +775,7 @@ func createFKey() {
 		" OBJECT_ID(N'elementos_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT elementos_produtos_itens_fkey FOREIGN KEY (id_elemento)" +
-		" REFERENCES elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.elementos (id_elemento) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -783,7 +783,7 @@ func createFKey() {
 		" OBJECT_ID(N'itens_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT itens_produtos_itens_fkey FOREIGN KEY (id_item)" +
-		" REFERENCES itens (id_item) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.itens (id_item) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -791,7 +791,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT authors_produtos_itens_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -799,7 +799,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_produtos_itens_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.produtos_itens" +
 		" ADD CONSTRAINT status_produtos_itens_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -808,7 +808,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.tipos_notas" +
 		" ADD CONSTRAINT authors_tipos_notas_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -817,7 +817,7 @@ func createFKey() {
 		" OBJECT_ID(N'tipos_notas_tipos_notas_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.tipos_notas_componentes" +
 		" ADD CONSTRAINT tipos_notas_tipos_notas_componentes_fkey FOREIGN KEY (id_tipo_nota)" +
-		" REFERENCES tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.tipos_notas (id_tipo_nota) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -825,7 +825,7 @@ func createFKey() {
 		" OBJECT_ID(N'componentes_tipos_notas_componentes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.tipos_notas_componentes" +
 		" ADD CONSTRAINT componentes_tipos_notas_componentes_fkey FOREIGN KEY (id_componente)" +
-		" REFERENCES componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.componentes (id_componente) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -833,7 +833,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_tipos_notas_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.tipos_notas" +
 		" ADD CONSTRAINT status_tipos_notas_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -842,7 +842,7 @@ func createFKey() {
 		" OBJECT_ID(N'roles_users_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.users " +
 		" ADD CONSTRAINT roles_users_fkey FOREIGN KEY (id_role)" +
-		" REFERENCES roles (id_role) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.roles (id_role) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -850,7 +850,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_users_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.users" +
 		" ADD CONSTRAINT authors_users_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -858,7 +858,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_users_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.users" +
 		" ADD CONSTRAINT status_users_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -867,7 +867,7 @@ func createFKey() {
 		" OBJECT_ID(N'entidades_jurisdicoes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.jurisdicoes" +
 		" ADD CONSTRAINT entidades_jurisdicoes_fkey FOREIGN KEY (id_entidade)" +
-		" REFERENCES entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.entidades (id_entidade) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -875,7 +875,7 @@ func createFKey() {
 		" OBJECT_ID(N'escritorios_jurisdicoes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.jurisdicoes" +
 		" ADD CONSTRAINT escritorios_jurisdicoes_fkey FOREIGN KEY (id_escritorio)" +
-		" REFERENCES escritorios (id_escritorio) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.escritorios (id_escritorio) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -883,7 +883,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_jurisdicoes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.jurisdicoes" +
 		" ADD CONSTRAINT authors_jurisdicoes_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -891,7 +891,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_jurisdicoes_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.jurisdicoes" +
 		" ADD CONSTRAINT status_jurisdicoes_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -900,7 +900,7 @@ func createFKey() {
 		" OBJECT_ID(N'usuarios_membros_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.membros" +
 		" ADD CONSTRAINT usuarios_membros_fkey FOREIGN KEY (id_usuario)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -908,7 +908,7 @@ func createFKey() {
 		" OBJECT_ID(N'escritorios_membros_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.membros" +
 		" ADD CONSTRAINT escritorios_membros_fkey FOREIGN KEY (id_escritorio)" +
-		" REFERENCES escritorios (id_escritorio) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.escritorios (id_escritorio) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -916,7 +916,7 @@ func createFKey() {
 		" OBJECT_ID(N'authors_membros_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.membros" +
 		" ADD CONSTRAINT authors_membros_fkey FOREIGN KEY (id_author)" +
-		" REFERENCES users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.users (id_user) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -924,7 +924,7 @@ func createFKey() {
 		" OBJECT_ID(N'status_membros_fkey') AND type in (N'F')) BEGIN " +
 		" ALTER TABLE virtus.membros" +
 		" ADD CONSTRAINT status_membros_fkey FOREIGN KEY (id_status)" +
-		" REFERENCES status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		" REFERENCES virtus.status (id_status) ON DELETE NO ACTION ON UPDATE NO ACTION END")
 	if err != nil {
 		log.Println(err.Error())
 	}

@@ -20,7 +20,7 @@ func CreateRoleHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		description := r.FormValue("Description")
 		features := r.Form["FeaturesForInsert"]
-		sqlStatement := "INSERT INTO roles(name, description, id_author, created_at) " +
+		sqlStatement := "INSERT INTO virtus.roles(name, description, id_author, created_at) " +
 			" OUTPUT INSERTED.id_role " +
 			" VALUES (?, ?, ?, GETDATE())"
 		roleId := 0
@@ -29,7 +29,7 @@ func CreateRoleHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(err.Error())
 		}
 		for _, featureId := range features {
-			sqlStatement := "INSERT INTO features_roles(id_feature,id_role) " +
+			sqlStatement := "INSERT INTO virtus.features_roles(id_feature,id_role) " +
 				" OUTPUT INSERTED.id_feature_role VALUES (?,?)"
 			featureRoleId := 0
 			err = Db.QueryRow(sqlStatement, featureId, roleId).Scan(&featureRoleId)
@@ -50,7 +50,7 @@ func UpdateRoleHandler(w http.ResponseWriter, r *http.Request) {
 		roleId := r.FormValue("Id")
 		name := r.FormValue("Name")
 		description := r.FormValue("Description")
-		sqlStatement := "UPDATE roles SET name=?, description=? WHERE id_role=?"
+		sqlStatement := "UPDATE virtus.roles SET name=?, description=? WHERE id_role=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -89,7 +89,7 @@ func UpdateRoleHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				feature = diffPage[i]
 				log.Println("Role Id: " + roleId)
-				sqlStatement := "INSERT INTO features_roles(id_role, id_feature) VALUES (?,?)"
+				sqlStatement := "INSERT INTO virtus.features_roles(id_role, id_feature) VALUES (?,?)"
 				log.Println(sqlStatement)
 				Db.QueryRow(sqlStatement, roleId, feature.Id)
 			}
@@ -125,7 +125,7 @@ func DeleteRoleHandler(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("Id")
 		log.Println("id: " + id)
 		errMsg := "Perfil vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM roles WHERE id_role=?"
+		sqlStatement := "DELETE FROM virtus.roles WHERE id_role=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -154,10 +154,10 @@ func ListPerfisHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM roles a LEFT JOIN users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" order by id asc"
+			" FROM virtus.roles a LEFT JOIN virtus.users b " +
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" order by id_role asc"
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -179,7 +179,7 @@ func ListPerfisHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			roles = append(roles, role)
 		}
-		rows, _ = Db.Query("SELECT id, name FROM features order by name asc")
+		rows, _ = Db.Query("SELECT id_feature, name FROM virtus.features order by name asc")
 		defer rows.Close()
 		var features []mdl.Feature
 		var feature mdl.Feature
@@ -225,7 +225,7 @@ func LoadFeaturesByRoleId(w http.ResponseWriter, r *http.Request) {
 func ListPerfisByActionIdHandler(actionId string) []mdl.Role {
 	log.Println("List Perfis By Action Id")
 	sql := "SELECT id_role" +
-		" FROM actions_roles WHERE id_action= ?"
+		" FROM virtus.actions_roles WHERE id_action= ?"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, actionId)
 	defer rows.Close()
@@ -239,7 +239,7 @@ func ListPerfisByActionIdHandler(actionId string) []mdl.Role {
 }
 
 func DeletePerfisByActionHandler(actionId string) {
-	sqlStatement := "DELETE FROM actions_roles WHERE id_action=?"
+	sqlStatement := "DELETE FROM virtus.actions_roles WHERE id_action=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -249,7 +249,7 @@ func DeletePerfisByActionHandler(actionId string) {
 }
 
 func DeletePerfisHandler(diffDB []mdl.Role) {
-	sqlStatement := "DELETE FROM actions_roles WHERE id_role=?"
+	sqlStatement := "DELETE FROM virtus.actions_roles WHERE id_role=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

@@ -13,7 +13,7 @@ func CreatePlanoHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Create Plano")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		nome := r.FormValue("Nome")
-		sqlStatement := "INSERT INTO planos(nome) VALUES (?) RETURNING id"
+		sqlStatement := "INSERT INTO virtus.planos(nome) VALUES (?) RETURNING id"
 		id := 0
 		err := Db.QueryRow(sqlStatement, nome).Scan(&id)
 		log.Println(sqlStatement + " :: " + nome)
@@ -36,7 +36,7 @@ func UpdatePlanoHandler(w http.ResponseWriter, r *http.Request) {
 		cnpb := r.FormValue("CNPB")
 		recursoGarantidor := r.FormValue("RecursoGarantidor")
 		modalidade := r.FormValue("Modalidade")
-		sqlStatement := "UPDATE planos SET nome=?, descricao=?, cnpb=?, recurso_garantidor=?, modalidade=? WHERE id_plano=?"
+		sqlStatement := "UPDATE virtus.planos SET nome=?, descricao=?, cnpb=?, recurso_garantidor=?, modalidade=? WHERE id_plano=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -87,7 +87,7 @@ func hasSomeFieldChangedPlano(planoPage mdl.Plano, planoDB mdl.Plano) bool {
 }
 
 func updatePlanoHandler(p mdl.Plano, planoDB mdl.Plano) {
-	sqlStatement := "UPDATE planos SET " +
+	sqlStatement := "UPDATE virtus.planos SET " +
 		"nome='" + p.Nome + "', descricao='" + p.Descricao + "', id_modalidade='" + p.Modalidade +
 		"', recurso_garantidor=" +
 		p.RecursoGarantidor +
@@ -106,7 +106,7 @@ func DeletePlanoHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete Plano")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM planos WHERE id_plano=?"
+		sqlStatement := "DELETE FROM virtus.planos WHERE id_plano=?"
 		deleteForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -137,8 +137,8 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em," +
 		" a.id_status, " +
 		" coalesce(c.name,'') as status_name " +
-		" FROM planos a LEFT JOIN users b ON a.id_author = b.id_user " +
-		" LEFT JOIN status c ON a.id_status = c.id_status " +
+		" FROM virtus.planos a LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 		" WHERE a.id_entidade = ? " +
 		" AND left(cnpb,1) not in ('4','5') " +
 		" ORDER BY a.recurso_garantidor DESC"
@@ -174,7 +174,7 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 }
 
 func DeletePlanosByEntidadeId(entidadeId string) {
-	sqlStatement := "DELETE FROM Planos WHERE id_entidade=?"
+	sqlStatement := "DELETE FROM virtus.Planos WHERE id_entidade=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -184,7 +184,7 @@ func DeletePlanosByEntidadeId(entidadeId string) {
 }
 
 func DeletePlanosHandler(diffDB []mdl.Plano) {
-	sqlStatement := "DELETE FROM Planos WHERE id_plano=?"
+	sqlStatement := "DELETE FROM virtus.Planos WHERE id_plano=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

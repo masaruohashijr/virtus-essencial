@@ -21,7 +21,7 @@ func CreateProcessoHandler(w http.ResponseWriter, r *http.Request) {
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
 		dataProcesso := r.FormValue("DataProcesso")
-		sqlStatement := "INSERT INTO radares(" +
+		sqlStatement := "INSERT INTO virtus.radares(" +
 			" nome, descricao, referencia, data_radar, id_author, criado_em) " +
 			" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
 		idProcesso := 0
@@ -71,10 +71,10 @@ func UpdateProcessoHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "UPDATE radares SET nome = ?, " +
+		sqlStatement := "UPDATE virtus.radares SET nome = ?, " +
 			" descricao = ?, " +
 			" referencia = ? " +
-			" WHERE id = ? "
+			" WHERE id_radar = ? "
 		updtForm, _ := Db.Prepare(sqlStatement)
 		updtForm.Exec(nome, descricao, referencia, radarId)
 		log.Println("UPDATE: Id: " + radarId + " | Nome: " + nome + " | Descrição: " + descricao)
@@ -186,7 +186,7 @@ func DeleteProcessoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Processo está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM radares WHERE id_radar=?"
+		sqlStatement := "DELETE FROM virtus.radares WHERE id_radar=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
@@ -220,10 +220,10 @@ func ListProcessosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM radares a LEFT JOIN users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" order by a.id asc"
+			" FROM virtus.radares a LEFT JOIN virtus.users b " +
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" order by a.id_radar asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()

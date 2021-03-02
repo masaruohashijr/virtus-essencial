@@ -5,34 +5,34 @@ import (
 )
 
 func createRoles() {
-	query := " INSERT INTO roles (id_role, name, description, created_at) " +
+	query := " INSERT INTO virtus.roles(id_role, name, description, created_at) " +
 		" SELECT 1, 'Admin', 'Admin' , GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_role FROM roles WHERE name = 'Admin')"
+		" WHERE NOT EXISTS (SELECT id_role FROM virtus.roles WHERE name = 'Admin')"
 	db.Exec(query)
-	query = " INSERT INTO roles (id_role, name, description, created_at) " +
+	query = " INSERT INTO virtus.roles(id_role, name, description, created_at) " +
 		" SELECT 2, 'Chefe', 'Chefe' , GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_role FROM roles WHERE name = 'Chefe')"
+		" WHERE NOT EXISTS (SELECT id_role FROM virtus.roles WHERE name = 'Chefe')"
 	db.Exec(query)
-	query = " INSERT INTO roles (id_role, name, description, created_at) " +
+	query = " INSERT INTO virtus.roles(id_role, name, description, created_at) " +
 		" SELECT 3, 'Supervisor', 'Supervisor' , GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_role FROM roles WHERE name = 'Supervisor')"
+		" WHERE NOT EXISTS (SELECT id_role FROM virtus.roles WHERE name = 'Supervisor')"
 	db.Exec(query)
-	query = " INSERT INTO roles (id_role, name, description, created_at) " +
+	query = " INSERT INTO virtus.roles(id_role, name, description, created_at) " +
 		" SELECT 4, 'Auditor', 'Auditor' , GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_role FROM roles WHERE name = 'Auditor')"
+		" WHERE NOT EXISTS (SELECT id_role FROM virtus.roles WHERE name = 'Auditor')"
 	db.Exec(query)
-	query = " INSERT INTO roles (id_role, name, description, created_at) " +
+	query = " INSERT INTO virtus.roles(id_role, name, description, created_at) " +
 		" SELECT 5, 'Visualizador', 'Visualizador' , GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_role FROM roles WHERE name = 'Visualizador')"
+		" WHERE NOT EXISTS (SELECT id_role FROM virtus.roles WHERE name = 'Visualizador')"
 	db.Exec(query)
-	query = " INSERT INTO roles (id_role, name, description, created_at) " +
+	query = " INSERT INTO virtus.roles(id_role, name, description, created_at) " +
 		" SELECT 6, 'Desenvolvedor', 'Desenvolvedor' , GETDATE() " +
-		" WHERE NOT EXISTS (SELECT id_role FROM roles WHERE name = 'Desenvolvedor')"
+		" WHERE NOT EXISTS (SELECT id_role FROM virtus.roles WHERE name = 'Desenvolvedor')"
 	db.Exec(query)
 }
 
 func updateRoles() {
-	query := " UPDATE roles SET id_author = 1 WHERE name = 'Admin' AND (SELECT id_author FROM roles WHERE name = 'Admin') IS NULL "
+	query := " UPDATE virtus.roles SET id_author = 1 WHERE name = 'Admin' AND (SELECT id_author FROM virtus.roles WHERE name = 'Admin') IS NULL "
 	//log.Println(query)
 	db.Exec(query)
 }

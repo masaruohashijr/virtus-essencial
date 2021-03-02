@@ -18,7 +18,7 @@ using this package directly. For example:
 		}
 
 		age := 21
-		rows, err := db.Query("SELECT name FROM users WHERE age = $1", age)
+		rows, err := db.Query("SELECT name FROM virtus.users WHERE age = $1", age)
 		…
 	}
 
@@ -106,7 +106,7 @@ database/sql does not dictate any specific format for parameter
 markers in query strings, and pq uses the Postgres-native ordinal markers,
 as shown above. The same marker can be reused for the same parameter:
 
-	rows, err := db.Query(`SELECT name FROM users WHERE favorite_fruit = $1
+	rows, err := db.Query(`SELECT name FROM virtus.users WHERE favorite_fruit = $1
 		OR age BETWEEN $2 AND $2 + 3`, "orange", 64)
 
 pq does not support the LastInsertId() method of the Result type in database/sql.
@@ -114,7 +114,7 @@ To return the identifier of an INSERT (or UPDATE or DELETE), use the Postgres
 RETURNING clause with a standard Query or QueryRow call:
 
 	var userid int
-	err := db.QueryRow(`INSERT INTO users(name, favorite_fruit, age)
+	err := db.QueryRow(`INSERT INTO virtus.users(name, favorite_fruit, age)
 		VALUES('beatrice', 'starfruit', 93) RETURNING id`).Scan(&userid)
 
 For more details on RETURNING, see the Postgres documentation:

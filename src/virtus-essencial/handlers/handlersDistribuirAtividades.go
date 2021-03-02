@@ -27,12 +27,12 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		warnMsg := r.FormValue("warnMsg")
 		var page mdl.PageEntidadesCiclos
 		sql := "SELECT DISTINCT d.codigo, b.id_entidade, d.nome, a.abreviatura " +
-			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
-			" LEFT JOIN membros c ON c.id_escritorio = b.id_escritorio " +
-			" LEFT JOIN entidades d ON d.id = b.id_entidade " +
-			" LEFT JOIN users u ON u.id = c.id_usuario " +
-			" INNER JOIN ciclos_entidades e ON e.id_entidade = b.id_entidade " +
+			" FROM virtus.escritorios a " +
+			" LEFT JOIN virtus.jurisdicoes b ON a.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.membros c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.entidades d ON d.id_entidade = b.id_entidade " +
+			" LEFT JOIN virtus.users u ON u.id_usuario = c.id_usuario " +
+			" INNER JOIN virtus.ciclos_entidades e ON e.id_entidade = b.id_entidade " +
 			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id, currentUser.Id)
@@ -54,11 +54,11 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		for i, entidade := range entidades {
 			var ciclosEntidade []mdl.CicloEntidade
 			var cicloEntidade mdl.CicloEntidade
-			sql = "SELECT b.id, b.nome " +
-				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+			sql = "SELECT b.id_ciclo, b.nome " +
+				" FROM virtus.ciclos_entidades a " +
+				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id " +
 				" WHERE a.id_entidade = ? " +
-				" ORDER BY id asc"
+				" ORDER BY id_ciclo_entidade asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
 			i = 1
@@ -115,7 +115,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				componenteId := r.FormValue("Componente_" + fname)
 				//log.Println(fieldName + " - value: " + value[0])
 				if value[0] != "" {
-					sqlStatement := "UPDATE produtos_componentes SET " +
+					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" id_auditor=" + value[0] + ", id_supervisor=" + supervisorId +
 						" WHERE id_entidade=" + entidadeId +
 						" AND id_ciclo=" + cicloId +
@@ -145,7 +145,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				componenteId := partes[4]
 				// log.Println(fieldName + " - value: " + value[0])
 				if value[0] != "" {
-					sqlStatement := "UPDATE produtos_componentes SET " +
+					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" inicia_em='" + value[0] + "' " +
 						" WHERE id_entidade=" + entidadeId +
 						" AND id_ciclo=" + cicloId +
@@ -171,7 +171,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				componenteId := partes[4]
 				// log.Println(fieldName + " - value: " + value[0])
 				if value[0] != "" {
-					sqlStatement := "UPDATE produtos_componentes SET " +
+					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" termina_em='" + value[0] + "' " +
 						" WHERE id_entidade=" + entidadeId +
 						" AND id_ciclo=" + cicloId +
@@ -215,17 +215,17 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.id_auditor,0) as audit_id, coalesce(g.name,'') as auditor_nome,  " +
 			" coalesce(format(a.inicia_em,'yyyy-MM-dd'),'') as inicia_em, " +
 			" coalesce(format(a.termina_em,'yyyy-MM-dd'),'') as termina_em " +
-			" FROM produtos_componentes a " +
-			" LEFT JOIN entidades b ON a.id_entidade = b.id " +
-			" LEFT JOIN ciclos c ON a.id_ciclo = c.id " +
-			" LEFT JOIN pilares d ON a.id_pilar = d.id " +
-			" LEFT JOIN componentes e ON a.id_componente = e.id " +
-			" LEFT JOIN ciclos_entidades h ON (a.id_entidade = h.id_entidade AND a.id_ciclo = h.id_ciclo) " +
-			" LEFT JOIN users f ON h.id_supervisor = f.id " +
-			" LEFT JOIN users g ON a.id_auditor = g.id " +
+			" FROM virtus.produtos_componentes a " +
+			" LEFT JOIN virtus.entidades b ON a.id_entidade = b.id " +
+			" LEFT JOIN virtus.ciclos c ON a.id_ciclo = c.id " +
+			" LEFT JOIN virtus.pilares d ON a.id_pilar = d.id " +
+			" LEFT JOIN virtus.componentes e ON a.id_componente = e.id " +
+			" LEFT JOIN virtus.ciclos_entidades h ON (a.id_entidade = h.id_entidade AND a.id_ciclo = h.id_ciclo) " +
+			" LEFT JOIN virtus.users f ON h.id_supervisor = f.id " +
+			" LEFT JOIN virtus.users g ON a.id_auditor = g.id " +
 			" LEFT JOIN (select a.id_entidade, a.id_ciclo, a.id_pilar, a.id_componente, " +
-			" 	CASE WHEN COUNT(i.id)>0 THEN 'S' ELSE 'N' END AS configurado from produtos_componentes a " +
-			" 	INNER JOIN produtos_planos i ON (a.id_entidade = i.id_entidade " +
+			" 	CASE WHEN COUNT(i.id_produto_plano)>0 THEN 'S' ELSE 'N' END AS configurado from produtos_componentes a " +
+			" 	INNER JOIN virtus.produtos_planos i ON (a.id_entidade = i.id_entidade " +
 			" 	AND a.id_ciclo = i.id_ciclo " +
 			" 	AND a.id_pilar = i.id_pilar " +
 			" 	AND a.id_componente = i.id_componente) " +
@@ -268,9 +268,9 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		orderable := ""
 		sql = " SELECT " +
 			" b.id_usuario, coalesce(c.name,''), UPPER(coalesce(c.name,'')) AS supervisor_nome " +
-			" FROM escritorios a " +
-			" LEFT JOIN membros b ON a.id = b.id_escritorio " +
-			" LEFT JOIN users c ON b.id_usuario = c.id " +
+			" FROM virtus.escritorios a " +
+			" LEFT JOIN virtus.membros b ON a.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.users c ON b.id_usuario = c.id_user " +
 			" WHERE c.id_role = 3 ORDER BY supervisor_nome "
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
@@ -288,8 +288,8 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_usuario, " +
 			" coalesce(b.name,''), " +
 			" UPPER(coalesce(b.name,'')) AS orderable " +
-			" FROM integrantes a " +
-			" LEFT JOIN users b " +
+			" FROM virtus.integrantes a " +
+			" LEFT JOIN virtus.users b " +
 			" ON a.id_usuario = b.id " +
 			" WHERE " +
 			" a.id_entidade = " + entidadeId +
@@ -306,7 +306,7 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		sql = " SELECT id, cnpb, id_modalidade, CASE WHEN recurso_garantidor > 1000000 AND recurso_garantidor < 1000000000 THEN concat(format(recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN recurso_garantidor > 1000000000 THEN concat(format(recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(recurso_garantidor/1000,'N','pt-br'),' Milhares') END " +
-			" FROM planos WHERE id_entidade = ? AND left(cnpb,1) not in ('4','5') ORDER BY recurso_garantidor DESC "
+			" FROM virtus.planos WHERE id_entidade = ? AND left(cnpb,1) not in ('4','5') ORDER BY recurso_garantidor DESC "
 		log.Println(sql)
 		rows, _ = Db.Query(sql, entidadeId)
 		defer rows.Close()
@@ -360,7 +360,7 @@ func UpdateConfigPlanos(w http.ResponseWriter, r *http.Request) {
 	log.Println("planos: " + planos)
 	var planosPage []PlanosCfg
 	var planoPage PlanosCfg
-	sql := " select id, cnpb from planos where id_entidade = " + entidadeId + " order by cnpb "
+	sql := " select id_plano, cnpb from virtus.planos where id_entidade = " + entidadeId + " order by cnpb "
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -386,13 +386,13 @@ func UpdateConfigPlanos(w http.ResponseWriter, r *http.Request) {
 		planos = planos[:len(planos)-1]
 	}
 	sql = " select a.id_plano, c.cnpb, " +
-		" case when count(b.id) = 0 then 1 else 0 end as pode_apagar " +
-		" from produtos_elementos a " +
-		" left join produtos_elementos_historicos b on " +
+		" case when count(b.id_produto_elemento_historico) = 0 then 1 else 0 end as pode_apagar " +
+		" from virtus.produtos_elementos a " +
+		" left join virtus.produtos_elementos_historicos b on " +
 		" (a.id_entidade = b.id_entidade and a.id_ciclo = b.id_ciclo " +
 		" and a.id_pilar = b.id_pilar and a.id_componente = b.id_componente " +
 		" and a.id_plano = b.id_plano) " +
-		" inner join planos c on c.id = a.id_plano " +
+		" inner join virtus.planos c on c.id_plano = a.id_plano " +
 		" where a.id_entidade = " + entidadeId +
 		" and a.id_ciclo = " + cicloId +
 		" and a.id_pilar = " + pilarId +
@@ -584,7 +584,7 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	atualizarPilarNota(produto)
 	atualizarCicloNota(produto)
 	atualizarPesoTiposNotas(produto, currentUser)
-	sqlStatement = "UPDATE produtos_componentes " +
+	sqlStatement = "UPDATE virtus.produtos_componentes " +
 		" SET nota = 0 " +
 		" WHERE " +
 		" id_entidade = " + entidadeId +
@@ -597,7 +597,7 @@ func deleteProdutoPlano(entidadeId string, cicloId string, pilarId string, compo
 	if err != nil {
 		log.Println(err.Error())
 	}
-	sqlStatement = "UPDATE produtos_pilares " +
+	sqlStatement = "UPDATE virtus.produtos_pilares " +
 		" SET nota = 0 " +
 		" WHERE id_ciclo = " + cicloId +
 		" and id_pilar = " + pilarId +

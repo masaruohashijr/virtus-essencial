@@ -19,7 +19,7 @@ func CreatePilarHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "INSERT INTO pilares(nome, descricao, referencia, id_author, criado_em) " +
+		sqlStatement := "INSERT INTO virtus.pilares(nome, descricao, referencia, id_author, criado_em) " +
 			" OUTPUT INSERTED.id_pilar VALUES (?, ?, ?, ?, GETDATE())"
 		idPilar := 0
 		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, currentUser.Id).Scan(&idPilar)
@@ -41,7 +41,7 @@ func CreatePilarHandler(w http.ResponseWriter, r *http.Request) {
 					pesoPadrao = "0"
 				}
 				sqlStatement := " INSERT INTO " +
-					" componentes_pilares( " +
+					" virtus.componentes_pilares( " +
 					" id_pilar, " +
 					" id_componente, " +
 					" tipo_media, " +
@@ -79,7 +79,7 @@ func UpdatePilarHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "UPDATE pilares SET nome=?, descricao=?, referencia=? WHERE id_pilar=?"
+		sqlStatement := "UPDATE virtus.pilares SET nome=?, descricao=?, referencia=? WHERE id_pilar=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -167,7 +167,7 @@ func UpdatePilarHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				componentePilar = diffPage[i]
 				log.Println("Pilar Id: " + pilarId)
-				sqlStatement := "INSERT INTO componentes_pilares ( " +
+				sqlStatement := "INSERT INTO virtus.componentes_pilares ( " +
 					" id_pilar, " +
 					" id_componente, " +
 					" peso_padrao, " +
@@ -204,7 +204,7 @@ func DeletePilarHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Pilar vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM pilares WHERE id_pilar=?"
+		sqlStatement := "DELETE FROM virtus.pilares WHERE id_pilar=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -234,9 +234,9 @@ func ListPilaresHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM pilares a LEFT JOIN users b " +
+			" FROM virtus.pilares a LEFT JOIN virtus.users b " +
 			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -261,7 +261,7 @@ func ListPilaresHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(pilar)
 			pilares = append(pilares, pilar)
 		}
-		sql = "SELECT id, nome FROM componentes ORDER BY id asc"
+		sql = "SELECT id_componente, nome FROM componentes ORDER BY id_componente asc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

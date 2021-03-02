@@ -22,7 +22,7 @@ func CreateTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 		referencia := r.FormValue("Referencia")
 		letra := r.FormValue("Letra")
 		corLetra := r.FormValue("CorLetra")
-		sqlStatement := "INSERT INTO tipos_notas(nome, descricao, referencia, letra, cor_letra, id_author, criado_em) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+		sqlStatement := "INSERT INTO virtus.tipos_notas(nome, descricao, referencia, letra, cor_letra, id_author, criado_em) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
 		tipoNotaId := 0
 		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, letra, corLetra, currentUser.Id, time.Now()).Scan(&tipoNotaId)
 		if err != nil {
@@ -44,7 +44,7 @@ func UpdateTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 		referencia := r.FormValue("Referencia")
 		letra := r.FormValue("Letra")
 		corLetra := r.FormValue("CorLetra")
-		sqlStatement := "UPDATE tipos_notas SET nome=?, descricao=?, referencia=?, letra=?, cor_letra=? WHERE id_tipo_nota=?"
+		sqlStatement := "UPDATE virtus.tipos_notas SET nome=?, descricao=?, referencia=?, letra=?, cor_letra=? WHERE id_tipo_nota=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -65,7 +65,7 @@ func DeleteTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Tipo de Nota vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM tipos_notas WHERE id_tipo_nota=?"
+		sqlStatement := "DELETE FROM virtus.tipos_notas WHERE id_tipo_nota=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -97,10 +97,10 @@ func ListTiposNotasHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM tipos_notas a LEFT JOIN users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" order by id asc"
+			" FROM virtus.tipos_notas a LEFT JOIN virtus.users b " +
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" order by id_tipo_nota asc"
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()

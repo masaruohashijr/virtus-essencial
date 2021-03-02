@@ -45,13 +45,13 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" coalesce(a.id_status,0), " +
 			" coalesce(a.id_versao_origem,0) " +
-			" FROM chamados a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" LEFT JOIN users d ON a.id_responsavel = d.id " +
-			" LEFT JOIN users e ON a.id_relator = e.id " +
+			" FROM virtus.chamados a " +
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" LEFT JOIN virtus.users d ON a.id_responsavel = d.id_user " +
+			" LEFT JOIN virtus.users e ON a.id_relator = e.id_user " +
 			" WHERE a.id_status = " + strconv.Itoa(chamadoEndStatusId) +
-			" order by a.id desc"
+			" order by a.id_chamado desc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()

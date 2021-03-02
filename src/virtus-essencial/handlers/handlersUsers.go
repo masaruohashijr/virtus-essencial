@@ -36,7 +36,7 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 		log.Println(hash)
 		statusUsuarioId := GetStartStatus("usuario")
-		sqlStatement := "INSERT INTO Users(name, username, password, email, mobile, id_role, id_author, criado_em, id_status) " +
+		sqlStatement := "INSERT INTO virtus.users(name, username, password, email, mobile, id_role, id_author, criado_em, id_status) " +
 			" OUTPUT INSERTED.id_user VALUES (?, ?, ?, ?, ?, ?, ?, GETDATE(), ?)"
 		id := 0
 		err = Db.QueryRow(sqlStatement, name, username, hash, email, mobile, role, currentUser.Id, statusUsuarioId).Scan(&id)
@@ -70,7 +70,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 		mobile := r.FormValue("Mobile")
 		role := r.FormValue("RoleForUpdate")
 		log.Println("Role: " + role)
-		sqlStatement := " UPDATE Users SET name=?, " +
+		sqlStatement := " UPDATE virtus.Users SET name=?, " +
 			" username=?, email=?, mobile=?, id_role=? " +
 			" WHERE id_user=? "
 		log.Println(sqlStatement)
@@ -98,7 +98,7 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "Usuário vinculado a registro não pode ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM Users WHERE id_user=?"
+		sqlStatement := "DELETE FROM virtus.users WHERE id_user=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -166,7 +166,7 @@ func SendPasswordHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func loadUserByEmail(emailTo string) mdl.User {
-	rows, _ := Db.Query("SELECT id, username FROM users WHERE email = ?", emailTo)
+	rows, _ := Db.Query("SELECT id, username FROM virtus.users WHERE email = ?", emailTo)
 	var user mdl.User
 	if rows.Next() {
 		rows.Scan(&user.Id, &user.Username)
@@ -200,8 +200,8 @@ func ChangePasswordHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func atualizarSenha(hash []byte, id string) {
-	sqlStatement := "UPDATE Users SET password = '" + string(hash[:]) +
-		"' WHERE id = " + id
+	sqlStatement := "UPDATE virtus.Users SET password = '" + string(hash[:]) +
+		"' WHERE id_user = " + id
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
@@ -225,7 +225,7 @@ func RegisterNewUserHandler(w http.ResponseWriter, r *http.Request) {
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	log.Println(hash)
 	statusUsuarioId := GetStartStatus("usuario")
-	sqlStatement := "INSERT INTO Users(name, " +
+	sqlStatement := "INSERT INTO virtus.users(name, " +
 		" username, " +
 		" password, " +
 		" email, " +
@@ -282,10 +282,10 @@ func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(d.name,'') as cstatus, " +
 			" coalesce(a.id_status,0) , " +
 			" coalesce(a.id_versao_origem,0) " +
-			" FROM users a " +
-			" LEFT JOIN roles b ON a.id_role = b.id " +
-			" LEFT JOIN status d ON a.id_status = d.id " +
-			" LEFT JOIN users e ON a.id_author = e.id " +
+			" FROM virtus.users a " +
+			" LEFT JOIN virtus.roles b ON a.id_role = b.id_role " +
+			" LEFT JOIN virtus.status d ON a.id_status = d.id_status " +
+			" LEFT JOIN virtus.users e ON a.id_author = e.id_user " +
 			" ORDER BY a.name ASC "
 		log.Println("SQL: " + sql)
 		rows, _ := Db.Query(sql)
@@ -313,7 +313,7 @@ func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(user)
 			users = append(users, user)
 		}
-		sql = "SELECT id, name FROM roles ORDER BY name asc"
+		sql = "SELECT id, name FROM virtus.roles ORDER BY name asc"
 		log.Println("SQL Roles: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

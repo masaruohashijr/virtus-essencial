@@ -20,7 +20,7 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "INSERT INTO ciclos(nome, descricao, referencia, id_author, criado_em) " +
+		sqlStatement := "INSERT INTO virtus.ciclos(nome, descricao, referencia, id_author, criado_em) " +
 			" OUTPUT INSERTED.id_ciclo " +
 			" VALUES (?, ?, ?, ?, GETDATE()) "
 		idCiclo := 0
@@ -36,7 +36,7 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 				tipoMediaId := strings.Split(array[5], ":")[1]
 				pesoPadrao := strings.Split(array[7], ":")[1]
 				sqlStatement := " INSERT INTO " +
-					" pilares_ciclos( " +
+					" virtus.pilares_ciclos( " +
 					" id_ciclo, " +
 					" id_pilar, " +
 					" tipo_media, " +
@@ -76,9 +76,9 @@ func IniciarCicloHandler(w http.ResponseWriter, r *http.Request) {
 		descricao := r.FormValue("Descricao")
 		iniciaEm := r.FormValue("IniciaEm")
 		terminaEm := r.FormValue("TerminaEm")
-		sqlStatement := "UPDATE ciclos SET nome = ?, " +
+		sqlStatement := "UPDATE virtus.ciclos SET nome = ?, " +
 			" descricao = ? " +
-			" WHERE id = ? "
+			" WHERE id_ciclo = ? "
 		updtForm, _ := Db.Prepare(sqlStatement)
 		updtForm.Exec(nome, descricao, cicloId)
 		log.Println("UPDATE: Id: " + cicloId + " | Nome: " + nome + " | Descrição: " + descricao)
@@ -95,7 +95,7 @@ func IniciarCicloHandler(w http.ResponseWriter, r *http.Request) {
 				snippet1 = snippet1 + ", termina_em "
 				snippet2 = snippet2 + ", ?"
 			}
-			sqlStatement := "INSERT INTO ciclos_entidades ( " +
+			sqlStatement := "INSERT INTO virtus.ciclos_entidades ( " +
 				" id_entidade, " +
 				" id_ciclo, " +
 				" tipo_media, " +
@@ -142,10 +142,10 @@ func UpdateCicloHandler(w http.ResponseWriter, r *http.Request) {
 		nome := r.FormValue("Nome")
 		descricao := r.FormValue("Descricao")
 		referencia := r.FormValue("Referencia")
-		sqlStatement := "UPDATE ciclos SET nome = ?, " +
+		sqlStatement := "UPDATE virtus.ciclos SET nome = ?, " +
 			" descricao = ?, " +
 			" referencia = ? " +
-			" WHERE id = ? "
+			" WHERE id_ciclo = ? "
 		updtForm, _ := Db.Prepare(sqlStatement)
 		updtForm.Exec(nome, descricao, referencia, cicloId)
 		log.Println("UPDATE: Id: " + cicloId + " | Nome: " + nome + " | Descrição: " + descricao)
@@ -224,7 +224,7 @@ func UpdateCicloHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				pilarCiclo = diffPage[i]
 				log.Println("Ciclo Id: " + cicloId)
-				sqlStatement := "INSERT INTO pilares_ciclos ( " +
+				sqlStatement := "INSERT INTO virtus.pilares_ciclos ( " +
 					" id_ciclo, " +
 					" id_pilar, " +
 					" tipo_media, " +
@@ -257,7 +257,7 @@ func DeleteCicloHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Ciclo está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM ciclos WHERE id_ciclo=?"
+		sqlStatement := "DELETE FROM virtus.ciclos WHERE id_ciclo=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
@@ -290,10 +290,10 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM ciclos a LEFT JOIN users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" order by a.id asc"
+			" FROM virtus.ciclos a LEFT JOIN virtus.users b " +
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" order by a.id_ciclo asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -319,7 +319,7 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 		sql = "SELECT " +
 			" a.id, " +
 			" a.nome " +
-			" FROM pilares a " +
+			" FROM virtus.pilares a " +
 			" order by a.id asc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
@@ -339,7 +339,7 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 			"FROM entidades a " +
 			"WHERE NOT EXISTS " +
 			"(SELECT 1 FROM ciclos_entidades b " +
-			" WHERE b.id_entidade = a.id) " +
+			" WHERE b.id_entidade = a.id_entidade) " +
 			"ORDER BY a.sigla"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)

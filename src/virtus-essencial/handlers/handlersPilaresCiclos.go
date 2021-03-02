@@ -23,10 +23,10 @@ func ListPilaresByCicloId(cicloId string) []mdl.PilarCiclo {
 		"coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'), '') as criado_em, " +
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
-		"FROM pilares_ciclos a " +
-		"LEFT JOIN pilares d ON a.id_pilar = d.id " +
-		"LEFT JOIN users b ON a.id_author = b.id " +
-		"LEFT JOIN status c ON a.id_status = c.id " +
+		"FROM virtus.pilares_ciclos a " +
+		"LEFT JOIN virtus.pilares d ON a.id_pilar = d.id " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id " +
 		"WHERE a.id_ciclo = ? ORDER BY d.nome ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, cicloId)
@@ -95,7 +95,7 @@ func hasSomeFieldChangedPilarCiclo(pilarCicloPage mdl.PilarCiclo, pilarCicloDB m
 }
 
 func updatePilarCicloHandler(ce mdl.PilarCiclo, pilarCicloDB mdl.PilarCiclo) {
-	sqlStatement := "UPDATE pilares_ciclos SET " +
+	sqlStatement := "UPDATE virtus.pilares_ciclos SET " +
 		"tipo_media=?, peso_padrao=? WHERE id_pilar_ciclo=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
@@ -107,7 +107,7 @@ func updatePilarCicloHandler(ce mdl.PilarCiclo, pilarCicloDB mdl.PilarCiclo) {
 }
 
 func DeletePilaresCicloByCicloId(cicloId string) {
-	sqlStatement := "DELETE FROM pilares_ciclos WHERE id_ciclo=?"
+	sqlStatement := "DELETE FROM virtus.pilares_ciclos WHERE id_ciclo=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -117,7 +117,7 @@ func DeletePilaresCicloByCicloId(cicloId string) {
 }
 
 func DeletePilaresCicloHandler(diffDB []mdl.PilarCiclo) {
-	sqlStatement := "DELETE FROM pilares_ciclos WHERE id_pilar_ciclo=?"
+	sqlStatement := "DELETE FROM virtus.pilares_ciclos WHERE id_pilar_ciclo=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())

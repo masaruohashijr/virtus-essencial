@@ -46,12 +46,12 @@ func CreateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 			estimativa = "0"
 		}
 		statusChamadoId := GetStartStatus("chamado")
-		sqlStatement := "INSERT INTO chamados(" +
+		sqlStatement := "INSERT INTO virtus.chamados(" +
 			" id_tipo_chamado, " +
 			" titulo, " +
 			" descricao, " +
 			" acompanhamento, " +
-			" prioridade_id, " +
+			" id_prioridade, " +
 			" id_relator, " +
 			" id_responsavel, "
 		if iniciaEm != "" {
@@ -122,9 +122,9 @@ func UpdateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(prontoEm)
 		estimativa := r.FormValue("Estimativa")
 		log.Println(estimativa)
-		sqlStatement := "UPDATE chamados SET " +
+		sqlStatement := "UPDATE virtus.chamados SET " +
 			" id_tipo_chamado = '" + tipo + "', " +
-			" prioridade_id = '" + prioridade + "', " +
+			" id_prioridade = '" + prioridade + "', " +
 			" titulo = '" + titulo + "', " +
 			" descricao = '" + descricao + "', " +
 			" acompanhamento = '" + acompanhamento + "', " +
@@ -137,7 +137,7 @@ func UpdateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 		if prontoEm != "" {
 			sqlStatement += ", pronto_em = '" + prontoEm + "' "
 		}
-		sqlStatement += " WHERE id = " + chamadoId
+		sqlStatement += " WHERE id_chamado = " + chamadoId
 		log.Println(sqlStatement)
 		updtForm, _ := Db.Prepare(sqlStatement)
 		updtForm.Exec()
@@ -250,7 +250,7 @@ func DeleteChamadoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Chamado está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM chamados WHERE id_chamado=?"
+		sqlStatement := "DELETE FROM virtus.chamados WHERE id_chamado=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
@@ -292,10 +292,10 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			"   else 'Tarefa' " +
 			" end, " +
 			" case " +
-			"   when a.prioridade_id = 'E' then 'Essencial' " +
-			"   when a.prioridade_id = 'A' then 'Alta' " +
-			"   when a.prioridade_id = 'M' then 'Média' " +
-			"   when a.prioridade_id = 'B' then 'Baixa' " +
+			"   when a.id_prioridade = 'E' then 'Essencial' " +
+			"   when a.id_prioridade = 'A' then 'Alta' " +
+			"   when a.id_prioridade = 'M' then 'Média' " +
+			"   when a.id_prioridade = 'B' then 'Baixa' " +
 			"   else 'Desejável' " +
 			" end, " +
 			" coalesce(a.estimativa,0), " +
@@ -305,15 +305,15 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" coalesce(a.id_status,0), " +
 			" coalesce(a.id_versao_origem,0) " +
-			" FROM chamados a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" LEFT JOIN users d ON a.id_responsavel = d.id " +
-			" LEFT JOIN users e ON a.id_relator = e.id "
+			" FROM virtus.chamados a " +
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" LEFT JOIN virtus.users d ON a.id_responsavel = d.id_user " +
+			" LEFT JOIN virtus.users e ON a.id_relator = e.id_user "
 		if statusEndChamado != "0" {
 			sql += " WHERE a.id_status <> " + statusEndChamado
 		}
-		sql += " order by a.id asc"
+		sql += " order by a.id_chamado asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -349,21 +349,21 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			"        c.name, " +
 			"        c.id_role, " +
 			"        d.name " +
-			" FROM membros a " +
-			" INNER JOIN escritorios b ON a.id_escritorio = b.id " +
-			" INNER JOIN users c ON a.id_usuario = c.id " +
-			" INNER JOIN ROLES d ON c.id_role = d.id " +
+			" FROM virtus.membros a " +
+			" INNER JOIN virtus.escritorios b ON a.id_escritorio = b.id_escritorio " +
+			" INNER JOIN virtus.users c ON a.id_usuario = c.id_user " +
+			" INNER JOIN virtus.roles d ON c.id_role = d.id_role " +
 			" WHERE b.id in " +
 			"     (SELECT id_escritorio " +
-			"      FROM membros " +
+			"      FROM virtus.membros " +
 			"      WHERE id_usuario = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
 			" UNION  " +
 			" SELECT e.id, " +
 			"        e.name, " +
 			"        e.id_role, " +
 			"        f.name " +
-			" FROM users e	    " +
-			" INNER JOIN ROLES f ON e.id_role = f.id " +
+			" FROM virtus.users e	    " +
+			" INNER JOIN roles f ON e.id_role = f.id_role " +
 			" WHERE e.id_role in (1,2,3,4,5,6) " +
 			" ORDER BY 2 ASC "
 		log.Println(sql)

@@ -24,7 +24,7 @@ func CreateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		esi := r.FormValue("ESI")
 		municipio := r.FormValue("Municipio")
 		siglaUF := r.FormValue("SigaUF")
-		sqlStatement := "INSERT INTO entidades " +
+		sqlStatement := "INSERT INTO virtus.entidades " +
 			" (nome, descricao, sigla, codigo, situacao, esi, municipio, sigla_uf, id_author, criado_em) " +
 			" OUTPUT INSERTED.id_entidade " +
 			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE()) "
@@ -41,7 +41,7 @@ func CreateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				planoId := 0
 				nomePlano := strings.Split(array[3], ":")[1]
 				descricaoPlano := strings.Split(array[4], ":")[1]
-				sqlStatement := "INSERT INTO planos( " +
+				sqlStatement := "INSERT INTO virtus.planos( " +
 					" id_entidade, nome, descricao, id_author, criado_em ) " +
 					" OUTPUT INSERTED.id_plano VALUES (?, ?, ?, ?, GETDATE())"
 				log.Println(sqlStatement)
@@ -70,7 +70,7 @@ func CreateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 					snippet1 = snippet1 + ", termina_em "
 					snippet2 = snippet2 + ", ?"
 				}
-				sqlStatement := "INSERT INTO ciclos_entidades ( " +
+				sqlStatement := "INSERT INTO virtus.ciclos_entidades ( " +
 					" id_entidade, " +
 					" id_ciclo, " +
 					" tipo_media, " +
@@ -117,7 +117,7 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		esi := r.FormValue("ESI")
 		municipio := r.FormValue("Municipio")
 		siglaUF := r.FormValue("SiglaUF")
-		sqlStatement := "UPDATE entidades SET nome=?, descricao=?, sigla=?, codigo=?, situacao=?, esi=?, municipio=?, sigla_uf=? WHERE id_entidade=?"
+		sqlStatement := "UPDATE virtus.entidades SET nome=?, descricao=?, sigla=?, codigo=?, situacao=?, esi=?, municipio=?, sigla_uf=? WHERE id_entidade=?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
@@ -180,7 +180,7 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 			for i := range diffPage {
 				plano = diffPage[i]
 				log.Println("Entidade Id: " + strconv.FormatInt(plano.EntidadeId, 10))
-				sqlStatement := "INSERT INTO planos( " +
+				sqlStatement := "INSERT INTO virtus.planos( " +
 					" id_entidade, nome, descricao, id_author, criado_em ) " +
 					" OUTPUT INSERTED.id_plano " +
 					" VALUES (?, ?, ?, ?, GETDATE())"
@@ -276,7 +276,7 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 					snippet1 = snippet1 + ", termina_em "
 					snippet2 = snippet2 + ", ?"
 				}
-				sqlStatement := "INSERT INTO ciclos_entidades ( " +
+				sqlStatement := "INSERT INTO virtus.ciclos_entidades ( " +
 					" id_entidade, " +
 					" id_ciclo, " +
 					" tipo_media, " +
@@ -315,19 +315,19 @@ func DeleteEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		log.Println("Deletando o id " + id)
-		sqlStatement := "DELETE FROM planos WHERE id_entidade=?"
+		sqlStatement := "DELETE FROM virtus.planos WHERE id_entidade=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
 			http.Redirect(w, r, route.EntidadesRoute+"?errMsg=Um plano está associado a um registro e não pôde ser removido.", 301)
 		}
-		sqlStatement = "DELETE FROM ciclos_entidades WHERE id_entidade=?"
+		sqlStatement = "DELETE FROM virtus.ciclos_entidades WHERE id_entidade=?"
 		deleteForm, _ = Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
 			http.Redirect(w, r, route.EntidadesRoute+"?errMsg=Um ciclo está associado a um registro e não pôde ser removido.", 301)
 		}
-		sqlStatement = "DELETE FROM entidades WHERE id_entidade=?"
+		sqlStatement = "DELETE FROM virtus.entidades WHERE id_entidade=?"
 		deleteForm, err = Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -365,13 +365,13 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_status, " +
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_versao_origem " +
-			" FROM entidades a LEFT JOIN users b " +
+			" FROM virtus.entidades a LEFT JOIN virtus.users b " +
 			" ON a.id_author = b.id_user " +
-			" LEFT JOIN status c ON a.id_status = c.id_status " +
-			" LEFT JOIN jurisdicoes d ON d.id_entidade = a.id_entidade " +
-			" LEFT JOIN escritorios e ON d.id_escritorio = e.id_escritorio " +
-			" LEFT JOIN ciclos_entidades f ON a.id_entidade = f.id_entidade " +
-			" LEFT JOIN ciclos g ON f.id_ciclo = g.id_ciclo " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" LEFT JOIN virtus.jurisdicoes d ON d.id_entidade = a.id_entidade " +
+			" LEFT JOIN virtus.escritorios e ON d.id_escritorio = e.id_escritorio " +
+			" LEFT JOIN virtus.ciclos_entidades f ON a.id_entidade = f.id_entidade " +
+			" LEFT JOIN virtus.ciclos g ON f.id_ciclo = g.id_ciclo " +
 			" ORDER BY a.nome asc "
 		log.Println("sql: " + sql)
 		rows, _ := Db.Query(sql)

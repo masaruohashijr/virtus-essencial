@@ -24,10 +24,10 @@ func ListCiclosEntidadeByEntidadeId(entidadeId string) []mdl.CicloEntidade {
 		"coalesce(format(a.criado_em,'dd/MM/yyyy'), '') as criado_em, " +
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
-		"FROM ciclos_entidades a " +
-		"LEFT JOIN ciclos d ON a.id_ciclo = d.id_ciclo " +
-		"LEFT JOIN users b ON a.id_author = b.id_user " +
-		"LEFT JOIN status c ON a.id_status = c.id_status " +
+		"FROM virtus.ciclos_entidades a " +
+		"LEFT JOIN virtus.ciclos d ON a.id_ciclo = d.id_ciclo " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 		"WHERE a.id_entidade = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId)
@@ -99,7 +99,7 @@ func hasSomeFieldChangedCicloEntidade(cicloEntidadePage mdl.CicloEntidade, ciclo
 }
 
 func updateCicloEntidadeHandler(ce mdl.CicloEntidade, cicloEntidadeDB mdl.CicloEntidade) {
-	sqlStatement := "UPDATE ciclos_entidades SET " +
+	sqlStatement := "UPDATE virtus.ciclos_entidades SET " +
 		"tipo_media=?, inicia_em=?, termina_em=? WHERE id_ciclo_entidade=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
@@ -113,17 +113,17 @@ func updateCicloEntidadeHandler(ce mdl.CicloEntidade, cicloEntidadeDB mdl.CicloE
 }
 
 func DeleteCiclosEntidadeByEntidadeId(entidadeId string) {
-	sqlStatement := "DELETE FROM ciclos_entidades WHERE id_entidade=?"
+	sqlStatement := "DELETE FROM virtus.ciclos_entidades WHERE id_entidade=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
 	}
 	deleteForm.Exec(entidadeId)
-	log.Println("DELETE ciclos_entidades in Order Id: " + entidadeId)
+	log.Println("DELETE virtus.ciclos_entidades in Order Id: " + entidadeId)
 }
 
 func DeleteCiclosEntidadeHandler(diffDB []mdl.CicloEntidade) string {
-	sqlStatement := "DELETE FROM ciclos_entidades WHERE id_ciclo_entidade=?"
+	sqlStatement := "DELETE FROM virtus.ciclos_entidades WHERE id_ciclo_entidade=?"
 	deleteForm, _ := Db.Prepare(sqlStatement)
 	for n := range diffDB {
 		errMsg := ""

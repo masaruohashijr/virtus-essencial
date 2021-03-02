@@ -21,7 +21,7 @@ func CreateFeatureHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		code := r.FormValue("Code")
 		description := r.FormValue("Description")
-		sqlStatement := "INSERT INTO features(name, code, description, id_author, created_at) " +
+		sqlStatement := "INSERT INTO virtus.features(name, code, description, id_author, created_at) " +
 			" OUTPUT INSERTED.id_feature VALUES (?, ?, ?, ?, GETDATE()) "
 		id := 0
 		err := Db.QueryRow(sqlStatement, name, code, description, currentUser.Id).Scan(&id)
@@ -52,7 +52,7 @@ func UpdateFeatureHandler(w http.ResponseWriter, r *http.Request) {
 		code := r.FormValue("Code")
 		log.Println(code)
 		description := r.FormValue("Description")
-		sqlStatement := "UPDATE features SET name=?, code=?, description=? WHERE id_feature=?"
+		sqlStatement := "UPDATE virtus.features SET name=?, code=?, description=? WHERE id_feature=?"
 		log.Println(sqlStatement)
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
@@ -74,7 +74,7 @@ func DeleteFeatureHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "Funcionalidade vinculada a registro não pode ser removida."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM features WHERE id_feature=?"
+		sqlStatement := "DELETE FROM virtus.features WHERE id_feature=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
@@ -88,7 +88,7 @@ func DeleteFeatureHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteFeaturesByRoleHandler(roleId string) {
-	sqlStatement := "DELETE FROM features_roles WHERE id_role=?"
+	sqlStatement := "DELETE FROM virtus.features_roles WHERE id_role=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -98,7 +98,7 @@ func DeleteFeaturesByRoleHandler(roleId string) {
 }
 
 func DeleteFeaturesHandler(diffDB []mdl.Feature) {
-	sqlStatement := "DELETE FROM features_roles WHERE id_feature=?"
+	sqlStatement := "DELETE FROM virtus.features_roles WHERE id_feature=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -137,9 +137,9 @@ func listFeatures(errorMsg string, msg string) mdl.PageFeatures {
 		" coalesce(c.name,'') as cstatus, " +
 		" a.id_status, " +
 		" a.id_versao_origem " +
-		" FROM features a LEFT JOIN users b " +
-		" ON a.id_author = b.id " +
-		" LEFT JOIN status c ON a.id_status = c.id " +
+		" FROM virtus.features a LEFT JOIN virtus.users b " +
+		" ON a.id_author = b.id_user " +
+		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 		" order by a.id asc"
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
@@ -181,7 +181,7 @@ func listFeatures(errorMsg string, msg string) mdl.PageFeatures {
 func ListFeaturesByRoleIdHandler(roleId string) []mdl.Feature {
 	log.Println("List Features By Role Id")
 	sql := "SELECT id_feature" +
-		" FROM features_roles WHERE id_role= ?"
+		" FROM virtus.features_roles WHERE id_role= ?"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, roleId)
 	defer rows.Close()
@@ -203,14 +203,14 @@ func LoadAvailableFeatures(w http.ResponseWriter, r *http.Request) {
 	log.Println("entityType: " + entityType)
 	log.Println("statusId: " + statusId)
 	sql := " SELECT a.id, a.name, a.code " +
-		" FROM features a INNER JOIN features_activities b ON a.id = b.id_feature " +
-		" INNER JOIN activities c ON c.id = b.id_activity " +
-		" INNER JOIN actions d ON c.id_action = d.id " +
-		" INNER JOIN workflows e ON c.id_workflow = e.id " +
+		" FROM virtus.features a INNER JOIN virtus.features_activities b ON a.id_feature = b.id_feature " +
+		" INNER JOIN virtus.activities c ON c.id_activity = b.id_activity " +
+		" INNER JOIN virtus.actions d ON c.id_action = d.id_action " +
+		" INNER JOIN virtus.workflows e ON c.id_workflow = e.id_workflow " +
 		" WHERE e.end_at IS null " +
 		" AND e.entity_type = ? " +
 		" AND d.id_origin_status = ? " +
-		" AND a.id in ( SELECT id_feature from features_roles where id_role = ? ) "
+		" AND a.id_feature in ( SELECT id_feature FROM virtus.features_roles where id_role = ? ) "
 	log.Println("Query Available Features: " + sql)
 	rows, _ := Db.Query(sql, entityType, statusId, savedUser.Role)
 	defer rows.Close()

@@ -20,10 +20,10 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		var page mdl.PageEntidadesCiclos
 		sql := " SELECT b.id_entidade, c.nome, c.codigo, a.abreviatura " +
-			" FROM escritorios a " +
-			" LEFT JOIN jurisdicoes b ON a.id = b.id_escritorio " +
-			" LEFT JOIN entidades c ON c.id = b.id_entidade " +
-			" INNER JOIN ciclos_entidades d ON d.id_entidade = b.id_entidade " +
+			" FROM virtus.escritorios a " +
+			" LEFT JOIN virtus.jurisdicoes b ON a.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.entidades c ON c.id_entidade = b.id_entidade " +
+			" INNER JOIN virtus.ciclos_entidades d ON d.id_entidade = b.id_entidade " +
 			" WHERE a.id_chefe = ?"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id)
@@ -46,10 +46,10 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 			var ciclosEntidade []mdl.CicloEntidade
 			var cicloEntidade mdl.CicloEntidade
 			sql = "SELECT b.id, b.nome " +
-				" FROM ciclos_entidades a " +
-				" LEFT JOIN ciclos b ON a.id_ciclo = b.id " +
+				" FROM virtus.ciclos_entidades a " +
+				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id_ciclo " +
 				" WHERE a.id_entidade = ? " +
-				" ORDER BY id asc"
+				" ORDER BY id_ciclo_entidade asc"
 			rows, _ = Db.Query(sql, entidade.Id)
 			defer rows.Close()
 			i = 1
@@ -66,17 +66,17 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 		sql = " WITH subordinacoes AS " +
 			"   (SELECT b.id_usuario, " +
 			"           a.id_supervisor " +
-			"    FROM ciclos_entidades a " +
-			"    INNER JOIN integrantes b  " +
+			"    FROM virtus.ciclos_entidades a " +
+			"    INNER JOIN virtus.integrantes b  " +
 			"    ON (a.id_ciclo = b.id_ciclo AND a.id_entidade = b.id_entidade)) " +
 			" SELECT DISTINCT b.id_usuario, " +
 			"        coalesce(c.name, '') AS nome_auditor, " +
 			"        coalesce(d.name, '') AS role_name, " +
 			"        coalesce(s.id_supervisor,0) AS subordinacao " +
-			" FROM escritorios a " +
-			" LEFT JOIN membros b ON a.id = b.id_escritorio " +
-			" LEFT JOIN users c ON b.id_usuario = c.id " +
-			" LEFT JOIN ROLES d ON c.id_role = d.id " +
+			" FROM virtus.escritorios a " +
+			" LEFT JOIN virtus.membros b ON a.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.users c ON b.id_usuario = c.id_user " +
+			" LEFT JOIN virtus.ROLES d ON c.id_role = d.id_role " +
 			" LEFT JOIN subordinacoes s ON B.id_usuario = s.id_usuario " +
 			" WHERE a.id_chefe = ? " +
 			"   AND c.id_role in (2,3,4) " +
@@ -98,10 +98,10 @@ func ListDesignarEquipesHandler(w http.ResponseWriter, r *http.Request) {
 		sql = " SELECT " +
 			" b.id_usuario, coalesce(c.name,'') AS nome_usuario, " +
 			" coalesce(d.name,'') as role_name " +
-			" FROM escritorios a " +
-			" LEFT JOIN membros b ON a.id = b.id_escritorio " +
-			" LEFT JOIN users c ON b.id_usuario = c.id " +
-			" LEFT JOIN roles d ON c.id_role = d.id " +
+			" FROM virtus.escritorios a " +
+			" LEFT JOIN virtus.membros b ON a.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.users c ON b.id_usuario = c.id_user " +
+			" LEFT JOIN virtus.roles d ON c.id_role = d.id_role " +
 			" WHERE a.id_chefe = ? AND c.id_role in (2,3) " +
 			" ORDER BY nome_usuario"
 		log.Println(sql)
@@ -143,7 +143,7 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 		supervisorId := r.FormValue("SupervisorId")
 
 		if supervisorId != "" {
-			sqlStatement := "UPDATE ciclos_entidades SET id_supervisor=" + supervisorId +
+			sqlStatement := "UPDATE virtus.ciclos_entidades SET id_supervisor=" + supervisorId +
 				" WHERE id_entidade=" + entidadeId + " AND id_ciclo=" + cicloId
 			log.Println(sqlStatement)
 			updtForm, _ := Db.Prepare(sqlStatement)
@@ -152,7 +152,7 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				log.Println(err.Error())
 			}
-			sqlStatement = "UPDATE produtos_componentes SET id_supervisor=" + supervisorId +
+			sqlStatement = "UPDATE virtus.produtos_componentes SET id_supervisor=" + supervisorId +
 				" WHERE id_entidade=" + entidadeId + " AND id_ciclo=" + cicloId
 			log.Println(sqlStatement)
 			updtForm, _ = Db.Prepare(sqlStatement)
@@ -240,7 +240,7 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 			statusComponenteId := GetStartStatus("integrante")
 			for i := range diffPage {
 				integrante = diffPage[i]
-				sqlStatement := "INSERT INTO integrantes ( " +
+				sqlStatement := "INSERT INTO virtus.integrantes ( " +
 					" id_entidade, " +
 					" id_ciclo, " +
 					" id_usuario, " +
@@ -261,9 +261,9 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 				if integrante.IniciaEm != "" {
 					log.Println("integrante.IniciaEm: " + integrante.IniciaEm)
 					log.Println("integranteId: " + strconv.Itoa(integranteId))
-					sqlStatement := "UPDATE integrantes SET inicia_em = to_date('" +
+					sqlStatement := "UPDATE virtus.integrantes SET inicia_em = to_date('" +
 						integrante.IniciaEm + "','dd/MM/yyyy') " +
-						"WHERE id = " + strconv.Itoa(integranteId)
+						"WHERE id_integrante = " + strconv.Itoa(integranteId)
 					_, err := Db.Exec(sqlStatement)
 					if err != nil {
 						log.Println(err)
@@ -272,9 +272,9 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 				if integrante.TerminaEm != "" {
 					log.Println("integrante.TerminaEm: " + integrante.TerminaEm)
 					log.Println("integranteId: " + strconv.Itoa(integranteId))
-					sqlStatement := "UPDATE integrantes SET termina_em = to_date('" +
+					sqlStatement := "UPDATE virtus.integrantes SET termina_em = to_date('" +
 						integrante.TerminaEm + "','dd/MM/yyyy') " +
-						"WHERE id = " + strconv.Itoa(integranteId)
+						"WHERE id_integrante = " + strconv.Itoa(integranteId)
 					_, err := Db.Exec(sqlStatement)
 					if err != nil {
 						log.Println(err)
@@ -310,7 +310,7 @@ func removeIntegrante(membros []mdl.Integrante, membroToBeRemoved mdl.Integrante
 }
 
 func DeleteIntegrantesByEntidadeCicloId(entidadeId string, cicloId string) {
-	sqlStatement := "DELETE FROM integrantes WHERE id_entidade=? AND id_ciclo = ?"
+	sqlStatement := "DELETE FROM virtus.integrantes WHERE id_entidade=? AND id_ciclo = ?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -320,7 +320,7 @@ func DeleteIntegrantesByEntidadeCicloId(entidadeId string, cicloId string) {
 }
 
 func DeleteIntegrantesHandler(diffDB []mdl.Integrante) {
-	sqlStatement := "DELETE FROM integrantes WHERE id_integrante=?"
+	sqlStatement := "DELETE FROM virtus.integrantes WHERE id_integrante=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
@@ -366,9 +366,9 @@ func hasSomeFieldChangedIntegrante(integrantePage mdl.Integrante, integranteDB m
 func updateIntegranteHandler(integrante mdl.Integrante, jurisdicaoDB mdl.Integrante) {
 	log.Println("De " + integrante.IniciaEm + " a " + integrante.TerminaEm)
 	if integrante.IniciaEm != "" {
-		sqlStatement := "UPDATE integrantes SET inicia_em = to_date('" +
+		sqlStatement := "UPDATE virtus.integrantes SET inicia_em = to_date('" +
 			integrante.IniciaEm + "','dd/MM/yyyy') " +
-			"WHERE id = " + strconv.FormatInt(integrante.Id, 10)
+			"WHERE id_integrante = " + strconv.FormatInt(integrante.Id, 10)
 		_, err := Db.Exec(sqlStatement)
 		if err != nil {
 			log.Println(err)
@@ -376,9 +376,9 @@ func updateIntegranteHandler(integrante mdl.Integrante, jurisdicaoDB mdl.Integra
 		log.Println(sqlStatement)
 	}
 	if integrante.TerminaEm != "" {
-		sqlStatement := "UPDATE integrantes SET termina_em = to_date('" +
+		sqlStatement := "UPDATE virtus.integrantes SET termina_em = to_date('" +
 			integrante.TerminaEm + "','dd/MM/yyyy') " +
-			"WHERE id = " + strconv.FormatInt(integrante.Id, 10)
+			"WHERE id_integrante = " + strconv.FormatInt(integrante.Id, 10)
 		_, err := Db.Exec(sqlStatement)
 		log.Println("Statement: " + sqlStatement)
 		if err != nil {
@@ -409,8 +409,8 @@ func LoadSupervisorByEntidadeIdCicloId(w http.ResponseWriter, r *http.Request) {
 	log.Println("entidadeId: " + entidadeId)
 	log.Println("cicloId: " + cicloId)
 	sql := "SELECT a.id_supervisor, b.name " +
-		"FROM ciclos_entidades a " +
-		"LEFT JOIN users b ON a.id_supervisor = b.id " +
+		"FROM virtus.ciclos_entidades a " +
+		"LEFT JOIN virtus.users b ON a.id_supervisor = b.id " +
 		"WHERE a.id_entidade = ? AND a.id_ciclo = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId, cicloId)

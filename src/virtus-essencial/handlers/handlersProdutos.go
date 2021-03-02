@@ -8,7 +8,7 @@ import (
 )
 
 func registrarCronogramaComponente(produto mdl.ProdutoComponente, currentUser mdl.User, tipoData string) {
-	sqlStatement := "UPDATE produtos_componentes SET "
+	sqlStatement := "UPDATE virtus.produtos_componentes SET "
 	if tipoData == "iniciaEm" {
 		sqlStatement += " inicia_em ='" + produto.IniciaEm + "', "
 	} else {
@@ -28,7 +28,7 @@ func registrarCronogramaComponente(produto mdl.ProdutoComponente, currentUser md
 }
 
 func registrarAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.User) {
-	sqlStatement := "UPDATE produtos_componentes SET " +
+	sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 		" id_auditor=" + strconv.FormatInt(produto.AuditorId, 10) + ", justificativa='" + produto.Motivacao + "'" +
 		" WHERE id_entidade= " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" AND id_ciclo= " + strconv.FormatInt(produto.CicloId, 10) +
@@ -43,11 +43,11 @@ func registrarAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.U
 }
 
 func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) mdl.ValoresAtuais {
-	sqlStatement := "UPDATE produtos_elementos SET nota = " + strconv.Itoa(produto.Nota) + ", " +
+	sqlStatement := "UPDATE virtus.produtos_elementos SET nota = " + strconv.Itoa(produto.Nota) + ", " +
 		" motivacao_nota = ? , " +
 		" id_tipo_pontuacao = (SELECT DISTINCT case when b.id_supervisor = " + strconv.FormatInt(currentUser.Id, 10) +
 		" then 3 when 2 = " + strconv.FormatInt(currentUser.Role, 10) + " then 3 else 1 end " +
-		" FROM produtos_componentes b WHERE " +
+		" FROM virtus.produtos_componentes b WHERE " +
 		" id_entidade = b.id_entidade and " +
 		" id_ciclo = b.id_ciclo and " +
 		" id_pilar = b.id_pilar and " +
@@ -86,10 +86,10 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) md
 
 func atualizarPilarNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_PILARES
-	sqlStatement := "UPDATE produtos_pilares " +
+	sqlStatement := "UPDATE virtus.produtos_pilares " +
 		" SET nota = (select " +
 		" round(sum(nota*peso)/sum(peso),2) AS media " +
-		" FROM produtos_componentes b " +
+		" FROM virtus.produtos_componentes b " +
 		" WHERE " +
 		" produtos_pilares.id_entidade = b.id_entidade " +
 		" AND produtos_pilares.id_ciclo = b.id_ciclo  " +
@@ -123,7 +123,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		"           id_componente, " +
 		"           id_tipo_nota, " +
 		"           round(avg(peso), 2) AS peso_tn " +
-		"    FROM produtos_elementos " +
+		"    FROM virtus.produtos_elementos " +
 		"    WHERE peso <> 0 " +
 		"    GROUP BY id_entidade, " +
 		"             id_ciclo, " +
@@ -176,7 +176,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		"           T3.id_plano, " +
 		"           SUM(ponderacao_tipo*peso_tn/100) AS total_peso_plano " +
 		"    FROM T3 " +
-		"    INNER JOIN produtos_planos p ON (p.id_entidade = T3.id_entidade " +
+		"    INNER JOIN virtus.produtos_planos p ON (p.id_entidade = T3.id_entidade " +
 		"                                     AND p.id_ciclo = T3.id_ciclo " +
 		"                                     AND p.id_pilar = T3.id_pilar " +
 		"                                     AND p.id_componente = T3.id_componente " +
@@ -193,7 +193,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		"           T4.id_componente, " +
 		"           T4.id_plano, " +
 		"           p.peso/100 AS ponderacao_plano " +
-		"    FROM produtos_planos p " +
+		"    FROM virtus.produtos_planos p " +
 		"    INNER JOIN T4 on   " +
 		"    (T4.id_entidade = p.id_entidade " +
 		"      AND T4.id_ciclo = p.id_ciclo " +
@@ -228,7 +228,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		"           p.id_pilar, " +
 		"           p.id_componente, " +
 		" 		  sum(p.nota * t4.total_peso_plano * t5.ponderacao_plano)/denominador as nota_componente " +
-		"    FROM produtos_planos p " +
+		"    FROM virtus.produtos_planos p " +
 		"    INNER JOIN T4 ON (t4.id_entidade = p.id_entidade " +
 		"                      AND t4.id_ciclo = p.id_ciclo " +
 		"                      AND t4.id_pilar = p.id_pilar " +
@@ -248,7 +248,7 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 		"             p.id_pilar, " +
 		"             p.id_componente, " +
 		" 			T6.denominador) " +
-		" UPDATE produtos_componentes  " +
+		" UPDATE virtus.produtos_componentes  " +
 		" 	SET nota = ( SELECT round(T7.nota_componente,2)  " +
 		" 	FROM T7  " +
 		" 	WHERE produtos_componentes.id_componente = T7.id_componente  " +
@@ -274,10 +274,10 @@ func atualizarComponenteNota(produto mdl.ProdutoElemento) {
 func atualizarPlanoNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_PLANOS
 	log.Println("***** ATUALIZAR NOTA DO PLANO")
-	sqlStatement := "UPDATE produtos_planos " +
+	sqlStatement := "UPDATE virtus.produtos_planos " +
 		" set nota = (select  " +
 		" round(sum(nota*peso)/sum(peso),2) as media " +
-		" FROM produtos_tipos_notas b " +
+		" FROM virtus.produtos_tipos_notas b " +
 		" WHERE " +
 		" produtos_planos.id_entidade = b.id_entidade " +
 		" AND produtos_planos.id_ciclo = b.id_ciclo  " +
@@ -318,7 +318,7 @@ func atualizarTipoNotaNota(produto mdl.ProdutoElemento) {
 		"           id_componente, " +
 		"           id_tipo_nota, " +
 		"           peso*nota AS produtos " +
-		"    FROM produtos_elementos), " +
+		"    FROM virtus.produtos_elementos), " +
 		"      T2 AS " +
 		"   (SELECT id_entidade, " +
 		"           id_ciclo, " +
@@ -327,7 +327,7 @@ func atualizarTipoNotaNota(produto mdl.ProdutoElemento) {
 		"           id_componente, " +
 		"           id_tipo_nota, " +
 		"           SUM(peso) AS soma_pesos_elementos " +
-		"    FROM produtos_elementos " +
+		"    FROM virtus.produtos_elementos " +
 		"    GROUP BY id_entidade, " +
 		"             id_ciclo, " +
 		"             id_pilar, " +
@@ -361,7 +361,7 @@ func atualizarTipoNotaNota(produto mdl.ProdutoElemento) {
 		"             t1.id_componente, " +
 		"             t1.id_tipo_nota, " +
 		"             t2.soma_pesos_elementos) " +
-		" UPDATE produtos_tipos_notas " +
+		" UPDATE virtus.produtos_tipos_notas " +
 		" SET nota = round(T3.nota_tn, 2) " +
 		" FROM T3 " +
 		" WHERE produtos_tipos_notas.id_tipo_nota = T3.id_tipo_nota " +
@@ -381,9 +381,9 @@ func atualizarTipoNotaNota(produto mdl.ProdutoElemento) {
 func atualizarCicloNota(produto mdl.ProdutoElemento) {
 	// PRODUTOS_CICLOS
 	log.Println(">>>>> ATUALIZAR NOTA DO CICLO")
-	sqlStatement := "UPDATE produtos_ciclos SET nota = R.media FROM " +
+	sqlStatement := "UPDATE virtus.produtos_ciclos SET nota = R.media FROM " +
 		" (SELECT round(sum(nota*peso/100),2) AS media " +
-		" FROM produtos_pilares b " +
+		" FROM virtus.produtos_pilares b " +
 		" WHERE b.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" AND b.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
 		" AND b.nota <> 0 AND b.nota IS NOT NULL) R " +
@@ -399,9 +399,9 @@ func atualizarCicloNota(produto mdl.ProdutoElemento) {
 }
 
 func registrarTiposPontuacao(produto mdl.ProdutoElemento, currentUser mdl.User) {
-	sqlStatement := "UPDATE produtos_tipos_notas SET " +
+	sqlStatement := "UPDATE virtus.produtos_tipos_notas SET " +
 		" id_tipo_pontuacao = (SELECT case when b.id_supervisor = ? " +
-		" then 3 else 2 end FROM produtos_componentes b where id = b.id) " +
+		" then 3 else 2 end FROM virtus.produtos_tipos_notas b where id_tipo_nota = b.id_tipo_nota) " +
 		" WHERE id_entidade = ? " +
 		" AND  id_ciclo = ? " +
 		" AND  id_pilar = ? " +
@@ -419,9 +419,9 @@ func registrarTiposPontuacao(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		produto.PilarId,
 		produto.ComponenteId,
 		produto.TipoNotaId)
-	sqlStatement = "UPDATE produtos_componentes SET " +
+	sqlStatement = "UPDATE virtus.produtos_componentes SET " +
 		" id_tipo_pontuacao = (SELECT case when b.id_supervisor = ? " +
-		" then 3 else 2 end FROM produtos_componentes b where id = b.id) " +
+		" then 3 else 2 end FROM virtus.produtos_componentes b where id_produto_componente = b.id_produto_componente) " +
 		" WHERE id_entidade = ? " +
 		" AND  id_ciclo = ? " +
 		" AND  id_pilar = ? " +
@@ -437,9 +437,9 @@ func registrarTiposPontuacao(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		produto.CicloId,
 		produto.PilarId,
 		produto.ComponenteId)
-	sqlStatement = "UPDATE produtos_pilares SET " +
+	sqlStatement = "UPDATE virtus.produtos_pilares SET " +
 		" id_tipo_pontuacao = (SELECT case when b.id_supervisor = ? " +
-		" then 3 else 2 end FROM produtos_pilares b where id = b.id) " +
+		" then 3 else 2 end FROM virtus.produtos_pilares b where id_produto_pilar = b.id_produto_pilar) " +
 		" WHERE id_entidade = ? " +
 		" AND  id_ciclo = ? " +
 		" AND  id_pilar = ? "
@@ -453,9 +453,9 @@ func registrarTiposPontuacao(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		produto.EntidadeId,
 		produto.CicloId,
 		produto.PilarId)
-	sqlStatement = "UPDATE produtos_ciclos SET " +
+	sqlStatement = "UPDATE virtus.produtos_ciclos SET " +
 		" id_tipo_pontuacao = (SELECT case when b.id_supervisor = ? " +
-		" then 3 else 2 end FROM produtos_ciclos b where id = b.id) " +
+		" then 3 else 2 end FROM virtus.produtos_ciclos b where id_produto_ciclo = b.id_produto_ciclo) " +
 		" WHERE id_entidade = ? " +
 		" AND  id_ciclo = ? "
 	log.Println(sqlStatement)
@@ -471,7 +471,7 @@ func registrarTiposPontuacao(produto mdl.ProdutoElemento, currentUser mdl.User) 
 
 func registrarPesoElemento(produto mdl.ProdutoElemento, currentUser mdl.User) mdl.ValoresAtuais {
 	// PESOS ELEMENTOS
-	sqlStatement := "UPDATE produtos_elementos SET peso = ?, motivacao_peso = ? " +
+	sqlStatement := "UPDATE virtus.produtos_elementos SET peso = ?, motivacao_peso = ? " +
 		" WHERE id_entidade = ? AND " +
 		" id_ciclo = ? AND " +
 		" id_pilar = ? AND " +
@@ -549,7 +549,7 @@ func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		"                  id_componente, " +
 		"                  id_tipo_nota, " +
 		"                  round(sum(peso), 2) AS TOTAL " +
-		"           FROM produtos_elementos " +
+		"           FROM virtus.produtos_elementos " +
 		"           GROUP BY id_entidade, " +
 		"                    id_ciclo, " +
 		"                    id_pilar, " +
@@ -563,7 +563,7 @@ func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		"                  id_componente, " +
 		"                  id_tipo_nota, " +
 		"                  count(1) AS CONTADOR " +
-		"           FROM produtos_elementos " +
+		"           FROM virtus.produtos_elementos " +
 		"           WHERE peso <> 0 " +
 		"           GROUP BY id_entidade, " +
 		"                    id_ciclo, " +
@@ -614,7 +614,7 @@ func atualizarPesoTiposNotas(produto mdl.ProdutoElemento, currentUser mdl.User) 
 		"  		 AND A1.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
 		"  		 AND A1.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		"  ) " +
-		"  UPDATE produtos_tipos_notas  " +
+		"  UPDATE virtus.produtos_tipos_notas  " +
 		"  SET peso = round(T1.peso,2) FROM T1 " +
 		"  WHERE produtos_tipos_notas.id_tipo_nota = T1.id_tipo_nota " +
 		"    AND produtos_tipos_notas.id_componente = T1.id_componente " +
@@ -639,8 +639,8 @@ func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 		"              a.id_pilar, " +
 		"              a.id_componente, " +
 		"              sum(p.recurso_garantidor) AS total " +
-		"       FROM produtos_planos a " +
-		"       INNER JOIN planos p ON (p.id_entidade = a.id_entidade " +
+		"       FROM virtus.produtos_planos a " +
+		"       INNER JOIN virtus.planos p ON (p.id_entidade = a.id_entidade " +
 		"                               AND p.id = a.id_plano) " +
 		"       WHERE a.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		"         AND a.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
@@ -656,9 +656,9 @@ func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 		"                          a.id_plano, " +
 		"                          a.id_componente, " +
 		"                          round(p.recurso_garantidor/t.total, 2)*100 AS peso_percentual " +
-		"    FROM produtos_planos a " +
-		"    INNER JOIN planos p ON (p.id_entidade = a.id_entidade " +
-		"                            AND p.id = a.id_plano) " +
+		"    FROM virtus.produtos_planos a " +
+		"    INNER JOIN virtus.planos p ON (p.id_entidade = a.id_entidade " +
+		"                            AND p.id_plano = a.id_plano) " +
 		"    INNER JOIN total t ON (a.id_entidade = t.id_entidade " +
 		"                           AND a.id_ciclo = t.id_ciclo " +
 		"                           AND a.id_pilar = t.id_pilar " +
@@ -669,14 +669,14 @@ func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 		"     a.id_plano, " +
 		"     a.id_componente, " +
 		"     round(p.recurso_garantidor/t.total, 2)*100 AS peso_percentual " +
-		" FROM produtos_planos a " +
-		"    INNER JOIN planos p ON (p.id_entidade = a.id_entidade " +
+		" FROM virtus.produtos_planos a " +
+		"    INNER JOIN virtus.planos p ON (p.id_entidade = a.id_entidade " +
 		"                            AND p.id = a.id_plano) " +
 		"    INNER JOIN total t ON (a.id_entidade = t.id_entidade " +
 		"                           AND a.id_ciclo = t.id_ciclo " +
 		"                           AND a.id_pilar = t.id_pilar " +
 		"                           AND a.id_componente = t.id_componente)) " +
-		" UPDATE produtos_planos SET peso = round(R2.peso_percentual,2) FROM R2 " +
+		" UPDATE virtus.produtos_planos SET peso = round(R2.peso_percentual,2) FROM R2 " +
 		" WHERE " +
 		" R2.id_entidade = produtos_planos.id_entidade " +
 		" AND R2.id_ciclo = produtos_planos.id_ciclo " +
@@ -702,7 +702,7 @@ func atualizarPesoComponentes(produto mdl.ProdutoElemento, currentUser mdl.User)
 		"           id_componente, " +
 		"           id_tipo_nota, " +
 		"           round(avg(peso), 2) AS peso_tn " +
-		"    FROM produtos_elementos " +
+		"    FROM virtus.produtos_elementos " +
 		"    WHERE (peso IS NOT NULL and peso <> 0) " +
 		"    GROUP BY id_entidade, " +
 		"             id_ciclo, " +
@@ -759,7 +759,7 @@ func atualizarPesoComponentes(produto mdl.ProdutoElemento, currentUser mdl.User)
 		"           ponderacao_tipo*peso_tn/100 AS peso_plano, " +
 		"           p.peso/100 AS ponderacao_plano " +
 		"    FROM T3 " +
-		"    INNER JOIN produtos_planos p ON (p.id_entidade = T3.id_entidade " +
+		"    INNER JOIN virtus.produtos_planos p ON (p.id_entidade = T3.id_entidade " +
 		"                                     AND p.id_ciclo = T3.id_ciclo " +
 		"                                     AND p.id_pilar = T3.id_pilar " +
 		"                                     AND p.id_componente = T3.id_componente " +
@@ -775,14 +775,14 @@ func atualizarPesoComponentes(produto mdl.ProdutoElemento, currentUser mdl.User)
 		"             T4.id_ciclo, " +
 		"             T4.id_pilar, " +
 		"             T4.id_componente) " +
-		" UPDATE produtos_componentes " +
+		" UPDATE virtus.produtos_componentes " +
 		" SET peso = " +
 		"   (SELECT DISTINCT round(T5.peso_componente,2) " +
 		"    FROM T5 " +
-		"    WHERE id_entidade = produtos_componentes.id_entidade " +
-		"      AND id_ciclo = produtos_componentes.id_ciclo " +
-		"      AND id_pilar = produtos_componentes.id_pilar " +
-		"      AND id_componente = produtos_componentes.id_componente) " +
+		"    WHERE id_entidade = virtus.produtos_componentes.id_entidade " +
+		"      AND id_ciclo = virtus.produtos_componentes.id_ciclo " +
+		"      AND id_pilar = virtus.produtos_componentes.id_pilar " +
+		"      AND id_componente = virtus.produtos_componentes.id_componente) " +
 		" WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" 	AND id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
 		" 	AND id_pilar = " + strconv.FormatInt(produto.PilarId, 10) +
@@ -799,7 +799,7 @@ func atualizarPesoComponentes(produto mdl.ProdutoElemento, currentUser mdl.User)
 }
 
 func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId string) {
-	sqlStatement := "INSERT INTO produtos_ciclos ( " +
+	sqlStatement := "INSERT INTO virtus.produtos_ciclos ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" nota, " +
@@ -814,10 +814,10 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		" ?, " +
 		" ?, " +
 		" GETDATE() " +
-		" FROM ciclos_entidades a " +
+		" FROM virtus.ciclos_entidades a " +
 		" WHERE NOT EXISTS " +
 		"  (SELECT 1 " +
-		"   FROM produtos_ciclos b " +
+		"   FROM virtus.produtos_ciclos b " +
 		"   WHERE b.id_entidade = a.id_entidade " +
 		"     AND b.id_ciclo = a.id_ciclo) "
 	log.Println(sqlStatement)
@@ -829,7 +829,7 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 	if err != nil {
 		log.Println(err)
 	}
-	sqlStatement = "INSERT INTO produtos_pilares " +
+	sqlStatement = "INSERT INTO virtus.produtos_pilares " +
 		" (id_entidade, id_ciclo, id_pilar, peso, nota, id_tipo_pontuacao, id_author, criado_em) " +
 		" OUTPUT INSERTED.id_produto_pilar " +
 		" SELECT " +
@@ -841,10 +841,10 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		" ?, " +
 		" ?, " +
 		" GETDATE() " +
-		" FROM pilares_ciclos a " +
+		" FROM virtus.pilares_ciclos a " +
 		" WHERE NOT EXISTS " +
 		"  (SELECT 1 " +
-		"   FROM produtos_pilares b " +
+		"   FROM virtus.produtos_pilares b " +
 		"   WHERE b.id_entidade = " + entidadeId +
 		"     AND b.id_ciclo = a.id_ciclo " +
 		"     AND b.id_pilar = a.id_pilar)"
@@ -858,7 +858,7 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		log.Println(err)
 	}
 
-	sqlStatement = "INSERT INTO produtos_componentes ( " +
+	sqlStatement = "INSERT INTO virtus.produtos_componentes ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -873,14 +873,14 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		" round(avg(c.peso_padrao),2), 0 as nota, " +
 		" ?, ?, GETDATE() " +
 		" FROM " +
-		" PILARES_CICLOS a " +
-		" LEFT JOIN COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +
-		" LEFT JOIN ELEMENTOS_COMPONENTES c ON (b.id_componente = c.id_componente) " +
+		" virtus.PILARES_CICLOS a " +
+		" LEFT JOIN virtus.COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +
+		" LEFT JOIN virtus.ELEMENTOS_COMPONENTES c ON (b.id_componente = c.id_componente) " +
 		" WHERE  " +
 		" a.id_ciclo = " + cicloId +
 		" AND NOT EXISTS " +
 		"  (SELECT 1 " +
-		"   FROM produtos_componentes c " +
+		"   FROM virtus.produtos_componentes c " +
 		"   WHERE c.id_entidade = " + entidadeId +
 		"     AND c.id_ciclo = a.id_ciclo " +
 		"     AND c.id_pilar = a.id_pilar " +
@@ -898,7 +898,7 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 }
 
 func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUser mdl.User) {
-	sqlStatement := "INSERT INTO produtos_planos ( " +
+	sqlStatement := "INSERT INTO virtus.produtos_planos ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -918,17 +918,17 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" 0 as nota, " +
 		" ?, ?, GETDATE() " +
 		" FROM " +
-		" PILARES_CICLOS a " +
-		" LEFT JOIN COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +
-		" LEFT JOIN ELEMENTOS_COMPONENTES c ON (b.id_componente = c.id_componente) " +
-		" LEFT JOIN PLANOS p ON (p.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
-		" AND p.id = " + numPlano + ") " +
+		" virtus.PILARES_CICLOS a " +
+		" LEFT JOIN virtus.COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +
+		" LEFT JOIN virtus.ELEMENTOS_COMPONENTES c ON (b.id_componente = c.id_componente) " +
+		" LEFT JOIN virtus.PLANOS p ON (p.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
+		" AND p.id_plano = " + numPlano + ") " +
 		" WHERE  " +
 		" p.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
-		" AND p.id = " + numPlano +
+		" AND p.id_plano = " + numPlano +
 		" AND NOT EXISTS " +
 		"  (SELECT 1 " +
-		"   FROM produtos_planos e " +
+		"   FROM virtus.produtos_planos e " +
 		"   WHERE e.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
 		"     AND e.id_ciclo = " + strconv.FormatInt(param.CicloId, 10) +
 		"     AND e.id_pilar = " + strconv.FormatInt(param.PilarId, 10) +
@@ -948,7 +948,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 	produto.ComponenteId = param.ComponenteId
 	atualizarPesoPlanos(produto, currentUser)
 
-	sqlStatement = "INSERT INTO produtos_tipos_notas ( " +
+	sqlStatement = "INSERT INTO virtus.produtos_tipos_notas ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -970,9 +970,9 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" 0, ?, ?, GETDATE() " +
 		" FROM " +
 		" PILARES_CICLOS a " +
-		" LEFT JOIN COMPONENTES_PILARES b ON a.id_pilar = b.id_pilar " +
-		" LEFT JOIN TIPOS_NOTAS_COMPONENTES d ON b.id_componente = d.id_componente " +
-		" LEFT JOIN PRODUTOS_PLANOS p ON b.id_componente = p.id_componente " +
+		" LEFT JOIN virtus.COMPONENTES_PILARES b ON a.id_pilar = b.id_pilar " +
+		" LEFT JOIN virtus.TIPOS_NOTAS_COMPONENTES d ON b.id_componente = d.id_componente " +
+		" LEFT JOIN virtus.PRODUTOS_PLANOS p ON b.id_componente = p.id_componente " +
 		" WHERE  " +
 		" a.id_ciclo = " + strconv.FormatInt(param.CicloId, 10) +
 		" AND p.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
@@ -981,7 +981,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" AND p.id_plano = " + numPlano +
 		" AND NOT EXISTS " +
 		"  (SELECT 1 " +
-		"   FROM produtos_tipos_notas e " +
+		"   FROM virtus.produtos_tipos_notas e " +
 		"   WHERE e.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
 		"     AND e.id_ciclo = a.id_ciclo " +
 		"     AND e.id_pilar = a.id_pilar " +
@@ -1001,7 +1001,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		mdl.Calculada,
 		currentUser.Id)
 
-	sqlStatement = "INSERT INTO produtos_elementos ( " +
+	sqlStatement = "INSERT INTO virtus.produtos_elementos ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -1024,13 +1024,13 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" c.peso_padrao, " +
 		" 0, ?, ?, GETDATE() " +
 		" FROM " +
-		" pilares_ciclos a " +
+		" virtus.pilares_ciclos a " +
 		" INNER JOIN " +
-		" componentes_pilares b ON a.id_pilar = b.id_pilar " +
+		" virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
 		" INNER JOIN " +
-		" elementos_componentes c ON b.id_componente = c.id_componente " +
+		" virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
 		" INNER JOIN " +
-		" produtos_planos d ON b.id_componente = d.id_componente " +
+		" virtus.produtos_planos d ON b.id_componente = d.id_componente " +
 		" WHERE " +
 		" a.id_ciclo = " + strconv.FormatInt(param.CicloId, 10) +
 		" AND d.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
@@ -1039,7 +1039,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" AND d.id_plano = " + numPlano +
 		" AND NOT EXISTS " +
 		"  (SELECT 1 " +
-		"   FROM produtos_elementos e " +
+		"   FROM virtus.produtos_elementos e " +
 		"   WHERE e.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
 		"     AND e.id_ciclo = a.id_ciclo " +
 		"     AND e.id_pilar = a.id_pilar " +
@@ -1052,7 +1052,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		mdl.Calculada,
 		currentUser.Id)
 
-	sqlStatement = "INSERT INTO produtos_itens ( " +
+	sqlStatement = "INSERT INTO virtus.produtos_itens ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -1070,11 +1070,11 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" p.id_plano, " +
 		" c.id_tipo_nota, " +
 		" c.id_elemento, d.id, ?, GETDATE() " +
-		" FROM pilares_ciclos a " +
-		" INNER JOIN componentes_pilares b ON a.id_pilar = b.id_pilar " +
-		" INNER JOIN elementos_componentes c ON b.id_componente = c.id_componente " +
-		" INNER JOIN itens d ON c.id_elemento = d.id_elemento " +
-		" INNER JOIN PRODUTOS_PLANOS p ON b.id_componente = p.id_componente " +
+		" FROM virtus.pilares_ciclos a " +
+		" INNER JOIN virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
+		" INNER JOIN virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
+		" INNER JOIN virtus.itens d ON c.id_elemento = d.id_elemento " +
+		" INNER JOIN virtus.produtos_planos p ON b.id_componente = p.id_componente " +
 		" WHERE " +
 		" a.id_ciclo = " + strconv.FormatInt(param.CicloId, 10) +
 		" AND p.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
@@ -1082,14 +1082,14 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" AND p.id_componente = " + strconv.FormatInt(param.ComponenteId, 10) +
 		" AND p.id_plano = " + numPlano +
 		" AND NOT EXISTS (SELECT 1 " +
-		"     FROM produtos_itens e " +
+		"     FROM virtus.produtos_itens e " +
 		"     WHERE e.id_entidade = " + strconv.FormatInt(param.EntidadeId, 10) +
 		"       AND e.id_plano = " + numPlano +
 		"       AND e.id_ciclo = a.id_ciclo " +
 		"       AND e.id_pilar = a.id_pilar " +
 		"       AND e.id_componente = b.id_componente " +
 		"	   AND e.id_elemento = c.id_elemento " +
-		"	   AND e.id_item = d.id)"
+		"	   AND e.id_item = d.id_item)"
 	log.Println(sqlStatement)
 	Db.QueryRow(
 		sqlStatement,
@@ -1116,20 +1116,20 @@ func loadNotasAtuais(produto mdl.ProdutoElemento) mdl.NotasAtuais {
 		"   coalesce(format(c.nota, 'N', 'pt-br'),'.00') AS componente, " +
 		"   coalesce(format(d.nota, 'N', 'pt-br'),'.00') AS pilar, " +
 		"   coalesce(format(e.nota, 'N', 'pt-br'),'.00') AS ciclo " +
-		"    FROM produtos_tipos_notas a " +
-		"    JOIN produtos_planos b ON (a.id_entidade = b.id_entidade  " +
+		"    FROM virtus.produtos_tipos_notas a " +
+		"    JOIN virtus.produtos_planos b ON (a.id_entidade = b.id_entidade  " +
 		" 	AND a.id_ciclo = b.id_ciclo " +
 		" 	AND a.id_pilar = b.id_pilar  " +
 		" 	AND a.id_componente = b.id_componente " +
 		" 	AND a.id_plano = b.id_plano) " +
-		"    JOIN produtos_componentes c ON (a.id_entidade = c.id_entidade  " +
+		"    JOIN virtus.produtos_componentes c ON (a.id_entidade = c.id_entidade  " +
 		" 	AND a.id_ciclo = c.id_ciclo " +
 		" 	AND a.id_pilar = c.id_pilar  " +
 		" 	AND a.id_componente = c.id_componente) " +
-		"    JOIN produtos_pilares d ON (a.id_entidade = d.id_entidade  " +
+		"    JOIN virtus.produtos_pilares d ON (a.id_entidade = d.id_entidade  " +
 		" 	AND a.id_ciclo = d.id_ciclo " +
 		" 	AND a.id_pilar = d.id_pilar) " +
-		"    JOIN produtos_ciclos e ON (a.id_entidade = e.id_entidade  " +
+		"    JOIN virtus.produtos_ciclos e ON (a.id_entidade = e.id_entidade  " +
 		" 	AND a.id_ciclo = e.id_ciclo) " +
 		"    WHERE a.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		"      AND a.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
@@ -1172,17 +1172,17 @@ func loadPesosAtuais(produto mdl.ProdutoElemento) mdl.PesosAtuais {
 		"    coalesce(format(c.peso, 'N', 'pt-br'),'.00') as componente, " +
 		"	 coalesce(format(d.peso, 'N', 'pt-br'),'.00') as pilar, " +
 		"	 string_agg(concat(a.id_tipo_nota,':',format(a.peso,'N','pt-br')),'/') AS tipo_nota " +
-		"    FROM produtos_tipos_notas a " +
-		"    JOIN produtos_planos b ON (a.id_entidade = b.id_entidade  " +
+		"    FROM virtus.produtos_tipos_notas a " +
+		"    JOIN virtus.produtos_planos b ON (a.id_entidade = b.id_entidade  " +
 		" 	AND a.id_ciclo = b.id_ciclo " +
 		" 	AND a.id_pilar = b.id_pilar  " +
 		" 	AND a.id_componente = b.id_componente " +
 		" 	AND a.id_plano = b.id_plano) " +
-		"    JOIN produtos_componentes c ON (a.id_entidade = c.id_entidade  " +
+		"    JOIN virtus.produtos_componentes c ON (a.id_entidade = c.id_entidade  " +
 		" 	AND a.id_ciclo = c.id_ciclo " +
 		" 	AND a.id_pilar = c.id_pilar  " +
 		" 	AND a.id_componente = c.id_componente) " +
-		"    JOIN produtos_pilares d ON (a.id_entidade = d.id_entidade  " +
+		"    JOIN virtus.produtos_pilares d ON (a.id_entidade = d.id_entidade  " +
 		" 	AND a.id_ciclo = d.id_ciclo " +
 		" 	AND a.id_pilar = d.id_pilar) " +
 		"    WHERE a.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
@@ -1219,7 +1219,7 @@ func loadPesosAtuais(produto mdl.ProdutoElemento) mdl.PesosAtuais {
 func registrarPesoPilar(param mdl.ProdutoPilar) string {
 	// PESOS PILARES
 	log.Println("=====> REGISTRAR PESO PILAR")
-	sqlStatement := "UPDATE produtos_pilares SET peso = ?, motivacao_peso = ? " +
+	sqlStatement := "UPDATE virtus.produtos_pilares SET peso = ?, motivacao_peso = ? " +
 		" WHERE id_entidade = ? AND " +
 		" id_ciclo = ? AND " +
 		" id_pilar = ? "
@@ -1239,7 +1239,7 @@ func registrarPesoPilar(param mdl.ProdutoPilar) string {
 	atualizarCicloNota(produto)
 
 	sql := " SELECT coalesce(format(e.nota, 'N', 'pt-br'),'.00') AS ciclo " +
-		"    FROM produtos_ciclos e " +
+		"    FROM virtus.produtos_ciclos e " +
 		"    WHERE e.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		"      AND e.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10)
 	log.Println(sql)
@@ -1258,26 +1258,26 @@ func getAnalise(rota string) string {
 	valores := strings.Split(rota, "_")
 	sql := " SELECT 'analise' "
 	if valores[1] == "Ciclo" {
-		sql = " SELECT analise FROM produtos_ciclos WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3]
+		sql = " SELECT analise FROM virtus.produtos_ciclos WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3]
 	} else if valores[1] == "Pilar" {
-		sql = " SELECT analise FROM produtos_pilares WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sql = " SELECT analise FROM virtus.produtos_pilares WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4]
 	} else if valores[1] == "Componente" {
-		sql = " SELECT analise FROM produtos_componentes WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sql = " SELECT analise FROM virtus.produtos_componentes WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5]
 	} else if valores[1] == "Plano" {
-		sql = " SELECT analise FROM produtos_planos WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sql = " SELECT analise FROM virtus.produtos_planos WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6]
 	} else if valores[1] == "TipoNota" {
-		sql = " SELECT analise FROM produtos_tipos_notas WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sql = " SELECT analise FROM virtus.produtos_tipos_notas WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6] +
 			" AND id_tipo_nota = " + valores[7]
 	} else if valores[1] == "Elemento" {
-		sql = " SELECT analise FROM produtos_elementos WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sql = " SELECT analise FROM virtus.produtos_elementos WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6] +
 			" AND id_tipo_nota = " + valores[7] + " AND id_elemento = " + valores[8]
 	} else if valores[1] == "Item" {
-		sql = " SELECT analise FROM produtos_itens WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sql = " SELECT analise FROM virtus.produtos_itens WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6] +
 			" AND id_tipo_nota = " + valores[7] + " AND id_elemento = " + valores[8] + " AND id_item = " + valores[9]
 	}
@@ -1296,26 +1296,26 @@ func setAnalise(rota string, analise string) string {
 	valores := strings.Split(rota, "_")
 	sqlStatement := " SELECT 'analise' "
 	if valores[1] == "Ciclo" {
-		sqlStatement = " UPDATE produtos_ciclos SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3]
+		sqlStatement = " UPDATE virtus.produtos_ciclos SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3]
 	} else if valores[1] == "Pilar" {
-		sqlStatement = " UPDATE produtos_pilares SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sqlStatement = " UPDATE virtus.produtos_pilares SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4]
 	} else if valores[1] == "Componente" {
-		sqlStatement = " UPDATE produtos_componentes SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sqlStatement = " UPDATE virtus.produtos_componentes SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5]
 	} else if valores[1] == "Plano" {
-		sqlStatement = " UPDATE produtos_planos SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sqlStatement = " UPDATE virtus.produtos_planos SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6]
 	} else if valores[1] == "TipoNota" {
-		sqlStatement = " UPDATE produtos_tipos_notas SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sqlStatement = " UPDATE virtus.produtos_tipos_notas SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6] +
 			" AND id_tipo_nota = " + valores[7]
 	} else if valores[1] == "Elemento" {
-		sqlStatement = " UPDATE produtos_elementos SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sqlStatement = " UPDATE virtus.produtos_elementos SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6] +
 			" AND id_tipo_nota = " + valores[7] + " AND id_elemento = " + valores[8]
 	} else if valores[1] == "Item" {
-		sqlStatement = " UPDATE produtos_itens SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
+		sqlStatement = " UPDATE virtus.produtos_itens SET analise = '" + analise + "' WHERE id_entidade = " + valores[2] + " AND id_ciclo = " + valores[3] +
 			" AND id_pilar = " + valores[4] + " AND id_componente = " + valores[5] + " AND id_plano = " + valores[6] +
 			" AND id_tipo_nota = " + valores[7] + " AND id_elemento = " + valores[8] + " AND id_item = " + valores[9]
 	}
@@ -1332,19 +1332,19 @@ func getDescricao(rota string) mdl.Descricao {
 	valores := strings.Split(rota, "_")
 	sql := " SELECT 'descricao' "
 	if valores[1] == "Ciclo" {
-		sql = " SELECT descricao, referencia FROM ciclos WHERE id = " + valores[3]
+		sql = " SELECT descricao, referencia FROM virtus.ciclos WHERE id_ciclo = " + valores[3]
 	} else if valores[1] == "Pilar" {
-		sql = " SELECT descricao, referencia FROM pilares WHERE id = " + valores[4]
+		sql = " SELECT descricao, referencia FROM virtus.pilares WHERE id_pilar = " + valores[4]
 	} else if valores[1] == "Componente" {
-		sql = " SELECT descricao, referencia FROM componentes WHERE id = " + valores[5]
+		sql = " SELECT descricao, referencia FROM virtus.componentes WHERE id_componente = " + valores[5]
 	} else if valores[1] == "Plano" {
-		sql = " SELECT descricao, referencia FROM planos WHERE id = " + valores[6]
+		sql = " SELECT descricao, referencia FROM virtus.planos WHERE id_plano = " + valores[6]
 	} else if valores[1] == "TipoNota" {
-		sql = " SELECT descricao, referencia FROM tipos_notas WHERE id = " + valores[7]
+		sql = " SELECT descricao, referencia FROM virtus.tipos_notas WHERE id_tipo_nota = " + valores[7]
 	} else if valores[1] == "Elemento" {
-		sql = " SELECT descricao, referencia FROM elementos WHERE id = " + valores[8]
+		sql = " SELECT descricao, referencia FROM virtus.elementos WHERE id_elemento = " + valores[8]
 	} else if valores[1] == "Item" {
-		sql = " SELECT descricao, referencia FROM itens WHERE id = " + valores[9]
+		sql = " SELECT descricao, referencia FROM virtus.itens WHERE id_item = " + valores[9]
 	}
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
@@ -1358,8 +1358,8 @@ func getDescricao(rota string) mdl.Descricao {
 
 func loadConfigPlanos(entidadeId string, cicloId string, pilarId string, componenteId string) string {
 	sql := "SELECT planos_configurados FROM (SELECT a.id_componente, string_agg(b.cnpb,', ') planos_configurados " +
-		" FROM produtos_planos a " +
-		" INNER JOIN planos b ON a.id_plano = b.id " +
+		" FROM virtus.produtos_planos a " +
+		" INNER JOIN virtus.planos b ON a.id_plano = b.id " +
 		" WHERE a.id_entidade = " + entidadeId + " AND a.id_ciclo = " + cicloId +
 		" AND a.id_pilar = " + pilarId + " AND a.id_componente = " + componenteId +
 		" GROUP BY a.id_componente) R "

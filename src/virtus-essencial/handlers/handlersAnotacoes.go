@@ -33,7 +33,7 @@ func CreateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(descricao)
 		matriz := r.FormValue("Matriz")
 		log.Println(matriz)
-		sqlStatement := "INSERT INTO anotacoes(" +
+		sqlStatement := "INSERT INTO virtus.anotacoes(" +
 			" id_entidade, " +
 			" assunto, " +
 			" risco, " +
@@ -120,7 +120,7 @@ func UpdateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(descricao)
 		matriz := r.FormValue("Matriz")
 		log.Println(matriz)
-		sqlStatement := " UPDATE anotacoes " +
+		sqlStatement := " UPDATE virtus.anotacoes " +
 			" SET id_entidade=?, " +
 			"     assunto=?, " +
 			"     risco=?, " +
@@ -129,7 +129,7 @@ func UpdateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 			"     id_responsavel=?, " +
 			"     descricao=?, " +
 			"     matriz=? " +
-			" WHERE id = ? "
+			" WHERE id_anotacao = ? "
 		updtForm, _ := Db.Prepare(sqlStatement)
 		_, err := updtForm.Exec(entidade,
 			assunto,
@@ -251,7 +251,7 @@ func DeleteAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "A Anotação está associada a um registro e não pode ser removida."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM anotacoes WHERE id_anotacao=?"
+		sqlStatement := "DELETE FROM virtus.anotacoes WHERE id_anotacao=?"
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
@@ -297,10 +297,10 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(a.id_status,0), " +
 			" a.id_versao_origem " +
 			" FROM anotacoes a " +
-			" LEFT JOIN users b ON a.id_author = b.id " +
-			" LEFT JOIN status c ON a.id_status = c.id " +
-			" LEFT JOIN entidades d ON a.id_entidade = d.id " +
-			" order by a.id asc"
+			" LEFT JOIN virtus.users b ON a.id_author = b.id " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
+			" LEFT JOIN virtus.entidades d ON a.id_entidade = d.id " +
+			" order by a.id_anotacao asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -356,21 +356,21 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			"        c.name, " +
 			"        c.id_role, " +
 			"        d.name " +
-			" FROM membros a " +
-			" INNER JOIN escritorios b ON a.id_escritorio = b.id " +
-			" INNER JOIN users c ON a.id_usuario = c.id " +
-			" INNER JOIN ROLES d ON c.id_role = d.id " +
+			" FROM virtus.membros a " +
+			" INNER JOIN virtus.escritorios b ON a.id_escritorio = b.id " +
+			" INNER JOIN virtus.users c ON a.id_usuario = c.id " +
+			" INNER JOIN virtus.roles d ON c.id_role = d.id " +
 			" WHERE b.id in " +
 			"     (SELECT id_escritorio " +
-			"      FROM membros " +
+			"      FROM virtus.membros " +
 			"      WHERE id_usuario = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
 			" UNION  " +
 			" SELECT e.id, " +
 			"        e.name, " +
 			"        e.id_role, " +
 			"        f.name " +
-			" FROM users e	    " +
-			" INNER JOIN ROLES f ON e.id_role = f.id " +
+			" FROM virtus.users e	    " +
+			" INNER JOIN virtus.roles f ON e.id_role = f.id " +
 			" WHERE e.id_role in (1,6) " +
 			" ORDER BY 2 ASC "
 		log.Println(sql)
