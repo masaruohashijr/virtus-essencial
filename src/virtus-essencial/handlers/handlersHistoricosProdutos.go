@@ -33,7 +33,7 @@ func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId s
 		"	'" + motivacao + "', " +
 		strconv.FormatInt(currentUser.Id, 10) + ", " +
 		"	GETDATE(),  " +
-		"	a.id,  " +
+		"	a.id_author,  " +
 		"	a.id_status " +
 		"	FROM virtus.produtos_componentes a " +
 		"	LEFT JOIN (SELECT pp.id_entidade, pp.id_ciclo, pp.id_pilar, pp.id_componente, string_agg(pl.cnpb,', ') planos_configurados " +
@@ -100,7 +100,7 @@ func registrarHistoricoReprogramacaoComponente(produto mdl.ProdutoComponente, cu
 	}
 	sqlStatement += strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
-		"	id,  " +
+		"	id_author,  " +
 		"	id_status " +
 		"	FROM virtus.produtos_componentes " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
@@ -144,7 +144,7 @@ func registrarHistoricoAuditorComponente(produto mdl.ProdutoComponente, currentU
 		strconv.FormatInt(produto.AuditorAnteriorId, 10) + ",  " +
 		strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
-		"	id,  " +
+		"	id_author,  " +
 		"	id_status " +
 		"	FROM virtus.produtos_componentes " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
@@ -192,7 +192,7 @@ func registrarHistoricoNotaElemento(produto mdl.ProdutoElemento, currentUser mdl
 		"	id_auditor,  " +
 		"	" + strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
-		"	id,  " +
+		"	id_author,  " +
 		"	id_status " +
 		"	FROM produtos_elementos " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
@@ -243,7 +243,7 @@ func registrarHistoricoPesoElemento(produto mdl.ProdutoElemento, currentUser mdl
 		"	id_auditor,  " +
 		"	" + strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
-		"	id,  " +
+		"	id_author,  " +
 		"	id_status " +
 		"	FROM produtos_elementos " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
@@ -282,7 +282,7 @@ func LoadHistoricosElemento(w http.ResponseWriter, r *http.Request) {
 func ListHistoricosElemento(filtro mdl.Historico) []mdl.Historico {
 	log.Println("List Históricos do Elemento")
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_produto_elemento_historico, " +
 		"a.id_entidade, " +
 		"a.id_ciclo, " +
 		"a.id_pilar, " +
@@ -363,7 +363,7 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 	log.Println("List Históricos do Componente")
 	sql :=
 		"SELECT  " +
-			"	a.id,  " +
+			"	a.id_produto_componente_historico,  " +
 			"	id_entidade,  " +
 			"	id_ciclo,  " +
 			"	id_pilar,  " +
@@ -468,7 +468,7 @@ func registrarHistoricoPesoPilar(produto mdl.ProdutoPilar, currentUser mdl.User)
 		"	id_auditor,  " +
 		"	" + strconv.FormatInt(currentUser.Id, 10) + ",  " +
 		"	GETDATE(),  " +
-		"	id,  " +
+		"	id_author,  " +
 		"	id_status " +
 		"	FROM produtos_pilares " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
@@ -498,7 +498,7 @@ func ListHistoricosPilar(filtro mdl.Historico) []mdl.Historico {
 	log.Println("List Históricos do Pilar")
 	sql :=
 		"SELECT  " +
-			"	a.id,  " +
+			"	a.id_produto_pilare_historico,  " +
 			"	id_entidade,  " +
 			"	id_ciclo,  " +
 			"	id_pilar,  " +

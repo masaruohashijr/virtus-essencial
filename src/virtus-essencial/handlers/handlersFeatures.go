@@ -127,7 +127,7 @@ func ListFeaturesHandler(w http.ResponseWriter, r *http.Request) {
 
 func listFeatures(errorMsg string, msg string) mdl.PageFeatures {
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_feature, " +
 		" coalesce(a.name,''), " +
 		" coalesce(a.code,''), " +
 		" coalesce(a.description,'') as dsc, " +
@@ -140,7 +140,7 @@ func listFeatures(errorMsg string, msg string) mdl.PageFeatures {
 		" FROM virtus.features a LEFT JOIN virtus.users b " +
 		" ON a.id_author = b.id_user " +
 		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-		" order by a.id asc"
+		" order by a.id_feature asc"
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -202,7 +202,7 @@ func LoadAvailableFeatures(w http.ResponseWriter, r *http.Request) {
 	var entityType = r.FormValue("entityType")
 	log.Println("entityType: " + entityType)
 	log.Println("statusId: " + statusId)
-	sql := " SELECT a.id, a.name, a.code " +
+	sql := " SELECT a.id_feature, a.name, a.code " +
 		" FROM virtus.features a INNER JOIN virtus.features_activities b ON a.id_feature = b.id_feature " +
 		" INNER JOIN virtus.activities c ON c.id_activity = b.id_activity " +
 		" INNER JOIN virtus.actions d ON c.id_action = d.id_action " +

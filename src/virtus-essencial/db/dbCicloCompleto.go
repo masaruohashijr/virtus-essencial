@@ -93,7 +93,7 @@ func createCicloCompleto() {
 		" OUTPUT INSERTED.id_ciclo " +
 		" SELECT '" + nome + "', '" + descricao + "', " + strconv.Itoa(autor) + ", GETDATE(), " +
 		strconv.Itoa(statusZero) +
-		" WHERE NOT EXISTS (SELECT id_ciclo FROM ciclos WHERE nome = '" + nome + "' )"
+		" WHERE NOT EXISTS (SELECT id_ciclo FROM virtus.ciclos WHERE nome = '" + nome + "' )"
 	//log.Println(stmt)
 	row := db.QueryRow(stmt)
 	err := row.Scan(&idCiclo)
@@ -103,7 +103,7 @@ func createCicloCompleto() {
 
 	if idCiclo == 0 {
 		log.Println("INICIANDO O CICLO COMPLETO")
-		//return
+		return
 	}
 
 	pesoPadrao = 100
@@ -137,7 +137,7 @@ func createCicloCompleto() {
 			idComponente = 0
 			idElemento = 0
 			stmt := " INSERT INTO virtus.componentes(nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_componente " +
-				" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_componente FROM componentes WHERE nome = '" + nome + "' ) "
+				" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_componente FROM virtus.componentes WHERE nome = '" + nome + "' ) "
 			descricao = "Descricao do " + nome
 			db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idComponente)
 			log.Println("idComponente: " + strconv.Itoa(idComponente) + " - " + nome)
@@ -147,7 +147,7 @@ func createCicloCompleto() {
 				strconv.Itoa(pesoPadrao) + ", " +
 				strconv.Itoa(autor) + ", " +
 				" GETDATE() " +
-				" WHERE NOT EXISTS ( SELECT id_componente_pilar FROM componentes_pilares WHERE id_componente = " + strconv.Itoa(idComponente) + " AND id_pilar = " + strconv.Itoa(idPilar) + " ) "
+				" WHERE NOT EXISTS ( SELECT id_componente_pilar FROM virtus.componentes_pilares WHERE id_componente = " + strconv.Itoa(idComponente) + " AND id_pilar = " + strconv.Itoa(idPilar) + " ) "
 			unsavedComponentesPilares = append(unsavedComponentesPilares, stmt)
 
 			qtdTiposNotas := len(cicloESI.Pilares[j].Componentes[k].TiposNotas)
@@ -161,7 +161,7 @@ func createCicloCompleto() {
 				stmt := " INSERT INTO virtus.tipos_notas ( " +
 					" nome, descricao, letra, cor_letra, id_author, criado_em, id_status) OUTPUT INSERTED.id_tipo_nota " +
 					" SELECT  ?, ?, ?, ?, ?, GETDATE(), ? " +
-					" WHERE NOT EXISTS (SELECT id_tipo_nota FROM tipos_notas WHERE letra = ?) "
+					" WHERE NOT EXISTS (SELECT id_tipo_nota FROM virtus.tipos_notas WHERE letra = ?) "
 				db.QueryRow(stmt, nome, descricao, letra, corletra, autor, statusZero, letra).Scan(&idTipoNota)
 				if idTipoNota != 0 {
 					tiposSalvos[letra] = idTipoNota
@@ -171,7 +171,7 @@ func createCicloCompleto() {
 				log.Println("idTipoNota: " + strconv.Itoa(idTipoNota) + " - " + nome)
 
 				stmt = " INSERT INTO virtus.tipos_notas_componentes(id_componente, id_tipo_nota, id_author, criado_em, id_status) OUTPUT INSERTED.id_tipo_nota_componente " +
-					" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_tipo_nota FROM tipos_notas_componentes WHERE id_componente = ? " +
+					" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_tipo_nota FROM virtus.tipos_notas_componentes WHERE id_componente = ? " +
 					" AND id_tipo_nota = ? ) "
 				db.QueryRow(stmt, idComponente, idTipoNota, autor, statusZero, idComponente, idTipoNota).Scan(&idTipoNotaComponente)
 				log.Println("idTipoNotaComponente: " + strconv.Itoa(idTipoNotaComponente))

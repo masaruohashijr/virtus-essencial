@@ -154,7 +154,7 @@ func LoadMembrosByEscritorioId(w http.ResponseWriter, r *http.Request) {
 
 func listEscritorios(errorMsg string, msg string) mdl.PageEscritorios {
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_escritorio, " +
 		" a.nome, " +
 		" a.descricao, " +
 		" a.abreviatura, " +
@@ -167,10 +167,10 @@ func listEscritorios(errorMsg string, msg string) mdl.PageEscritorios {
 		" a.id_status, " +
 		" a.id_versao_origem " +
 		" FROM virtus.escritorios a LEFT JOIN virtus.users b " +
-		" ON a.id_author = b.id " +
-		" LEFT JOIN virtus.status c ON a.id_status = c.id " +
-		" LEFT JOIN virtus.users d ON a.id_chefe = d.id " +
-		" order by a.id asc"
+		" ON a.id_author = b.id_user " +
+		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+		" LEFT JOIN virtus.users d ON a.id_chefe = d.id_user " +
+		" order by a.id_escritorio asc"
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()
@@ -199,10 +199,10 @@ func listEscritorios(errorMsg string, msg string) mdl.PageEscritorios {
 	var page mdl.PageEscritorios
 	page.Escritorios = escritorios
 
-	sql = "SELECT a.id, a.name, a.id_role, " +
+	sql = "SELECT a.id_user, a.name, a.id_role, " +
 		" coalesce(b.name,'SEM PERFIL') as role_name " +
 		" FROM virtus.users a " +
-		" LEFT JOIN virtus.roles b ON a.id_role = b.id " +
+		" LEFT JOIN virtus.roles b ON a.id_role = b.id_role " +
 		" ORDER BY a.name asc"
 	rows, _ = Db.Query(sql)
 	defer rows.Close()
@@ -217,7 +217,7 @@ func listEscritorios(errorMsg string, msg string) mdl.PageEscritorios {
 	}
 	page.Users = users
 
-	sql = "SELECT id, nome, sigla FROM entidades ORDER BY sigla asc"
+	sql = "SELECT id_entidade, nome, sigla FROM virtus.entidades ORDER BY sigla asc"
 	log.Println(sql)
 	rows, _ = Db.Query(sql)
 	defer rows.Close()

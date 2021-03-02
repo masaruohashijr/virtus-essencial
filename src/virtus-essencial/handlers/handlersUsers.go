@@ -166,7 +166,7 @@ func SendPasswordHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func loadUserByEmail(emailTo string) mdl.User {
-	rows, _ := Db.Query("SELECT id, username FROM virtus.users WHERE email = ?", emailTo)
+	rows, _ := Db.Query("SELECT id_user, username FROM virtus.users WHERE email = ?", emailTo)
 	var user mdl.User
 	if rows.Next() {
 		rows.Scan(&user.Id, &user.Username)
@@ -273,7 +273,7 @@ func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, a.name, a.username, a.password, " +
+			" a.id_user, a.name, a.username, a.password, " +
 			" a.email, a.mobile, " +
 			" COALESCE(a.id_role, 0), COALESCE(b.name,'') as role_name, " +
 			" coalesce(a.id_author,0) as id_author, " +
@@ -313,7 +313,7 @@ func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(user)
 			users = append(users, user)
 		}
-		sql = "SELECT id, name FROM virtus.roles ORDER BY name asc"
+		sql = "SELECT id_role, name FROM virtus.roles ORDER BY name asc"
 		log.Println("SQL Roles: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

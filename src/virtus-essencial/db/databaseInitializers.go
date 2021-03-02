@@ -13,7 +13,6 @@ func Initialize() {
 	createSchema()
 	createSeq()
 	createSeqHistoricos()
-
 	createTable()
 	createTablesHistoricos()
 	createPKey()

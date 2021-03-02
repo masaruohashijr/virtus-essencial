@@ -10,7 +10,7 @@ import (
 func ListItensHandler(elementoId string) []mdl.Item {
 	log.Println("List Itens By Elemento Id")
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_item, " +
 		" a.id_elemento, " +
 		" a.nome," +
 		" coalesce(a.descricao,''), " +

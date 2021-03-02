@@ -410,7 +410,7 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 		if msg != "" {
 			page.Msg = msg
 		}
-		sql = "SELECT id_ciclo, nome FROM ciclos ORDER BY id_ciclo asc"
+		sql = "SELECT id_ciclo, nome FROM virtus.ciclos ORDER BY id_ciclo asc"
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
 		var ciclos []mdl.Ciclo

@@ -280,7 +280,7 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_ciclo, " +
 			" a.nome, " +
 			" a.descricao, " +
 			" a.referencia, " +
@@ -317,10 +317,10 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 			ciclos = append(ciclos, ciclo)
 		}
 		sql = "SELECT " +
-			" a.id, " +
+			" a.id_pilar, " +
 			" a.nome " +
 			" FROM virtus.pilares a " +
-			" order by a.id asc"
+			" order by a.id_pilar asc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -335,10 +335,10 @@ func ListCiclosHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			pilares = append(pilares, pilar)
 		}
-		sql = "SELECT a.id, a.sigla, a.codigo, a.nome " +
-			"FROM entidades a " +
+		sql = "SELECT a.id_entidade, a.sigla, a.codigo, a.nome " +
+			"FROM virtus.entidades a " +
 			"WHERE NOT EXISTS " +
-			"(SELECT 1 FROM ciclos_entidades b " +
+			"(SELECT 1 FROM virtus.ciclos_entidades b " +
 			" WHERE b.id_entidade = a.id_entidade) " +
 			"ORDER BY a.sigla"
 		log.Println(sql)

@@ -10,7 +10,7 @@ import (
 // AJAX (XML Assincrono)
 func ListActivitiesHandler(idWF string) []mdl.Activity {
 	log.Println("List Activities By WF Id")
-	sql := "SELECT a.id, " +
+	sql := "SELECT a.id_activity, " +
 		" a.id_workflow, " +
 		" a.id_action, " +
 		" b.name as action_name, " +

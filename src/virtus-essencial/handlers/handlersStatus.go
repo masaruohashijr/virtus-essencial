@@ -117,12 +117,12 @@ func listStatus(errorMsg string) mdl.PageStatus {
 		" b.name, " +
 		" format(a.created_at,'dd/MM/yyyy HH:mm:ss'), " +
 		" coalesce(c.name,'') as cstatus, " +
-		" a.status_id, " +
+		" a.id_status, " +
 		" a.id_versao_origem " +
 		" FROM virtus.status a LEFT JOIN virtus.users b " +
 		" ON a.id_author = b.id_user " +
 		" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-		" order by id_status asc"
+		" order by a.id_status asc"
 	log.Println("sql: " + sql)
 	rows, _ := Db.Query(sql)
 	defer rows.Close()

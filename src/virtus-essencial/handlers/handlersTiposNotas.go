@@ -85,7 +85,7 @@ func ListTiposNotasHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_tipo_nota, " +
 			" coalesce(a.nome,''), " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.referencia,''), " +

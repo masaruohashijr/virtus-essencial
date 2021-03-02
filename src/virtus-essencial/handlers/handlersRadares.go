@@ -52,7 +52,7 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 				registroAta := strings.Split(array[6], ":")[1]
 				sqlStatement := " INSERT INTO " +
 					" virtus.anotacoes_radares( " +
-					" radar_id, " +
+					" id_radar, " +
 					" id_entidade, " +
 					" id_anotacao, " +
 					" observacoes, " +
@@ -219,7 +219,7 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_radar, " +
 			" a.nome, " +
 			" a.descricao, " +
 			" a.referencia, " +
@@ -233,7 +233,7 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 			" FROM virtus.radares a " +
 			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-			" order by a.id asc"
+			" order by a.id_radar asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -258,7 +258,7 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 			radares = append(radares, radar)
 		}
 		sql = "SELECT " +
-			" a.id, " +
+			" a.id_anotacao, " +
 			" a.assunto, " +
 			" a.id_entidade, " +
 			" d.sigla as entidade_sigla, " +
@@ -270,7 +270,7 @@ func ListRadaresHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM anotacoes a " +
+			" FROM virtus.anotacoes a " +
 			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 			" INNER JOIN virtus.entidades d ON a.id_entidade = d.id_entidade " +

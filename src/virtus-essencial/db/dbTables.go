@@ -287,8 +287,7 @@ func createTable() {
 		" CREATE TABLE virtus.features_roles (" +
 		" id_feature_role int DEFAULT NEXT VALUE FOR id_features_roles_seq," +
 		" id_feature int NOT NULL," +
-		" id_role int NOT NULL," +
-		" CONSTRAINT pkey_features_roles PRIMARY KEY NONCLUSTERED (id))" +
+		" id_role int NOT NULL)" +
 		" END ")
 
 	// Table FEATURES_ACTIVITIES

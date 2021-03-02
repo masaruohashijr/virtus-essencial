@@ -145,7 +145,7 @@ func ListPerfisHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		msg := r.FormValue("msg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_role, " +
 			" a.name, " +
 			" a.description, " +
 			" a.id_author, " +

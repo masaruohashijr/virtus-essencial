@@ -241,7 +241,7 @@ func ListVersoesHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_versao, " +
 			" a.nome, " +
 			" coalesce(a.objetivo,''), " +
 			" coalesce(a.definicao_pronto,''), " +
@@ -255,7 +255,7 @@ func ListVersoesHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_versao_origem " +
 			" FROM virtus.versoes a LEFT JOIN virtus.users b " +
 			" ON a.id_author = b.id_user " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 			" order by a.id_versao asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)

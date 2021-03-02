@@ -11,7 +11,7 @@ import (
 func ListComponentesByPilarId(pilarId string) []mdl.ComponentePilar {
 	log.Println("List Componentes By Pilar Id")
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_componente_pilar, " +
 		" a.id_pilar, " +
 		" a.id_componente," +
 		" coalesce(c.nome,'') as componente_nome," +

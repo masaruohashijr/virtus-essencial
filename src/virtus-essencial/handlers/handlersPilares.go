@@ -224,7 +224,7 @@ func ListPilaresHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		msg := r.FormValue("msg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_pilar, " +
 			" a.nome, " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.referencia,''), " +
@@ -235,9 +235,9 @@ func ListPilaresHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM virtus.pilares a LEFT JOIN virtus.users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
-			" order by a.id asc"
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" order by a.id_pilar asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -261,7 +261,7 @@ func ListPilaresHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println(pilar)
 			pilares = append(pilares, pilar)
 		}
-		sql = "SELECT id_componente, nome FROM componentes ORDER BY id_componente asc"
+		sql = "SELECT id_componente, nome FROM virtus.componentes ORDER BY id_componente asc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

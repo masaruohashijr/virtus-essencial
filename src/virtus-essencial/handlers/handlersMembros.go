@@ -152,7 +152,7 @@ func ListMembrosByEscritorioId(escritorioId string) []mdl.Membro {
 	log.Println("List Membros By Escritório Id")
 	log.Println("escritorioId: " + escritorioId)
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_membro, " +
 		"a.id_escritorio, " +
 		"a.id_usuario, " +
 		"coalesce(d.name,'') as usuario_nome, " +

@@ -273,7 +273,7 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_anotacao, " +
 			" a.id_entidade, " +
 			" d.sigla as entidade_sigla, " +
 			" a.assunto, " +
@@ -296,10 +296,10 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" coalesce(a.id_status,0), " +
 			" a.id_versao_origem " +
-			" FROM anotacoes a " +
-			" LEFT JOIN virtus.users b ON a.id_author = b.id " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
-			" LEFT JOIN virtus.entidades d ON a.id_entidade = d.id " +
+			" FROM virtus.anotacoes a " +
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" LEFT JOIN virtus.entidades d ON a.id_entidade = d.id_entidade " +
 			" order by a.id_anotacao asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
@@ -338,7 +338,7 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			anotacoes = append(anotacoes, anotacao)
 		}
 
-		sql = "SELECT id, nome, sigla FROM entidades WHERE situacao = 'NORMAL' ORDER BY sigla"
+		sql = "SELECT id_entidade, nome, sigla FROM virtus.entidades WHERE situacao = 'NORMAL' ORDER BY sigla"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
@@ -357,20 +357,20 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			"        c.id_role, " +
 			"        d.name " +
 			" FROM virtus.membros a " +
-			" INNER JOIN virtus.escritorios b ON a.id_escritorio = b.id " +
-			" INNER JOIN virtus.users c ON a.id_usuario = c.id " +
-			" INNER JOIN virtus.roles d ON c.id_role = d.id " +
-			" WHERE b.id in " +
+			" INNER JOIN virtus.escritorios b ON a.id_escritorio = b.id_escritorio " +
+			" INNER JOIN virtus.users c ON a.id_usuario = c.id_user " +
+			" INNER JOIN virtus.roles d ON c.id_role = d.id_role " +
+			" WHERE b.id_escritorio in " +
 			"     (SELECT id_escritorio " +
 			"      FROM virtus.membros " +
 			"      WHERE id_usuario = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
 			" UNION  " +
-			" SELECT e.id, " +
+			" SELECT e.id_user, " +
 			"        e.name, " +
 			"        e.id_role, " +
 			"        f.name " +
 			" FROM virtus.users e	    " +
-			" INNER JOIN virtus.roles f ON e.id_role = f.id " +
+			" INNER JOIN virtus.roles f ON e.id_role = f.id_role " +
 			" WHERE e.id_role in (1,6) " +
 			" ORDER BY 2 ASC "
 		log.Println(sql)

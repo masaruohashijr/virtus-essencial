@@ -209,7 +209,7 @@ func ListProcessosHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_radar, " +
 			" a.nome, " +
 			" a.descricao, " +
 			" a.referencia, " +

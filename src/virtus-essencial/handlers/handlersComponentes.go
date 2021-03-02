@@ -264,7 +264,7 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		msg := r.FormValue("msg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_componente, " +
 			" a.nome, " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.referencia,''), " +
@@ -276,9 +276,9 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 			" a.id_status, " +
 			" a.id_versao_origem " +
 			" FROM virtus.componentes a LEFT JOIN virtus.users b " +
-			" ON a.id_author = b.id " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
-			" order by id_componente asc"
+			" ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" ORDER BY id_componente asc"
 		log.Println(sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -302,7 +302,7 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			componentes = append(componentes, componente)
 		}
-		sql = "SELECT id_elemento, nome FROM elementos ORDER BY id_elemento asc"
+		sql = "SELECT id_elemento, nome FROM virtus.elementos ORDER BY id_elemento asc"
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
 		var elementos []mdl.Elemento
@@ -315,7 +315,7 @@ func ListComponentesHandler(w http.ResponseWriter, r *http.Request) {
 			elementos = append(elementos, elemento)
 		}
 
-		sql = "SELECT id, nome FROM tipos_notas ORDER BY nome desc"
+		sql = "SELECT id_tipo_nota, nome FROM virtus.tipos_notas ORDER BY nome desc"
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

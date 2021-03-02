@@ -12,7 +12,7 @@ func ListPilaresByCicloId(cicloId string) []mdl.PilarCiclo {
 	log.Println("List Pilares Ciclos By Ciclo Id")
 	log.Println("cicloId: " + cicloId)
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_pilar_ciclo, " +
 		"a.id_ciclo, " +
 		"coalesce(d.nome,'') as pilar_nome, " +
 		"a.id_pilar, " +

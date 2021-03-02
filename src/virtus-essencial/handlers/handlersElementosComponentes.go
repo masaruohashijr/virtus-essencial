@@ -12,7 +12,7 @@ func ListElementosByComponenteId(componenteId string) []mdl.ElementoComponente {
 	log.Println("List Elementos Componentes By Componente Id")
 	log.Println("componenteId: " + componenteId)
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_elemento_componente, " +
 		"a.id_componente, " +
 		"coalesce(d.nome,'') as elemento_nome, " +
 		"a.id_elemento, " +

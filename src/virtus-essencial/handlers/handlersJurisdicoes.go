@@ -155,7 +155,7 @@ func ListJurisdicoesByEscritorioId(escritorioId string) []mdl.Jurisdicao {
 	log.Println("List Jurisdições By Escritório Id")
 	log.Println("escritorioId: " + escritorioId)
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_jurisdicao, " +
 		"a.id_escritorio, " +
 		"a.id_entidade, " +
 		"coalesce(d.nome,'') as entidade_nome, " +

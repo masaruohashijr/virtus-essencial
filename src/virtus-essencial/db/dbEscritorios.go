@@ -1,7 +1,7 @@
 package db
 
 import (
-	"log"
+//"log"
 )
 
 func createEscritorios() {
@@ -9,7 +9,7 @@ func createEscritorios() {
 		" id_escritorio, nome, descricao, abreviatura, id_author, criado_em) " +
 		" SELECT 1, 'Escritório de Representação - Pernambuco', 'Escritório de Representação - Pernambuco','ERPE', 1, GETDATE() " +
 		" WHERE NOT EXISTS (SELECT 1 FROM virtus.escritorios WHERE id_escritorio= 1)"
-	log.Println(sql)
+	//log.Println(sql)
 	db.Exec(sql)
 	sql = "INSERT INTO virtus.escritorios( " +
 		" id_escritorio, nome, descricao, abreviatura, id_author, criado_em) " +

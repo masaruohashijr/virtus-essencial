@@ -2,7 +2,7 @@ package main
 
 import (
 	"database/sql"
-	//	"fmt"
+	"fmt"
 	"github.com/BurntSushi/toml"
 	_ "github.com/alexbrainman/odbc"
 	//	"strconv"
@@ -60,8 +60,9 @@ func dbConn() *sql.DB {
 	dbConfig := ReadConfig(BANCO)
 	//port, _ := strconv.Atoi(dbConfig.DbPort)
 	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s", dbConfig.DbServer, dbConfig.DbUser, dbConfig.DbPassword, port, dbConfig.DbName)
+	connString := fmt.Sprintf("%s;UID=%s;PWD=%s", dbConfig.DbDSN, dbConfig.DbUser, dbConfig.DbPassword)
 	//dbase, err := sql.Open(dbConfig.DbDriver, connString)
-	dbase, _ = sql.Open("odbc", dbConfig.DbDSN)
+	dbase, _ = sql.Open("odbc", connString)
 	dbase.SetMaxOpenConns(20)
 	dbase.SetMaxIdleConns(20)
 	dbase.SetConnMaxLifetime(10 * time.Minute)

@@ -11,7 +11,7 @@ func ListIntegrantesByEntidadeIdByCicloId(entidadeId string, cicloId string) []m
 	log.Println("entidadeId: " + entidadeId)
 	log.Println("cicloId: " + cicloId)
 	sql := "SELECT " +
-		"a.id, " +
+		"a.id_integrante, " +
 		"a.id_entidade, " +
 		"a.id_ciclo, " +
 		"a.id_usuario, " +

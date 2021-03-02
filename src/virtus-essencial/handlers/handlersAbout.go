@@ -16,7 +16,7 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 	if sec.IsAuthenticated(w, r) && HasPermission(currentUser, "listChamados") {
 		chamadoEndStatusId := GetEndStatus("chamado")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_chamado, " +
 			" coalesce(a.titulo,''), " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.id_responsavel,0), " +

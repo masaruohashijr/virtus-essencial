@@ -913,7 +913,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		strconv.FormatInt(param.CicloId, 10) + ", " +
 		strconv.FormatInt(param.PilarId, 10) + ", " +
 		strconv.FormatInt(param.ComponenteId, 10) + ", " +
-		" p.id, " +
+		" p.id_plano, " +
 		//" p.recurso_garantidor as peso," +
 		" 0 as nota, " +
 		" ?, ?, GETDATE() " +
@@ -1069,7 +1069,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" p.id_componente, " +
 		" p.id_plano, " +
 		" c.id_tipo_nota, " +
-		" c.id_elemento, d.id, ?, GETDATE() " +
+		" c.id_elemento, d.id_item, ?, GETDATE() " +
 		" FROM virtus.pilares_ciclos a " +
 		" INNER JOIN virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
 		" INNER JOIN virtus.elementos_componentes c ON b.id_componente = c.id_componente " +

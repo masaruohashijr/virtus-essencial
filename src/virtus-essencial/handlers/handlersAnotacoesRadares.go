@@ -12,8 +12,8 @@ import (
 func ListAnotacoesRadarByRadarId(radarId string) []mdl.AnotacaoRadar {
 	log.Println("List Anotacoes Radares By Radar Id")
 	log.Println("radarId: " + radarId)
-	sql := " SELECT a.id, " +
-		" a.radar_id, " +
+	sql := " SELECT a.id_anotacao_radar, " +
+		" a.id_radar, " +
 		" d.id_entidade, " +
 		" a.id_anotacao, " +
 		" coalesce(a.observacoes,''), " +

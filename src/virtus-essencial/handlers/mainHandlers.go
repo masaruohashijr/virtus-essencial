@@ -139,7 +139,7 @@ func BuildLoggedUser(user mdl.User) mdl.LoggedUser {
 	loggedUser.HasPermission = func(permission string) bool {
 		//log.Println("permission: " + permission)
 		query := "SELECT " +
-			"A.id_feature, B.code FROM virtus.features_roles A, features B " +
+			"A.id_feature, B.code FROM virtus.features_roles A, virtus.features B " +
 			"WHERE A.id_feature = B.id_feature AND A.id_role = " + strconv.FormatInt(user.Role, 10)
 		//log.Println("query: " + query)
 		rows, _ := Db.Query(query)
@@ -166,7 +166,7 @@ func BuildLoggedUser(user mdl.User) mdl.LoggedUser {
 func HasPermission(currentUser mdl.User, permission string) bool {
 	log.Println("HasPermission")
 	query := "SELECT " +
-		"A.id_feature, B.code FROM virtus.features_roles A, features B " +
+		"A.id_feature, B.code FROM virtus.features_roles A, virtus.features B " +
 		"WHERE A.id_feature = B.id_feature AND A.id_role = ?"
 	rows, err := Db.Query(query, currentUser.Role)
 	if err != nil {
@@ -180,7 +180,7 @@ func HasPermission(currentUser mdl.User, permission string) bool {
 		featuresCurrentUser = append(featuresCurrentUser, feature)
 	}
 	for _, value := range featuresCurrentUser {
-		//log.Println("Feature CurUser: " + value.Code)
+		//logPrintln("Feature CurUser: " + value.Code)
 		if value.Code == permission {
 			//log.Println("Permission: " + permission)
 			return true

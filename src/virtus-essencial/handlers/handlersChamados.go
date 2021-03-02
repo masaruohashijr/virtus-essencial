@@ -273,7 +273,7 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_chamado, " +
 			" coalesce(a.titulo,''), " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.acompanhamento,''), " +
@@ -353,17 +353,17 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			" INNER JOIN virtus.escritorios b ON a.id_escritorio = b.id_escritorio " +
 			" INNER JOIN virtus.users c ON a.id_usuario = c.id_user " +
 			" INNER JOIN virtus.roles d ON c.id_role = d.id_role " +
-			" WHERE b.id in " +
+			" WHERE b.id_escritorio in " +
 			"     (SELECT id_escritorio " +
 			"      FROM virtus.membros " +
 			"      WHERE id_usuario = " + strconv.FormatInt(currentUser.Id, 10) + ") " +
 			" UNION  " +
-			" SELECT e.id, " +
+			" SELECT e.id_user, " +
 			"        e.name, " +
 			"        e.id_role, " +
 			"        f.name " +
 			" FROM virtus.users e	    " +
-			" INNER JOIN roles f ON e.id_role = f.id_role " +
+			" INNER JOIN virtus.roles f ON e.id_role = f.id_role " +
 			" WHERE e.id_role in (1,2,3,4,5,6) " +
 			" ORDER BY 2 ASC "
 		log.Println(sql)

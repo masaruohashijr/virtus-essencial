@@ -31,7 +31,7 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			" LEFT JOIN virtus.jurisdicoes b ON a.id_escritorio = b.id_escritorio " +
 			" LEFT JOIN virtus.membros c ON c.id_escritorio = b.id_escritorio " +
 			" LEFT JOIN virtus.entidades d ON d.id_entidade = b.id_entidade " +
-			" LEFT JOIN virtus.users u ON u.id_usuario = c.id_usuario " +
+			" LEFT JOIN virtus.users u ON u.id_user = c.id_usuario " +
 			" INNER JOIN virtus.ciclos_entidades e ON e.id_entidade = b.id_entidade " +
 			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
 		log.Println(sql)
@@ -305,7 +305,7 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			auditores = append(auditores, auditor)
 		}
 
-		sql = " SELECT id, cnpb, id_modalidade, CASE WHEN recurso_garantidor > 1000000 AND recurso_garantidor < 1000000000 THEN concat(format(recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN recurso_garantidor > 1000000000 THEN concat(format(recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(recurso_garantidor/1000,'N','pt-br'),' Milhares') END " +
+		sql = " SELECT id_plano, cnpb, id_modalidade, CASE WHEN recurso_garantidor > 1000000 AND recurso_garantidor < 1000000000 THEN concat(format(recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN recurso_garantidor > 1000000000 THEN concat(format(recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(recurso_garantidor/1000,'N','pt-br'),' Milhares') END " +
 			" FROM virtus.planos WHERE id_entidade = ? AND left(cnpb,1) not in ('4','5') ORDER BY recurso_garantidor DESC "
 		log.Println(sql)
 		rows, _ = Db.Query(sql, entidadeId)

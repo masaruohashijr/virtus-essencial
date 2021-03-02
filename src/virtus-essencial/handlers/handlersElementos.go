@@ -197,7 +197,7 @@ func ListElementosHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		msg := r.FormValue("msg")
 		query := "SELECT " +
-			" a.id, " +
+			" a.id_elemento, " +
 			" a.nome, " +
 			" coalesce(a.descricao,''), " +
 			" coalesce(a.referencia,''), " +
@@ -207,9 +207,9 @@ func ListElementosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(c.name,'') as cstatus, " +
 			" a.id_status " +
 			" FROM virtus.elementos a " +
-			" LEFT JOIN virtus.users b ON a.id_author = b.id " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id " +
-			" order by a.id asc "
+			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+			" order by a.id_elemento asc "
 		rows, _ := Db.Query(query)
 		defer rows.Close()
 		log.Println(query)

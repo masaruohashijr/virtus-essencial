@@ -219,7 +219,7 @@ func ListConfigPlanos(entidadeId string, cicloId string, pilarId string, compone
 	log.Println("entidadeId: " + entidadeId + " - cicloId: " + cicloId + " - pilar: " + pilarId + " - componenteId: " + componenteId + " - soPGA: " + soPGA)
 	log.Println("List Config Planos")
 	sql := "SELECT " +
-		" a.id, " +
+		" a.id_produto_plano, " +
 		" a.id_entidade, " +
 		" a.id_plano " +
 		" FROM produtos_planos a " +

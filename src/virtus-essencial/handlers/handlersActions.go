@@ -210,7 +210,7 @@ func ListActionsHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		msg := r.FormValue("msg")
 		sql := " SELECT " +
-			" a.id, " +
+			" a.id_action, " +
 			" a.name, " +
 			" a.description, " +
 			" a.id_origin_status, " +
@@ -224,12 +224,12 @@ func ListActionsHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(e.name,'') as cstatus, " +
 			" a.id_status, " +
 			" a.id_versao_origem " +
-			" FROM actions a " +
-			" LEFT JOIN virtus.status b ON a.id_origin_status = b.id " +
-			" LEFT JOIN virtus.status c ON a.id_destination_status = c.id " +
-			" LEFT JOIN virtus.users d ON a.id_author = d.id " +
-			" LEFT JOIN virtus.status e ON a.id_status = c.id " +
-			" ORDER BY a.id asc "
+			" FROM virtus.actions a " +
+			" LEFT JOIN virtus.status b ON a.id_origin_status = b.id_status " +
+			" LEFT JOIN virtus.status c ON a.id_destination_status = c.id_status " +
+			" LEFT JOIN virtus.users d ON a.id_author = d.id_user " +
+			" LEFT JOIN virtus.status e ON a.id_status = c.id_status " +
+			" ORDER BY a.id_action asc "
 		log.Println("List Action -> SQL: " + sql)
 		rows, _ := Db.Query(sql)
 		defer rows.Close()
@@ -256,7 +256,7 @@ func ListActionsHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			actions = append(actions, action)
 		}
-		sql = "SELECT id, name, stereotype FROM virtus.status ORDER BY name asc"
+		sql = "SELECT id_status, name, stereotype FROM virtus.status ORDER BY name asc"
 		log.Println("List Action -> Query: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

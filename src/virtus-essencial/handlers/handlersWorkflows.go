@@ -34,8 +34,8 @@ func GetStartStatus(entityType string) int {
 
 func GetEndStatus(entityType string) int {
 	log.Println("Get <<End>> Status")
-	query := "SELECT TOP 1 id_status FROM virtus.status where id_status in (select id_destination_status from actions_status where id_action in " +
-		" ( select id_action FROM virtus.activities where id_workflow in (select id_workflow from workflows where " +
+	query := "SELECT TOP 1 id_status FROM virtus.status where id_status in (select id_destination_status from virtus.actions_status where id_action in " +
+		" ( select id_action FROM virtus.activities where id_workflow in (select id_workflow from virtus.workflows where " +
 		" entity_type = ? and end_at is null))) " +
 		" and stereotype = 'End' "
 	log.Println("List WF -> Query: " + query)
@@ -304,7 +304,7 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
 		sql := "SELECT " +
-			" a.id, " +
+			" a.id_workflow, " +
 			" a.name, " +
 			" a.entity_type, " +
 			" coalesce(format(a.start_at,'dd/MM/yyyy'),'') as c_start_at, " +
@@ -320,7 +320,7 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			" virtus.workflows a " +
 			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-			" ORDER BY a.id ASC"
+			" ORDER BY a.id_workflow ASC"
 
 		log.Println("List WF -> SQL: " + sql)
 		rows, _ := Db.Query(sql)
@@ -347,7 +347,7 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			workflows = append(workflows, workflow)
 		}
 		sql = " SELECT " +
-			" a.id, " +
+			" a.id_action, " +
 			" a.name, " +
 			" a.id_origin_status, " +
 			" b.name as origin_status, " +
@@ -378,7 +378,7 @@ func ListWorkflowsHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			actions = append(actions, action)
 		}
-		sql = "SELECT id, name FROM virtus.roles order by name asc"
+		sql = "SELECT id_role, name FROM virtus.roles order by name asc"
 		log.Println("List WF -> Query: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
