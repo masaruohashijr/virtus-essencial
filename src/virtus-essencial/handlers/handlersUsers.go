@@ -233,6 +233,7 @@ func RegisterNewUserHandler(w http.ResponseWriter, r *http.Request) {
 		" id_role, " +
 		" criado_em, " +
 		" id_status) " +
+		" OUTPUT INSERTED.id_user " +
 		" VALUES ( '" + name + "', " +
 		" '" + username + "', " +
 		" '" + string(hash[:]) + "', " +
@@ -240,8 +241,7 @@ func RegisterNewUserHandler(w http.ResponseWriter, r *http.Request) {
 		" '" + mobile + "', " +
 		" 5, " +
 		" GETDATE(), " +
-		" " + strconv.Itoa(statusUsuarioId) + ") " +
-		" RETURNING id"
+		" " + strconv.Itoa(statusUsuarioId) + ") "
 	log.Println(sqlStatement)
 	id := 0
 	err = Db.QueryRow(sqlStatement).Scan(&id)

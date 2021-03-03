@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -44,7 +43,8 @@ func CreateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 			" matriz, " +
 			" id_author, " +
 			" criado_em) " +
-			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id"
+			" OUTPUT INSERTED.id_anotacao " +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE())"
 		idAnotacao := 0
 		row := Db.QueryRow(sqlStatement,
 			entidade,
@@ -55,8 +55,7 @@ func CreateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 			responsavel,
 			descricao,
 			matriz,
-			currentUser.Id,
-			time.Now())
+			currentUser.Id)
 		log.Println(sqlStatement)
 		err := row.Scan(&idAnotacao)
 		if err != nil {

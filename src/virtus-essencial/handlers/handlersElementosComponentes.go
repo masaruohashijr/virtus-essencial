@@ -3,7 +3,6 @@ package handlers
 import (
 	"log"
 	"strconv"
-	//	"time"
 	mdl "virtus-essencial/models"
 )
 
@@ -25,10 +24,10 @@ func ListElementosByComponenteId(componenteId string) []mdl.ElementoComponente {
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM virtus.elementos_componentes a " +
-		"LEFT JOIN virtus.elementos d ON a.id_elemento = d.id " +
-		"LEFT JOIN virtus.users b ON a.id_author = b.id " +
-		"LEFT JOIN virtus.status c ON a.id_status = c.id " +
-		"LEFT JOIN virtus.tipos_notas e ON a.id_tipo_nota = e.id " +
+		"LEFT JOIN virtus.elementos d ON a.id_elemento = d.id_elemento " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
+		"LEFT JOIN virtus.tipos_notas e ON a.id_tipo_nota = e.id_tipo_nota " +
 		"WHERE a.id_componente = ? ORDER BY elemento_nome"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, componenteId)

@@ -4,7 +4,6 @@ import (
 	"log"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 )
 
@@ -93,7 +92,7 @@ func hasSomeFieldChangedAnotacaoRadar(anotacaoRadarPage mdl.AnotacaoRadar, anota
 func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB mdl.AnotacaoRadar, currentUserId int64) {
 	sqlStatement := "UPDATE virtus.anotacoes_radares " +
 		" SET id_radar=?, id_anotacao=?, observacoes=?, registro_ata=?, " +
-		" id_ultimo_atualizador=?, ultima_atualizacao=? " +
+		" id_ultimo_atualizador=?, ultima_atualizacao=GETDATE() " +
 		" WHERE id_anotacao_radar = ? "
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
@@ -102,7 +101,6 @@ func updateAnotacaoRadarHandler(anotacaoRadar mdl.AnotacaoRadar, anotacaoRadarDB
 		anotacaoRadar.Observacoes,
 		anotacaoRadar.RegistroAta,
 		currentUserId,
-		time.Now(),
 		anotacaoRadar.Id)
 	if err != nil {
 		log.Println(err.Error())

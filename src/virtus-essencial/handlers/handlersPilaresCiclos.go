@@ -3,7 +3,6 @@ package handlers
 import (
 	"log"
 	"strconv"
-	//	"time"
 	mdl "virtus-essencial/models"
 )
 
@@ -24,9 +23,9 @@ func ListPilaresByCicloId(cicloId string) []mdl.PilarCiclo {
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
 		"FROM virtus.pilares_ciclos a " +
-		"LEFT JOIN virtus.pilares d ON a.id_pilar = d.id " +
-		"LEFT JOIN virtus.users b ON a.id_author = b.id " +
-		"LEFT JOIN virtus.status c ON a.id_status = c.id " +
+		"LEFT JOIN virtus.pilares d ON a.id_pilar = d.id_pilar " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 		"WHERE a.id_ciclo = ? ORDER BY d.nome ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, cicloId)

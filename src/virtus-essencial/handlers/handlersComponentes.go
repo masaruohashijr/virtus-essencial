@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -86,7 +85,6 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					tipoNotaId,
 					pesoPadrao,
 					currentUser.Id,
-					time.Now(),
 					statusTipoNotaId).Scan(&tipoNotaComponenteId)
 				if err != nil {
 					log.Println(err.Error())
@@ -175,7 +173,7 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				if tipoNotaPeso != "" {
 					sqlStatement = "INSERT INTO virtus.tipos_notas_componentes (id_tipo_nota,id_componente) " +
 						" SELECT " + tipoNotaId + ", " + componenteId +
-						" WHERE NOT EXISTS (select 1 from tipos_notas_componentes " +
+						" WHERE NOT EXISTS (select 1 from virtus.tipos_notas_componentes " +
 						" WHERE id_tipo_nota = " + tipoNotaId + " AND id_componente = " + componenteId + ")"
 					log.Println(sqlStatement)
 					Db.QueryRow(sqlStatement)
@@ -223,7 +221,8 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" criado_em, " +
 					" id_status " +
 					" ) " +
-					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+					" OUTPUT INSERTED.id_componente " +
+					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				Db.QueryRow(
 					sqlStatement,
@@ -231,7 +230,6 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					elementoComponente.ElementoId,
 					elementoComponente.PesoPadrao,
 					currentUser.Id,
-					time.Now(),
 					statusElementoId).Scan(&elementoComponenteId)
 			}
 		}

@@ -9,7 +9,7 @@ func ListTiposNotaByComponenteId(componenteId string) []mdl.TipoNota {
 	sql := " SELECT " +
 		" id_tipo_nota_componente, id_tipo_nota, " +
 		" peso_padrao " +
-		" FROM tipos_notas_componentes WHERE id_componente = ? "
+		" FROM virtus.tipos_notas_componentes WHERE id_componente = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, componenteId)
 	defer rows.Close()

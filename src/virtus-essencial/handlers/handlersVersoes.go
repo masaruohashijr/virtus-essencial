@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -30,7 +29,7 @@ func CreateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 			" termina_em, " +
 			" id_author, " +
 			" criado_em) " +
-			" VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id"
+			"  OUTPUT INSERTED.id_versao VALUES (?, ?, ?, ?, ?, ?, GETDATE())"
 		idVersao := 0
 		row := Db.QueryRow(sqlStatement,
 			nome,
@@ -38,8 +37,7 @@ func CreateVersaoHandler(w http.ResponseWriter, r *http.Request) {
 			definicaoPronto,
 			iniciaEm,
 			terminaEm,
-			currentUser.Id,
-			time.Now())
+			currentUser.Id)
 		err := row.Scan(&idVersao)
 		if err != nil {
 			log.Println(err.Error())

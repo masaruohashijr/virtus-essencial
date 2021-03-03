@@ -13,7 +13,7 @@ func CreatePlanoHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Create Plano")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		nome := r.FormValue("Nome")
-		sqlStatement := "INSERT INTO virtus.planos(nome) VALUES (?) RETURNING id"
+		sqlStatement := "INSERT INTO virtus.planos(nome) OUTPUT INSERTED.id_plano VALUES (?)"
 		id := 0
 		err := Db.QueryRow(sqlStatement, nome).Scan(&id)
 		log.Println(sqlStatement + " :: " + nome)
@@ -222,7 +222,7 @@ func ListConfigPlanos(entidadeId string, cicloId string, pilarId string, compone
 		" a.id_produto_plano, " +
 		" a.id_entidade, " +
 		" a.id_plano " +
-		" FROM produtos_planos a " +
+		" FROM virtus.produtos_planos a " +
 		" WHERE a.id_entidade = " + entidadeId +
 		" AND a.id_ciclo = " + cicloId +
 		" AND a.id_pilar = " + pilarId +

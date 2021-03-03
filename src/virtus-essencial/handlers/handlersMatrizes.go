@@ -84,11 +84,11 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		"		 R1.id_elemento as id_elemento, " +
 		"		 COALESCE((SELECT count(1) FROM virtus.elementos_componentes " +
 		"				WHERE id_componente = " + componenteId + "),0) AS qtdElementos, " +
-		"		 COALESCE((SELECT count(1) FROM produtos_planos " +
+		"		 COALESCE((SELECT count(1) FROM virtus.produtos_planos " +
 		"           WHERE id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + " AND id_pilar = " + pilarId + " AND id_componente = " + componenteId + "),0) AS qtdPlanos, " +
 		"        R1.id_ciclo, " +
 		"        COALESCE(R1.ciclo_nome, ''), " +
-		"        (SELECT coalesce(nota,0) from produtos_ciclos where  id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + ") AS ciclo_nota, " +
+		"        (SELECT coalesce(nota,0) from virtus.produtos_ciclos where  id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + ") AS ciclo_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
 		"      (SELECT id_pilar " +
@@ -102,7 +102,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		"   (SELECT count(1) " +
 		"    FROM " +
 		"      (SELECT id_componente " +
-		"       FROM componentes_pilares " +
+		"       FROM virtus.componentes_pilares " +
 		"       WHERE id_pilar = R1.id_pilar " +
 		"       GROUP BY id_componente) R) AS qtdComponentes, " +
 		"        R1.id_componente, " +
@@ -178,7 +178,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		"    FROM virtus.produtos_planos " +
 		"    WHERE id_ciclo = " + cicloId +
 		"      AND id_entidade = " + entidadeId +
-		"    ) R2 ON (R1.CICLO_id = R2.id_ciclo " +
+		"    ) R2 ON (R1.CICLO_id = R2.ciclo_id " +
 		"                       AND R1.PILAR_ID = R2.PILAR_ID " +
 		"                       AND R1.COMPONENTE_ID = R2.COMPONENTE_ID) " +
 		" LEFT JOIN virtus.produtos_elementos EL ON (R1.id_ciclo = EL.id_ciclo " +
@@ -211,7 +211,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		" LEFT JOIN virtus.users p ON co.id_auditor = p.id_user " +
 		" LEFT JOIN (SELECT R1.id, R1.id_entidade, R1.id_ciclo, R1.id_pilar, R1.id_plano, R1.id_componente, R1.id_tipo_nota, R1.id_elemento, motivacao_peso, motivacao_nota, id_author, criado_em " +
 		" FROM virtus.produtos_elementos_historicos R1 " +
-		" INNER JOIN (SELECT peh.id_entidade, peh.id_ciclo, peh.id_pilar, peh.id_componente, peh.id_plano, peh.id_elemento, max(peh.id) as id " +
+		" INNER JOIN (SELECT peh.id_entidade, peh.id_ciclo, peh.id_pilar, peh.id_componente, peh.id_plano, peh.id_elemento, max(peh.id_elemento_historico) as id " +
 		" FROM virtus.produtos_elementos_historicos PEH group by peh.id_entidade,peh.id_ciclo,peh.id_pilar,peh.id_componente,peh.id_plano,peh.id_elemento) R2 " +
 		" ON R1.id = R2.id) R3 ON (R3.id_ciclo = EL.id_ciclo " +
 		" AND R3.id_pilar = EL.id_pilar " +
@@ -279,7 +279,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 func loadTiposNotasMatriz(entidadeId string, cicloId string, pilarId string) []mdl.ElementoDaMatriz {
 	sql := " SELECT R1.id_ciclo, " +
 		"        COALESCE(R1.ciclo_nome, ''), " +
-		"        (SELECT coalesce(nota,0) from produtos_ciclos where  id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + ") AS ciclo_nota, " +
+		"        (SELECT coalesce(nota,0) from virtus.produtos_ciclos where  id_ciclo = " + cicloId + " AND id_entidade = " + entidadeId + ") AS ciclo_nota, " +
 		"   (SELECT count(1) " +
 		"    FROM " +
 		"      (SELECT id_pilar " +
@@ -317,15 +317,15 @@ func loadTiposNotasMatriz(entidadeId string, cicloId string, pilarId string) []m
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
 		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
 		"        COALESCE(z.id_modalidade,'') as modalidade, " +
-		"        (SELECT count(1) FROM (SELECT DISTINCT id_plano FROM produtos_planos WHERE id_entidade = " + entidadeId + " AND id_ciclo = " + cicloId + " GROUP BY id_plano) S) as EntidadeQtdPlanos " +
+		"        (SELECT count(1) FROM (SELECT DISTINCT id_plano FROM virtus.produtos_planos WHERE id_entidade = " + entidadeId + " AND id_ciclo = " + cicloId + " GROUP BY id_plano) S) as EntidadeQtdPlanos " +
 		" FROM " +
-		"   (SELECT a.id AS id_ciclo, " +
+		"   (SELECT a.id_ciclo, " +
 		"           a.nome AS ciclo_nome, " +
-		"           b.id AS id_pilar, " +
+		"           b.id_pilar, " +
 		"           c.nome AS pilar_nome, " +
-		"           e.id AS id_componente, " +
+		"           e.id_componente, " +
 		"           e.nome AS componente_nome, " +
-		"           g.id AS id_tipo_nota, " +
+		"           g.id_tipo_nota, " +
 		"           g.nome AS tipo_nota_nome " +
 		"    FROM virtus.ciclos a " +
 		"    INNER JOIN virtus.pilares_ciclos b ON b.id_ciclo = a.id_ciclo " +

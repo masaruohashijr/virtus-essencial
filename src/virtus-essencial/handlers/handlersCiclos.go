@@ -24,7 +24,7 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 			" OUTPUT INSERTED.id_ciclo " +
 			" VALUES (?, ?, ?, ?, GETDATE()) "
 		idCiclo := 0
-		Db.QueryRow(sqlStatement, nome, descricao, referencia, currentUser.Id, time.Now()).Scan(&idCiclo)
+		Db.QueryRow(sqlStatement, nome, descricao, referencia, currentUser.Id).Scan(&idCiclo)
 		log.Println(sqlStatement + " - " + nome)
 		log.Println("INSERT: Id: " + strconv.Itoa(idCiclo) + " - Nome: " + nome)
 		for key, value := range r.Form {
@@ -44,7 +44,7 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 					" id_author, " +
 					" criado_em ) " +
 					" OUTPUT INSERTED.id_pilar_ciclo " +
-					" VALUES (?, ?, ?, ?, ?, ?) "
+					" VALUES (?, ?, ?, ?, ?, GETDATE()) "
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
 					sqlStatement,
@@ -52,8 +52,7 @@ func CreateCicloHandler(w http.ResponseWriter, r *http.Request) {
 					pilarId,
 					tipoMediaId,
 					pesoPadrao,
-					currentUser.Id,
-					time.Now()).Scan(&pilarCicloId)
+					currentUser.Id).Scan(&pilarCicloId)
 				if err != nil {
 					log.Println(err.Error())
 				}

@@ -37,7 +37,7 @@ func registrarConfigPlanosHistorico(entidadeId string, cicloId string, pilarId s
 		"	a.id_status " +
 		"	FROM virtus.produtos_componentes a " +
 		"	LEFT JOIN (SELECT pp.id_entidade, pp.id_ciclo, pp.id_pilar, pp.id_componente, string_agg(pl.cnpb,', ') planos_configurados " +
-		"	FROM produtos_planos pp INNER JOIN virtus.planos pl ON pp.id_plano = pl.id GROUP BY " +
+		"	FROM virtus.produtos_planos pp INNER JOIN virtus.planos pl ON pp.id_plano = pl.id_plano GROUP BY " +
 		" 	pp.id_entidade, " +
 		" 	pp.id_ciclo, " +
 		" 	pp.id_pilar, " +
@@ -194,7 +194,7 @@ func registrarHistoricoNotaElemento(produto mdl.ProdutoElemento, currentUser mdl
 		"	GETDATE(),  " +
 		"	id_author,  " +
 		"	id_status " +
-		"	FROM produtos_elementos " +
+		"	FROM virtus.produtos_elementos " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
 		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
 		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
@@ -245,7 +245,7 @@ func registrarHistoricoPesoElemento(produto mdl.ProdutoElemento, currentUser mdl
 		"	GETDATE(),  " +
 		"	id_author,  " +
 		"	id_status " +
-		"	FROM produtos_elementos " +
+		"	FROM virtus.produtos_elementos " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
 		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
 		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10) + " AND " +
@@ -298,7 +298,7 @@ func ListHistoricosElemento(filtro mdl.Historico) []mdl.Historico {
 		"case when tipo_alteracao = 'P' then a.motivacao_peso else a.motivacao_nota end, " +
 		"case when tipo_alteracao = 'P' then 'Peso' else 'Nota' end " +
 		"FROM virtus.produtos_elementos_historicos a " +
-		"LEFT JOIN virtus.users b ON a.id_author = b.id " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 		"WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
 		"a.id_ciclo = " + filtro.CicloId + " AND " +
 		"a.id_pilar = " + filtro.PilarId + " AND " +
@@ -390,7 +390,7 @@ func ListHistoricosComponente(filtro mdl.Historico) []mdl.Historico {
 			"       when tipo_alteracao = 'P' then motivacao_config " +
 			"	end as motivacao " +
 			"	FROM virtus.produtos_componentes_historicos a " +
-			"	LEFT JOIN virtus.users b ON a.id_author = b.id " +
+			"	LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 			"	WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
 			"   a.id_ciclo = " + filtro.CicloId + " AND " +
 			"	a.id_pilar = " + filtro.PilarId + " AND " +
@@ -470,7 +470,7 @@ func registrarHistoricoPesoPilar(produto mdl.ProdutoPilar, currentUser mdl.User)
 		"	GETDATE(),  " +
 		"	id_author,  " +
 		"	id_status " +
-		"	FROM produtos_pilares " +
+		"	FROM virtus.produtos_pilares " +
 		"	WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) + " AND " +
 		"	id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) + " AND " +
 		"	id_pilar = " + strconv.FormatInt(produto.PilarId, 10)
@@ -511,7 +511,7 @@ func ListHistoricosPilar(filtro mdl.Historico) []mdl.Historico {
 			"	coalesce(format(a.criado_em, 'dd/MM/yyyy HH:mm:ss'),'') as alterado_em,  " +
 			"	motivacao_peso  " +
 			"	FROM virtus.produtos_pilares_historicos a " +
-			"	LEFT JOIN virtus.users b ON a.id_author = b.id " +
+			"	LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 			"	WHERE a.id_entidade = " + filtro.EntidadeId + " AND " +
 			"   a.id_ciclo = " + filtro.CicloId + " AND " +
 			"	a.id_pilar = " + filtro.PilarId +

@@ -125,8 +125,11 @@ func DeleteRoleHandler(w http.ResponseWriter, r *http.Request) {
 		id := r.FormValue("Id")
 		log.Println("id: " + id)
 		errMsg := "Perfil vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM virtus.roles WHERE id_role=?"
+		sqlStatement := "DELETE FROM virtus.features_roles WHERE id_role=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
+		deleteForm.Exec(id)
+		sqlStatement = "DELETE FROM virtus.roles WHERE id_role=?"
+		deleteForm, _ = Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
 			http.Redirect(w, r, route.RolesRoute+"?errMsg="+errMsg, 301)

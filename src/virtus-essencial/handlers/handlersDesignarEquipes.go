@@ -410,7 +410,7 @@ func LoadSupervisorByEntidadeIdCicloId(w http.ResponseWriter, r *http.Request) {
 	log.Println("cicloId: " + cicloId)
 	sql := "SELECT a.id_supervisor, b.name " +
 		"FROM virtus.ciclos_entidades a " +
-		"LEFT JOIN virtus.users b ON a.id_supervisor = b.id " +
+		"LEFT JOIN virtus.users b ON a.id_supervisor = b.id_user " +
 		"WHERE a.id_entidade = ? AND a.id_ciclo = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, entidadeId, cicloId)

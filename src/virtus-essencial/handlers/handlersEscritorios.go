@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -67,7 +66,7 @@ func UpdateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 				" id_author, " +
 				" criado_em " +
 				" ) " +
-				" SELECT ?, ?, ?, ? WHERE NOT EXISTS " +
+				" SELECT ?, ?, ?, GETDATE() WHERE NOT EXISTS " +
 				" (SELECT 1 FROM virtus.membros WHERE id_escritorio = ? AND id_usuario =?)"
 			log.Println(sqlStatement)
 			Db.QueryRow(
@@ -75,7 +74,6 @@ func UpdateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 				id,
 				chefe,
 				GetUserInCookie(w, r).Id,
-				time.Now(),
 				id,
 				chefe)
 		} else {

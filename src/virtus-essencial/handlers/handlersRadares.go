@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -26,13 +25,13 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 			sqlStatement += "data_radar, "
 		}
 		sqlStatement += " id_author, criado_em) " +
-			" VALUES ('" + nome + "', '" + descricao + "', '" + referencia + "',"
+			" OUTPUT INSERTED.id_radar VALUES ('" + nome + "', '" + descricao + "', '" + referencia + "',"
 		if dataRadar != "" {
 			sqlStatement += "'" + dataRadar + "',"
 		}
-		sqlStatement += " ?, ?) RETURNING id"
+		sqlStatement += " ?, GETDATE())"
 		idRadar := 0
-		row := Db.QueryRow(sqlStatement, currentUser.Id, time.Now())
+		row := Db.QueryRow(sqlStatement, currentUser.Id)
 		err := row.Scan(&idRadar)
 		if err != nil {
 			log.Println(err.Error())
@@ -59,7 +58,7 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 					" registro_ata, " +
 					" id_author, " +
 					" criado_em ) " +
-					" VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id"
+					" OUTPUT INSERTED.id_anotacao_radar VALUES (?, ?, ?, ?, ?, ?, GETDATE())"
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
 					sqlStatement,
@@ -68,8 +67,7 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 					anotacaoId,
 					observacoes,
 					registroAta,
-					currentUser.Id,
-					time.Now()).Scan(&anotacaoRadarId)
+					currentUser.Id).Scan(&anotacaoRadarId)
 				if err != nil {
 					log.Println(err.Error())
 				}
@@ -170,8 +168,8 @@ func UpdateRadarHandler(w http.ResponseWriter, r *http.Request) {
 					" registro_ata, " +
 					" id_author, " +
 					" criado_em " +
-					" ) " +
-					" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+					" ) OUTPUT INSERTED.id_anotacao_radar " +
+					" VALUES (?, ?, ?, ?, ?, GETDATE())"
 				log.Println(sqlStatement)
 				Db.QueryRow(
 					sqlStatement,
@@ -180,8 +178,7 @@ func UpdateRadarHandler(w http.ResponseWriter, r *http.Request) {
 					anotacaoRadar.RadarId,
 					anotacaoRadar.Observacoes,
 					anotacaoRadar.RegistroAta,
-					currentUser.Id,
-					time.Now()).Scan(&anotacaoRadarId)
+					currentUser.Id).Scan(&anotacaoRadarId)
 			}
 		}
 		UpdateAnotacoesRadarHandler(anotacoesRadarPage, anotacoesRadarDB, currentUser.Id)

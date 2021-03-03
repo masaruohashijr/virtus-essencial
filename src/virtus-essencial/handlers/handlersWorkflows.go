@@ -15,8 +15,8 @@ import (
 
 func GetStartStatus(entityType string) int {
 	log.Println("Get <<Start>> Status")
-	query := "SELECT TOP 1 id_status FROM virtus.status WHERE id_status in (SELECT id_origin_status FROM actions_status WHERE id_action in " +
-		" ( SELECT id_action FROM virtus.activities WHERE id_workflow in (SELECT id_workflow FROM WORKFLOWS WHERE " +
+	query := "SELECT TOP 1 id_status FROM virtus.status WHERE id_status in (SELECT id_origin_status FROM virtus.actions_status WHERE id_action in " +
+		" ( SELECT id_action FROM virtus.activities WHERE id_workflow in (SELECT id_workflow FROM virtus.workflows WHERE " +
 		" entity_type = ? AND end_at IS NULL))) " +
 		" AND stereotype = 'Start' "
 	log.Println("List WF -> Query: " + query)
@@ -58,12 +58,12 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.FormValue("Name")
 		description := r.FormValue("Description")
 		entityType := r.FormValue("EntityTypeForInsert")
-		sqlStatement := "UPDATE virtus.workflows SET end_at = ? WHERE entity_type = ?"
+		sqlStatement := "UPDATE virtus.workflows SET end_at = GETDATE() WHERE entity_type = ?"
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
 		}
-		updtForm.Exec(time.Now(), entityType)
+		updtForm.Exec(entityType)
 		sqlStatement = "INSERT INTO " +
 			" virtus.workflows(name, entity_type, start_at, description, id_author, created_at) " +
 			" OUTPUT INSERTED.id_workflow " +

@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -110,14 +109,13 @@ func UpdateJurisdicaoHandler(w http.ResponseWriter, r *http.Request) {
 					" id_status " +
 					" ) " +
 					" OUTPUT INSERTED.id_jurisdicao " +
-					" VALUES (?, ?, ?, ?, ?)"
+					" VALUES (?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				err := Db.QueryRow(
 					sqlStatement,
 					escritorioId,
 					jurisdicao.EntidadeId,
 					currentUser.Id,
-					time.Now(),
 					statusJurisdicaoId).Scan(&jurisdicaoId)
 				if err != nil {
 					log.Println("ERRO AO INSERIR JURISDICAO")
@@ -167,10 +165,10 @@ func ListJurisdicoesByEscritorioId(escritorioId string) []mdl.Jurisdicao {
 		"coalesce(format(a.criado_em,'dd/MM/yyyy'), '') as criado_em, " +
 		"a.id_status, " +
 		"coalesce(c.name,'') as status_name " +
-		"FROM jurisdicoes a " +
-		"LEFT JOIN entidades d ON a.id_entidade = d.id_entidade " +
-		"LEFT JOIN users b ON a.id_author = b.id_user " +
-		"LEFT JOIN status c ON a.id_status = c.id_status " +
+		"FROM virtus.jurisdicoes a " +
+		"LEFT JOIN virtus.entidades d ON a.id_entidade = d.id_entidade " +
+		"LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
+		"LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
 		"WHERE a.id_escritorio = ? ORDER BY d.nome ASC "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, escritorioId)

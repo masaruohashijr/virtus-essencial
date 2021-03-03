@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -107,7 +106,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 					" id_status " +
 					" ) " +
 					" OUTPUT INSERTED.id_membro " +
-					" SELECT ?, ?, ?, ?, ? " +
+					" SELECT ?, ?, ?, GETDATE(), ? " +
 					" WHERE NOT EXISTS (SELECT 1 FROM virtus.membros " +
 					" WHERE id_usuario = ? AND id_escritorio = ?) "
 				log.Println(sqlStatement)
@@ -116,7 +115,6 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 					escritorioId,
 					membro.UsuarioId,
 					currentUser.Id,
-					time.Now(),
 					statusComponenteId,
 					membro.UsuarioId,
 					escritorioId).Scan(&membroId)

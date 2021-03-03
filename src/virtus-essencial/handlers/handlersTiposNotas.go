@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -22,9 +21,9 @@ func CreateTipoNotaHandler(w http.ResponseWriter, r *http.Request) {
 		referencia := r.FormValue("Referencia")
 		letra := r.FormValue("Letra")
 		corLetra := r.FormValue("CorLetra")
-		sqlStatement := "INSERT INTO virtus.tipos_notas(nome, descricao, referencia, letra, cor_letra, id_author, criado_em) VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+		sqlStatement := "INSERT INTO virtus.tipos_notas(nome, descricao, referencia, letra, cor_letra, id_author, criado_em)  OUTPUT INSERTED.id_tipo_nota VALUES (?, ?, ?, ?, ?, GETDATE())"
 		tipoNotaId := 0
-		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, letra, corLetra, currentUser.Id, time.Now()).Scan(&tipoNotaId)
+		err := Db.QueryRow(sqlStatement, nome, descricao, referencia, letra, corLetra, currentUser.Id).Scan(&tipoNotaId)
 		if err != nil {
 			log.Println(err.Error())
 		}

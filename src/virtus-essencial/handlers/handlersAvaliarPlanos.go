@@ -244,7 +244,7 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(b.name,'') " +
 			" FROM virtus.integrantes a " +
 			" LEFT JOIN virtus.users b " +
-			" ON a.id_usuario = b.id " +
+			" ON a.id_usuario = b.id_user " +
 			" WHERE " +
 			" a.id_entidade = " + entidadeId +
 			" AND a.id_ciclo = " + cicloId +
@@ -266,7 +266,7 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 			" b.name " +
 			" FROM virtus.integrantes a " +
 			" LEFT JOIN virtus.users b " +
-			" ON a.id_usuario = b.id " +
+			" ON a.id_usuario = b.id_user " +
 			" WHERE " +
 			" a.id_entidade = " + entidadeId +
 			" AND a.id_ciclo = " + cicloId +
@@ -365,7 +365,7 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 		" coalesce(b.name,'') " +
 		" FROM virtus.integrantes a " +
 		" LEFT JOIN virtus.users b " +
-		" ON a.id_usuario = b.id " +
+		" ON a.id_usuario = b.id_user " +
 		" WHERE " +
 		" a.id_entidade = " + entidadeId +
 		" AND a.id_ciclo = " + cicloId +
@@ -387,7 +387,7 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 		" b.name " +
 		" FROM virtus.integrantes a " +
 		" LEFT JOIN virtus.users b " +
-		" ON a.id_usuario = b.id " +
+		" ON a.id_usuario = b.id_user " +
 		" WHERE " +
 		" a.id_entidade = " + entidadeId +
 		" AND a.id_ciclo = " + cicloId +

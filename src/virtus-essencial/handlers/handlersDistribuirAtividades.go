@@ -56,7 +56,7 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			var cicloEntidade mdl.CicloEntidade
 			sql = "SELECT b.id_ciclo, b.nome " +
 				" FROM virtus.ciclos_entidades a " +
-				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id " +
+				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id_ciclo " +
 				" WHERE a.id_entidade = ? " +
 				" ORDER BY id_ciclo_entidade asc"
 			rows, _ = Db.Query(sql, entidade.Id)
@@ -216,15 +216,15 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(format(a.inicia_em,'yyyy-MM-dd'),'') as inicia_em, " +
 			" coalesce(format(a.termina_em,'yyyy-MM-dd'),'') as termina_em " +
 			" FROM virtus.produtos_componentes a " +
-			" LEFT JOIN virtus.entidades b ON a.id_entidade = b.id " +
-			" LEFT JOIN virtus.ciclos c ON a.id_ciclo = c.id " +
-			" LEFT JOIN virtus.pilares d ON a.id_pilar = d.id " +
-			" LEFT JOIN virtus.componentes e ON a.id_componente = e.id " +
+			" LEFT JOIN virtus.entidades b ON a.id_entidade = b.id_entidade " +
+			" LEFT JOIN virtus.ciclos c ON a.id_ciclo = c.id_ciclo " +
+			" LEFT JOIN virtus.pilares d ON a.id_pilar = d.id_pilar " +
+			" LEFT JOIN virtus.componentes e ON a.id_componente = e.id_componente " +
 			" LEFT JOIN virtus.ciclos_entidades h ON (a.id_entidade = h.id_entidade AND a.id_ciclo = h.id_ciclo) " +
-			" LEFT JOIN virtus.users f ON h.id_supervisor = f.id " +
-			" LEFT JOIN virtus.users g ON a.id_auditor = g.id " +
+			" LEFT JOIN virtus.users f ON h.id_supervisor = f.id_user " +
+			" LEFT JOIN virtus.users g ON a.id_auditor = g.id_user " +
 			" LEFT JOIN (select a.id_entidade, a.id_ciclo, a.id_pilar, a.id_componente, " +
-			" 	CASE WHEN COUNT(i.id_produto_plano)>0 THEN 'S' ELSE 'N' END AS configurado from produtos_componentes a " +
+			" 	CASE WHEN COUNT(i.id_produto_plano)>0 THEN 'S' ELSE 'N' END AS configurado from virtus.produtos_componentes a " +
 			" 	INNER JOIN virtus.produtos_planos i ON (a.id_entidade = i.id_entidade " +
 			" 	AND a.id_ciclo = i.id_ciclo " +
 			" 	AND a.id_pilar = i.id_pilar " +
@@ -290,7 +290,7 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			" UPPER(coalesce(b.name,'')) AS orderable " +
 			" FROM virtus.integrantes a " +
 			" LEFT JOIN virtus.users b " +
-			" ON a.id_usuario = b.id " +
+			" ON a.id_usuario = b.id_user " +
 			" WHERE " +
 			" a.id_entidade = " + entidadeId +
 			" AND a.id_ciclo = " + cicloId +

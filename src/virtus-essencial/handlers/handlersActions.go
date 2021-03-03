@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	//	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -46,7 +45,7 @@ func ExecuteActionHandler(w http.ResponseWriter, r *http.Request) {
 	updtForm.Exec(actionId, id)
 	log.Println("UPDATE: Id: " + actionId)
 
-	sqlStatement = "SELECT a.id_status, b.name FROM " + tableName + " a LEFT JOIN virtus.status b ON a.id_status = b.id WHERE a.id_" + tableName + " = ?"
+	sqlStatement = "SELECT a.id_status, b.name FROM " + tableName + " a LEFT JOIN virtus.status b ON a.id_status = b.id_status WHERE a.id_" + tableName + " = ?"
 	log.Println("Query: " + sqlStatement)
 	rows, _ := Db.Query(sqlStatement, id)
 	defer rows.Close()
@@ -118,7 +117,7 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(originStatus)
 		destinationStatus := r.Form["DestinationStatusForUpdate"]
 		log.Println(destinationStatus)
-		query := "SELECT id_origin_status, id_destination_status FROM actions_status WHERE id_action = ? "
+		query := "SELECT id_origin_status, id_destination_status FROM virtus.actions_status WHERE id_action = ? "
 		log.Println("List Action -> Query: " + query)
 		rows, _ := Db.Query(query, actionId)
 		defer rows.Close()
@@ -150,7 +149,7 @@ func UpdateActionHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement = "INSERT INTO virtus.actions_status(id_action,id_origin_status,id_destination_status) " +
 			" SELECT " + actionId + "," + originStatus[0] + "," + destinationStatus[0] +
 			" WHERE NOT EXISTS " +
-			" (SELECT 1 FROM actions_status WHERE id_origin_status = " + originStatus[0] + " AND id_destination_status = " + destinationStatus[0] + " ) "
+			" (SELECT 1 FROM virtus.actions_status WHERE id_origin_status = " + originStatus[0] + " AND id_destination_status = " + destinationStatus[0] + " ) "
 		log.Println(sqlStatement)
 		Db.QueryRow(sqlStatement, actionId, originStatus[0], destinationStatus[0], originStatus[0], destinationStatus[0])
 		http.Redirect(w, r, route.ActionsRoute+"?msg=Ação atualizada com sucesso.", 301)
@@ -309,7 +308,7 @@ func LoadAllowedActions(w http.ResponseWriter, r *http.Request) {
 	var entityType = r.FormValue("entityType")
 	log.Println("entityType: " + entityType)
 	log.Println("statusId: " + statusId)
-	sql := " select id_action, name from actions where " +
+	sql := " select id_action, name from virtus.actions where " +
 		" (other_than = 0 and id_origin_status = ? " +
 		" and id_action in ( select a.id_action FROM virtus.activities a, activities_roles b " +
 		" where a.id_workflow = ( select id_workflow from workflows where entity_type = ? and end_at is null) " +

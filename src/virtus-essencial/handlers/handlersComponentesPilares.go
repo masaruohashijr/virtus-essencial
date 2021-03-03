@@ -3,7 +3,6 @@ package handlers
 import (
 	"log"
 	"strconv"
-	//	"time"
 	mdl "virtus-essencial/models"
 )
 
@@ -23,7 +22,7 @@ func ListComponentesByPilarId(pilarId string) []mdl.ComponentePilar {
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em," +
 		" a.id_status, " +
 		" coalesce(s.name,'') as status_name " +
-		" FROM componentes_pilares a " +
+		" FROM virtus.componentes_pilares a " +
 		" LEFT JOIN virtus.componentes c ON a.id_componente = c.id_componente " +
 		" LEFT JOIN virtus.users u ON a.id_author = u.id_user " +
 		" LEFT JOIN virtus.status s ON a.id_status = s.id_status " +

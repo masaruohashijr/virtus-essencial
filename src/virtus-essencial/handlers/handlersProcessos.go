@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -23,9 +22,9 @@ func CreateProcessoHandler(w http.ResponseWriter, r *http.Request) {
 		dataProcesso := r.FormValue("DataProcesso")
 		sqlStatement := "INSERT INTO virtus.radares(" +
 			" nome, descricao, referencia, data_radar, id_author, criado_em) " +
-			" VALUES (?, ?, ?, ?, ?, ?) RETURNING id"
+			" OUTPUT INSERTED.id_radar VALUES (?, ?, ?, ?, ?, GETDATE())"
 		idProcesso := 0
-		Db.QueryRow(sqlStatement, nome, descricao, referencia, dataProcesso, currentUser.Id, time.Now()).Scan(&idProcesso)
+		Db.QueryRow(sqlStatement, nome, descricao, referencia, dataProcesso, currentUser.Id).Scan(&idProcesso)
 		log.Println(sqlStatement + " - " + nome)
 		log.Println("INSERT: Id: " + strconv.Itoa(idProcesso) + " - Nome: " + nome)
 		/*

@@ -641,7 +641,7 @@ func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 		"              sum(p.recurso_garantidor) AS total " +
 		"       FROM virtus.produtos_planos a " +
 		"       INNER JOIN virtus.planos p ON (p.id_entidade = a.id_entidade " +
-		"                               AND p.id = a.id_plano) " +
+		"                               AND p.id_plano = a.id_plano) " +
 		"       WHERE a.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		"         AND a.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
 		"         AND a.id_pilar = " + strconv.FormatInt(produto.PilarId, 10) +
@@ -671,7 +671,7 @@ func atualizarPesoPlanos(produto mdl.ProdutoElemento, currentUser mdl.User) {
 		"     round(p.recurso_garantidor/t.total, 2)*100 AS peso_percentual " +
 		" FROM virtus.produtos_planos a " +
 		"    INNER JOIN virtus.planos p ON (p.id_entidade = a.id_entidade " +
-		"                            AND p.id = a.id_plano) " +
+		"                            AND p.id_plano = a.id_plano) " +
 		"    INNER JOIN total t ON (a.id_entidade = t.id_entidade " +
 		"                           AND a.id_ciclo = t.id_ciclo " +
 		"                           AND a.id_pilar = t.id_pilar " +
@@ -1359,7 +1359,7 @@ func getDescricao(rota string) mdl.Descricao {
 func loadConfigPlanos(entidadeId string, cicloId string, pilarId string, componenteId string) string {
 	sql := "SELECT planos_configurados FROM (SELECT a.id_componente, string_agg(b.cnpb,', ') planos_configurados " +
 		" FROM virtus.produtos_planos a " +
-		" INNER JOIN virtus.planos b ON a.id_plano = b.id " +
+		" INNER JOIN virtus.planos b ON a.id_plano = b.id_plano " +
 		" WHERE a.id_entidade = " + entidadeId + " AND a.id_ciclo = " + cicloId +
 		" AND a.id_pilar = " + pilarId + " AND a.id_componente = " + componenteId +
 		" GROUP BY a.id_componente) R "

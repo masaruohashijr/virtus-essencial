@@ -19,8 +19,8 @@ func ListActivitiesHandler(idWF string) []mdl.Activity {
 		" coalesce(expiration_time_days,'0'), " +
 		" coalesce(format(a.start_at,'dd/MM/yyyy HH:mm:ss'),'') as c_start_at, " +
 		" coalesce(format(a.end_at,'dd/MM/yyyy HH:mm:ss'),'') as c_end_at " +
-		" FROM virtus.activities a left outer join actions b " +
-		" on a.id_action = b.id left outer join actions c on a.id_expiration_action = c.id " +
+		" FROM virtus.activities a left outer join virtus.actions b " +
+		" on a.id_action = b.id_action left outer join virtus.actions c on a.id_expiration_action = c.id_action " +
 		" WHERE a.id_workflow = ?"
 	log.Println(sql)
 	rows, _ := Db.Query(sql, idWF)
@@ -61,7 +61,7 @@ func assembleFeatures(activity mdl.Activity) mdl.Activity {
 	log.Println("List Features By Activity Id")
 	sql := "SELECT a.id_feature, b.name " +
 		" FROM virtus.features_activities a" +
-		" LEFT OUTER JOIN virtus.features b ON a.id_feature = b.id WHERE a.id_activity = ?"
+		" LEFT OUTER JOIN virtus.features b ON a.id_feature = b.id_feature WHERE a.id_activity = ?"
 	log.Println(sql + string(activity.Id))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
@@ -87,7 +87,7 @@ func assembleRoles(activity mdl.Activity) mdl.Activity {
 	log.Println("List Roles By Activity Id")
 	sql := "SELECT a.id_role, b.name " +
 		" FROM virtus.activities_roles a" +
-		" LEFT OUTER JOIN virtus.roles b ON a.id_role = b.id WHERE a.id_activity = ?"
+		" LEFT OUTER JOIN virtus.roles b ON a.id_role = b.id_role WHERE a.id_activity = ?"
 	log.Println(sql + string(activity.Id))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
