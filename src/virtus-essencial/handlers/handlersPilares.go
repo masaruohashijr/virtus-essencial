@@ -204,9 +204,12 @@ func DeletePilarHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		id := r.FormValue("Id")
 		errMsg := "Pilar vinculado a registro não pode ser removido."
-		sqlStatement := "DELETE FROM virtus.pilares WHERE id_pilar=?"
+		sqlStatement := "DELETE FROM virtus.componentes_pilares WHERE id_pilar=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
+		sqlStatement = "DELETE FROM virtus.pilares WHERE id_pilar=?"
+		deleteForm, _ = Db.Prepare(sqlStatement)
+		_, err = deleteForm.Exec(id)
 		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
 			http.Redirect(w, r, route.PilaresRoute+"?errMsg="+errMsg, 301)
 		} else {
