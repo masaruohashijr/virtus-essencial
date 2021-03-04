@@ -139,7 +139,7 @@ func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		for i, entidade := range entidades {
 			var ciclosEntidade []mdl.CicloEntidade
 			var cicloEntidade mdl.CicloEntidade
-			sql = "SELECT b.id_ciclo_entidade, b.nome " +
+			sql = "SELECT b.id_ciclo, b.nome " +
 				" FROM virtus.ciclos_entidades a " +
 				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id_ciclo " +
 				" WHERE a.id_entidade = ? " +

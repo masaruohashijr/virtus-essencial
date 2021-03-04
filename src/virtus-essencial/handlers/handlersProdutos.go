@@ -954,7 +954,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		" id_pilar, " +
 		" id_componente, " +
 		" id_plano, " +
-		" id_tipo_de_nota, " +
+		" id_tipo_nota, " +
 		//" peso, " +
 		" nota, " +
 		" id_tipo_pontuacao, " +
@@ -969,7 +969,7 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		//" 1, " +
 		" 0, ?, ?, GETDATE() " +
 		" FROM " +
-		" PILARES_CICLOS a " +
+		" virtus.pilares_ciclos a " +
 		" LEFT JOIN virtus.COMPONENTES_PILARES b ON a.id_pilar = b.id_pilar " +
 		" LEFT JOIN virtus.TIPOS_NOTAS_COMPONENTES d ON b.id_componente = d.id_componente " +
 		" LEFT JOIN virtus.PRODUTOS_PLANOS p ON b.id_componente = p.id_componente " +
