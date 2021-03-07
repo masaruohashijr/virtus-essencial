@@ -30,7 +30,12 @@ func Initialize() {
 	updateFeatures()
 	createFKey()
 	createUniqueKey()
-	createCicloCompleto()
+	cicloAux := montarCicloAnual()
+	createCicloCompleto(cicloAux)
+	cicloAux2 := montarCicloBienal()
+	createCicloCompleto(cicloAux2)
+	cicloAux3 := montarCicloTrienal()
+	createCicloCompleto(cicloAux3)
 	//	/* remover 18/01/2021 */
 	//	ajustesEmChamados()
 	//	ajustesEmTiposNotas()

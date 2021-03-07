@@ -717,7 +717,7 @@ func createTable() {
 		" CREATE TABLE virtus.tipos_notas (" +
 		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_tipos_notas_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(255)," +
+		" descricao varchar(4000)," +
 		" referencia varchar(500)," +
 		" letra character(1) NOT NULL," +
 		" cor_letra character(6)," +

@@ -119,6 +119,8 @@ func IniciarCicloHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println(err.Error())
 			}
 			registrarProdutosCiclos(currentUser, entidadeId, cicloId)
+			registrarProdutosPilares(currentUser, entidadeId, cicloId)
+			registrarProdutosComponentes(currentUser, entidadeId, cicloId)
 		}
 		msg := ""
 		if len(entidades) > 1 {
@@ -241,6 +243,7 @@ func UpdateCicloHandler(w http.ResponseWriter, r *http.Request) {
 					pilarCiclo.TipoMediaId,
 					pilarCiclo.PesoPadrao,
 					currentUser.Id).Scan(&pilarCicloId)
+				atualizarCiclosEmAndamento(cicloId, currentUser)
 			}
 		}
 		UpdatePilaresCicloHandler(pilaresCicloPage, pilaresCicloDB)
@@ -406,4 +409,22 @@ func LoadPilaresByCicloId(w http.ResponseWriter, r *http.Request) {
 	jsonPilaresCiclo, _ := json.Marshal(pilaresCiclo)
 	w.Write([]byte(jsonPilaresCiclo))
 	log.Println("JSON Pilares de Ciclos")
+}
+
+func atualizarCiclosEmAndamento(cicloId string, currentUser mdl.User) {
+	sql := "SELECT id_entidade FROM virtus.ciclos_entidades WHERE id_ciclo = ? "
+	log.Println(sql)
+	rows, _ := Db.Query(sql, cicloId)
+	defer rows.Close()
+	var entidades []mdl.Entidade
+	var entidade mdl.Entidade
+	for rows.Next() {
+		rows.Scan(&entidade.Id)
+		entidades = append(entidades, entidade)
+	}
+	for n := range entidades {
+		strEntidadeId := strconv.FormatInt(entidades[n].Id, 10)
+		registrarProdutosPilares(currentUser, strEntidadeId, cicloId)
+		registrarProdutosComponentes(currentUser, strEntidadeId, cicloId)
+	}
 }

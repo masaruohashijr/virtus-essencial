@@ -266,6 +266,17 @@ func SignUpUserHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "tiles/users/Sign-Up-User.html")
 }
 
+func PasswordHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Mudar Senha")
+	var page mdl.PageUsers
+	page.AppName = mdl.AppName
+	page.Title = "Mudar Senha" + mdl.Ambiente
+	page.LoggedUser = BuildLoggedUser(GetUserInCookie(w, r))
+	var tmpl = template.Must(template.ParseGlob("tiles/users/*"))
+	tmpl.ParseGlob("tiles/*")
+	tmpl.ExecuteTemplate(w, "Main-MyUser", page)
+}
+
 func ListUsersHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("List Users")
 	currentUser := GetUserInCookie(w, r)

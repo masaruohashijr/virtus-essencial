@@ -9,41 +9,46 @@ import (
 	"strings"
 )
 
-type ElementoESI struct {
+type ItemAux struct {
 	Nome      string
 	Descricao string
-	Itens     []string
 }
 
-type TipoNotaESI struct {
+type ElementoAux struct {
 	Nome      string
 	Descricao string
-	Elementos []ElementoESI
+	Itens     []ItemAux
 }
 
-type ComponenteESI struct {
+type TipoNotaAux struct {
+	Nome      string
+	Descricao string
+	Elementos []ElementoAux
+}
+
+type ComponenteAux struct {
 	Nome       string
 	Descricao  string
-	TiposNotas []TipoNotaESI
+	TiposNotas []TipoNotaAux
 }
 
-type PilarESI struct {
+type PilarAux struct {
 	Nome        string
 	Descricao   string
-	Componentes []ComponenteESI
+	Componentes []ComponenteAux
 }
 
-type CicloESI struct {
+type CicloAux struct {
 	Nome      string
 	Descricao string
-	Pilares   []PilarESI
+	Pilares   []PilarAux
 }
 
-func createCicloCompleto() {
+func createCicloCompleto(cicloAux CicloAux) {
 
 	//createTiposNotas()
-	var tiposSalvos = make(map[string]int)
-	var elementosSalvos = make(map[string]int)
+	//	var tiposSalvos = make(map[string]int)
+	//	var elementosSalvos = make(map[string]int)
 	autor := 1
 	tipoMedia := 1
 	statusZero := 0
@@ -55,7 +60,6 @@ func createCicloCompleto() {
 	idElemento := 0
 	idItem := 0
 	pesoPadrao := 1
-	cicloESI := montarCiclo()
 
 	stmtElementosComponentes := " INSERT INTO " +
 		" virtus.elementos_componentes( " +
@@ -87,34 +91,35 @@ func createCicloCompleto() {
 	var unsavedPilaresCiclos []string
 	var unsavedComponentesPilares []string
 	var unsavedElementosComponentes []string
-	nome := cicloESI.Nome
-	descricao := "Descricao do " + nome
+	nome := cicloAux.Nome
+	descricao := cicloAux.Descricao
 	stmt := " INSERT INTO virtus.ciclos(nome, descricao, id_author, criado_em, id_status) " +
 		" OUTPUT INSERTED.id_ciclo " +
 		" SELECT '" + nome + "', '" + descricao + "', " + strconv.Itoa(autor) + ", GETDATE(), " +
 		strconv.Itoa(statusZero) +
 		" WHERE NOT EXISTS (SELECT id_ciclo FROM virtus.ciclos WHERE nome = '" + nome + "' )"
-	//log.Println(stmt)
 	row := db.QueryRow(stmt)
 	err := row.Scan(&idCiclo)
-	/*if err != nil {
-		log.Println(err.Error())
-	}*/
-
 	if idCiclo == 0 {
-		log.Println("INICIANDO O CICLO COMPLETO")
-		return
+		db.QueryRow("SELECT id_ciclo FROM virtus.ciclos WHERE nome = '" + nome + "' ").Scan(&idCiclo)
 	}
+
+	log.Println("***************************************************")
+	log.Println("INICIANDO O CICLO " + strconv.Itoa(idCiclo))
+	log.Println("***************************************************")
 
 	pesoPadrao = 100
 	max := 100
-	qtdPilares := len(cicloESI.Pilares)
+	qtdPilares := len(cicloAux.Pilares)
 	for j := 0; j < qtdPilares; j++ {
-		nome = cicloESI.Pilares[j].Nome
+		nome = cicloAux.Pilares[j].Nome
 		stmt := " INSERT INTO virtus.pilares(nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_pilar " +
 			" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_pilar FROM virtus.pilares WHERE nome = '" + nome + "' )"
-		descricao = "Descricao do " + nome
+		descricao = cicloAux.Pilares[j].Descricao
 		db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idPilar)
+		if idPilar == 0 {
+			db.QueryRow("SELECT id_pilar FROM virtus.pilares WHERE nome = '" + nome + "' ").Scan(&idPilar)
+		}
 		log.Println("idPilar: " + strconv.Itoa(idPilar) + " - " + nome)
 		pesoPadrao = rand.Intn(max)
 		if j < qtdPilares-1 {
@@ -131,15 +136,18 @@ func createCicloCompleto() {
 			" WHERE NOT EXISTS ( SELECT id_pilar_ciclo FROM virtus.pilares_ciclos WHERE id_ciclo = " + strconv.Itoa(idCiclo) + " AND id_pilar = " + strconv.Itoa(idPilar) + " ) "
 		unsavedPilaresCiclos = append(unsavedPilaresCiclos, stmt)
 		log.Println(stmt)
-		qtdComponentes := len(cicloESI.Pilares[j].Componentes)
+		qtdComponentes := len(cicloAux.Pilares[j].Componentes)
 		for k := 0; k < qtdComponentes; k++ {
-			nome = cicloESI.Pilares[j].Componentes[k].Nome
+			nome = cicloAux.Pilares[j].Componentes[k].Nome
 			idComponente = 0
 			idElemento = 0
 			stmt := " INSERT INTO virtus.componentes(nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_componente " +
 				" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_componente FROM virtus.componentes WHERE nome = '" + nome + "' ) "
-			descricao = "Descricao do " + nome
+			descricao = cicloAux.Pilares[j].Componentes[k].Descricao
 			db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idComponente)
+			if idComponente == 0 {
+				db.QueryRow("SELECT id_componente FROM virtus.componentes WHERE nome = '" + nome + "' ").Scan(&idComponente)
+			}
 			log.Println("idComponente: " + strconv.Itoa(idComponente) + " - " + nome)
 			stmt = " SELECT " + strconv.Itoa(idPilar) + ", " +
 				strconv.Itoa(idComponente) + ", " +
@@ -150,23 +158,21 @@ func createCicloCompleto() {
 				" WHERE NOT EXISTS ( SELECT id_componente_pilar FROM virtus.componentes_pilares WHERE id_componente = " + strconv.Itoa(idComponente) + " AND id_pilar = " + strconv.Itoa(idPilar) + " ) "
 			unsavedComponentesPilares = append(unsavedComponentesPilares, stmt)
 
-			qtdTiposNotas := len(cicloESI.Pilares[j].Componentes[k].TiposNotas)
+			qtdTiposNotas := len(cicloAux.Pilares[j].Componentes[k].TiposNotas)
 
 			for l := 0; l < qtdTiposNotas; l++ {
 				idTipoNota = 0
-				nome = cicloESI.Pilares[j].Componentes[k].TiposNotas[l].Nome
+				nome = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Nome
 				letra := nome[0:1]
-				descricao = "Descricao do " + nome
+				descricao = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Descricao
 				corletra := "C0D0C0"
 				stmt := " INSERT INTO virtus.tipos_notas ( " +
 					" nome, descricao, letra, cor_letra, id_author, criado_em, id_status) OUTPUT INSERTED.id_tipo_nota " +
 					" SELECT  ?, ?, ?, ?, ?, GETDATE(), ? " +
 					" WHERE NOT EXISTS (SELECT id_tipo_nota FROM virtus.tipos_notas WHERE letra = ?) "
 				db.QueryRow(stmt, nome, descricao, letra, corletra, autor, statusZero, letra).Scan(&idTipoNota)
-				if idTipoNota != 0 {
-					tiposSalvos[letra] = idTipoNota
-				} else {
-					idTipoNota = tiposSalvos[letra]
+				if idTipoNota == 0 {
+					db.QueryRow("SELECT id_tipo_nota FROM virtus.tipos_notas WHERE letra = '" + letra + "' ").Scan(&idTipoNota)
 				}
 				log.Println("idTipoNota: " + strconv.Itoa(idTipoNota) + " - " + nome)
 
@@ -176,17 +182,15 @@ func createCicloCompleto() {
 				db.QueryRow(stmt, idComponente, idTipoNota, autor, statusZero, idComponente, idTipoNota).Scan(&idTipoNotaComponente)
 				log.Println("idTipoNotaComponente: " + strconv.Itoa(idTipoNotaComponente))
 
-				qtdElementos := len(cicloESI.Pilares[j].Componentes[k].TiposNotas[l].Elementos)
+				qtdElementos := len(cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos)
 				for m := 0; m < qtdElementos; m++ {
-					nome = cicloESI.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Nome
+					nome = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Nome
 					stmt := " INSERT INTO virtus.elementos(nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_elemento " +
-						" SELECT ?, ?, ?, GETDATE(), ? "
-					descricao = "Descricao do " + nome
+						" SELECT ?, ?, ?, GETDATE(), ?  WHERE NOT EXISTS (SELECT id_elemento FROM virtus.elementos WHERE nome = '" + nome + "' ) "
+					descricao = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Descricao
 					db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idElemento)
-					if idElemento != 0 {
-						elementosSalvos[nome] = idElemento
-					} else {
-						idElemento = elementosSalvos[nome]
+					if idElemento == 0 {
+						db.QueryRow("SELECT id_elemento FROM virtus.elementos WHERE nome = '" + nome + "' ").Scan(&idElemento)
 					}
 					log.Println("idElemento: " + strconv.Itoa(idElemento) + " - " + nome)
 					pesoPadrao = 1
@@ -201,12 +205,12 @@ func createCicloCompleto() {
 						strconv.Itoa(idComponente) + " AND id_tipo_nota = " + strconv.Itoa(idTipoNota) + " ) "
 					log.Println(stmt)
 					unsavedElementosComponentes = append(unsavedElementosComponentes, stmt)
-					qtdItens := len(cicloESI.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens)
+					qtdItens := len(cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens)
 					for n := 0; n < qtdItens; n++ {
-						nome = cicloESI.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens[n]
+						nome = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens[n].Nome
 						stmt := " INSERT INTO virtus.itens(id_elemento, nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_item " +
 							" SELECT ?, ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_item FROM virtus.itens WHERE nome = '" + nome + "' and id_elemento = " + strconv.Itoa(idElemento) + " )"
-						descricao = "Descricao do " + nome
+						descricao = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens[n].Descricao
 						db.QueryRow(stmt, idElemento, nome, descricao, autor, statusZero).Scan(&idItem)
 						log.Println("idItem: " + strconv.Itoa(idItem) + " - " + nome)
 					}
@@ -256,13 +260,14 @@ func BulkInsert(unsaved []string, pStmt string) {
 	db.Exec(stmt)
 }
 
-func montarCiclo() CicloESI {
-	var cicloESI CicloESI
-	var pilarRC PilarESI
-	var pilarG PilarESI
-	var pilarEF PilarESI
-	var pilares []PilarESI
-	var componentes []ComponenteESI
+func montarCicloAnual() CicloAux {
+	var cicloAux CicloAux
+	var pilarRC PilarAux
+	var pilarG PilarAux
+	//var pilarEF PilarAux
+	var pilares []PilarAux
+	var componentes []ComponenteAux
+	componentes = make([]ComponenteAux, 0)
 
 	pilarRC.Nome = "Riscos e Controles"
 	componenteRiscoDeCredito := initRiscoDeCredito()
@@ -274,21 +279,64 @@ func montarCiclo() CicloESI {
 
 	pilarG.Nome = "Governança"
 	componente := initGovernanca()
-	componentes = make([]ComponenteESI, 0)
+	componentes = make([]ComponenteAux, 0)
 	componentes = append(componentes, componente)
 	pilarG.Componentes = componentes
 
-	pilarEF.Nome = "Econômico-Financeiro"
+	/*pilarEF.Nome = "Econômico-Financeiro"
 	componenteSolvencia := initEconomicoFinanceiro("Solvência")
 	componenteInvestimentosAtivos := initEconomicoFinanceiro("Investimentos/Ativos")
 	componenteAtuarial := initEconomicoFinanceiro("Atuarial")
 	componenteResultados := initEconomicoFinanceiro("Resultados")
 	componenteEficienciaOperacional := initEconomicoFinanceiro("Eficiência Operacional")
-	componentes = make([]ComponenteESI, 0)
+	componentes = make([]ComponenteAux, 0)
 	componentes = append(componentes, componenteSolvencia, componenteInvestimentosAtivos, componenteAtuarial, componenteResultados, componenteEficienciaOperacional)
 	pilarEF.Componentes = componentes
-	pilares = append(pilares, pilarRC, pilarG, pilarEF)
-	cicloESI.Nome = "Ciclo Anual 2021"
-	cicloESI.Pilares = pilares
-	return cicloESI
+	pilares = append(pilares, pilarRC, pilarG, pilarEF)*/
+	pilares = append(pilares, pilarRC, pilarG)
+	cicloAux.Nome = "Ciclo Anual 2021"
+	cicloAux.Pilares = pilares
+	return cicloAux
+}
+
+func montarCicloBienal() CicloAux {
+	var cicloAux CicloAux
+	var pilarRC PilarAux
+	//	var pilarG PilarAux
+	//	var pilarEF PilarAux
+	var pilares []PilarAux
+	var componentes []ComponenteAux
+
+	pilarRC.Nome = "Riscos e Controles"
+	componenteRiscoDeCredito := initRiscoDeCredito()
+	componenteRiscoDeMercado := initRiscoDeMercado()
+	componenteRiscoDeLiquidez := initRiscoDeLiquidez()
+	componenteRiscoAtuarial := initRiscoAtuarial()
+	componentes = append(componentes, componenteRiscoDeCredito, componenteRiscoDeMercado, componenteRiscoDeLiquidez, componenteRiscoAtuarial)
+	pilarRC.Componentes = componentes
+	pilares = append(pilares, pilarRC)
+	cicloAux.Nome = "Ciclo Bienal 2021-2022"
+	cicloAux.Pilares = pilares
+	return cicloAux
+}
+
+func montarCicloTrienal() CicloAux {
+	var cicloAux CicloAux
+	var pilarRC PilarAux
+	//	var pilarG PilarAux
+	//	var pilarEF PilarAux
+	var pilares []PilarAux
+	var componentes []ComponenteAux
+
+	pilarRC.Nome = "Riscos e Controles"
+	componenteRiscoDeCredito := initRiscoDeCredito()
+	componenteRiscoDeMercado := initRiscoDeMercado()
+	componenteRiscoDeLiquidez := initRiscoDeLiquidez()
+	componenteRiscoAtuarial := initRiscoAtuarial()
+	componentes = append(componentes, componenteRiscoDeCredito, componenteRiscoDeMercado, componenteRiscoDeLiquidez, componenteRiscoAtuarial)
+	pilarRC.Componentes = componentes
+	pilares = append(pilares, pilarRC)
+	cicloAux.Nome = "Ciclo Trienal 2021-2023"
+	cicloAux.Pilares = pilares
+	return cicloAux
 }

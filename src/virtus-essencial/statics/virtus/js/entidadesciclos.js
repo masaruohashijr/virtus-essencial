@@ -1,14 +1,14 @@
 function submeterEntidadeCicloForm(e, formId){
 	console.log(e.parentNode.parentNode.childNodes[3].innerText);
 	//alert(e.parentNode.parentNode.childNodes[3].innerText);
-	console.log(e.parentNode.parentNode.childNodes[7].childNodes[1].value);
+	console.log(e.parentNode.parentNode.childNodes[9].childNodes[1].value);
 	//alert(e.parentNode.parentNode.childNodes[7].innerText);
 	console.log(document.getElementById("EntidadeId").value);
 	//alert(document.getElementById("EntidadeId").value);
 	console.log(document.getElementById("CicloId").value);
 	//alert(document.getElementById("CicloId").value);
 	document.getElementById("EntidadeId").value=e.parentNode.parentNode.childNodes[3].innerText;
-	document.getElementById("CicloId").value=e.parentNode.parentNode.childNodes[7].childNodes[1].value;
+	document.getElementById("CicloId").value=e.parentNode.parentNode.childNodes[9].childNodes[1].value;
 	document.getElementById(formId).submit();
 }
 

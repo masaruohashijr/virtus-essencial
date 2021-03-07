@@ -337,17 +337,28 @@ func ListAnotacoesHandler(w http.ResponseWriter, r *http.Request) {
 			anotacoes = append(anotacoes, anotacao)
 		}
 
-		sql = "SELECT id_entidade, nome, sigla FROM virtus.entidades WHERE situacao = 'NORMAL' ORDER BY sigla"
+		sql = "SELECT j.id_entidade, e.codigo, e.nome as nome_entidade " +
+			" FROM virtus.users u  " +
+			" INNER JOIN virtus.membros m ON m.id_usuario = u.id_user  " +
+			" INNER JOIN virtus.jurisdicoes j ON j.id_escritorio = m.id_escritorio " +
+			" INNER JOIN virtus.entidades e ON e.id_entidade = j.id_entidade  " +
+			" LEFT JOIN virtus.integrantes i ON (i.id_entidade = e.id_entidade and i.id_usuario = m.id_usuario) " +
+			" LEFT JOIN virtus.ciclos_entidades ce ON (ce.id_entidade = e.id_entidade) " +
+			" WHERE  " +
+			" (u.id_role = 2 and u.id_user = ?) " +
+			" OR (u.id_role = 3 and ce.id_supervisor = ?) " +
+			" OR (u.id_role = 4 and i.id_usuario is not null and u.id_user = ?) " +
+			" ORDER by nome_entidade "
 		log.Println(sql)
-		rows, _ = Db.Query(sql)
+		rows, _ = Db.Query(sql, currentUser.Id, currentUser.Id, currentUser.Id)
 		defer rows.Close()
 		var entidade mdl.Entidade
 		var entidades []mdl.Entidade
 		for rows.Next() {
 			rows.Scan(
 				&entidade.Id,
-				&entidade.Nome,
-				&entidade.Sigla)
+				&entidade.Sigla,
+				&entidade.Nome)
 			entidades = append(entidades, entidade)
 		}
 

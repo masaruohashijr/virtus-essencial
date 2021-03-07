@@ -325,6 +325,7 @@ function atualizarFieldName(field, novo){
 }
 
 function salvarRemocao(){
+	console.log('salvarRemocao');
 	let motivacao = document.getElementById('motRem_text').value;
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
@@ -340,9 +341,13 @@ function salvarRemocao(){
 		{
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
+					let novoAuditor = auditoresMap.get(auditorNovo.toString());
+					if(!novoAuditor){
+						novoAuditor = 'VAZIO';
+					}
 					let messageText = "O auditor foi alterado com sucesso de "+
 						auditoresMap.get(auditorAnterior) +
-						" para "+auditoresMap.get(auditorNovo.toString())+".";
+						" para "+novoAuditor+".";
 					document.getElementById("messageText").innerText = messageText;
 					document.getElementById("message").style.display="block";
 					atualizarFieldName(sel, auditorNovo); 

@@ -2,25 +2,42 @@ package db
 
 import ()
 
-func initEconomicoFinanceiro(nome string) ComponenteESI {
-	var componente ComponenteESI
-	var tiposNotas []TipoNotaESI
-	var tipoNota TipoNotaESI
-	var elementoA ElementoESI
-	var elementoB ElementoESI
-	var elementoC ElementoESI
-	var elementos []ElementoESI
+func initEconomicoFinanceiro(nome string) ComponenteAux {
+	var componente ComponenteAux
+	var tiposNotas []TipoNotaAux
+	var tipoNota TipoNotaAux
+	var elementoA ElementoAux
+	var elementoB ElementoAux
+	var elementoC ElementoAux
+	var elementos []ElementoAux
+	var itens []ItemAux
+	var item ItemAux
 
-	var itensA = []string{"A1", "A2"}
-	elementoA.Itens = itensA
+	item.Nome = "A1"
+	item.Descricao = ""
+	itens = append(itens, item)
+	item.Nome = "A2"
+	item.Descricao = ""
+	itens = append(itens, item)
+	elementoA.Itens = itens
 	elementoA.Nome = "A"
 	elementos = append(elementos, elementoA)
-	var itensB = []string{"B1", "B2"}
-	elementoB.Itens = itensB
+	item.Nome = "B1"
+	item.Descricao = ""
+	itens = append(itens, item)
+	item.Nome = "B2"
+	item.Descricao = ""
+	itens = append(itens, item)
+	elementoB.Itens = itens
 	elementoB.Nome = "B"
 	elementos = append(elementos, elementoB)
-	var itensC = []string{"C1", "C2"}
-	elementoC.Itens = itensC
+	item.Nome = "C1"
+	item.Descricao = ""
+	itens = append(itens, item)
+	item.Nome = "C2"
+	item.Descricao = ""
+	itens = append(itens, item)
+	elementoC.Itens = itens
 	elementoC.Nome = "C"
 	elementos = append(elementos, elementoC)
 

@@ -829,7 +829,10 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 	if err != nil {
 		log.Println(err)
 	}
-	sqlStatement = "INSERT INTO virtus.produtos_pilares " +
+}
+
+func registrarProdutosPilares(currentUser mdl.User, entidadeId string, cicloId string) {
+	sqlStatement := "INSERT INTO virtus.produtos_pilares " +
 		" (id_entidade, id_ciclo, id_pilar, peso, nota, id_tipo_pontuacao, id_author, criado_em) " +
 		" OUTPUT INSERTED.id_produto_pilar " +
 		" SELECT " +
@@ -847,18 +850,21 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		"   FROM virtus.produtos_pilares b " +
 		"   WHERE b.id_entidade = " + entidadeId +
 		"     AND b.id_ciclo = a.id_ciclo " +
-		"     AND b.id_pilar = a.id_pilar)"
+		"     AND b.id_pilar = a.id_pilar)" +
+		" AND a.id_ciclo = " + cicloId
 	log.Println(sqlStatement)
 	produtoPilarId := 0
-	err = Db.QueryRow(
+	err := Db.QueryRow(
 		sqlStatement,
 		mdl.Calculada,
 		currentUser.Id).Scan(&produtoPilarId)
 	if err != nil {
 		log.Println(err)
 	}
+}
 
-	sqlStatement = "INSERT INTO virtus.produtos_componentes ( " +
+func registrarProdutosComponentes(currentUser mdl.User, entidadeId string, cicloId string) {
+	sqlStatement := "INSERT INTO virtus.produtos_componentes ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -888,7 +894,7 @@ func registrarProdutosCiclos(currentUser mdl.User, entidadeId string, cicloId st
 		" GROUP BY a.id_ciclo,a.id_pilar,b.id_componente ORDER BY 1,2,3,4"
 	log.Println(sqlStatement)
 	produtoComponenteId := 0
-	err = Db.QueryRow(
+	err := Db.QueryRow(
 		sqlStatement,
 		mdl.Calculada,
 		currentUser.Id).Scan(&produtoComponenteId)

@@ -1,0 +1,16 @@
+{{ define "Main-MyUser" }}
+<html lang="pt">
+	{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+{{ template "Change-Password" . }}
+{{ template "Error-Message" .ErrMsg }}
+</body>
+</html>
+<script type="text/javascript">
+		document.getElementById('change-password-form').style.display='block';
+		document.getElementById('userIdToChgPwd').value = '{{.LoggedUser.User.Id}}';
+		document.getElementById('UsernameChgPwd').value = '{{.LoggedUser.User.Username}}';
+		document.getElementById('PasswordChgPwd').focus();		
+</script>
+{{end}}

@@ -22,7 +22,7 @@ function criarAtualizacao(){
 	atualizacaoId = getMaxId(atualizacoes);
 	atualizacao = new Atualizacao(0, atualizacaoId, atualizacao);
 	atualizacoes.push(atualizacao);
-	addAtualizacaoRow("table-atualizacoes-anotacao-"+contexto);	
+	addAtualizacaoRow("table-atualizacao-anotacao-"+contexto);	
 	document.getElementById('AtualizacaoForInsert').value = '';
 	document.getElementById('create-atualizacao-anotacao-form').style.display='none';
 }
@@ -44,7 +44,7 @@ function addAtualizacaoRow(tableID) {
 	jsonAtualizacao = jsonAtualizacao.split('{').join('');
 	jsonAtualizacao = jsonAtualizacao.split('}').join('');
 	newCell.appendChild(newText);
-	newCell.innerHTML = '<input type="hidden" name="atualizacao'+atualizacao.id+'" value="'+jsonItem+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="hidden" name="atualizacao'+atualizacao.id+'" value="'+jsonAtualizacao+'"/>'+newCell.innerHTML;
 	newCell.innerHTML = '<input type="hidden" name="anotacaoId" value="'+atualizacao.anotacaoId+'"/>'+newCell.innerHTML;
 	newCell.innerHTML = '<input type="hidden" name="id" value="'+atualizacao.id+'"/>'+newCell.innerHTML;
 	newCell.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+newCell.innerHTML;

@@ -56,6 +56,10 @@ function motivarReprogramacao(campo){
 		document.getElementById("motRepro_text").value='';
 		document.getElementById("motRepro_text").focus();
 	}	
+	let terminaEmValor = campo.parentNode.parentNode.childNodes[3].childNodes[1].value;
+	if(nomeCampo.startsWith('Inicia') && terminaEmValor == ''){
+		campo.parentNode.parentNode.childNodes[3].childNodes[1].value = campo.value;
+	}
 }
 
 function isDatasInvertidas(campo){
@@ -64,11 +68,9 @@ function isDatasInvertidas(campo){
 	let campoTerminaEm = '';
 	if (partes[0] == 'IniciaEmComponente'){
 		campoIniciaEm = campo.name;
-		partes.splice(0,1);
 		campoTerminaEm = campo.parentNode.parentNode.childNodes[3].childNodes[1].name;
 	} else {
 		campoTerminaEm = campo.name;
-		partes.splice(0,1);
 		campoIniciaEm = campo.parentNode.parentNode.childNodes[1].childNodes[1].name;
 	}
 	let iniciaEm  = new Date(document.getElementsByName(campoIniciaEm)[0].value);

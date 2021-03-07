@@ -193,6 +193,7 @@ func main() {
 	r.HandleFunc("/recoverPwd", hd.RecoverPasswordHandler).Methods("GET")
 	r.HandleFunc("/sendPassword", hd.SendPasswordHandler).Methods("POST")
 	r.HandleFunc("/changePassword", hd.ChangePasswordHandler).Methods("POST")
+	r.HandleFunc("/password", hd.PasswordHandler).Methods("GET")
 	r.HandleFunc("/createUser", hd.CreateUserHandler).Methods("POST")
 	r.HandleFunc("/updateUser", hd.UpdateUserHandler).Methods("POST")
 	r.HandleFunc("/deleteUser", hd.DeleteUserHandler).Methods("POST")

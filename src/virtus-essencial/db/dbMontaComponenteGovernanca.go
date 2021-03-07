@@ -2,14 +2,18 @@ package db
 
 import ()
 
-func initGovernanca() ComponenteESI {
-	var componente ComponenteESI
-	var tiposNotas []TipoNotaESI
-	var tipoNota TipoNotaESI
-	var elementos []ElementoESI
+func initGovernanca() ComponenteAux {
+	var componente ComponenteAux
+	var tiposNotas []TipoNotaAux
+	var tipoNota TipoNotaAux
+	var elementos []ElementoAux
+	var elemento ElementoAux
+	var itens []ItemAux
+	var item ItemAux
 
-	var itens = []string{"Governança"}
-	var elemento ElementoESI
+	item.Nome = "Governança"
+	item.Descricao = ""
+	itens = append(itens, item)
 	elemento.Itens = itens
 	elemento.Nome = "Governança"
 	elementos = append(elementos, elemento)

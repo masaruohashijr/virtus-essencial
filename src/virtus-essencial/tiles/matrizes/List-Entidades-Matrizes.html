@@ -25,8 +25,9 @@
         <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable">
             <thead>
             <tr>
-                <th style="width:5%">Ord</th>
-                <th style="width:5%">Id</th>
+                <th style="display:none">Ord</th>
+                <th style="display:none">Id</th>
+                <th style="text-align:left; width:10%">Código</th>
                 <th style="text-align:left; width:65%">Nome</th>
                 <th style="text-align:left; width:20%">Ciclos</th>
 				{{if $allowed}}
@@ -37,8 +38,11 @@
             <tbody>
             {{range $index, $entidade := .Entidades}}
             <tr>
-                <td style="vertical-align: middle;">#{{$entidade.Order}}</td>
-                <td style="vertical-align: middle;">{{$entidade.Id}}</td>
+                <td style="display:none">#{{$entidade.Order}}</td>
+                <td style="display:none">{{$entidade.Id}}</td>
+                <td style="vertical-align: middle;text-align:left">
+                	{{$entidade.Codigo}}
+                </td>
                 <td style="vertical-align: middle;text-align:left">
 					{{$entidade.Nome}}
 				</td>

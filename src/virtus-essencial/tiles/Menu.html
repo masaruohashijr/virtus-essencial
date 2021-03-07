@@ -10,6 +10,7 @@
 	<br>
 	<table width="100%">
 		<tr><td><a href="/about">Sobre</a></td></tr>
+		<tr><td><a href="/password">Mudar Senha</a></td></tr>
 		{{if or (eq .LoggedUser.User.RoleName "Supervisor") (eq .LoggedUser.User.RoleName "Chefe") (eq .LoggedUser.User.RoleName "Admin") }}
 		<tr class="menu" onclick="expandirSubMenu(this,'Coordenação')"><td class="menu">
 			<a href="#">

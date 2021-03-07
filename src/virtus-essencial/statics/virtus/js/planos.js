@@ -1,25 +1,33 @@
 var plano_tobe_deleted;
 
 function updateConfigPlanos(){
-	document.getElementById('config-planos-form').style.display='none';
-	document.getElementById('motivar-reconfiguracao-form').style.display='none';
 	let motivo = document.getElementById('motReconf_text').value;
-	let splitted = document.getElementById('AcionadoPor').value.split('_');
-	let entidadeId = splitted[1];
-	let cicloId = splitted[2];
-	let pilarId = splitted[3];
-	let componenteId = splitted[4];
-	let auditorId = splitted[5];
-	let planosSelecionados = document.getElementById('ConfigPlanos');
-	let selecionados = getSelectedOptions(planosSelecionados);
-	let valores = '';
-	for(n=0;n<selecionados.length;n++){
-		valores = selecionados[n].value+'_'+ valores;
+	if(motivo.length>3){
+		document.getElementById('config-planos-form').style.display='none';
+		document.getElementById('motivar-reconfiguracao-form').style.display='none';
+		let splitted = document.getElementById('AcionadoPor').value.split('_');
+		let entidadeId = splitted[1];
+		let cicloId = splitted[2];
+		let pilarId = splitted[3];
+		let componenteId = splitted[4];
+		let auditorId = splitted[5];
+		let planosSelecionados = document.getElementById('ConfigPlanos');
+		let selecionados = getSelectedOptions(planosSelecionados);
+		let valores = '';
+		for(n=0;n<selecionados.length;n++){
+			valores = selecionados[n].value+'_'+ valores;
+		}
+		console.log("Planos_AuditorComponente_"+entidadeId+"_"+cicloId+"_"+pilarId+"_"+componenteId+"_"+auditorId);
+		// atualizar os planos através de Ajax
+		atualizarConfigPlanos(entidadeId, cicloId, pilarId, componenteId, valores, false, motivo);
+		document.getElementsByName("Planos_AuditorComponente_"+entidadeId+"_"+cicloId+"_"+pilarId+"_"+componenteId+"_"+auditorId)[0].value = valores;
+	} else {
+		let errorMsg = "Falta preencher a motivação da configuração dos planos.";
+		document.getElementById("Errors").innerText = errorMsg;
+		document.getElementById("error-message").style.display="block";
+		document.getElementById('motReconf_text').focus();
+		return;				
 	}
-	console.log("Planos_AuditorComponente_"+entidadeId+"_"+cicloId+"_"+pilarId+"_"+componenteId+"_"+auditorId);
-	// atualizar os planos através de Ajax
-	atualizarConfigPlanos(entidadeId, cicloId, pilarId, componenteId, valores, false, motivo);
-	document.getElementsByName("Planos_AuditorComponente_"+entidadeId+"_"+cicloId+"_"+pilarId+"_"+componenteId+"_"+auditorId)[0].value = valores;
 	console.log("Saindo");
 }
 

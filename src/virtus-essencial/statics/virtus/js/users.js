@@ -124,3 +124,11 @@ function createUser(){
 		return;		
 	}
 }
+function cancelarChangePassword(){
+    document.getElementById('formulario-change-password').action = '/logout';
+    document.getElementById('formulario-change-password').submit();
+}
+function cancelarRecoverPassword() {
+    document.getElementById('formulario-recover-password').action = '/logout';
+    document.getElementById('formulario-recover-password').submit();
+}

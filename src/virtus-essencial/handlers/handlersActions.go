@@ -310,13 +310,13 @@ func LoadAllowedActions(w http.ResponseWriter, r *http.Request) {
 	log.Println("statusId: " + statusId)
 	sql := " select id_action, name from virtus.actions where " +
 		" (other_than = 0 and id_origin_status = ? " +
-		" and id_action in ( select a.id_action FROM virtus.activities a, activities_roles b " +
-		" where a.id_workflow = ( select id_workflow from workflows where entity_type = ? and end_at is null) " +
+		" and id_action in ( select a.id_action FROM virtus.activities a, virtus.activities_roles b " +
+		" where a.id_workflow = ( select id_workflow from virtus.workflows where entity_type = ? and end_at is null) " +
 		" and a.id_activity = b.id_activity and b.id_role = ? ) ) " +
 		" or " +
 		" (other_than = 1 and id_origin_status != ? " +
-		" and id_action in ( select a.id_action FROM virtus.activities a, activities_roles b " +
-		" where a.id_workflow = ( select id_workflow from workflows where entity_type = ? and end_at is null) ) ) " +
+		" and id_action in ( select a.id_action FROM virtus.activities a, virtus.activities_roles b " +
+		" where a.id_workflow = ( select id_workflow from virtus.workflows where entity_type = ? and end_at is null) ) ) " +
 		" order by other_than asc "
 	log.Println("Query: " + sql)
 	rows, _ := Db.Query(sql, statusId, entityType, roleId, statusId, entityType)
