@@ -20,7 +20,7 @@ function criarAtualizacao(){
 	console.log('criarAtualizacao');
 	var atualizacao = document.getElementById('AtualizacaoForInsert').value;
 	atualizacaoId = getMaxId(atualizacoes);
-	atualizacao = new Atualizacao(0, atualizacaoId, atualizacao);
+	atualizacao = new Atualizacao(0, atualizacaoId, 0, atualizacao, 0, '');
 	atualizacoes.push(atualizacao);
 	addAtualizacaoRow("table-atualizacao-anotacao-"+contexto);	
 	document.getElementById('AtualizacaoForInsert').value = '';
@@ -48,20 +48,16 @@ function addAtualizacaoRow(tableID) {
 	newCell.innerHTML = '<input type="hidden" name="anotacaoId" value="'+atualizacao.anotacaoId+'"/>'+newCell.innerHTML;
 	newCell.innerHTML = '<input type="hidden" name="id" value="'+atualizacao.id+'"/>'+newCell.innerHTML;
 	newCell.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+newCell.innerHTML;
-	// atualizacao
-	newCell = newRow.insertCell(1);
-	newText = document.createTextNode(atualizacao.texto);
-	newCell.appendChild(newText);
 	// autor
-	newCell = newRow.insertCell(2);
+	newCell = newRow.insertCell(1);
 	newText = document.createTextNode(atualizacao.autor);
 	newCell.appendChild(newText);
 	// criado em
-	newCell = newRow.insertCell(3);
+	newCell = newRow.insertCell(2);
 	newText = document.createTextNode(atualizacao.c_criadoEm);
 	newCell.appendChild(newText);
 	// Botões
-	newCell = newRow.insertCell(4);
+	newCell = newRow.insertCell(3);
 	// Botão Editar
 	var btnEditar = document.createElement('input');
 	btnEditar.type = "button";
