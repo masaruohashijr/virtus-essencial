@@ -378,8 +378,11 @@ func initRiscoAtuarial() ComponenteAux {
 	item.Nome = "Processos inadequados tecnicamente e/ou insuficientemente manualizados"
 	item.Descricao = "Os processos utilizados podem conter alguma inadequação técnica ou estarem insuficientemente manualizados; de forma que os procedimentos têm vícios de origem e/ou dependem de interpretações pessoais de colaboradores e/ou terceirizados envolvidos. A análise reflete o risco de ocorrência de erros ou resultados discrepantes devidos aos processos inadequados."
 	itens = append(itens, item)
-	item.Nome = "Falta de atenção e/ou falta de zelo e/ou falta de competência e/ou má fé dos colaboradores e terceirizados envolvidos.	Falta de controle sobre os trabalhos dos colaboradores e/ou terceirizados envolvidos; 	Sistemas parametrizados de forma inadequada e/ou sistemas inadequados produzindo erros sistemáticos e/ou aumentando a probabilidade de erro humano;	Compreensão insuficiente da alta governança da EFPC sobre o funcionamento das hipóteses atuariais"
+	item.Nome = "Falta de atenção e/ou falta de zelo e/ou falta de competência e/ou má fé dos colaboradores e terceirizados envolvidos"
 	item.Descricao = "Os colaboradores e/ou terceirizados envolvidos; por falta atenção e/ou falta de zelo e/ou falta de competência e/ou má fé podem cometer erros de forma a comprometerem os resultados das grandezas atuarias. A análise reflete o risco de ocorrência de erros e/ou resultados que não correspondem à realidade devido ao erro humano."
+	itens = append(itens, item)
+	item.Nome = "Falta de controle sobre os trabalhos dos colaboradores e/ou terceirizados envolvidos"
+	item.Descricao = "A falta de controle adequado do trabalho dos colaboradores e terceirizados envolvidos nos processos atuariais pode permitir que erros cometidos não sejam sanados. A análise reflete o risco de ocorrência de erros por falta da revisão adequada dos trabalhos realizados."
 	itens = append(itens, item)
 	item.Nome = "Sistemas parametrizados de forma inadequada e/ou sistemas inadequados; produzindo erros sistemáticos e/ou aumentando a probabilidade de erro humano"
 	item.Descricao = "Os sistemas informatizados da EFPC e/ou de terceirizados podem estar parametrizados de forma inadequada e/ou ser inadequados; produzindo erros sistemáticos e/ou aumentando a probabilidade de a ocorrência de erro humano. A análise reflete o risco de ocorrência de erros e/ou resultados que não correspondem à realidade devido à inadequação dos sistemas informatizados utilizados."

@@ -25,19 +25,21 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(e.name,'') as relator_name, " +
 			" coalesce(format(a.inicia_em,'dd/MM/yyyy'),''), " +
 			" coalesce(format(a.pronto_em,'dd/MM/yyyy'),''), " +
-			" case " +
-			"   when a.id_tipo_chamado = 'A' then 'Adequação' " +
-			"   when a.id_tipo_chamado = 'C' then 'Correção' " +
-			"   when a.id_tipo_chamado = 'D' then 'Dúvida' " +
-			"   when a.id_tipo_chamado = 'M' then 'Melhoria' " +
-			"   when a.id_tipo_chamado = 'S' then 'Sugestão' " +
-			"   else 'Tarefa' " +
-			" end, " +
-			" case " +
-			"   when a.prioridade_id = 'A' then 'Alta' " +
-			"   when a.prioridade_id = 'M' then 'Média' " +
-			"   else 'Baixa' " +
-			" end, " +
+			" a.id_tipo_chamado, " +
+			//			" case " +
+			//			"   when a.id_tipo_chamado = 'A' then 'Adequação' " +
+			//			"   when a.id_tipo_chamado = 'C' then 'Correção' " +
+			//			"   when a.id_tipo_chamado = 'D' then 'Dúvida' " +
+			//			"   when a.id_tipo_chamado = 'M' then 'Melhoria' " +
+			//			"   when a.id_tipo_chamado = 'S' then 'Sugestão' " +
+			//			"   else 'Tarefa' " +
+			//			" end, " +
+			" a.id_prioridade, " +
+			//			" case " +
+			//			"   when a.prioridade_id = 'A' then 'Alta' " +
+			//			"   when a.prioridade_id = 'M' then 'Média' " +
+			//			"   else 'Baixa' " +
+			//			" end, " +
 			" coalesce(a.estimativa,0), " +
 			" coalesce(a.id_author,0), " +
 			" coalesce(b.name,''), " +
@@ -80,6 +82,31 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 				&chamado.IdVersaoOrigem)
 			chamado.Order = i
 			i++
+			if chamado.TipoChamadoId == "A" {
+				chamado.TipoChamadoId = "Adequação"
+			} else if chamado.TipoChamadoId == "C" {
+				chamado.TipoChamadoId = "Correção"
+			} else if chamado.TipoChamadoId == "D" {
+				chamado.TipoChamadoId = "Dúvida"
+			} else if chamado.TipoChamadoId == "M" {
+				chamado.TipoChamadoId = "Melhoria"
+			} else if chamado.TipoChamadoId == "S" {
+				chamado.TipoChamadoId = "Sugestão"
+			} else {
+				chamado.TipoChamadoId = "Tarefa"
+			}
+
+			if chamado.PrioridadeId == "E" {
+				chamado.PrioridadeId = "Essencial"
+			} else if chamado.PrioridadeId == "A" {
+				chamado.PrioridadeId = "Alta"
+			} else if chamado.PrioridadeId == "M" {
+				chamado.PrioridadeId = "Média"
+			} else if chamado.PrioridadeId == "B" {
+				chamado.PrioridadeId = "Baixa"
+			} else {
+				chamado.PrioridadeId = "Desejável"
+			}
 			chamados = append(chamados, chamado)
 		}
 		var page mdl.PageChamados

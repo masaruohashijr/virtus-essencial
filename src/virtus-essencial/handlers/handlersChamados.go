@@ -140,7 +140,10 @@ func UpdateChamadoHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement += " WHERE id_chamado = " + chamadoId
 		log.Println(sqlStatement)
 		updtForm, _ := Db.Prepare(sqlStatement)
-		updtForm.Exec()
+		_, err := updtForm.Exec()
+		if err != nil {
+			log.Println(err.Error())
+		}
 		log.Println("UPDATE: Id: " + chamadoId + " | Titulo: " + titulo + " | Descrição: " + descricao)
 
 		// Questoes Chamados
@@ -283,21 +286,23 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 			" coalesce(e.name,'') as relator_name, " +
 			" coalesce(format(a.inicia_em,'dd/MM/yyyy'),''), " +
 			" coalesce(format(a.pronto_em,'dd/MM/yyyy'),''), " +
-			" case " +
-			"   when a.id_tipo_chamado = 'A' then 'Adequação ' " +
-			"   when a.id_tipo_chamado = 'C' then 'Correcão ' " +
-			"   when a.id_tipo_chamado = 'D' then 'Dúvida ' " +
-			"   when a.id_tipo_chamado = 'M' then 'Melhoria ' " +
-			"   when a.id_tipo_chamado = 'S' then 'Sugestão ' " +
-			"   else 'Tarefa' " +
-			" end, " +
-			" case " +
-			"   when a.id_prioridade = 'E' then 'Essencial' " +
-			"   when a.id_prioridade = 'A' then 'Alta' " +
-			"   when a.id_prioridade = 'M' then 'Média' " +
-			"   when a.id_prioridade = 'B' then 'Baixa' " +
-			"   else 'Desejável' " +
-			" end, " +
+			" a.id_tipo_chamado, " +
+			//			" case " +
+			//			"   when a.id_tipo_chamado = 'A' then 'Adequação   ' " +
+			//			"   when a.id_tipo_chamado = 'C' then 'Correção    ' " +
+			//			"   when a.id_tipo_chamado = 'D' then 'Dúvida    ' " +
+			//			"   when a.id_tipo_chamado = 'M' then 'Melhoria    ' " +
+			//			"   when a.id_tipo_chamado = 'S' then 'Sugestão    ' " +
+			//			"   else 'Tarefa' " +
+			//			" end " +
+			"	a.id_prioridade, " +
+			//			" case " +
+			//			"   when a.id_prioridade = 'E' then 'Essencial' " +
+			//			"   when a.id_prioridade = 'A' then 'Alta' " +
+			//			"   when a.id_prioridade = 'M' then 'Média' " +
+			//			"   when a.id_prioridade = 'B' then 'Baixa' " +
+			//			"   else 'Desejável' " +
+			//			" end, " +
 			" coalesce(a.estimativa,0), " +
 			" coalesce(a.id_author,0), " +
 			" coalesce(b.name,''), " +
@@ -343,6 +348,31 @@ func ListChamadosHandler(w http.ResponseWriter, r *http.Request) {
 				&chamado.IdVersaoOrigem)
 			chamado.Order = i
 			i++
+			if chamado.TipoChamadoId == "A" {
+				chamado.TipoChamadoId = "Adequação"
+			} else if chamado.TipoChamadoId == "C" {
+				chamado.TipoChamadoId = "Correção"
+			} else if chamado.TipoChamadoId == "D" {
+				chamado.TipoChamadoId = "Dúvida"
+			} else if chamado.TipoChamadoId == "M" {
+				chamado.TipoChamadoId = "Melhoria"
+			} else if chamado.TipoChamadoId == "S" {
+				chamado.TipoChamadoId = "Sugestão"
+			} else {
+				chamado.TipoChamadoId = "Tarefa"
+			}
+
+			if chamado.PrioridadeId == "E" {
+				chamado.PrioridadeId = "Essencial"
+			} else if chamado.PrioridadeId == "A" {
+				chamado.PrioridadeId = "Alta"
+			} else if chamado.PrioridadeId == "M" {
+				chamado.PrioridadeId = "Média"
+			} else if chamado.PrioridadeId == "B" {
+				chamado.PrioridadeId = "Baixa"
+			} else {
+				chamado.PrioridadeId = "Desejável"
+			}
 			chamados = append(chamados, chamado)
 		}
 		sql = " SELECT a.id_usuario, " +

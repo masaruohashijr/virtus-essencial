@@ -24,19 +24,24 @@ func ExecuteActionHandler(w http.ResponseWriter, r *http.Request) {
 	sec.IsAuthenticated(w, r)
 	log.Println("Update Action")
 	var tableName = ""
+	var idName = ""
 	if entityType == "elemento" {
 		tableName = "elementos"
+		idName = "elemento"
 	} else if entityType == "item" {
 		tableName = "itens"
+		idName = "item"
 	} else if entityType == "usuario" {
 		tableName = "users"
+		idName = "user"
 	} else if entityType == "chamado" {
 		tableName = "chamados"
+		idName = "chamado"
 	}
 	// verificar brecha de segurança aqui acesso GET com parametros.
 	sqlStatement := "update virtus." + tableName + " set id_status = " +
 		" (select id_destination_status from virtus.actions " +
-		" where id_action = ?) where id_" + tableName + " = ?"
+		" where id_action = ?) where id_" + idName + " = ?"
 	log.Println(sqlStatement)
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
@@ -45,7 +50,7 @@ func ExecuteActionHandler(w http.ResponseWriter, r *http.Request) {
 	updtForm.Exec(actionId, id)
 	log.Println("UPDATE: Id: " + actionId)
 
-	sqlStatement = "SELECT a.id_status, b.name FROM " + tableName + " a LEFT JOIN virtus.status b ON a.id_status = b.id_status WHERE a.id_" + tableName + " = ?"
+	sqlStatement = "SELECT a.id_status, b.name FROM virtus." + tableName + " a LEFT JOIN virtus.status b ON a.id_status = b.id_status WHERE a.id_" + idName + " = ?"
 	log.Println("Query: " + sqlStatement)
 	rows, _ := Db.Query(sqlStatement, id)
 	defer rows.Close()
