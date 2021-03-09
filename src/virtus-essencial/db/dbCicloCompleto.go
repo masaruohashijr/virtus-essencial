@@ -112,6 +112,7 @@ func createCicloCompleto(cicloAux CicloAux) {
 	max := 100
 	qtdPilares := len(cicloAux.Pilares)
 	for j := 0; j < qtdPilares; j++ {
+		idPilar = 0
 		nome = cicloAux.Pilares[j].Nome
 		stmt := " INSERT INTO virtus.pilares(nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_pilar " +
 			" SELECT ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_pilar FROM virtus.pilares WHERE nome = '" + nome + "' )"
