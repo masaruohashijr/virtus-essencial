@@ -11,6 +11,7 @@ func initGovernanca() ComponenteAux {
 	var itens []ItemAux
 	var item ItemAux
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Governança"
 	item.Descricao = ""
 	itens = append(itens, item)

@@ -118,7 +118,9 @@ func createCicloCompleto(cicloAux CicloAux) {
 		descricao = cicloAux.Pilares[j].Descricao
 		db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idPilar)
 		if idPilar == 0 {
-			db.QueryRow("SELECT id_pilar FROM virtus.pilares WHERE nome = '" + nome + "' ").Scan(&idPilar)
+			sql := "SELECT id_pilar FROM virtus.pilares WHERE nome = '" + nome + "' "
+			log.Println(sql)
+			db.QueryRow(sql).Scan(&idPilar)
 		}
 		log.Println("idPilar: " + strconv.Itoa(idPilar) + " - " + nome)
 		pesoPadrao = rand.Intn(max)
@@ -146,7 +148,9 @@ func createCicloCompleto(cicloAux CicloAux) {
 			descricao = cicloAux.Pilares[j].Componentes[k].Descricao
 			db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idComponente)
 			if idComponente == 0 {
-				db.QueryRow("SELECT id_componente FROM virtus.componentes WHERE nome = '" + nome + "' ").Scan(&idComponente)
+				sql := "SELECT id_componente FROM virtus.componentes WHERE nome = '" + nome + "' "
+				log.Println(sql)
+				db.QueryRow(sql).Scan(&idComponente)
 			}
 			log.Println("idComponente: " + strconv.Itoa(idComponente) + " - " + nome)
 			stmt = " SELECT " + strconv.Itoa(idPilar) + ", " +
@@ -172,7 +176,9 @@ func createCicloCompleto(cicloAux CicloAux) {
 					" WHERE NOT EXISTS (SELECT id_tipo_nota FROM virtus.tipos_notas WHERE letra = ?) "
 				db.QueryRow(stmt, nome, descricao, letra, corletra, autor, statusZero, letra).Scan(&idTipoNota)
 				if idTipoNota == 0 {
-					db.QueryRow("SELECT id_tipo_nota FROM virtus.tipos_notas WHERE letra = '" + letra + "' ").Scan(&idTipoNota)
+					sql := "SELECT id_tipo_nota FROM virtus.tipos_notas WHERE letra = '" + letra + "' "
+					log.Println(sql)
+					db.QueryRow(sql).Scan(&idTipoNota)
 				}
 				log.Println("idTipoNota: " + strconv.Itoa(idTipoNota) + " - " + nome)
 
@@ -184,13 +190,16 @@ func createCicloCompleto(cicloAux CicloAux) {
 
 				qtdElementos := len(cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos)
 				for m := 0; m < qtdElementos; m++ {
+					idElemento = 0
 					nome = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Nome
 					stmt := " INSERT INTO virtus.elementos(nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_elemento " +
 						" SELECT ?, ?, ?, GETDATE(), ?  WHERE NOT EXISTS (SELECT id_elemento FROM virtus.elementos WHERE nome = '" + nome + "' ) "
 					descricao = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Descricao
 					db.QueryRow(stmt, nome, descricao, autor, statusZero).Scan(&idElemento)
 					if idElemento == 0 {
-						db.QueryRow("SELECT id_elemento FROM virtus.elementos WHERE nome = '" + nome + "' ").Scan(&idElemento)
+						sql := "SELECT id_elemento FROM virtus.elementos WHERE nome = '" + nome + "' "
+						log.Println(sql)
+						db.QueryRow(sql).Scan(&idElemento)
 					}
 					log.Println("idElemento: " + strconv.Itoa(idElemento) + " - " + nome)
 					pesoPadrao = 1
@@ -274,7 +283,7 @@ func montarCicloAnual() CicloAux {
 	componenteRiscoDeMercado := initRiscoDeMercado()
 	componenteRiscoDeLiquidez := initRiscoDeLiquidez()
 	componenteRiscoAtuarial := initRiscoAtuarial()
-	componentes = append(componentes, componenteRiscoDeCredito, componenteRiscoDeMercado, componenteRiscoDeLiquidez, componenteRiscoAtuarial)
+	componentes = append(componentes, componenteRiscoAtuarial, componenteRiscoDeCredito, componenteRiscoDeMercado, componenteRiscoDeLiquidez)
 	pilarRC.Componentes = componentes
 
 	pilarG.Nome = "Governança"

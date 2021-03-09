@@ -11,6 +11,7 @@ func initRiscoDeCredito() ComponenteAux {
 	var itens []ItemAux
 	var item ItemAux
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Ativos com elevado risco e retorno."
 	item.Descricao = "O objetivo é avaliar o apetite da EFPC em buscar ativos que alcancem a meta atuarial; dentro dos limites de risco definidos em sua Política de Investimentos; bem como avaliar aqueles papéis com promessa de retorno bem acima dos valores praticados pelo mercado naquele momento; ou promessa de retorno superior à capacidade econômica do tomador; indicando possível manipulação."
 	itens = append(itens, item)
@@ -25,6 +26,7 @@ func initRiscoDeCredito() ComponenteAux {
 	elemento.Itens = itens
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Tolerância ao risco"
 	item.Descricao = "A avaliação reflete a tolerância da EFPC ao risco de concentração; por meio da definição de metas de diversificação e limites por segmento; tipo de exposição ou outros fatores de risco de crédito. Assim; deve entender a tolerância ao risco como a capacidade da EFPC suportar as perdas possíveis em determinada classe ou tipo de investimento sem que isso prejudique ou inviabilize o alcance do resultado global da carteira (ou melhor ainda do segmento em exame) em determinado intervalo de tempo."
 	itens = append(itens, item)
@@ -36,6 +38,7 @@ func initRiscoDeCredito() ComponenteAux {
 	elemento.Itens = itens
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Critérios para diminuição de risco"
 	item.Descricao = "A avaliação busca identificar se os critérios e procedimentos adotados para constituição de mitigadores de risco; estabelecido em suas políticas; são suficientes e adequados para evitar; por exemplo: • Aceitação de garantias inexequíveis; ilíquidas; insuficientes; ou cuja disponibilidade seja incompatível com a preservação da atividade econômica do tomador; • Aceitação de determinados tipos de garantias em valores inferiores aos respectivos créditos; sem considerar os custos necessários à execução das garantias e as perdas da rentabilidade devido ao tempo decorrida para a execução; • Falta ou inadequação do processo de avaliação ou da metodologia de avaliação adotada dos direitos creditórios; direitos de propriedade intelectual; dos bens móveis e imóveis oferecidos em garantia; • Inexistência ou insuficiência de diretrizes sobre a frequência de atualização das avaliações das garantias/garantidores ou inadequação dessas diretrizes."
 	itens = append(itens, item)
@@ -58,6 +61,7 @@ func initRiscoDeCredito() ComponenteAux {
 
 	// CONTROLE
 	elementos = make([]ElementoAux, 0)
+	itens = make([]ItemAux, 0)
 	item.Nome = "Estrutura da área de gestão do risco de crédito"
 	item.Descricao = "A avaliação indica se a EFPC dispõe de uma estrutura organizacional que possibilite um efetivo gerenciamento do risco de crédito; e que seja apropriada para identificar; avaliar; mensurar; classificar e monitorar este risco. Espera-se que uma adequada estrutura de crédito: • Esteja organizada de modo compatível com o porte; a complexidade e o perfil de risco da EFPC; • Assegure que pessoal envolvido no processo de crédito seja competente; qualificado e detenha nível de conhecimento adequado e atualizado; e em quantitativo suficiente para execução do trabalho; • Assegure que os procedimentos de gestão sejam coerentes com as estratégias e políticas de gerenciamento do risco de crédito; e reflitam o apetite e a tolerância ao risco de crédito definido pela EFPC; • Assegurem também; a disponibilidade de informações tempestivas e detalhadas que possibilitem à diretoria; à área de riscos e aos conselhos deliberativo e fiscal; compreender e avaliar adequadamente os riscos a que a EFPC está exposta; • Segregue adequadamente funções potencialmente conflitantes na estrutura da área de crédito; como; por exemplo; separando as funções de aquisição de ativos daquelas envolvidas no gerenciamento do risco."
 	itens = append(itens, item)
@@ -75,6 +79,7 @@ func initRiscoDeCredito() ComponenteAux {
 	elemento.Itens = itens
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Modelos de mensuração e classificação de risco"
 	item.Descricao = "O gerenciamento do risco de crédito da EFPC deve prever a classificação das exposições ao risco de crédito; com base em critérios consistentes e passíveis de verificação; segundo os seguintes aspectos: a) Situação econômico-financeira da contraparte; considerando; quando couber; a situação de contrapartes de um mesmo grupo econômico; caso mais de uma empresa de determinado grupo represente risco de crédito para a EFPC; b) Utilização de instrumentos que proporcionem efetiva mitigação do risco de crédito associado à exposição; c) Caracterização de exposições como ativos problemáticos; d) Perda esperada das exposições e período de atraso no cumprimento das obrigações financeiras nos termos pactuados. Não há um modelo padrão para mensuração e classificação das exposições sujeitas a risco de crédito. Portanto; é responsabilidade da própria EFPC desenvolver e manter um modelo adequado para avaliação do grau de risco das exposições. Tem-se as seguintes expectativas com relação a um modelo de mensuração e classificação do risco de crédito; por considerá-las alinhadas às melhores práticas de mercado: • O modelo de mensuração e classificação é validado pela EFPC; • O modelo de mensuração e classificação possui a aprovação da diretoria da entidade; do comitê de riscos e do conselho de deliberativo; devendo ser definidas; claramente; as responsabilidades pela implementação e condução do processo; • A área de gestão de crédito disponibiliza; à diretoria da entidade; ao comitê de riscos e ao conselho deliberativo; se houver; informações suficientes e que possibilitem a supervisão do processo de classificação de riscos; • As marcações/desmarcações de ativos problemáticos devem ser acompanhadas; • Os critérios definidos para a classificação de contrapartes e exposições devem considerar fatores quantitativos e qualitativos; ser suficientemente claros e possibilitar precisão nas classificações; • As classificações das contrapartes e de suas respectivas exposições são suficientemente documentadas; • As classificações; reanálises e reclassificações das contrapartes e das exposições são dinâmicas e tempestivas; devendo ser atualizadas na medida em que ocorram mudanças em seus perfis de riscos; • O modelo utilizado para a mensuração e classificação possibilitam revisões mensais das perdas esperadas das exposições; além da classificação mínima por atraso; bem como controlar reavaliações semestrais e anuais das contrapartes e de suas respectivas exposições; de acordo com os normativos vigentes; • O modelo de mensuração e classificação é revisado periodicamente pela EFPC para identificar; por meio de backtesting; se suas premissas continuam válidas; isto é; se estimam o risco de crédito de forma adequada; considerando todo o ciclo de vida da exposição; ou seja; a precificação; a análise; a formalização; a concessão; o monitoramento; a cobrança; a liquidação; a execução e/ou retomada do mitigador; sua guarda e posterior alienação até a mensuração das perdas ao final do ciclo ou processo."
 	itens = append(itens, item)
@@ -93,6 +98,7 @@ func initRiscoDeCredito() ComponenteAux {
 	elemento.Descricao = "Avaliar a adequação dos procedimentos; modelos; processos e sistemas utilizados pela EFPC para identificação; avaliação e mensuração do risco de crédito."
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Monitoramento do risco de crédito"
 	item.Descricao = "Espera-se que a EFPC tenha uma estrutura de gerenciamento de riscos capaz de realizar o monitoramento de maneira compatível com o seu porte e complexidade; de forma a garantir que os níveis de risco das exposições estejam em conformidade com as estratégias e as políticas de gerenciamento do risco de crédito. É desejável que a EFPC disponha de documentação que evidencie as decisões; estratégias e processos relativos a: a) Reestruturação de instrumentos financeiros; b) Marcação/desmarcação de ativos problemáticos; c) Políticas e procedimentos enfocando os sistemas e controles para um adequado aprovisionamento e a metodologia utilizada para tal; d) Sistema ou processo de classificação de risco das exposições ao risco de crédito; e) Validação da metodologia de aprovisionamento; f) Revisões e ajustes periódicos no processo de aprovisionamento. O monitoramento eficaz geralmente inclui a obtenção de evidências diretamente dos controles específicos de riscos; bem como a realização de testes e avaliações de resultados. O monitoramento das exposições ao risco de crédito é o processo pelo qual são gerenciados e controlados os riscos de todas as operações de crédito realizadas; sendo de fundamental importância para a segurança e a solidez da EFPC. A EFPC deve implementar sistemas; rotinas e procedimentos que possibilitem o controle e o monitoramento contínuo da exposição ao risco de crédito; tanto em nível individual quanto em nível agregado de operações. Espera-se que sejam contemplados; no mínimo; os seguintes aspectos: • Objetivos da EFPC em suas posições sujeitas ao risco de crédito e seus limites de tolerância/apetite a riscos; • Segmentação das carteiras de exposição ao risco de crédito e de títulos e diversificação de riscos; • Acompanhamento do desempenho das carteiras; • Detecção de indícios e prevenção da deterioração da qualidade dos ativos em carteira; • Acompanhamento das reestruturações de instrumentos financeiros; • Acompanhamento da marcação/desmarcação de ativos problemáticos; • Realização de simulações de condições extremas (testes de estresse da carteira de crédito); englobando ciclos econômicos; alteração das condições de mercado e de liquidez; inclusive da quebra de premissas; cujos resultados sejam considerados quando do estabelecimento ou revisão das políticas e limites de crédito; • Análise da relação risco/retorno. Os resultados obtidos nas atividades de monitoramento do risco de crédito; além de identificar se as diretrizes estabelecidas pela EFPC estão sendo seguidas; devem também ser comunicados à diretoria da entidade; a área responsável pela gestão de riscos; e os conselhos deliberativo e fiscal a fim de provê-los de informações que lhes possibilitem avaliar o risco efetivo da carteira de exposições ao risco de crédito; a eficácia das atividades de gestão do risco de crédito; identificar potenciais necessidades de ajustes; bem como auxiliar numa eventual tomada de decisão."
 	itens = append(itens, item)
@@ -348,90 +354,94 @@ func initRiscoAtuarial() ComponenteAux {
 	var tiposNotas []TipoNotaAux
 	var tipoNota TipoNotaAux
 	var elementos []ElementoAux
+	var elementosRisco []ElementoAux
+	var itensRisco []ItemAux
 	var itens []ItemAux
 	var item ItemAux
 
+	itensRisco = make([]ItemAux, 0)
 	item.Nome = "Erro operacional na inserção ou atualização de dados pela EFPC"
 	item.Descricao = "A avaliação atuarial pode levar em conta dados como data de nascimento; sexo; empregos anteriores; vinculação à previdência oficial; tanto do participante/assistido como dos beneficiários. A análise reflete o risco de incorreção dos dados com origem no processo de inserção ou manutenção do cadastro da EFPC."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Erro operacional na inserção ou atualização de dados pela patrocinadora"
 	item.Descricao = "A avaliação atuarial pode levar em conta dados como salário; adicionais de remuneração ou condições laborais do participante. A análise reflete o risco de incorreção dos dados com origem nas informações fornecidas pela patrocinadora."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Fornecimento de informação falsa ou incorreta pelo participante ou assistido"
 	item.Descricao = "A avaliação atuarial pode levar em conta dados fornecidos pelo participante. A análise reflete o risco de falseamento de informações por parte do participante com o objetivo de obter alguma vantagem."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Fraude na concessão de benefícios"
 	item.Descricao = "A ocorrência de fraude na concessão de benefícios pode gerar benefícios falsos ou com valores artificialmente majorados. A análise reflete o risco de ocorrência de fraudes."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Falta de atualização espontânea de informações pelo participante ou assistido"
 	item.Descricao = "A avaliação atuarial pode levar em conta dados fornecidos pelo participante. A análise reflete o risco de falta de atualização destes dados; especialmente quanto à alteração de estado civil; nascimento de dependentes; existência de dependentes fora do casamento; novo casamento; entre outros."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	var elemento ElementoAux
-	elemento.Itens = itens
+	elemento.Itens = itensRisco
 	elemento.Nome = "Risco de Cadastro"
 	elemento.Descricao = "O elemento Risco de Cadastro corresponde à possibilidade de informações incorretas ou insuficientes na base cadastral utilizada na avaliação atuarial. 4.1.2. A existência de informações incorretas ou insuficientes no cadastro leva ao incorreto dimensionamento das provisões matemáticas e dos custos necessários para o financiamento do plano de benefícios."
-	elementos = append(elementos, elemento)
+	elementosRisco = append(elementosRisco, elemento)
 
+	itensRisco = make([]ItemAux, 0)
 	item.Nome = "Inconsistência nas bases de dados usadas para testes estatísticos"
 	item.Descricao = "Diversas hipóteses utilizadas na avaliação atuarial são definidas com base em testes estatísticos realizados a partir de bases de dados gerenciadas pela EFPC; não limitadas ao cadastro; tais como óbitos e desligamentos. A análise reflete o risco de incorreção dos dados destas bases de dados; levando à incorreta seleção das hipóteses atuariais."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Processos inadequados tecnicamente e/ou insuficientemente manualizados"
 	item.Descricao = "Os processos utilizados podem conter alguma inadequação técnica ou estarem insuficientemente manualizados; de forma que os procedimentos têm vícios de origem e/ou dependem de interpretações pessoais de colaboradores e/ou terceirizados envolvidos. A análise reflete o risco de ocorrência de erros ou resultados discrepantes devidos aos processos inadequados."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Falta de atenção e/ou falta de zelo e/ou falta de competência e/ou má fé dos colaboradores e terceirizados envolvidos"
 	item.Descricao = "Os colaboradores e/ou terceirizados envolvidos; por falta atenção e/ou falta de zelo e/ou falta de competência e/ou má fé podem cometer erros de forma a comprometerem os resultados das grandezas atuarias. A análise reflete o risco de ocorrência de erros e/ou resultados que não correspondem à realidade devido ao erro humano."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Falta de controle sobre os trabalhos dos colaboradores e/ou terceirizados envolvidos"
 	item.Descricao = "A falta de controle adequado do trabalho dos colaboradores e terceirizados envolvidos nos processos atuariais pode permitir que erros cometidos não sejam sanados. A análise reflete o risco de ocorrência de erros por falta da revisão adequada dos trabalhos realizados."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Sistemas parametrizados de forma inadequada e/ou sistemas inadequados; produzindo erros sistemáticos e/ou aumentando a probabilidade de erro humano"
 	item.Descricao = "Os sistemas informatizados da EFPC e/ou de terceirizados podem estar parametrizados de forma inadequada e/ou ser inadequados; produzindo erros sistemáticos e/ou aumentando a probabilidade de a ocorrência de erro humano. A análise reflete o risco de ocorrência de erros e/ou resultados que não correspondem à realidade devido à inadequação dos sistemas informatizados utilizados."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Compreensão insuficiente da alta governança da EFPC sobre o funcionamento das hipóteses atuariais"
 	item.Descricao = "A seleção das hipóteses atuariais compete à alta governança da EFPC. A análise reflete o risco de seleção de hipóteses inadequadas por insuficiência de compreensão da alta governança a respeito do que cada hipótese atuarial representa."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Intenção de ocultar resultados negativos ou postergar medidas de equacionamento"
 	item.Descricao = "A seleção das hipóteses atuariais compete à alta governança da EFPC. A análise reflete o risco de seleção de hipóteses inadequadas por intenção da alta governança de ocultar resultados negativos ou postergar medidas de equacionamento."
-	itens = append(itens, item)
-	elemento.Itens = itens
+	itensRisco = append(itensRisco, item)
+	elemento.Itens = itensRisco
 	elemento.Nome = "Risco Operacional Atuarial"
 	elemento.Descricao = "O elemento Risco Operacional Atuarial corresponde à possibilidade de erro na seleção das hipóteses utilizadas na avaliação atuarial. A utilização de hipóteses mal dimensionadas leva ao incorreto dimensionamento das provisões matemáticas e dos custos necessários para o financiamento do plano de benefícios."
-	elementos = append(elementos, elemento)
+	elementosRisco = append(elementosRisco, elemento)
 
-	item.Nome = "Natureza estocástica dos eventos"
+	itensRisco = make([]ItemAux, 0)
+	item.Nome = "Natureza estocástica dos eventos. Probabilidade e Impacto."
 	item.Descricao = "As hipóteses atuariais representam expectativas de longo prazo para as variáveis adotadas no cálculo atuarial. Expressam o valor considerado mais provável; em média; da variável atuarial. Por sua natureza; eventos efetivamente materializados ao longo do tempo podem não coincidir com as previsões atuariais. A análise reflete o risco de que os eventos se materializem de maneira diversa das previsões atuarias tomadas com base nas melhores expectativas da época da avaliação."
-	itens = append(itens, item)
-	item.Nome = "Probabilidade e Impacto"
-	item.Descricao = "As hipóteses atuariais representam expectativas de longo prazo para as variáveis adotadas no cálculo atuarial. Expressam o valor considerado mais provável; em média; da variável atuarial. Por sua natureza; eventos efetivamente materializados ao longo do tempo podem não coincidir com as previsões atuariais. A análise reflete o risco de que os eventos se materializem de maneira diversa das previsões atuarias tomadas com base nas melhores expectativas da época da avaliação."
-	itens = append(itens, item)
-	elemento.Itens = itens
+	itensRisco = append(itensRisco, item)
+	elemento.Itens = itensRisco
 	elemento.Nome = "Risco dos Eventos"
 	elemento.Descricao = "O elemento Risco de Eventos corresponde à possibilidade de que os eventos futuros ocorram diferentemente do previsto nas hipóteses atuariais; partindo-se do pressuposto que as hipóteses tenham sido adequadamente selecionadas. A materialização de eventos de forma diversa do previsto leva à redução do resultado acumulado do plano de benefícios e; caso não haja reserva de contingência suficiente para neutralizar este efeito; à necessidade de implantação de plano de equacionamento."
-	elementos = append(elementos, elemento)
+	elementosRisco = append(elementosRisco, elemento)
 
+	itensRisco = make([]ItemAux, 0)
 	item.Nome = "Inconsistência entre a modelagem da avaliação atuarial e as disposições do regulamento"
 	item.Descricao = "A avaliação atuarial baseia-se nas regras de benefícios e contribuições previstas no regulamento do plano de benefícios; incluindo; em alguns casos; efeitos de regras de versões anteriores. A análise reflete o risco de que as formulações da avaliação atuarial estejam inconsistentes com as regras do regulamento."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Adoção de regimes financeiros e métodos de financiamento que produzem custos insuportáveis ao longo do tempo para participantes e assistidos; especialmente em planos fechados a novas adesões"
 	item.Descricao = "A avaliação atuarial pode ser feita de acordo com diversos regimes financeiros e métodos de financiamento. Os regimes financeiros de Repartição Simples e Repartição de Capitais de Cobertura tendem a produzir custos crescentes ao longo do tempo em massas fechadas a novas adesões. O mesmo ocorre com o regime de capitalização quando são aplicados os métodos de financiamento Crédito Unitário ou Crédito Unitário Projetado. A análise reflete o risco de que a avaliação atuarial adote metodologias que gerem custos crescentes ao longo do tempo; podendo tornar-se insuportáveis para participantes; assistidos e até patrocinadores. Esta situação é particularmente preocupante em planos submetidos à paridade contributiva; em que o patrocinador não pode assumir parcela do custeio de forma a aliviar os participantes e assistidos; em planos fechados a novas adesões; em que não há afluxo de novos participantes jovens que atenuam o efeito crescente dos custos; e em que a situação financeira de longo prazo do patrocinador dificulte sua capacidade de assumir custos crescentes."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Adoção de hipóteses atuariais conservadoras por longo período de tempo"
 	item.Descricao = "A adoção de hipóteses atuariais muito conservadoras; por longo período de tempo; pode elevar sobremaneira o custo do plano; com o estabelecimento de contribuições elevadas e; consequentemente; difíceis de serem mantidas pelos participantes; assistidos e patrocinadores. Pode decorrer também da intenção de impedir a distribuição de valores de Reserva Espacial."
-	itens = append(itens, item)
+	itensRisco = append(itensRisco, item)
 	item.Nome = "Ausência de hipóteses para representação de determinados eventos."
 	item.Descricao = "A avaliação atuarial adota hipóteses para realizar estimativa dos eventos que impactam o financiamento do plano de benefícios. A análise reflete o risco de que alguns eventos não sejam considerados na modelagem; e consequentemente não representados nas hipóteses atuariais; tais como • tendência de aumento da longevidade; • tendência de redução das taxas de juros; • proporção de aposentadorias antecipadas; • divergência entre o grupo familiar considerado ao longo do financiamento do benefício e aquele efetivamente existente no momento da concessão de pensão; • elevações expressivas de base de cálculo do benefício (salário; assunção de cargos elevados; promoções) próximas ao momento de entrada em aposentadoria; impactando o valor do benefício além do previsto ao longo do respectivo período contributivo; • descasamento entre a índice de correção dos benefícios do plano e o índice de correção dos investimentos do plano."
-	itens = append(itens, item)
-	elemento.Itens = itens
+	itensRisco = append(itensRisco, item)
+	elemento.Itens = itensRisco
 	elemento.Nome = "Risco de Modelagem"
 	elemento.Descricao = "A modelagem atuarial corresponde; principalmente; à estruturação técnica do financiamento do plano de benefícios e a avaliação de suas necessidades de recursos ao longo do tempo. O elemento Risco de Modelagem corresponde à inadequação da modelagem da avaliação atuarial em relação às características do plano de benefícios e da massa de participantes e assistidos. A inadequação da modelagem da avaliação atuarial leva ao incorreto dimensionamento das provisões matemáticas e dos custos necessários para o financiamento do plano de benefícios."
-	elementos = append(elementos, elemento)
+	elementosRisco = append(elementosRisco, elemento)
 
 	tipoNota.Nome = "Risco"
 	tipoNota.Descricao = "O risco atuarial traduz a possibilidade de insuficiência de recursos para honrar os compromissos assumidos pelo plano de benefícios associada à ocorrência de eventos de maneira distinta das expectativas adotadas nas avaliações atuariais. Em princípio o risco atuarial está presente nos planos da modalidade Benefício Definido e na parcela de benefícios concedidos de planos de Contribuição Variável. No entanto; mesmo planos classificados como Contribuição Definida podem apresentar risco atuarial; seja por incluírem benefícios de risco como por conterem parcela de benefícios definidos saldados. Para melhor avaliação é importante conhecer a estrutura do plano e verificar a existência de saldo não nulo nas contas “Benefício Definido” das Provisões Matemáticas dos balancetes. O risco atuarial materializa-se sob a forma de necessidade de recursos adicionais para o cumprimento dos compromissos do plano de benefícios; podendo tais recursos advirem do estabelecimento de contribuições extraordinárias; redução do superávit acumulado ou outras fontes. Há também o risco atuarial devido ao desequilíbrio do resultado do plano de benefícios ocorrer no sentido inverso ao mencionado anteriormente; com a sobra de recursos; constituindo um substancial superávit. Nesse caso a concretização do risco é a exigência de aporte de recursos ao plano de benefícios mais do que o necessário; onerando patrocinadores e participantes. Considerando que a ação do Estado será exercida com o objetivo de proteger os interesses dos participantes e assistidos dos planos de benefícios; deverá ser dada atenção especial à parcela do risco atuarial cujos efeitos ocorram sobre estes atores. A hipótese atuarial de maior impacto; via de regra é a da taxa de juros; caracterizada também por um comportamento mais volátil em relação às hipóteses biométricas. Dentre as hipóteses biométricas a que apresenta maior relevância é a de mortalidade geral. Ademais; diversas hipóteses tais como crescimento salarial; entrada em invalidez e rotatividade somente são aplicáveis durante a fase laborativa do participante; de modo que sua relevância vai diminuindo à medida em que o plano vai ficando mais maduro. Em planos de modalidade CD a taxa de juros não gera tem influência sobre o resultado do plano; porém influencia os valores dos benefícios; razão pela qual o tratamento dado pela EFPC para atender às expectativas dos participantes. Outros aspectos que podem afetar o risco atuarial são: impacto de um PDV na patrocinadora; alteração na estrutura de trabalho e de remuneração; reformas e alterações na legislação previdenciária. Para melhor avaliação dos riscos atuariais algumas situações devem ser objeto de atenção: Se o plano encontra-se ou não fechado a novas adesões; uma vez que planos fechados possuem menor capacidade de absorver eventos negativos; Se o plano encontra-se ou não sladado; uma vez que planos saldados possuem menor capacidade de absorver eventos negativos; ao mesmo tempo em que eliminam alguns dos riscos atuariais associados a eventos da etapa laborativa do participante; Se o plano possui submassas ou grupos de custeio com risco de contaminação cruzada entre si em caso de eventos negativos; Se o plano apresenta superávits ou déficits de natureza estrutural; indicando a existência de situações que demandam correção para evitar seu agravamento; Se o plano possui histórico persistente de resultados negativos; indicando a existência de situações estruturais a serem corrigidas"
-	tipoNota.Elementos = elementos
+	tipoNota.Elementos = elementosRisco
 	tiposNotas = append(tiposNotas, tipoNota)
 
 	// CONTROLE
+	itens = make([]ItemAux, 0)
 	elementos = make([]ElementoAux, 0)
 	item.Nome = "Estrutura da área de gestão do risco atuarial"
 	item.Descricao = "A avaliação indica se a EFPC dispõe de uma estrutura organizacional que possibilite um efetivo gerenciamento do risco atuarial; e que seja apropriada para identificar; avaliar; mensurar; classificar e monitorar este risco. Espera-se que uma adequada estrutura atuarial: • Esteja organizada de modo compatível com o porte; a complexidade e o perfil de risco da EFPC; • Assegure que pessoal envolvido no processo atuarial seja competente; qualificado e detenha nível de conhecimento adequado e atualizado; e em quantitativo suficiente para execução do trabalho; • Assegure que os procedimentos de gestão sejam coerentes com as estratégias de gestão do risco atuarial; e reflitam o apetite pelo risco atuarial da EFPC; • Assegurem também; a disponibilidade de informações tempestivas e detalhadas que possibilitem à diretoria; à área de riscos e aos conselhos deliberativo e fiscal; compreender e avaliar adequadamente os riscos a que a EFPC está exposta; • Segregue adequadamente funções potencialmente conflitantes da área atuarial; como; por exemplo; separando as funções estritamente técnicas daquelas eminentemente decisórias. • Possua mecanismos que assegurem a qualidade do trabalho de consultores atuariais; se houver; incluindo a seleção e avaliação do prestador."
@@ -444,6 +454,7 @@ func initRiscoAtuarial() ComponenteAux {
 	elemento.Descricao = "Avaliar a adequação do ambiente de controle da EFPC; considerando-se o porte; a complexidade e as particularidades de cada plano de benefícios. 4.1.2. Avaliar as estratégias e políticas para gestão do risco atuarial; bem como a adequação da estrutura da área atuarial."
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Gestão do risco de cadastro"
 	item.Descricao = "A gestão do risco de cadastro corresponde basicamente às medidas que buscam eliminar a possibilidade de informações incorretas ou insuficientes na base cadastral utilizada na avaliação atuarial. Concentra-se principalmente em controles preventivos; de detecção e corretivos. A existência de informações incorretas ou insuficientes no cadastro leva ao incorreto dimensionamento das provisões matemáticas e dos custos necessários para o financiamento do plano de benefícios. A análise divide-se principalmente nos seguintes aspectos: a) Erro operacional na inserção ou atualização de dados pela EFPC A avaliação atuarial pode levar em conta dados como data de nascimento; sexo; empregos anteriores; vinculação à previdência oficial; tanto do participante/assistido como dos beneficiários. A análise dos controles relativos ao risco de incorreção dos dados com origem no processo de inserção ou manutenção do cadastro da EFPC leva em conta; ao menos; os seguintes aspectos: • A existência validações automáticas nos sistemas eletrônicos de cadastro e sua eficácia em reduzir a ocorrência de erros; • A existência de procedimentos de revisão dos dados inseridos e de conferência com documentos; e sua eficácia em reduzir a ocorrência de erros; b) Erro operacional na inserção ou atualização de dados pela patrocinadora A avaliação atuarial pode levar em conta dados como salário; adicionais de remuneração ou condições laborais do participante. A análise dos controles relativos ao risco de incorreção dos dados com origem nas informações fornecidas pela patrocinadora leva em conta; ao menos; os seguintes aspectos: • A avaliação da EFPC quanto à qualidade dos controles do patrocinador quanto ao seu cadastro dos empregados; • A realização de testes periódicos para avaliação da qualidade e validade das informações originadas do cadastro do patrocinador e sua eficácia em identificar a ocorrência de erros. c) Fornecimento de informação falsa ou incorreta pelo participante ou assistido A avaliação atuarial pode levar em conta dados fornecidos pelo participante. A análise dos controles relativos ao risco de falseamento de informações por parte do participante leva em conta; ao menos; os seguintes aspectos: • A identificação; pela EFPC; da existência de situações em que o falseamento de informações possa ser vantajoso ao participante; • A existência de procedimentos de conferência das informações com documentos; e sua eficácia em reduzir a possibilidade de falseamento de informações; • A existência de penalidades ao participante em caso de fornecimento de informação falsa que ocasione vantagem ao participante; • A existência de mecanismos de correção dos prejuízos causados pela informação falsa ou incorreta fornecida pelo participante. d) Fraude na concessão de benefícios A ocorrência de fraude na concessão de benefícios pode gerar benefícios falsos ou com valores artificialmente majorados. A análise dos controles relativos ao risco de ocorrência de fraudes de benefícios leva em conta; ao menos; os seguintes aspectos: • A existência de validações automáticas nos sistemas eletrônicos de concessão de benefícios e sua eficácia em reduzir a ocorrência de fraudes; • A existência de procedimentos de revisão do processo de concessão e de conferência com documentos; e sua eficácia em reduzir a ocorrência de fraudes; • A existência de segregação de funções no processo de concessão e sua eficácia em reduzir a ocorrência de fraudes; • A realização de auditorias periódicas dos benefícios; • A existência de mecanismos de verificação dos dados da concessão dos benefícios junto ao patrocinador. e) Falta de atualização espontânea de informações pelo participante ou assistido A avaliação atuarial pode levar em conta dados fornecidos pelo participante. A análise dos controles relativos ao risco de ocorrência de falta de atualização espontânea de informações pelo participante ou assistido leva em conta; ao menos; os seguintes aspectos: • A frequência e qualidade da comunicação da EFPC com os participantes e assistidos informando-os da importância de manter atualizadas as suas informações junto à entidade; especialmente quanto à alteração de estado civil; nascimento de dependentes; existência de dependentes fora do casamento; novo casamento; entre outros. • A frequência da comunicação da EFPC com a patrocinadora; a respeito do cadastro de participantes e assistidos."
 	itens = append(itens, item)
@@ -463,6 +474,7 @@ func initRiscoAtuarial() ComponenteAux {
 	elemento.Nome = "Identificação; avaliação; mensuração"
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Processo atuarial"
 	item.Descricao = "Espera-se que o processo atuarial: • Esteja formalmente definido; • Produza documentação técnica que embase as decisões; • Promova a independência dos técnicos envolvidos; • Defina claramente as responsabilidades dos envolvidos; • Assegure o adequado fluxo das informações; • Possua etapas de validação dos resultados; • Possua todas as informações necessárias; • Contemple os elementos de gestão do risco atuarial de forma integrada ao processo • Assegure a compreensão técnica dos envolvidos; • Possua mecanismos de segregação de funções; • Possua mecanismos de avaliação dos conflitos de interesse."
 	itens = append(itens, item)
@@ -471,6 +483,7 @@ func initRiscoAtuarial() ComponenteAux {
 	elemento.Descricao = "Os controles específicos do risco atuarial visam assegurar que as estratégias e políticas adotadas pela diretoria da EFPC; pela área de riscos e pelos conselhos deliberativo e fiscal estejam traduzidos nos processos atinentes ao ciclo atuarial; em todos os estágios da avaliação. Os controles podem ser tanto de natureza preventiva quanto de detecção e correção de falhas já incorridas. Além disso; os controles específicos também se voltam à gestão de riscos decorrentes de particularidades associadas a alguns tipos de exposição ao risco atuarial."
 	elementos = append(elementos, elemento)
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "Revisão das estratégias; políticas e limites"
 	item.Descricao = "A estrutura de gerenciamento de riscos; para o risco atuarial; deve prever que as estratégias e políticas sejam revisadas periodicamente pela área de riscos; pela diretoria e pelo conselho deliberativo. Nestas revisões é desejável que sejam considerados os itens que tenham se mostrado inadequados; e rediscutido o apetite ao risco atuarial; o planejamento estratégico e a capacidade de lidar e absorver os impactos dos eventos atuariais."
 	itens = append(itens, item)

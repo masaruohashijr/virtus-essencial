@@ -41,7 +41,7 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	"	    WHEN g.inicia_em IS NOT NULL AND " +
 	"		g.termina_em IS NOT NULL AND " +
 	"		GETDATE() BETWEEN coalesce(g.inicia_em,CAST('0001-01-01' as DATE)) " +
-	"	    AND coalesce(g.termina_em,CAST('9999-12-31' as DATE)) " +
+	"	    AND coalesce(dateadd(day,1,g.termina_em),CAST('9999-12-31' as DATE)) " +
 	"	    THEN 1 " +
 	"	    ELSE 0 " +
 	"	   END AS periodo_permitido " +

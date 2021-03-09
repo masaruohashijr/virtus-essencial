@@ -13,6 +13,7 @@ func initEconomicoFinanceiro(nome string) ComponenteAux {
 	var itens []ItemAux
 	var item ItemAux
 
+	itens = make([]ItemAux, 0)
 	item.Nome = "A1"
 	item.Descricao = ""
 	itens = append(itens, item)
@@ -22,6 +23,8 @@ func initEconomicoFinanceiro(nome string) ComponenteAux {
 	elementoA.Itens = itens
 	elementoA.Nome = "A"
 	elementos = append(elementos, elementoA)
+
+	itens = make([]ItemAux, 0)
 	item.Nome = "B1"
 	item.Descricao = ""
 	itens = append(itens, item)
@@ -31,6 +34,8 @@ func initEconomicoFinanceiro(nome string) ComponenteAux {
 	elementoB.Itens = itens
 	elementoB.Nome = "B"
 	elementos = append(elementos, elementoB)
+
+	itens = make([]ItemAux, 0)
 	item.Nome = "C1"
 	item.Descricao = ""
 	itens = append(itens, item)
