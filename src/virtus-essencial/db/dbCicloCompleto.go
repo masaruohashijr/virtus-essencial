@@ -216,11 +216,16 @@ func createCicloCompleto(cicloAux CicloAux) {
 					unsavedElementosComponentes = append(unsavedElementosComponentes, stmt)
 					qtdItens := len(cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens)
 					for n := 0; n < qtdItens; n++ {
+						idItem = 0
 						nome = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens[n].Nome
 						stmt := " INSERT INTO virtus.itens(id_elemento, nome, descricao, id_author, criado_em, id_status) OUTPUT INSERTED.id_item " +
-							" SELECT ?, ?, ?, ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_item FROM virtus.itens WHERE nome = '" + nome + "' and id_elemento = " + strconv.Itoa(idElemento) + " )"
+							" SELECT ?, ?, CAST(? AS VARCHAR(MAX)), ?, GETDATE(), ? WHERE NOT EXISTS (SELECT id_item FROM virtus.itens WHERE nome = '" + nome + "' and id_elemento = " + strconv.Itoa(idElemento) + " )"
 						descricao = cicloAux.Pilares[j].Componentes[k].TiposNotas[l].Elementos[m].Itens[n].Descricao
-						db.QueryRow(stmt, idElemento, nome, descricao, autor, statusZero).Scan(&idItem)
+						row := db.QueryRow(stmt, idElemento, nome, descricao, autor, statusZero)
+						err = row.Scan(&idItem)
+						if err != nil {
+							log.Println(err.Error())
+						}
 						log.Println("idItem: " + strconv.Itoa(idItem) + " - " + nome)
 					}
 				}

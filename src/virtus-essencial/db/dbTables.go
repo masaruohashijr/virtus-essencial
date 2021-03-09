@@ -15,7 +15,7 @@ func createTable() {
 		" id_origin_status integer, " +
 		" id_destination_status integer, " +
 		" other_than bit, " +
-		" description varchar(4000)," +
+		" description varchar(MAX)," +
 		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
@@ -68,8 +68,8 @@ func createTable() {
 		" CREATE TABLE virtus.chamados (" +
 		" id_chamado integer DEFAULT NEXT VALUE FOR id_chamados_seq NOT NULL," +
 		" titulo varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
-		" acompanhamento varchar(4000)," +
+		" descricao varchar(MAX)," +
+		" acompanhamento varchar(MAX)," +
 		" id_responsavel integer," +
 		" id_relator integer," +
 		" id_tipo_chamado character(1)," +
@@ -100,7 +100,7 @@ func createTable() {
 		" CREATE TABLE virtus.ciclos (" +
 		" id_ciclo integer DEFAULT NEXT VALUE FOR id_ciclos_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -133,7 +133,7 @@ func createTable() {
 		" CREATE TABLE virtus.comentarios_anotacoes (" +
 		" id_comentario_anotacao integer DEFAULT NEXT VALUE FOR id_comentarios_anotacoes_seq NOT NULL," +
 		" id_anotacao integer," +
-		" texto varchar(4000)," +
+		" texto varchar(MAX)," +
 		" referencia varchar(255)," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -148,7 +148,7 @@ func createTable() {
 		" CREATE TABLE virtus.comentarios_chamados (" +
 		" id_comentario_chamado integer DEFAULT NEXT VALUE FOR id_comentarios_chamados_seq NOT NULL," +
 		" id_chamado integer," +
-		" texto varchar(4000)," +
+		" texto varchar(MAX)," +
 		" referencia varchar(255)," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -163,7 +163,7 @@ func createTable() {
 		" CREATE TABLE virtus.componentes (" +
 		" id_componente integer DEFAULT NEXT VALUE FOR id_componentes_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" pga varchar(1)," +
 		" id_author integer," +
@@ -200,7 +200,7 @@ func createTable() {
 		" CREATE TABLE virtus.elementos (" +
 		" id_elemento integer DEFAULT NEXT VALUE FOR id_elementos_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" peso integer DEFAULT 1 NOT NULL," +
 		" id_author integer," +
@@ -231,9 +231,9 @@ func createTable() {
 		" CREATE TABLE virtus.entidades (" +
 		" id_entidade integer DEFAULT NEXT VALUE FOR id_entidades_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" sigla varchar(25)," +
-		" codigo varchar(4000)," +
+		" codigo varchar(MAX)," +
 		" situacao varchar(30)," +
 		" ESI BIT," +
 		" municipio varchar(255)," +
@@ -257,7 +257,7 @@ func createTable() {
 		" id_escritorio integer DEFAULT NEXT VALUE FOR id_escritorios_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
 		" abreviatura character (4)," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" id_chefe integer," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -273,7 +273,7 @@ func createTable() {
 		" id_feature integer DEFAULT NEXT VALUE FOR id_features_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
 		" code varchar(255) NOT NULL," +
-		" description varchar(4000)," +
+		" description varchar(MAX)," +
 		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
@@ -311,7 +311,7 @@ func createTable() {
 		" id_usuario integer," +
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
-		" motivacao varchar(4000)," +
+		" motivacao varchar(MAX)," +
 		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
@@ -326,7 +326,7 @@ func createTable() {
 		" id_item integer DEFAULT NEXT VALUE FOR id_itens_seq NOT NULL," +
 		" id_elemento integer," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" criado_em datetime ," +
 		" id_author integer," +
@@ -372,7 +372,7 @@ func createTable() {
 		" CREATE TABLE virtus.pilares (" +
 		" id_pilar integer DEFAULT NEXT VALUE FOR id_pilares_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -404,7 +404,7 @@ func createTable() {
 		" id_plano integer DEFAULT NEXT VALUE FOR id_planos_seq NOT NULL," +
 		" id_entidade integer," +
 		" nome varchar(255)," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" cnpb varchar(255)," +
 		" legislacao varchar(255)," +
@@ -425,7 +425,7 @@ func createTable() {
 		" id_processo integer DEFAULT NEXT VALUE FOR id_processos_seq NOT NULL," +
 		" id_questao integer," +
 		" numero varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(255)," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -443,8 +443,8 @@ func createTable() {
 		" id_ciclo integer," +
 		" id_tipo_pontuacao integer," +
 		" nota double precision," +
-		" analise varchar(4000)," +
-		" motivacao varchar(4000)," +
+		" analise varchar(MAX)," +
+		" motivacao varchar(MAX)," +
 		" id_supervisor integer," +
 		" id_auditor integer," +
 		" id_author integer," +
@@ -465,9 +465,9 @@ func createTable() {
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
-		" analise varchar(4000)," +
-		" motivacao_peso varchar(4000)," +
-		" motivacao_nota varchar(4000)," +
+		" analise varchar(MAX)," +
+		" motivacao_peso varchar(MAX)," +
+		" motivacao_nota varchar(MAX)," +
 		" id_supervisor integer," +
 		" id_auditor integer," +
 		" id_author integer," +
@@ -489,11 +489,11 @@ func createTable() {
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
-		" analise varchar(4000)," +
-		" motivacao_peso varchar(4000)," +
-		" motivacao_nota varchar(4000)," +
-		" motivacao_reprogramacao character varying(4000)," +
-		" justificativa varchar(4000)," +
+		" analise varchar(MAX)," +
+		" motivacao_peso varchar(MAX)," +
+		" motivacao_nota varchar(MAX)," +
+		" motivacao_reprogramacao character varying(MAX)," +
+		" justificativa varchar(MAX)," +
 		" id_supervisor integer," +
 		" id_auditor integer," +
 		" id_author integer," +
@@ -520,10 +520,10 @@ func createTable() {
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
-		" analise varchar(4000)," +
-		" motivacao_peso varchar(4000)," +
-		" motivacao_nota varchar(4000)," +
-		" justificativa varchar(4000)," +
+		" analise varchar(MAX)," +
+		" motivacao_peso varchar(MAX)," +
+		" motivacao_nota varchar(MAX)," +
+		" justificativa varchar(MAX)," +
 		" id_supervisor integer," +
 		" id_auditor integer," +
 		" id_author integer," +
@@ -546,8 +546,8 @@ func createTable() {
 		" id_tipo_nota integer," +
 		" id_elemento integer," +
 		" id_item integer," +
-		" analise varchar(4000)," +
-		" anexo varchar(4000)," +
+		" analise varchar(MAX)," +
+		" anexo varchar(MAX)," +
 		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
@@ -568,9 +568,9 @@ func createTable() {
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
-		" analise varchar(4000)," +
-		" motivacao_peso varchar(4000)," +
-		" motivacao_nota varchar(4000)," +
+		" analise varchar(MAX)," +
+		" motivacao_peso varchar(MAX)," +
+		" motivacao_nota varchar(MAX)," +
 		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
@@ -592,8 +592,8 @@ func createTable() {
 		" id_tipo_pontuacao integer," +
 		" peso double precision," +
 		" nota double precision," +
-		" analise varchar(4000)," +
-		" anexo varchar(4000)," +
+		" analise varchar(MAX)," +
+		" anexo varchar(MAX)," +
 		" id_author integer," +
 		" criado_em datetime ," +
 		" id_versao_origem integer," +
@@ -619,7 +619,7 @@ func createTable() {
 		" tendencia character(1)," +
 		" id_relator integer," +
 		" id_responsavel integer," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" matriz varchar(255)," +
 		" id_author integer," +
 		" criado_em datetime ," +
@@ -635,8 +635,8 @@ func createTable() {
 		" id_anotacao_radar integer DEFAULT NEXT VALUE FOR id_anotacoes_radares_seq NOT NULL," +
 		" id_radar integer," +
 		" id_anotacao integer," +
-		" observacoes varchar(4000)," +
-		" registro_ata varchar(4000)," +
+		" observacoes varchar(MAX)," +
+		" registro_ata varchar(MAX)," +
 		" ultima_atualizacao datetime ," +
 		" id_ultimo_atualizador integer," +
 		" id_author integer," +
@@ -652,7 +652,7 @@ func createTable() {
 		" CREATE TABLE virtus.radares  (" +
 		" id_radar integer DEFAULT NEXT VALUE FOR id_radares_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(255)," +
 		" data_radar datetime ," +
 		" id_author integer," +
@@ -668,7 +668,7 @@ func createTable() {
 		" CREATE TABLE virtus.roles  (" +
 		" id_role integer DEFAULT NEXT VALUE FOR id_roles_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
-		" description varchar(4000)," +
+		" description varchar(MAX)," +
 		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
@@ -682,8 +682,8 @@ func createTable() {
 		" CREATE TABLE virtus.versoes (" +
 		" id_versao integer DEFAULT NEXT VALUE FOR id_versoes_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" objetivo varchar(4000)," +
-		" definicao_pronto varchar(4000)," +
+		" objetivo varchar(MAX)," +
+		" definicao_pronto varchar(MAX)," +
 		" inicia_em datetime ," +
 		" termina_em datetime ," +
 		" id_author integer," +
@@ -699,7 +699,7 @@ func createTable() {
 		" CREATE TABLE virtus.status  (" +
 		" id_status integer DEFAULT NEXT VALUE FOR id_status_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
-		" description varchar(4000)," +
+		" description varchar(MAX)," +
 		" id_author integer," +
 		" created_at datetime ," +
 		" id_versao_origem integer," +
@@ -717,7 +717,7 @@ func createTable() {
 		" CREATE TABLE virtus.tipos_notas (" +
 		" id_tipo_nota integer DEFAULT NEXT VALUE FOR id_tipos_notas_seq NOT NULL," +
 		" nome varchar(255) NOT NULL," +
-		" descricao varchar(4000)," +
+		" descricao varchar(MAX)," +
 		" referencia varchar(500)," +
 		" letra character(1) NOT NULL," +
 		" cor_letra character(6)," +
@@ -767,7 +767,7 @@ func createTable() {
 		" CREATE TABLE virtus.workflows  (" +
 		" id_workflow integer DEFAULT NEXT VALUE FOR id_workflows_seq NOT NULL," +
 		" name varchar(255) NOT NULL," +
-		" description varchar(4000)," +
+		" description varchar(MAX)," +
 		" entity_type varchar(50)," +
 		" start_at datetime ," +
 		" end_at datetime ," +
