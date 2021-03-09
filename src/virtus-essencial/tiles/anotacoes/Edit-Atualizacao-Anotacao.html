@@ -10,9 +10,11 @@
                       onclick="document.getElementById('edit-atualizacao-anotacao-form').style.display='none'">&times;</span>
             </div>
             <form class="w3-container" id="formulario-atualizacao-anotacao-edit">
-				<input type="hidden" id="Id-AnotacaoForUpdate" value="" readonly="readonly" disabled="disabled">
+				<input type="hidden" id="id-edit" value="" readonly="readonly" disabled="disabled">
+				<input type="hidden" id="order-edit" value="" readonly="readonly" disabled="disabled">
+				<input type="hidden" id="anotacaoId-edit" value="" readonly="readonly" disabled="disabled">
                 <label class="w3-label">Atualização</label>
-				<textarea rows="4" class="w3-input" type="text" id="AtualizacaoForUpdate" name="AtualizacaoForUpdate" value=""></textarea>
+				<textarea rows="4" class="w3-input" id="AtualizacaoForUpdate" name="AtualizacaoForUpdate"></textarea>
                 <button 
 					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
 					type="button"

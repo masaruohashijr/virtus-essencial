@@ -209,7 +209,7 @@ func ListElementosHandler(w http.ResponseWriter, r *http.Request) {
 			" FROM virtus.elementos a " +
 			" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +
 			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-			" order by a.id_elemento asc "
+			" order by a.nome asc "
 		rows, _ := Db.Query(query)
 		defer rows.Close()
 		log.Println(query)

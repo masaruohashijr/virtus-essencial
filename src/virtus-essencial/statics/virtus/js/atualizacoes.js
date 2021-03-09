@@ -74,3 +74,19 @@ function addAtualizacaoRow(tableID) {
 	btnApagar.onclick = function() {showDeleteAtualizacaoForm(btnApagar)};
 	newCell.appendChild(btnApagar);
 }
+
+function editAtualizacao(e) {
+	var editItemForm = document.getElementById('edit-atualizacao-anotacao-form');
+	editItemForm.style.display = 'block';
+	
+	var order = e.parentNode.parentNode.childNodes[0].childNodes[0].value;
+	var id = e.parentNode.parentNode.childNodes[0].childNodes[1].value;
+	var anotacaoId = e.parentNode.parentNode.childNodes[0].childNodes[2].value;
+	var texto = e.parentNode.parentNode.childNodes[0].innerText;
+	// Atribuindo os valores de edit-item-form
+	document.getElementById('id-edit').value=id;
+	document.getElementById('order-edit').value=order;
+	document.getElementById('anotacaoId-edit').value=anotacaoId;
+	document.getElementById('AtualizacaoForUpdate').value=texto;
+	document.getElementById('AtualizacaoForUpdate').focus();
+}
