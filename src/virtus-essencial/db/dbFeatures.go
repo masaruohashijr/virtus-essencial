@@ -108,7 +108,7 @@ func createRoleFeatures() {
 		" SELECT 1  " +
 		" FROM virtus.features_roles b " +
 		" WHERE b.id_role = 4 AND b.id_feature = a.id_feature) " +
-		" AND a.code IN ('avaliarPlanos','viewMatriz','listEntidades','viewEntidade','homeAuditor','listChamados','createChamado','listAnotacoes','createAnotacao') "
+		" AND a.code IN ('avaliarPlanos','viewMatriz','listEntidades','viewEntidade','homeAuditor','listChamados','createChamado','listAnotacoes') "
 		//	log.Println(stmt1)
 	db.Exec(stmt1)
 	stmt1 = " INSERT INTO virtus.features_roles (id_role, id_feature) " +

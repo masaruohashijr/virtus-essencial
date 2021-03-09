@@ -141,13 +141,13 @@ func createFKey() {
 		log.Println(err.Error())
 	}
 
-	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE name = " +
-		" 'expiration_action_fkey' AND type in (N'F')) BEGIN " +
-		" ALTER TABLE virtus.activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (id_expiration_action)" +
-		" REFERENCES virtus.actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
-	if err != nil {
-		log.Println(err.Error())
-	}
+	/*	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE name = " +
+			" 'expiration_action_fkey' AND type in (N'F')) BEGIN " +
+			" ALTER TABLE virtus.activities ADD CONSTRAINT expiration_action_fkey FOREIGN KEY (id_expiration_action)" +
+			" REFERENCES virtus.actions (id_action) ON DELETE NO ACTION ON UPDATE NO ACTION END")
+		if err != nil {
+			log.Println(err.Error())
+		}*/
 
 	_, err = db.Exec("IF NOT EXISTS (SELECT 1 FROM sys.objects WHERE name = " +
 		" 'workflow_fkey' AND type in (N'F')) BEGIN " +

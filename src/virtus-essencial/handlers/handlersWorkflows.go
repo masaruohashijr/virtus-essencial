@@ -227,20 +227,19 @@ func UpdateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println("Workflow Id: " + strconv.FormatInt(act.WorkflowId, 10))
 				sqlStatement := "INSERT INTO " +
 					"virtus.activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
-					"OUTPUT INSERTED.id_activity VALUES (?,?,?,?,?,?) "
+					"OUTPUT INSERTED.id_activity VALUES (" + strconv.FormatInt(act.WorkflowId, 10) +
+					"," + strconv.FormatInt(act.ActionId, 10) +
+					",'" + act.CStartAt +
+					"','" + act.CEndAt +
+					"'," + strconv.Itoa(act.ExpirationTimeDays) +
+					"," + strconv.FormatInt(act.ExpirationActionId, 10) +
+					") "
 				log.Println(sqlStatement)
 				var activityId int
-				log.Println("wId: " + wId + " | Action: " + strconv.FormatInt(act.ActionId, 10) + " | ExpDays: " + strconv.Itoa(act.ExpirationTimeDays) + " | ExpAction: " + strconv.FormatInt(act.ExpirationActionId, 10))
-				if act.ExpirationActionId == 0 {
-					err := Db.QueryRow(sqlStatement, wId, act.ActionId, act.CStartAt, act.CEndAt, act.ExpirationTimeDays, nil).Scan(&activityId)
-					if err != nil {
-						log.Println(err.Error())
-					}
-				} else {
-					err := Db.QueryRow(sqlStatement, wId, act.ActionId, act.CStartAt, act.CEndAt, act.ExpirationTimeDays, act.ExpirationActionId).Scan(&activityId)
-					if err != nil {
-						log.Println(err.Error())
-					}
+				log.Println("wId: " + wId + " | Action: " + strconv.FormatInt(act.ActionId, 10) + " | EndAt: " + act.CEndAt + " | StartAt: " + act.CStartAt + " | ExpDays: " + strconv.Itoa(act.ExpirationTimeDays) + " | ExpAction: " + strconv.FormatInt(act.ExpirationActionId, 10))
+				err := Db.QueryRow(sqlStatement).Scan(&activityId)
+				if err != nil {
+					log.Println(err.Error())
 				}
 				log.Println("Papel: " + act.CRoles)
 				strRoles := strings.Split(act.CRoles, ".")
