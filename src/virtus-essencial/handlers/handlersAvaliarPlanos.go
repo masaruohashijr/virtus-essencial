@@ -21,7 +21,7 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" 	   coalesce(f.peso,0) as pilar_peso, coalesce(f.nota,0) as pilar_nota, " +
 	"        a.id_componente, " +
 	" 	   coalesce(e.nome,'') as componente_nome, " +
-	" 	   coalesce(g.peso,0) as componente_peso, coalesce(g.nota,0) as componente_nota, " +
+	" 	   round(coalesce(g.peso,0),2) as componente_peso, coalesce(g.nota,0) as componente_nota, " +
 	" 	   coalesce(g.id_supervisor,0) as super_id, coalesce(h.name,'') as supervisor_nome, " +
 	" 	   coalesce(g.id_auditor,0) as super_id, coalesce(i.name,'') as auditor_nome, " +
 	" 	   a.id_tipo_nota, m.letra, m.cor_letra, m.nome, " +
