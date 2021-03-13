@@ -101,7 +101,7 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement := "DELETE FROM virtus.users WHERE id_user=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
-		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
+		if err != nil {
 			http.Redirect(w, r, route.UsersRoute+"?errMsg="+errMsg, 301)
 		} else {
 			http.Redirect(w, r, route.UsersRoute+"?msg=Usuário removido com sucesso.", 301)

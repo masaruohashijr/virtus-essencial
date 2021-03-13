@@ -286,7 +286,7 @@ func DeleteWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement := "DELETE FROM virtus.workflows WHERE id_workflow=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
-		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
+		if err != nil {
 			http.Redirect(w, r, route.WorkflowsRoute+"?errMsg="+errMsg, 301)
 		} else {
 			http.Redirect(w, r, route.WorkflowsRoute+"?msg=Workflow removido com sucesso.", 301)
