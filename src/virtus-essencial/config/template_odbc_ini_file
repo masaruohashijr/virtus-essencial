@@ -1,5 +1,5 @@
 # [DSN name]
 [VIRTUS]
 Driver = ODBC Driver 17 for SQL Server
-Server = tcp:DBDEV3,1433
+Server = tcp:#{DB_SERVER}#,1433
 
