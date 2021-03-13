@@ -109,20 +109,37 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		msg := ""
 		currentUser := GetUserInCookie(w, r)
 		entidadeId := r.FormValue("Id")
+		log.Println(entidadeId)
 		nome := r.FormValue("Nome")
+		log.Println(nome)
 		descricao := r.FormValue("Descricao")
+		log.Println(descricao)
 		sigla := r.FormValue("Sigla")
+		log.Println(sigla)
 		codigo := r.FormValue("Codigo")
+		log.Println(codigo)
 		situacao := r.FormValue("Situacao")
+		log.Println(situacao)
 		esi := r.FormValue("ESI")
+		isESI := 0
+		if esi == "true" {
+			isESI = 1
+		}
+		log.Println(esi)
 		municipio := r.FormValue("Municipio")
+		log.Println(municipio)
 		siglaUF := r.FormValue("SiglaUF")
+		log.Println(siglaUF)
 		sqlStatement := "UPDATE virtus.entidades SET nome=?, descricao=?, sigla=?, codigo=?, situacao=?, esi=?, municipio=?, sigla_uf=? WHERE id_entidade=?"
+		log.Println(sqlStatement)
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
 			log.Println(err.Error())
 		}
-		updtForm.Exec(nome, descricao, sigla, codigo, situacao, esi, municipio, siglaUF, entidadeId)
+		_, err = updtForm.Exec(nome, descricao, sigla, codigo, situacao, isESI, municipio, siglaUF, entidadeId)
+		if err != nil {
+			log.Println(err.Error())
+		}
 		log.Println("UPDATE: Id: " + entidadeId + " | Nome: " + nome + " | Descrição: " + descricao + " | SiglaUF: " + siglaUF)
 
 		// Planos
