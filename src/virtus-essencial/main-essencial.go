@@ -14,7 +14,7 @@ import (
 	"net/http"
 	"os"
 	"time"
-	dpk "virtus-essencial/db"
+	//dpk "virtus-essencial/db"
 	hd "virtus-essencial/handlers"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
@@ -82,7 +82,7 @@ func main() {
 	mdl.Ambiente = " [" + sConfig.Ambiente + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	dpk.Initialize()
+	//dpk.Initialize()
 	r := mux.NewRouter()
 	// ----------------- HOME E SECURITY
 	r.HandleFunc("/", hd.IndexHandler).Methods("GET")
