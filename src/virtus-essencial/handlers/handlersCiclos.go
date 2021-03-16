@@ -263,9 +263,7 @@ func DeleteCicloHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(sqlStatement)
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
-		log.Println(err.Error())
-		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
-			log.Println("ENTROU NO ERRO " + errMsg)
+		if err != nil {
 			http.Redirect(w, r, route.CiclosRoute+"?errMsg="+errMsg, 301)
 		} else {
 			http.Redirect(w, r, route.CiclosRoute+"?msg=Ciclo removido com sucesso.", 301)

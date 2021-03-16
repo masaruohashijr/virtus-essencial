@@ -17,7 +17,7 @@ func createMembros() {
 	db.Exec(sql)
 	sql = "INSERT INTO virtus.membros (id_usuario, id_escritorio) SELECT a.id_user, b.id_escritorio FROM virtus.users a, virtus.escritorios b WHERE b.abreviatura = 'ERRJ' AND a.username = 'andre.goncalves' AND NOT EXISTS (SELECT 1 FROM virtus.membros c WHERE c.id_usuario = a.id_user and c.id_escritorio = b.id_escritorio )"
 	db.Exec(sql)
-	sql = "INSERT INTO virtus.membros (id_usuario, id_escritorio) SELECT a.id_user, b.id_escritorio FROM virtus.users a, virtus.escritorios b WHERE b.abreviatura = 'ERRJ' AND a.username = 'angelica' AND NOT EXISTS (SELECT 1 FROM virtus.membros c WHERE c.id_usuario = a.id_user and c.id_escritorio = b.id_escritorio )"
+	sql = "INSERT INTO virtus.membros (id_usuario, id_escritorio) SELECT a.id_user, b.id_escritorio FROM virtus.users a, virtus.escritorios b WHERE b.abreviatura = 'ERRJ' AND a.username = 'angelica.campinho' AND NOT EXISTS (SELECT 1 FROM virtus.membros c WHERE c.id_usuario = a.id_user and c.id_escritorio = b.id_escritorio )"
 	db.Exec(sql)
 	sql = "INSERT INTO virtus.membros (id_usuario, id_escritorio) SELECT a.id_user, b.id_escritorio FROM virtus.users a, virtus.escritorios b WHERE b.abreviatura = 'ERRJ' AND a.username = 'annette' AND NOT EXISTS (SELECT 1 FROM virtus.membros c WHERE c.id_usuario = a.id_user and c.id_escritorio = b.id_escritorio )"
 	db.Exec(sql)
