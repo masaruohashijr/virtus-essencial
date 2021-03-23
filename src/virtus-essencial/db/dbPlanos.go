@@ -1,6 +1,8 @@
 package db
 
-import ()
+import (
+	"log"
+)
 
 func createPlanosFACHESF() {
 	sqlFACHESF := "INSERT INTO virtus.PLANOS (id_entidade, cnpb, id_modalidade, situacao, legislacao, recurso_garantidor )  " +
@@ -8,6 +10,7 @@ func createPlanosFACHESF() {
 		" SELECT a.id_entidade as id_entidade, '2001002165' as cnpb, 'CV' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 3781441670.20 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2001002165') UNION  " +
 		" SELECT a.id_entidade as id_entidade, '2001002238' as cnpb, 'BD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 1537237830.68 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2001002238') UNION  " +
 		" SELECT a.id_entidade as id_entidade, '2019002647' as cnpb, 'CD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC109' as legislacao, 44020.45 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2019002647') "
+	log.Println("Planos da FACHESF")
 	db.Exec(sqlFACHESF)
 }
 
