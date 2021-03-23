@@ -172,15 +172,15 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		" LEFT JOIN " +
 		"   (SELECT DISTINCT id_entidade, " +
 		"                    id_ciclo, " +
-		"                    PILAR_ID, " +
-		"                    COMPONENTE_ID, " +
+		"                    id_pilar, " +
+		"                    id_componente, " +
 		"                    id_plano " +
 		"    FROM virtus.produtos_planos " +
 		"    WHERE id_ciclo = " + cicloId +
 		"      AND id_entidade = " + entidadeId +
-		"    ) R2 ON (R1.CICLO_id = R2.ciclo_id " +
-		"                       AND R1.PILAR_ID = R2.PILAR_ID " +
-		"                       AND R1.COMPONENTE_ID = R2.COMPONENTE_ID) " +
+		"    ) R2 ON (R1.id_ciclo = R2.id_ciclo " +
+		"                       AND R1.id_pilar = R2.id_pilar " +
+		"                       AND R1.id_componente = R2.id_componente) " +
 		" LEFT JOIN virtus.produtos_elementos EL ON (R1.id_ciclo = EL.id_ciclo " +
 		"                                     AND R1.id_pilar = EL.id_pilar " +
 		"                                     AND R1.id_componente = EL.id_componente " +
@@ -209,11 +209,11 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		" LEFT JOIN virtus.entidades y ON y.id_entidade = " + entidadeId +
 		" LEFT JOIN virtus.users o ON co.id_supervisor = o.id_user " +
 		" LEFT JOIN virtus.users p ON co.id_auditor = p.id_user " +
-		" LEFT JOIN (SELECT R1.id, R1.id_entidade, R1.id_ciclo, R1.id_pilar, R1.id_plano, R1.id_componente, R1.id_tipo_nota, R1.id_elemento, motivacao_peso, motivacao_nota, id_author, criado_em " +
+		" LEFT JOIN (SELECT R1.id_produto_elemento_historico, R1.id_entidade, R1.id_ciclo, R1.id_pilar, R1.id_plano, R1.id_componente, R1.id_tipo_nota, R1.id_elemento, motivacao_peso, motivacao_nota, id_author, criado_em " +
 		" FROM virtus.produtos_elementos_historicos R1 " +
-		" INNER JOIN (SELECT peh.id_entidade, peh.id_ciclo, peh.id_pilar, peh.id_componente, peh.id_plano, peh.id_elemento, max(peh.id_elemento_historico) as id " +
+		" INNER JOIN (SELECT peh.id_entidade, peh.id_ciclo, peh.id_pilar, peh.id_componente, peh.id_plano, peh.id_elemento, max(peh.id_produto_elemento_historico) as id " +
 		" FROM virtus.produtos_elementos_historicos PEH group by peh.id_entidade,peh.id_ciclo,peh.id_pilar,peh.id_componente,peh.id_plano,peh.id_elemento) R2 " +
-		" ON R1.id = R2.id) R3 ON (R3.id_ciclo = EL.id_ciclo " +
+		" ON R1.id_entidade = R2.id_entidade) R3 ON (R3.id_ciclo = EL.id_ciclo " +
 		" AND R3.id_pilar = EL.id_pilar " +
 		" AND R3.id_componente = EL.id_componente " +
 		" AND R3.id_tipo_nota = EL.id_tipo_nota " +

@@ -19,12 +19,12 @@ func ListAnotacoesRadarByRadarId(radarId string) []mdl.AnotacaoRadar {
 		" coalesce(a.registro_ata,''), " +
 		" a.id_author, " +
 		" coalesce(b.name,'') as author_name, " +
-		" coalesce(format(a.criado_em,'dd/MM/yyyy')) as criado_em, " +
+		" format(a.criado_em,'dd/MM/yyyy') as criado_em, " +
 		" a.id_status, " +
 		" coalesce(c.name,'') as status_name, " +
 		" a.id_ultimo_atualizador, " +
 		" coalesce(e.name,'') as ultimo_atualizador_name, " +
-		" coalesce(format(a.ultima_atualizacao,'dd/MM/yyyy')) " +
+		" format(a.ultima_atualizacao,'dd/MM/yyyy') " +
 		" FROM virtus.anotacoes_radares a " +
 		" LEFT JOIN virtus.anotacoes d ON a.id_anotacao = d.id_anotacao " +
 		" LEFT JOIN virtus.users b ON a.id_author = b.id_user " +

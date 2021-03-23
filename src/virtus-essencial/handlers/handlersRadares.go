@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"html/template"
 	"log"
@@ -27,12 +28,18 @@ func CreateRadarHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement += " id_author, criado_em) " +
 			" OUTPUT INSERTED.id_radar VALUES ('" + nome + "', '" + descricao + "', '" + referencia + "',"
 		if dataRadar != "" {
-			sqlStatement += "'" + dataRadar + "',"
+			sqlStatement += " ?,"
 		}
 		sqlStatement += " ?, GETDATE())"
 		idRadar := 0
-		row := Db.QueryRow(sqlStatement, currentUser.Id)
-		err := row.Scan(&idRadar)
+		var err error
+		var row *sql.Row
+		if dataRadar != "" {
+			row = Db.QueryRow(sqlStatement, dataRadar, currentUser.Id)
+		} else {
+			row = Db.QueryRow(sqlStatement, currentUser.Id)
+		}
+		err = row.Scan(&idRadar)
 		if err != nil {
 			log.Println(err.Error())
 			http.Redirect(w, r, route.RadaresRoute+"?errMsg=Erro na criação do Radar.", 301)
@@ -95,14 +102,19 @@ func UpdateRadarHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(referencia)
 		sqlStatement := " UPDATE virtus.radares SET nome = '" + nome + "', "
 		if dataRadar != "" {
-			sqlStatement = sqlStatement + " data_radar = '" + dataRadar + "', "
+			sqlStatement = sqlStatement + " data_radar = ?, "
 		}
 		sqlStatement += " descricao = '" + descricao + "', " +
 			" referencia = '" + referencia + "' " +
 			" WHERE id_radar = " + radarId
 		log.Println(sqlStatement)
+		var err error
 		updtForm, _ := Db.Prepare(sqlStatement)
-		_, err := updtForm.Exec()
+		if dataRadar != "" {
+			_, err = updtForm.Exec(dataRadar)
+		} else {
+			_, err = updtForm.Exec()
+		}
 		if err != nil {
 			log.Println(err.Error())
 		}

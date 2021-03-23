@@ -90,8 +90,8 @@ func CreateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 						log.Println(err.Error())
 					}
 				}
-			}*/
-		http.Redirect(w, r, route.AnotacoesRoute+"?msg=Anotação criada com sucesso.", 301)
+			}
+		http.Redirect(w, r, route.AnotacoesRoute+"?msg=Anotação criada com sucesso.", 301)*/
 	} else {
 		http.Redirect(w, r, "/logout", 301)
 	}
@@ -143,7 +143,7 @@ func UpdateAnotacaoHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		log.Println("UPDATE: Id: " + anotacaoId + " | Assunto: " + assunto)
 
-		// Anotacoes Anotacoes
+		// Atualizações Anotacoes
 		/*var anotacoesAnotacaoDB = ListAnotacoesByAnotacaoId(radarId)
 		var anotacoesAnotacaoPage []mdl.PilarAnotacao
 		var pilarAnotacaoPage mdl.PilarAnotacao

@@ -10,7 +10,8 @@ var db *sql.DB
 
 func Initialize() {
 	db = hd.Db
-	createSchema()
+	createPlanosFACHESF()
+	/*createSchema()
 	createSeq()
 	createSeqHistoricos()
 	createTable()
@@ -35,7 +36,7 @@ func Initialize() {
 	cicloAux2 := montarCicloBienal()
 	createCicloCompleto(cicloAux2)
 	cicloAux3 := montarCicloTrienal()
-	createCicloCompleto(cicloAux3)
+	createCicloCompleto(cicloAux3)*/
 	//	/* remover 18/01/2021 */
 	//	ajustesEmChamados()
 	//	ajustesEmTiposNotas()

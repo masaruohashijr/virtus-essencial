@@ -562,7 +562,11 @@ function loadAnalise(btn){
 	{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("analise_text").value = xmlhttp.responseText;
+				text = xmlhttp.responseText;
+				text = text.replaceAll('\[nl\]','\n');
+				text = text.replaceAll('\[tab\]','\t');
+				text = text.replaceAll('\[porcento\]','%');				
+				document.getElementById("analise_text").value = text;
 				document.getElementById('analise_text').focus();
 			}
 	}
@@ -572,7 +576,10 @@ function loadAnalise(btn){
 
 function salvarAnalise(){
 	document.getElementById('analise-form').style.display='none';
-	let analise = document.getElementById('analise_text').value;
+	let text = document.getElementById('analise_text').value;
+	text = text.replaceAll(/\n\r?/g, '[nl]');
+	text = text.replaceAll(/\t/g, '[tab]');
+	text = text.replaceAll('%', '[porcento]');
 	let xmlhttp;
 	let acionadoPor = document.getElementById('AcionadoPor').value;
 	xmlhttp = new XMLHttpRequest();
@@ -585,7 +592,7 @@ function salvarAnalise(){
 				document.getElementById("message").style.display="block";				
 			}
 	}
-	xmlhttp.open("GET","/salvarAnalise?acionadoPor="+acionadoPor+"&analise="+analise,true);
+	xmlhttp.open("POST","/salvarAnalise?acionadoPor="+acionadoPor+"&analise="+text,true);
 	xmlhttp.send();
 }
 

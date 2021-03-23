@@ -14,7 +14,7 @@ import (
 	"net/http"
 	"os"
 	"time"
-	//dpk "virtus-essencial/db"
+	dpk "virtus-essencial/db"
 	hd "virtus-essencial/handlers"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
@@ -79,10 +79,12 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.0.1]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.0.2]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	//dpk.Initialize()
+	if true {
+		dpk.Initialize()
+	}
 	r := mux.NewRouter()
 	// ----------------- HOME E SECURITY
 	r.HandleFunc("/", hd.IndexHandler).Methods("GET")
@@ -203,7 +205,7 @@ func main() {
 	r.HandleFunc("/updateWorkflow", hd.UpdateWorkflowHandler).Methods("POST")
 	r.HandleFunc("/deleteWorkflow", hd.DeleteWorkflowHandler).Methods("POST")
 	// ----------------- Microserviços
-	r.HandleFunc("/salvarAnalise", hd.SalvarAnalise).Methods("GET")
+	r.HandleFunc("/salvarAnalise", hd.SalvarAnalise).Methods("POST")
 	r.HandleFunc("/salvarPesoPilar", hd.SalvarPesoPilar).Methods("GET")
 	r.HandleFunc("/salvarPesoElemento", hd.SalvarPesoElemento).Methods("GET")
 	r.HandleFunc("/salvarNotaElemento", hd.SalvarNotaElemento).Methods("GET")

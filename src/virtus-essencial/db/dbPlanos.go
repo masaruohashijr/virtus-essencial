@@ -2,6 +2,15 @@ package db
 
 import ()
 
+func createPlanosFACHESF() {
+	sqlFACHESF := "INSERT INTO virtus.PLANOS (id_entidade, cnpb, id_modalidade, situacao, legislacao, recurso_garantidor )  " +
+		" SELECT a.id_entidade as id_entidade, '1980002029' as cnpb, 'BD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 2707938724.21 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '1980002029') UNION  " +
+		" SELECT a.id_entidade as id_entidade, '2001002165' as cnpb, 'CV' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 3781441670.20 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2001002165') UNION  " +
+		" SELECT a.id_entidade as id_entidade, '2001002238' as cnpb, 'BD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 1537237830.68 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2001002238') UNION  " +
+		" SELECT a.id_entidade as id_entidade, '2019002647' as cnpb, 'CD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC109' as legislacao, 44020.45 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2019002647') "
+	db.Exec(sqlFACHESF)
+}
+
 func createPlanos() {
 	sql := "INSERT INTO virtus.PLANOS (id_entidade, cnpb, id_modalidade, situacao, legislacao, recurso_garantidor )  " +
 		" SELECT a.id_entidade as id_entidade, '1985000547' as cnpb, 'CD' as modalidade, 'ATIVO - EM TRANSFERÊNCIA DE GERENCIAMENTO' as situacao, 'LC109' as legislacao, 69618682.55 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ACEPREV' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '1985000547') UNION  " +
