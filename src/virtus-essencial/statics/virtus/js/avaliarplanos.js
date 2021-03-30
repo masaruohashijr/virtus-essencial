@@ -148,7 +148,7 @@ function salvarNotaElemento(){
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
 					let valoresAtuaisJson = JSON.parse(xmlhttp.responseText);
-					atualizarPesos(valoresAtuaisJson, valores);
+					//atualizarPesos(valoresAtuaisJson, valores);
 					atualizarNotas(valoresAtuaisJson, valores);
 					let notaAnterior = document.getElementById('motNotaNotaAnterior').value;
 					let novaNota = document.getElementById('motNotaNovaNota').value;
