@@ -562,8 +562,10 @@ func SalvarNotaElemento(w http.ResponseWriter, r *http.Request) {
 	produtoElemento.Nota, _ = strconv.Atoi(nota)
 	produtoElemento.Motivacao = motivacaoNota
 	currentUser := GetUserInCookie(w, r)
-	valoresAtuais := registrarNotaElemento(produtoElemento, currentUser)
-	registrarHistoricoNotaElemento(produtoElemento, currentUser)
+	valoresAtuais, err := registrarNotaElemento(produtoElemento, currentUser)
+	if err == nil {
+		registrarHistoricoNotaElemento(produtoElemento, currentUser)
+	}
 	//log.Println(notasAtuais)
 	jsonValoresAtuais, _ := json.Marshal(valoresAtuais)
 	w.Write([]byte(jsonValoresAtuais))

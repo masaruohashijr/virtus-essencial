@@ -79,10 +79,10 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.0.2]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.0.3]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if true {
+	if false {
 		dpk.Initialize()
 	}
 	r := mux.NewRouter()

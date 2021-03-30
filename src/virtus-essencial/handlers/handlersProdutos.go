@@ -42,17 +42,16 @@ func registrarAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.U
 	}
 }
 
-func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) mdl.ValoresAtuais {
+func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (mdl.ValoresAtuais, error) {
 	sqlStatement := "UPDATE virtus.produtos_elementos SET nota = " + strconv.Itoa(produto.Nota) + ", " +
 		" motivacao_nota = ? , " +
 		" id_tipo_pontuacao = (SELECT DISTINCT case when b.id_supervisor = " + strconv.FormatInt(currentUser.Id, 10) +
-		" then 3 when 2 = " + strconv.FormatInt(currentUser.Role, 10) + " then 3 else 1 end " +
+		" then 1 when 2 = " + strconv.FormatInt(currentUser.Role, 10) + " then 3 else 0 end " +
 		" FROM virtus.produtos_componentes b WHERE " +
-		" id_entidade = b.id_entidade and " +
-		" id_ciclo = b.id_ciclo and " +
-		" id_pilar = b.id_pilar and " +
-		// " a.id_plano = b.id_plano and " +
-		" id_componente = b.id_componente) " +
+		" id_entidade = b.id_entidade " +
+		" AND id_ciclo = b.id_ciclo " +
+		" AND id_pilar = b.id_pilar " +
+		" AND b.id_componente = " + strconv.FormatInt(produto.ComponenteId, 10) + ") " +
 		" WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" AND id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
 		" AND id_pilar = " + strconv.FormatInt(produto.PilarId, 10) +
@@ -65,7 +64,12 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) md
 	if err != nil {
 		log.Println(err.Error())
 	}
-	updtForm.Exec(produto.Motivacao)
+	_, err = updtForm.Exec(produto.Motivacao)
+	if err != nil {
+		log.Println(err.Error())
+		var va mdl.ValoresAtuais
+		return va, err
+	}
 	atualizarPesoTiposNotas(produto, currentUser)
 	atualizarPesoPlanos(produto, currentUser)
 	atualizarPesoComponentes(produto, currentUser)
@@ -81,7 +85,7 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) md
 	// NOTAS ATUAIS
 	notasAtuais := loadNotasAtuais(produto)
 	valoresAtuais := montarValoresAtuais(pesosAtuais, notasAtuais)
-	return valoresAtuais
+	return valoresAtuais, nil
 }
 
 func atualizarPilarNota(produto mdl.ProdutoElemento) {
