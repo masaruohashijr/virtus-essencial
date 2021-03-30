@@ -48,9 +48,9 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (m
 		" id_tipo_pontuacao = (SELECT DISTINCT case when b.id_supervisor = " + strconv.FormatInt(currentUser.Id, 10) +
 		" then 1 when 2 = " + strconv.FormatInt(currentUser.Role, 10) + " then 3 else 0 end " +
 		" FROM virtus.produtos_componentes b WHERE " +
-		" id_entidade = b.id_entidade " +
-		" AND id_ciclo = b.id_ciclo " +
-		" AND id_pilar = b.id_pilar " +
+		" b.id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
+		" AND b.id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
+		" AND b.id_pilar = " + strconv.FormatInt(produto.PilarId, 10) +
 		" AND b.id_componente = " + strconv.FormatInt(produto.ComponenteId, 10) + ") " +
 		" WHERE id_entidade = " + strconv.FormatInt(produto.EntidadeId, 10) +
 		" AND id_ciclo = " + strconv.FormatInt(produto.CicloId, 10) +
