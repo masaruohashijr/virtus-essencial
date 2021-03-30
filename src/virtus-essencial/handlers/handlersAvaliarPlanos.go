@@ -172,7 +172,9 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Avaliar Planos Handler")
 	if sec.IsAuthenticated(w, r) {
 		entidadeId := r.FormValue("EntidadeId")
+		log.Println("entidadeId: " + entidadeId)
 		cicloId := r.FormValue("CicloId")
+		log.Println("cicloId: " + cicloId)
 		var page mdl.PageProdutosItens
 		log.Println(sqlAvaliarPlanos)
 		rows, _ := Db.Query(sqlAvaliarPlanos, entidadeId, cicloId)

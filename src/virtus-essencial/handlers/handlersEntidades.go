@@ -420,6 +420,9 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 			//log.Println(entidade)
 			entidades = append(entidades, entidade)
 		}
+		for i := range entidades {
+			entidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidades[i].Id, 10))
+		}
 		page.Entidades = entidades
 		if errMsg != "" {
 			page.ErrMsg = errMsg

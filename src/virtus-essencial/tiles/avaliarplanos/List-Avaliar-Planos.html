@@ -130,7 +130,9 @@
 				{{if $allowed}}
                 <td style="vertical-align:middle">
                     <button type="button" 
-						name="Analise_Ciclo_{{$produto.EntidadeId}}_{{$produto.CicloId}}" 
+						name="Analise_Ciclo_{{$produto.EntidadeId}}_{{$produto.CicloId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						class="w3-btn w3-teal" onclick="openAnalise(this)">Análise</button>
                     <button type="button"
 						name="Descricao_Ciclo_{{$produto.EntidadeId}}_{{$produto.CicloId}}" 
@@ -181,7 +183,9 @@
                 <td style="vertical-align:middle">
                     <button type="button" 
 						class="w3-btn w3-teal"
-						name="Analise_Pilar_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}"  
+						name="Analise_Pilar_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						onclick="openAnalise(this)">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green" 
@@ -249,6 +253,8 @@
 					<button type="button" 
 						class="w3-btn w3-teal" 
 						name="Analise_Componente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						onclick="openAnalise(this)">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green" 
@@ -297,7 +303,9 @@
 						value="{{$produto.PlanoNota}}"></td>
                 <td><button type="button" 
 						class="w3-btn w3-teal"
-						name="Analise_Plano_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}" 
+						name="Analise_Plano_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						onclick="openAnalise(this)">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green"
@@ -346,6 +354,8 @@
 					<button type="button" 
 						class="w3-btn w3-teal" 
 						name="Analise_TipoNota_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						onclick="openAnalise(this)">Análise</button>
                     <button type="button" 
 						class="w3-btn w3-green" 
@@ -420,7 +430,9 @@
                 <td>
 					<button type="button" 
 						class="w3-btn w3-teal"
-						name="Analise_Elemento_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}" 
+						name="Analise_Elemento_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						onclick="openAnalise(this)">Análise</button>	
                     <button type="button"
 						class="w3-btn w3-green"
@@ -458,7 +470,9 @@
                     <button 
 						type="button" 
 						class="w3-btn w3-teal"
-						name="Analise_Item_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$produto.ItemId}}" 
+						name="Analise_Item_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$produto.ItemId}}"
+ 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
+						{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						onclick="openAnalise(this)">Análise</button>
                     <button 
 						type="button" 

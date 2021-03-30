@@ -76,13 +76,20 @@
 					<input type="hidden" value="{{$entidade.Descricao}}">
 				</td>
                 <td style="vertical-align:middle;text-align:left">
-					{{$entidade.CicloNome}}
+					<select class="w3-input">
+						{{range $i, $cicloEntidade := $entidade.CiclosEntidade }}
+			                <option value="{{$cicloEntidade.Id}}">
+								{{$cicloEntidade.Nome}}
+							</option>
+			            {{end}}
+		            </select>
 					<input type="hidden" value="{{$entidade.Situacao}}">
 					<input type="hidden" value="{{$entidade.ESI}}">
 					<input type="hidden" value="{{$entidade.Municipio}}">
 					<input type="hidden" value="{{$entidade.SiglaUF}}">
 				</td>
                 <td style="vertical-align:middle">
+                    <button class="w3-btn w3-teal" onclick="submeterListEntidadesForm(this, 'formulario-avaliar-planos');">Consultar Ciclo</button>
                     <button class="w3-btn w3-teal" onclick="contexto='view';viewEntidade(this);">Visualizar</button>
 					{{if $allowed}}
                     <button class="w3-btn w3-teal" onclick="contexto='edit';editEntidade(this);">Editar</button>
@@ -92,6 +99,10 @@
             </tr>
             {{end}}
         </table>
+		<form action="/avaliarPlanos" method="POST" id="formulario-avaliar-planos">
+			<input type="hidden" id="EntidadeId" name="EntidadeId">
+			<input type="hidden" id="CicloId" name="CicloId">
+		</form>
     </div>
 </div>
 {{end}}
