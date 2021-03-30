@@ -89,7 +89,9 @@
 					<input type="hidden" value="{{$entidade.SiglaUF}}">
 				</td>
                 <td style="vertical-align:middle">
+                	{{if ne $entidade.CicloNome ""}}
                     <button class="w3-btn w3-teal" onclick="submeterListEntidadesForm(this, 'formulario-avaliar-planos');">Consultar Ciclo</button>
+					{{end}}
                     {{if not $allowed}}
                     <button class="w3-btn w3-teal" onclick="contexto='view';viewEntidade(this);">Visualizar</button>
 					{{end}}
