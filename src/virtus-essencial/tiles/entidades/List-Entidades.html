@@ -90,7 +90,9 @@
 				</td>
                 <td style="vertical-align:middle">
                     <button class="w3-btn w3-teal" onclick="submeterListEntidadesForm(this, 'formulario-avaliar-planos');">Consultar Ciclo</button>
+                    {{if not $allowed}}
                     <button class="w3-btn w3-teal" onclick="contexto='view';viewEntidade(this);">Visualizar</button>
+					{{end}}
 					{{if $allowed}}
                     <button class="w3-btn w3-teal" onclick="contexto='edit';editEntidade(this);">Editar</button>
                     <button class="w3-btn w3-red" onclick="deleteEntidade(this)">Apagar</button>
