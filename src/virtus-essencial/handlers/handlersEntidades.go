@@ -421,7 +421,9 @@ func ListEntidadesHandler(w http.ResponseWriter, r *http.Request) {
 			entidades = append(entidades, entidade)
 		}
 		for i := range entidades {
-			entidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidades[i].Id, 10))
+			if entidades[i].CicloNome != "" {
+				entidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidades[i].Id, 10))
+			}
 		}
 		page.Entidades = entidades
 		if errMsg != "" {

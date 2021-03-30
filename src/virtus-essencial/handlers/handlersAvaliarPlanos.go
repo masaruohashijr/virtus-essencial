@@ -148,7 +148,7 @@ func ListAvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 			defer rows.Close()
 			i = 1
 			for rows.Next() {
-				rows.Scan(&cicloEntidade.Id, &cicloEntidade.Nome)
+				rows.Scan(&cicloEntidade.CicloId, &cicloEntidade.Nome)
 				cicloEntidade.Order = i
 				i++
 				ciclosEntidade = append(ciclosEntidade, cicloEntidade)
