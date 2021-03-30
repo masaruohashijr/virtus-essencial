@@ -509,7 +509,7 @@ function expandir(e, tabelaNome){
 	}
 }
 
-function openAnalise(btn){
+function openAnalise(btn, disabled){
 	let entidadeId = btn.name.split("_")[2];
 	let cicloId = btn.name.split("_")[3];
 	let pilarId = btn.name.split("_")[4];
@@ -519,6 +519,9 @@ function openAnalise(btn){
 	let elementoId = btn.name.split("_")[8];
 	let itemId = btn.name.split("_")[9];
 	document.getElementById('analise-form').style.display='block';
+	if(disabled=='disabled'){
+		document.getElementById("analise_text").disabled = disabled;
+	}
 	document.getElementById("AcionadoPor").value = btn.name;
 	document.getElementById("analiseEntidade").value = entidadesMap.get(entidadeId);
 	document.getElementById("analiseCiclo").value = ciclosMap.get(cicloId);
