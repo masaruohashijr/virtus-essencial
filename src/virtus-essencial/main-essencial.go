@@ -243,7 +243,9 @@ func main() {
 	http.Handle("/", r)
 	addr := ":" + sConfig.ServerPort
 	log.Printf("Listening on %s...\n", addr)
-	if err := http.ListenAndServe(addr, nil); err != nil {
+
+//	if err := http.ListenAndServe(addr, nil); err != nil {
+	if err := http.ListenAndServeTLS(addr, "cert.pem", "privkey.pem", nil); err != nil {
 		log.Println(err)
 	}
 	defer hd.Db.Close()
