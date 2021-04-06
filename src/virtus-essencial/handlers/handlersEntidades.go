@@ -109,35 +109,37 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 		msg := ""
 		currentUser := GetUserInCookie(w, r)
 		entidadeId := r.FormValue("Id")
-		log.Println(entidadeId)
+		log.Println("entidadeId: " + entidadeId)
 		nome := r.FormValue("Nome")
-		log.Println(nome)
+		log.Println("nome: " + nome)
 		descricao := r.FormValue("Descricao")
-		log.Println(descricao)
+		log.Println("descricao: " + descricao)
 		sigla := r.FormValue("Sigla")
-		log.Println(sigla)
+		log.Println("sigla: " + sigla)
 		codigo := r.FormValue("Codigo")
-		log.Println(codigo)
+		log.Println("codigo: " + codigo)
 		situacao := r.FormValue("Situacao")
-		log.Println(situacao)
+		log.Println("situacao: " + situacao)
 		esi := r.FormValue("ESI")
 		isESI := 0
 		if esi == "true" {
 			isESI = 1
 		}
-		log.Println(esi)
+		log.Println("esi: " + esi)
 		municipio := r.FormValue("Municipio")
-		log.Println(municipio)
+		log.Println("municipio: " + municipio)
 		siglaUF := r.FormValue("SiglaUF")
-		log.Println(siglaUF)
+		log.Println("siglaUF: " + siglaUF)
 		sqlStatement := "UPDATE virtus.entidades SET nome=?, descricao=?, sigla=?, codigo=?, situacao=?, esi=?, municipio=?, sigla_uf=? WHERE id_entidade=?"
 		log.Println(sqlStatement)
 		updtForm, err := Db.Prepare(sqlStatement)
 		if err != nil {
+			log.Println("DEU ERRO 1")
 			log.Println(err.Error())
 		}
 		_, err = updtForm.Exec(nome, descricao, sigla, codigo, situacao, isESI, municipio, siglaUF, entidadeId)
 		if err != nil {
+			log.Println("DEU ERRO 2")
 			log.Println(err.Error())
 		}
 		log.Println("UPDATE: Id: " + entidadeId + " | Nome: " + nome + " | Descrição: " + descricao + " | SiglaUF: " + siglaUF)
@@ -154,19 +156,19 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println("Id -------- " + id)
 				planoPage.Id, _ = strconv.ParseInt(id, 10, 64)
 				planoPage.EntidadeId, _ = strconv.ParseInt(entidadeId, 10, 64)
-				nome := strings.Split(array[2], ":")[1]
+				nome := strings.Split(array[3], ":")[1]
 				log.Println("nome -------- " + nome)
 				planoPage.Nome = nome
-				descricao := strings.Split(array[3], ":")[1]
+				descricao := strings.Split(array[4], ":")[1]
 				log.Println("descricao -------- " + descricao)
 				planoPage.Descricao = descricao
-				cnpb := strings.Split(array[6], ":")[1]
+				cnpb := strings.Split(array[5], ":")[1]
 				log.Println("cnpb -------- " + cnpb)
 				planoPage.CNPB = cnpb
-				recursoGarantidor := strings.Split(array[8], ":")[1]
+				recursoGarantidor := strings.Split(array[7], ":")[1]
 				log.Println("recursoGarantidor -------- " + recursoGarantidor)
 				planoPage.RecursoGarantidor = recursoGarantidor
-				modalidade := strings.Split(array[9], ":")[1]
+				modalidade := strings.Split(array[8], ":")[1]
 				log.Println("modalidade -------- " + modalidade)
 				planoPage.Modalidade = modalidade
 				planosPage = append(planosPage, planoPage)
@@ -198,11 +200,15 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				plano = diffPage[i]
 				log.Println("Entidade Id: " + strconv.FormatInt(plano.EntidadeId, 10))
 				sqlStatement := "INSERT INTO virtus.planos( " +
-					" id_entidade, nome, descricao, id_author, criado_em ) " +
+					" id_entidade, nome, descricao, cnpb, id_modalidade, recurso_garantidor, id_author, situacao, legislacao, criado_em ) " +
 					" OUTPUT INSERTED.id_plano " +
-					" VALUES (?, ?, ?, ?, GETDATE())"
+					" VALUES (?, ?, ?, ?, ?, ?, ?, 'ATIVO - EM FUNCIONAMENTO', 'LC108/109', GETDATE())"
 				log.Println(sqlStatement)
-				Db.QueryRow(sqlStatement, plano.EntidadeId, plano.Nome, plano.Descricao, currentUser.Id).Scan(&planoId)
+				row := Db.QueryRow(sqlStatement, plano.EntidadeId, plano.Nome, plano.Descricao, plano.CNPB, plano.Modalidade, plano.RecursoGarantidor, currentUser.Id)
+				err = row.Scan(&planoId)
+				if err != nil {
+					log.Println(err.Error())
+				}
 			}
 		}
 		UpdatePlanosHandler(planosPage, planosDB)

@@ -1,0 +1,38 @@
+{{ define "Main-Chefes" }}
+<html lang="pt">
+{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+<div id="main" class="w3-row-padding">
+	<header class="w3-container w3-center w3-teal">
+		<div class="row">
+		  <div class="w3-third" style="">
+		  	<h3>
+	   			<a style="cursor:pointer;text-align: left" onclick="navGadget()">
+				&#9776; {{.AppName}}
+	   			</a>
+			</h3>	   			
+		  </div>
+		  <div class="w3-third">
+			<h3>{{.Title}}</h3>
+		  </div>
+		  <div class="w3-third" style="text-align: right;padding:10px;font-size:1vw;">
+			<div class="w3-half" style="text-align: right;">
+			{{.LoggedUser.User.Name}} (&nbsp;{{.LoggedUser.User.RoleName}}&nbsp;)
+			</div>
+			<div class="w3-half">
+				<span style="width:120px;">
+				    <a href="/logout">
+						<span class="icon ion-log-out w3-xxlarge hoverbtn"></span>
+					</a>
+				</span>
+			</div>
+		  </div>
+		</div>
+	</header>
+{{ template "List-EFPCAbertas" . }}
+</div>
+{{ template "List-PendenciasChefe" . }}
+</body>
+</html>
+{{end}}

@@ -23,6 +23,8 @@
 								id="analise_text" 
 								class="w3-input" 
 								rows="22" cols="55"
+								maxlength = "8000"
+								onkeydown="contaCaracter(event, this, 'counterAnalise')"
 								wrap="hard">
 							</textarea>
 						</td>
@@ -73,6 +75,9 @@
 				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
 					onClick="salvarAnalise()" 
 					type="button">Salvar</button>
+				<input type="text" id="counterAnalise" disabled size="10" 
+					style="height:32px; text-align:center;vertical-align:top;margin-right: 10px;padding-top: 4px" 
+					class="w3-white w3-margin-top w3-margin-bottom w3-right">
             </form>
         </div>
     </div>

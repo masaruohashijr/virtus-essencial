@@ -570,6 +570,7 @@ function loadAnalise(btn){
 				text = text.replaceAll('\[tab\]','\t');
 				text = text.replaceAll('\[porcento\]','%');				
 				document.getElementById("analise_text").value = text;
+				document.getElementById("counterAnalise").value = text.length;
 				document.getElementById('analise_text').focus();
 			}
 	}
@@ -765,4 +766,26 @@ function somaPesosPilaresAcima100(){
 		return true;
 	}
 	return false;
+}
+
+function contaCaracter(event, campoMotivacao, idCampoContador) {
+	let maxChars = 8000;
+	if (event.keyCode == 8){
+		inputLength = campoMotivacao.value.length-1;
+	} else {
+		inputLength = campoMotivacao.value.length+1;
+	}
+	let campoContador = document.getElementById(idCampoContador);
+	let qtd = maxChars-inputLength;
+	if(qtd>maxChars){
+		qtd = maxChars;
+	}
+	if(qtd<0){
+		qtd = 0;
+	}
+	console.log(qtd);
+	campoContador.value = qtd + " / "+maxChars;
+	if(inputLength >= maxChars) {
+		e.preventDefault();
+	}
 }

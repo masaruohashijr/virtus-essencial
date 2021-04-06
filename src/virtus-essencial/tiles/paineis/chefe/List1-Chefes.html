@@ -1,0 +1,69 @@
+{{define "List1-Chefe"}}
+<!-- List Sobre -->
+        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable"
+			id="tabela-Chamados">
+            <tr>
+                <td style="vertical-align:middle;width: 5%;">Ord</td>
+                <td style="vertical-align:middle;width: 5%;">Id</td>
+                <td style="vertical-align:middle;width: 5%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Tipo" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'tabela-chamados', 1, 2)"></td>
+                <td style="vertical-align:middle;width: 5%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Prioridade" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'tabela-chamados', 1, 3)"></td>
+                <td style="vertical-align:middle;width: 20%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Titulo" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'tabela-chamados', 1, 4)"></td>
+				<td style="display:none">Descrição</td>
+                <td style="vertical-align:middle;width: 5%;">Responsável</td>
+                <td style="vertical-align:middle;width: 5%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Relator" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'tabela-chamados', 1, 7)"></td>
+                <td style="vertical-align:middle;width: 5%;">Inicia Em</td>
+                <td style="vertical-align:middle;width: 5%;">Pronto Em</td>
+                <td style="vertical-align:middle;width: 5%;">Estimativa</td>
+                <td style="vertical-align:middle;width: 5%;">Autor</td>
+                <td style="vertical-align:middle;width: 5%;">Criado Em</td>
+				<td style="vertical-align:middle;width: 5%;"><input 
+						type="text" 
+						value="" 
+						placeholder="Status" 
+						style="width:100%"
+						onkeyup="filtraTabela(this, 'tabela-chamados', 1, 13)"></td>
+            </tr>
+            {{range $index, $chamado := .Chamados}}
+            <tr>
+                <td style="vertical-align:middle">#{{$chamado.Order}}</td>
+                <td style="vertical-align:middle">{{$chamado.Id}}</td>
+                <td style="vertical-align:middle">{{$chamado.TipoChamadoId}}</td>
+                <td style="vertical-align:middle">{{$chamado.PrioridadeId}}</td>
+                <td style="vertical-align:middle;text-align:left">{{$chamado.Titulo}}</td>
+				<td style="display:none">{{$chamado.Descricao}}</td>
+                <td style="vertical-align:middle">{{$chamado.ResponsavelName}}
+					<input type="hidden" value="{{$chamado.ResponsavelId}}">
+				</td>
+                <td style="vertical-align:middle">{{$chamado.RelatorName}}
+					<input type="hidden" value="{{$chamado.RelatorId}}">
+				</td>
+                <td style="vertical-align:middle">{{$chamado.IniciaEm}}</td>
+                <td style="vertical-align:middle">{{$chamado.ProntoEm}}</td>
+                <td style="vertical-align:middle">{{$chamado.Estimativa}}</td>
+                <td style="vertical-align:middle">{{$chamado.AuthorName}}</td>
+                <td style="vertical-align:middle">{{$chamado.C_CriadoEm}}</td>
+				<td style="vertical-align:middle;font-weight:bold;color:green">{{$chamado.CStatus}}</td>
+            </tr>
+            {{end}}
+        </table>
+{{end}}

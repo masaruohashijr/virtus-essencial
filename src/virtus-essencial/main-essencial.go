@@ -86,11 +86,18 @@ func main() {
 		dpk.Initialize()
 	}
 	r := mux.NewRouter()
-	// ----------------- HOME E SECURITY
+	// ----------------- SECURITY
 	r.HandleFunc("/", hd.IndexHandler).Methods("GET")
-	r.HandleFunc("/about", hd.ListSobreHandler)
 	r.HandleFunc("/login", hd.LoginHandler)
 	r.HandleFunc("/logout", hd.LogoutHandler)
+	// ----------------- HOME
+	r.HandleFunc("/about", hd.ListSobreHandler)
+	r.HandleFunc("/admin", hd.AdminHomeHandler)
+	r.HandleFunc("/chefe", hd.ChefeHomeHandler)
+	r.HandleFunc("/supervisor", hd.SupervisorHomeHandler)
+	r.HandleFunc("/auditor", hd.AuditorHomeHandler)
+	r.HandleFunc("/visualizador", hd.VisualizadorHomeHandler)
+	r.HandleFunc("/desenvolvedor", hd.DesenvolvedorHomeHandler)
 	// ----------------- AVALIAÇÕES
 	r.HandleFunc("/listAvaliarPlanos", hd.ListAvaliarPlanosHandler).Methods("GET")
 	r.HandleFunc("/avaliarPlanos", hd.AvaliarPlanosHandler).Methods("POST")
@@ -244,9 +251,9 @@ func main() {
 	addr := ":" + sConfig.ServerPort
 	log.Printf("Listening on %s...\n", addr)
 
-//	if err := http.ListenAndServe(addr, nil); err != nil {
 	if err := http.ListenAndServeTLS(addr, "cert.pem", "privkey.pem", nil); err != nil {
 		log.Println(err)
+		http.ListenAndServe(addr, nil)
 	}
 	defer hd.Db.Close()
 }

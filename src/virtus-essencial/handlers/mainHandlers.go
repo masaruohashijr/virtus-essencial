@@ -16,6 +16,24 @@ import (
 
 var Db *sql.DB
 
+func redirectHome(savedUser *mdl.User) string {
+	//	switch role := savedUser.Role; role {
+	//	case 1: // ADMIN
+	//		return route.AdminHome
+	//	case 2: // CHEFE
+	//		return route.ChefeHome
+	//	case 3: // SUPERVISOR
+	//		return route.SupervisorHome
+	//	case 4: // AUDITOR
+	//		return route.AuditorHome
+	//	case 5: // VISUALIZADOR
+	//		return route.VisualizadorHome
+	//	case 6: // DESENVOLVEDOR
+	//		return route.DesenvolvedorHome
+	//	}
+	return route.EntidadesRoute
+}
+
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	if sec.IsAuthenticated(w, r) {
 		http.Redirect(w, r, route.EntidadesRoute, 200)
@@ -105,7 +123,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		// Abrindo o Cookie
 		savedUser := GetUserInCookie(w, r)
 		log.Println("MAIN Saved User is " + savedUser.Username)
-		http.Redirect(w, r, route.EntidadesRoute, 301)
+		homeURL := redirectHome(&savedUser)
+		http.Redirect(w, r, homeURL, 301)
 	}
 }
 

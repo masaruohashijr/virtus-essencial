@@ -129,9 +129,9 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 		" coalesce(a.nome,'')," +
 		" coalesce(a.descricao,''), " +
 		" a.cnpb," +
-		" CASE WHEN a.recurso_garantidor > 1000000 AND a.recurso_garantidor < 1000000000 THEN concat(format(a.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN a.recurso_garantidor > 1000000000 THEN concat(format(a.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(a.recurso_garantidor/1000,'N','pt-br'),' Milhares') END," +
-		" cast(a.recurso_garantidor as numeric), " +
-		" a.id_modalidade," +
+		" CASE WHEN a.recurso_garantidor >= 1000000 AND a.recurso_garantidor < 1000000000 THEN concat(format(a.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN a.recurso_garantidor >= 1000000000 THEN concat(format(a.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(a.recurso_garantidor/1000,'N','pt-br'),' Milhares') END," +
+		" CAST(CAST(a.recurso_garantidor AS bigint) AS varchar), " +
+		" CASE WHEN a.id_modalidade = 'PA' THEN 'PGA' ELSE a.id_modalidade END," +
 		" a.id_author, " +
 		" coalesce(b.name,'') as author_name, " +
 		" coalesce(format(a.criado_em,'dd/MM/yyyy'),'') as criado_em," +

@@ -21,7 +21,10 @@
 						<td width="50%" rowspan="8" style="vertical-align: top;">
 							<label class="w3-label">Motivação Nota</label>
 							<br>
-							<textarea id="motNota_text" class="w3-input" rows="22" cols="55"></textarea>
+							<textarea id="motNota_text" 
+								onkeydown="contaCaracter(event, this, 'counterNota')"
+								maxlength = "8000"
+								class="w3-input" rows="22" cols="55"></textarea>
 						</td>
 					</tr>	
 					<tr>
@@ -91,6 +94,9 @@
 				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
 					onClick="salvarNotaElemento()" 
 					type="button">Salvar</button>
+				<input type="text" id="counterNota" disabled size="10" 
+					style="height:32px; text-align:center;vertical-align:top;margin-right: 10px;padding-top: 4px" 
+					class="w3-white w3-margin-top w3-margin-bottom w3-right">
             </form>
         </div>
     </div>

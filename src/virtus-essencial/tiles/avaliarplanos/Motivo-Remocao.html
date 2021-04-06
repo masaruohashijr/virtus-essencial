@@ -42,13 +42,19 @@
 						<td colspan="4">
 							<label class="w3-label">Motivação</label>
 							<br>
-							<textarea id="mot_rem_text" readonly disabled class="w3-input" rows="20" cols="55"></textarea>
+							<textarea 
+								id="mot_rem_text" 
+								readonly disabled 
+								class="w3-input" rows="20" cols="55"></textarea>
 						</td>
 					</tr>	
 				</table>
 				<button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
 					onClick="document.getElementById('motivo-remocao-form').style.display='none'" 
 					type="button">Fechar</button>
+				<input type="text" id="counterRemocaoMotivo" disabled size="10" 
+					style="height:32px; text-align:center;vertical-align:top;margin-right: 10px;padding-top: 4px" 
+					class="w3-white w3-margin-top w3-margin-bottom w3-right">
             </form>
         </div>
     </div>

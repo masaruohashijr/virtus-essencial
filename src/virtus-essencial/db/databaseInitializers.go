@@ -10,7 +10,8 @@ var db *sql.DB
 
 func Initialize() {
 	db = hd.Db
-	createPlanosFACHESF()
+	createPlanosELETROS()
+	//	createPlanosFACHESF()
 	/*createSchema()
 	createSeq()
 	createSeqHistoricos()

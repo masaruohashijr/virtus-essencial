@@ -11,7 +11,7 @@ import (
 )
 
 func ListMatrizesHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("List Matrizes Handler")
+	log.Println("List Matrizes de Trabalho")
 	currentUser := GetUserInCookie(w, r)
 	if sec.IsAuthenticated(w, r) && HasPermission(currentUser, "viewMatriz") {
 		log.Println("--------------")
@@ -33,37 +33,19 @@ func ListMatrizesHandler(w http.ResponseWriter, r *http.Request) {
 		defer rows.Close()
 		var entidades []mdl.Entidade
 		var entidade mdl.Entidade
-		var i = 1
 		for rows.Next() {
 			rows.Scan(
 				&entidade.Codigo,
 				&entidade.Id,
 				&entidade.Nome,
 				&entidade.EscritorioAbreviatura)
-			entidade.Order = i
-			i++
-			sql = "SELECT b.id_ciclo, b.nome " +
-				" FROM virtus.ciclos_entidades a " +
-				" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id_ciclo " +
-				" WHERE a.id_entidade = ? " +
-				" ORDER BY id_ciclo_entidade asc"
-			rows, _ = Db.Query(sql, entidade.Id)
-			defer rows.Close()
-			var ciclosEntidade []mdl.CicloEntidade
-			var cicloEntidade mdl.CicloEntidade
-			i = 1
-			for rows.Next() {
-				rows.Scan(&cicloEntidade.Id, &cicloEntidade.Nome)
-				cicloEntidade.Order = i
-				i++
-				ciclosEntidade = append(ciclosEntidade, cicloEntidade)
-			}
-			entidade.CiclosEntidade = ciclosEntidade
+			entidade.CiclosEntidade = loadCiclosEntidade(entidade.Id)
 			entidades = append(entidades, entidade)
+			log.Println(entidade)
 		}
 		page.Entidades = entidades
 		page.AppName = mdl.AppName
-		page.Title = "Matriz de Trabalho" + mdl.Ambiente
+		page.Title = "Matriz " + mdl.Ambiente
 		page.LoggedUser = BuildLoggedUser(GetUserInCookie(w, r))
 		var tmpl = template.Must(template.ParseGlob("tiles/matrizes/*"))
 		tmpl.ParseGlob("tiles/*")
@@ -71,6 +53,23 @@ func ListMatrizesHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Redirect(w, r, "/logout", 301)
 	}
+}
+
+func loadCiclosEntidade(idEntidade int64) []mdl.CicloEntidade {
+	sql := "SELECT b.id_ciclo, b.nome " +
+		" FROM virtus.ciclos_entidades a " +
+		" LEFT JOIN virtus.ciclos b ON a.id_ciclo = b.id_ciclo " +
+		" WHERE a.id_entidade = ? " +
+		" ORDER BY id_ciclo_entidade asc"
+	rows, _ := Db.Query(sql, idEntidade)
+	defer rows.Close()
+	var ciclosEntidade []mdl.CicloEntidade
+	var cicloEntidade mdl.CicloEntidade
+	for rows.Next() {
+		rows.Scan(&cicloEntidade.Id, &cicloEntidade.Nome)
+		ciclosEntidade = append(ciclosEntidade, cicloEntidade)
+	}
+	return ciclosEntidade
 }
 
 func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, componenteId string) []mdl.ElementoDaMatriz {
@@ -128,7 +127,7 @@ func loadElementosDaMatriz(entidadeId string, cicloId string, pilarId string, co
 		"        COALESCE(y.nome,'') as entidade_nome, " +
 		"        COALESCE(R2.id_plano, 0) AS id_plano, " +
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
-		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
+		"        CASE WHEN z.recurso_garantidor >= 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor >= 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
 		"        COALESCE(z.id_modalidade,'') as modalidade, " +
 		"        COALESCE((SELECT count(1) " +
 		"   		FROM " +
@@ -315,7 +314,7 @@ func loadTiposNotasMatriz(entidadeId string, cicloId string, pilarId string) []m
 		"        COALESCE(y.nome,'') as entidade_nome, " +
 		"        COALESCE(R2.id_plano, 0) AS id_plano, " +
 		"        COALESCE(z.cnpb,'') AS cnpb, " +
-		"        CASE WHEN z.recurso_garantidor > 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor > 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
+		"        CASE WHEN z.recurso_garantidor >= 1000000 AND z.recurso_garantidor < 1000000000 THEN concat(format(z.recurso_garantidor/1000000,'N','pt-br'),' Milhões') WHEN z.recurso_garantidor >= 1000000000 THEN concat(format(z.recurso_garantidor/1000000000,'N','pt-br'),' Bilhões') ELSE concat(format(z.recurso_garantidor/1000,'N','pt-br'),' Milhares') END as rg, " +
 		"        COALESCE(z.id_modalidade,'') as modalidade, " +
 		"        (SELECT count(1) FROM (SELECT DISTINCT id_plano FROM virtus.produtos_planos WHERE id_entidade = " + entidadeId + " AND id_ciclo = " + cicloId + " GROUP BY id_plano) S) as EntidadeQtdPlanos " +
 		" FROM " +

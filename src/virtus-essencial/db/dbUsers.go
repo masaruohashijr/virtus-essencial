@@ -115,7 +115,7 @@ func createUsers() {
 	db.Exec(sql)
 	sql = "INSERT INTO virtus.users (username, password, email, mobile, name, id_role, id_author, criado_em) SELECT 'jose.cestari', '$2a$10$4Q6xe3fxi1HC8PX7LSGIkeYpkNa9OdpUv3rUD0ht4g3Fu6gJgg1g6','jose.cestari@previc.gov.br', '', 'JOSE MARCOS CARVALHO CESTARI', 4, 1, GETDATE() WHERE NOT EXISTS (SELECT id_user FROM virtus.users WHERE username = 'jose.cestari')"
 	db.Exec(sql)
-	sql = "INSERT INTO virtus.users (username, password, email, mobile, name, id_role, id_author, criado_em) SELECT 'jose.fernanes', '$2a$10$4Q6xe3fxi1HC8PX7LSGIkeYpkNa9OdpUv3rUD0ht4g3Fu6gJgg1g6','', '', 'JOSÉ RICARDO FERREIRA FERNANDES', 4, 1, GETDATE() WHERE NOT EXISTS (SELECT id_user FROM virtus.users WHERE username = 'jose.fernanes')"
+	sql = "INSERT INTO virtus.users (username, password, email, mobile, name, id_role, id_author, criado_em) SELECT 'jose.fernandes', '$2a$10$4Q6xe3fxi1HC8PX7LSGIkeYpkNa9OdpUv3rUD0ht4g3Fu6gJgg1g6','', '', 'JOSÉ RICARDO FERREIRA FERNANDES', 4, 1, GETDATE() WHERE NOT EXISTS (SELECT id_user FROM virtus.users WHERE username = 'jose.fernandes')"
 	db.Exec(sql)
 	sql = "INSERT INTO virtus.users (username, password, email, mobile, name, id_role, id_author, criado_em) SELECT 'jucinea', '$2a$10$4Q6xe3fxi1HC8PX7LSGIkeYpkNa9OdpUv3rUD0ht4g3Fu6gJgg1g6','', '', 'JUCINEA DAS MERCES NASCIMENTO', 4, 1, GETDATE() WHERE NOT EXISTS (SELECT id_user FROM virtus.users WHERE username = 'jucinea')"
 	db.Exec(sql)

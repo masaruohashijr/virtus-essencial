@@ -64,11 +64,11 @@ function editEntidade(e) {
 	console.log('entidadeDescricao: '+entidadeDescricao);
     var entidadeSituacao = e.parentNode.parentNode.childNodes[9].childNodes[1].value;
 	console.log('entidadeSituacao: '+entidadeSituacao);
-    var entidadeESI = e.parentNode.parentNode.childNodes[9].childNodes[3].value;
+    var entidadeESI = e.parentNode.parentNode.childNodes[9].childNodes[5].value;
 	console.log('entidadeESI: '+entidadeESI);
-    var entidadeMunicipio = e.parentNode.parentNode.childNodes[9].childNodes[5].value;
+    var entidadeMunicipio = e.parentNode.parentNode.childNodes[9].childNodes[7].value;
 	console.log('entidadeMunicipio: '+entidadeMunicipio);
-    var entidadeSiglaUF = e.parentNode.parentNode.childNodes[9].childNodes[7].value;
+    var entidadeSiglaUF = e.parentNode.parentNode.childNodes[9].childNodes[9].value;
 	console.log('entidadeSiglaUF: '+entidadeSiglaUF);
 
 	document.getElementById('EntidadeIdForUpdate').value = entidadeId;
