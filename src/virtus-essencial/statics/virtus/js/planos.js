@@ -193,12 +193,13 @@ class ConfigPlano {
 }
 	
 class Plano {
-	constructor(order, id, entidadeId, nome, descricao, cnpb, c_recursoGarantidor, recursoGarantidor, modalidade, autorId, autorNome, criadoEm, status, cStatus) {
+	constructor(order, id, nome, descricao, entidadeId, entidadeNome, cnpb, c_recursoGarantidor, recursoGarantidor, modalidade, autorId, autorNome, criadoEm, status, cStatus) {
 		this.order = order;
 		this.id = id;
-		this.entidadeId = entidadeId;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.entidadeId = entidadeId;
+		this.entidadeNome = entidadeNome;
 		this.cnpb = cnpb;
 		this.c_recursoGarantidor = c_recursoGarantidor;
 		this.recursoGarantidor = recursoGarantidor;
@@ -225,7 +226,7 @@ function criarPlano(){
 		return;
 	}
 	planoId = getMaxId(planos);
-	plano = new Plano(0, planoId, 0, nome, descricao, cnpb, '', recursoGarantidor, modalidade,'','','','','');
+	plano = new Plano(0, planoId, nome, descricao, 0, '', cnpb, '', recursoGarantidor, modalidade,'','','','','');
 	planos.push(plano);
 	console.log('contexto: '+contexto);
 	//console.log("table-planos-"+contexto);
@@ -244,6 +245,7 @@ function addPlanoRow(tableID) {
 	let newText = document.createTextNode(plano.cnpb);
 	let rg = plano.c_recursoGarantidor;
 	plano.c_recursoGarantidor = '';
+	// FAZER DIREITO AQUI
 	let json = JSON.stringify(plano);
 	json = json.split(',').join('#');
 	json = json.split('"').join('');
@@ -306,17 +308,24 @@ function addPlanoRow(tableID) {
 }
 
 function editPlano(e) {
+	console.log('-----------');
 	console.log('editPlano');
 	var editPlanoForm = document.getElementById('edit-plano-form');
 	editPlanoForm.style.display = 'block';
 	var order = e.parentNode.parentNode.childNodes[0].childNodes[0].value;
+	console.log('order: '+order);
 	var id = e.parentNode.parentNode.childNodes[0].childNodes[1].value;
+	console.log('id: '+id);
 	var entidadeId = e.parentNode.parentNode.childNodes[0].childNodes[2].value;
-	alert(entidadeId);
+	console.log('entidadeId: '+entidadeId);
 	var cnpb = e.parentNode.parentNode.childNodes[0].innerText;
+	console.log('cnpb: '+cnpb);
 	var modalidade = e.parentNode.parentNode.childNodes[1].innerText;
+	console.log('modalidade: '+modalidade);
 	var recursoGarantidor = e.parentNode.parentNode.childNodes[5].innerText;
+	console.log('recursoGarantidor: '+recursoGarantidor);
 	var nome = e.parentNode.parentNode.childNodes[3].innerText;
+	console.log('nome: '+nome);
 	var descricao = e.parentNode.parentNode.childNodes[4].innerText;
 	// Atribuindo os valores de edit-item-form
 	document.getElementById('id-edit').value=id;
@@ -334,9 +343,7 @@ function updatePlano() {
 	var id = document.getElementById('id-edit').value;
 	var order = document.getElementById('order-edit').value;	
 	var entidadeId = document.getElementById('entidadeId-edit').value;
-	alert(entidadeId);
 	var cnpb = document.getElementById('CNPBPlanoForUpdate').value;
-	alert(cnpb);
 	var nome = document.getElementById('NomePlanoForUpdate').value;
 	var modalidade = document.getElementById('ModalidadePlanoForUpdate').value;
 	var recursoGarantidor = document.getElementById('RecursoGarantidorPlanoForUpdate').value;
@@ -347,7 +354,7 @@ function updatePlano() {
 		alert(erros);
 		return;
 	}
-	plano = new Plano(order, id, entidadeId, nome, descricao, cnpb, '', recursoGarantidor, modalidade,'','','','','');
+	plano = new Plano(order, id, nome, descricao, entidadeId,'',cnpb, '', recursoGarantidor, modalidade,'','','','','');
 	planos[order] = plano;
 	console.log("table-planos-"+contexto);
 	console.log('order: '+order);
@@ -379,10 +386,10 @@ function updatePlanoRow(tableID, order){
 	json = json.split('"').join('');
 	json = json.split('{').join('');
 	json = json.split('}').join('');
-	celula.innerHTML = '<input type="hidden" name="plano'+order+'" value="'+json+'"/>'+celula.innerHTML;
-	celula.innerHTML = '<input type="hidden" name="entidadeId" value="'+plano.entidadeId+'"/>'+celula.innerHTML;
-	celula.innerHTML = '<input type="hidden" name="id" value="'+planos[order].id+'"/>'+celula.innerHTML;
-	celula.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="text" name="plano'+order+'" value="'+json+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="text" name="entidadeId" value="'+plano.entidadeId+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="text" name="id" value="'+planos[order].id+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="text" name="order" value="'+order+'"/>'+celula.innerHTML;
 	row.childNodes[1].innerText = planos[order].modalidade;
 	if(planos[order].c_recursoGarantidor == ''){
 		plano.c_recursoGarantidor = plano.recursoGarantidor;

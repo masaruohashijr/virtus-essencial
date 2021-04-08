@@ -102,16 +102,17 @@ function deleteEntidade(e) {
 }
 
 function loadPlanosByEntidadeId(entidadeId){
-	var xmlhttp;
+	let xmlhttp;
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				var planosEntidade = JSON.parse(xmlhttp.responseText);
+				let planosEntidade = JSON.parse(xmlhttp.responseText);
 				wipeRows("table-planos-"+contexto)
 				planos = [];
 				for(i = 0;planosEntidade != null && i <planosEntidade.length;i++){
+					console.log(planosEntidade[i]);
 					planos[i]=planosEntidade[i];
 					addPlanoRow("table-planos-"+contexto);
 				}

@@ -165,10 +165,10 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				cnpb := strings.Split(array[6], ":")[1]
 				log.Println("cnpb -------- " + cnpb)
 				planoPage.CNPB = cnpb
-				recursoGarantidor := strings.Split(array[7], ":")[1]
+				recursoGarantidor := strings.Split(array[8], ":")[1]
 				log.Println("recursoGarantidor -------- " + recursoGarantidor)
 				planoPage.RecursoGarantidor = recursoGarantidor
-				modalidade := strings.Split(array[8], ":")[1]
+				modalidade := strings.Split(array[9], ":")[1]
 				log.Println("modalidade -------- " + modalidade)
 				planoPage.Modalidade = modalidade
 				planosPage = append(planosPage, planoPage)
