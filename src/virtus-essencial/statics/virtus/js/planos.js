@@ -253,10 +253,10 @@ function addPlanoRow(tableID) {
 	json = json.split('}').join('');
 	newCell.appendChild(newText);
 	newCell.style = 'vertical-align:middle';
-	newCell.innerHTML = '<input type="text" name="plano'+plano.id+'" value="'+json+'"/>'+newCell.innerHTML;
-	newCell.innerHTML = '<input type="text" name="entidadeId" value="'+plano.entidadeId+'"/>'+newCell.innerHTML;
-	newCell.innerHTML = '<input type="text" name="id" value="'+plano.id+'"/>'+newCell.innerHTML;
-	newCell.innerHTML = '<input type="text" name="order" value="'+order+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="hidden" name="plano'+plano.id+'" value="'+json+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="hidden" name="entidadeId" value="'+plano.entidadeId+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="hidden" name="id" value="'+plano.id+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+newCell.innerHTML;
 	// modalidade
 	newCell = newRow.insertCell(1);
 	newText = document.createTextNode(plano.modalidade);
@@ -386,10 +386,10 @@ function updatePlanoRow(tableID, order){
 	json = json.split('"').join('');
 	json = json.split('{').join('');
 	json = json.split('}').join('');
-	celula.innerHTML = '<input type="text" name="plano'+order+'" value="'+json+'"/>'+celula.innerHTML;
-	celula.innerHTML = '<input type="text" name="entidadeId" value="'+plano.entidadeId+'"/>'+celula.innerHTML;
-	celula.innerHTML = '<input type="text" name="id" value="'+planos[order].id+'"/>'+celula.innerHTML;
-	celula.innerHTML = '<input type="text" name="order" value="'+order+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="hidden" name="plano'+order+'" value="'+json+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="hidden" name="entidadeId" value="'+plano.entidadeId+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="hidden" name="id" value="'+planos[order].id+'"/>'+celula.innerHTML;
+	celula.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+celula.innerHTML;
 	row.childNodes[1].innerText = planos[order].modalidade;
 	if(planos[order].c_recursoGarantidor == ''){
 		plano.c_recursoGarantidor = plano.recursoGarantidor;
