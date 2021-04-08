@@ -79,7 +79,7 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.2.1" + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.2.2" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	if true {
