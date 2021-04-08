@@ -169,7 +169,7 @@ func ListPlanosByEntidadeId(entidadeId string) []mdl.Plano {
 		planos = append(planos, plano)
 		log.Println(plano)
 	}
-	log.Println("PLANOS " + strconv.Itoa(len(planos)))
+	log.Println("Quantidade de Planos: " + strconv.Itoa(len(planos)))
 	return planos
 }
 

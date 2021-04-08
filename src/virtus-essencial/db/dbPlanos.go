@@ -16,11 +16,14 @@ func createPlanosFACHESF() {
 
 func createPlanosELETROS() {
 	sqlFACHESF := "INSERT INTO virtus.PLANOS (id_entidade, cnpb, id_modalidade, situacao, legislacao, recurso_garantidor )  " +
-		" SELECT a.id_entidade as id_entidade, '1980002029' as cnpb, 'BD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 2707938724.21 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '1980002029') UNION  " +
-		" SELECT a.id_entidade as id_entidade, '2001002165' as cnpb, 'CV' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 3781441670.20 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2001002165') UNION  " +
-		" SELECT a.id_entidade as id_entidade, '2001002238' as cnpb, 'BD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 1537237830.68 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2001002238') UNION  " +
-		" SELECT a.id_entidade as id_entidade, '2019002647' as cnpb, 'CD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC109' as legislacao, 44020.45 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'FACHESF' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2019002647') "
+		" SELECT a.id_entidade as id_entidade, '1979002118' as cnpb, 'BD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 2177275103.9 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ELETROS' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '1979002118') UNION  " +
+		" SELECT a.id_entidade as id_entidade, '2000005683' as cnpb, 'CV' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 699979253.91 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ELETROS' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2000005683') UNION  " +
+		" SELECT a.id_entidade as id_entidade, '2006001574' as cnpb, 'CD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 2065875941.56 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ELETROS' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2006001574') UNION  " +
+		" SELECT a.id_entidade as id_entidade, '2009002938' as cnpb, 'CV' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 108066713.81 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ELETROS' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '2009002938') UNION " +
+		" SELECT a.id_entidade as id_entidade, '5000032683' as cnpb, 'CD' as modalidade, 'ATIVO - EM FUNCIONAMENTO' as situacao, 'LC108/109' as legislacao, 51015766.98 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ELETROS' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '5000032683') UNION " +
+		" SELECT a.id_entidade as id_entidade, '9970000000' as cnpb, 'PA' as modalidade, '' as situacao, '' as legislacao, 1.00 as recurso_garantidor FROM virtus.entidades a WHERE a.sigla = 'ELETROS' AND NOT EXISTS (SELECT 1 FROM virtus.planos WHERE cnpb = '9970000000' AND id_entidade = a.id_entidade) "
 	log.Println("Planos da FACHESF")
+	log.Println(sqlFACHESF)
 	db.Exec(sqlFACHESF)
 }
 

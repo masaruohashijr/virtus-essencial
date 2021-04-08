@@ -400,7 +400,7 @@ type ValoresAtuais struct {
 }
 
 type Plano struct {
-	Order               int
+	Order               int    `json:"order"`
 	Id                  int64  `json:"id"`
 	Nome                string `json:"nome"`
 	Descricao           string `json:"descricao"`

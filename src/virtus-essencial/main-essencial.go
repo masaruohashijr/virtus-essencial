@@ -82,7 +82,7 @@ func main() {
 	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.2.0" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if false {
+	if true {
 		dpk.Initialize()
 	}
 	r := mux.NewRouter()

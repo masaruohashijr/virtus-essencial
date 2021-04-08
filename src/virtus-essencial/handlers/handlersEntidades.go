@@ -156,13 +156,13 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println("Id -------- " + id)
 				planoPage.Id, _ = strconv.ParseInt(id, 10, 64)
 				planoPage.EntidadeId, _ = strconv.ParseInt(entidadeId, 10, 64)
-				nome := strings.Split(array[3], ":")[1]
+				nome := strings.Split(array[2], ":")[1]
 				log.Println("nome -------- " + nome)
 				planoPage.Nome = nome
-				descricao := strings.Split(array[4], ":")[1]
+				descricao := strings.Split(array[3], ":")[1]
 				log.Println("descricao -------- " + descricao)
 				planoPage.Descricao = descricao
-				cnpb := strings.Split(array[5], ":")[1]
+				cnpb := strings.Split(array[6], ":")[1]
 				log.Println("cnpb -------- " + cnpb)
 				planoPage.CNPB = cnpb
 				recursoGarantidor := strings.Split(array[7], ":")[1]

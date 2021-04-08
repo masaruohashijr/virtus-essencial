@@ -251,10 +251,10 @@ function addPlanoRow(tableID) {
 	json = json.split('}').join('');
 	newCell.appendChild(newText);
 	newCell.style = 'vertical-align:middle';
-	newCell.innerHTML = '<input type="hidden" name="plano'+plano.id+'" value="'+json+'"/>'+newCell.innerHTML;
-	newCell.innerHTML = '<input type="hidden" name="entidadeId" value="'+plano.entidadeId+'"/>'+newCell.innerHTML;
-	newCell.innerHTML = '<input type="hidden" name="id" value="'+plano.id+'"/>'+newCell.innerHTML;
-	newCell.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="text" name="plano'+plano.id+'" value="'+json+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="text" name="entidadeId" value="'+plano.entidadeId+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="text" name="id" value="'+plano.id+'"/>'+newCell.innerHTML;
+	newCell.innerHTML = '<input type="text" name="order" value="'+order+'"/>'+newCell.innerHTML;
 	// modalidade
 	newCell = newRow.insertCell(1);
 	newText = document.createTextNode(plano.modalidade);
@@ -312,6 +312,7 @@ function editPlano(e) {
 	var order = e.parentNode.parentNode.childNodes[0].childNodes[0].value;
 	var id = e.parentNode.parentNode.childNodes[0].childNodes[1].value;
 	var entidadeId = e.parentNode.parentNode.childNodes[0].childNodes[2].value;
+	alert(entidadeId);
 	var cnpb = e.parentNode.parentNode.childNodes[0].innerText;
 	var modalidade = e.parentNode.parentNode.childNodes[1].innerText;
 	var recursoGarantidor = e.parentNode.parentNode.childNodes[5].innerText;
@@ -331,9 +332,11 @@ function editPlano(e) {
 function updatePlano() {
 	console.log('updatePlano');
 	var id = document.getElementById('id-edit').value;
-	var order = document.getElementById('order-edit').value;
+	var order = document.getElementById('order-edit').value;	
 	var entidadeId = document.getElementById('entidadeId-edit').value;
+	alert(entidadeId);
 	var cnpb = document.getElementById('CNPBPlanoForUpdate').value;
+	alert(cnpb);
 	var nome = document.getElementById('NomePlanoForUpdate').value;
 	var modalidade = document.getElementById('ModalidadePlanoForUpdate').value;
 	var recursoGarantidor = document.getElementById('RecursoGarantidorPlanoForUpdate').value;

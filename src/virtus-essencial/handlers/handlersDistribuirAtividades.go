@@ -284,17 +284,23 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		page.Supervisores = supervisores
 
-		sql = " SELECT " +
-			" a.id_usuario, " +
-			" coalesce(b.name,''), " +
-			" UPPER(coalesce(b.name,'')) AS orderable " +
+		sql = " SELECT a.id_usuario, " +
+			"        coalesce(b.name, ''), " +
+			"        UPPER(coalesce(b.name, '')) AS orderable " +
 			" FROM virtus.integrantes a " +
-			" LEFT JOIN virtus.users b " +
-			" ON a.id_usuario = b.id_user " +
-			" WHERE " +
-			" a.id_entidade = " + entidadeId +
-			" AND a.id_ciclo = " + cicloId +
-			" AND b.id_role = 4 "
+			" LEFT JOIN virtus.users b ON a.id_usuario = b.id_user " +
+			"  " +
+			" WHERE a.id_entidade = " + entidadeId +
+			"   AND a.id_ciclo = " + cicloId +
+			"   AND b.id_role = 4" +
+			" UNION " +
+			" SELECT c.id_supervisor, " +
+			" 	   coalesce(d.name, ''), " +
+			" 	   UPPER(coalesce(d.name, '')) AS orderable " +
+			" FROM virtus.ciclos_entidades c  " +
+			" LEFT JOIN virtus.users d ON c.id_supervisor = d.id_user " +
+			" WHERE c.id_entidade = " + entidadeId +
+			" AND c.id_ciclo = " + cicloId
 		log.Println(sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()
