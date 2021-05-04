@@ -27,16 +27,13 @@
 							{{$plano.CNPB}} - {{$plano.Modalidade}} - {{$plano.RecursoGarantidor}}
 						</option>
 		            {{end}}
-		            <option value="0">
-						Todos
-					</option>
 	            </select>
 				<br>
 				<button 
 					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right"
 					style="margin-left: 20px;" 
 					type="button"
-					onclick="motivarConfigPlanos()">Salvar</button>
+					onclick="if(checkTodos('ConfigPlanos')){updateConfigPlanos(false);}else{motivarConfigPlanos();}">Salvar</button>
 				<!--button 
 					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
 					style="margin-left: 20px;"

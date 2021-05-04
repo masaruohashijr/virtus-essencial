@@ -1,8 +1,8 @@
 var plano_tobe_deleted;
 
-function updateConfigPlanos(){
+function updateConfigPlanos(validarMotivo){
 	let motivo = document.getElementById('motReconf_text').value;
-	if(motivo.length>3){
+	if(!validarMotivo || motivo.length>3){
 		document.getElementById('config-planos-form').style.display='none';
 		document.getElementById('motivar-reconfiguracao-form').style.display='none';
 		let splitted = document.getElementById('AcionadoPor').value.split('_');
@@ -37,23 +37,23 @@ function atualizarConfigPlanos(entidadeId, cicloId, pilarId, componenteId, valor
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				var messageText = xmlhttp.responseText;
-				if( ! messageText.includes("não pode ser removido")){
-					callback_MudaCorBotaoAcionador();
-				} else {
-					if(isChefe){
-						superUser = true;
-						let anonymousFunction = atualizarConfigPlanos(entidadeId,cicloId,pilarId,componenteId,valores,superUser)
-						alterarOkConfirm(anonymousFunction);
-					}
-				}
-				if(messageText!=''){
-					document.getElementById("messageText").innerText = messageText;
-					document.getElementById("message").style.display="block";		
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var messageText = xmlhttp.responseText;
+			if( ! messageText.includes("não pode ser removido")){
+				callback_MudaCorBotaoAcionador();
+			} else {
+				if(isChefe){
+					superUser = true;
+					let anonymousFunction = atualizarConfigPlanos(entidadeId,cicloId,pilarId,componenteId,valores,superUser)
+					alterarOkConfirm(anonymousFunction);
 				}
 			}
+			if(messageText!=''){
+				document.getElementById("messageText").innerText = messageText;
+				document.getElementById("message").style.display="block";		
+			}
+		}
 	}
 	xmlhttp.open("GET","/updateConfigPlanos?entidadeId="+
 			entidadeId+"&cicloId="+cicloId+"&pilarId="+
@@ -68,12 +68,17 @@ function callback_MudaCorBotaoAcionador(){
 	let acionadoPor = document.getElementById("AcionadoPor").value;
 	console.log(document.getElementsByName(acionadoPor)[0]);
 	let classList = document.getElementsByName(acionadoPor)[0].classList;
+	let name = document.getElementsByName(acionadoPor)[0].name;
 	if(selecionados.length>0){
 		classList.remove('w3-red');
 		classList.add('w3-green');
+		let planosField = document.getElementById('Planos_AuditorComponente'+name.substr(9));
+		planosField.value = 'S';
 	} else {
 		classList.remove('w3-green');
-		classList.add('w3-red');
+		classList.add('w3-red');		
+		let planosField = document.getElementById('Planos_AuditorComponente'+name.substr(9));
+		planosField.value = 'N';
 	}
 }
 
@@ -210,6 +215,16 @@ class Plano {
 		this.status = status;
 		this.cStatus = cStatus;
 	}
+}
+
+function checkTodos(id){
+	let opcoes = document.getElementById(id).options;	
+	for (let i = 0; i < opcoes.length; i++) {
+		if(!opcoes[i].selected){
+			return false;
+		}
+	}
+	return true;
 }
 
 function criarPlano(){

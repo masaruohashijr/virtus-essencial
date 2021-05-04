@@ -1,7 +1,5 @@
 package db
 
-import ()
-
 func initRiscoDeCredito() ComponenteAux {
 	var componente ComponenteAux
 	var tiposNotas []TipoNotaAux

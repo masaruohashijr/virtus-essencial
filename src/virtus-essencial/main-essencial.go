@@ -3,12 +3,14 @@ package main
 import (
 	"database/sql"
 	"fmt"
+
 	"github.com/BurntSushi/toml"
 	_ "github.com/alexbrainman/odbc"
-	//	"strconv"
+
 	//_ "github.com/denisenkom/go-mssqldb"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
+
 	//_ "github.com/lib/pq"
 	"log"
 	"net/http"
@@ -61,7 +63,8 @@ func dbConn() *sql.DB {
 	//port, _ := strconv.Atoi(dbConfig.DbPort)
 	//connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s", dbConfig.DbServer, dbConfig.DbUser, dbConfig.DbPassword, port, dbConfig.DbName)
 	connString := fmt.Sprintf("%s;UID=%s;PWD=%s", dbConfig.DbDSN, dbConfig.DbUser, dbConfig.DbPassword)
-	//dbase, err := sql.Open(dbConfig.DbDriver, connString)
+	log.Println(connString)
+	//dbase, _ = sql.Open(dbConfig.DbDriver, connString)
 	dbase, _ = sql.Open("odbc", connString)
 	dbase.SetMaxOpenConns(20)
 	dbase.SetMaxIdleConns(20)
@@ -82,7 +85,7 @@ func main() {
 	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.2.2" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if true {
+	if false {
 		dpk.Initialize()
 	}
 	r := mux.NewRouter()

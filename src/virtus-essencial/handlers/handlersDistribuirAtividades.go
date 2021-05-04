@@ -98,22 +98,22 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		faltouConfigurarPlano := false
 		for fieldName, value := range r.Form {
-			// log.Println("-------------- fieldName: " + fieldName)
+			log.Println("-------------- fieldName: " + fieldName)
 			if strings.HasPrefix(fieldName, "AuditorComponente_") {
 				fname := fieldName[7:len(fieldName)]
-				//log.Println(fname)
+				log.Println(fname)
 				supervisorId := r.FormValue("SupervisorComponenteId")
-				//log.Println(supervisorId)
+				log.Println(supervisorId)
 				entidadeId := r.FormValue("Entidade_" + fname)
-				//log.Println(entidadeId)
+				log.Println(entidadeId)
 				cicloId := r.FormValue("Ciclo_" + fname)
-				//log.Println(cicloId)
+				log.Println(cicloId)
 				pilarId := r.FormValue("Pilar_" + fname)
-				//log.Println(pilarId)
-				planosIds := r.FormValue("Planos_" + fname)
-				//log.Println("planosIds: " + planosIds)
+				log.Println(pilarId)
+				planosIds := r.FormValue("Planos_Auditor" + fname)
+				log.Println("planosIds: " + planosIds)
 				componenteId := r.FormValue("Componente_" + fname)
-				//log.Println(fieldName + " - value: " + value[0])
+				log.Println(fieldName + " - value: " + value[0])
 				if value[0] != "" {
 					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" id_auditor=" + value[0] + ", id_supervisor=" + supervisorId +
@@ -128,8 +128,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 						log.Println(err.Error())
 					}
 				}
-				planos := strings.ReplaceAll(planosIds, "_", ",")
-				if len(planos) == 0 {
+				if planosIds == "N" {
 					faltouConfigurarPlano = true
 				}
 			} else if strings.HasPrefix(fieldName, "IniciaEmComponente_") {

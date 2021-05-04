@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	hd "virtus-essencial/handlers"
 )
@@ -10,13 +11,15 @@ var db *sql.DB
 
 func Initialize() {
 	db = hd.Db
-	createPlanosELETROS()
-	//	createPlanosFACHESF()
-	/*createSchema()
+	//createPlanosELETROS()
+	//createPlanosFACHESF()
+	log.Println("INITIALIZE")
+	createSchema()
 	createSeq()
 	createSeqHistoricos()
 	createTable()
 	createTablesHistoricos()
+	log.Println("TABELAS CRIADAS")
 	createPKey()
 	createFeatures()
 	createRoles()
@@ -37,7 +40,7 @@ func Initialize() {
 	cicloAux2 := montarCicloBienal()
 	createCicloCompleto(cicloAux2)
 	cicloAux3 := montarCicloTrienal()
-	createCicloCompleto(cicloAux3)*/
+	createCicloCompleto(cicloAux3)
 	//	/* remover 18/01/2021 */
 	//	ajustesEmChamados()
 	//	ajustesEmTiposNotas()
@@ -75,6 +78,9 @@ func createStatusZERO() {
 func createSchema() {
 	query := "IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'virtus') " +
 		" BEGIN EXEC('CREATE SCHEMA virtus') END"
-	//log.Println(query)
-	db.Exec(query)
+	log.Println(query)
+	_, err := db.Exec(query)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 }
