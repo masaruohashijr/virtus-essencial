@@ -133,7 +133,7 @@
                 <td style="vertical-align:middle">
                     <button type="button" 
 						name="Analise_Ciclo_{{$produto.EntidadeId}}_{{$produto.CicloId}}"
-						class="w3-btn w3-teal" onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						class="w3-btn w3-teal" onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") }}disabled{{end}}')">Análise</button>
                     <button type="button"
 						name="Descricao_Ciclo_{{$produto.EntidadeId}}_{{$produto.CicloId}}" 
 						class="w3-btn w3-green" onclick="openDescricao(this)">Descrição</button>
