@@ -138,6 +138,7 @@ function salvarNotaElemento(){
 	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
 	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
 	motivacao = motivacao.replaceAll('%', '[porcento]');			
+	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoNota')[0].value=motivacao;
@@ -212,7 +213,8 @@ function salvarPesoElemento(){
 	let motivacao = document.getElementById('motPeso_text').value;
 	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
 	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');			
+	motivacao = motivacao.replaceAll('%', '[porcento]');
+	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');		
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
@@ -335,7 +337,8 @@ function salvarRemocao(){
 	let motivacao = document.getElementById('motRem_text').value;
 	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
 	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');		
+	motivacao = motivacao.replaceAll('%', '[porcento]');
+	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');		
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoRemocao')[0].value=motivacao;
@@ -577,7 +580,8 @@ function loadAnalise(btn){
 				text = xmlhttp.responseText;
 				text = text.replaceAll('\[nl\]','\n');
 				text = text.replaceAll('\[tab\]','\t');
-				text = text.replaceAll('\[porcento\]','%');				
+				text = text.replaceAll('\[porcento\]','%');
+				text = text.replaceAll('\[pontoevirgula\]',';');
 				document.getElementById("analise_text").value = text;
 				document.getElementById("counterAnalise").value = text.length;
 				document.getElementById('analise_text').focus();
@@ -593,6 +597,7 @@ function salvarAnalise(){
 	text = text.replaceAll(/\n\r?/g, '[nl]');
 	text = text.replaceAll(/\t/g, '[tab]');
 	text = text.replaceAll('%', '[porcento]');
+	text = text.replaceAll(';', '[pontoevirgula]');
 	let xmlhttp;
 	let acionadoPor = document.getElementById('AcionadoPor').value;
 	xmlhttp = new XMLHttpRequest();
@@ -707,7 +712,8 @@ function salvarPesoPilar(){
 	let motivacao = document.getElementById('motPesoPilar_text').value;
 	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
 	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');			
+	motivacao = motivacao.replaceAll('%', '[porcento]');
+	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
