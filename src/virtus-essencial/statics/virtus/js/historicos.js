@@ -73,7 +73,11 @@ function addHistoricoComponenteRow(tableID) {
 	newCell = newRow.insertCell(4);
 	newText = document.createTextNode(historico.alteradoEm);
 	newCell.appendChild(newText);
-	newCell.innerHTML = '<input type="hidden" value="'+historico.motivacao+'"/>'+newCell.innerHTML;
+	let motivacao = historico.motivacao;
+	motivacao = motivacao.replaceAll('\[nl\]','\n');
+	motivacao = motivacao.replaceAll('\[tab\]','\t');
+	motivacao = motivacao.replaceAll('\[porcento\]','%');				
+	newCell.innerHTML = '<input type="hidden" value="'+motivacao+'"/>'+newCell.innerHTML;
 	// Botões
 	newCell = newRow.insertCell(5);
 	// Botão Motivo
@@ -110,7 +114,11 @@ function addHistoricoRow(tableID) {
 	newCell = newRow.insertCell(5);
 	newText = document.createTextNode(historico.alteradoEm);
 	newCell.appendChild(newText);
-	newCell.innerHTML = '<input type="hidden" value="'+historico.motivacao+'"/>'+newCell.innerHTML;
+	let motivacao = historico.motivacao;
+	motivacao = motivacao.replaceAll('\[nl\]','\n');
+	motivacao = motivacao.replaceAll('\[tab\]','\t');
+	motivacao = motivacao.replaceAll('\[porcento\]','%');				
+	newCell.innerHTML = '<input type="hidden" value="'+motivacao+'"/>'+newCell.innerHTML;
 	// Botões
 	newCell = newRow.insertCell(6);
 	// Botão Motivo

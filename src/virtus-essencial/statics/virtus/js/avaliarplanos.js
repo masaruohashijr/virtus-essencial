@@ -135,6 +135,9 @@ function resetPeso(){
 
 function salvarNotaElemento(){
 	let motivacao = document.getElementById('motNota_text').value;
+	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
+	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
+	motivacao = motivacao.replaceAll('%', '[porcento]');			
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoNota')[0].value=motivacao;
@@ -207,6 +210,9 @@ function atualizarNotas(notasAtuaisJson, valores){
 
 function salvarPesoElemento(){
 	let motivacao = document.getElementById('motPeso_text').value;
+	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
+	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
+	motivacao = motivacao.replaceAll('%', '[porcento]');			
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
@@ -327,6 +333,9 @@ function atualizarFieldName(field, novo){
 function salvarRemocao(){
 	console.log('salvarRemocao');
 	let motivacao = document.getElementById('motRem_text').value;
+	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
+	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
+	motivacao = motivacao.replaceAll('%', '[porcento]');		
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoRemocao')[0].value=motivacao;
@@ -696,6 +705,9 @@ function motivarPesoPilar(field){
 
 function salvarPesoPilar(){
 	let motivacao = document.getElementById('motPesoPilar_text').value;
+	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
+	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
+	motivacao = motivacao.replaceAll('%', '[porcento]');			
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
