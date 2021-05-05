@@ -38,7 +38,9 @@
                 <td style="width:8%;vertical-align:middle">Supervisor</td>
                 <td style="width:8%;vertical-align:middle">Auditor</td>
                 <td style="width:6%;vertical-align:middle">Tipo de Nota</td>
-                <td style="width:4%;vertical-align:middle">Peso (%)</td>
+                <td id="PesoPercentual" style="width:4%;vertical-align:middle">
+					<span title="" id="somaPesosPilares">Peso (%)</span>
+				</td>
                 <td style="width:4%;vertical-align:middle">Método</td>
                 <td style="width:4%;vertical-align:middle">Nota</td>
 				{{if $allowed}}
@@ -227,7 +229,8 @@
                 <td style="vertical-align:middle">
 					<input style="width: 75px; text-align:center" 
 						class="w3-input" 
-						type="text" disabled 
+						type="text" 
+						disabled 
 						id="ComponentePeso_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}" 
 						name="ComponentePeso_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}" 
 						onchange="sinalizarAlteracao(this)" 
@@ -479,4 +482,7 @@
 </div>
 <input type="hidden" name="AcionadoPor" id="AcionadoPor" value="">			
 </form>
+<script type="text/javascript">
+	atualizaPesoPercentual();
+</script>					
 {{end}}

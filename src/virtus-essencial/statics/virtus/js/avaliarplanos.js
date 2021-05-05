@@ -719,6 +719,7 @@ function salvarPesoPilar(){
 					let entidadeId = valores[1];
 					let cicloId = valores[2];
 					document.getElementById('CicloNota_'+entidadeId+'_'+cicloId).value = xmlhttp.responseText;
+					atualizaPesoPercentual();
 				}
 		}
 		let entidadeId = valores[1];
@@ -733,6 +734,7 @@ function salvarPesoPilar(){
 			document.getElementById("Errors").innerText = errorMsg;
 			document.getElementById("error-message").style.display="block";
 			resetPesoPilar(); 
+			atualizaPesoPercentual();
 		}
 	} else {
 		let errorMsg = "Falta preencher a motivação do peso do pilar.";
@@ -768,8 +770,7 @@ function somaPesosPilaresAcima100(){
 	return false;
 }
 
-function contaCaracter(event, campoMotivacao, idCampoContador) {
-	let maxChars = 8000;
+function contaCaracter(event, campoMotivacao, idCampoContador, maxChars) {
 	if (event.keyCode == 8){
 		inputLength = campoMotivacao.value.length-1;
 	} else {
@@ -787,5 +788,28 @@ function contaCaracter(event, campoMotivacao, idCampoContador) {
 	campoContador.value = qtd + " / "+maxChars;
 	if(inputLength >= maxChars) {
 		e.preventDefault();
+	}
+}
+
+function atualizaPesoPercentual(){
+	console.log("======================");
+	console.log("atualizaPesoPercentual");
+	let inputs = document.getElementsByTagName("INPUT");
+	totalPesosPilar = 0;
+	for(n=0;n<inputs.length;n++){
+		let fieldName = inputs[n].name;
+		if(fieldName.startsWith("PilarPeso")){
+			totalPesosPilar += parseInt(inputs[n].value);
+		}
+	}
+	let classe = document.getElementById("PesoPercentual").classList;
+	if(totalPesosPilar<100){
+		classe.remove('w3-green');
+		classe.add('w3-red');
+		document.getElementById("somaPesosPilares").title = "A soma dos pesos dos pilares é inferior a 100%.";
+	} else {
+		classe.add('w3-green');
+		classe.remove('w3-red');
+		document.getElementById("somaPesosPilares").title = "A soma dos pesos dos pilares está igual a 100%";
 	}
 }

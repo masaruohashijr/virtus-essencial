@@ -49,6 +49,7 @@ var matriz;
 var subordinadosMap;
 var membrosMap;
 var supervisorEquipe;
+var totalPesosPilar = 0;
 
 function parseNome2Valor(nome){
 	let letra = nome.substr(0,1);
