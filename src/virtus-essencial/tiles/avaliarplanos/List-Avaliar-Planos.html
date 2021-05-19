@@ -184,7 +184,7 @@
                     <button type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Pilar_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green" 
 						name="Descricao_Pilar_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}"
@@ -252,7 +252,7 @@
 					<button type="button" 
 						class="w3-btn w3-teal" 
 						name="Analise_Componente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green" 
 						name="Descricao_Componente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
@@ -301,7 +301,7 @@
                 <td><button type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Plano_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green"
 						name="Descricao_Plano_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}" 
@@ -349,7 +349,7 @@
 					<button type="button" 
 						class="w3-btn w3-teal" 
 						name="Analise_TipoNota_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
                     <button type="button" 
 						class="w3-btn w3-green" 
 						name="Descricao_TipoNota_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}"
@@ -424,7 +424,7 @@
 					<button type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Elemento_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>	
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>	
                     <button type="button"
 						class="w3-btn w3-green"
 						name="Descricao_Elemento_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$elementoPeso}}_{{$elementoNota}}" 
@@ -462,7 +462,7 @@
 						type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Item_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$produto.ItemId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
                     <button 
 						type="button" 
 						class="w3-btn w3-green"

@@ -44,10 +44,19 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	"	    AND coalesce(dateadd(day,1,g.termina_em),CAST('9999-12-31' as DATE)) " +
 	"	    THEN 1 " +
 	"	    ELSE 0 " +
-	"	   END AS periodo_permitido " +
+	"	   END AS periodo_permitido, " +
+	"	   CASE " +
+	"	    WHEN ce.inicia_em IS NOT NULL AND " +
+	"		ce.termina_em IS NOT NULL AND " +
+	"		GETDATE() BETWEEN coalesce(ce.inicia_em,CAST('0001-01-01' as DATE)) " +
+	"	    AND coalesce(dateadd(day,1,ce.termina_em),CAST('9999-12-31' as DATE)) " +
+	"	    THEN 1 " +
+	"	    ELSE 0 " +
+	"	   END AS periodo_ciclo " +
 	" FROM virtus.produtos_itens a " +
 	" INNER JOIN virtus.entidades b ON a.id_entidade = b.id_entidade " +
 	" INNER JOIN virtus.ciclos c ON a.id_ciclo = c.id_ciclo " +
+	" INNER JOIN virtus.ciclos_entidades ce ON ce.id_ciclo = c.id_ciclo AND ce.id_entidade = b.id_entidade " +
 	" INNER JOIN virtus.pilares d ON a.id_pilar = d.id_pilar " +
 	" INNER JOIN virtus.componentes e ON a.id_componente = e.id_componente " +
 	" INNER JOIN virtus.produtos_pilares f ON " +
@@ -183,6 +192,7 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		var produto mdl.ProdutoItem
 		var i = 1
 		var periodoPermitido = 0
+		var periodoCiclo = 0
 		for rows.Next() {
 			rows.Scan(
 				&produto.EntidadeId,
@@ -228,12 +238,18 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 				&produto.PlanoNota,
 				&produto.IniciaEm,
 				&produto.TerminaEm,
-				&periodoPermitido)
+				&periodoPermitido,
+				&periodoCiclo)
 			produto.Order = i
 			if periodoPermitido == 0 {
 				produto.PeriodoPermitido = false
 			} else {
 				produto.PeriodoPermitido = true
+			}
+			if periodoCiclo == 0 {
+				produto.PeriodoCiclo = false
+			} else {
+				produto.PeriodoCiclo = true
 			}
 			i++
 			//log.Println(produto)
@@ -309,6 +325,8 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 	var produtos []mdl.ProdutoItem
 	var produto mdl.ProdutoItem
 	var i = 1
+	var periodoPermitido = 0
+	var periodoCiclo = 0
 	for rows.Next() {
 		rows.Scan(
 			&produto.EntidadeId,
@@ -354,10 +372,20 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 			&produto.PlanoNota,
 			&produto.IniciaEm,
 			&produto.TerminaEm,
-			&produto.PeriodoPermitido)
+			&periodoPermitido,
+			&periodoCiclo)
 		produto.Order = i
 		i++
-		// log.Println(produto)
+		if periodoPermitido == 0 {
+			produto.PeriodoPermitido = false
+		} else {
+			produto.PeriodoPermitido = true
+		}
+		if periodoCiclo == 0 {
+			produto.PeriodoCiclo = false
+		} else {
+			produto.PeriodoCiclo = true
+		}
 		produtos = append(produtos, produto)
 	}
 	page.Produtos = produtos

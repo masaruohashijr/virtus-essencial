@@ -672,6 +672,7 @@ type ProdutoItem struct {
 	StatusId          int64  `json:"statusId"`
 	CStatus           string `json:"cStatus"`
 	PeriodoPermitido  bool   `json:"periodoPermitido"`
+	PeriodoCiclo      bool   `json:"periodoCiclo"`
 }
 
 type ElementoDaMatriz struct {
