@@ -37,6 +37,9 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" 	   coalesce(p.peso,0) as plano_peso, coalesce(p.nota,0) as plano_nota, " +
 	"	   coalesce(format(g.inicia_em, 'dd/MM/yyyy'), '') AS inicia_em, " +
 	"      coalesce(format(g.termina_em, 'dd/MM/yyyy'), '') AS termina_em, " +
+	" 	   coalesce(sta.name,'') as cstatus, " +
+	"      g.id_status, " +
+	"      g.id_produto_componente, " +
 	"	   CASE " +
 	"	    WHEN g.inicia_em IS NOT NULL AND " +
 	"		g.termina_em IS NOT NULL AND " +
@@ -102,6 +105,7 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" INNER JOIN virtus.produtos_ciclos pdc ON " +
 	"  (a.id_ciclo = pdc.id_ciclo AND " +
 	"   a.id_entidade = pdc.id_entidade) " +
+	" LEFT JOIN virtus.status sta ON g.id_status = sta.id_status " +
 	" WHERE a.id_entidade = ? " +
 	"   AND a.id_ciclo = ? " +
 	" ORDER BY a.id_ciclo, " +
@@ -238,6 +242,9 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 				&produto.PlanoNota,
 				&produto.IniciaEm,
 				&produto.TerminaEm,
+				&produto.CStatus,
+				&produto.StatusId,
+				&produto.ProdutoComponenteId,
 				&periodoPermitido,
 				&periodoCiclo)
 			produto.Order = i
@@ -372,6 +379,9 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 			&produto.PlanoNota,
 			&produto.IniciaEm,
 			&produto.TerminaEm,
+			&produto.CStatus,
+			&produto.StatusId,
+			&produto.ProdutoComponenteId,
 			&periodoPermitido,
 			&periodoCiclo)
 		produto.Order = i
@@ -598,6 +608,7 @@ func SalvarNotaElemento(w http.ResponseWriter, r *http.Request) {
 	}
 	//log.Println(notasAtuais)
 	jsonValoresAtuais, _ := json.Marshal(valoresAtuais)
+	println(jsonValoresAtuais)
 	w.Write([]byte(jsonValoresAtuais))
 	log.Println("----------")
 

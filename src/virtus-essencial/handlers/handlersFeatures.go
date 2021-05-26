@@ -195,13 +195,20 @@ func ListFeaturesByRoleIdHandler(roleId string) []mdl.Feature {
 }
 
 func LoadAvailableFeatures(w http.ResponseWriter, r *http.Request) {
-	log.Println("Load Load Available Features")
+	log.Println("Load Available Features")
 	r.ParseForm()
 	savedUser := GetUserInCookie(w, r)
 	var statusId = r.FormValue("statusId")
 	var entityType = r.FormValue("entityType")
 	log.Println("entityType: " + entityType)
 	log.Println("statusId: " + statusId)
+	features := ListAvaliableFeatures(savedUser, statusId, entityType)
+	jsonFeatures, _ := json.Marshal(features)
+	w.Write([]byte(jsonFeatures))
+	log.Println("JSON Load Features")
+}
+
+func ListAvaliableFeatures(savedUser mdl.User, statusId string, entityType string) (features []mdl.Feature) {
 	sql := " SELECT a.id_feature, a.name, a.code " +
 		" FROM virtus.features a INNER JOIN virtus.features_activities b ON a.id_feature = b.id_feature " +
 		" INNER JOIN virtus.activities c ON c.id_activity = b.id_activity " +
@@ -214,14 +221,35 @@ func LoadAvailableFeatures(w http.ResponseWriter, r *http.Request) {
 	log.Println("Query Available Features: " + sql)
 	rows, _ := Db.Query(sql, entityType, statusId, savedUser.Role)
 	defer rows.Close()
-	var features []mdl.Feature
 	var feature mdl.Feature
 	for rows.Next() {
 		rows.Scan(&feature.Id, &feature.Name, &feature.Code)
 		features = append(features, feature)
 		log.Println(features)
 	}
-	jsonFeatures, _ := json.Marshal(features)
-	w.Write([]byte(jsonFeatures))
-	log.Println("JSON Load Features")
+	return features
+}
+
+func hasFeatureCode(savedUser mdl.User, p mdl.ProdutoElemento, featureCode string) (int, bool) {
+	sql := " SELECT TOP 1 d.id_action " +
+		" FROM virtus.features a INNER JOIN virtus.features_activities b ON a.id_feature = b.id_feature " +
+		" INNER JOIN virtus.activities c ON c.id_activity = b.id_activity " +
+		" INNER JOIN virtus.actions d ON c.id_action = d.id_action " +
+		" INNER JOIN virtus.workflows e ON c.id_workflow = e.id_workflow " +
+		" WHERE e.end_at IS null " +
+		" AND e.entity_type = ? " +
+		" AND d.id_origin_status = " +
+		" ( SELECT id_status FROM virtus.produtos_componentes where id_ciclo = ? and id_entidade = ? and id_pilar = ? and id_componente = ? ) " +
+		" AND a.id_feature in ( SELECT id_feature FROM virtus.features_roles where id_role = ? ) " +
+		" AND a.code = ? "
+	log.Println("*************************")
+	log.Println("HAS FEATURE CODE: " + sql)
+	rows, _ := Db.Query(sql, "produto_componente", p.CicloId, p.EntidadeId, p.PilarId, p.ComponenteId, savedUser.Role, featureCode)
+	defer rows.Close()
+	idAction := 0
+	for rows.Next() {
+		rows.Scan(&idAction)
+		log.Println("ID ACTION: " + strconv.Itoa(idAction))
+	}
+	return idAction, (idAction != 0)
 }

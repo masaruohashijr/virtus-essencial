@@ -386,17 +386,18 @@ type PesosAtuais struct {
 }
 
 type ValoresAtuais struct {
-	CicloPeso      string `json:"cicloPeso"`
-	PilarPeso      string `json:"pilarPeso"`
-	ComponentePeso string `json:"componentePeso"`
-	PlanoPeso      string `json:"planoPeso"`
-	TipoNotaPeso   string `json:"tipoNotaPeso"`
-	ElementoPeso   string `json:"elementoPeso"`
-	CicloNota      string `json:"cicloNota"`
-	PilarNota      string `json:"pilarNota"`
-	ComponenteNota string `json:"componenteNota"`
-	PlanoNota      string `json:"planoNota"`
-	TipoNotaNota   string `json:"tipoNotaNota"`
+	CicloPeso        string `json:"cicloPeso"`
+	PilarPeso        string `json:"pilarPeso"`
+	ComponentePeso   string `json:"componentePeso"`
+	PlanoPeso        string `json:"planoPeso"`
+	TipoNotaPeso     string `json:"tipoNotaPeso"`
+	ElementoPeso     string `json:"elementoPeso"`
+	CicloNota        string `json:"cicloNota"`
+	PilarNota        string `json:"pilarNota"`
+	ComponenteNota   string `json:"componenteNota"`
+	PlanoNota        string `json:"planoNota"`
+	TipoNotaNota     string `json:"tipoNotaNota"`
+	ComponenteStatus string `json:"componenteStatus"`
 }
 
 type Plano struct {
@@ -547,6 +548,7 @@ type ProdutoComponente struct {
 	IdVersaoOrigem    int64   `json:"idVersaoOrigem"`
 	StatusId          int64   `json:"statusId"`
 	CStatus           string  `json:"cStatus"`
+	CAction           string  `json:"CAction"`
 	Configurado       string  `json:"configurado"`
 	SomentePGA        string  `json:"somentePGA"`
 }
@@ -616,63 +618,64 @@ type ProdutoElemento struct {
 }
 
 type ProdutoItem struct {
-	Order             int
-	Id                int64  `json:"id"`
-	EntidadeId        int64  `json:"entidadeId"`
-	EntidadeNome      string `json:"entidadeNome"`
-	CicloId           int64  `json:"cicloId"`
-	CicloNome         string `json:"cicloNome"`
-	CicloNota         string `json:"cicloNota"`
-	PilarId           int64  `json:"pilarId"`
-	PilarNome         string `json:"pilarNome"`
-	PilarPeso         string `json:"pilarPeso"`
-	PilarNota         string `json:"pilarNota"`
-	ComponenteId      int64  `json:"componenteId"`
-	ComponenteNome    string `json:"componenteNome"`
-	ComponentePeso    string `json:"componentePeso"`
-	ComponenteNota    string `json:"componenteNota"`
-	PlanoId           int64  `json:"planoId"`
-	CNPB              string `json:"cnpb"`
-	RecursoGarantidor string `json:"recursoGarantidor"`
-	PlanoPeso         string `json:"planoPeso"`
-	PlanoNota         string `json:"planoNota"`
-	PlanoModalidade   string `json:"planoModalidade"`
-	ElementoId        int64  `json:"elementoId"`
-	ElementoNome      string `json:"elementoNome"`
-	ElementoPeso      string `json:"elementoPeso"`
-	ElementoNota      string `json:"elementoNota"`
-	TipoPontuacaoId   string `json:"tipoPontuacaoId"`
-	TipoNotaId        int    `json:"tipoNotaId"`
-	TipoNotaNome      string `json:"tipoNotaNome"`
-	TipoNotaLetra     string `json:"tipoNotaLetra"`
-	TipoNotaCorLetra  string `json:"tipoNotaCorLetra"`
-	TipoNotaPeso      string `json:"tipoNotaPeso"`
-	TipoNotaNota      string `json:"tipoNotaNota"`
-	PesoPadraoEC      string `json:"pesoPadraoEC"`
-	TipoMediaCPId     int    `json:"tipoMediaCPId"`
-	TipoMediaCP       string `json:"tipoMediaCP"`
-	PesoPadraoCP      string `json:"pesoPadraoCP"`
-	TipoMediaPCId     int    `json:"tipoMediaPCId"`
-	TipoMediaPC       string `json:"tipoMediaPC"`
-	PesoPadraoPC      string `json:"pesoPadraoPC"`
-	TipoMediaCEId     int    `json:"tipoMediaCEId"`
-	TipoMediaCE       string `json:"tipoMediaCE"`
-	IniciaEm          string `json:"iniciaEm"`
-	TerminaEm         string `json:"terminaEm"`
-	ItemId            int64  `json:"itemId"`
-	ItemNome          string `json:"itemNome"`
-	AuditorId         int64  `json:"auditorId"`
-	AuditorName       string `json:"auditorName"`
-	SupervisorId      int64  `json:"supervisorId"`
-	SupervisorName    string `json:"supervisorName"`
-	AuthorId          int64  `json:"autorId"`
-	AuthorName        string `json:"autorNome"`
-	CriadoEm          string `json:"criadoEm"`
-	IdVersaoOrigem    int64  `json:"idVersaoOrigem"`
-	StatusId          int64  `json:"statusId"`
-	CStatus           string `json:"cStatus"`
-	PeriodoPermitido  bool   `json:"periodoPermitido"`
-	PeriodoCiclo      bool   `json:"periodoCiclo"`
+	Order               int
+	Id                  int64  `json:"id"`
+	EntidadeId          int64  `json:"entidadeId"`
+	EntidadeNome        string `json:"entidadeNome"`
+	CicloId             int64  `json:"cicloId"`
+	CicloNome           string `json:"cicloNome"`
+	CicloNota           string `json:"cicloNota"`
+	PilarId             int64  `json:"pilarId"`
+	PilarNome           string `json:"pilarNome"`
+	PilarPeso           string `json:"pilarPeso"`
+	PilarNota           string `json:"pilarNota"`
+	ComponenteId        int64  `json:"componenteId"`
+	ComponenteNome      string `json:"componenteNome"`
+	ComponentePeso      string `json:"componentePeso"`
+	ComponenteNota      string `json:"componenteNota"`
+	PlanoId             int64  `json:"planoId"`
+	CNPB                string `json:"cnpb"`
+	RecursoGarantidor   string `json:"recursoGarantidor"`
+	PlanoPeso           string `json:"planoPeso"`
+	PlanoNota           string `json:"planoNota"`
+	PlanoModalidade     string `json:"planoModalidade"`
+	ElementoId          int64  `json:"elementoId"`
+	ElementoNome        string `json:"elementoNome"`
+	ElementoPeso        string `json:"elementoPeso"`
+	ElementoNota        string `json:"elementoNota"`
+	TipoPontuacaoId     string `json:"tipoPontuacaoId"`
+	TipoNotaId          int    `json:"tipoNotaId"`
+	TipoNotaNome        string `json:"tipoNotaNome"`
+	TipoNotaLetra       string `json:"tipoNotaLetra"`
+	TipoNotaCorLetra    string `json:"tipoNotaCorLetra"`
+	TipoNotaPeso        string `json:"tipoNotaPeso"`
+	TipoNotaNota        string `json:"tipoNotaNota"`
+	PesoPadraoEC        string `json:"pesoPadraoEC"`
+	TipoMediaCPId       int    `json:"tipoMediaCPId"`
+	TipoMediaCP         string `json:"tipoMediaCP"`
+	PesoPadraoCP        string `json:"pesoPadraoCP"`
+	TipoMediaPCId       int    `json:"tipoMediaPCId"`
+	TipoMediaPC         string `json:"tipoMediaPC"`
+	PesoPadraoPC        string `json:"pesoPadraoPC"`
+	TipoMediaCEId       int    `json:"tipoMediaCEId"`
+	TipoMediaCE         string `json:"tipoMediaCE"`
+	IniciaEm            string `json:"iniciaEm"`
+	TerminaEm           string `json:"terminaEm"`
+	ItemId              int64  `json:"itemId"`
+	ItemNome            string `json:"itemNome"`
+	AuditorId           int64  `json:"auditorId"`
+	AuditorName         string `json:"auditorName"`
+	SupervisorId        int64  `json:"supervisorId"`
+	SupervisorName      string `json:"supervisorName"`
+	AuthorId            int64  `json:"autorId"`
+	AuthorName          string `json:"autorNome"`
+	CriadoEm            string `json:"criadoEm"`
+	IdVersaoOrigem      int64  `json:"idVersaoOrigem"`
+	StatusId            int64  `json:"statusId"`
+	CStatus             string `json:"cStatus"`
+	ProdutoComponenteId string `json:"produtoComponenteId"`
+	PeriodoPermitido    bool   `json:"periodoPermitido"`
+	PeriodoCiclo        bool   `json:"periodoCiclo"`
 }
 
 type ElementoDaMatriz struct {
@@ -1002,11 +1005,27 @@ type PageEntidades struct {
 	Msg        string
 	AppName    string
 	Title      string
+	Escritorio string
 	Entidades  []Entidade
 	Ciclos     []Ciclo
 	Planos     []Plano
 	Users      []User
 	LoggedUser LoggedUser
+}
+
+type PageChefe struct {
+	ErrMsg              string
+	Msg                 string
+	AppName             string
+	Title               string
+	Escritorio          string
+	Pendencias          []ProdutoComponente
+	EntidadesPermanente []Entidade
+	DemaisEntidades     []Entidade
+	Ciclos              []Ciclo
+	Planos              []Plano
+	Users               []User
+	LoggedUser          LoggedUser
 }
 
 type PageFeatures struct {

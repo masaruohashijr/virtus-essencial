@@ -62,7 +62,7 @@ func assembleFeatures(activity mdl.Activity) mdl.Activity {
 	sql := "SELECT a.id_feature, b.name " +
 		" FROM virtus.features_activities a" +
 		" LEFT OUTER JOIN virtus.features b ON a.id_feature = b.id_feature WHERE a.id_activity = ?"
-	log.Println(sql + string(activity.Id))
+	log.Println(sql + strconv.FormatInt(activity.Id, 10))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
 	featureId := 0

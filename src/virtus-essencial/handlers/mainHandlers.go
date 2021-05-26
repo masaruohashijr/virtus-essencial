@@ -3,8 +3,6 @@ package handlers
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/gorilla/sessions"
-	"golang.org/x/crypto/bcrypt"
 	"html/template"
 	"log"
 	"net/http"
@@ -12,26 +10,30 @@ import (
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
+
+	"github.com/gorilla/sessions"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var Db *sql.DB
 
 func redirectHome(savedUser *mdl.User) string {
-	//	switch role := savedUser.Role; role {
-	//	case 1: // ADMIN
-	//		return route.AdminHome
-	//	case 2: // CHEFE
-	//		return route.ChefeHome
-	//	case 3: // SUPERVISOR
-	//		return route.SupervisorHome
-	//	case 4: // AUDITOR
-	//		return route.AuditorHome
-	//	case 5: // VISUALIZADOR
-	//		return route.VisualizadorHome
-	//	case 6: // DESENVOLVEDOR
-	//		return route.DesenvolvedorHome
-	//	}
-	return route.EntidadesRoute
+	switch role := savedUser.Role; role {
+	case 1: // ADMIN
+		return route.AdminHome
+	case 2: // CHEFE
+		return route.ChefeHome
+	case 3: // SUPERVISOR
+		return route.SupervisorHome
+	case 4: // AUDITOR
+		return route.AuditorHome
+	case 5: // VISUALIZADOR
+		return route.VisualizadorHome
+	case 6: // DESENVOLVEDOR
+		return route.DesenvolvedorHome
+	default: // Padrão
+		return route.EntidadesRoute
+	}
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
@@ -98,7 +100,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		" u.username, " +
 		" u.password, " +
 		" COALESCE(u.id_role, 0), " +
-		" coalesce(r.name,'') as role_name " +
+		" COALESCE(r.name,'') as role_name " +
 		" FROM virtus.users u " +
 		" LEFT JOIN virtus.roles r ON u.id_role = r.id_role " +
 		" WHERE username='" + username + "'"

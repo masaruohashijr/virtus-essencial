@@ -1,10 +1,11 @@
 class NotasAtuais {
-	constructor(cicloNota,pilarNota,componenteNota,planoNota,tipoNotaNota){
+	constructor(cicloNota,pilarNota,componenteNota,planoNota,tipoNotaNota, componenteStatus){
 		this.cicloNota = cicloNota;
 		this.pilarNota = pilarNota;
 		this.componenteNota = componenteNota;
 		this.planoNota = planoNota;
 		this.tipoNotaNota = tipoNotaNota; 
+		this.componenteStatus = componenteStatus; 
 	}
 }
 
@@ -199,6 +200,7 @@ function atualizarNotas(notasAtuaisJson, valores){
 	let componenteId = valores[4];
 	let planoId = valores[5];
 	let tipoNotaId = valores[6];
+	document.getElementById('StatusName_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).innerText= notasAtuaisJson.componenteStatus
 	document.getElementById('CicloNota_'+entidadeId+'_'+cicloId).value = cicloNota;
 	document.getElementById('PilarNota_'+entidadeId+'_'+cicloId+'_'+pilarId).value = pilarNota;
 	document.getElementById('ComponenteNota_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).value = componenteNota;

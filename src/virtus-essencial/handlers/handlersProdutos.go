@@ -43,6 +43,14 @@ func registrarAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.U
 }
 
 func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (mdl.ValoresAtuais, error) {
+	/*
+	 * Verificar aqui se o produto_componente relacionado a esse produto_elemento está num
+	 * status de tramitacaoAutomatica, se estiver, ao final dessa thread, deveremos migrar
+	 */
+	statusName := ""
+	if idAction, ok := hasFeatureCode(currentUser, produto, "tramitacaoAutomatica"); ok {
+		statusName = tramitaComponente(produto, idAction)
+	}
 	sqlStatement := "UPDATE virtus.produtos_elementos SET nota = " + strconv.Itoa(produto.Nota) + ", " +
 		" motivacao_nota = ? , " +
 		" id_tipo_pontuacao = (SELECT DISTINCT case when b.id_supervisor = " + strconv.FormatInt(currentUser.Id, 10) +
@@ -85,7 +93,43 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (m
 	// NOTAS ATUAIS
 	notasAtuais := loadNotasAtuais(produto)
 	valoresAtuais := montarValoresAtuais(pesosAtuais, notasAtuais)
+	valoresAtuais.ComponenteStatus = statusName
+	println(valoresAtuais.ComponenteStatus)
 	return valoresAtuais, nil
+}
+
+func tramitaComponente(produto mdl.ProdutoElemento, idAction int) string {
+	// PRODUTOS_COMPONENTES
+	// verificar brecha de segurança aqui acesso GET com parametros.
+	sqlStatement := "update virtus.produtos_componentes set id_status = " +
+		" (select id_destination_status from virtus.actions " +
+		" where id_action = ?) where id_entidade = ? and " +
+		" id_ciclo = ? and id_pilar = ?  and id_componente = ? "
+	log.Println(sqlStatement)
+	updtForm, err := Db.Prepare(sqlStatement)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	updtForm.Exec(idAction, produto.EntidadeId, produto.CicloId, produto.PilarId, produto.ComponenteId)
+	log.Println("UPDATE: Id: " + strconv.Itoa(idAction))
+
+	sqlStatement = "SELECT a.id_status, b.name FROM virtus.produtos_componentes a " +
+		" LEFT JOIN virtus.status b ON a.id_status = b.id_status " +
+		" WHERE a.id_entidade = ? AND a.id_ciclo = ? AND a.id_pilar = ? AND a.id_componente = ? "
+	log.Println("Query: " + sqlStatement)
+	rows, _ := Db.Query(sqlStatement, produto.EntidadeId, produto.CicloId, produto.PilarId, produto.ComponenteId)
+	defer rows.Close()
+	var status mdl.Status
+	for rows.Next() {
+		err = rows.Scan(&status.Id, &status.Name)
+	}
+	log.Println("********************************************************************")
+	log.Println("********************************************************************")
+	log.Println("********************************************************************")
+	log.Println("********************************************************************")
+	log.Println("********************************************************************")
+	log.Println("Retornando o Status: " + strconv.FormatInt(status.Id, 10) + " - " + status.Name)
+	return status.Name
 }
 
 func atualizarPilarNota(produto mdl.ProdutoElemento) {
