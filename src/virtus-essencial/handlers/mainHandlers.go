@@ -17,8 +17,8 @@ import (
 
 var Db *sql.DB
 
-func redirectHome(savedUser *mdl.User) string {
-	switch role := savedUser.Role; role {
+func redirectHome(role int64) string {
+	switch role {
 	case 1: // ADMIN
 		return route.AdminHome
 	case 2: // CHEFE
@@ -36,9 +36,23 @@ func redirectHome(savedUser *mdl.User) string {
 	}
 }
 
+func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("HomeHandler")
+	currentUser := GetUserInCookie(w, r)
+	log.Println("----------------------------")
+	log.Println("----------------------------")
+	log.Println("----------------------------")
+	log.Println("----------------------------")
+	log.Println(currentUser.Role)
+	homeURL := redirectHome(currentUser.Role)
+	http.Redirect(w, r, homeURL, 301)
+}
+
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	if sec.IsAuthenticated(w, r) {
-		http.Redirect(w, r, route.EntidadesRoute, 200)
+		currentUser := GetUserInCookie(w, r)
+		homeURL := redirectHome(currentUser.Role)
+		http.Redirect(w, r, homeURL, 301)
 	} else {
 		http.Redirect(w, r, "/logout", 301)
 	}
@@ -125,7 +139,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		// Abrindo o Cookie
 		savedUser := GetUserInCookie(w, r)
 		log.Println("MAIN Saved User is " + savedUser.Username)
-		homeURL := redirectHome(&savedUser)
+		homeURL := redirectHome(user.Role)
 		http.Redirect(w, r, homeURL, 301)
 	}
 }

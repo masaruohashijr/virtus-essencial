@@ -41,7 +41,12 @@
    {{ template "List-EFPCEmSupervisaoPermanente" . }}
    <!-- Todas as entidades da jurisdição que NÃO ESTIVEREM com ciclo aberto -->
    {{ template "List-DemaisEntidades" . }}
+   {{ template "View-Entidade" . }}
 </div>
+<form action="/avaliarPlanos" method="POST" id="formulario-avaliar-planos">
+	<input type="hidden" id="EntidadeId" name="EntidadeId">
+	<input type="hidden" id="CicloId" name="CicloId">
+</form>
 </body>
 </html>
 {{end}}

@@ -1,0 +1,66 @@
+{{define "List-PendenciasSupervisor"}}
+<div style="background-Color:  lightblue; text-align:center; height: 33%; width:100%">
+    <h3>Minhas Pendências</h3>
+    <div style="background-Color:  white; overflow-y: scroll; text-align:center; height: 100%; width:100%">
+        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" id="tabela-pendencias">
+            <tr>
+                <td style="display:none">Ord</td>
+                <td style="vertical-align:middle;width: 10%"><input 
+                        type="text" 
+                        value="" 
+                        placeholder="Sigla" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-pendencias', 1, 1)"></td>
+                <td style="vertical-align:middle;width: 10%;text-align:left">
+                    <input 
+                        type="text" 
+                        value="" 
+                        placeholder="Ciclo" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-pendencias', 1, 2)">
+                </td>
+                <td style="vertical-align:middle;width: 40%;text-align:left">
+                    <input 
+                        type="text" 
+                        value="" 
+                        placeholder="Pilar" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-pendencias', 1, 3)">
+                </td>
+                <td style="vertical-align:middle;width: 15%"><input 
+                        type="text" 
+                        value="" 
+                        placeholder="Componente" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-pendencias', 1, 4)"></td>
+                <td style="vertical-align:middle;width: 15%"><input 
+                        type="text" 
+                        value="" 
+                        placeholder="Status" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-pendencias', 1, 5)"></td>
+            </tr>      
+            {{range $index, $pendencia := .Pendencias}}
+            <tr>
+                <td style="display:none">#{{$pendencia.Order}}</td>
+                <td style="vertical-align:middle;text-align:left;">
+                    {{$pendencia.EntidadeNome}}
+                </td>
+                <td style="vertical-align:middle;text-align:left">
+                    {{$pendencia.CicloNome}}
+                </td>
+                <td style="vertical-align:middle;text-align:left">
+                    {{$pendencia.PilarNome}}
+                </td>
+                <td style="vertical-align:middle;text-align:left">
+                    {{$pendencia.ComponenteNome}}
+                </td>
+                <td style="vertical-align:middle;text-align:left">
+                    {{$pendencia.CStatus}}
+                </td>
+            </tr>
+            {{end}}
+        </table>
+    </div>
+</div>
+{{end}}

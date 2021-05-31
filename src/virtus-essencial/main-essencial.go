@@ -247,6 +247,7 @@ func main() {
 	r.HandleFunc("/loadAllowedActions", hd.LoadAllowedActions).Methods("GET")
 	r.HandleFunc("/loadAvailableFeatures", hd.LoadAvailableFeatures).Methods("GET")
 	r.HandleFunc("/executeAction", hd.ExecuteActionHandler).Methods("GET")
+	r.HandleFunc("/HOME", hd.HomeHandler).Methods("GET")
 	// ----------------- STATICS
 	http.Handle("/statics/",
 		http.StripPrefix("/statics/", http.FileServer(http.Dir("./statics"))),

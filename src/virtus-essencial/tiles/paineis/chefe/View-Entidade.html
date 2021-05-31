@@ -1,0 +1,89 @@
+{{define "View-Entidade"}}
+<!-- View Entidade -->
+<div class="w3-container">
+    <div id="view-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="width: 1200px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Visualizar entidade</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('view-form').style.display='none'">&times;</span>
+            </div>
+            <form class="w3-container" action="" method="" id="formulario-view">
+                <input type="hidden" name="Id" id="EntidadeIdForView">
+                <label class="w3-label">Nome</label>
+                <input class="w3-input" type="text" id="EntidadeNomeForView" name="Nome" value="">
+                <label class="w3-label">Descrição</label>
+                <textarea class="w3-input" id="EntidadeDescricaoForView" name="Descricao" rows="5" value=""></textarea>
+                <label class="w3-label">Sigla</label>
+                <input class="w3-input" type="text" id="EntidadeSiglaForView" name="Sigla" value="">
+                <label class="w3-label">Código</label>
+                <input class="w3-input" type="text" id="EntidadeCodigoForView" name="Codigo" value="">
+                <label class="w3-label">Situação</label>
+                <input class="w3-input" type="text" id="EntidadeSituacaoForView" name="Situacao" value="">
+                <label class="w3-label">ESI</label>
+                <select class="w3-input" 
+					id="EntidadeESIForView" 
+					name="ESI">
+					<option value="false">Não</option>
+					<option value="true">Sim</option>
+                </select>
+                <label class="w3-label">Município</label>
+                <input class="w3-input" type="text" id="EntidadeMunicipioForView" name="Municipio" value="">
+                <label class="w3-label">SiglaUF</label>
+                <input class="w3-input" type="text" id="EntidadeSiglaUFForView" name="SiglaUF" value="">
+				<br>
+				<header class="w3-container w3-center w3-teal">
+		            <div class="aria">
+						<div style="margin-top: 6px;text-align: left;z-index:1">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Ciclos da Entidade</h4>
+						<div style="margin-top: 8px" id="create-form-ciclo-btn" >
+						</div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" 
+						id="table-ciclos-entidade-view">
+		            <tr>
+		                <th>Nome</th>
+		                <th>Tipo de Média</th>
+		                <th>Início</th>
+		                <th>Término</th>
+		            </tr>
+		        </table>
+				<br>
+				<header class="w3-container w3-center w3-teal">
+		            <div class="aria">
+						<div style="margin-top: 6px;text-align: left;z-index:1">
+				    		<a style="font-size:28px">
+								&nbsp;
+				    		</a>
+		                </div>
+	                	<h4>Planos</h4>
+						<div style="margin-top: 8px" id="create-form-plano-btn" >
+						</div>
+		            </div>
+		        </header>
+		        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" 
+						id="table-planos-view">
+		            <tr>
+		                <th>CNPB</th>
+		                <th>Modalidade</th>
+		                <th>Recurso Garantidor</th>
+		                <th style="display:none">Nome</th>
+		                <th style="display:none">Descrição</th>
+		            </tr>
+		        </table>
+				<br>
+				<button 
+					class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" 
+					type="button"
+					onclick="document.getElementById('view-form').style.display='none'">Fechar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{end}}

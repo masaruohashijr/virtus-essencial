@@ -86,12 +86,16 @@ function editEntidade(e) {
 
 function resetEntidadeForms(){
 	console.log("resetEntidadeForms()");
-	document.getElementById('formulario-create').reset();
-	document.getElementById('formulario-edit').reset();
-	document.getElementById('EntidadeDescricaoForInsert').value="";
-	console.log(document.getElementById('EntidadeDescricaoForInsert').value);
-	document.getElementById('EntidadeDescricaoForUpdate').value="";
-	console.log(document.getElementById('EntidadeDescricaoForUpdate').value);
+	if(document.getElementById('formulario-create')){
+		document.getElementById('formulario-create').reset();
+		document.getElementById('EntidadeDescricaoForInsert').value="";
+		console.log(document.getElementById('EntidadeDescricaoForInsert').value);
+	}
+	if(document.getElementById('formulario-edit')){
+		document.getElementById('formulario-edit').reset();
+		document.getElementById('EntidadeDescricaoForUpdate').value="";
+		console.log(document.getElementById('EntidadeDescricaoForUpdate').value);
+	}
 }
 
 function deleteEntidade(e) {

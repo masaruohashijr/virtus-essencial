@@ -1,0 +1,52 @@
+{{ define "Main-Supervisores" }}
+<html lang="pt">
+{{ template "Header" .Title }}
+<body>
+{{ template "Menu" . }}
+<div id="main" class="w3-row-padding">
+	<header class="w3-container w3-center w3-teal">
+		<div class="row">
+		  <div class="w3-third" style="text-align:left">
+		  	<h3>
+	   			<a style="cursor:pointer;text-align: left" onclick="navGadget()">
+				&#9776; {{.AppName}}
+	   			</a>
+			</h3>	   			
+		  </div>
+		  <div class="w3-third">
+			<h3>{{.Title}}</h3>
+			<h3>{{.Escritorio}}</h3>
+		  </div>
+		  <div class="w3-third" style="text-align: right;padding:10px;font-size:1vw;">
+			<div class="w3-half" style="text-align: right">
+			{{.LoggedUser.User.Name}} (&nbsp;{{.LoggedUser.User.RoleName}}&nbsp;)
+			</div>
+			<div class="w3-half" style="text-align:right">
+				<span style="width:120px;">
+				    <a href="/logout">
+						<span class="icon ion-log-out w3-xxlarge hoverbtn"></span>
+					</a>
+				</span>
+			</div>
+		  </div>
+		</div>
+	</header>
+	<!-- Quais as atividades do workflow de produtos de componentes 
+	   que sejam de atribuição do Chefe.
+	   Junte-se a isso o critério de ser do mesmo escritório do Chefe.	
+	   SIGLA, CICLO, PILAR, COMPONENTE, PENDENTE DESDE, STATUS [IR PARA A AVALIAÇÃO]
+   -->
+   {{ template "List-PendenciasSupervisor" . }}
+   <!-- Todas as entidades da jurisdição que estiverem com ciclo aberto -->
+   {{ template "List-EFPCEmSupervisaoPermanente" . }}
+   <!-- Todas as entidades da jurisdição que NÃO ESTIVEREM com ciclo aberto -->
+   {{ template "List-DemaisEntidades" . }}
+   {{ template "View-Entidade" . }}   
+</div>
+<form action="/avaliarPlanos" method="POST" id="formulario-avaliar-planos">
+	<input type="hidden" id="EntidadeId" name="EntidadeId">
+	<input type="hidden" id="CicloId" name="CicloId">
+</form>
+</body>
+</html>
+{{end}}
