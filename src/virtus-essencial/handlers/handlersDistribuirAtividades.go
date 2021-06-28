@@ -715,16 +715,20 @@ type ComponenteDistribuido struct {
 
 func tramitarAutomaticamente(feature string, mapaCD map[string]*ComponenteDistribuido) {
 	for _, v := range mapaCD {
-		if configuradoCompletamente(v) && containsFeature(feature, v) {
-			tramitar(k)
+		if configuradoCompletamente(v) && produtoComponenteStatusContainsFeature(feature, v) {
+			tramitar(v)
 		}
 	}
 }
 
-func configuradoCompletamente(componenteId string) bool {
+func configuradoCompletamente(cd *ComponenteDistribuido) bool {
 	return true
 }
 
-func tramitar(componenteId string) {
+func tramitar(cd *ComponenteDistribuido) {
 
+}
+
+func produtoComponenteStatusContainsFeature(feature string, cd *ComponenteDistribuido) bool {
+	return true
 }
