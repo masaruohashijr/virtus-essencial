@@ -287,5 +287,6 @@ func ReadConfig(t ConfigType) Config {
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
 		log.Fatal(err)
 	}
+	println("teste")
 	return config
 }

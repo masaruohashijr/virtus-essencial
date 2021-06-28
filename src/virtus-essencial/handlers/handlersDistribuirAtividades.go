@@ -94,9 +94,10 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 
 func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Update Distribuir Atividades Handler")
+	mapaComponentes := make(map[string]*ComponenteDistribuido)
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		r.ParseForm()
-		faltouConfigurarPlano := false
+		faltouConfigurarPlanoAlgumComponente := false
 		for fieldName, value := range r.Form {
 			log.Println("-------------- fieldName: " + fieldName)
 			if strings.HasPrefix(fieldName, "AuditorComponente_") {
@@ -127,9 +128,28 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					if err != nil {
 						log.Println(err.Error())
 					}
+				} else {
+					v, ok := mapaComponentes[componenteId]
+					if !ok {
+						t := &ComponenteDistribuido{
+							faltouAuditor: true,
+						}
+						mapaComponentes[componenteId] = t
+					} else {
+						v.faltouAuditor = true
+					}
 				}
 				if planosIds == "N" {
-					faltouConfigurarPlano = true
+					faltouConfigurarPlanoAlgumComponente = true
+					v, ok := mapaComponentes[componenteId]
+					if !ok {
+						t := &ComponenteDistribuido{
+							faltouPlano: true,
+						}
+						mapaComponentes[componenteId] = t
+					} else {
+						v.faltouPlano = true
+					}
 				}
 			} else if strings.HasPrefix(fieldName, "IniciaEmComponente_") {
 				fname := fieldName[8:len(fieldName)]
@@ -169,6 +189,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				// log.Println(pilarId)
 				componenteId := partes[4]
 				// log.Println(fieldName + " - value: " + value[0])
+				// TODO Só atualizar se for um valor diferente.
 				if value[0] != "" {
 					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" termina_em='" + value[0] + "' " +
@@ -182,11 +203,22 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					if err != nil {
 						log.Println(err.Error())
 					}
+				} else {
+					v, ok := mapaComponentes[componenteId]
+					if !ok {
+						t := &ComponenteDistribuido{
+							faltouPeriodo: true,
+						}
+						mapaComponentes[componenteId] = t
+					} else {
+						v.faltouPeriodo = true
+					}
 				}
 			}
 		}
+		tramitarAutomaticamente("tramitarAutomaticamente", mapaComponentes)
 		msg := "msg=Os demais produtos dos níveis do ciclo foram criados com Sucesso."
-		if faltouConfigurarPlano {
+		if faltouConfigurarPlanoAlgumComponente {
 			warnMsg := "warnMsg=Faltou configurar quais os planos que serão avaliados."
 			http.Redirect(w, r, "/listDistribuirAtividades?"+msg+"&"+warnMsg, 301)
 		} else {
@@ -666,4 +698,33 @@ func SalvarReprogramacaoComponente(w http.ResponseWriter, r *http.Request) {
 	jsonOK, _ := json.Marshal("OK")
 	w.Write(jsonOK)
 	log.Println("----------")
+}
+
+func setupStatusInicialComponentes() {
+}
+
+type ComponenteDistribuido struct {
+	EntidadeId    string
+	CicloId       string
+	PilarId       string
+	ComponenteId  string
+	faltouPlano   bool
+	faltouPeriodo bool
+	faltouAuditor bool
+}
+
+func tramitarAutomaticamente(feature string, mapaCD map[string]*ComponenteDistribuido) {
+	for _, v := range mapaCD {
+		if configuradoCompletamente(v) && containsFeature(feature, v) {
+			tramitar(k)
+		}
+	}
+}
+
+func configuradoCompletamente(componenteId string) bool {
+	return true
+}
+
+func tramitar(componenteId string) {
+
 }

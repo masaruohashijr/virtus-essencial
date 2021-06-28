@@ -188,7 +188,13 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("entidadeId: " + entidadeId)
 		cicloId := r.FormValue("CicloId")
 		log.Println("cicloId: " + cicloId)
+		pilarId := r.FormValue("PilarId")
+		log.Println("pilarId: " + pilarId)
+		componenteId := r.FormValue("ComponenteId")
+		log.Println("componenteId: " + componenteId)
 		var page mdl.PageProdutosItens
+		page.PilarId = pilarId
+		page.ComponenteId = componenteId
 		log.Println(sqlAvaliarPlanos)
 		rows, _ := Db.Query(sqlAvaliarPlanos, entidadeId, cicloId)
 		defer rows.Close()

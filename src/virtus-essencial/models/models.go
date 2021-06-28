@@ -1100,6 +1100,8 @@ type PageProdutosItens struct {
 	Msg          string
 	AppName      string
 	Title        string
+	PilarId      string
+	ComponenteId string
 	Inc          func(i int) int
 	Produtos     []ProdutoItem
 	Supervisores []User

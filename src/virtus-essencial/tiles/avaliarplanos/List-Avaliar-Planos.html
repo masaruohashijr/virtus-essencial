@@ -61,6 +61,8 @@
 			{{$tipoPontuacao := ""}}
 			{{$currentUser := .LoggedUser.User.Id}}
 			{{$curUserRole := .LoggedUser.User.RoleName}}
+			{{$PilarIdSelected := .PilarId}}
+			{{$ComponenteIdSelected := .ComponenteId}}
 			<script type="text/javascript">
 				entidadesMap = new Map();
 				ciclosMap = new Map();
@@ -149,7 +151,7 @@
 					Pilar
 				</td>
                 <td style="font-size:1.2em;vertical-align:middle;text-align:left;padding-left: 20px">					
-					<a href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
+					<a id="Pilar_{{$produto.PilarId}}" href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
 						<i class="ion-android-arrow-dropright hoverbtn"></i>
 					</a>
 					{{$produto.PilarNome}}
@@ -204,7 +206,7 @@
 					Componente
 				</td>
                 <td style="font-size:1.1em;vertical-align:middle;text-align:left;padding-left: 30px">
-					<a href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
+					<a id="Componente_{{$produto.ComponenteId}}" href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
 						<i class="ion-android-arrow-dropright hoverbtn"></i>
 					</a>
 					{{$produto.ComponenteNome}} 
@@ -509,5 +511,9 @@
 </form>
 <script type="text/javascript">
 	atualizaPesoPercentual();
+	let e = document.getElementById("Pilar_"+"{{$PilarIdSelected}}");
+	expandir(e,'tabela-avaliar-planos');
+	e = document.getElementById("Componente_"+"{{$ComponenteIdSelected}}");
+	expandir(e,'tabela-avaliar-planos');
 </script>					
 {{end}}

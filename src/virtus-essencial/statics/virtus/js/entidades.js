@@ -13,6 +13,14 @@ function submeterListEntidadesForm(e, formId){
 	document.getElementById(formId).submit();
 }
 
+function submeterPendencias(e, formId){
+	document.getElementById("EntidadeId").value=e.parentNode.parentNode.childNodes[3].childNodes[1].value;
+	document.getElementById("CicloId").value=e.parentNode.parentNode.childNodes[5].childNodes[1].value;
+	document.getElementById("PilarId").value=e.parentNode.parentNode.childNodes[7].childNodes[1].value;
+	document.getElementById("ComponenteId").value=e.parentNode.parentNode.childNodes[9].childNodes[1].value;
+	document.getElementById(formId).submit();
+}
+
 function viewEntidade(e) {
 	resetEntidadeForms();
     var editForm = document.getElementById('view-form');

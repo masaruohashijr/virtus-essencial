@@ -88,7 +88,9 @@ function executeActionProdutoComponente(type, produtoComponenteId, actionId, Id)
 					divElement.removeChild(nodes[i]);
 				}
 			}
-			document.getElementById("StatusName_"+Id).innerText = status.name;
+			if(status.name != ""){
+				document.getElementById("StatusName_"+Id).innerText = status.name;
+			}
 			document.getElementById("IdStatus_"+Id).value = status.id;
 			loadAllowedActionsWithParentId(type, status.id);
 		}
