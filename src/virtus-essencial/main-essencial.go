@@ -87,6 +87,7 @@ func main() {
 	// injetando a variável Authenticated
 	if true {
 		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
+		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
 		//dpk.Initialize()
 	}
 	r := mux.NewRouter()

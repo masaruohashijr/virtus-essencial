@@ -697,6 +697,8 @@ type ComponenteDistribuido struct {
 	CicloId       string
 	PilarId       string
 	ComponenteId  string
+	IniciaEm      string
+	TerminaEm     string
 	faltouPlano   bool
 	faltouPeriodo bool
 	faltouAuditor bool
@@ -726,15 +728,19 @@ func tramitar(cd *ComponenteDistribuido) {
 		" INNER JOIN virtus.actions c ON b.id_action = c.id_action " +
 		" WHERE a.entity_type = 'produto_componente' " +
 		" and c.id_origin_status = virtus.produtos_componentes.id_status ) " +
-		" WHERE id_entidade = ? " +
-		" AND id_ciclo = ? " +
-		" AND id_pilar = ? " +
-		" AND id_componente = ? "
+		" WHERE id_entidade = " + cd.EntidadeId +
+		" AND id_ciclo = " + cd.CicloId +
+		" AND id_pilar = " + cd.PilarId +
+		" AND id_componente = " + cd.ComponenteId
 	updtForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
 	}
-	updtForm.Exec(sqlStatement, cd.EntidadeId, cd.CicloId, cd.PilarId, cd.ComponenteId)
+	println(cd.EntidadeId, cd.CicloId, cd.PilarId, cd.ComponenteId)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
 	log.Println("UPDATE: " + sqlStatement)
 }
 
@@ -753,7 +759,7 @@ func produtoComponenteStatusContainsFeature(feature string, cd *ComponenteDistri
 	log.Println(sql)
 	rows, _ := Db.Query(sql)
 	possui := rows.Next()
-	println("Possui a featura: " + strconv.FormatBool(possui))
+	println("Possui a feature: " + strconv.FormatBool(possui))
 	defer rows.Close()
 	return possui
 }

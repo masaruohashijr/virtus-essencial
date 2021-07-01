@@ -192,6 +192,11 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("pilarId: " + pilarId)
 		componenteId := r.FormValue("ComponenteId")
 		log.Println("componenteId: " + componenteId)
+		cd := &ComponenteDistribuido{
+			EntidadeId: entidadeId,
+			CicloId:    cicloId,
+		}
+		iniciarComponenteAutomaticamente("iniciarComponenteAutomaticamente", cd)
 		var page mdl.PageProdutosItens
 		page.PilarId = pilarId
 		page.ComponenteId = componenteId
@@ -695,4 +700,36 @@ func LoadDescricao(w http.ResponseWriter, r *http.Request) {
 	jsonDescricao, _ := json.Marshal(descricao)
 	w.Write([]byte(jsonDescricao))
 	log.Println("JSON Descrição")
+}
+
+func iniciarComponenteAutomaticamente(feature string, cd *ComponenteDistribuido) {
+	cds := produtosComponentesStatusContainsFeature(feature, cd)
+	for _, cd := range cds {
+		tramitar(&cd)
+	}
+
+}
+
+func produtosComponentesStatusContainsFeature(feature string, parmCD *ComponenteDistribuido) (cds []ComponenteDistribuido) {
+	sql := "SELECT f.id_pilar, f.id_componente " +
+		" FROM virtus.features_activities a " +
+		" inner join virtus.activities b ON a.id_activity = b.id_activity " +
+		" inner join virtus.features c ON a.id_feature = c.id_feature " +
+		" inner join virtus.actions d ON b.id_action = d.id_action " +
+		" inner join virtus.status e ON e.id_status = d.id_origin_status " +
+		" inner join virtus.produtos_componentes f ON f.id_status = e.id_status " +
+		" WHERE f.id_entidade = " + parmCD.EntidadeId +
+		" and f.id_ciclo = " + parmCD.CicloId +
+		" and c.code = '" + feature + "'" +
+		" and f.inicia_em <= GETDATE()"
+	log.Println(sql)
+	rows, _ := Db.Query(sql)
+	var compD ComponenteDistribuido
+	for rows.Next() {
+		rows.Scan(&compD.PilarId, &compD.ComponenteId)
+		compD.EntidadeId = parmCD.EntidadeId
+		compD.CicloId = parmCD.CicloId
+		cds = append(cds, compD)
+	}
+	return cds
 }
