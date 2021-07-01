@@ -37,8 +37,10 @@
 	   SIGLA, CICLO, PILAR, COMPONENTE, PENDENTE DESDE, STATUS [IR PARA A AVALIAÇÃO]
    -->
    {{ template "List-PendenciasChefe" . }}
+   <br/><br/>
    <!-- Todas as entidades da jurisdição que estiverem com ciclo aberto -->
    {{ template "List-EFPCEmSupervisaoPermanente" . }}
+   <br/><br/>
    <!-- Todas as entidades da jurisdição que NÃO ESTIVEREM com ciclo aberto -->
    {{ template "List-DemaisEntidades" . }}
    {{ template "View-Entidade" . }}
