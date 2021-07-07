@@ -37,6 +37,9 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" 	   coalesce(p.peso,0) as plano_peso, coalesce(p.nota,0) as plano_nota, " +
 	"	   coalesce(format(g.inicia_em, 'dd/MM/yyyy'), '') AS inicia_em, " +
 	"      coalesce(format(g.termina_em, 'dd/MM/yyyy'), '') AS termina_em, " +
+	" 	   coalesce(sta.name,'') as cstatus, " +
+	"      g.id_status, " +
+	"      g.id_produto_componente, " +
 	"	   CASE " +
 	"	    WHEN g.inicia_em IS NOT NULL AND " +
 	"		g.termina_em IS NOT NULL AND " +
@@ -44,10 +47,19 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	"	    AND coalesce(dateadd(day,1,g.termina_em),CAST('9999-12-31' as DATE)) " +
 	"	    THEN 1 " +
 	"	    ELSE 0 " +
-	"	   END AS periodo_permitido " +
+	"	   END AS periodo_permitido, " +
+	"	   CASE " +
+	"	    WHEN ce.inicia_em IS NOT NULL AND " +
+	"		ce.termina_em IS NOT NULL AND " +
+	"		GETDATE() BETWEEN coalesce(ce.inicia_em,CAST('0001-01-01' as DATE)) " +
+	"	    AND coalesce(dateadd(day,1,ce.termina_em),CAST('9999-12-31' as DATE)) " +
+	"	    THEN 1 " +
+	"	    ELSE 0 " +
+	"	   END AS periodo_ciclo " +
 	" FROM virtus.produtos_itens a " +
 	" INNER JOIN virtus.entidades b ON a.id_entidade = b.id_entidade " +
 	" INNER JOIN virtus.ciclos c ON a.id_ciclo = c.id_ciclo " +
+	" INNER JOIN virtus.ciclos_entidades ce ON ce.id_ciclo = c.id_ciclo AND ce.id_entidade = b.id_entidade " +
 	" INNER JOIN virtus.pilares d ON a.id_pilar = d.id_pilar " +
 	" INNER JOIN virtus.componentes e ON a.id_componente = e.id_componente " +
 	" INNER JOIN virtus.produtos_pilares f ON " +
@@ -93,6 +105,7 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	" INNER JOIN virtus.produtos_ciclos pdc ON " +
 	"  (a.id_ciclo = pdc.id_ciclo AND " +
 	"   a.id_entidade = pdc.id_entidade) " +
+	" LEFT JOIN virtus.status sta ON g.id_status = sta.id_status " +
 	" WHERE a.id_entidade = ? " +
 	"   AND a.id_ciclo = ? " +
 	" ORDER BY a.id_ciclo, " +
@@ -175,7 +188,18 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("entidadeId: " + entidadeId)
 		cicloId := r.FormValue("CicloId")
 		log.Println("cicloId: " + cicloId)
+		pilarId := r.FormValue("PilarId")
+		log.Println("pilarId: " + pilarId)
+		componenteId := r.FormValue("ComponenteId")
+		log.Println("componenteId: " + componenteId)
+		cd := &ComponenteDistribuido{
+			EntidadeId: entidadeId,
+			CicloId:    cicloId,
+		}
+		iniciarComponenteAutomaticamente("iniciarComponenteAutomaticamente", cd)
 		var page mdl.PageProdutosItens
+		page.PilarId = pilarId
+		page.ComponenteId = componenteId
 		log.Println(sqlAvaliarPlanos)
 		rows, _ := Db.Query(sqlAvaliarPlanos, entidadeId, cicloId)
 		defer rows.Close()
@@ -183,6 +207,7 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 		var produto mdl.ProdutoItem
 		var i = 1
 		var periodoPermitido = 0
+		var periodoCiclo = 0
 		for rows.Next() {
 			rows.Scan(
 				&produto.EntidadeId,
@@ -228,12 +253,21 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 				&produto.PlanoNota,
 				&produto.IniciaEm,
 				&produto.TerminaEm,
-				&periodoPermitido)
+				&produto.CStatus,
+				&produto.StatusId,
+				&produto.ProdutoComponenteId,
+				&periodoPermitido,
+				&periodoCiclo)
 			produto.Order = i
 			if periodoPermitido == 0 {
 				produto.PeriodoPermitido = false
 			} else {
 				produto.PeriodoPermitido = true
+			}
+			if periodoCiclo == 0 {
+				produto.PeriodoCiclo = false
+			} else {
+				produto.PeriodoCiclo = true
 			}
 			i++
 			//log.Println(produto)
@@ -309,6 +343,8 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 	var produtos []mdl.ProdutoItem
 	var produto mdl.ProdutoItem
 	var i = 1
+	var periodoPermitido = 0
+	var periodoCiclo = 0
 	for rows.Next() {
 		rows.Scan(
 			&produto.EntidadeId,
@@ -354,10 +390,23 @@ func AtualizarPlanosHandler(entidadeId string, cicloId string, w http.ResponseWr
 			&produto.PlanoNota,
 			&produto.IniciaEm,
 			&produto.TerminaEm,
-			&produto.PeriodoPermitido)
+			&produto.CStatus,
+			&produto.StatusId,
+			&produto.ProdutoComponenteId,
+			&periodoPermitido,
+			&periodoCiclo)
 		produto.Order = i
 		i++
-		// log.Println(produto)
+		if periodoPermitido == 0 {
+			produto.PeriodoPermitido = false
+		} else {
+			produto.PeriodoPermitido = true
+		}
+		if periodoCiclo == 0 {
+			produto.PeriodoCiclo = false
+		} else {
+			produto.PeriodoCiclo = true
+		}
 		produtos = append(produtos, produto)
 	}
 	page.Produtos = produtos
@@ -570,6 +619,7 @@ func SalvarNotaElemento(w http.ResponseWriter, r *http.Request) {
 	}
 	//log.Println(notasAtuais)
 	jsonValoresAtuais, _ := json.Marshal(valoresAtuais)
+	println(jsonValoresAtuais)
 	w.Write([]byte(jsonValoresAtuais))
 	log.Println("----------")
 
@@ -650,4 +700,36 @@ func LoadDescricao(w http.ResponseWriter, r *http.Request) {
 	jsonDescricao, _ := json.Marshal(descricao)
 	w.Write([]byte(jsonDescricao))
 	log.Println("JSON Descrição")
+}
+
+func iniciarComponenteAutomaticamente(feature string, cd *ComponenteDistribuido) {
+	cds := produtosComponentesStatusContainsFeature(feature, cd)
+	for _, cd := range cds {
+		tramitar(&cd)
+	}
+
+}
+
+func produtosComponentesStatusContainsFeature(feature string, parmCD *ComponenteDistribuido) (cds []ComponenteDistribuido) {
+	sql := "SELECT f.id_pilar, f.id_componente " +
+		" FROM virtus.features_activities a " +
+		" inner join virtus.activities b ON a.id_activity = b.id_activity " +
+		" inner join virtus.features c ON a.id_feature = c.id_feature " +
+		" inner join virtus.actions d ON b.id_action = d.id_action " +
+		" inner join virtus.status e ON e.id_status = d.id_origin_status " +
+		" inner join virtus.produtos_componentes f ON f.id_status = e.id_status " +
+		" WHERE f.id_entidade = " + parmCD.EntidadeId +
+		" and f.id_ciclo = " + parmCD.CicloId +
+		" and c.code = '" + feature + "'" +
+		" and f.inicia_em <= GETDATE()"
+	log.Println(sql)
+	rows, _ := Db.Query(sql)
+	var compD ComponenteDistribuido
+	for rows.Next() {
+		rows.Scan(&compD.PilarId, &compD.ComponenteId)
+		compD.EntidadeId = parmCD.EntidadeId
+		compD.CicloId = parmCD.CicloId
+		cds = append(cds, compD)
+	}
+	return cds
 }

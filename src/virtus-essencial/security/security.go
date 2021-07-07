@@ -1,8 +1,9 @@
 package security
 
 import (
-	"github.com/gorilla/sessions"
 	"net/http"
+
+	"github.com/gorilla/sessions"
 )
 
 var CookieName = "virtus"

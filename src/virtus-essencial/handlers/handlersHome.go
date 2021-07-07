@@ -123,14 +123,67 @@ func ListSobreHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ChefeHomeHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("*****************************************")
 	log.Println("Painel do Chefe")
+	log.Println("*****************************************")
 	currentUser := GetUserInCookie(w, r)
+	if currentUser.Role != 2 {
+		home := redirectHome(currentUser.Role)
+		http.Redirect(w, r, home, 301)
+	}
 	if sec.IsAuthenticated(w, r) && HasPermission(currentUser, "listEntidades") {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
-		var page mdl.PageEntidades
-		sql := "SELECT " +
-			" a.id_entidade, " +
+		var page mdl.PageChefe
+
+		sql := " SELECT DISTINCT e.sigla as sigla_entidade, " +
+			" d.nome as ciclo_nome, " +
+			" c.nome as pilar_nome, " +
+			" b.nome as componente_nome, " +
+			" h.name as status " +
+			" FROM virtus.produtos_componentes a " +
+			" INNER JOIN virtus.componentes b ON a.id_componente = b.id_componente " +
+			" INNER JOIN virtus.pilares c ON a.id_pilar = c.id_pilar " +
+			" INNER JOIN virtus.ciclos d ON a.id_ciclo = d.id_ciclo " +
+			" INNER JOIN virtus.entidades e ON a.id_entidade = e.id_entidade " +
+			" INNER JOIN virtus.jurisdicoes f ON a.id_entidade = f.id_entidade " +
+			" INNER JOIN virtus.escritorios g ON  " +
+			" (f.id_escritorio = g.id_escritorio AND e.id_entidade = f.id_entidade) " +
+			" INNER JOIN virtus.status h ON h.id_status = a.id_status " +
+			" INNER JOIN virtus.actions i ON i.id_origin_status = a.id_status " +
+			" INNER JOIN virtus.activities j ON j.id_action = i.id_action " +
+			" INNER JOIN virtus.activities_roles k ON k.id_activity = j.id_activity " +
+			" INNER JOIN virtus.workflows l ON l.id_workflow = j.id_workflow " +
+			" WHERE l.entity_type = 'produto_componente' " +
+			" AND k.id_role = ? " +
+			" AND g.id_chefe = ? "
+		log.Println("sql: " + sql)
+		rows, _ := Db.Query(sql, currentUser.Role, currentUser.Id)
+		defer rows.Close()
+
+		var produto mdl.ProdutoComponente
+		var produtos []mdl.ProdutoComponente
+		i := 1
+		for rows.Next() {
+			rows.Scan(
+				&produto.EntidadeNome,
+				&produto.CicloNome,
+				&produto.PilarNome,
+				&produto.ComponenteNome,
+				&produto.CStatus)
+			produto.Order = i
+			i++
+			log.Println("Componente: " + produto.ComponenteNome)
+			produtos = append(produtos, produto)
+		}
+		println("------------------------------------")
+		println("Pendencias")
+		println(len(produtos))
+		println("------------------------------------")
+		page.Pendencias = produtos
+
+		// List-EFPCEmSupervisaoPermanente
+		sql = "SELECT a.id_entidade, " +
 			" coalesce(a.sigla,''), " +
 			" coalesce(a.nome,''), " +
 			" coalesce(a.descricao,''), " +
@@ -139,28 +192,29 @@ func ChefeHomeHandler(w http.ResponseWriter, r *http.Request) {
 			" a.esi, " +
 			" coalesce(a.municipio,''), " +
 			" coalesce(a.sigla_uf,''), " +
-			" coalesce(e.abreviatura,''), " +
-			" coalesce(g.nome, '') as ciclo_nome, " +
-			" a.id_author, " +
-			" coalesce(b.name,'') as author_name, " +
-			" FORMAT(a.criado_em,'dd/MM/yyyy HH:mm:ss'), " +
+			" coalesce(c.abreviatura,'') as escritorio_abrev, " +
+			" coalesce(f.nome, '') as ciclo_nome, " +
 			" a.id_status, " +
-			" coalesce(c.name,'') as cstatus, " +
-			" a.id_versao_origem " +
-			" FROM virtus.entidades a LEFT JOIN virtus.users b " +
-			" ON a.id_author = b.id_user " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-			" LEFT JOIN virtus.jurisdicoes d ON d.id_entidade = a.id_entidade " +
-			" LEFT JOIN virtus.escritorios e ON d.id_escritorio = e.id_escritorio " +
-			" LEFT JOIN virtus.ciclos_entidades f ON a.id_entidade = f.id_entidade " +
-			" LEFT JOIN virtus.ciclos g ON f.id_ciclo = g.id_ciclo " +
+			" coalesce(e.name,'') as cstatus " +
+			" FROM " +
+			" virtus.entidades a " +
+			" INNER JOIN virtus.jurisdicoes b ON b.id_entidade = a.id_entidade " +
+			" INNER JOIN VIRTUS.escritorios c ON c.id_escritorio = b.id_escritorio " +
+			" INNER JOIN virtus.ciclos_entidades d ON b.id_entidade = d.id_entidade " +
+			" LEFT JOIN virtus.status e ON a.id_status = e.id_status " +
+			" LEFT JOIN virtus.ciclos f ON f.id_ciclo = d.id_ciclo " +
+			" WHERE id_chefe = ? " +
+			" AND GETDATE() BETWEEN d.inicia_em AND d.termina_em " +
+			" AND d.inicia_em IS NOT NULL " +
+			" AND d.termina_em IS NOT NULL " +
 			" ORDER BY a.nome asc "
 		log.Println("sql: " + sql)
-		rows, _ := Db.Query(sql)
+		rows, _ = Db.Query(sql, currentUser.Id)
 		defer rows.Close()
-		var entidades []mdl.Entidade
+
 		var entidade mdl.Entidade
-		var i = 1
+		var entidadesPermanente []mdl.Entidade
+		var j = 1
 		for rows.Next() {
 			rows.Scan(
 				&entidade.Id,
@@ -174,23 +228,75 @@ func ChefeHomeHandler(w http.ResponseWriter, r *http.Request) {
 				&entidade.SiglaUF,
 				&entidade.EscritorioAbreviatura,
 				&entidade.CicloNome,
-				&entidade.AuthorId,
-				&entidade.AuthorName,
-				&entidade.C_CriadoEm,
 				&entidade.StatusId,
-				&entidade.CStatus,
-				&entidade.IdVersaoOrigem)
-			entidade.Order = i
-			i++
+				&entidade.CStatus)
+			entidade.Order = j
+			j++
 			//log.Println(entidade)
-			entidades = append(entidades, entidade)
+			entidadesPermanente = append(entidadesPermanente, entidade)
 		}
-		for i := range entidades {
-			if entidades[i].CicloNome != "" {
-				entidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidades[i].Id, 10))
+		for j := range entidadesPermanente {
+			if entidadesPermanente[j].CicloNome != "" {
+				entidadesPermanente[j].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidadesPermanente[j].Id, 10))
 			}
 		}
-		page.Entidades = entidades
+		page.EntidadesPermanente = entidadesPermanente
+		var demaisEntidades []mdl.Entidade
+		sql = "SELECT a.id_entidade, " +
+			" coalesce(a.sigla,''), " +
+			" coalesce(a.nome,''), " +
+			" coalesce(a.descricao,''), " +
+			" coalesce(a.codigo,''), " +
+			" coalesce(a.situacao,''), " +
+			" a.esi, " +
+			" coalesce(a.municipio,''), " +
+			" coalesce(a.sigla_uf,''), " +
+			" coalesce(c.abreviatura,'') as escritorio_abrev, " +
+			" coalesce(f.nome, '') as ciclo_nome, " +
+			" a.id_status, " +
+			" coalesce(e.name,'') as cstatus " +
+			" FROM " +
+			" virtus.entidades a " +
+			" INNER JOIN virtus.jurisdicoes b ON b.id_entidade = a.id_entidade " +
+			" INNER JOIN VIRTUS.escritorios c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.ciclos_entidades d ON b.id_entidade = d.id_entidade " +
+			" LEFT JOIN virtus.status e ON a.id_status = e.id_status " +
+			" LEFT JOIN virtus.ciclos f ON f.id_ciclo = d.id_ciclo " +
+			" WHERE id_chefe = ? " +
+			" AND ( GETDATE() NOT BETWEEN d.inicia_em AND d.termina_em " +
+			" OR d.inicia_em IS NULL " +
+			" OR d.termina_em IS NULL ) " +
+			" ORDER BY a.nome asc "
+		log.Println("sql: " + sql)
+		rows, _ = Db.Query(sql, currentUser.Id)
+		defer rows.Close()
+		var k = 1
+		for rows.Next() {
+			rows.Scan(
+				&entidade.Id,
+				&entidade.Sigla,
+				&entidade.Nome,
+				&entidade.Descricao,
+				&entidade.Codigo,
+				&entidade.Situacao,
+				&entidade.ESI,
+				&entidade.Municipio,
+				&entidade.SiglaUF,
+				&entidade.EscritorioAbreviatura,
+				&entidade.CicloNome,
+				&entidade.StatusId,
+				&entidade.CStatus)
+			entidade.Order = k
+			k++
+			//log.Println(entidade)
+			demaisEntidades = append(demaisEntidades, entidade)
+		}
+		for i := range demaisEntidades {
+			if demaisEntidades[i].CicloNome != "" {
+				demaisEntidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(demaisEntidades[i].Id, 10))
+			}
+		}
+		page.DemaisEntidades = demaisEntidades
 		if errMsg != "" {
 			page.ErrMsg = errMsg
 		}
@@ -212,6 +318,12 @@ func ChefeHomeHandler(w http.ResponseWriter, r *http.Request) {
 		page.Ciclos = ciclos
 		page.AppName = mdl.AppName
 		page.Title = "Chefe" + mdl.Ambiente
+		nomeEntidade := ""
+		sql = "SELECT nome FROM virtus.escritorios WHERE id_chefe = ? "
+		row := Db.QueryRow(sql, currentUser.Id)
+		log.Println(sql, currentUser.Id)
+		row.Scan(&nomeEntidade)
+		page.Escritorio = nomeEntidade
 		page.LoggedUser = BuildLoggedUser(GetUserInCookie(w, r))
 		var tmpl = template.Must(template.ParseGlob("tiles/paineis/chefe/*"))
 		tmpl.ParseGlob("tiles/*")
@@ -319,14 +431,67 @@ func AdminHomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func SupervisorHomeHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("*****************************************")
 	log.Println("Painel do Supervisor")
+	log.Println("*****************************************")
 	currentUser := GetUserInCookie(w, r)
+	if currentUser.Role != 3 {
+		home := redirectHome(currentUser.Role)
+		http.Redirect(w, r, home, 301)
+	}
 	if sec.IsAuthenticated(w, r) && HasPermission(currentUser, "listEntidades") {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
-		var page mdl.PageEntidades
-		sql := "SELECT " +
-			" a.id_entidade, " +
+		var page mdl.PageChefe
+
+		sql := " SELECT DISTINCT e.sigla as sigla_entidade, " +
+			" d.nome as ciclo_nome, " +
+			" c.nome as pilar_nome, " +
+			" b.nome as componente_nome, " +
+			" h.name as status " +
+			" FROM virtus.produtos_componentes a " +
+			" INNER JOIN virtus.componentes b ON a.id_componente = b.id_componente " +
+			" INNER JOIN virtus.pilares c ON a.id_pilar = c.id_pilar " +
+			" INNER JOIN virtus.ciclos d ON a.id_ciclo = d.id_ciclo " +
+			" INNER JOIN virtus.entidades e ON a.id_entidade = e.id_entidade " +
+			" INNER JOIN virtus.jurisdicoes f ON a.id_entidade = f.id_entidade " +
+			" INNER JOIN virtus.escritorios g ON  " +
+			" (f.id_escritorio = g.id_escritorio AND e.id_entidade = f.id_entidade) " +
+			" INNER JOIN virtus.status h ON h.id_status = a.id_status " +
+			" INNER JOIN virtus.actions i ON i.id_origin_status = a.id_status " +
+			" INNER JOIN virtus.activities j ON j.id_action = i.id_action " +
+			" INNER JOIN virtus.activities_roles k ON k.id_activity = j.id_activity " +
+			" INNER JOIN virtus.workflows l ON l.id_workflow = j.id_workflow " +
+			" WHERE l.entity_type = 'produto_componente' " +
+			" AND k.id_role = ? " +
+			" AND a.id_supervisor = ? "
+		log.Println("sql: " + sql)
+		rows, _ := Db.Query(sql, currentUser.Role, currentUser.Id)
+		defer rows.Close()
+
+		var produto mdl.ProdutoComponente
+		var produtos []mdl.ProdutoComponente
+		i := 1
+		for rows.Next() {
+			rows.Scan(
+				&produto.EntidadeNome,
+				&produto.CicloNome,
+				&produto.PilarNome,
+				&produto.ComponenteNome,
+				&produto.CStatus)
+			produto.Order = i
+			i++
+			log.Println("Componente: " + produto.ComponenteNome)
+			produtos = append(produtos, produto)
+		}
+		println("------------------------------------")
+		println("Pendencias")
+		println(len(produtos))
+		println("------------------------------------")
+		page.Pendencias = produtos
+
+		// List-EFPCEmSupervisaoPermanente
+		sql = "SELECT a.id_entidade, " +
 			" coalesce(a.sigla,''), " +
 			" coalesce(a.nome,''), " +
 			" coalesce(a.descricao,''), " +
@@ -335,28 +500,29 @@ func SupervisorHomeHandler(w http.ResponseWriter, r *http.Request) {
 			" a.esi, " +
 			" coalesce(a.municipio,''), " +
 			" coalesce(a.sigla_uf,''), " +
-			" coalesce(e.abreviatura,''), " +
-			" coalesce(g.nome, '') as ciclo_nome, " +
-			" a.id_author, " +
-			" coalesce(b.name,'') as author_name, " +
-			" FORMAT(a.criado_em,'dd/MM/yyyy HH:mm:ss'), " +
+			" coalesce(c.abreviatura,'') as escritorio_abrev, " +
+			" coalesce(f.nome, '') as ciclo_nome, " +
 			" a.id_status, " +
-			" coalesce(c.name,'') as cstatus, " +
-			" a.id_versao_origem " +
-			" FROM virtus.entidades a LEFT JOIN virtus.users b " +
-			" ON a.id_author = b.id_user " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-			" LEFT JOIN virtus.jurisdicoes d ON d.id_entidade = a.id_entidade " +
-			" LEFT JOIN virtus.escritorios e ON d.id_escritorio = e.id_escritorio " +
-			" LEFT JOIN virtus.ciclos_entidades f ON a.id_entidade = f.id_entidade " +
-			" LEFT JOIN virtus.ciclos g ON f.id_ciclo = g.id_ciclo " +
+			" coalesce(e.name,'') as cstatus " +
+			" FROM " +
+			" virtus.entidades a " +
+			" INNER JOIN virtus.jurisdicoes b ON b.id_entidade = a.id_entidade " +
+			" INNER JOIN VIRTUS.escritorios c ON c.id_escritorio = b.id_escritorio " +
+			" INNER JOIN virtus.ciclos_entidades d ON b.id_entidade = d.id_entidade " +
+			" LEFT JOIN virtus.status e ON a.id_status = e.id_status " +
+			" LEFT JOIN virtus.ciclos f ON f.id_ciclo = d.id_ciclo " +
+			" WHERE d.id_supervisor = ? " +
+			" AND GETDATE() BETWEEN d.inicia_em AND d.termina_em " +
+			" AND d.inicia_em IS NOT NULL " +
+			" AND d.termina_em IS NOT NULL " +
 			" ORDER BY a.nome asc "
 		log.Println("sql: " + sql)
-		rows, _ := Db.Query(sql)
+		rows, _ = Db.Query(sql, currentUser.Id)
 		defer rows.Close()
-		var entidades []mdl.Entidade
+
 		var entidade mdl.Entidade
-		var i = 1
+		var entidadesPermanente []mdl.Entidade
+		var j = 1
 		for rows.Next() {
 			rows.Scan(
 				&entidade.Id,
@@ -370,23 +536,75 @@ func SupervisorHomeHandler(w http.ResponseWriter, r *http.Request) {
 				&entidade.SiglaUF,
 				&entidade.EscritorioAbreviatura,
 				&entidade.CicloNome,
-				&entidade.AuthorId,
-				&entidade.AuthorName,
-				&entidade.C_CriadoEm,
 				&entidade.StatusId,
-				&entidade.CStatus,
-				&entidade.IdVersaoOrigem)
-			entidade.Order = i
-			i++
+				&entidade.CStatus)
+			entidade.Order = j
+			j++
 			//log.Println(entidade)
-			entidades = append(entidades, entidade)
+			entidadesPermanente = append(entidadesPermanente, entidade)
 		}
-		for i := range entidades {
-			if entidades[i].CicloNome != "" {
-				entidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidades[i].Id, 10))
+		for j := range entidadesPermanente {
+			if entidadesPermanente[j].CicloNome != "" {
+				entidadesPermanente[j].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidadesPermanente[j].Id, 10))
 			}
 		}
-		page.Entidades = entidades
+		page.EntidadesPermanente = entidadesPermanente
+		var demaisEntidades []mdl.Entidade
+		sql = "SELECT a.id_entidade, " +
+			" coalesce(a.sigla,''), " +
+			" coalesce(a.nome,''), " +
+			" coalesce(a.descricao,''), " +
+			" coalesce(a.codigo,''), " +
+			" coalesce(a.situacao,''), " +
+			" a.esi, " +
+			" coalesce(a.municipio,''), " +
+			" coalesce(a.sigla_uf,''), " +
+			" coalesce(c.abreviatura,'') as escritorio_abrev, " +
+			" coalesce(f.nome, '') as ciclo_nome, " +
+			" a.id_status, " +
+			" coalesce(e.name,'') as cstatus " +
+			" FROM " +
+			" virtus.entidades a " +
+			" INNER JOIN virtus.jurisdicoes b ON b.id_entidade = a.id_entidade " +
+			" INNER JOIN VIRTUS.escritorios c ON c.id_escritorio = b.id_escritorio " +
+			" LEFT JOIN virtus.ciclos_entidades d ON b.id_entidade = d.id_entidade " +
+			" LEFT JOIN virtus.status e ON a.id_status = e.id_status " +
+			" LEFT JOIN virtus.ciclos f ON f.id_ciclo = d.id_ciclo " +
+			" WHERE d.id_supervisor = ? " +
+			" AND ( GETDATE() NOT BETWEEN d.inicia_em AND d.termina_em " +
+			" OR d.inicia_em IS NULL " +
+			" OR d.termina_em IS NULL ) " +
+			" ORDER BY a.nome asc "
+		log.Println("sql: " + sql)
+		rows, _ = Db.Query(sql, currentUser.Id)
+		defer rows.Close()
+		var k = 1
+		for rows.Next() {
+			rows.Scan(
+				&entidade.Id,
+				&entidade.Sigla,
+				&entidade.Nome,
+				&entidade.Descricao,
+				&entidade.Codigo,
+				&entidade.Situacao,
+				&entidade.ESI,
+				&entidade.Municipio,
+				&entidade.SiglaUF,
+				&entidade.EscritorioAbreviatura,
+				&entidade.CicloNome,
+				&entidade.StatusId,
+				&entidade.CStatus)
+			entidade.Order = k
+			k++
+			//log.Println(entidade)
+			demaisEntidades = append(demaisEntidades, entidade)
+		}
+		for i := range demaisEntidades {
+			if demaisEntidades[i].CicloNome != "" {
+				demaisEntidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(demaisEntidades[i].Id, 10))
+			}
+		}
+		page.DemaisEntidades = demaisEntidades
 		if errMsg != "" {
 			page.ErrMsg = errMsg
 		}
@@ -408,23 +626,89 @@ func SupervisorHomeHandler(w http.ResponseWriter, r *http.Request) {
 		page.Ciclos = ciclos
 		page.AppName = mdl.AppName
 		page.Title = "Supervisor" + mdl.Ambiente
+		nomeEntidade := ""
+		sql = " SELECT a.nome FROM virtus.escritorios a " +
+			" INNER JOIN virtus.membros b ON a.id_escritorio = b.id_escritorio " +
+			" WHERE b.id_usuario = ? "
+		row := Db.QueryRow(sql, currentUser.Id)
+		log.Println(sql, currentUser.Id)
+		row.Scan(&nomeEntidade)
+		page.Escritorio = nomeEntidade
 		page.LoggedUser = BuildLoggedUser(GetUserInCookie(w, r))
-		var tmpl = template.Must(template.ParseGlob("tiles/entidades/*"))
+		var tmpl = template.Must(template.ParseGlob("tiles/paineis/supervisor/*"))
 		tmpl.ParseGlob("tiles/*")
-		tmpl.ExecuteTemplate(w, "Main-Entidades", page)
+		tmpl.ExecuteTemplate(w, "Main-Supervisores", page)
 	} else {
 		http.Redirect(w, r, "/logout", 301)
 	}
+
 }
 func AuditorHomeHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("*****************************************")
 	log.Println("Painel do Auditor")
+	log.Println("*****************************************")
 	currentUser := GetUserInCookie(w, r)
+	if currentUser.Role != 4 {
+		home := redirectHome(currentUser.Role)
+		http.Redirect(w, r, home, 301)
+	}
 	if sec.IsAuthenticated(w, r) && HasPermission(currentUser, "listEntidades") {
 		msg := r.FormValue("msg")
 		errMsg := r.FormValue("errMsg")
-		var page mdl.PageEntidades
-		sql := "SELECT " +
-			" a.id_entidade, " +
+		var page mdl.PageChefe
+
+		sql := " SELECT DISTINCT e.id_entidade, e.sigla as sigla_entidade, " +
+			" d.id_ciclo, d.nome as ciclo_nome, " +
+			" c.id_pilar, c.nome as pilar_nome, " +
+			" b.id_componente, b.nome as componente_nome, " +
+			" h.name as status " +
+			" FROM virtus.produtos_componentes a " +
+			" INNER JOIN virtus.componentes b ON a.id_componente = b.id_componente " +
+			" INNER JOIN virtus.pilares c ON a.id_pilar = c.id_pilar " +
+			" INNER JOIN virtus.ciclos d ON a.id_ciclo = d.id_ciclo " +
+			" INNER JOIN virtus.entidades e ON a.id_entidade = e.id_entidade " +
+			" INNER JOIN virtus.jurisdicoes f ON a.id_entidade = f.id_entidade " +
+			" INNER JOIN virtus.escritorios g ON  " +
+			" (f.id_escritorio = g.id_escritorio AND e.id_entidade = f.id_entidade) " +
+			" INNER JOIN virtus.status h ON h.id_status = a.id_status " +
+			" INNER JOIN virtus.actions i ON i.id_origin_status = a.id_status " +
+			" INNER JOIN virtus.activities j ON j.id_action = i.id_action " +
+			" INNER JOIN virtus.activities_roles k ON k.id_activity = j.id_activity " +
+			" INNER JOIN virtus.workflows l ON l.id_workflow = j.id_workflow " +
+			" WHERE l.entity_type = 'produto_componente' " +
+			" AND k.id_role = ? " +
+			" AND a.id_auditor = ? "
+		log.Println("sql: " + sql)
+		rows, _ := Db.Query(sql, currentUser.Role, currentUser.Id)
+		defer rows.Close()
+
+		var produto mdl.ProdutoComponente
+		var produtos []mdl.ProdutoComponente
+		i := 1
+		for rows.Next() {
+			rows.Scan(
+				&produto.EntidadeId,
+				&produto.EntidadeNome,
+				&produto.CicloId,
+				&produto.CicloNome,
+				&produto.PilarId,
+				&produto.PilarNome,
+				&produto.ComponenteId,
+				&produto.ComponenteNome,
+				&produto.CStatus)
+			produto.Order = i
+			i++
+			log.Println("Componente: " + produto.ComponenteNome)
+			produtos = append(produtos, produto)
+		}
+		println("------------------------------------")
+		println("Pendencias")
+		println(len(produtos))
+		println("------------------------------------")
+		page.Pendencias = produtos
+
+		// List-EFPCEmSupervisaoPermanente
+		sql = "SELECT a.id_entidade, " +
 			" coalesce(a.sigla,''), " +
 			" coalesce(a.nome,''), " +
 			" coalesce(a.descricao,''), " +
@@ -433,28 +717,30 @@ func AuditorHomeHandler(w http.ResponseWriter, r *http.Request) {
 			" a.esi, " +
 			" coalesce(a.municipio,''), " +
 			" coalesce(a.sigla_uf,''), " +
-			" coalesce(e.abreviatura,''), " +
-			" coalesce(g.nome, '') as ciclo_nome, " +
-			" a.id_author, " +
-			" coalesce(b.name,'') as author_name, " +
-			" FORMAT(a.criado_em,'dd/MM/yyyy HH:mm:ss'), " +
+			" coalesce(c.abreviatura,'') as escritorio_abrev, " +
+			" coalesce(f.nome, '') as ciclo_nome, " +
 			" a.id_status, " +
-			" coalesce(c.name,'') as cstatus, " +
-			" a.id_versao_origem " +
-			" FROM virtus.entidades a LEFT JOIN virtus.users b " +
-			" ON a.id_author = b.id_user " +
-			" LEFT JOIN virtus.status c ON a.id_status = c.id_status " +
-			" LEFT JOIN virtus.jurisdicoes d ON d.id_entidade = a.id_entidade " +
-			" LEFT JOIN virtus.escritorios e ON d.id_escritorio = e.id_escritorio " +
-			" LEFT JOIN virtus.ciclos_entidades f ON a.id_entidade = f.id_entidade " +
-			" LEFT JOIN virtus.ciclos g ON f.id_ciclo = g.id_ciclo " +
+			" coalesce(e.name,'') as cstatus " +
+			" FROM " +
+			" virtus.entidades a " +
+			" INNER JOIN virtus.jurisdicoes b ON b.id_entidade = a.id_entidade " +
+			" INNER JOIN virtus.escritorios c ON c.id_escritorio = b.id_escritorio " +
+			" INNER JOIN virtus.ciclos_entidades d ON b.id_entidade = d.id_entidade " +
+			" INNER JOIN virtus.integrantes g ON g.id_entidade = d.id_entidade AND g.id_ciclo = d.id_ciclo " +
+			" LEFT JOIN virtus.status e ON a.id_status = e.id_status " +
+			" LEFT JOIN virtus.ciclos f ON f.id_ciclo = d.id_ciclo " +
+			" WHERE g.id_usuario = ? " +
+			" AND GETDATE() BETWEEN d.inicia_em AND d.termina_em " +
+			" AND d.inicia_em IS NOT NULL " +
+			" AND d.termina_em IS NOT NULL " +
 			" ORDER BY a.nome asc "
 		log.Println("sql: " + sql)
-		rows, _ := Db.Query(sql)
+		rows, _ = Db.Query(sql, currentUser.Id)
 		defer rows.Close()
-		var entidades []mdl.Entidade
+
 		var entidade mdl.Entidade
-		var i = 1
+		var entidadesPermanente []mdl.Entidade
+		var j = 1
 		for rows.Next() {
 			rows.Scan(
 				&entidade.Id,
@@ -468,23 +754,76 @@ func AuditorHomeHandler(w http.ResponseWriter, r *http.Request) {
 				&entidade.SiglaUF,
 				&entidade.EscritorioAbreviatura,
 				&entidade.CicloNome,
-				&entidade.AuthorId,
-				&entidade.AuthorName,
-				&entidade.C_CriadoEm,
 				&entidade.StatusId,
-				&entidade.CStatus,
-				&entidade.IdVersaoOrigem)
-			entidade.Order = i
-			i++
+				&entidade.CStatus)
+			entidade.Order = j
+			j++
 			//log.Println(entidade)
-			entidades = append(entidades, entidade)
+			entidadesPermanente = append(entidadesPermanente, entidade)
 		}
-		for i := range entidades {
-			if entidades[i].CicloNome != "" {
-				entidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidades[i].Id, 10))
+		for j := range entidadesPermanente {
+			if entidadesPermanente[j].CicloNome != "" {
+				entidadesPermanente[j].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(entidadesPermanente[j].Id, 10))
 			}
 		}
-		page.Entidades = entidades
+		page.EntidadesPermanente = entidadesPermanente
+		var demaisEntidades []mdl.Entidade
+		sql = "SELECT a.id_entidade, " +
+			" coalesce(a.sigla,''), " +
+			" coalesce(a.nome,''), " +
+			" coalesce(a.descricao,''), " +
+			" coalesce(a.codigo,''), " +
+			" coalesce(a.situacao,''), " +
+			" a.esi, " +
+			" coalesce(a.municipio,''), " +
+			" coalesce(a.sigla_uf,''), " +
+			" coalesce(c.abreviatura,'') as escritorio_abrev, " +
+			" coalesce(f.nome, '') as ciclo_nome, " +
+			" a.id_status, " +
+			" coalesce(e.name,'') as cstatus " +
+			" FROM " +
+			" virtus.entidades a " +
+			" INNER JOIN virtus.jurisdicoes b ON b.id_entidade = a.id_entidade " +
+			" INNER JOIN virtus.escritorios c ON c.id_escritorio = b.id_escritorio " +
+			" INNER JOIN virtus.ciclos_entidades d ON b.id_entidade = d.id_entidade " +
+			" INNER JOIN virtus.integrantes g ON g.id_entidade = d.id_entidade AND g.id_ciclo = d.id_ciclo " +
+			" LEFT JOIN virtus.status e ON a.id_status = e.id_status " +
+			" LEFT JOIN virtus.ciclos f ON f.id_ciclo = d.id_ciclo " +
+			" WHERE g.id_usuario = ? " +
+			" AND ( GETDATE() NOT BETWEEN d.inicia_em AND d.termina_em " +
+			" OR d.inicia_em IS NULL " +
+			" OR d.termina_em IS NULL ) " +
+			" ORDER BY a.nome asc "
+		log.Println("sql: " + sql)
+		rows, _ = Db.Query(sql, currentUser.Id)
+		defer rows.Close()
+		var k = 1
+		for rows.Next() {
+			rows.Scan(
+				&entidade.Id,
+				&entidade.Sigla,
+				&entidade.Nome,
+				&entidade.Descricao,
+				&entidade.Codigo,
+				&entidade.Situacao,
+				&entidade.ESI,
+				&entidade.Municipio,
+				&entidade.SiglaUF,
+				&entidade.EscritorioAbreviatura,
+				&entidade.CicloNome,
+				&entidade.StatusId,
+				&entidade.CStatus)
+			entidade.Order = k
+			k++
+			//log.Println(entidade)
+			demaisEntidades = append(demaisEntidades, entidade)
+		}
+		for i := range demaisEntidades {
+			if demaisEntidades[i].CicloNome != "" {
+				demaisEntidades[i].CiclosEntidade = ListCiclosEntidadeByEntidadeId(strconv.FormatInt(demaisEntidades[i].Id, 10))
+			}
+		}
+		page.DemaisEntidades = demaisEntidades
 		if errMsg != "" {
 			page.ErrMsg = errMsg
 		}
@@ -506,10 +845,18 @@ func AuditorHomeHandler(w http.ResponseWriter, r *http.Request) {
 		page.Ciclos = ciclos
 		page.AppName = mdl.AppName
 		page.Title = "Auditor" + mdl.Ambiente
+		nomeEntidade := ""
+		sql = " SELECT a.nome FROM virtus.escritorios a " +
+			" INNER JOIN virtus.membros b ON a.id_escritorio = b.id_escritorio " +
+			" WHERE b.id_usuario = ? "
+		row := Db.QueryRow(sql, currentUser.Id)
+		log.Println(sql, currentUser.Id)
+		row.Scan(&nomeEntidade)
+		page.Escritorio = nomeEntidade
 		page.LoggedUser = BuildLoggedUser(GetUserInCookie(w, r))
-		var tmpl = template.Must(template.ParseGlob("tiles/entidades/*"))
+		var tmpl = template.Must(template.ParseGlob("tiles/paineis/auditor/*"))
 		tmpl.ParseGlob("tiles/*")
-		tmpl.ExecuteTemplate(w, "Main-Entidades", page)
+		tmpl.ExecuteTemplate(w, "Main-Auditores", page)
 	} else {
 		http.Redirect(w, r, "/logout", 301)
 	}

@@ -93,7 +93,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			var membro mdl.Membro
 			membroId := 0
-			statusComponenteId := GetStartStatus("membro")
+			statusMembroId := GetStartStatus("membro")
 
 			for i := range diffPage {
 				membro = diffPage[i]
@@ -115,7 +115,7 @@ func UpdateMembrosEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 					escritorioId,
 					membro.UsuarioId,
 					currentUser.Id,
-					statusComponenteId,
+					statusMembroId,
 					membro.UsuarioId,
 					escritorioId).Scan(&membroId)
 

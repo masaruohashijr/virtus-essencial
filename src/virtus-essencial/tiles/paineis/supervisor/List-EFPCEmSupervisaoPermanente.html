@@ -1,0 +1,73 @@
+{{define "List-EFPCEmSupervisaoPermanente"}}
+<div style="background-Color:  lightblue; text-align:center; height: 33%; width:100%">
+    <h3>Supervisão Permanente</h3>
+    <div style="background-Color:  white; overflow-y: scroll; text-align:center; height: 100%; width:100%">
+        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable" id="tabela-entidades">
+            <tr>
+                <td style="display:none">Ord</td>
+                <td style="vertical-align:middle;width: 10%"><input 
+                        type="text" 
+                        value="" 
+                        placeholder="Código" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-entidades', 1, 1)"></td>
+                <td style="vertical-align:middle;width: 10%;text-align:left">
+                    <input 
+                        type="text" 
+                        value="" 
+                        placeholder="Sigla" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-entidades', 1, 2)">
+                </td>
+                <td style="vertical-align:middle;width: 40%;text-align:left">
+                    <input 
+                        type="text" 
+                        value="" 
+                        placeholder="Nome da Entidade" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-entidades', 1, 3)">
+                </td>
+                <td style="vertical-align:middle;width: 15%"><input 
+                        type="text" 
+                        value="" 
+                        placeholder="Ciclo Atual" 
+                        style="width:100%"
+                        onkeyup="filtraTabela(this, 'tabela-entidades', 1, 4)"></td>
+                <td style="vertical-align:middle;width: 25%">Ações</td>
+            </tr>      
+            {{range $index, $entidade := .EntidadesPermanente}}
+            <tr>
+                <td style="display:none">#{{$entidade.Order}}</td>
+                <td style="vertical-align:middle"><input type="hidden" value="{{$entidade.Id}}">{{$entidade.Codigo}}</td>
+                <td style="vertical-align:middle;text-align:left;">
+                    {{$entidade.Sigla}}
+                </td>
+                <td style="vertical-align:middle;text-align:left">
+                    {{$entidade.Nome}}
+                    <input type="hidden" value="{{$entidade.Descricao}}">
+                </td>
+                <td style="vertical-align:middle;text-align:left">
+                    <select class="w3-input">
+                        {{range $i, $cicloEntidade := $entidade.CiclosEntidade }}
+                            <option value="{{$cicloEntidade.CicloId}}">
+                                {{$cicloEntidade.Nome}}
+                            </option>
+                        {{end}}
+                    </select>
+                    <input type="hidden" value="{{$entidade.Situacao}}">
+                    <input type="hidden" value="{{$entidade.ESI}}">
+                    <input type="hidden" value="{{$entidade.Municipio}}">
+                    <input type="hidden" value="{{$entidade.SiglaUF}}">
+                </td>
+                <td style="vertical-align:middle">
+                    {{if ne $entidade.CicloNome ""}}
+                    <button class="w3-btn w3-teal" onclick="submeterListEntidadesForm(this, 'formulario-avaliar-planos');">Consultar Ciclo</button>
+                    <button class="w3-btn w3-teal" onclick="contexto='view';viewEntidade(this);">Informações</button>
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+        </table>
+    </div>
+</div>
+{{end}}

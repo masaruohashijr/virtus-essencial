@@ -13,6 +13,14 @@ function submeterListEntidadesForm(e, formId){
 	document.getElementById(formId).submit();
 }
 
+function submeterPendencias(e, formId){
+	document.getElementById("EntidadeId").value=e.parentNode.parentNode.childNodes[3].childNodes[1].value;
+	document.getElementById("CicloId").value=e.parentNode.parentNode.childNodes[5].childNodes[1].value;
+	document.getElementById("PilarId").value=e.parentNode.parentNode.childNodes[7].childNodes[1].value;
+	document.getElementById("ComponenteId").value=e.parentNode.parentNode.childNodes[9].childNodes[1].value;
+	document.getElementById(formId).submit();
+}
+
 function viewEntidade(e) {
 	resetEntidadeForms();
     var editForm = document.getElementById('view-form');
@@ -86,12 +94,16 @@ function editEntidade(e) {
 
 function resetEntidadeForms(){
 	console.log("resetEntidadeForms()");
-	document.getElementById('formulario-create').reset();
-	document.getElementById('formulario-edit').reset();
-	document.getElementById('EntidadeDescricaoForInsert').value="";
-	console.log(document.getElementById('EntidadeDescricaoForInsert').value);
-	document.getElementById('EntidadeDescricaoForUpdate').value="";
-	console.log(document.getElementById('EntidadeDescricaoForUpdate').value);
+	if(document.getElementById('formulario-create')){
+		document.getElementById('formulario-create').reset();
+		document.getElementById('EntidadeDescricaoForInsert').value="";
+		console.log(document.getElementById('EntidadeDescricaoForInsert').value);
+	}
+	if(document.getElementById('formulario-edit')){
+		document.getElementById('formulario-edit').reset();
+		document.getElementById('EntidadeDescricaoForUpdate').value="";
+		console.log(document.getElementById('EntidadeDescricaoForUpdate').value);
+	}
 }
 
 function deleteEntidade(e) {

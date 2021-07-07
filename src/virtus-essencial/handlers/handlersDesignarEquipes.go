@@ -237,7 +237,7 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			var integrante mdl.Integrante
 			integranteId := 0
-			statusComponenteId := GetStartStatus("integrante")
+			statusIntegranteId := GetStartStatus("integrante")
 			for i := range diffPage {
 				integrante = diffPage[i]
 				sqlStatement := "INSERT INTO virtus.integrantes ( " +
@@ -257,7 +257,7 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 					cicloId,
 					integrante.UsuarioId,
 					currentUser.Id,
-					statusComponenteId).Scan(&integranteId)
+					statusIntegranteId).Scan(&integranteId)
 				if integrante.IniciaEm != "" {
 					log.Println("integrante.IniciaEm: " + integrante.IniciaEm)
 					log.Println("integranteId: " + strconv.Itoa(integranteId))

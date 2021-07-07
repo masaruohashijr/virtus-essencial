@@ -74,10 +74,6 @@ function addHistoricoComponenteRow(tableID) {
 	newText = document.createTextNode(historico.alteradoEm);
 	newCell.appendChild(newText);
 	let motivacao = historico.motivacao;
-	motivacao = motivacao.replaceAll('\[nl\]','\n');
-	motivacao = motivacao.replaceAll('\[tab\]','\t');
-	motivacao = motivacao.replaceAll('\[porcento\]','%');				
-	motivacao = motivacao.replaceAll('\[pontoevirgula\]',';');
 	newCell.innerHTML = '<input type="hidden" value="'+motivacao+'"/>'+newCell.innerHTML;
 	// Botões
 	newCell = newRow.insertCell(5);
@@ -116,10 +112,7 @@ function addHistoricoRow(tableID) {
 	newText = document.createTextNode(historico.alteradoEm);
 	newCell.appendChild(newText);
 	let motivacao = historico.motivacao;
-	motivacao = motivacao.replaceAll('\[nl\]','\n');
-	motivacao = motivacao.replaceAll('\[tab\]','\t');
-	motivacao = motivacao.replaceAll('\[porcento\]','%');
-	motivacao = motivacao.replaceAll('\[pontoevirgula\]',';');
+	motivacao = retraduz(motivacao);
 	newCell.innerHTML = '<input type="hidden" value="'+motivacao+'"/>'+newCell.innerHTML;
 	// Botões
 	newCell = newRow.insertCell(6);

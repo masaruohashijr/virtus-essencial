@@ -41,7 +41,7 @@
                 <td id="PesoPercentual" style="width:4%;vertical-align:middle">
 					<span title="" id="somaPesosPilares">Peso (%)</span>
 				</td>
-                <td style="width:4%;vertical-align:middle">Método</td>
+                <td style="width:4%;vertical-align:middle">Método / Status</td>
                 <td style="width:4%;vertical-align:middle">Nota</td>
 				{{if $allowed}}
 				<td style="width:25%;vertical-align:middle">Ações</td>
@@ -61,6 +61,8 @@
 			{{$tipoPontuacao := ""}}
 			{{$currentUser := .LoggedUser.User.Id}}
 			{{$curUserRole := .LoggedUser.User.RoleName}}
+			{{$PilarIdSelected := .PilarId}}
+			{{$ComponenteIdSelected := .ComponenteId}}
 			<script type="text/javascript">
 				entidadesMap = new Map();
 				ciclosMap = new Map();
@@ -149,7 +151,7 @@
 					Pilar
 				</td>
                 <td style="font-size:1.2em;vertical-align:middle;text-align:left;padding-left: 20px">					
-					<a href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
+					<a id="Pilar_{{$produto.PilarId}}" href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
 						<i class="ion-android-arrow-dropright hoverbtn"></i>
 					</a>
 					{{$produto.PilarNome}}
@@ -184,7 +186,7 @@
                     <button type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Pilar_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green" 
 						name="Descricao_Pilar_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}"
@@ -204,7 +206,7 @@
 					Componente
 				</td>
                 <td style="font-size:1.1em;vertical-align:middle;text-align:left;padding-left: 30px">
-					<a href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
+					<a id="Componente_{{$produto.ComponenteId}}" href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
 						<i class="ion-android-arrow-dropright hoverbtn"></i>
 					</a>
 					{{$produto.ComponenteNome}} 
@@ -236,7 +238,32 @@
 						onchange="sinalizarAlteracao(this)" 
 						value="{{$produto.ComponentePeso}}">
 				</td>
-                <td style="vertical-align:middle">&nbsp;</td>
+                <td style="vertical-align:middle;cursor:hand" 
+					onmouseover="unveilStatusButton('{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}')"
+					onmouseout="stashStatusButton('{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}')">
+					<div id="StatusName_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}">{{$produto.CStatus}}</div>
+					<div id="DivStatus_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}" 
+						style="display: none;
+						position:absolute;   
+						border-radius: 5px;
+						background: #86a8db;
+						border: 4px solid #000f83;
+						width: 200px;
+						padding: 20px; 
+						margin: 0px; 
+						min-height: 150px;">
+						<button type="button" 
+							class="w3-btn w3-teal" 
+							id="Btn_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
+							onclick="loadAllowedActionsWithParentId('produto_componente','{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}');">
+								Tramitar
+						</button>
+						<input type="hidden" id="IdProdutoComponente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
+							value="{{$produto.ProdutoComponenteId}}">
+						<input type="hidden" id="IdStatus_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
+							value="{{$produto.StatusId}}">
+					</div>					
+				</td>
                 <td style="vertical-align:middle">
 					<input style="width: 75px; text-align:center" 
 						class="w3-input" 
@@ -252,7 +279,7 @@
 					<button type="button" 
 						class="w3-btn w3-teal" 
 						name="Analise_Componente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green" 
 						name="Descricao_Componente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
@@ -301,7 +328,7 @@
                 <td><button type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Plano_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
 					<button type="button" 
 						class="w3-btn w3-green"
 						name="Descricao_Plano_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}" 
@@ -349,7 +376,7 @@
 					<button type="button" 
 						class="w3-btn w3-teal" 
 						name="Analise_TipoNota_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
                     <button type="button" 
 						class="w3-btn w3-green" 
 						name="Descricao_TipoNota_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}"
@@ -424,7 +451,7 @@
 					<button type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Elemento_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>	
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>	
                     <button type="button"
 						class="w3-btn w3-green"
 						name="Descricao_Elemento_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$elementoPeso}}_{{$elementoNota}}" 
@@ -462,7 +489,7 @@
 						type="button" 
 						class="w3-btn w3-teal"
 						name="Analise_Item_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$produto.ItemId}}"
-						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoPermitido) }}disabled{{end}}')">Análise</button>
+						onclick="openAnalise(this, '{{if or (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0") (not $produto.PeriodoCiclo) }}disabled{{end}}')">Análise</button>
                     <button 
 						type="button" 
 						class="w3-btn w3-green"
@@ -484,5 +511,9 @@
 </form>
 <script type="text/javascript">
 	atualizaPesoPercentual();
+	let e = document.getElementById("Pilar_"+"{{$PilarIdSelected}}");
+	expandir(e,'tabela-avaliar-planos');
+	e = document.getElementById("Componente_"+"{{$ComponenteIdSelected}}");
+	expandir(e,'tabela-avaliar-planos');
 </script>					
 {{end}}

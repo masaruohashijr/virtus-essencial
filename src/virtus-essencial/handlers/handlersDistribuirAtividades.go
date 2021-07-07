@@ -94,13 +94,14 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 
 func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Update Distribuir Atividades Handler")
+	mapaComponentes := make(map[string]*ComponenteDistribuido)
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		r.ParseForm()
-		faltouConfigurarPlano := false
+		faltouConfigurarPlanoAlgumComponente := false
 		for fieldName, value := range r.Form {
 			log.Println("-------------- fieldName: " + fieldName)
 			if strings.HasPrefix(fieldName, "AuditorComponente_") {
-				fname := fieldName[7:len(fieldName)]
+				fname := fieldName[7:]
 				log.Println(fname)
 				supervisorId := r.FormValue("SupervisorComponenteId")
 				log.Println(supervisorId)
@@ -114,6 +115,16 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println("planosIds: " + planosIds)
 				componenteId := r.FormValue("Componente_" + fname)
 				log.Println(fieldName + " - value: " + value[0])
+				_, ok := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
+				if !ok {
+					t := &ComponenteDistribuido{
+						EntidadeId:   entidadeId,
+						CicloId:      cicloId,
+						PilarId:      pilarId,
+						ComponenteId: componenteId,
+					}
+					mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId] = t
+				}
 				if value[0] != "" {
 					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" id_auditor=" + value[0] + ", id_supervisor=" + supervisorId +
@@ -127,12 +138,17 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					if err != nil {
 						log.Println(err.Error())
 					}
+				} else {
+					v, _ := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
+					v.faltouAuditor = true
 				}
 				if planosIds == "N" {
-					faltouConfigurarPlano = true
+					faltouConfigurarPlanoAlgumComponente = true
+					v, _ := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
+					v.faltouPlano = true
 				}
 			} else if strings.HasPrefix(fieldName, "IniciaEmComponente_") {
-				fname := fieldName[8:len(fieldName)]
+				fname := fieldName[8:]
 				// log.Println(fname)
 				partes := strings.Split(fname, "_")
 				entidadeId := partes[1]
@@ -158,7 +174,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			} else if strings.HasPrefix(fieldName, "TerminaEmComponente_") {
-				fname := fieldName[9:len(fieldName)]
+				fname := fieldName[9:]
 				// log.Println(fname)
 				partes := strings.Split(fname, "_")
 				entidadeId := partes[1]
@@ -169,6 +185,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				// log.Println(pilarId)
 				componenteId := partes[4]
 				// log.Println(fieldName + " - value: " + value[0])
+				// TODO Só atualizar se for um valor diferente.
 				if value[0] != "" {
 					sqlStatement := "UPDATE virtus.produtos_componentes SET " +
 						" termina_em='" + value[0] + "' " +
@@ -182,11 +199,15 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					if err != nil {
 						log.Println(err.Error())
 					}
+				} else {
+					v, _ := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
+					v.faltouPeriodo = true
 				}
 			}
 		}
+		tramitarAutomaticamente("tramitacaoAutomatica", mapaComponentes)
 		msg := "msg=Os demais produtos dos níveis do ciclo foram criados com Sucesso."
-		if faltouConfigurarPlano {
+		if faltouConfigurarPlanoAlgumComponente {
 			warnMsg := "warnMsg=Faltou configurar quais os planos que serão avaliados."
 			http.Redirect(w, r, "/listDistribuirAtividades?"+msg+"&"+warnMsg, 301)
 		} else {
@@ -666,4 +687,79 @@ func SalvarReprogramacaoComponente(w http.ResponseWriter, r *http.Request) {
 	jsonOK, _ := json.Marshal("OK")
 	w.Write(jsonOK)
 	log.Println("----------")
+}
+
+func setupStatusInicialComponentes() {
+}
+
+type ComponenteDistribuido struct {
+	EntidadeId    string
+	CicloId       string
+	PilarId       string
+	ComponenteId  string
+	IniciaEm      string
+	TerminaEm     string
+	faltouPlano   bool
+	faltouPeriodo bool
+	faltouAuditor bool
+}
+
+func tramitarAutomaticamente(feature string, mapaCD map[string]*ComponenteDistribuido) {
+	for _, v := range mapaCD {
+		if configuradoCompletamente(v) && produtoComponenteStatusContainsFeature(feature, v) {
+			tramitar(v)
+		}
+	}
+}
+
+func configuradoCompletamente(cd *ComponenteDistribuido) bool {
+	if !cd.faltouAuditor && !cd.faltouPeriodo && !cd.faltouPlano {
+		return true
+	}
+	return false
+}
+
+func tramitar(cd *ComponenteDistribuido) {
+	println("TRAMITAR componente:" + cd.ComponenteId)
+	sqlStatement := "update virtus.produtos_componentes set id_status " +
+		" = (SELECT TOP 1 c.id_destination_status " +
+		" FROM virtus.workflows a " +
+		" INNER JOIN virtus.activities b ON a.id_workflow = b.id_workflow " +
+		" INNER JOIN virtus.actions c ON b.id_action = c.id_action " +
+		" WHERE a.entity_type = 'produto_componente' " +
+		" and c.id_origin_status = virtus.produtos_componentes.id_status ) " +
+		" WHERE id_entidade = " + cd.EntidadeId +
+		" AND id_ciclo = " + cd.CicloId +
+		" AND id_pilar = " + cd.PilarId +
+		" AND id_componente = " + cd.ComponenteId
+	updtForm, err := Db.Prepare(sqlStatement)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	println(cd.EntidadeId, cd.CicloId, cd.PilarId, cd.ComponenteId)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	log.Println("UPDATE: " + sqlStatement)
+}
+
+func produtoComponenteStatusContainsFeature(feature string, cd *ComponenteDistribuido) bool {
+	sql := "SELECT e.id_status, e.name, a.id_feature, c.name, d.name FROM virtus.features_activities a " +
+		" inner join virtus.activities b ON a.id_activity = b.id_activity " +
+		" inner join virtus.features c ON a.id_feature = c.id_feature " +
+		" inner join virtus.actions d ON b.id_action = d.id_action " +
+		" inner join virtus.status e ON e.id_status = d.id_origin_status " +
+		" inner join virtus.produtos_componentes f ON f.id_status = e.id_status " +
+		" WHERE f.id_componente = " + cd.ComponenteId +
+		" and f.id_pilar = " + cd.PilarId +
+		" and f.id_ciclo = " + cd.CicloId +
+		" and f.id_entidade = " + cd.EntidadeId +
+		" and c.code = '" + feature + "'"
+	log.Println(sql)
+	rows, _ := Db.Query(sql)
+	possui := rows.Next()
+	println("Possui a feature: " + strconv.FormatBool(possui))
+	defer rows.Close()
+	return possui
 }

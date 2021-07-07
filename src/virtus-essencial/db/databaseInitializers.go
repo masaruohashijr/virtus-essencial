@@ -47,6 +47,15 @@ func Initialize() {
 	//	ajustesEmPerfis()
 }
 
+func NewFeature(featureName string, featureCode string) {
+	db = hd.Db
+	dml := "INSERT INTO virtus.features (name, code, id_author, created_at, id_status) SELECT '" +
+		featureName + "', '" + featureCode + "', 1, GETDATE(), 0 " +
+		" WHERE NOT EXISTS (SELECT 1 FROM virtus.features WHERE code = '" + featureCode + "')"
+	log.Println(dml)
+	db.Exec(dml)
+}
+
 func ajustesEmPerfis() {
 	dml := "DELETE FROM virtus.features_roles a WHERE a.id_role IN (2,3,4) AND a.id_feature = (SELECT b.id_feature FROM virtus.features b WHERE b.code = 'createEntidade')"
 	log.Println(dml)

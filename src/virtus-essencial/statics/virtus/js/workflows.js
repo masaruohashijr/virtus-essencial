@@ -83,11 +83,11 @@ function executeAction(type, id, actionId){
 	xmlhttp.send();
 }
 
-function removeActions(formulario){
-	var nodes = formulario.childNodes;
+function removeActions(elemento){
+	var nodes = elemento.childNodes;
 	for(i=nodes.length-1;i>=0;i--){
 		if(nodes[i].isAction){
-			formulario.removeChild(nodes[i]);
+			elemento.removeChild(nodes[i]);
 		}
 	}
 }

@@ -37,6 +37,9 @@ func ExecuteActionHandler(w http.ResponseWriter, r *http.Request) {
 	} else if entityType == "chamado" {
 		tableName = "chamados"
 		idName = "chamado"
+	} else if entityType == "produto_componente" {
+		tableName = "produtos_componentes"
+		idName = "produto_componente"
 	}
 	// verificar brecha de segurança aqui acesso GET com parametros.
 	sqlStatement := "update virtus." + tableName + " set id_status = " +
@@ -329,10 +332,12 @@ func LoadAllowedActions(w http.ResponseWriter, r *http.Request) {
 	var actions []mdl.Action
 	var action mdl.Action
 	for rows.Next() {
+		println("entrei")
 		rows.Scan(&action.Id, &action.Name)
 		actions = append(actions, action)
 		log.Println(actions)
 	}
+	println(actions)
 	jsonActions, _ := json.Marshal(actions)
 	w.Write([]byte(jsonActions))
 	log.Println("JSON Load Actions")

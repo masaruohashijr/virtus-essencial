@@ -1,10 +1,11 @@
 class NotasAtuais {
-	constructor(cicloNota,pilarNota,componenteNota,planoNota,tipoNotaNota){
+	constructor(cicloNota,pilarNota,componenteNota,planoNota,tipoNotaNota, componenteStatus){
 		this.cicloNota = cicloNota;
 		this.pilarNota = pilarNota;
 		this.componenteNota = componenteNota;
 		this.planoNota = planoNota;
 		this.tipoNotaNota = tipoNotaNota; 
+		this.componenteStatus = componenteStatus; 
 	}
 }
 
@@ -135,10 +136,7 @@ function resetPeso(){
 
 function salvarNotaElemento(){
 	let motivacao = document.getElementById('motNota_text').value;
-	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
-	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');			
-	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
+
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoNota')[0].value=motivacao;
@@ -202,6 +200,9 @@ function atualizarNotas(notasAtuaisJson, valores){
 	let componenteId = valores[4];
 	let planoId = valores[5];
 	let tipoNotaId = valores[6];
+	if(notasAtuaisJson.componenteStatus.trim() != ""){
+		document.getElementById('StatusName_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).innerText= notasAtuaisJson.componenteStatus;
+	}
 	document.getElementById('CicloNota_'+entidadeId+'_'+cicloId).value = cicloNota;
 	document.getElementById('PilarNota_'+entidadeId+'_'+cicloId+'_'+pilarId).value = pilarNota;
 	document.getElementById('ComponenteNota_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).value = componenteNota;
@@ -211,10 +212,7 @@ function atualizarNotas(notasAtuaisJson, valores){
 
 function salvarPesoElemento(){
 	let motivacao = document.getElementById('motPeso_text').value;
-	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
-	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');
-	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');		
+	motivacao = traduz(motivacao);		
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
@@ -335,10 +333,7 @@ function atualizarFieldName(field, novo){
 function salvarRemocao(){
 	console.log('salvarRemocao');
 	let motivacao = document.getElementById('motRem_text').value;
-	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
-	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');
-	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');		
+	motivacao = traduz(motivacao);
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoRemocao')[0].value=motivacao;
@@ -578,10 +573,7 @@ function loadAnalise(btn){
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
 				text = xmlhttp.responseText;
-				text = text.replaceAll('\[nl\]','\n');
-				text = text.replaceAll('\[tab\]','\t');
-				text = text.replaceAll('\[porcento\]','%');
-				text = text.replaceAll('\[pontoevirgula\]',';');
+				text = retraduz(text);
 				document.getElementById("analise_text").value = text;
 				document.getElementById("counterAnalise").value = text.length;
 				document.getElementById('analise_text').focus();
@@ -594,10 +586,7 @@ function loadAnalise(btn){
 function salvarAnalise(){
 	document.getElementById('analise-form').style.display='none';
 	let text = document.getElementById('analise_text').value;
-	text = text.replaceAll(/\n\r?/g, '[nl]');
-	text = text.replaceAll(/\t/g, '[tab]');
-	text = text.replaceAll('%', '[porcento]');
-	text = text.replaceAll(';', '[pontoevirgula]');
+	text = traduz(text);
 	let xmlhttp;
 	let acionadoPor = document.getElementById('AcionadoPor').value;
 	xmlhttp = new XMLHttpRequest();
@@ -710,10 +699,7 @@ function motivarPesoPilar(field){
 
 function salvarPesoPilar(){
 	let motivacao = document.getElementById('motPesoPilar_text').value;
-	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
-	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');
-	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
+	motivacao = traduz(motivacao);
 	if(motivacao.length>3){
 		resetFormAvaliarPlanos();
 		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
@@ -830,4 +816,26 @@ function atualizaPesoPercentual(){
 		classe.remove('w3-red');
 		document.getElementById("somaPesosPilares").title = "A soma dos pesos dos pilares está igual a 100%";
 	}
+}
+
+function traduz(motivacao){
+	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
+	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
+	motivacao = motivacao.replaceAll('%', '[porcento]');			
+	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
+	motivacao = motivacao.replaceAll('&', '[ecomercial]');
+	motivacao = motivacao.replaceAll('#', '[cerquilha]');
+	motivacao = motivacao.replaceAll('+', '[mais]');
+	return motivacao;
+}
+
+function retraduz(motivacao){
+	motivacao = motivacao.replaceAll('\[nl\]','\n');
+	motivacao = motivacao.replaceAll('\[tab\]','\t');
+	motivacao = motivacao.replaceAll('\[porcento\]','%');				
+	motivacao = motivacao.replaceAll('\[pontoevirgula\]',';');
+	motivacao = motivacao.replaceAll('\[ecomercial\]','&');
+	motivacao = motivacao.replaceAll('\[cerquilha\]','#');
+	motivacao = motivacao.replaceAll('\[mais\]','+');
+	return motivacao;
 }

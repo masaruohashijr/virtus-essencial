@@ -41,7 +41,7 @@ function editChamado(e){
 		chamadoStatusId = e.parentNode.parentNode.childNodes[27].childNodes[0].value;
 	}
 	let titModal = document.getElementById('tituloModal');
-	titModal.innerText += " VIRTUS-" +chamadoId;
+	titModal.innerText = "Editar chamado VIRTUS-" +chamadoId;
 	document.getElementById('IdForUpdate').value = chamadoId;
 	chamadoTipo = parseNome2Valor(chamadoTipo);
     chamadoPrioridade = parseNome2Valor(chamadoPrioridade);

@@ -82,11 +82,13 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.0" + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if false {
-		dpk.Initialize()
+	if true {
+		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
+		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
+		//dpk.Initialize()
 	}
 	r := mux.NewRouter()
 	// ----------------- SECURITY
@@ -246,6 +248,7 @@ func main() {
 	r.HandleFunc("/loadAllowedActions", hd.LoadAllowedActions).Methods("GET")
 	r.HandleFunc("/loadAvailableFeatures", hd.LoadAvailableFeatures).Methods("GET")
 	r.HandleFunc("/executeAction", hd.ExecuteActionHandler).Methods("GET")
+	r.HandleFunc("/HOME", hd.HomeHandler).Methods("GET")
 	// ----------------- STATICS
 	http.Handle("/statics/",
 		http.StripPrefix("/statics/", http.FileServer(http.Dir("./statics"))),
@@ -285,5 +288,6 @@ func ReadConfig(t ConfigType) Config {
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
 		log.Fatal(err)
 	}
+	println("teste")
 	return config
 }
