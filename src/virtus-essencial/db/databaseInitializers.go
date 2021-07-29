@@ -11,8 +11,8 @@ var db *sql.DB
 
 func Initialize() {
 	db = hd.Db
-	//createPlanosELETROS()
-	//createPlanosFACHESF()
+	createPlanosELETROS()
+	createPlanosFACHESF()
 	log.Println("INITIALIZE")
 	createSchema()
 	createSeq()
@@ -42,9 +42,9 @@ func Initialize() {
 	cicloAux3 := montarCicloTrienal()
 	createCicloCompleto(cicloAux3)
 	//	/* remover 18/01/2021 */
-	//	ajustesEmChamados()
-	//	ajustesEmTiposNotas()
-	//	ajustesEmPerfis()
+	ajustesEmChamados()
+	ajustesEmTiposNotas()
+	ajustesEmPerfis()
 }
 
 func NewFeature(featureName string, featureCode string) {

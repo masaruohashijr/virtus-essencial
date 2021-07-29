@@ -243,6 +243,7 @@ func UpdateCicloHandler(w http.ResponseWriter, r *http.Request) {
 					pilarCiclo.TipoMediaId,
 					pilarCiclo.PesoPadrao,
 					currentUser.Id).Scan(&pilarCicloId)
+				// BEM GRANDE - ATUALIZAR CICLOS EM ANDAMENTO
 				atualizarCiclosEmAndamento(cicloId, currentUser)
 			}
 		}

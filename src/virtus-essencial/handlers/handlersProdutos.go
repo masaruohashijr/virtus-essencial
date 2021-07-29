@@ -912,6 +912,7 @@ func registrarProdutosPilares(currentUser mdl.User, entidadeId string, cicloId s
 }
 
 func registrarProdutosComponentes(currentUser mdl.User, entidadeId string, cicloId string) {
+	statusComponenteId := GetStartStatus("componente")
 	sqlStatement := "INSERT INTO virtus.produtos_componentes ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
@@ -921,11 +922,12 @@ func registrarProdutosComponentes(currentUser mdl.User, entidadeId string, ciclo
 		" nota, " +
 		" id_tipo_pontuacao, " +
 		" id_author, " +
-		" criado_em ) " +
+		" criado_em, " +
+		" id_status ) " +
 		" OUTPUT INSERTED.id_produto_componente " +
 		" SELECT " + entidadeId + ", " + cicloId + ", a.id_pilar, b.id_componente, " +
 		" round(avg(c.peso_padrao),2), 0 as nota, " +
-		" ?, ?, GETDATE() " +
+		" ?, ?, GETDATE() " + strconv.Itoa(statusComponenteId) +
 		" FROM " +
 		" virtus.PILARES_CICLOS a " +
 		" LEFT JOIN virtus.COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +

@@ -200,8 +200,19 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 						log.Println(err.Error())
 					}
 				} else {
-					v, _ := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
-					v.faltouPeriodo = true
+					t, ok := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
+					if !ok {
+						t = &ComponenteDistribuido{
+							EntidadeId:    entidadeId,
+							CicloId:       cicloId,
+							PilarId:       pilarId,
+							ComponenteId:  componenteId,
+							faltouPeriodo: true,
+						}
+						mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId] = t
+					} else {
+						t.faltouPeriodo = true
+					}
 				}
 			}
 		}
@@ -727,7 +738,7 @@ func tramitar(cd *ComponenteDistribuido) {
 		" INNER JOIN virtus.activities b ON a.id_workflow = b.id_workflow " +
 		" INNER JOIN virtus.actions c ON b.id_action = c.id_action " +
 		" WHERE a.entity_type = 'produto_componente' " +
-		" and c.id_origin_status = virtus.produtos_componentes.id_status ) " +
+		" AND c.id_origin_status = virtus.produtos_componentes.id_status ) " +
 		" WHERE id_entidade = " + cd.EntidadeId +
 		" AND id_ciclo = " + cd.CicloId +
 		" AND id_pilar = " + cd.PilarId +

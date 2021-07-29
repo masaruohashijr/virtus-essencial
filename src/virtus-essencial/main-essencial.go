@@ -86,9 +86,18 @@ func main() {
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	if true {
+		//dpk.Initialize()
+		// TODO update virtus.produtos_componentes set id_status = 0 where id_status is null;
+		// TODO status 0 é "EQUIPE PENDENTE" -> EM ABERTO // CHEFE Supervisor => tramitar automaticamente
+		// TODO Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.
+		// TODO PRODUÇÃO ATENÇÃO: ANTES DE INSTALAR A VERSÃO COM WORKFLOW TEM QUE RODAR O UPDATE ACIMA.
+		// TODO Criação de Workflow não registrar as Atividades.
+		// TODO Minhas pendências está com erro em todos os perfis.
+		// TODO Quando iniciado, na primeira nota atribuída tramitarAutomaticamente.
+		// TODO QUARTA-FEIRA 04/08/2021 - Vou enviar evidências por zap.
+		// TODO Esqueci a senha durante ausência de Arnaldo.
 		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
 		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
-		//dpk.Initialize()
 	}
 	r := mux.NewRouter()
 	// ----------------- SECURITY

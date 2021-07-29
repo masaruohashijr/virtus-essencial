@@ -1,50 +1,50 @@
 class NotasAtuais {
-	constructor(cicloNota,pilarNota,componenteNota,planoNota,tipoNotaNota, componenteStatus){
+	constructor(cicloNota, pilarNota, componenteNota, planoNota, tipoNotaNota, componenteStatus) {
 		this.cicloNota = cicloNota;
 		this.pilarNota = pilarNota;
 		this.componenteNota = componenteNota;
 		this.planoNota = planoNota;
-		this.tipoNotaNota = tipoNotaNota; 
-		this.componenteStatus = componenteStatus; 
+		this.tipoNotaNota = tipoNotaNota;
+		this.componenteStatus = componenteStatus;
 	}
 }
 
 class PesosAtuais {
-	constructor(cicloPeso,pilarPeso,componentePeso,planoPeso,tipoNotaPeso,elementoPeso){
+	constructor(cicloPeso, pilarPeso, componentePeso, planoPeso, tipoNotaPeso, elementoPeso) {
 		this.cicloPeso = cicloPeso;
 		this.pilarPeso = pilarPeso;
 		this.componentePeso = componentePeso;
 		this.planoPeso = planoPeso;
-		this.tipoNotaPeso = tipoNotaPeso; 
-		this.elementoPeso = elementoPeso; 
+		this.tipoNotaPeso = tipoNotaPeso;
+		this.elementoPeso = elementoPeso;
 	}
 }
 
 class ValoresAtuais {
-	constructor(cicloPeso,pilarPeso,componentePeso,planoPeso,tipoNotaPeso,elementoPeso){
+	constructor(cicloPeso, pilarPeso, componentePeso, planoPeso, tipoNotaPeso, elementoPeso) {
 		this.cicloPeso = cicloPeso;
 		this.pilarPeso = pilarPeso;
 		this.componentePeso = componentePeso;
 		this.planoPeso = planoPeso;
-		this.tipoNotaPeso = tipoNotaPeso; 
-		this.elementoPeso = elementoPeso; 
+		this.tipoNotaPeso = tipoNotaPeso;
+		this.elementoPeso = elementoPeso;
 	}
 }
 
-function resetFormAvaliarPlanos(){
-	if(document.getElementById('form-avaliar-planos')==null){
+function resetFormAvaliarPlanos() {
+	if (document.getElementById('form-avaliar-planos') == null) {
 		return;
 	}
 	let inputs = document.getElementById('form-avaliar-planos').elements;
 	for (i = 0; i < inputs.length; i++) {
 		// console.log(inputs[i].name + " - " + inputs[i].type);
-		if(inputs[i].type == "submit"){
+		if (inputs[i].type == "submit") {
 			inputs[i].removeAttribute("disabled");
 		}
 	}
 }
 
-function motivarNota(sel){
+function motivarNota(sel) {
 	let entidadeId = sel.name.split("_")[1];
 	let cicloId = sel.name.split("_")[2];
 	let pilarId = sel.name.split("_")[3];
@@ -53,7 +53,7 @@ function motivarNota(sel){
 	let tipoNotaId = sel.name.split("_")[6];
 	let elementoId = sel.name.split("_")[7];
 	let notaAnterior = sel.name.split("_")[8];
-	if(sel.value != notaAnterior){
+	if (sel.value != notaAnterior) {
 		document.getElementById("AcionadoPor").value = sel.name;
 		document.getElementById("motNota_callback").value = sel.name;
 		document.getElementById("motNotaEntidade").value = entidadesMap.get(entidadeId);
@@ -65,13 +65,13 @@ function motivarNota(sel){
 		document.getElementById("motNotaElemento").value = elementosMap.get(elementoId);
 		document.getElementById("motNotaNotaAnterior").value = notaAnterior;
 		document.getElementById("motNotaNovaNota").value = sel.value;
-		document.getElementById('motivar-nota-form').style.display='block';
+		document.getElementById('motivar-nota-form').style.display = 'block';
 		document.getElementById("motNota_text").value = '';
 		document.getElementById("motNota_text").focus();
 	}
 }
 
-function motivarPeso(sel){
+function motivarPeso(sel) {
 	let entidadeId = sel.name.split("_")[1];
 	let cicloId = sel.name.split("_")[2];
 	let pilarId = sel.name.split("_")[3];
@@ -80,7 +80,7 @@ function motivarPeso(sel){
 	let tipoNotaId = sel.name.split("_")[6];
 	let elementoId = sel.name.split("_")[7];
 	let pesoAnterior = sel.name.split("_")[8];
-	if(sel.value != pesoAnterior){
+	if (sel.value != pesoAnterior) {
 		document.getElementById("AcionadoPor").value = sel.name;
 		document.getElementById("motPeso_callback").value = sel.name;
 		document.getElementById("motPesoEntidade").value = entidadesMap.get(entidadeId);
@@ -92,19 +92,19 @@ function motivarPeso(sel){
 		document.getElementById("motPesoElemento").value = elementosMap.get(elementoId);
 		document.getElementById("motPesoPesoAnterior").value = pesoAnterior;
 		document.getElementById("motPesoNovoPeso").value = sel.value;
-		document.getElementById('motivar-peso-form').style.display='block';
+		document.getElementById('motivar-peso-form').style.display = 'block';
 		document.getElementById("motPeso_text").value = '';
 		document.getElementById("motPeso_text").focus();
 	}
 }
 
-function motivarRemocao(sel){
+function motivarRemocao(sel) {
 	let entidadeId = sel.name.split("_")[1];
 	let cicloId = sel.name.split("_")[2];
 	let pilarId = sel.name.split("_")[3];
 	let componenteId = sel.name.split("_")[4];
 	let auditorAnterior = sel.name.split("_")[5];
-	if(sel.value != auditorAnterior && auditorAnterior != 0){
+	if (sel.value != auditorAnterior && auditorAnterior != 0) {
 		document.getElementById("AcionadoPor").value = sel.name;
 		document.getElementById("motRem_callback").value = sel.name;
 		document.getElementById("motRemEntidade").value = entidadesMap.get(entidadeId);
@@ -113,53 +113,51 @@ function motivarRemocao(sel){
 		document.getElementById("motRemComponente").value = componentesMap.get(componenteId);
 		document.getElementById("motRemAuditorAnterior").value = auditoresMap.get(auditorAnterior);
 		document.getElementById("motRemNovoAuditor").value = sel.options[sel.selectedIndex].text;
-		document.getElementById('motivar-remocao-form').style.display='block';
-		document.getElementById("motRem_text").value='';
+		document.getElementById('motivar-remocao-form').style.display = 'block';
+		document.getElementById("motRem_text").value = '';
 		document.getElementById("motRem_text").focus();
 	}
 }
 
-function resetAuditor(){
+function resetAuditor() {
 	let campoAuditorComponente = document.getElementById("motRem_callback").value;
 	document.getElementsByName(campoAuditorComponente)[0].value = campoAuditorComponente.split("_")[5];
 }
 
-function resetNota(){
+function resetNota() {
 	let campoNotaElemento = document.getElementById("motNota_callback").value;
 	document.getElementsByName(campoNotaElemento)[0].value = campoNotaElemento.split("_")[8];
 }
 
-function resetPeso(){
+function resetPeso() {
 	let campoPesoElemento = document.getElementById("motPeso_callback").value;
 	document.getElementsByName(campoPesoElemento)[0].value = campoPesoElemento.split("_")[8];
 }
 
-function salvarNotaElemento(){
+function salvarNotaElemento() {
 	let motivacao = document.getElementById('motNota_text').value;
 
-	if(motivacao.length>3){
+	if (motivacao.length > 3) {
 		resetFormAvaliarPlanos();
-		document.getElementsByName('MotivacaoNota')[0].value=motivacao;
-		document.getElementById('motivar-nota-form').style.display='none';
+		document.getElementsByName('MotivacaoNota')[0].value = motivacao;
+		document.getElementById('motivar-nota-form').style.display = 'none';
 		let xmlhttp;
 		let acionadoPor = document.getElementById('AcionadoPor').value;
 		let valores = acionadoPor.split("_");
 		xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange=function()
-		{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					let valoresAtuaisJson = JSON.parse(xmlhttp.responseText);
-					//atualizarPesos(valoresAtuaisJson, valores);
-					atualizarNotas(valoresAtuaisJson, valores);
-					let notaAnterior = document.getElementById('motNotaNotaAnterior').value;
-					let novaNota = document.getElementById('motNotaNovaNota').value;
-					let messageText = "A nota foi atualizada com sucesso de "+notaAnterior +" para "+novaNota+".";
-					document.getElementById("messageText").innerText = messageText;
-					document.getElementById("message").style.display="block";
-					let sel = document.getElementsByName(acionadoPor)[0];
-					atualizarFieldName(sel, novaNota); 
-				}
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				let valoresAtuaisJson = JSON.parse(xmlhttp.responseText);
+				//atualizarPesos(valoresAtuaisJson, valores);
+				atualizarNotas(valoresAtuaisJson, valores);
+				let notaAnterior = document.getElementById('motNotaNotaAnterior').value;
+				let novaNota = document.getElementById('motNotaNovaNota').value;
+				let messageText = "A nota foi atualizada com sucesso de " + notaAnterior + " para " + novaNota + ".";
+				document.getElementById("messageText").innerText = messageText;
+				document.getElementById("message").style.display = "block";
+				let sel = document.getElementsByName(acionadoPor)[0];
+				atualizarFieldName(sel, novaNota);
+			}
 		}
 		let entidadeId = valores[1];
 		let cicloId = valores[2];
@@ -170,74 +168,72 @@ function salvarNotaElemento(){
 		let elementoId = valores[7];
 		let novaNota = document.getElementById('motNotaNovaNota').value;
 		let nameAnt = document.getElementsByName(acionadoPor)[0].name;
-		let newName = nameAnt.substr(0,nameAnt.lastIndexOf('_'))+'_'+novaNota;
+		let newName = nameAnt.substr(0, nameAnt.lastIndexOf('_')) + '_' + novaNota;
 		document.getElementsByName(acionadoPor)[0].name = newName;
-		xmlhttp.open("GET","/salvarNotaElemento?entidadeId="+entidadeId+"&cicloId="+cicloId+"&pilarId="+pilarId+"&planoId="+planoId+"&componenteId="+componenteId+"&tipoNotaId="+tipoNotaId+"&elementoId="+elementoId+"&motivacao="+motivacao+"&nota="+novaNota,true);
+		xmlhttp.open("GET", "/salvarNotaElemento?entidadeId=" + entidadeId + "&cicloId=" + cicloId + "&pilarId=" + pilarId + "&planoId=" + planoId + "&componenteId=" + componenteId + "&tipoNotaId=" + tipoNotaId + "&elementoId=" + elementoId + "&motivacao=" + motivacao + "&nota=" + novaNota, true);
 		xmlhttp.send();
 	} else {
 		let errorMsg = "Falta preencher a motivação da nota do elemento.";
 		document.getElementById("Errors").innerText = errorMsg;
-		document.getElementById("error-message").style.display="block";
+		document.getElementById("error-message").style.display = "block";
 		motivacao.focus();
-		return;		
+		return;
 	}
 }
 
-function atualizarNotas(notasAtuaisJson, valores){
+function atualizarNotas(notasAtuaisJson, valores) {
 	let cicloNota = notasAtuaisJson.cicloNota.trim();
-	console.log('cicloNota: '+cicloNota);
+	console.log('cicloNota: ' + cicloNota);
 	let pilarNota = notasAtuaisJson.pilarNota.trim();
-	console.log('pilarNota: '+pilarNota);
+	console.log('pilarNota: ' + pilarNota);
 	let componenteNota = notasAtuaisJson.componenteNota.trim();
-	console.log('componenteNota: '+componenteNota);
+	console.log('componenteNota: ' + componenteNota);
 	let planoNota = notasAtuaisJson.planoNota.trim();
-	console.log('planoNota: '+planoNota);
+	console.log('planoNota: ' + planoNota);
 	let tipoNotaNota = notasAtuaisJson.tipoNotaNota.trim();
-	console.log('tipoNotaNota: '+tipoNotaNota);
+	console.log('tipoNotaNota: ' + tipoNotaNota);
 	let entidadeId = valores[1];
 	let cicloId = valores[2];
 	let pilarId = valores[3];
 	let componenteId = valores[4];
 	let planoId = valores[5];
 	let tipoNotaId = valores[6];
-	if(notasAtuaisJson.componenteStatus.trim() != ""){
-		document.getElementById('StatusName_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).innerText= notasAtuaisJson.componenteStatus;
+	if (notasAtuaisJson.componenteStatus.trim() != "") {
+		document.getElementById('StatusName_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId).innerText = notasAtuaisJson.componenteStatus;
 	}
-	document.getElementById('CicloNota_'+entidadeId+'_'+cicloId).value = cicloNota;
-	document.getElementById('PilarNota_'+entidadeId+'_'+cicloId+'_'+pilarId).value = pilarNota;
-	document.getElementById('ComponenteNota_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).value = componenteNota;
-	document.getElementById('PlanoNota_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId+"_"+planoId).value = planoNota;
-	document.getElementById('TipoNotaNota_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId+"_"+planoId+"_"+tipoNotaId).value = tipoNotaNota;
+	document.getElementById('CicloNota_' + entidadeId + '_' + cicloId).value = cicloNota;
+	document.getElementById('PilarNota_' + entidadeId + '_' + cicloId + '_' + pilarId).value = pilarNota;
+	document.getElementById('ComponenteNota_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId).value = componenteNota;
+	document.getElementById('PlanoNota_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId + "_" + planoId).value = planoNota;
+	document.getElementById('TipoNotaNota_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId + "_" + planoId + "_" + tipoNotaId).value = tipoNotaNota;
 }
 
-function salvarPesoElemento(){
+function salvarPesoElemento() {
 	let motivacao = document.getElementById('motPeso_text').value;
-	motivacao = traduz(motivacao);		
-	if(motivacao.length>3){
+	motivacao = traduz(motivacao);
+	if (motivacao.length > 3) {
 		resetFormAvaliarPlanos();
-		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
-		document.getElementById('motivar-peso-form').style.display='none';
+		document.getElementsByName('MotivacaoPeso')[0].value = motivacao;
+		document.getElementById('motivar-peso-form').style.display = 'none';
 		let xmlhttp;
 		let acionadoPor = document.getElementById('AcionadoPor').value;
 		// alert('acionadoPor: '+acionadoPor);
 		let valores = acionadoPor.split("_");
 		xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange=function()
-		{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					let valoresAtuaisJson = JSON.parse(xmlhttp.responseText);
-					let sel = document.getElementsByName(acionadoPor)[0];
-					habilitarNotaElementoSelect(sel);
-					let pesoAnterior = document.getElementById('motPesoPesoAnterior').value;
-					let novoPeso = document.getElementById('motPesoNovoPeso').value;
-					let messageText = "O peso foi atualizado com sucesso de "+pesoAnterior +" para "+novoPeso+".";
-					document.getElementById("messageText").innerText = messageText;
-					document.getElementById("message").style.display="block";
-					atualizarFieldName(sel, novoPeso); 
-					atualizarPesos(valoresAtuaisJson, valores);
-					atualizarNotas(valoresAtuaisJson, valores);
-				}
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				let valoresAtuaisJson = JSON.parse(xmlhttp.responseText);
+				let sel = document.getElementsByName(acionadoPor)[0];
+				habilitarNotaElementoSelect(sel);
+				let pesoAnterior = document.getElementById('motPesoPesoAnterior').value;
+				let novoPeso = document.getElementById('motPesoNovoPeso').value;
+				let messageText = "O peso foi atualizado com sucesso de " + pesoAnterior + " para " + novoPeso + ".";
+				document.getElementById("messageText").innerText = messageText;
+				document.getElementById("message").style.display = "block";
+				atualizarFieldName(sel, novoPeso);
+				atualizarPesos(valoresAtuaisJson, valores);
+				atualizarNotas(valoresAtuaisJson, valores);
+			}
 		}
 		let entidadeId = valores[1];
 		let cicloId = valores[2];
@@ -247,18 +243,18 @@ function salvarPesoElemento(){
 		let tipoNotaId = valores[6];
 		let elementoId = valores[7];
 		let pesoNovo = document.getElementById('motPesoNovoPeso').value;
-		xmlhttp.open("GET","/salvarPesoElemento?entidadeId="+entidadeId+"&cicloId="+cicloId+"&pilarId="+pilarId+"&planoId="+planoId+"&componenteId="+componenteId+"&tipoNotaId="+tipoNotaId+"&elementoId="+elementoId+"&motivacao="+motivacao+"&peso="+pesoNovo,true);
+		xmlhttp.open("GET", "/salvarPesoElemento?entidadeId=" + entidadeId + "&cicloId=" + cicloId + "&pilarId=" + pilarId + "&planoId=" + planoId + "&componenteId=" + componenteId + "&tipoNotaId=" + tipoNotaId + "&elementoId=" + elementoId + "&motivacao=" + motivacao + "&peso=" + pesoNovo, true);
 		xmlhttp.send();
 	} else {
 		let errorMsg = "Falta preencher a motivação do peso do elemento.";
 		document.getElementById("Errors").innerText = errorMsg;
-		document.getElementById("error-message").style.display="block";
+		document.getElementById("error-message").style.display = "block";
 		motivacao.focus();
-		return;		
+		return;
 	}
 }
 
-function atualizarPesos(pesosAtuaisJson, valores){
+function atualizarPesos(pesosAtuaisJson, valores) {
 	console.log('atualizarPesos');
 	let pilarPeso = pesosAtuaisJson.pilarPeso;
 	let componentePeso = pesosAtuaisJson.componentePeso;
@@ -274,12 +270,12 @@ function atualizarPesos(pesosAtuaisJson, valores){
 	//let tipoNotaId = valores[6];
 	//let elementoId = valores[7];
 	let campos = document.getElementsByTagName("INPUT");
-	for(i=0;i<campos.length;i++){
+	for (i = 0; i < campos.length; i++) {
 		//if(campos[i].name.startsWith('PilarPeso_'+entidadeId+'_'+cicloId+'_'+pilarId)){
-		if(campos[i].name.startsWith('PilarPeso_'+entidadeId)){
+		if (campos[i].name.startsWith('PilarPeso_' + entidadeId)) {
 			campos[i] = pilarPeso;
 			break;
-		} 
+		}
 	}
 	//campos = document.getElementsByTagName("SELECT");
 	/*for(i=0;i<campos.length;i++){
@@ -291,94 +287,92 @@ function atualizarPesos(pesosAtuaisJson, valores){
 			}
 		} 
 	}*/
-	document.getElementById('ComponentePeso_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId).value = componentePeso;
+	document.getElementById('ComponentePeso_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId).value = componentePeso;
 	//document.getElementById('PlanoPeso_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId+"_"+planoId).value = planoPeso + " %";
-	preencherTiposNotas('TipoNotaPeso_'+entidadeId+'_'+cicloId+'_'+pilarId+"_"+componenteId+"_"+planoId+"_", tipoNotaPeso);
+	preencherTiposNotas('TipoNotaPeso_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId + "_" + planoId + "_", tipoNotaPeso);
 }
 
-function preencherTiposNotas(pidTipoNotaPeso, tipoNotaPeso){
+function preencherTiposNotas(pidTipoNotaPeso, tipoNotaPeso) {
 	console.log('preencherTiposNotas');
-	console.log('pidTipoNotaPeso: '+pidTipoNotaPeso);
-	console.log('tipoNotaPeso: '+tipoNotaPeso);
+	console.log('pidTipoNotaPeso: ' + pidTipoNotaPeso);
+	console.log('tipoNotaPeso: ' + tipoNotaPeso);
 	let tipos = tipoNotaPeso.split("/");
-	for(n=0;n<tipos.length;n++){
+	for (n = 0; n < tipos.length; n++) {
 		let idTN = tipos[n].split(':')[0].trim();
-		console.log('idTN: '+idTN);
+		console.log('idTN: ' + idTN);
 		let pesoTN = tipos[n].split(':')[1].trim();
-		console.log('pesoTN: '+pesoTN);
-		document.getElementById(pidTipoNotaPeso+idTN).value = pesoTN + " %";
+		console.log('pesoTN: ' + pesoTN);
+		document.getElementById(pidTipoNotaPeso + idTN).value = pesoTN + " %";
 	}
 }
 
-function habilitarNotaElementoSelect(selPeso){
+function habilitarNotaElementoSelect(selPeso) {
 	console.log(selPeso.parentNode.parentNode.childNodes[16]);
 	console.log(selPeso.parentNode.parentNode.childNodes[16].innerText);
 	let selNota = selPeso.parentNode.parentNode.childNodes[16].childNodes[1];
 	let desabilita = false;
-	if(selPeso.value == 0){
+	if (selPeso.value == 0) {
 		desabilita = true;
 	}
 	selNota.disabled = desabilita;
 	selNota.readOnly = desabilita;
 }
 
-function atualizarFieldName(field, novo){
+function atualizarFieldName(field, novo) {
 	let nameField = field.name;
 	let lastUnderscorePos = nameField.lastIndexOf('_');
-	let newName = nameField.substr(0,lastUnderscorePos);
+	let newName = nameField.substr(0, lastUnderscorePos);
 	newName = newName + "_" + novo;
 	field.name = newName;
 }
 
-function salvarRemocao(){
+function salvarRemocao() {
 	console.log('salvarRemocao');
 	let motivacao = document.getElementById('motRem_text').value;
 	motivacao = traduz(motivacao);
-	if(motivacao.length>3){
+	if (motivacao.length > 3) {
 		resetFormAvaliarPlanos();
-		document.getElementsByName('MotivacaoRemocao')[0].value=motivacao;
-		document.getElementById('motivar-remocao-form').style.display='none';
+		document.getElementsByName('MotivacaoRemocao')[0].value = motivacao;
+		document.getElementById('motivar-remocao-form').style.display = 'none';
 		let xmlhttp;
 		let acionadoPor = document.getElementById('AcionadoPor').value;
 		let sel = document.getElementsByName(acionadoPor)[0];
 		let auditorNovo = sel.value;
 		let valores = acionadoPor.split("_");
 		xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange=function()
-		{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					let novoAuditor = auditoresMap.get(auditorNovo.toString());
-					if(!novoAuditor){
-						novoAuditor = 'VAZIO';
-					}
-					let messageText = "O auditor foi alterado com sucesso de "+
-						auditoresMap.get(auditorAnterior) +
-						" para "+novoAuditor+".";
-					document.getElementById("messageText").innerText = messageText;
-					document.getElementById("message").style.display="block";
-					atualizarFieldName(sel, auditorNovo); 
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				let novoAuditor = auditoresMap.get(auditorNovo.toString());
+				if (!novoAuditor) {
+					novoAuditor = 'VAZIO';
 				}
+				let messageText = "O auditor foi alterado com sucesso de " +
+					auditoresMap.get(auditorAnterior) +
+					" para " + novoAuditor + ".";
+				document.getElementById("messageText").innerText = messageText;
+				document.getElementById("message").style.display = "block";
+				atualizarFieldName(sel, auditorNovo);
+			}
 		}
 		let entidadeId = valores[1];
 		let cicloId = valores[2];
 		let pilarId = valores[3];
 		let componenteId = valores[4];
 		let auditorAnterior = valores[5];
-		xmlhttp.open("GET","/salvarAuditorComponente?entidadeId="+entidadeId+"&cicloId="+cicloId+"&pilarId="+pilarId+"&componenteId="+componenteId+"&motivacao="+motivacao+"&auditorNovo="+auditorNovo+"&auditorAnterior="+auditorAnterior,true);
+		xmlhttp.open("GET", "/salvarAuditorComponente?entidadeId=" + entidadeId + "&cicloId=" + cicloId + "&pilarId=" + pilarId + "&componenteId=" + componenteId + "&motivacao=" + motivacao + "&auditorNovo=" + auditorNovo + "&auditorAnterior=" + auditorAnterior, true);
 		xmlhttp.send();
 	} else {
 		let errorMsg = "Falta preencher a motivação da remoção.";
 		document.getElementById("Errors").innerText = errorMsg;
-		document.getElementById("error-message").style.display="block";
+		document.getElementById("error-message").style.display = "block";
 		motivacao.focus();
-		return;				
+		return;
 	}
 }
 
-function openDet(btn){
+function openDet(btn) {
 	btn.disabled = true;
-	document.getElementById('det-elemento-form').style.display='block';
+	document.getElementById('det-elemento-form').style.display = 'block';
 	let entidadeId = btn.name.split("_")[1];
 	let cicloId = btn.name.split("_")[2];
 	let pilarId = btn.name.split("_")[3];
@@ -387,7 +381,7 @@ function openDet(btn){
 	let elementoId = btn.name.split("_")[7];
 	let peso = btn.parentNode.parentNode.childNodes[12].childNodes[1].value;
 	let nota = btn.parentNode.parentNode.childNodes[16].childNodes[1].value;
-	document.getElementById('det-elemento-form').style.display='block';
+	document.getElementById('det-elemento-form').style.display = 'block';
 	document.getElementById("detEntidade").value = entidadesMap.get(entidadeId);
 	document.getElementById("detCiclo").value = ciclosMap.get(cicloId);
 	document.getElementById("detPilar").value = pilaresMap.get(pilarId);
@@ -395,100 +389,100 @@ function openDet(btn){
 	document.getElementById("detTipoNota").value = tiposNotasMap.get(tipoNotaId);
 	document.getElementById("detElemento").value = elementosMap.get(elementoId);
 	document.getElementById("detPeso").value = peso;
-	document.getElementById("detNota").value = nota;	
+	document.getElementById("detNota").value = nota;
 	return false;
 }
 
-function reduzirTodasAsLinhas(tabelaNome){
+function reduzirTodasAsLinhas(tabelaNome) {
 	let tb = document.getElementById(tabelaNome);
 	let rows = tb.childNodes[1].rows;
 	let nivel = '';
-	for(i=1;i<rows.length;i++){
+	for (i = 1; i < rows.length; i++) {
 		nivel = rows[i].childNodes[3].innerText;
 		//console.log(nivel)
-		if(nivel == 'EFPC' || nivel == 'Ciclo'){
+		if (nivel == 'EFPC' || nivel == 'Ciclo') {
 			continue;
 		}
 		rows[i].style.display = 'none';
 	}
 }
 
-function expandirNivel(e, tabelaNome){
+function expandirNivel(e, tabelaNome) {
 	let tb = document.getElementById(tabelaNome);
-	let rows = tb.childNodes[1].rows;	
+	let rows = tb.childNodes[1].rows;
 	let linhaNivelExpansao = parseInt(e.parentNode.parentNode.childNodes[1].innerText.trim());
 	let nivelSuperior = e.parentNode.parentNode.childNodes[3].innerText.trim();
-	if(nivelSuperior == "Ciclo"){
+	if (nivelSuperior == "Ciclo") {
 		nivelExpansao = "Pilar";
-	} else if(nivelSuperior == "Pilar"){
+	} else if (nivelSuperior == "Pilar") {
 		nivelExpansao = "Componente";
-	} else if(nivelSuperior == "Componente"){
+	} else if (nivelSuperior == "Componente") {
 		nivelExpansao = "Plano";
-	} else if(nivelSuperior == "Plano"){
+	} else if (nivelSuperior == "Plano") {
 		nivelExpansao = "Tipo de Nota";
-	} else if(nivelSuperior == "Tipo de Nota"){
+	} else if (nivelSuperior == "Tipo de Nota") {
 		nivelExpansao = "Elemento";
-	} else if(nivelSuperior == "Elemento"){
+	} else if (nivelSuperior == "Elemento") {
 		nivelExpansao = "Item";
 	}
-	for(i=0;rows.length;i++){
-		if(rows[i] != null){
+	for (i = 0; rows.length; i++) {
+		if (rows[i] != null) {
 			numeroLinha = rows[i].childNodes[1].innerText.trim();
 		} else {
 			break;
 		}
-		if(!(/[a-zA-Z]/).test(numeroLinha) && numeroLinha > linhaNivelExpansao){
-			if(rows[i] == null){
+		if (!(/[a-zA-Z]/).test(numeroLinha) && numeroLinha > linhaNivelExpansao) {
+			if (rows[i] == null) {
 				break;
 			}
 			nivel = rows[i].childNodes[3].innerText.trim();
-			if(nivel == nivelExpansao){
+			if (nivel == nivelExpansao) {
 				rows[i].style.display = "table-row";
 			}
-			if(nivel == nivelSuperior){
+			if (nivel == nivelSuperior) {
 				break;
 			}
 		}
 	}
 }
 
-function reduzirNivel(e, tabelaNome){
+function reduzirNivel(e, tabelaNome) {
 	let tb = document.getElementById(tabelaNome);
 	let rows = tb.childNodes[1].rows;
 	let linhaNivelReducao = parseInt(e.parentNode.parentNode.childNodes[1].innerText);
 	let nivelSuperior = e.parentNode.parentNode.childNodes[3].innerText;
-	if(nivelSuperior == "Ciclo"){
+	if (nivelSuperior == "Ciclo") {
 		nivelReducao = "Pilar";
-	} else if(nivelSuperior == "Pilar"){
+	} else if (nivelSuperior == "Pilar") {
 		nivelReducao = "Componente";
-	} else if(nivelSuperior == "Componente"){
+	} else if (nivelSuperior == "Componente") {
 		nivelReducao = "Plano";
-	} else if(nivelSuperior == "Plano"){
+	} else if (nivelSuperior == "Plano") {
 		nivelReducao = "Tipo de Nota";
-	} else if(nivelSuperior == "Tipo de Nota"){
+	} else if (nivelSuperior == "Tipo de Nota") {
 		nivelReducao = "Elemento";
-	} else if(nivelSuperior == "Elemento"){
+	} else if (nivelSuperior == "Elemento") {
 		nivelReducao = "Item";
 	}
 	nivelHierarquicoReducao = parseInt(hierarquiaMap.get(nivelReducao));
-	for(i=linhaNivelReducao;rows.length;i++){
-		if(rows[i] != null){
+	for (i = linhaNivelReducao; rows.length; i++) {
+		if (rows[i] != null) {
 			numeroLinha = rows[i].childNodes[1].innerText.trim();
 		} else {
 			break;
 		}
-		if(!(/[a-zA-Z]/).test(numeroLinha) && parseInt(numeroLinha) > linhaNivelReducao){
-			if(rows[i] == null){
+		if (!(/[a-zA-Z]/).test(numeroLinha) && parseInt(numeroLinha) > linhaNivelReducao) {
+			if (rows[i] == null) {
 				break;
 			}
 			nivel = rows[i].childNodes[3].innerText.trim();
-			if(parseInt(hierarquiaMap.get(nivel)) >= nivelHierarquicoReducao){
-				if(rows[i].childNodes[5].innerHTML.includes('dropdown')){
+			if (parseInt(hierarquiaMap.get(nivel)) >= nivelHierarquicoReducao) {
+				if (rows[i].childNodes[5].innerHTML.includes('dropdown')) {
 					rows[i].childNodes[5].childNodes[1].innerHTML = '<i style="color: darkblue" class="ion-android-arrow-dropright hoverbtn"></i>';
 				}
 				rows[i].style.display = "none";
 			}
-			if(nivel == nivelSuperior){
+			if (nivel == nivelSuperior) {
 				break;
 			}
 		}
@@ -497,17 +491,17 @@ function reduzirNivel(e, tabelaNome){
 
 var hierarquiaMap = new Map();
 {
-	hierarquiaMap.set('Ciclo',1);
-	hierarquiaMap.set('Pilar',2);
-	hierarquiaMap.set('Componente',3);
-	hierarquiaMap.set('Plano',4);
-	hierarquiaMap.set('Tipo de Nota',5);
-	hierarquiaMap.set('Elemento',6);
-	hierarquiaMap.set('Item',7);
+	hierarquiaMap.set('Ciclo', 1);
+	hierarquiaMap.set('Pilar', 2);
+	hierarquiaMap.set('Componente', 3);
+	hierarquiaMap.set('Plano', 4);
+	hierarquiaMap.set('Tipo de Nota', 5);
+	hierarquiaMap.set('Elemento', 6);
+	hierarquiaMap.set('Item', 7);
 }
 
-function expandir(e, tabelaNome){
-	if(e.innerHTML.includes('dropright')){
+function expandir(e, tabelaNome) {
+	if (e.innerHTML.includes('dropright')) {
 		e.innerHTML = '<i style="color: orange" class="ion-android-arrow-dropdown hoverbtn"></i>';
 		expandirNivel(e, tabelaNome);
 	} else {
@@ -516,7 +510,7 @@ function expandir(e, tabelaNome){
 	}
 }
 
-function openAnalise(btn, disabled){
+function openAnalise(btn, disabled) {
 	let entidadeId = btn.name.split("_")[2];
 	let cicloId = btn.name.split("_")[3];
 	let pilarId = btn.name.split("_")[4];
@@ -525,85 +519,81 @@ function openAnalise(btn, disabled){
 	let tipoNotaId = btn.name.split("_")[7];
 	let elementoId = btn.name.split("_")[8];
 	let itemId = btn.name.split("_")[9];
-	document.getElementById('analise-form').style.display='block';
-	if(disabled=='disabled'){
+	document.getElementById('analise-form').style.display = 'block';
+	if (disabled == 'disabled') {
 		document.getElementById("analise_text").disabled = disabled;
 	}
 	document.getElementById("AcionadoPor").value = btn.name;
 	document.getElementById("analiseEntidade").value = entidadesMap.get(entidadeId);
 	document.getElementById("analiseCiclo").value = ciclosMap.get(cicloId);
 	let pilarName = '';
-	if(pilarId)	{
+	if (pilarId) {
 		pilarName = pilaresMap.get(pilarId);
 	}
 	document.getElementById("analisePilar").value = pilarName;
-	let componenteName = '';	
-	if(componenteId){
+	let componenteName = '';
+	if (componenteId) {
 		componenteName = componentesMap.get(componenteId);
-	}	
+	}
 	document.getElementById("analiseComponente").value = componenteName;
-	let planoName = ''; 
-	if(planoId)	{
+	let planoName = '';
+	if (planoId) {
 		planoName = planosMap.get(planoId);
 	}
 	document.getElementById("analisePlano").value = planoName;
-	let tipoNotaName = ''; 
-	if(tipoNotaId)	{
+	let tipoNotaName = '';
+	if (tipoNotaId) {
 		tipoNotaName = tiposNotasMap.get(tipoNotaId);
 	}
 	document.getElementById("analiseTipoNota").value = tipoNotaName;
-	let elementoName = ''; 
-	if(elementoId)	{
+	let elementoName = '';
+	if (elementoId) {
 		elementoName = elementosMap.get(elementoId);
 	}
 	document.getElementById("analiseElemento").value = elementoName;
 	let itemName = '';
-	if(itemId)	{
+	if (itemId) {
 		itemName = itensMap.get(itemId);
 	}
 	document.getElementById("analiseItem").value = itemName;
-	loadAnalise(btn.name);	
+	loadAnalise(btn.name);
 }
 
-function loadAnalise(btn){
+function loadAnalise(btn) {
 	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
-	{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				text = xmlhttp.responseText;
-				text = retraduz(text);
-				document.getElementById("analise_text").value = text;
-				document.getElementById("counterAnalise").value = text.length;
-				document.getElementById('analise_text').focus();
-			}
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			text = xmlhttp.responseText;
+			text = retraduz(text);
+			document.getElementById("analise_text").value = text;
+			document.getElementById("counterAnalise").value = text.length;
+			document.getElementById('analise_text').focus();
+		}
 	}
-	xmlhttp.open("GET","/loadAnalise?btn="+btn,true);
+	xmlhttp.open("GET", "/loadAnalise?btn=" + btn, true);
 	xmlhttp.send();
 }
 
-function salvarAnalise(){
-	document.getElementById('analise-form').style.display='none';
+function salvarAnalise() {
+	document.getElementById('analise-form').style.display = 'none';
 	let text = document.getElementById('analise_text').value;
 	text = traduz(text);
 	let xmlhttp;
 	let acionadoPor = document.getElementById('AcionadoPor').value;
 	xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
-	{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				let messageText = "Análise atualizada com sucesso.";
-				document.getElementById("messageText").innerText = messageText;
-				document.getElementById("message").style.display="block";				
-			}
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			let messageText = "Análise atualizada com sucesso.";
+			document.getElementById("messageText").innerText = messageText;
+			document.getElementById("message").style.display = "block";
+		}
 	}
-	xmlhttp.open("POST","/salvarAnalise?acionadoPor="+acionadoPor+"&analise="+text,true);
+	xmlhttp.open("POST", "/salvarAnalise?acionadoPor=" + acionadoPor + "&analise=" + text, true);
 	xmlhttp.send();
 }
 
-function openDescricao(btn){
+function openDescricao(btn) {
 	let entidadeId = btn.name.split("_")[2];
 	let cicloId = btn.name.split("_")[3];
 	let pilarId = btn.name.split("_")[4];
@@ -612,61 +602,59 @@ function openDescricao(btn){
 	let tipoNotaId = btn.name.split("_")[7];
 	let elementoId = btn.name.split("_")[8];
 	let itemId = btn.name.split("_")[9];
-	document.getElementById('descricao-form').style.display='block';
+	document.getElementById('descricao-form').style.display = 'block';
 	document.getElementById("AcionadoPor").value = btn.name;
 	document.getElementById("descricaoEntidade").value = entidadesMap.get(entidadeId);
 	document.getElementById("descricaoCiclo").value = ciclosMap.get(cicloId);
 	let pilarName = '';
-	if(pilarId)	{
+	if (pilarId) {
 		pilarName = pilaresMap.get(pilarId);
 	}
 	document.getElementById("descricaoPilar").value = pilarName;
-	let componenteName = '';	
-	if(componenteId){
+	let componenteName = '';
+	if (componenteId) {
 		componenteName = componentesMap.get(componenteId);
-	}	
+	}
 	document.getElementById("descricaoComponente").value = componenteName;
-	let planoName = ''; 
-	if(planoId)	{
+	let planoName = '';
+	if (planoId) {
 		planoName = planosMap.get(planoId);
 	}
 	document.getElementById("descricaoPlano").value = planoName;
-	let tipoNotaName = ''; 
-	if(tipoNotaId)	{
+	let tipoNotaName = '';
+	if (tipoNotaId) {
 		tipoNotaName = tiposNotasMap.get(tipoNotaId);
 	}
 	document.getElementById("descricaoTipoNota").value = tipoNotaName;
-	let elementoName = ''; 
-	if(elementoId)	{
+	let elementoName = '';
+	if (elementoId) {
 		elementoName = elementosMap.get(elementoId);
 	}
 	document.getElementById("descricaoElemento").value = elementoName;
 	let itemName = '';
-	if(itemId)	{
+	if (itemId) {
 		itemName = itensMap.get(itemId);
 	}
-	if(!itemName){
+	if (!itemName) {
 		document.getElementById("descricaoItem").parentNode.parentNode.style.display = 'none';
 	} else {
 		document.getElementById("descricaoItem").parentNode.parentNode.style.display = 'table-row';
 		document.getElementById("descricaoItem").value = itemName;
 	}
-	loadDescricao(btn.name);	
+	loadDescricao(btn.name);
 }
 
-function loadDescricao(btn){
+function loadDescricao(btn) {
 	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
-	{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-				var desc = JSON.parse(xmlhttp.responseText);
-				document.getElementById("descricao_text").value = desc.texto;
-				document.getElementById("link").value = desc.link;
-			}
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var desc = JSON.parse(xmlhttp.responseText);
+			document.getElementById("descricao_text").value = desc.texto;
+			document.getElementById("link").value = desc.link;
+		}
 	}
-	xmlhttp.open("GET","/loadDescricao?btn="+btn,true);
+	xmlhttp.open("GET", "/loadDescricao?btn=" + btn, true);
 	xmlhttp.send();
 }
 
@@ -678,12 +666,12 @@ class Descricao {
 }
 
 
-function motivarPesoPilar(field){
+function motivarPesoPilar(field) {
 	let entidadeId = field.name.split("_")[1];
 	let cicloId = field.name.split("_")[2];
 	let pilarId = field.name.split("_")[3];
 	let pesoAnterior = field.name.split("_")[4];
-	if(field.value != pesoAnterior){
+	if (field.value != pesoAnterior) {
 		document.getElementById("AcionadoPor").value = field.name;
 		document.getElementById("motPesoPilar_callback").value = field.name;
 		document.getElementById("motPesoPilarEntidade").value = entidadesMap.get(entidadeId);
@@ -691,83 +679,81 @@ function motivarPesoPilar(field){
 		document.getElementById("motPesoPilarPilar").value = pilaresMap.get(pilarId);
 		document.getElementById("motPesoPilarPesoAnterior").value = pesoAnterior;
 		document.getElementById("motPesoPilarNovoPeso").value = field.value;
-		document.getElementById('motivar-peso-pilar-form').style.display='block';
+		document.getElementById('motivar-peso-pilar-form').style.display = 'block';
 		// document.getElementById("motPesoPilar_text").value = '';
 		document.getElementById("motPesoPilar_text").focus();
 	}
 }
 
-function salvarPesoPilar(){
+function salvarPesoPilar() {
 	let motivacao = document.getElementById('motPesoPilar_text').value;
 	motivacao = traduz(motivacao);
-	if(motivacao.length>3){
+	if (motivacao.length > 3) {
 		resetFormAvaliarPlanos();
-		document.getElementsByName('MotivacaoPeso')[0].value=motivacao;
-		document.getElementById('motivar-peso-pilar-form').style.display='none';
+		document.getElementsByName('MotivacaoPeso')[0].value = motivacao;
+		document.getElementById('motivar-peso-pilar-form').style.display = 'none';
 		let xmlhttp;
 		let acionadoPor = document.getElementById('AcionadoPor').value;
 		let valores = acionadoPor.split("_");
 		xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange=function()
-		{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					let pesoAnterior = document.getElementById('motPesoPilarPesoAnterior').value;
-					let novoPeso = document.getElementById('motPesoPilarNovoPeso').value;
-					let messageText = "O peso foi atualizado com sucesso de "+pesoAnterior +" para "+novoPeso+".";
-					document.getElementById("motPesoPilar_text").value = "";
-					document.getElementById("messageText").innerText = messageText;
-					document.getElementById("message").style.display="block";
-					let field = document.getElementsByName(acionadoPor)[0];
-					atualizarFieldName(field, novoPeso);
-					let entidadeId = valores[1];
-					let cicloId = valores[2];
-					document.getElementById('CicloNota_'+entidadeId+'_'+cicloId).value = xmlhttp.responseText;
-					atualizaPesoPercentual();
-				}
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				let pesoAnterior = document.getElementById('motPesoPilarPesoAnterior').value;
+				let novoPeso = document.getElementById('motPesoPilarNovoPeso').value;
+				let messageText = "O peso foi atualizado com sucesso de " + pesoAnterior + " para " + novoPeso + ".";
+				document.getElementById("motPesoPilar_text").value = "";
+				document.getElementById("messageText").innerText = messageText;
+				document.getElementById("message").style.display = "block";
+				let field = document.getElementsByName(acionadoPor)[0];
+				atualizarFieldName(field, novoPeso);
+				let entidadeId = valores[1];
+				let cicloId = valores[2];
+				document.getElementById('CicloNota_' + entidadeId + '_' + cicloId).value = xmlhttp.responseText;
+				atualizaPesoPercentual();
+			}
 		}
 		let entidadeId = valores[1];
 		let cicloId = valores[2];
 		let pilarId = valores[3];
 		let pesoNovo = document.getElementById('motPesoPilarNovoPeso').value;
-		if(!somaPesosPilaresAcima100()){
-			xmlhttp.open("GET","/salvarPesoPilar?entidadeId="+entidadeId+"&cicloId="+cicloId+"&pilarId="+pilarId+"&motivacao="+motivacao+"&peso="+pesoNovo,true);
+		if (!somaPesosPilaresAcima100()) {
+			xmlhttp.open("GET", "/salvarPesoPilar?entidadeId=" + entidadeId + "&cicloId=" + cicloId + "&pilarId=" + pilarId + "&motivacao=" + motivacao + "&peso=" + pesoNovo, true);
 			xmlhttp.send();
 		} else {
 			let errorMsg = "A soma dos pesos dos pilares não deve superar 100%.";
 			document.getElementById("Errors").innerText = errorMsg;
-			document.getElementById("error-message").style.display="block";
-			resetPesoPilar(); 
+			document.getElementById("error-message").style.display = "block";
+			resetPesoPilar();
 			atualizaPesoPercentual();
 		}
 	} else {
 		let errorMsg = "Falta preencher a motivação do peso do pilar.";
 		document.getElementById("Errors").innerText = errorMsg;
-		document.getElementById("error-message").style.display="block";
+		document.getElementById("error-message").style.display = "block";
 		motivacao.focus();
-		return;		
+		return;
 	}
 }
 
-function resetPesoPilar(){
+function resetPesoPilar() {
 	console.log('resetPesoPilar');
 	let campoPesoPilar = document.getElementById("motPesoPilar_callback").value;
 	document.getElementsByName(campoPesoPilar)[0].value = campoPesoPilar.split("_")[4];
 }
 
-function somaPesosPilaresAcima100(){
+function somaPesosPilaresAcima100() {
 	console.log('------------------------');
 	console.log('somaPesosPilaresAcima100');
 	let fields = document.getElementsByTagName("INPUT");
 	let soma = 0;
-	for(n=0;n<fields.length;n++){
-		if(fields[n].name.startsWith('PilarPeso')){
-			console.log("nome: "+fields[n].name+" - valor: "+fields[n].value);
+	for (n = 0; n < fields.length; n++) {
+		if (fields[n].name.startsWith('PilarPeso')) {
+			console.log("nome: " + fields[n].name + " - valor: " + fields[n].value);
 			soma = soma + parseInt(fields[n].value);
 		}
 	}
-	console.log('soma: '+soma);
-	if(soma>100){
+	console.log('soma: ' + soma);
+	if (soma > 100) {
 		console.log('deu mais de 100%');
 		return true;
 	}
@@ -775,39 +761,39 @@ function somaPesosPilaresAcima100(){
 }
 
 function contaCaracter(event, campoMotivacao, idCampoContador, maxChars) {
-	if (event.keyCode == 8){
-		inputLength = campoMotivacao.value.length-1;
+	if (event.keyCode == 8) {
+		inputLength = campoMotivacao.value.length - 1;
 	} else {
-		inputLength = campoMotivacao.value.length+1;
+		inputLength = campoMotivacao.value.length + 1;
 	}
 	let campoContador = document.getElementById(idCampoContador);
-	let qtd = maxChars-inputLength;
-	if(qtd>maxChars){
+	let qtd = maxChars - inputLength;
+	if (qtd > maxChars) {
 		qtd = maxChars;
 	}
-	if(qtd<0){
+	if (qtd < 0) {
 		qtd = 0;
 	}
 	console.log(qtd);
-	campoContador.value = qtd + " / "+maxChars;
-	if(inputLength >= maxChars) {
+	campoContador.value = qtd + " / " + maxChars;
+	if (inputLength >= maxChars) {
 		e.preventDefault();
 	}
 }
 
-function atualizaPesoPercentual(){
+function atualizaPesoPercentual() {
 	console.log("======================");
 	console.log("atualizaPesoPercentual");
 	let inputs = document.getElementsByTagName("INPUT");
 	totalPesosPilar = 0;
-	for(n=0;n<inputs.length;n++){
+	for (n = 0; n < inputs.length; n++) {
 		let fieldName = inputs[n].name;
-		if(fieldName.startsWith("PilarPeso")){
+		if (fieldName.startsWith("PilarPeso")) {
 			totalPesosPilar += parseInt(inputs[n].value);
 		}
 	}
 	let classe = document.getElementById("PesoPercentual").classList;
-	if(totalPesosPilar<100){
+	if (totalPesosPilar < 100) {
 		classe.remove('w3-green');
 		classe.add('w3-red');
 		document.getElementById("somaPesosPilares").title = "A soma dos pesos dos pilares é inferior a 100%.";
@@ -818,10 +804,10 @@ function atualizaPesoPercentual(){
 	}
 }
 
-function traduz(motivacao){
+function traduz(motivacao) {
 	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
 	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
-	motivacao = motivacao.replaceAll('%', '[porcento]');			
+	motivacao = motivacao.replaceAll('%', '[porcento]');
 	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
 	motivacao = motivacao.replaceAll('&', '[ecomercial]');
 	motivacao = motivacao.replaceAll('#', '[cerquilha]');
@@ -829,13 +815,13 @@ function traduz(motivacao){
 	return motivacao;
 }
 
-function retraduz(motivacao){
-	motivacao = motivacao.replaceAll('\[nl\]','\n');
-	motivacao = motivacao.replaceAll('\[tab\]','\t');
-	motivacao = motivacao.replaceAll('\[porcento\]','%');				
-	motivacao = motivacao.replaceAll('\[pontoevirgula\]',';');
-	motivacao = motivacao.replaceAll('\[ecomercial\]','&');
-	motivacao = motivacao.replaceAll('\[cerquilha\]','#');
-	motivacao = motivacao.replaceAll('\[mais\]','+');
+function retraduz(motivacao) {
+	motivacao = motivacao.replaceAll('\[nl\]', '\n');
+	motivacao = motivacao.replaceAll('\[tab\]', '\t');
+	motivacao = motivacao.replaceAll('\[porcento\]', '%');
+	motivacao = motivacao.replaceAll('\[pontoevirgula\]', ';');
+	motivacao = motivacao.replaceAll('\[ecomercial\]', '&');
+	motivacao = motivacao.replaceAll('\[cerquilha\]', '#');
+	motivacao = motivacao.replaceAll('\[mais\]', '+');
 	return motivacao;
 }
