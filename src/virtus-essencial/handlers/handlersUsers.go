@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"fmt"
-	"golang.org/x/crypto/bcrypt"
 	"html/template"
 	"log"
 	"math/rand"
@@ -14,6 +13,8 @@ import (
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
@@ -116,7 +117,7 @@ func SendPasswordHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.Method)
 	// Sender data.
 	from := "virtusimpavidas@gmail.com"
-	emailPassword := "v1rtudesemmedo"
+	emailPassword := "umvfivrcycqawlko"
 	subject := "Sistema Virtus"
 	emailTo := r.FormValue("Email")
 	// Receiver email address.
