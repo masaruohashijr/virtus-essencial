@@ -88,13 +88,13 @@ func main() {
 	if false {
 		dpk.Initialize()
 		// WORKFLOW
-		// TODO 27/08/2021 update virtus.produtos_componentes set id_status = 7 where id_status = 0; [X]
-		// TODO 27/08/2021 status 0 é "EQUIPE PENDENTE" -> EM ABERTO // CHEFE Supervisor => tramitar automaticamente
-		// TODO 27/08/2021 Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.
 		// TODO PRODUÇÃO ATENÇÃO: ANTES DE INSTALAR A VERSÃO COM WORKFLOW TEM QUE RODAR O UPDATE ACIMA.
-		// TODO 30/08/2021 Criação de Workflow não registrar as Atividades.
-		// TODO 30/08/2021 Minhas pendências está com erro em todos os perfis.
+		// TODO 30/08/2021 Na criação de um Workflow, as Atividades não estão sendo registradas.
+		// TODO 30/08/2021 Minhas pendências está com erro em todos os perfis (Chefe, Supervisor, Auditor).
 		// TODO 30/08/2021 Quando iniciado, na primeira nota atribuída tramitarAutomaticamente.
+		// TODO 27/08/2021 update virtus.produtos_componentes set id_status = 7 where id_status = 0; [X]
+		// TODO 27/08/2021 status 0 é "EQUIPE PENDENTE" -> EM ABERTO // CHEFE Supervisor => tramitar automaticamente [X]
+		// TODO 27/08/2021 Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.
 		// TODO 27/08/2021 Esqueci a senha [X]
 		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
 		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
