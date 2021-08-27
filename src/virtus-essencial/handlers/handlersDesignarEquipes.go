@@ -141,7 +141,6 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 		entidadeId := r.FormValue("EntidadeId")
 		cicloId := r.FormValue("CicloId")
 		supervisorId := r.FormValue("SupervisorId")
-
 		if supervisorId != "" {
 			sqlStatement := "UPDATE virtus.ciclos_entidades SET id_supervisor=" + supervisorId +
 				" WHERE id_entidade=" + entidadeId + " AND id_ciclo=" + cicloId
@@ -161,6 +160,8 @@ func UpdateDesignarEquipeHandler(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				log.Println(err.Error())
 			}
+			componentesDesignados := loadComponentesDesignacao(entidadeId, cicloId)
+			tramitarAutomaticamenteDesignacao("designacao", componentesDesignados)
 		} else {
 			http.Redirect(w, r, "/listDesignarEquipes?errMsg=O supervisor da equipe não pode ser deixado em branco.", 301)
 		}
@@ -425,4 +426,84 @@ func LoadSupervisorByEntidadeIdCicloId(w http.ResponseWriter, r *http.Request) {
 	jsonSupervisor, _ := json.Marshal(supervisor)
 	w.Write([]byte(jsonSupervisor))
 	log.Println("JSON Supervisor")
+}
+
+func statusContainsFeature(feature string, cd *ComponenteDesignado) bool {
+	sql := "SELECT e.id_status, e.name, a.id_feature, c.name, d.name FROM virtus.features_activities a " +
+		" inner join virtus.activities b ON a.id_activity = b.id_activity " +
+		" inner join virtus.features c ON a.id_feature = c.id_feature " +
+		" inner join virtus.actions d ON b.id_action = d.id_action " +
+		" inner join virtus.status e ON e.id_status = d.id_origin_status " +
+		" inner join virtus.produtos_componentes f ON f.id_status = e.id_status " +
+		" WHERE f.id_componente = " + cd.ComponenteId +
+		" and f.id_pilar = " + cd.PilarId +
+		" and f.id_ciclo = " + cd.CicloId +
+		" and f.id_entidade = " + cd.EntidadeId +
+		" and c.code = '" + feature + "'"
+	log.Println(sql)
+	rows, _ := Db.Query(sql)
+	possui := rows.Next()
+	println("Possui a feature: " + strconv.FormatBool(possui))
+	defer rows.Close()
+	return possui
+}
+
+type ComponenteDesignado struct {
+	EntidadeId   string
+	CicloId      string
+	PilarId      string
+	ComponenteId string
+}
+
+func tramitarAutomaticamenteDesignacao(feature string, componentes []*ComponenteDesignado) {
+	for _, v := range componentes {
+		if statusContainsFeature(feature, v) {
+			tramitarComponenteDesignado(v)
+		}
+	}
+}
+
+func tramitarComponenteDesignado(cd *ComponenteDesignado) {
+	println("TRAMITAR componente DESIGNADO:" + cd.ComponenteId)
+	sqlStatement := "update virtus.produtos_componentes set id_status " +
+		" = (SELECT TOP 1 c.id_destination_status " +
+		" FROM virtus.workflows a " +
+		" INNER JOIN virtus.activities b ON a.id_workflow = b.id_workflow " +
+		" INNER JOIN virtus.actions c ON b.id_action = c.id_action " +
+		" WHERE a.entity_type = 'produto_componente' " +
+		" AND c.id_origin_status = virtus.produtos_componentes.id_status ) " +
+		" WHERE id_entidade = " + cd.EntidadeId +
+		" AND id_ciclo = " + cd.CicloId +
+		" AND id_pilar = " + cd.PilarId +
+		" AND id_componente = " + cd.ComponenteId
+	updtForm, err := Db.Prepare(sqlStatement)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	println(cd.EntidadeId, cd.CicloId, cd.PilarId, cd.ComponenteId)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	log.Println("UPDATE: " + sqlStatement)
+}
+
+func loadComponentesDesignacao(entidadeId, cicloId string) []*ComponenteDesignado {
+	var componentesDesignados []*ComponenteDesignado
+	sql := " SELECT id_entidade, id_ciclo, id_pilar, id_componente " +
+		" FROM virtus.produtos_componentes " +
+		" WHERE id_entidade = ? and id_ciclo = ? "
+	log.Println(sql)
+	rows, _ := Db.Query(sql, entidadeId, cicloId)
+	for rows.Next() {
+		rows.Scan(
+			&entidadeId,
+			&cicloId)
+		cd := &ComponenteDesignado{}
+		rows.Scan(&cd.EntidadeId, &cd.CicloId, &cd.PilarId, &cd.ComponenteId)
+		componentesDesignados = append(componentesDesignados, cd)
+	}
+	log.Println(sql)
+	defer rows.Close()
+	return componentesDesignados
 }

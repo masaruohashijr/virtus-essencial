@@ -85,17 +85,17 @@ func main() {
 	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if true {
-		//dpk.Initialize()
-		// TODO update virtus.produtos_componentes set id_status = 0 where id_status is null;
-		// TODO status 0 é "EQUIPE PENDENTE" -> EM ABERTO // CHEFE Supervisor => tramitar automaticamente
-		// TODO Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.
+	if false {
+		dpk.Initialize()
+		// WORKFLOW
+		// TODO 27/08/2021 update virtus.produtos_componentes set id_status = 7 where id_status = 0; [X]
+		// TODO 27/08/2021 status 0 é "EQUIPE PENDENTE" -> EM ABERTO // CHEFE Supervisor => tramitar automaticamente
+		// TODO 27/08/2021 Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.
 		// TODO PRODUÇÃO ATENÇÃO: ANTES DE INSTALAR A VERSÃO COM WORKFLOW TEM QUE RODAR O UPDATE ACIMA.
-		// TODO Criação de Workflow não registrar as Atividades.
-		// TODO Minhas pendências está com erro em todos os perfis.
-		// TODO Quando iniciado, na primeira nota atribuída tramitarAutomaticamente.
-		// TODO QUARTA-FEIRA 04/08/2021 - Vou enviar evidências por zap.
-		// TODO Esqueci a senha durante ausência de Arnaldo.
+		// TODO 30/08/2021 Criação de Workflow não registrar as Atividades.
+		// TODO 30/08/2021 Minhas pendências está com erro em todos os perfis.
+		// TODO 30/08/2021 Quando iniciado, na primeira nota atribuída tramitarAutomaticamente.
+		// TODO 27/08/2021 Esqueci a senha [X]
 		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
 		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
 	}

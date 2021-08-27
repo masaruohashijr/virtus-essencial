@@ -26,6 +26,7 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		warnMsg := r.FormValue("warnMsg")
 		var page mdl.PageEntidadesCiclos
+		// @TODO
 		sql := "SELECT DISTINCT d.codigo, b.id_entidade, d.nome, a.abreviatura " +
 			" FROM virtus.escritorios a " +
 			" LEFT JOIN virtus.jurisdicoes b ON a.id_escritorio = b.id_escritorio " +
@@ -33,7 +34,8 @@ func ListDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			" LEFT JOIN virtus.entidades d ON d.id_entidade = b.id_entidade " +
 			" LEFT JOIN virtus.users u ON u.id_user = c.id_usuario " +
 			" INNER JOIN virtus.ciclos_entidades e ON e.id_entidade = b.id_entidade " +
-			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)"
+			" WHERE (c.id_usuario = ? AND u.id_role in (3,4)) OR (a.id_chefe = ?)" +
+			" AND e.id_supervisor IS NOT NULL"
 		log.Println(sql)
 		rows, _ := Db.Query(sql, currentUser.Id, currentUser.Id)
 		defer rows.Close()
