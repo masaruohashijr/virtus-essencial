@@ -351,6 +351,7 @@ function salvarRemocao() {
 					" para " + novoAuditor + ".";
 				document.getElementById("messageText").innerText = messageText;
 				document.getElementById("message").style.display = "block";
+				alert('atualizarFieldName');
 				atualizarFieldName(sel, auditorNovo);
 			}
 		}

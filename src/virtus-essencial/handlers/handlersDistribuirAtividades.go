@@ -107,15 +107,28 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println(fname)
 				supervisorId := r.FormValue("SupervisorComponenteId")
 				log.Println(supervisorId)
+				split := strings.Split(fname, "_")
 				entidadeId := r.FormValue("Entidade_" + fname)
+				if entidadeId == "" {
+					entidadeId = split[1]
+				}
 				log.Println(entidadeId)
 				cicloId := r.FormValue("Ciclo_" + fname)
+				if cicloId == "" {
+					cicloId = split[2]
+				}
 				log.Println(cicloId)
 				pilarId := r.FormValue("Pilar_" + fname)
+				if pilarId == "" {
+					pilarId = split[3]
+				}
 				log.Println(pilarId)
 				planosIds := r.FormValue("Planos_Auditor" + fname)
 				log.Println("planosIds: " + planosIds)
 				componenteId := r.FormValue("Componente_" + fname)
+				if componenteId == "" {
+					componenteId = split[4]
+				}
 				log.Println(fieldName + " - value: " + value[0])
 				_, ok := mapaComponentes[entidadeId+"#"+cicloId+"#"+pilarId+"#"+componenteId]
 				if !ok {
@@ -770,7 +783,11 @@ func produtoComponenteStatusContainsFeature(feature string, cd *ComponenteDistri
 		" and f.id_entidade = " + cd.EntidadeId +
 		" and c.code = '" + feature + "'"
 	log.Println(sql)
-	rows, _ := Db.Query(sql)
+	rows, err := Db.Query(sql)
+	if err != nil {
+		log.Println(err.Error())
+		return false
+	}
 	possui := rows.Next()
 	println("Possui a feature: " + strconv.FormatBool(possui))
 	defer rows.Close()

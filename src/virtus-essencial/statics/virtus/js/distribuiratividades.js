@@ -59,7 +59,7 @@ function motivarReprogramacao(campo) {
 	let terminaEmValor = campo.parentNode.parentNode.childNodes[3].childNodes[1].value;
 	if (nomeCampo.startsWith('Inicia') && terminaEmValor == '') {
 		campo.parentNode.parentNode.childNodes[3].childNodes[1].value = campo.value;
-	}	
+	}
 }
 
 function isDatasInvertidas(campo) {
@@ -147,7 +147,7 @@ function motivarConfigPlanos() {
 	document.getElementById("motReconf_text").focus();
 }
 
-function validarDistribuirAtividades() { 
+function validarDistribuirAtividades() {
 	console.log("**** validarDistribuirAtividades ****");
 	let formulario = document.forms["formulario-distribuir-atividades"];
 	let selects = formulario.getElementsByTagName("select");
