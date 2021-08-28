@@ -83,6 +83,8 @@ func hasSomeFieldChangedElementoComponente(elementoComponentePage mdl.ElementoCo
 	log.Println(elementoComponenteDB.PesoPadrao)
 	if elementoComponentePage.PesoPadrao != elementoComponenteDB.PesoPadrao {
 		return true
+	} else if elementoComponentePage.TipoNotaId != elementoComponenteDB.TipoNotaId {
+		return true
 	} else {
 		return false
 	}
@@ -91,10 +93,10 @@ func hasSomeFieldChangedElementoComponente(elementoComponentePage mdl.ElementoCo
 func updateElementoComponenteHandler(elementoComponente mdl.ElementoComponente, elementoComponenteDB mdl.ElementoComponente) {
 	log.Println("updateElementoComponenteHandler")
 	sqlStatement := "UPDATE virtus.elementos_componentes SET " +
-		"peso_padrao=? WHERE id_elemento_componente=?"
+		"peso_padrao=?, id_tipo_nota=? WHERE id_elemento_componente=?"
 	log.Println(sqlStatement)
 	updtForm, _ := Db.Prepare(sqlStatement)
-	_, err := updtForm.Exec(elementoComponente.PesoPadrao, elementoComponente.Id)
+	_, err := updtForm.Exec(elementoComponente.PesoPadrao, elementoComponente.TipoNotaId, elementoComponente.Id)
 	if err != nil {
 		log.Println(err.Error())
 	}
