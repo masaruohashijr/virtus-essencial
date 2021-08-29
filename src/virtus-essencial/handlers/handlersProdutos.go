@@ -927,7 +927,7 @@ func registrarProdutosComponentes(currentUser mdl.User, entidadeId string, ciclo
 		" OUTPUT INSERTED.id_produto_componente " +
 		" SELECT " + entidadeId + ", " + cicloId + ", a.id_pilar, b.id_componente, " +
 		" round(avg(c.peso_padrao),2), 0 as nota, " +
-		" ?, ?, GETDATE() " + strconv.Itoa(statusComponenteId) +
+		" ?, ?, GETDATE(), " + strconv.Itoa(statusComponenteId) +
 		" FROM " +
 		" virtus.PILARES_CICLOS a " +
 		" LEFT JOIN virtus.COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +

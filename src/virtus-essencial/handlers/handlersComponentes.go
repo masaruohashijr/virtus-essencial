@@ -215,6 +215,7 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println("Componente Id: " + componenteId)
 				sqlStatement := "INSERT INTO virtus.elementos_componentes ( " +
 					" id_componente, " +
+					" id_tipo_nota, " +
 					" id_elemento, " +
 					" peso_padrao, " +
 					" id_author, " +
@@ -222,11 +223,12 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" id_status " +
 					" ) " +
 					" OUTPUT INSERTED.id_componente " +
-					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
+					" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				Db.QueryRow(
 					sqlStatement,
 					componenteId,
+					elementoComponente.TipoNotaId,
 					elementoComponente.ElementoId,
 					elementoComponente.PesoPadrao,
 					currentUser.Id,
@@ -383,7 +385,7 @@ func registrarProdutosElementosTodos(currentUser mdl.User) {
 		" id_tipo_pontuacao, " +
 		" id_author, " +
 		" criado_em ) " +
-		" SELECT d.id_entidade, " +
+		" SELECT distinct d.id_entidade, " +
 		" d.id_ciclo, " +
 		" d.id_pilar, " +
 		" d.id_componente, " +
@@ -399,7 +401,9 @@ func registrarProdutosElementosTodos(currentUser mdl.User) {
 		" INNER JOIN " +
 		" virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
 		" INNER JOIN " +
-		" virtus.produtos_planos d ON b.id_componente = d.id_componente " +
+		" virtus.produtos_planos d ON (d.id_ciclo = a.id_ciclo " +
+		"	AND d.id_pilar = a.id_pilar " +
+		"	AND d.id_componente = b.id_componente) " +
 		" WHERE " +
 		" NOT EXISTS " +
 		"  (SELECT 1 " +
@@ -428,7 +432,7 @@ func registrarProdutosItensTodos(currentUser mdl.User) {
 		" id_item, " +
 		" id_author, " +
 		" criado_em ) " +
-		" SELECT p.id_entidade, " +
+		" SELECT distinct p.id_entidade, " +
 		" p.id_ciclo, " +
 		" p.id_pilar, " +
 		" p.id_componente, " +
@@ -439,14 +443,16 @@ func registrarProdutosItensTodos(currentUser mdl.User) {
 		" INNER JOIN virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
 		" INNER JOIN virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
 		" INNER JOIN virtus.itens d ON c.id_elemento = d.id_elemento " +
-		" INNER JOIN virtus.produtos_planos p ON b.id_componente = p.id_componente " +
+		" INNER JOIN virtus.produtos_planos p ON (p.id_ciclo = a.id_ciclo " +
+		"	AND p.id_pilar = a.id_pilar " +
+		"	AND p.id_componente = b.id_componente) " +
 		" WHERE " +
 		" NOT EXISTS (SELECT 1 " +
-		"     FROM virtus.produtos_itens e " +
-		"       AND e.id_ciclo = a.id_ciclo " +
-		"       AND e.id_pilar = a.id_pilar " +
-		"       AND e.id_componente = b.id_componente " +
-		"	   AND e.id_elemento = c.id_elemento " +
+		"      FROM virtus.produtos_itens e " +
+		"      WHERE e.id_ciclo = a.id_ciclo " +
+		"      AND e.id_pilar = a.id_pilar " +
+		"      AND e.id_componente = b.id_componente " +
+		"  	   AND e.id_elemento = c.id_elemento " +
 		"	   AND e.id_item = d.id_item)"
 	log.Println(sqlStatement)
 	Db.QueryRow(
