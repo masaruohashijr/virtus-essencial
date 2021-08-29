@@ -308,7 +308,7 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 					snippet1 +
 					" ) " +
 					" OUTPUT INSERTED.id_ciclo_entidade " +
-					" VALUES (?, ?, ?, ?, ?" + snippet2 + ")"
+					" VALUES (?, ?, ?, ?, GETDATE()" + snippet2 + ")"
 				log.Println(sqlStatement)
 				if cicloEntidade.IniciaEm != "" && cicloEntidade.TerminaEm != "" {
 					err = Db.QueryRow(sqlStatement, entidadeId, cicloEntidade.CicloId, cicloEntidade.TipoMediaId, currentUser.Id, cicloEntidade.IniciaEm, cicloEntidade.TerminaEm).Scan(&cicloEntidadeId)
@@ -320,6 +320,8 @@ func UpdateEntidadeHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				cicloId := strconv.FormatInt(cicloEntidade.CicloId, 10)
 				registrarProdutosCiclos(currentUser, entidadeId, cicloId)
+				registrarProdutosPilares(currentUser, entidadeId, cicloId)
+				registrarProdutosComponentes(currentUser, entidadeId, cicloId)
 				msg = "Ciclo iniciado com sucesso."
 			}
 		}

@@ -231,6 +231,8 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					elementoComponente.PesoPadrao,
 					currentUser.Id,
 					statusElementoId).Scan(&elementoComponenteId)
+				registrarProdutosElementosTodos(currentUser)
+				registrarProdutosItensTodos(currentUser)
 			}
 		}
 		UpdateElementosComponenteHandler(elementosComponentePage, elementosComponenteDB)
@@ -365,4 +367,89 @@ func LoadTiposNotaByComponenteId(w http.ResponseWriter, r *http.Request) {
 	jsonTiposNotasComponentes, _ := json.Marshal(tiposNotasComponentes)
 	w.Write([]byte(jsonTiposNotasComponentes))
 	log.Println("JSON Tipos Notas Componentes")
+}
+
+func registrarProdutosElementosTodos(currentUser mdl.User) {
+	sqlStatement := "INSERT INTO virtus.produtos_elementos ( " +
+		" id_entidade, " +
+		" id_ciclo, " +
+		" id_pilar, " +
+		" id_componente, " +
+		" id_plano, " +
+		" id_tipo_nota, " +
+		" id_elemento, " +
+		" peso," +
+		" nota," +
+		" id_tipo_pontuacao, " +
+		" id_author, " +
+		" criado_em ) " +
+		" SELECT d.id_entidade, " +
+		" d.id_ciclo, " +
+		" d.id_pilar, " +
+		" d.id_componente, " +
+		" d.id_plano, " +
+		" c.id_tipo_nota, " +
+		" c.id_elemento, " +
+		" c.peso_padrao, " +
+		" 0, ?, ?, GETDATE() " +
+		" FROM " +
+		" virtus.pilares_ciclos a " +
+		" INNER JOIN " +
+		" virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
+		" INNER JOIN " +
+		" virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
+		" INNER JOIN " +
+		" virtus.produtos_planos d ON b.id_componente = d.id_componente " +
+		" WHERE " +
+		" NOT EXISTS " +
+		"  (SELECT 1 " +
+		"   FROM virtus.produtos_elementos e " +
+		"   WHERE " +
+		"     e.id_ciclo = a.id_ciclo " +
+		"     AND e.id_pilar = a.id_pilar " +
+		"     AND e.id_componente = b.id_componente " +
+		"     AND e.id_elemento = c.id_elemento)"
+	log.Println(sqlStatement)
+	Db.QueryRow(
+		sqlStatement,
+		mdl.Calculada,
+		currentUser.Id)
+}
+
+func registrarProdutosItensTodos(currentUser mdl.User) {
+	sqlStatement := "INSERT INTO virtus.produtos_itens ( " +
+		" id_entidade, " +
+		" id_ciclo, " +
+		" id_pilar, " +
+		" id_componente, " +
+		" id_plano, " +
+		" id_tipo_nota, " +
+		" id_elemento, " +
+		" id_item, " +
+		" id_author, " +
+		" criado_em ) " +
+		" SELECT p.id_entidade, " +
+		" p.id_ciclo, " +
+		" p.id_pilar, " +
+		" p.id_componente, " +
+		" p.id_plano, " +
+		" c.id_tipo_nota, " +
+		" c.id_elemento, d.id_item, ?, GETDATE() " +
+		" FROM virtus.pilares_ciclos a " +
+		" INNER JOIN virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
+		" INNER JOIN virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
+		" INNER JOIN virtus.itens d ON c.id_elemento = d.id_elemento " +
+		" INNER JOIN virtus.produtos_planos p ON b.id_componente = p.id_componente " +
+		" WHERE " +
+		" NOT EXISTS (SELECT 1 " +
+		"     FROM virtus.produtos_itens e " +
+		"       AND e.id_ciclo = a.id_ciclo " +
+		"       AND e.id_pilar = a.id_pilar " +
+		"       AND e.id_componente = b.id_componente " +
+		"	   AND e.id_elemento = c.id_elemento " +
+		"	   AND e.id_item = d.id_item)"
+	log.Println(sqlStatement)
+	Db.QueryRow(
+		sqlStatement,
+		currentUser.Id)
 }

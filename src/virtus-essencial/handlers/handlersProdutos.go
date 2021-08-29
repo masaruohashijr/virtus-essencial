@@ -912,7 +912,7 @@ func registrarProdutosPilares(currentUser mdl.User, entidadeId string, cicloId s
 }
 
 func registrarProdutosComponentes(currentUser mdl.User, entidadeId string, cicloId string) {
-	statusComponenteId := GetStartStatus("componente")
+	statusComponenteId := GetStartStatus("produto_componente")
 	sqlStatement := "INSERT INTO virtus.produtos_componentes ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
