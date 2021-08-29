@@ -1057,7 +1057,28 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		mdl.Calculada,
 		currentUser.Id)
 
-	sqlStatement = "INSERT INTO virtus.produtos_elementos ( " +
+	registrarProdutosElementos(param, numPlano, currentUser)
+	registrarProdutosItens(param, numPlano, currentUser)
+	UpdateNotas(&produto, param, numPlano, currentUser)
+}
+
+func UpdateNotas(produto *mdl.ProdutoElemento, param mdl.ProdutoPlano, numPlano string, currentUser mdl.User) {
+	log.Println("INICIANDO CICLO --  UPDATE NOTA")
+	produto.EntidadeId = param.EntidadeId
+	produto.CicloId = param.CicloId
+	produto.PilarId = param.PilarId
+	produto.ComponenteId = param.ComponenteId
+	produto.PlanoId, _ = strconv.ParseInt(numPlano, 10, 64)
+	// Atualizando os pesos e as notas
+	atualizarPesoComponentes(*produto, currentUser) //
+	atualizarComponenteNota(*produto)               //
+	atualizarPilarNota(*produto)                    //
+	atualizarCicloNota(*produto)                    //
+	atualizarPesoTiposNotas(*produto, currentUser)
+}
+
+func registrarProdutosElementos(param mdl.ProdutoPlano, numPlano string, currentUser mdl.User) {
+	sqlStatement := "INSERT INTO virtus.produtos_elementos ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -1107,8 +1128,11 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 		sqlStatement,
 		mdl.Calculada,
 		currentUser.Id)
+}
 
-	sqlStatement = "INSERT INTO virtus.produtos_itens ( " +
+func registrarProdutosItens(param mdl.ProdutoPlano, numPlano string, currentUser mdl.User) {
+
+	sqlStatement := "INSERT INTO virtus.produtos_itens ( " +
 		" id_entidade, " +
 		" id_ciclo, " +
 		" id_pilar, " +
@@ -1150,19 +1174,6 @@ func registrarProdutosPlanos(param mdl.ProdutoPlano, numPlano string, currentUse
 	Db.QueryRow(
 		sqlStatement,
 		currentUser.Id)
-
-	log.Println("INICIANDO CICLO --  UPDATE NOTA")
-	produto.EntidadeId = param.EntidadeId
-	produto.CicloId = param.CicloId
-	produto.PilarId = param.PilarId
-	produto.ComponenteId = param.ComponenteId
-	produto.PlanoId, _ = strconv.ParseInt(numPlano, 10, 64)
-	// Atualizando os pesos
-	atualizarPesoComponentes(produto, currentUser) //
-	atualizarComponenteNota(produto)               //
-	atualizarPilarNota(produto)                    //
-	atualizarCicloNota(produto)                    //
-	atualizarPesoTiposNotas(produto, currentUser)
 }
 
 func loadNotasAtuais(produto mdl.ProdutoElemento) mdl.NotasAtuais {
