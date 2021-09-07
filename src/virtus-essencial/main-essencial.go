@@ -97,6 +97,7 @@ func main() {
 		// TODO 27/08/2021 Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.[X]
 		// TODO 27/08/2021 Esqueci a senha [X]
 		// TODO Disponibilizar os logs de produção através de funcionalidade do Administrador ou Desenvolvedor
+		dpk.NewFeature("Tramitação Automática", "designacao")
 		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
 		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
 	}
@@ -298,6 +299,5 @@ func ReadConfig(t ConfigType) Config {
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
 		log.Fatal(err)
 	}
-	println("teste")
 	return config
 }

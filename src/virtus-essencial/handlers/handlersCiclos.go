@@ -411,6 +411,7 @@ func LoadPilaresByCicloId(w http.ResponseWriter, r *http.Request) {
 }
 
 func atualizarCiclosEmAndamento(cicloId string, currentUser mdl.User) {
+	log.Println("Atualizar Ciclos Em Andamento")
 	sql := "SELECT id_entidade FROM virtus.ciclos_entidades WHERE id_ciclo = ? "
 	log.Println(sql)
 	rows, _ := Db.Query(sql, cicloId)
