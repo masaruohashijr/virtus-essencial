@@ -732,6 +732,9 @@ type ComponenteDistribuido struct {
 
 func tramitarAutomaticamente(feature string, mapaCD map[string]*ComponenteDistribuido) {
 	for _, v := range mapaCD {
+		if isProdutoComponenteSemStatus(v) {
+			iniciarProdutoComponenteStatusEmAberto(v)
+		}
 		if configuradoCompletamente(v) && produtoComponenteStatusContainsFeature(feature, v) {
 			tramitar(v)
 		}
@@ -792,4 +795,47 @@ func produtoComponenteStatusContainsFeature(feature string, cd *ComponenteDistri
 	println("Possui a feature: " + strconv.FormatBool(possui))
 	defer rows.Close()
 	return possui
+}
+
+func isProdutoComponenteSemStatus(cd *ComponenteDistribuido) bool {
+	sql := "SELECT id_status FROM virtus.produtos_componentes " +
+		" WHERE id_componente = " + cd.ComponenteId +
+		" and id_pilar = " + cd.PilarId +
+		" and id_ciclo = " + cd.CicloId +
+		" and id_entidade = " + cd.EntidadeId
+	log.Println(sql)
+	rows, err := Db.Query(sql)
+	defer rows.Close()
+	if err != nil {
+		log.Println(err.Error())
+		return false
+	}
+	idStatus := 0
+	for rows.Next() {
+		rows.Scan(&idStatus)
+		if idStatus == 0 {
+			return true
+		}
+	}
+	return false
+}
+
+func iniciarProdutoComponenteStatusEmAberto(cd *ComponenteDistribuido) {
+	sqlStatement := "update virtus.produtos_componentes " +
+		" set id_status = (SELECT TOP 1 a.id_status " +
+		" FROM virtus.status a WHERE UPPER(a.name) = UPPER('Em Aberto'))" +
+		" WHERE id_entidade = " + cd.EntidadeId +
+		" AND id_ciclo = " + cd.CicloId +
+		" AND id_pilar = " + cd.PilarId +
+		" AND id_componente = " + cd.ComponenteId
+	updtForm, err := Db.Prepare(sqlStatement)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	println(cd.EntidadeId, cd.CicloId, cd.PilarId, cd.ComponenteId)
+	_, err = updtForm.Exec()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	log.Println("UPDATE: " + sqlStatement)
 }

@@ -7,3 +7,8 @@
 [0m2021.06.01 16:03:26 INFO  time: initialize in 20s[0m
 [0m2021.06.01 16:03:26 WARN  Build server is not auto-connectable.[0m
 [0m2021.06.01 16:03:26 WARN  no build tool detected in workspace 'G:\Previc\workspace\src\virtus-essencial'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.08 10:05:07 INFO  Started: Metals version 0.10.6 in workspace 'G:\Previc\workspace\src\virtus-essencial' for client Visual Studio Code 1.60.0.[0m
+[0m2021.09.08 10:05:17 INFO  time: initialize in 10s[0m
+[0m2021.09.08 10:05:26 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.08 10:05:26 WARN  no build tool detected in workspace 'G:\Previc\workspace\src\virtus-essencial'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.08 10:41:17 INFO  shutting down Metals[0m

@@ -176,11 +176,14 @@ func DeleteElementoHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete Elemento")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Elemento está associado a um registro e não pôde ser removido."
-		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM virtus.elementos WHERE id_elemento=?"
+		sqlStatement := "DELETE FROM virtus.itens WHERE id_elemento=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
+		id := r.FormValue("Id")
 		_, err := deleteForm.Exec(id)
-		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
+		sqlStatement = "DELETE FROM virtus.elementos WHERE id_elemento=?"
+		deleteForm, _ = Db.Prepare(sqlStatement)
+		_, err = deleteForm.Exec(id)
+		if err != nil && strings.Contains(err.Error(), "23000") {
 			http.Redirect(w, r, route.ElementosRoute+"?errMsg="+errMsg, 301)
 		} else {
 			http.Redirect(w, r, route.ElementosRoute+"?msg=Elemento removido com sucesso.", 301)
