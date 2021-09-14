@@ -36,8 +36,8 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				elementoComponenteId := 0
 				statusElementoId := GetStartStatus("elemento")
 				elementoId := strings.Split(array[3], ":")[1]
-				tipoNotaId := strings.Split(array[3], ":")[1]
-				pesoPadrao := strings.Split(array[5], ":")[1]
+				tipoNotaId := strings.Split(array[5], ":")[1]
+				pesoPadrao := strings.Split(array[7], ":")[1]
 				sqlStatement := " INSERT INTO " +
 					" virtus.elementos_componentes( " +
 					" id_componente, " +
@@ -50,6 +50,12 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" OUTPUT INSERTED.id_elemento_componente " +
 					" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
+				log.Println("idComponente: ", idComponente)
+				log.Println("elementoId: ", elementoId)
+				log.Println("tipoNotaId: ", tipoNotaId)
+				log.Println("pesoPadrao: ", pesoPadrao)
+				log.Println("currentUser.Id: ", currentUser.Id)
+				log.Println("statusTipoNotaId: ", statusElementoId)
 				err := Db.QueryRow(
 					sqlStatement,
 					idComponente,
@@ -79,6 +85,11 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" OUTPUT INSERTED.id_tipo_nota_componente " +
 					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
+				log.Println("idComponente: ", idComponente)
+				log.Println("tipoNotaId: ", tipoNotaId)
+				log.Println("pesoPadrao: ", pesoPadrao)
+				log.Println("currentUser.Id: ", currentUser.Id)
+				log.Println("statusTipoNotaId: ", statusTipoNotaId)
 				err := Db.QueryRow(
 					sqlStatement,
 					idComponente,

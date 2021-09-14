@@ -210,7 +210,7 @@ func DeletePilarHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement = "DELETE FROM virtus.pilares WHERE id_pilar=?"
 		deleteForm, _ = Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)
-		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
+		if err != nil && strings.Contains(err.Error(), "23000") {
 			http.Redirect(w, r, route.PilaresRoute+"?errMsg="+errMsg, 301)
 		} else {
 			http.Redirect(w, r, route.PilaresRoute+"?msg=Pilar removido com sucesso.", 301)
