@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	mdl "virtus-essencial/models"
 	route "virtus-essencial/routes"
 	sec "virtus-essencial/security"
@@ -85,37 +84,58 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println(value[0])
 				activityId := 0
 				actionId := strings.Split(array[3], ":")[1]
-				startAt, _ := time.Parse("yyyy-mm-dd", strings.Split(array[8], ":")[1])
-				endAt, _ := time.Parse("yyyy-mm-dd", strings.Split(array[9], ":")[1])
+				//startAt := strings.Split(array[8], ":")[1]
+				//endAt := strings.Split(array[9], ":")[1]
+				roles := strings.Split(array[10], ":")[1]
+				log.Println("Roles -------- " + roles)
 				expTime := strings.Split(array[7], ":")[1]
 				if expTime == "" {
 					expTime = "0"
 				}
 				expActionId := strings.Split(array[5], ":")[1]
-				strRoles := strings.Split(array[10], ":")[1]
+				features := strings.Split(array[13], ":")[1]
+				log.Println("Features -------- " + features)
 				log.Println("actionId: " + actionId)
 				sqlStatement := "INSERT INTO " +
-					" virtus.activities(id_workflow, id_action, start_at, end_at, expiration_time_days, id_expiration_action) " +
-					" OUTPUT INSERTED.id_activity VALUES (?,?,?,?,?,?) "
+					" virtus.activities(id_workflow, id_action, expiration_time_days"
+				if expActionId != "" {
+					sqlStatement += ", id_expiration_action"
+				}
+				sqlStatement += ") OUTPUT INSERTED.id_activity VALUES (?,?,?"
+				if expActionId != "" {
+					sqlStatement += ",?"
+				}
+				sqlStatement += ")"
 				log.Println(sqlStatement)
 				log.Println("wId: " + strconv.Itoa(wId) + " | Action: " + actionId + " | ExpDays: " + expTime + " | ExpAction: " + expActionId)
 				if expActionId == "" {
-					err = Db.QueryRow(sqlStatement, wId, actionId, startAt, endAt, expTime, nil).Scan(&activityId)
+					err = Db.QueryRow(sqlStatement, wId, actionId, expTime).Scan(&activityId)
 				} else {
-					err = Db.QueryRow(sqlStatement, wId, actionId, startAt, endAt, expTime, expActionId).Scan(&activityId)
+					err = Db.QueryRow(sqlStatement, wId, actionId, expTime, expActionId).Scan(&activityId)
 				}
 				if err != nil {
 					log.Println("ERRO ACTIVITIES: " + err.Error())
 				}
-				if len(strRoles) > 0 {
-					log.Println("Roles: " + strRoles)
-					roles := strings.Split(strRoles, ".")
-					for _, roleId := range roles {
+				if len(roles) > 0 {
+					log.Println("Roles: " + roles)
+					roles_array := strings.Split(roles, ".")
+					for _, roleId := range roles_array {
 						sqlStatement := "INSERT INTO " +
 							" virtus.activities_roles(id_activity, id_role) " +
 							" VALUES (?,?)"
 						log.Println(sqlStatement + " - " + strconv.Itoa(activityId) + " - " + roleId)
 						Db.QueryRow(sqlStatement, activityId, roleId)
+					}
+				}
+				if len(features) > 0 {
+					log.Println("Features: " + features)
+					features_array := strings.Split(features, ".")
+					for _, featureId := range features_array {
+						sqlStatement := "INSERT INTO " +
+							"virtus.features_activities(id_activity, id_feature) " +
+							"VALUES (?,?)"
+						log.Println(sqlStatement + " - " + strconv.FormatInt(int64(activityId), 10) + " - " + featureId)
+						Db.QueryRow(sqlStatement, strconv.FormatInt(int64(activityId), 10), featureId)
 					}
 				}
 			}

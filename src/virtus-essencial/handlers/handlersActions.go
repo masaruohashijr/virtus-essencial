@@ -263,7 +263,7 @@ func ListActionsHandler(w http.ResponseWriter, r *http.Request) {
 			i++
 			actions = append(actions, action)
 		}
-		sql = "SELECT id_status, name, stereotype FROM virtus.status ORDER BY name asc"
+		sql = "SELECT id_status, name, case when stereotype <> 'Start' and stereotype <> 'End' then '' ELSE stereotype END stereotype FROM virtus.status ORDER BY name asc"
 		log.Println("List Action -> Query: " + sql)
 		rows, _ = Db.Query(sql)
 		defer rows.Close()

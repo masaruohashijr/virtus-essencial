@@ -85,8 +85,8 @@ func main() {
 	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if false {
-		dpk.Initialize()
+	if true {
+		//dpk.Initialize()
 		// WORKFLOW
 		// TODO PRODUÇÃO ATENÇÃO: ANTES DE INSTALAR A VERSÃO COM WORKFLOW TEM QUE RODAR O UPDATE ACIMA.
 		// TODO 30/08/2021 Na criação de um Workflow, as Atividades não estão sendo registradas.
@@ -97,9 +97,9 @@ func main() {
 		// TODO 27/08/2021 Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.[X]
 		// TODO 27/08/2021 Esqueci a senha [X]
 		// TODO Disponibilizar os logs de produção através de funcionalidade do Administrador ou Desenvolvedor
-		dpk.NewFeature("Tramitação Automática", "designacao")
-		dpk.NewFeature("Tramitação Automática", "tramitacaoAutomatica")
-		dpk.NewFeature("Iniciar Componente Automaticamente", "iniciarComponenteAutomaticamente")
+		dpk.NewFeature("Designação de Equipes", "designacao")
+		dpk.NewFeature("Distribuição de Atividades", "distribuicao")
+		dpk.NewFeature("Iniciar Componente", "iniciarComponente")
 	}
 	r := mux.NewRouter()
 	// ----------------- SECURITY

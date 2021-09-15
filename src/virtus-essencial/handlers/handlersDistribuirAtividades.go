@@ -231,7 +231,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		}
-		tramitarAutomaticamente("tramitacaoAutomatica", mapaComponentes)
+		tramitarAutomaticamente("distribuicao", mapaComponentes)
 		msg := "msg=Os demais produtos dos níveis do ciclo foram criados com Sucesso."
 		if faltouConfigurarPlanoAlgumComponente {
 			warnMsg := "warnMsg=Faltou configurar quais os planos que serão avaliados."

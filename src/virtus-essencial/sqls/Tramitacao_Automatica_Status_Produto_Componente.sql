@@ -8,4 +8,4 @@ WHERE f.id_componente = 1
 and f.id_pilar = 1
 and f.id_ciclo = 1
 and f.id_entidade = 216
-and c.code = 'tramitacaoAutomatica'
+and c.code = 'distribuicao'

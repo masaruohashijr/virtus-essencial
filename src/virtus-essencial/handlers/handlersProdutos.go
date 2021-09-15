@@ -45,10 +45,10 @@ func registrarAuditorComponente(produto mdl.ProdutoComponente, currentUser mdl.U
 func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (mdl.ValoresAtuais, error) {
 	/*
 	 * Verificar aqui se o produto_componente relacionado a esse produto_elemento está num
-	 * status de tramitacaoAutomatica, se estiver, ao final dessa thread, deveremos migrar
+	 * status de distribuicao, se estiver, ao final dessa thread, deveremos migrar
 	 */
 	statusName := ""
-	if idAction, ok := hasFeatureCode(currentUser, produto, "tramitacaoAutomatica"); ok {
+	if idAction, ok := hasFeatureCode(currentUser, produto, "distribuicao"); ok {
 		statusName = tramitaComponente(produto, idAction)
 	}
 	sqlStatement := "UPDATE virtus.produtos_elementos SET nota = " + strconv.Itoa(produto.Nota) + ", " +

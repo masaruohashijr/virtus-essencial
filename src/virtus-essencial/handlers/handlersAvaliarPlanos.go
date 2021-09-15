@@ -196,7 +196,7 @@ func AvaliarPlanosHandler(w http.ResponseWriter, r *http.Request) {
 			EntidadeId: entidadeId,
 			CicloId:    cicloId,
 		}
-		iniciarComponenteAutomaticamente("iniciarComponenteAutomaticamente", cd)
+		iniciarComponenteAutomaticamente("iniciarComponente", cd)
 		var page mdl.PageProdutosItens
 		page.PilarId = pilarId
 		page.ComponenteId = componenteId
