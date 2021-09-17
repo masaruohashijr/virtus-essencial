@@ -114,7 +114,7 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 					err = Db.QueryRow(sqlStatement, wId, actionId, expTime, expActionId).Scan(&activityId)
 				}
 				if err != nil {
-					log.Println("ERRO ACTIVITIES: " + err.Error())
+					log.Println("ERRO em ACTIVITIES: " + err.Error())
 				}
 				if len(roles) > 0 {
 					log.Println("Roles: " + roles)
