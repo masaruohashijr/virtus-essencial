@@ -107,6 +107,7 @@ func CreateWorkflowHandler(w http.ResponseWriter, r *http.Request) {
 				}
 				sqlStatement += ")"
 				log.Println(sqlStatement)
+				log.Println("TESTE")
 				log.Println("wId: " + strconv.Itoa(wId) + " | Action: " + actionId + " | ExpDays: " + expTime + " | ExpAction: " + expActionId)
 				if expActionId == "" {
 					err = Db.QueryRow(sqlStatement, wId, actionId, expTime).Scan(&activityId)
