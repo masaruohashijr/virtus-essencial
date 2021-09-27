@@ -38,7 +38,7 @@ const sqlAvaliarPlanos = " SELECT a.id_entidade, " +
 	"	   coalesce(format(g.inicia_em, 'dd/MM/yyyy'), '') AS inicia_em, " +
 	"      coalesce(format(g.termina_em, 'dd/MM/yyyy'), '') AS termina_em, " +
 	" 	   coalesce(sta.name,'') as cstatus, " +
-	"      g.id_status, " +
+	"      coalesce(g.id_status,'0') as id_status, " +
 	"      g.id_produto_componente, " +
 	"	   CASE " +
 	"	    WHEN g.inicia_em IS NOT NULL AND " +
@@ -622,7 +622,6 @@ func SalvarNotaElemento(w http.ResponseWriter, r *http.Request) {
 	println(jsonValoresAtuais)
 	w.Write([]byte(jsonValoresAtuais))
 	log.Println("----------")
-
 }
 
 func SalvarAuditorComponente(w http.ResponseWriter, r *http.Request) {

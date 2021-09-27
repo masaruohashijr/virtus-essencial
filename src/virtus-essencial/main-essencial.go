@@ -82,11 +82,11 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5" + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5.20210920" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	if true {
-		//dpk.Initialize()
+		dpk.Initialize()
 		// WORKFLOW
 		// TODO PRODUÇÃO ATENÇÃO: ANTES DE INSTALAR A VERSÃO COM WORKFLOW TEM QUE RODAR O UPDATE ACIMA.
 		// TODO 30/08/2021 Na criação de um Workflow, as Atividades não estão sendo registradas.
@@ -98,7 +98,7 @@ func main() {
 		// TODO 27/08/2021 Esqueci a senha [X]
 		// TODO Disponibilizar os logs de produção através de funcionalidade do Administrador ou Desenvolvedor
 		dpk.NewFeature("Designação de Equipes", "designacao")
-		dpk.NewFeature("Distribuição de Atividades", "distribuicao")
+		dpk.NewFeature("Tramitação Automática", "tramitarAutomaticamente")
 		dpk.NewFeature("Iniciar Componente", "iniciarComponente")
 	}
 	r := mux.NewRouter()

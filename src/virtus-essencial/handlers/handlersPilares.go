@@ -189,6 +189,9 @@ func UpdatePilarHandler(w http.ResponseWriter, r *http.Request) {
 				if err != nil {
 					log.Println(err.Error())
 				}
+				registrarProdutosComponentesTodos(currentUser)
+				registrarProdutosElementosTodos(currentUser)
+				registrarProdutosItensTodos(currentUser)
 			}
 		}
 		UpdateComponentesPilarHandler(componentesPilarPage, componentesPilarDB)
@@ -196,6 +199,44 @@ func UpdatePilarHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, route.PilaresRoute+"?msg=Pilar atualizado com sucesso.", 301)
 	} else {
 		http.Redirect(w, r, "/logout", 301)
+	}
+}
+
+func registrarProdutosComponentesTodos(currentUser mdl.User) {
+	sqlStatement := "INSERT INTO virtus.produtos_componentes ( " +
+		" id_entidade, " +
+		" id_ciclo, " +
+		" id_pilar, " +
+		" id_componente, " +
+		" peso, " +
+		" nota, " +
+		" id_tipo_pontuacao, " +
+		" id_author, " +
+		" criado_em ) " +
+		" OUTPUT INSERTED.id_produto_componente " +
+		" SELECT DISTINCT a.id_pilar, b.id_componente, " +
+		" round(avg(c.peso_padrao),2), 0 as nota, " +
+		" ?, ?, GETDATE() " +
+		" FROM " +
+		" virtus.PILARES_CICLOS a " +
+		" LEFT JOIN virtus.COMPONENTES_PILARES b ON (a.id_pilar = b.id_pilar) " +
+		" LEFT JOIN virtus.ELEMENTOS_COMPONENTES c ON (b.id_componente = c.id_componente) " +
+		" WHERE  " +
+		" NOT EXISTS " +
+		"  (SELECT 1 " +
+		"   FROM virtus.produtos_componentes c " +
+		"   WHERE c.id_ciclo = a.id_ciclo " +
+		"     AND c.id_pilar = a.id_pilar " +
+		"     AND c.id_componente = b.id_componente) " +
+		" GROUP BY a.id_ciclo,a.id_pilar,b.id_componente ORDER BY 1,2,3,4"
+	log.Println(sqlStatement)
+	produtoComponenteId := 0
+	err := Db.QueryRow(
+		sqlStatement,
+		mdl.Calculada,
+		currentUser.Id).Scan(&produtoComponenteId)
+	if err != nil {
+		log.Println(err)
 	}
 }
 
