@@ -181,8 +181,7 @@ function salvarNotaElemento() {
 	}
 }
 
-function atualizarNotas(notasAtuaisJson, valores) {
-	alert(notasAtuaisJson);
+function atualizarNotas(notasAtuaisJson, valores) {	
 	let cicloNota = notasAtuaisJson.cicloNota.trim();
 	console.log('cicloNota: ' + cicloNota);
 	let pilarNota = notasAtuaisJson.pilarNota.trim();
