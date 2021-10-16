@@ -22,13 +22,13 @@ function loadAllowedActionsWithParentId(type, Id){
 			}
 			// renderizar
 			let actions = JSON.parse(xmlhttp.responseText);
+			nodes = divElemento.childNodes
+			for(i=nodes.length-1;i>=0;i--){					
+				if(nodes[i] instanceof HTMLParagraphElement){
+					divElemento.removeChild(nodes[i]);
+				}
+			}				
 			if(!actions){
-				nodes = divElemento.childNodes;
-				for(i=nodes.length-1;i>=0;i--){					
-					if(nodes[i] instanceof HTMLParagraphElement){
-						divElemento.removeChild(nodes[i]);
-					}
-				}				
 				let p = document.createElement('p');
 				p.innerText = "Não permitido."
 				divElemento.appendChild(p);
@@ -46,11 +46,13 @@ function loadAllowedActionsWithParentId(type, Id){
 						btnAction.onclick = function() {
 							executeActionProdutoComponente(type, produtoComponenteId, this.documentId, Id);
 						};
+						let p = document.createElement('p');
+						divElemento.appendChild(p);
 						divElemento.appendChild(btnAction);
-						loadAvailableFeatures(type,statusId);
 					}
 				}
 			}
+			loadAvailableFeaturesWithFunction(type, statusId, Id, featuresControl);
 		}
 	}
 	let apiEndpoint = "/loadAllowedActions?entityType="+type+"&statusId="+statusId;
@@ -90,11 +92,23 @@ function executeActionProdutoComponente(type, produtoComponenteId, actionId, Id)
 			}
 			if(status.name != ""){
 				document.getElementById("StatusName_"+Id).innerText = status.name;
+				dispatchIf(status.name,"Em Aberto","/distribuirAtividades")
 			}
 			document.getElementById("IdStatus_"+Id).value = status.id;
-			loadAllowedActionsWithParentId(type, status.id);
+			loadAllowedActionsWithParentId(type, Id);
 		}
 	}
 	xmlhttp.open("GET","/executeAction?entityType="+type+"&id="+produtoComponenteId+"&actionId="+actionId,true);
 	xmlhttp.send();
+}
+
+function dispatchIf(currentStatus , statusCondition, formAction){
+	if(currentStatus == statusCondition){
+		entidadeId = document.getElementById('EntidadeId').value
+		cicloId = document.getElementById('CicloId').value
+		document.getElementById("EntidadeId_AvaliarPlanos").value=entidadeId
+		document.getElementById("CicloId_AvaliarPlanos").value=cicloId
+		document.getElementById("formulario-avaliar-planos").action = formAction
+		document.getElementById("formulario-avaliar-planos").submit()
+	}
 }

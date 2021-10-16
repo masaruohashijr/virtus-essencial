@@ -22,3 +22,15 @@
 [0m2021.09.14 22:27:44 WARN  Build server is not auto-connectable.[0m
 [0m2021.09.14 22:27:44 WARN  no build tool detected in workspace 'G:\Previc\workspace\src\virtus-essencial'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 [0m2021.09.15 07:43:48 INFO  shutting down Metals[0m
+[0m2021.10.02 15:06:16 INFO  Started: Metals version 0.10.7 in workspace 'G:\Previc\workspace\src\virtus-essencial' for client Visual Studio Code 1.60.2.[0m
+[0m2021.10.02 15:06:23 INFO  time: initialize in 6.52s[0m
+[0m2021.10.02 15:06:30 WARN  Build server is not auto-connectable.[0m
+[0m2021.10.02 15:06:30 WARN  no build tool detected in workspace 'G:\Previc\workspace\src\virtus-essencial'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+out 02, 2021 3:06:48 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFORMAÇÕES: Unsupported notification method: $/setTrace
+[0m2021.10.02 15:16:01 INFO  shutting down Metals[0m
+[0m2021.10.16 08:18:17 INFO  Started: Metals version 0.10.7 in workspace 'G:\Previc\workspace\src\virtus-essencial' for client Visual Studio Code 1.61.0.[0m
+[0m2021.10.16 08:18:21 INFO  time: initialize in 4.19s[0m
+[0m2021.10.16 08:18:26 WARN  Build server is not auto-connectable.[0m
+[0m2021.10.16 08:18:26 WARN  no build tool detected in workspace 'G:\Previc\workspace\src\virtus-essencial'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.10.16 14:02:07 INFO  shutting down Metals[0m

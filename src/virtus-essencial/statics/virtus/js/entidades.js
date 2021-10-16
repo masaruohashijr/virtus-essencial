@@ -1,4 +1,4 @@
-function submeterListEntidadesForm(e, formId){
+function submeterListEntidadesForm(e, formAction){
 	console.log(e.parentNode.parentNode.childNodes[3].childNodes[0].value);
 	console.log(e.parentNode.parentNode.childNodes[3].childNodes[1].value);
 	//alert(e.parentNode.parentNode.childNodes[3].innerText);
@@ -10,15 +10,17 @@ function submeterListEntidadesForm(e, formId){
 	//alert(document.getElementById("CicloId").value);
 	document.getElementById("EntidadeId").value=e.parentNode.parentNode.childNodes[3].childNodes[0].value;
 	document.getElementById("CicloId").value=e.parentNode.parentNode.childNodes[9].childNodes[1].value;
-	document.getElementById(formId).submit();
+	document.getElementById("formulario-pendencias").action = formAction
+	document.getElementById("formulario-pendencias").submit();
 }
 
-function submeterPendencias(e, formId){
+function submeterPendencias(e, formAction){
 	document.getElementById("EntidadeId").value=e.parentNode.parentNode.childNodes[3].childNodes[1].value;
 	document.getElementById("CicloId").value=e.parentNode.parentNode.childNodes[5].childNodes[1].value;
 	document.getElementById("PilarId").value=e.parentNode.parentNode.childNodes[7].childNodes[1].value;
 	document.getElementById("ComponenteId").value=e.parentNode.parentNode.childNodes[9].childNodes[1].value;
-	document.getElementById(formId).submit();
+	document.getElementById("formulario-pendencias").action = formAction
+	document.getElementById("formulario-pendencias").submit();
 }
 
 function viewEntidade(e) {

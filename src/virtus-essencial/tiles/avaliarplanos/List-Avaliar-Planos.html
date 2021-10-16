@@ -1,6 +1,6 @@
 {{define "List-Avaliar-Planos"}}
 <!-- List Avaliar Planos -->
-<form action="/updateAvaliarPlanos" method="POST" id="form-avaliar-planos">
+<form action="/updateAvaliarPlanos" method="POST" id="form-avaliar-planos" name="form-avaliar-planos">
 <div id="main" class="w3-row-padding">
 		<header class="w3-container w3-center w3-teal">
 		    <div class="aria">
@@ -93,7 +93,10 @@
 			{{if $primeiraLinha}}
             <tr style="background-color: aliceblue">
                 <td style="border:1px solid #ddd;font-size: 0.7em;vertical-align:middle">{{$linha = call $inc $linha}}{{$linha}}</td>
-				<td style="border:1px solid #ddd;font-size: 0.7em;vertical-align:middle">EFPC</td>
+				<td style="border:1px solid #ddd;font-size: 0.7em;vertical-align:middle">EFPC
+					<input type="hidden" id="EntidadeId" value="{{$produto.EntidadeId}}">
+					<input type="hidden" id="CicloId" value="{{$produto.CicloId}}">
+				</td>
                 <td colspan="7" style="font-size:2em;text-align:left;padding-left: 5px">{{$produto.EntidadeNome}}</td>
 				{{if $allowed}}
                 <td style="vertical-align:middle">
@@ -244,14 +247,15 @@
 					<div id="StatusName_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}">{{$produto.CStatus}}</div>
 					<div id="DivStatus_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}" 
 						style="display: none;
+						z-index: 10;
 						position:absolute;   
 						border-radius: 5px;
 						background: #86a8db;
 						border: 4px solid #000f83;
-						width: 200px;
+						width: 300px;
 						padding: 20px; 
 						margin: 0px; 
-						min-height: 150px;">
+						min-height: 200px;">
 						<button type="button" 
 							class="w3-btn w3-teal" 
 							id="Btn_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}"
@@ -434,7 +438,7 @@
 					<select style="width: 75px; text-align:center" 
 						class="w3-input" 
 						{{if eq $produto.PeriodoPermitido false }}disabled{{end}}
-						{{if or (eq $produto.CStatus "Em Revisão") (eq $produto.CStatus "Em Homologação") (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
+						{{if or (and (ne $produto.CStatus "Iniciado") (ne $produto.CStatus "Em análise")) (and (ne $produto.AuditorId $currentUser) (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe")) (eq $elementoPeso "0")}}readonly disabled{{end}}
 						name="ElementoNota_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.PlanoId}}_{{$produto.TipoNotaId}}_{{$produto.ElementoId}}_{{$elementoNota}}"
 						onchange="sinalizarAlteracao(this); motivarNota(this);">
 						<option value="0" {{if eq $elementoNota "0" }}selected{{end}}>N/A</option>
@@ -508,6 +512,12 @@
     </div>
 </div>
 <input type="hidden" name="AcionadoPor" id="AcionadoPor" value="">			
+</form>
+<form method="POST" id="formulario-avaliar-planos">
+	<input type="hidden" id="EntidadeId_AvaliarPlanos" name="EntidadeId">
+	<input type="hidden" id="CicloId_AvaliarPlanos" name="CicloId">
+	<input type="hidden" id="PilarId_AvaliarPlanos" name="PilarId">
+	<input type="hidden" id="ComponenteId_AvaliarPlanos" name="ComponenteId">	
 </form>
 <script type="text/javascript">
 	atualizaPesoPercentual();

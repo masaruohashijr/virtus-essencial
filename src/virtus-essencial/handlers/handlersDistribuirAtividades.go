@@ -249,6 +249,8 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 	if sec.IsAuthenticated(w, r) {
 		entidadeId := r.FormValue("EntidadeId")
 		cicloId := r.FormValue("CicloId")
+		println("entidadeId: " + entidadeId)
+		println("cicloId: " + cicloId)
 		var page mdl.PageProdutosComponentes
 		sql := " SELECT " +
 			" a.id_ciclo, c.nome as ciclo_nome, " +

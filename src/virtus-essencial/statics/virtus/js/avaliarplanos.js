@@ -200,6 +200,9 @@ function atualizarNotas(notasAtuaisJson, valores) {
 	let tipoNotaId = valores[6];
 	if (notasAtuaisJson.componenteStatus.trim() != "") {
 		document.getElementById('StatusName_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId).innerText = notasAtuaisJson.componenteStatus;
+		//alert("Etapa 1 - Id Componente: "+entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId)
+		//alert("Etapa 1 - componenteIdStatus: "+notasAtuaisJson.componenteIdStatus)
+		document.getElementById('IdStatus_' + entidadeId + '_' + cicloId + '_' + pilarId + "_" + componenteId).value = notasAtuaisJson.componenteIdStatus;
 	}
 	document.getElementById('CicloNota_' + entidadeId + '_' + cicloId).value = cicloNota;
 	document.getElementById('PilarNota_' + entidadeId + '_' + cicloId + '_' + pilarId).value = pilarNota;
@@ -825,4 +828,27 @@ function retraduz(motivacao) {
 	motivacao = motivacao.replaceAll('\[cerquilha\]', '#');
 	motivacao = motivacao.replaceAll('\[mais\]', '+');
 	return motivacao;
+}
+
+function featuresControl(Id){
+	for(n=0;n<availableFeatures.length;n++){
+		if(availableFeatures[n].code == "editarNotas"){
+			enableNotasElemento(Id, true)
+			return
+		}
+	}
+	enableNotasElemento(Id, false)
+}
+
+function enableNotasElemento(Id, enabled){
+	let elements = document.forms["form-avaliar-planos"].getElementsByTagName("select");
+	for(i=0;i<elements.length;i++){
+		if(elements[i].name && elements[i].name.startsWith("ElementoNota_"+Id)){
+			if(enabled){
+				elements[i].removeAttribute("disabled");
+			} else {
+				elements[i].setAttribute("disabled", "disabled");
+			}
+		}
+	}
 }

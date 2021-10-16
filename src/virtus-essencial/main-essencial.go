@@ -82,12 +82,14 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5.20210930" + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.5.20211016" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	if true {
-		dpk.Initialize()
+		// dpk.Initialize()
 		// WORKFLOW
+		// TODO Criar o status 'Em Aberto'
+		// TODO Inicializar os status dos componentes
 		// TODO PRODUÇÃO ATENÇÃO: ANTES DE INSTALAR A VERSÃO COM WORKFLOW TEM QUE RODAR O UPDATE ACIMA.
 		// TODO 30/08/2021 Na criação de um Workflow, as Atividades não estão sendo registradas.
 		// TODO 30/08/2021 Minhas pendências está com erro em todos os perfis (Auditor).
@@ -97,9 +99,7 @@ func main() {
 		// TODO 27/08/2021 Não pode Listar em Distribuir Atividades se não tiver Supervisor para o Ciclo Entidade.[X]
 		// TODO 27/08/2021 Esqueci a senha [X]
 		// TODO Disponibilizar os logs de produção através de funcionalidade do Administrador ou Desenvolvedor
-		dpk.NewFeature("Designação de Equipes", "designacao")
-		dpk.NewFeature("Tramitação Automática", "tramitarAutomaticamente")
-		dpk.NewFeature("Iniciar Componente", "iniciarComponente")
+		newWorkflow()
 	}
 	r := mux.NewRouter()
 	// ----------------- SECURITY
@@ -300,4 +300,47 @@ func ReadConfig(t ConfigType) Config {
 		log.Fatal(err)
 	}
 	return config
+}
+
+func newWorkflow() {
+
+	dpk.NewFeature("Editar Notas", "editarNotas")
+	dpk.NewFeature("Designação de Equipes", "designacao")
+	dpk.NewFeature("Tramitação Automática", "tramitarAutomaticamente")
+	dpk.NewFeature("Iniciar Componente", "iniciarComponente")
+
+	dpk.NewStatus("Equipe Pendente", "Start")
+	dpk.NewStatus("Em Aberto", "")
+	dpk.NewStatus("Aguardando início", "")
+	dpk.NewStatus("Iniciado", "")
+	dpk.NewStatus("Em análise", "")
+	dpk.NewStatus("Em revisão", "")
+	dpk.NewStatus("Em homologação", "")
+	dpk.NewStatus("Homologado", "End")
+	dpk.IniciarStatusProdutosComponentes("Em Aberto")
+
+	dpk.NewAction("Designar", "Equipe Pendente", "Em Aberto")
+	dpk.NewAction("Distribuir", "Em Aberto", "Aguardando início")
+	dpk.NewAction("Iniciar", "Aguardando início", "Iniciado")
+	dpk.NewAction("Analisar", "Iniciado", "Em análise")
+	dpk.NewAction("Submeter à revisão", "Em análise", "Em revisão")
+	dpk.NewAction("Redistribuir", "Em revisão", "Em Aberto")
+	dpk.NewAction("Submeter à homologação", "Em revisão", "Em homologação")
+	dpk.NewAction("Devolver", "Em homologação", "Em revisão")
+	dpk.NewAction("Homologar", "Em homologação", "Homologado")
+
+	workflowId := dpk.NewWorkflow("Workflow Produtos Componentes", "produto_componente")
+	if 0 != workflowId {
+		dpk.AddActivity(workflowId, "Designar", []string{"Designação de Equipes"}, []string{"Chefe"})
+		dpk.AddActivity(workflowId, "Distribuir", []string{"Tramitação Automática"}, []string{"Supervisor"})
+		dpk.AddActivity(workflowId, "Iniciar", []string{"Iniciar Componente"}, []string{"Auditor"})
+		dpk.AddActivity(workflowId, "Analisar", []string{"Tramitação Automática", "Editar Notas"}, []string{"Auditor"})
+		dpk.AddActivity(workflowId, "Submeter à revisão", []string{"Editar Notas"}, []string{"Auditor"})
+		dpk.AddActivity(workflowId, "Redistribuir", []string{}, []string{"Supervisor"})
+		dpk.AddActivity(workflowId, "Submeter à homologação", []string{}, []string{"Supervisor"})
+		dpk.AddActivity(workflowId, "Devolver", []string{}, []string{"Chefe"})
+		dpk.AddActivity(workflowId, "Homologar", []string{}, []string{"Chefe"})
+	}
+	dpk.IniciarProdutoComponenteStatusEmAberto()
+	dpk.IniciarProdutoComponenteStatusAguardandoInicio()
 }

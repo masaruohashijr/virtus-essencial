@@ -47,12 +47,13 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (m
 	 * Verificar aqui se o produto_componente relacionado a esse produto_elemento está num
 	 * status de distribuicao, se estiver, ao final dessa thread, deveremos migrar
 	 */
+	var statusId int64
 	statusName := ""
 	idAct, okay := hasFeatureCode(currentUser, produto, "tramitarAutomaticamente")
 	println(idAct)
 	println(okay)
 	if idAction, ok := hasFeatureCode(currentUser, produto, "tramitarAutomaticamente"); ok {
-		statusName = tramitaComponente(produto, idAction)
+		statusId, statusName = tramitaComponente(produto, idAction)
 	}
 	sqlStatement := "UPDATE virtus.produtos_elementos SET nota = " + strconv.Itoa(produto.Nota) + ", " +
 		" motivacao_nota = ? , " +
@@ -96,12 +97,13 @@ func registrarNotaElemento(produto mdl.ProdutoElemento, currentUser mdl.User) (m
 	// NOTAS ATUAIS
 	notasAtuais := loadNotasAtuais(produto)
 	valoresAtuais := montarValoresAtuais(pesosAtuais, notasAtuais)
+	valoresAtuais.ComponenteIdStatus = statusId
 	valoresAtuais.ComponenteStatus = statusName
 	println(valoresAtuais.ComponenteStatus)
 	return valoresAtuais, nil
 }
 
-func tramitaComponente(produto mdl.ProdutoElemento, idAction int) string {
+func tramitaComponente(produto mdl.ProdutoElemento, idAction int) (int64, string) {
 	// PRODUTOS_COMPONENTES
 	// verificar brecha de segurança aqui acesso GET com parametros.
 	sqlStatement := "update virtus.produtos_componentes set id_status = " +
@@ -132,7 +134,7 @@ func tramitaComponente(produto mdl.ProdutoElemento, idAction int) string {
 	log.Println("********************************************************************")
 	log.Println("********************************************************************")
 	log.Println("Retornando o Status: " + strconv.FormatInt(status.Id, 10) + " - " + status.Name)
-	return status.Name
+	return status.Id, status.Name
 }
 
 func atualizarPilarNota(produto mdl.ProdutoElemento) {

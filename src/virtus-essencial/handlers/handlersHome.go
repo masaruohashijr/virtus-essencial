@@ -136,10 +136,10 @@ func ChefeHomeHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		var page mdl.PageChefe
 
-		sql := " SELECT DISTINCT e.sigla as sigla_entidade, " +
-			" d.nome as ciclo_nome, " +
-			" c.nome as pilar_nome, " +
-			" b.nome as componente_nome, " +
+		sql := " SELECT DISTINCT e.id_entidade, e.sigla as sigla_entidade, " +
+			" d.id_ciclo, d.nome as ciclo_nome, " +
+			" c.id_pilar, c.nome as pilar_nome, " +
+			" b.id_componente, b.nome as componente_nome, " +
 			" h.name as status " +
 			" FROM virtus.produtos_componentes a " +
 			" INNER JOIN virtus.componentes b ON a.id_componente = b.id_componente " +
@@ -166,9 +166,13 @@ func ChefeHomeHandler(w http.ResponseWriter, r *http.Request) {
 		i := 1
 		for rows.Next() {
 			rows.Scan(
+				&produto.EntidadeId,
 				&produto.EntidadeNome,
+				&produto.CicloId,
 				&produto.CicloNome,
+				&produto.PilarId,
 				&produto.PilarNome,
+				&produto.ComponenteId,
 				&produto.ComponenteNome,
 				&produto.CStatus)
 			produto.Order = i
@@ -444,10 +448,10 @@ func SupervisorHomeHandler(w http.ResponseWriter, r *http.Request) {
 		errMsg := r.FormValue("errMsg")
 		var page mdl.PageChefe
 
-		sql := " SELECT DISTINCT e.sigla as sigla_entidade, " +
-			" d.nome as ciclo_nome, " +
-			" c.nome as pilar_nome, " +
-			" b.nome as componente_nome, " +
+		sql := " SELECT DISTINCT e.id_entidade, e.sigla as sigla_entidade, " +
+			" d.id_ciclo, d.nome as ciclo_nome, " +
+			" c.id_pilar, c.nome as pilar_nome, " +
+			" b.id_componente, b.nome as componente_nome, " +
 			" h.name as status " +
 			" FROM virtus.produtos_componentes a " +
 			" INNER JOIN virtus.componentes b ON a.id_componente = b.id_componente " +
@@ -474,9 +478,13 @@ func SupervisorHomeHandler(w http.ResponseWriter, r *http.Request) {
 		i := 1
 		for rows.Next() {
 			rows.Scan(
+				&produto.EntidadeId,
 				&produto.EntidadeNome,
+				&produto.CicloId,
 				&produto.CicloNome,
+				&produto.PilarId,
 				&produto.PilarNome,
+				&produto.ComponenteId,
 				&produto.ComponenteNome,
 				&produto.CStatus)
 			produto.Order = i

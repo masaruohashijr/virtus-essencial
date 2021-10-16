@@ -20,14 +20,14 @@ function deleteWorkflow(e) {
 }
 
 function loadAvailableFeatures(type, statusId){
-	var xmlhttp;
+	let xmlhttp;
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				let feats = JSON.parse(xmlhttp.responseText);
-				return feats;
+				availableFeatures = JSON.parse(xmlhttp.responseText);
+				return 
 			}
 	}
 	xmlhttp.open("GET","/loadAvailableFeatures?entityType="+type+"&statusId="+statusId,true);
@@ -90,4 +90,23 @@ function removeActions(elemento){
 			elemento.removeChild(nodes[i]);
 		}
 	}
+}
+
+function loadAvailableFeaturesWithFunction(type, statusId, Id, func){
+	let xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				availableFeatures = JSON.parse(xmlhttp.responseText);
+				if(!availableFeatures){
+					availableFeatures = []
+				}
+				func(Id)
+				return 
+			}
+	}
+	xmlhttp.open("GET","/loadAvailableFeatures?entityType="+type+"&statusId="+statusId,true);
+	xmlhttp.send();
 }

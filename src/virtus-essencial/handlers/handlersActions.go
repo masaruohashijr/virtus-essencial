@@ -86,6 +86,7 @@ func CreateActionHandler(w http.ResponseWriter, r *http.Request) {
 		sqlStatement := "INSERT INTO virtus.actions(name, id_origin_status, id_destination_status, other_than, description, id_author, created_at) " +
 			" OUTPUT INSERTED.id_action VALUES (?, ?, ?, ?, ?, ?, GETDATE())"
 		actionId := 0
+		log.Println(sqlStatement)
 		err := Db.QueryRow(
 			sqlStatement,
 			name,

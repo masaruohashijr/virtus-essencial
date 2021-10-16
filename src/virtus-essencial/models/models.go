@@ -386,18 +386,19 @@ type PesosAtuais struct {
 }
 
 type ValoresAtuais struct {
-	CicloPeso        string `json:"cicloPeso"`
-	PilarPeso        string `json:"pilarPeso"`
-	ComponentePeso   string `json:"componentePeso"`
-	PlanoPeso        string `json:"planoPeso"`
-	TipoNotaPeso     string `json:"tipoNotaPeso"`
-	ElementoPeso     string `json:"elementoPeso"`
-	CicloNota        string `json:"cicloNota"`
-	PilarNota        string `json:"pilarNota"`
-	ComponenteNota   string `json:"componenteNota"`
-	PlanoNota        string `json:"planoNota"`
-	TipoNotaNota     string `json:"tipoNotaNota"`
-	ComponenteStatus string `json:"componenteStatus"`
+	CicloPeso          string `json:"cicloPeso"`
+	PilarPeso          string `json:"pilarPeso"`
+	ComponentePeso     string `json:"componentePeso"`
+	PlanoPeso          string `json:"planoPeso"`
+	TipoNotaPeso       string `json:"tipoNotaPeso"`
+	ElementoPeso       string `json:"elementoPeso"`
+	CicloNota          string `json:"cicloNota"`
+	PilarNota          string `json:"pilarNota"`
+	ComponenteNota     string `json:"componenteNota"`
+	PlanoNota          string `json:"planoNota"`
+	TipoNotaNota       string `json:"tipoNotaNota"`
+	ComponenteIdStatus int64  `json:"componenteIdStatus"`
+	ComponenteStatus   string `json:"componenteStatus"`
 }
 
 type Plano struct {

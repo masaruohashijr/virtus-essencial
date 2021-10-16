@@ -1,3 +1,4 @@
+var availableFeatures = [];
 var isChefe = false;
 var actions_array = [];
 var activity;
