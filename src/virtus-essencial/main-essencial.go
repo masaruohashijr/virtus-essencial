@@ -317,7 +317,7 @@ func newWorkflow() {
 	dpk.NewStatus("Em revisão", "")
 	dpk.NewStatus("Em homologação", "")
 	dpk.NewStatus("Homologado", "End")
-	dpk.IniciarStatusProdutosComponentes("Em Aberto")
+	//	dpk.IniciarStatusProdutosComponentes("Em Aberto")
 
 	dpk.NewAction("Designar", "Equipe Pendente", "Em Aberto")
 	dpk.NewAction("Distribuir", "Em Aberto", "Aguardando início")
