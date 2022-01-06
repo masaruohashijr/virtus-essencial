@@ -84,6 +84,36 @@ function isDatasInvertidas(campo){
 	return false;
 }
 
+function isDatasForaCiclo(campo, oldValue){
+	let partes = campo.name.split("_");
+	let campoIniciaEm = '';
+	let campoTerminaEm = '';
+	if (partes[0] == 'IniciaEmComponente'){
+		campoIniciaEm = campo.name;
+		let iniciaEm  = new Date(document.getElementsByName(campoIniciaEm)[0].value);
+		let cicloIniciaEm = new Date(document.getElementById("CicloIniciaEm").value);
+		if(iniciaEm<cicloIniciaEm){
+			let warningText = 'Data Início anterior ao período permitido para o Ciclo.'; 
+			document.getElementById("Warns").innerText = warningText;
+			document.getElementById("warn-message").style.display="block";
+			document.getElementsByName(campoIniciaEm)[0].value = oldValue;
+			return true;
+		}	
+	} else {
+		campoTerminaEm = campo.name;
+		let terminaEm  = new Date(document.getElementsByName(campoTerminaEm)[0].value);
+		let cicloTerminaEm = new Date(document.getElementById("CicloTerminaEm").value);
+		if(terminaEm>cicloTerminaEm){
+			let warningText = 'Data Término posterior ao período permitido para o Ciclo.'; 
+			document.getElementById("Warns").innerText = warningText;
+			document.getElementById("warn-message").style.display="block";
+			document.getElementsByName(campoTerminaEm)[0].value = oldValue;
+			return true;
+		}	
+	}
+	return false;
+}
+
 function salvarReprogramacao(){
 	let motivacao = document.getElementById('motRepro_text').value;
 	if(motivacao.length>3){

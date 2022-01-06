@@ -522,6 +522,8 @@ type ProdutoComponente struct {
 	EntidadeNome      string  `json:"entidadeNome"`
 	CicloId           int64   `json:"cicloId"`
 	CicloNome         string  `json:"cicloNome"`
+	CicloIniciaEm     string  `json:"cicloIniciaEm"`
+	CicloTerminaEm    string  `json:"cicloTerminaEm"`
 	PilarId           int64   `json:"pilarId"`
 	PilarNome         string  `json:"pilarNome"`
 	PlanoId           int64   `json:"planoId"`

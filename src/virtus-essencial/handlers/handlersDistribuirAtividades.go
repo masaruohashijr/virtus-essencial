@@ -205,6 +205,8 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		var page mdl.PageProdutosComponentes
 		sql := " SELECT " +
 			" a.id_ciclo, c.nome as ciclo_nome, " +
+			" coalesce(format(h.inicia_em,'yyyy-MM-dd'),'') as ciclo_inicia_em, " +
+			" coalesce(format(h.termina_em,'yyyy-MM-dd'),'') as ciclo_termina_em," +
 			" a.id_pilar, d.nome as pilar_nome, " +
 			" a.id_componente, e.nome as componente_nome, " +
 			" coalesce(b.nome,''), a.id_entidade, " +
@@ -245,6 +247,8 @@ func DistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 			rows.Scan(
 				&produto.CicloId,
 				&produto.CicloNome,
+				&produto.CicloIniciaEm,
+				&produto.CicloTerminaEm,
 				&produto.PilarId,
 				&produto.PilarNome,
 				&produto.ComponenteId,
