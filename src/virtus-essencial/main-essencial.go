@@ -82,7 +82,7 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.0" + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.01" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	if false {
@@ -105,11 +105,6 @@ func main() {
 	r.HandleFunc("/listAvaliarPlanos", hd.ListAvaliarPlanosHandler).Methods("GET")
 	r.HandleFunc("/avaliarPlanos", hd.AvaliarPlanosHandler).Methods("POST")
 	r.HandleFunc("/updateAvaliarPlanos", hd.UpdateAvaliarPlanosHandler).Methods("POST")
-	// ----------------- CHAMADOS
-	r.HandleFunc(route.ChamadosRoute, hd.ListChamadosHandler).Methods("GET")
-	r.HandleFunc("/createChamado", hd.CreateChamadoHandler).Methods("POST")
-	r.HandleFunc("/updateChamado", hd.UpdateChamadoHandler).Methods("POST")
-	r.HandleFunc("/deleteChamado", hd.DeleteChamadoHandler).Methods("POST")
 	// ----------------- CHAMADOS
 	r.HandleFunc(route.ChamadosRoute, hd.ListChamadosHandler).Methods("GET")
 	r.HandleFunc("/createChamado", hd.CreateChamadoHandler).Methods("POST")
