@@ -82,11 +82,12 @@ func main() {
 	sConfig := ReadConfig(SERVER)
 	sec.Store = sessions.NewCookieStore([]byte(sConfig.EncryptionKey))
 	hd.Db = dbConn()
-	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.1b" + "]"
+	mdl.Ambiente = " [" + sConfig.Ambiente + " 1.3.1 mgc" + "]"
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
-	if false {
-		dpk.Initialize()
+	if true {
+		// dpk.Initialize()
+		dpk.MigracaoCiclos()
 	}
 	r := mux.NewRouter()
 	// ----------------- SECURITY

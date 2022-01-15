@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"strconv"
 	hd "virtus-essencial/handlers"
 )
 
@@ -82,5 +83,75 @@ func createSchema() {
 	_, err := db.Exec(query)
 	if err != nil {
 		fmt.Println(err.Error())
+	}
+}
+
+type MigrarCiclo struct {
+	Sigla        string
+	cicloOrigem  int
+	cicloDestino int
+}
+
+func loadMigrarCiclos() []*MigrarCiclo {
+	migrarCiclos := []*MigrarCiclo{}
+	MigrarCiclo1 := &MigrarCiclo{"BANESPREV", 1, 2}
+	MigrarCiclo2 := &MigrarCiclo{"SP-PREVCOM", 1, 2}
+	MigrarCiclo3 := &MigrarCiclo{"VIVEST", 3, 2}
+	MigrarCiclo4 := &MigrarCiclo{"VALIA", 3, 2}
+	MigrarCiclo5 := &MigrarCiclo{"SISTEL", 1, 2}
+	MigrarCiclo6 := &MigrarCiclo{"FUNDACAO COPEL", 1, 2}
+	MigrarCiclo7 := &MigrarCiclo{"FATL", 1, 2}
+	migrarCiclos = append(migrarCiclos, MigrarCiclo1)
+	migrarCiclos = append(migrarCiclos, MigrarCiclo2)
+	migrarCiclos = append(migrarCiclos, MigrarCiclo3)
+	migrarCiclos = append(migrarCiclos, MigrarCiclo4)
+	migrarCiclos = append(migrarCiclos, MigrarCiclo5)
+	migrarCiclos = append(migrarCiclos, MigrarCiclo6)
+	migrarCiclos = append(migrarCiclos, MigrarCiclo7)
+	return migrarCiclos
+}
+
+func getIdEntidade(m *MigrarCiclo) (int, error) {
+	sql := "SELECT ID_ENTIDADE FROM VIRTUS.ENTIDADES WHERE SIGLA = ?"
+	var idEntidade int
+	log.Println(sql)
+	row := db.QueryRow(sql, m.Sigla)
+	err := row.Scan(&idEntidade)
+	return idEntidade, err
+}
+
+func MigracaoCiclos() error {
+	db = hd.Db
+	var migracoes []*MigrarCiclo = loadMigrarCiclos()
+	for _, migracao := range migracoes {
+		idEntidade, err := getIdEntidade(migracao)
+		if err != nil {
+			return err
+		}
+		m := *migracao
+		updateProdutos(idEntidade, m.cicloOrigem, m.cicloDestino)
+	}
+	return nil
+}
+
+func updateProdutos(idEntidade, idCicloOrigem, idCicloDestino int) {
+	tabelas := []string{
+		"ciclos_entidades",
+		"produtos_ciclos",
+		"produtos_pilares",
+		"produtos_componentes",
+		"produtos_tipos_notas",
+		"produtos_planos",
+		"produtos_elementos",
+		"produtos_itens",
+	}
+	entidade := strconv.Itoa(idEntidade)
+	cicloOrigem := strconv.Itoa(idCicloOrigem)
+	cicloDestino := strconv.Itoa(idCicloDestino)
+
+	for _, t := range tabelas {
+		stmt := "UPDATE virtus." + t + " SET id_ciclo = " + cicloDestino + " WHERE id_entidade = " + entidade + " AND id_ciclo = " + cicloOrigem
+		db.Exec(stmt)
+		println(stmt)
 	}
 }

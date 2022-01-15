@@ -100,7 +100,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 		for fieldName, value := range r.Form {
 			log.Println("-------------- fieldName: " + fieldName)
 			if strings.HasPrefix(fieldName, "AuditorComponente_") {
-				fname := fieldName[7:len(fieldName)]
+				fname := fieldName[7:]
 				log.Println(fname)
 				supervisorId := r.FormValue("SupervisorComponenteId")
 				log.Println(supervisorId)
@@ -132,7 +132,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					faltouConfigurarPlano = true
 				}
 			} else if strings.HasPrefix(fieldName, "IniciaEmComponente_") {
-				fname := fieldName[8:len(fieldName)]
+				fname := fieldName[8:]
 				// log.Println(fname)
 				partes := strings.Split(fname, "_")
 				entidadeId := partes[1]
@@ -158,7 +158,7 @@ func UpdateDistribuirAtividadesHandler(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			} else if strings.HasPrefix(fieldName, "TerminaEmComponente_") {
-				fname := fieldName[9:len(fieldName)]
+				fname := fieldName[9:]
 				// log.Println(fname)
 				partes := strings.Split(fname, "_")
 				entidadeId := partes[1]
