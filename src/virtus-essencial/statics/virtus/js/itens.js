@@ -28,6 +28,7 @@ function criarItem(){
 		return;
 	}
 	itemId = getMaxId(itens);
+	descricao = traduz(descricao)
 	item = new Item(0, itemId, 0, nome, descricao, referencia, '', '', '', '', '');
 	itens.push(item);
 	addItemRow("table-itens-"+contexto);
@@ -51,6 +52,7 @@ function updateItem(){
 	var elementoId = document.getElementById('elementoId-edit').value;
 	var titulo = document.getElementById('NomeItemForUpdate').value;
 	var descricao = document.getElementById('DescricaoItemForUpdate').value;
+	descricao = traduz(descricao);
 	var referencia = document.getElementById('ReferenciaItemForUpdate').value;
 	var erros = '';
 	if(titulo==''){
@@ -101,6 +103,7 @@ function editItem(e) {
 	var elementoId = e.parentNode.parentNode.childNodes[0].childNodes[2].value;
 	var nome = e.parentNode.parentNode.childNodes[0].innerText;
 	var descricao = e.parentNode.parentNode.childNodes[1].innerText;
+	descricao = retraduz(descricao);
 	var referencia = e.parentNode.parentNode.childNodes[2].innerText;
 	// Atribuindo os valores de edit-item-form
 	document.getElementById('id-edit').value=id;

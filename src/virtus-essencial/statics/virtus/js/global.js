@@ -55,3 +55,25 @@ function parseNome2Valor(nome){
 	let letra = nome.substr(0,1);
 	return letra;
 }
+
+function traduz(motivacao) {
+	motivacao = motivacao.replaceAll(/\n\r?/g, '[nl]');
+	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
+	motivacao = motivacao.replaceAll('%', '[porcento]');
+	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
+	motivacao = motivacao.replaceAll('&', '[ecomercial]');
+	motivacao = motivacao.replaceAll('#', '[cerquilha]');
+	motivacao = motivacao.replaceAll('+', '[mais]');
+	return motivacao;
+}
+
+function retraduz(motivacao) {
+	motivacao = motivacao.replaceAll('\[nl\]', '\n');
+	motivacao = motivacao.replaceAll('\[tab\]', '\t');
+	motivacao = motivacao.replaceAll('\[porcento\]', '%');
+	motivacao = motivacao.replaceAll('\[pontoevirgula\]', ';');
+	motivacao = motivacao.replaceAll('\[ecomercial\]', '&');
+	motivacao = motivacao.replaceAll('\[cerquilha\]', '#');
+	motivacao = motivacao.replaceAll('\[mais\]', '+');
+	return motivacao;
+}
