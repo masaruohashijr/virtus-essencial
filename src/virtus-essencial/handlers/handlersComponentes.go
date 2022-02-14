@@ -36,8 +36,8 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				elementoComponenteId := 0
 				statusElementoId := GetStartStatus("elemento")
 				elementoId := strings.Split(array[3], ":")[1]
-				tipoNotaId := strings.Split(array[3], ":")[1]
-				pesoPadrao := strings.Split(array[5], ":")[1]
+				tipoNotaId := strings.Split(array[5], ":")[1]
+				pesoPadrao := strings.Split(array[7], ":")[1]
 				sqlStatement := " INSERT INTO " +
 					" virtus.elementos_componentes( " +
 					" id_componente, " +
@@ -50,6 +50,12 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" OUTPUT INSERTED.id_elemento_componente " +
 					" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
+				log.Println("idComponente: ", idComponente)
+				log.Println("elementoId: ", elementoId)
+				log.Println("tipoNotaId: ", tipoNotaId)
+				log.Println("pesoPadrao: ", pesoPadrao)
+				log.Println("currentUser.Id: ", currentUser.Id)
+				log.Println("statusTipoNotaId: ", statusElementoId)
 				err := Db.QueryRow(
 					sqlStatement,
 					idComponente,
@@ -79,6 +85,11 @@ func CreateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" OUTPUT INSERTED.id_tipo_nota_componente " +
 					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
+				log.Println("idComponente: ", idComponente)
+				log.Println("tipoNotaId: ", tipoNotaId)
+				log.Println("pesoPadrao: ", pesoPadrao)
+				log.Println("currentUser.Id: ", currentUser.Id)
+				log.Println("statusTipoNotaId: ", statusTipoNotaId)
 				err := Db.QueryRow(
 					sqlStatement,
 					idComponente,
@@ -215,6 +226,7 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 				log.Println("Componente Id: " + componenteId)
 				sqlStatement := "INSERT INTO virtus.elementos_componentes ( " +
 					" id_componente, " +
+					" id_tipo_nota, " +
 					" id_elemento, " +
 					" peso_padrao, " +
 					" id_author, " +
@@ -222,15 +234,18 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 					" id_status " +
 					" ) " +
 					" OUTPUT INSERTED.id_componente " +
-					" VALUES (?, ?, ?, ?, GETDATE(), ?)"
+					" VALUES (?, ?, ?, ?, ?, GETDATE(), ?)"
 				log.Println(sqlStatement)
 				Db.QueryRow(
 					sqlStatement,
 					componenteId,
+					elementoComponente.TipoNotaId,
 					elementoComponente.ElementoId,
 					elementoComponente.PesoPadrao,
 					currentUser.Id,
 					statusElementoId).Scan(&elementoComponenteId)
+				registrarProdutosElementosTodos(currentUser)
+				registrarProdutosItensTodos(currentUser)
 			}
 		}
 		UpdateElementosComponenteHandler(elementosComponentePage, elementosComponenteDB)
@@ -243,10 +258,13 @@ func DeleteComponenteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
 		errMsg := "O Componente está associado a um registro e não pôde ser removido."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM virtus.componentes WHERE id_componente=?"
+		sqlStatement := "DELETE FROM virtus.tipos_notas_componentes WHERE id_componente=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
-		if err != nil && strings.Contains(err.Error(), "violates foreign key") {
+		sqlStatement = "DELETE FROM virtus.componentes WHERE id_componente=?"
+		deleteForm, _ = Db.Prepare(sqlStatement)
+		_, err = deleteForm.Exec(id)
+		if err != nil && strings.Contains(err.Error(), "23000") {
 			http.Redirect(w, r, route.ComponentesRoute+"?errMsg="+errMsg, 301)
 		} else {
 			http.Redirect(w, r, route.ComponentesRoute+"?msg=Componente removido com sucesso.", 301)
@@ -365,4 +383,93 @@ func LoadTiposNotaByComponenteId(w http.ResponseWriter, r *http.Request) {
 	jsonTiposNotasComponentes, _ := json.Marshal(tiposNotasComponentes)
 	w.Write([]byte(jsonTiposNotasComponentes))
 	log.Println("JSON Tipos Notas Componentes")
+}
+
+func registrarProdutosElementosTodos(currentUser mdl.User) {
+	sqlStatement := "INSERT INTO virtus.produtos_elementos ( " +
+		" id_entidade, " +
+		" id_ciclo, " +
+		" id_pilar, " +
+		" id_componente, " +
+		" id_plano, " +
+		" id_tipo_nota, " +
+		" id_elemento, " +
+		" peso," +
+		" nota," +
+		" id_tipo_pontuacao, " +
+		" id_author, " +
+		" criado_em ) " +
+		" SELECT distinct d.id_entidade, " +
+		" d.id_ciclo, " +
+		" d.id_pilar, " +
+		" d.id_componente, " +
+		" d.id_plano, " +
+		" c.id_tipo_nota, " +
+		" c.id_elemento, " +
+		" c.peso_padrao, " +
+		" 0, ?, ?, GETDATE() " +
+		" FROM " +
+		" virtus.pilares_ciclos a " +
+		" INNER JOIN " +
+		" virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
+		" INNER JOIN " +
+		" virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
+		" INNER JOIN " +
+		" virtus.produtos_planos d ON (d.id_ciclo = a.id_ciclo " +
+		"	AND d.id_pilar = a.id_pilar " +
+		"	AND d.id_componente = b.id_componente) " +
+		" WHERE " +
+		" NOT EXISTS " +
+		"  (SELECT 1 " +
+		"   FROM virtus.produtos_elementos e " +
+		"   WHERE " +
+		"     e.id_ciclo = a.id_ciclo " +
+		"     AND e.id_pilar = a.id_pilar " +
+		"     AND e.id_componente = b.id_componente " +
+		"     AND e.id_elemento = c.id_elemento)"
+	log.Println(sqlStatement)
+	Db.QueryRow(
+		sqlStatement,
+		mdl.Calculada,
+		currentUser.Id)
+}
+
+func registrarProdutosItensTodos(currentUser mdl.User) {
+	sqlStatement := "INSERT INTO virtus.produtos_itens ( " +
+		" id_entidade, " +
+		" id_ciclo, " +
+		" id_pilar, " +
+		" id_componente, " +
+		" id_plano, " +
+		" id_tipo_nota, " +
+		" id_elemento, " +
+		" id_item, " +
+		" id_author, " +
+		" criado_em ) " +
+		" SELECT distinct p.id_entidade, " +
+		" p.id_ciclo, " +
+		" p.id_pilar, " +
+		" p.id_componente, " +
+		" p.id_plano, " +
+		" c.id_tipo_nota, " +
+		" c.id_elemento, d.id_item, ?, GETDATE() " +
+		" FROM virtus.pilares_ciclos a " +
+		" INNER JOIN virtus.componentes_pilares b ON a.id_pilar = b.id_pilar " +
+		" INNER JOIN virtus.elementos_componentes c ON b.id_componente = c.id_componente " +
+		" INNER JOIN virtus.itens d ON c.id_elemento = d.id_elemento " +
+		" INNER JOIN virtus.produtos_planos p ON (p.id_ciclo = a.id_ciclo " +
+		"	AND p.id_pilar = a.id_pilar " +
+		"	AND p.id_componente = b.id_componente) " +
+		" WHERE " +
+		" NOT EXISTS (SELECT 1 " +
+		"      FROM virtus.produtos_itens e " +
+		"      WHERE e.id_ciclo = a.id_ciclo " +
+		"      AND e.id_pilar = a.id_pilar " +
+		"      AND e.id_componente = b.id_componente " +
+		"  	   AND e.id_elemento = c.id_elemento " +
+		"	   AND e.id_item = d.id_item)"
+	log.Println(sqlStatement)
+	Db.QueryRow(
+		sqlStatement,
+		currentUser.Id)
 }
