@@ -256,11 +256,14 @@ func UpdateComponenteHandler(w http.ResponseWriter, r *http.Request) {
 func DeleteComponenteHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Delete Componente")
 	if r.Method == "POST" && sec.IsAuthenticated(w, r) {
-		errMsg := "O Componente está associado a um registro e não pôde ser removido."
+		errMsg := "O Componente está associado a um registro e não pôde ser removido.\nVerifique se está vinculado a um Pilar."
 		id := r.FormValue("Id")
-		sqlStatement := "DELETE FROM virtus.tipos_notas_componentes WHERE id_componente=?"
+		sqlStatement := "DELETE FROM virtus.elementos_componentes WHERE id_componente=?"
 		deleteForm, _ := Db.Prepare(sqlStatement)
 		_, err := deleteForm.Exec(id)
+		sqlStatement = "DELETE FROM virtus.tipos_notas_componentes WHERE id_componente=?"
+		deleteForm, _ = Db.Prepare(sqlStatement)
+		_, err = deleteForm.Exec(id)
 		sqlStatement = "DELETE FROM virtus.componentes WHERE id_componente=?"
 		deleteForm, _ = Db.Prepare(sqlStatement)
 		_, err = deleteForm.Exec(id)

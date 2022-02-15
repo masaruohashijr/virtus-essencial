@@ -61,6 +61,7 @@ function traduz(motivacao) {
 	motivacao = motivacao.replaceAll(/\t/g, '[tab]');
 	motivacao = motivacao.replaceAll('%', '[porcento]');
 	motivacao = motivacao.replaceAll(';', '[pontoevirgula]');
+	motivacao = motivacao.replaceAll(',', '[virgula]');
 	motivacao = motivacao.replaceAll('&', '[ecomercial]');
 	motivacao = motivacao.replaceAll('#', '[cerquilha]');
 	motivacao = motivacao.replaceAll('+', '[mais]');
@@ -71,6 +72,7 @@ function retraduz(motivacao) {
 	motivacao = motivacao.replaceAll('\[nl\]', '\n');
 	motivacao = motivacao.replaceAll('\[tab\]', '\t');
 	motivacao = motivacao.replaceAll('\[porcento\]', '%');
+	motivacao = motivacao.replaceAll('\[virgula\]', ',');
 	motivacao = motivacao.replaceAll('\[pontoevirgula\]', ';');
 	motivacao = motivacao.replaceAll('\[ecomercial\]', '&');
 	motivacao = motivacao.replaceAll('\[cerquilha\]', '#');

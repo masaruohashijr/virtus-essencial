@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -62,7 +63,7 @@ func assembleFeatures(activity mdl.Activity) mdl.Activity {
 	sql := "SELECT a.id_feature, b.name " +
 		" FROM virtus.features_activities a" +
 		" LEFT OUTER JOIN virtus.features b ON a.id_feature = b.id_feature WHERE a.id_activity = ?"
-	log.Println(sql + string(activity.Id))
+	log.Println(sql + fmt.Sprint(activity.Id))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
 	featureId := 0
@@ -88,7 +89,7 @@ func assembleRoles(activity mdl.Activity) mdl.Activity {
 	sql := "SELECT a.id_role, b.name " +
 		" FROM virtus.activities_roles a" +
 		" LEFT OUTER JOIN virtus.roles b ON a.id_role = b.id_role WHERE a.id_activity = ?"
-	log.Println(sql + string(activity.Id))
+	log.Println(sql + fmt.Sprint(activity.Id))
 	rows, _ := Db.Query(sql, activity.Id)
 	defer rows.Close()
 	roleId := 0

@@ -160,10 +160,11 @@ function addItemRow(tableID) {
 	newCell.innerHTML = '<input type="hidden" name="order" value="'+order+'"/>'+newCell.innerHTML;
 	// descricao
 	newCell = newRow.insertCell(1);
+	item.descricao = retraduz(item.descricao);
 	newText = document.createTextNode(item.descricao);
 	newCell.style = "display:none";
 	newCell.appendChild(newText);
-	// descricao
+	// referencia
 	newCell = newRow.insertCell(2);
 	newText = document.createTextNode(item.referencia);
 	newCell.style = "display:none";

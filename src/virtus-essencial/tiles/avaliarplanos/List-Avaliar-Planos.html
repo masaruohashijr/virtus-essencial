@@ -88,7 +88,7 @@
 				elementosMap.set("{{$produto.ElementoId}}","{{$produto.ElementoNome}}");
 				itensMap.set("{{$produto.ItemId}}","{{$produto.ItemNome}}");
 			</script>
-			{{if $primeiraLinha}}
+			{{if $primeiraLinha}}			
             <tr style="background-color: aliceblue">
                 <td style="border:1px solid #ddd;font-size: 0.7em;vertical-align:middle">{{$linha = call $inc $linha}}{{$linha}}</td>
 				<td style="border:1px solid #ddd;font-size: 0.7em;vertical-align:middle">EFPC</td>
@@ -274,7 +274,7 @@
                 <td style="font-size:1.2em;vertical-align:middle;text-align:left;padding-left: 45px">
 					<a href="#AcionadoPor" onclick="expandir(this,'tabela-avaliar-planos')" style="vertical-align:middle;font-size:1.5em;color: darkblue">
 						<i class="ion-android-arrow-dropright hoverbtn"></i>
-					</a>
+					</a>Plano
 					{{$produto.CNPB}} 
 				</td>
 				<td>&nbsp;</td>
