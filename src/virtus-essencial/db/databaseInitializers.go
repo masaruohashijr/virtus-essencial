@@ -98,9 +98,9 @@ func loadMigrarCiclos() []*MigrarCiclo {
 	MigrarCiclo2 := &MigrarCiclo{"SP-PREVCOM", 1, 2}
 	MigrarCiclo3 := &MigrarCiclo{"VIVEST", 3, 2}
 	MigrarCiclo4 := &MigrarCiclo{"VALIA", 3, 2}
-	MigrarCiclo5 := &MigrarCiclo{"SISTEL", 1, 2}
-	MigrarCiclo6 := &MigrarCiclo{"FUNDACAO COPEL", 1, 2}
-	MigrarCiclo7 := &MigrarCiclo{"FATL", 1, 2}
+	MigrarCiclo5 := &MigrarCiclo{"SISTEL", 3, 2}
+	MigrarCiclo6 := &MigrarCiclo{"FUNDACAO COPEL", 3, 2}
+	MigrarCiclo7 := &MigrarCiclo{"FATL", 3, 2}
 	migrarCiclos = append(migrarCiclos, MigrarCiclo1)
 	migrarCiclos = append(migrarCiclos, MigrarCiclo2)
 	migrarCiclos = append(migrarCiclos, MigrarCiclo3)
