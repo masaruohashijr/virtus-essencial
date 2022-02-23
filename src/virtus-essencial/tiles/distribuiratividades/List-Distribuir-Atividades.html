@@ -76,14 +76,7 @@
 				<td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;						
 				</td>
                 <td style="vertical-align:middle; border:1px solid #ddd;">Supervisor</td>
-                <td style="vertical-align:middle; border:1px solid #ddd;">					
-					<table width="100%">
-						<tr>
-							<td>Inicia Em</td>
-							<td>Termina Em</td>
-						</tr>
-					</table>	
-				</td>
+                <td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
                 <td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
             </tr>
             <tr>
@@ -91,32 +84,11 @@
 				<td style="vertical-align:middle; border:1px solid #ddd;text-align:left">&nbsp;&nbsp;Ciclo</td>
                 <td style="vertical-align:middle; border:1px solid #ddd;text-align:left;padding-left: 10px">&nbsp;&nbsp;{{$produto.CicloNome}}</td>
 				<td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
-                <td style="border:1px solid #ddd;vertical-align: middle">
+                <td>
 					<input name="SupervisorComponenteId" type="hidden" value="{{$produto.SupervisorId}}">
 					<input class="w3-input" type="text" readOnly disabled value="{{$produto.SupervisorName}}">
 				</td>
-				<td style="vertical-align:middle; border:1px solid #ddd;">
-					<table width="100%">
-						<tr>
-							<td>
-								<input 
-									class="w3-input" 
-									type="date" 
-									disabled
-									id="CicloIniciaEm" 
-									value="{{$produto.CicloIniciaEm}}">
-							</td>
-							<td>
-								<input 
-									class="w3-input" 
-									type="date" 
-									disabled
-									id="CicloTerminaEm" 
-									value="{{$produto.CicloTerminaEm}}">
-							</td>
-						</tr>
-					</table>				
-				</td>
+				<td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
                 <td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
             </tr>
 			{{$primeiraLinha = false}}
@@ -129,6 +101,12 @@
 				<td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
                 <td style="border:1px solid #ddd;vertical-align:middle;">Auditores</td>
 				<td style="vertical-align:middle; border:1px solid #ddd;">
+					<table width="100%">
+						<tr>
+							<td>Inicia Em</td>
+							<td>Termina Em</td>
+						</tr>
+					</table>						
 				</td>
 				<td style="vertical-align:middle; border:1px solid #ddd;">&nbsp;</td>
 				{{$auxSumario = $produto.PilarNome}}
@@ -184,7 +162,7 @@
 									type="date" 
 									required
 									{{if and (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe") }}disabled{{end}}
-									onchange="if(!isDatasForaCiclo(this,'{{$produto.IniciaEm}}') && !isDatasInvertidas(this)) motivarReprogramacao(this);"
+									onchange="if(!isDatasInvertidas(this)) motivarReprogramacao(this);"
 									name="IniciaEmComponente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.IniciaEm}}" 
 									value="{{$produto.IniciaEm}}">
 							</td>
@@ -194,7 +172,7 @@
 									type="date" 
 									required
 									{{if and (ne $produto.SupervisorId $currentUser) (ne $curUserRole "Chefe") }}disabled{{end}}
-									onchange="if(!isDatasForaCiclo(this,'{{$produto.TerminaEm}}') && !isDatasInvertidas(this)) motivarReprogramacao(this);"
+									onchange="if(!isDatasInvertidas(this)) motivarReprogramacao(this);"
 									name="TerminaEmComponente_{{$produto.EntidadeId}}_{{$produto.CicloId}}_{{$produto.PilarId}}_{{$produto.ComponenteId}}_{{$produto.TerminaEm}}" 
 									value="{{$produto.TerminaEm}}">
 							</td>
