@@ -144,6 +144,13 @@ func updateProdutos(idEntidade, idCicloOrigem, idCicloDestino int) {
 		"produtos_planos",
 		"produtos_elementos",
 		"produtos_itens",
+		"produtos_ciclos_historicos",
+		"produtos_pilares_historicos",
+		"produtos_componentes_historicos",
+		"produtos_elementos_historicos",
+		"produtos_itens_historicos",
+		"integrantes",
+		"anotacoes",
 	}
 	entidade := strconv.Itoa(idEntidade)
 	cicloOrigem := strconv.Itoa(idCicloOrigem)
