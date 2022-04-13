@@ -51,13 +51,16 @@ func DeleteItensByElementoHandler(elementoId string) {
 }
 
 func DeleteItensHandler(diffDB []mdl.Item) {
-	sqlStatement := "DELETE FROM virtus.itensWHERE id_item=?"
+	sqlStatement := "DELETE FROM virtus.itens WHERE id_item=?"
 	deleteForm, err := Db.Prepare(sqlStatement)
 	if err != nil {
 		log.Println(err.Error())
 	}
 	for n := range diffDB {
-		deleteForm.Exec(strconv.FormatInt(int64(diffDB[n].Id), 10))
+		_, err = deleteForm.Exec(strconv.FormatInt(int64(diffDB[n].Id), 10))
+		if err != nil {
+			log.Println(err.Error())
+		}
 		log.Println("DELETE: Item Id: " + strconv.FormatInt(int64(diffDB[n].Id), 10))
 	}
 }
