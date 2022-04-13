@@ -18,7 +18,7 @@ class Item {
 }
 
 function criarItem(){
-	var nome = document.getElementById('NomeItemForInsert').value;
+	var nome = document.getElementById('NomeItemForInsert').value;	
 	var descricao = document.getElementById('DescricaoItemForInsert').value;
 	var referencia = document.getElementById('ReferenciaItemForInsert').value;
 	var erros = '';
@@ -126,8 +126,9 @@ function loadItensByElementoId(elementoId){
 				wipeRows("table-itens-edit")
 				itens = [];
 				for(order = 0;order<itensEdit.length;order++){
-					itens[order]=itensEdit[order];
-					addItemRow("table-itens-edit");
+					itens[order]=itensEdit[order]
+					itens[order].nome=retraduz(itens[order].nome)
+					addItemRow("table-itens-edit")
 				}
 				return itens;
 			}
@@ -145,7 +146,9 @@ function addItemRow(tableID) {
 	order = itens.length-1;
 	item = itens[order];
 	let newCell = newRow.insertCell(0);
-	let newText = document.createTextNode(item.nome);
+	let nomeVisivel = item.nome;
+	item.nome = traduz(item.nome);
+	let newText = document.createTextNode(nomeVisivel);
 	newCell.style = "text-align: left";
 	var jsonItem = JSON.stringify(item);
 	jsonItem = jsonItem.split(',').join('#');
