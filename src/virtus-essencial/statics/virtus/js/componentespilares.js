@@ -68,7 +68,9 @@ function addComponentePilarRow(tableID) {
 	order = componentesPilar.length-1;
 	componentePilar = componentesPilar[order];
 	let newCell = newRow.insertCell(0);
-	let newText = document.createTextNode(componentePilar.componenteNome);
+	let compNome = componentePilar.componenteNome
+	let newText = document.createTextNode(compNome);
+	componentePilar.componenteNome = traduz(componentePilar.componenteNome)
 	let json = JSON.stringify(componentePilar);
 	json = json.split(',').join('#');
 	json = json.split('"').join('');
@@ -222,9 +224,11 @@ function updateComponentePilarRow(tableID, order){
 		}
 	}
 	let celula = row.childNodes[0];
-	console.log(componentesPilar[order].nome);
-	celula.innerText = componentesPilar[order].componenteNome;
-	let json = JSON.stringify(componentesPilar[order]);
+	console.log(componentesPilar[order].nome)
+	let compNome = componentePilar.componenteNome
+	celula.innerText = compNome
+	componentesPilar[order].componenteNome = traduz(componentesPilar[order].componenteNome)
+	let json = JSON.stringify(componentesPilar[order])
 	json = json.split(',').join('#');
 	json = json.split('"').join('');
 	json = json.split('{').join('');

@@ -86,8 +86,8 @@ func main() {
 	mdl.AppName += mdl.Ambiente
 	// injetando a variável Authenticated
 	if false {
-		// dpk.Initialize()
-		dpk.MigracaoCiclos()
+		dpk.Initialize()
+		// dpk.MigracaoCiclos()
 	}
 	r := mux.NewRouter()
 	// ----------------- SECURITY

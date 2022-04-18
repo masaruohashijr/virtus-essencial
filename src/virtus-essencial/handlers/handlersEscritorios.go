@@ -77,9 +77,9 @@ func UpdateEscritorioHandler(w http.ResponseWriter, r *http.Request) {
 				id,
 				chefe)
 		} else {
-			sqlStatement := "UPDATE virtus.escritorios SET nome=?, descricao=?, abreviatura=? WHERE id_escritorio=?"
+			sqlStatement := "UPDATE virtus.escritorios SET nome=?, descricao=?, abreviatura=?, id_chefe=? WHERE id_escritorio=?"
 			updtForm, _ := Db.Prepare(sqlStatement)
-			updtForm.Exec(nome, descricao, abreviatura, id)
+			updtForm.Exec(nome, descricao, abreviatura, 0, id)
 		}
 		log.Println("UPDATE: Id: " + id + " | Nome: " + nome + " | Abreviatura: " + abreviatura + " | Descrição: " + descricao + " | Chefe: " + chefe)
 		http.Redirect(w, r, route.EscritoriosRoute+"?msg=Escritório atualizado com sucesso.", 301)
